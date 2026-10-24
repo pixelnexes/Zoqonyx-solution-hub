@@ -1,0 +1,59 @@
+import { MetadataRoute } from "next";
+import { prisma } from "@/lib/prisma";
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://zoqonyx.com";
+
+  // Static core routes
+  const staticRoutes: MetadataRoute.Sitemap = [
+    {
+      url: `${baseUrl}`,
+      lastModified: new Date(),
+      changeFrequency: "daily",
+      priority: 1.0,
+    },
+    {
+      url: `${baseUrl}/about`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/contact`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/privacy-policy`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.5,
+    },
+    {
+      url: `${baseUrl}/terms`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.5,
+    },
+  ];
+
+  try {
+    const tools = await prisma.tool.findMany({
+      where: { isActive: true },
+      select: { slug: true, updatedAt: true, isComingSoon: true },
+    });
+
+    const toolRoutes: MetadataRoute.Sitemap = tools.map((tool) => ({
+      url: `${baseUrl}/tools/${tool.slug}`,
+      lastModified: tool.updatedAt,
+      changeFrequency: tool.isComingSoon ? "weekly" : "daily",
+      priority: tool.isComingSoon ? 0.7 : 0.9,
+    }));
+
+    return [...staticRoutes, ...toolRoutes];
+  } catch (e) {
+    console.error("Error generating sitemap:", e);
+    return staticRoutes;
+  }
+}

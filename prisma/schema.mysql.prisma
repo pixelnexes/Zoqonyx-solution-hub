@@ -1,0 +1,65 @@
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id        String   @id @default(cuid())
+  username  String   @unique
+  password  String   // bcrypt hashed
+  createdAt DateTime @default(now())
+}
+
+model Tool {
+  id           String   @id @default(cuid())
+  slug         String   @unique
+  name         String
+  description  String
+  category     String
+  isActive     Boolean  @default(true)
+  isComingSoon Boolean  @default(false)
+  icon         String?
+  order        Int      @default(0)
+  metaTitle    String?
+  metaDesc     String?
+  content      String?  @db.Text
+  usageCount   Int      @default(0)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Setting {
+  id    String @id @default(cuid())
+  key   String @unique
+  value String @db.Text
+}
+
+model Page {
+  id        String  @id @default(cuid())
+  slug      String  @unique
+  title     String
+  content   String  @db.Text
+  metaTitle String?
+  metaDesc  String?
+}
+
+model ContactMessage {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  message   String   @db.Text
+  createdAt DateTime @default(now())
+}
+
+model NotificationSubscriber {
+  id        String   @id @default(cuid())
+  email     String
+  toolSlug  String
+  createdAt DateTime @default(now())
+
+  @@unique([email, toolSlug])
+}
