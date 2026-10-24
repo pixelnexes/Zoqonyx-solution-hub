@@ -1,10 +1,22 @@
 import { prisma } from "@/lib/prisma";
 import { ToolCatalog } from "@/components/home/tool-catalog";
-import { Sparkles, Shield, Zap, Globe, Check, ArrowDown } from "lucide-react";
+import { ShieldCheck, Shield, Zap, Globe, Check, ArrowDown } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import type { Metadata } from "next";
 
 import { DEFAULT_TOOLS } from "@/lib/default-tools";
+
+export const metadata: Metadata = {
+  title: {
+    absolute: "Zoqonyx Solution Hub | Free Online Tools Platform",
+  },
+  description:
+    "Every useful tool in one place. Compress images, format JSON, generate CSS styles, convert files, and calculate values instantly with zero subscriptions and zero data storage.",
+  alternates: {
+    canonical: "https://zoqonyx.com",
+  },
+};
 
 // Force dynamic or ISR to ensure admin toggles reflect immediately without redeploy
 export const dynamic = "force-dynamic";
@@ -87,7 +99,7 @@ export default async function HomePage() {
           {/* Hero Section */}
           <div className="text-center max-w-3xl mx-auto space-y-6">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-brand-cyan/30 bg-brand-cyan/10 text-brand-cyan text-xs font-semibold backdrop-blur-sm animate-in fade-in zoom-in duration-300">
-              <Sparkles className="w-3.5 h-3.5" />
+              <ShieldCheck className="w-3.5 h-3.5" />
               <span>Free Online Tools Platform • 100% Client-Side Privacy</span>
             </div>
 

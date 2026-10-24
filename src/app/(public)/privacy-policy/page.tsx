@@ -4,8 +4,11 @@ import type { Metadata } from "next";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | Zoqonyx Solution Hub",
+  title: "Privacy Policy – 100% Client-Side Privacy Guarantee",
   description: "Read the Zoqonyx Solution Hub privacy policy. Learn why client-side processing guarantees your private data remains completely confidential.",
+  alternates: {
+    canonical: "https://zoqonyx.com/privacy-policy",
+  },
 };
 
 export default async function PrivacyPolicyPage() {

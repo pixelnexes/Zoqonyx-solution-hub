@@ -30,6 +30,11 @@ export function Footer() {
             </h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li>
+                <Link href="/tools" className="font-semibold text-foreground hover:text-brand-cyan transition-colors">
+                  All Tools Directory
+                </Link>
+              </li>
+              <li>
                 <Link href="/category/image-tools" className="hover:text-brand-cyan transition-colors">
                   Image & Photo Tools
                 </Link>

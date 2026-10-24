@@ -4,8 +4,11 @@ import type { Metadata } from "next";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "About Us | Zoqonyx Solution Hub",
+  title: "About Us – Free Client-Side Tools Mission",
   description: "Learn about Zoqonyx Solution Hub, developed by Newix Tech Solutions to empower creators with free client-side digital tools.",
+  alternates: {
+    canonical: "https://zoqonyx.com/about",
+  },
 };
 
 export default async function AboutPage() {

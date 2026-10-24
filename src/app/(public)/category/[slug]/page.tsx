@@ -47,7 +47,9 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
   const url = `https://zoqonyx.com/category/${category.slug}`;
 
   return {
-    title,
+    title: {
+      absolute: category.metaTitle,
+    },
     description,
     alternates: {
       canonical: url,

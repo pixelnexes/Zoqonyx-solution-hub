@@ -52,7 +52,7 @@ test.describe("Upgraded Competitor-Grade Tools", () => {
     await expect(page.locator("button:has-text('vCard')").first()).toBeVisible();
 
     // Check export resolution options
-    await expect(page.locator("text=Print-Ready Resolution")).toBeVisible();
+    await expect(page.locator("text=Print-Ready Resolution").first()).toBeVisible();
   });
 
   test("Image Resizer Pro displays interactive canvas and social presets", async ({ page }) => {
@@ -60,9 +60,9 @@ test.describe("Upgraded Competitor-Grade Tools", () => {
     await expect(page.locator("h1")).toContainText("Image Resizer");
 
     // Presets showcase text
-    await expect(page.locator("text=Instagram Square")).toBeVisible();
-    await expect(page.locator("text=YouTube Thumbnail")).toBeVisible();
-    await expect(page.locator("text=Instagram Story / Reel")).toBeVisible();
+    await expect(page.locator("text=Instagram Square").first()).toBeVisible();
+    await expect(page.locator("text=YouTube Thumbnail").first()).toBeVisible();
+    await expect(page.locator("text=Instagram Story / Reel").first()).toBeVisible();
   });
 
   test("CSS Gradient Generator Pro displays linear, radial, conic and presets", async ({ page }) => {

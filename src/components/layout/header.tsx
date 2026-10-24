@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import { Logo } from "@/components/layout/logo";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Shield, Sparkles, ChevronDown } from "lucide-react";
+import { Menu, X, Zap, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const NAV_CATEGORIES = [
@@ -16,7 +16,7 @@ const NAV_CATEGORIES = [
   { label: "Developer & SEO Tools", href: "/category/developer-seo", icon: "Globe" },
   { label: "Calculators & Math", href: "/category/calculators", icon: "Calculator" },
   { label: "PDF & Documents", href: "/category/pdf-documents", icon: "FileEdit" },
-  { label: "AI & Smart Tools", href: "/category/ai-tools", icon: "Sparkles" },
+  { label: "AI & Smart Tools", href: "/category/ai-tools", icon: "Cpu" },
 ];
 
 export function Header() {
@@ -37,10 +37,10 @@ export function Header() {
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-6 text-sm font-medium">
           <Link
-            href="/#tools-catalog"
+            href="/tools"
             className={cn(
               "transition-colors hover:text-brand-cyan",
-              pathname === "/" ? "text-foreground font-semibold" : "text-muted-foreground"
+              pathname === "/tools" ? "text-brand-cyan font-semibold" : "text-muted-foreground"
             )}
           >
             All Tools
@@ -116,21 +116,9 @@ export function Header() {
         <div className="hidden md:flex items-center gap-3">
           <ThemeToggle />
 
-          <Link href="/admin">
-            <Button
-              variant="ghost"
-              size="sm"
-              className="text-muted-foreground hover:text-foreground text-xs gap-1.5"
-              title="Admin Portal"
-            >
-              <Shield className="w-3.5 h-3.5 text-brand-purple" />
-              <span>Admin</span>
-            </Button>
-          </Link>
-
-          <Link href="/#tools-catalog">
+          <Link href="/tools">
             <Button variant="gradient" size="sm" className="gap-1.5 shadow-sm">
-              <Sparkles className="w-3.5 h-3.5" />
+              <Zap className="w-3.5 h-3.5" />
               <span>Explore Tools</span>
             </Button>
           </Link>
@@ -155,7 +143,7 @@ export function Header() {
         <div className="md:hidden border-b border-border/80 bg-background/95 backdrop-blur-lg px-4 py-4 space-y-3 animate-in fade-in slide-in-from-top-2 duration-200">
           <nav className="flex flex-col space-y-1">
             <Link
-              href="/#tools-catalog"
+              href="/tools"
               onClick={() => setMobileMenuOpen(false)}
               className="px-3 py-2 rounded-lg text-sm font-medium text-foreground hover:bg-muted transition-colors"
             >
@@ -192,22 +180,13 @@ export function Header() {
                 Contact
               </Link>
             </div>
-
-            <Link
-              href="/admin"
-              onClick={() => setMobileMenuOpen(false)}
-              className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium text-muted-foreground hover:bg-muted transition-colors"
-            >
-              <Shield className="w-4 h-4 text-brand-purple" />
-              <span>Admin Portal</span>
-            </Link>
           </nav>
 
           <div className="pt-2">
-            <Link href="/#tools-catalog" onClick={() => setMobileMenuOpen(false)}>
+            <Link href="/tools" onClick={() => setMobileMenuOpen(false)}>
               <Button variant="gradient" className="w-full gap-2">
-                <Sparkles className="w-4 h-4" />
-                <span>Explore 30+ Free Tools</span>
+                <Zap className="w-4 h-4" />
+                <span>Explore 35+ Free Tools</span>
               </Button>
             </Link>
           </div>

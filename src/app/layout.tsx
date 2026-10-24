@@ -29,7 +29,10 @@ export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://zoqonyx.com"),
   title: {
     default: "Zoqonyx Solution Hub | Free Online Tools Platform",
-    template: "%s | Zoqonyx Solution Hub",
+    template: "%s | Zoqonyx",
+  },
+  alternates: {
+    canonical: "https://zoqonyx.com",
   },
   description:
     "Empowering creators, developers, designers, and marketers with fast, privacy-first, 100% free digital tools. Zero installation, zero cost.",

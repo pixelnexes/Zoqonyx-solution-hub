@@ -4,8 +4,11 @@ import type { Metadata } from "next";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Terms of Service | Zoqonyx Solution Hub",
+  title: "Terms of Service – Free & Open Tool Usage",
   description: "Read the Terms of Service governing usage of Zoqonyx Solution Hub tools and services.",
+  alternates: {
+    canonical: "https://zoqonyx.com/terms",
+  },
 };
 
 export default async function TermsPage() {

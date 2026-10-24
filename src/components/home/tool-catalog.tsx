@@ -120,7 +120,7 @@ export function ToolCatalog({ initialTools }: ToolCatalogProps) {
               : "bg-card hover:bg-muted/80 text-brand-purple dark:text-purple-300 border-brand-purple/30"
           )}
         >
-          <Sparkles className="w-3.5 h-3.5" />
+          <Clock className="w-3.5 h-3.5" />
           <span>Coming Soon</span>
         </button>
       </div>
