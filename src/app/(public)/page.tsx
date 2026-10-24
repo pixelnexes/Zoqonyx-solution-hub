@@ -8,21 +8,37 @@ import { Button } from "@/components/ui/button";
 export const dynamic = "force-dynamic";
 
 export default async function HomePage() {
-  const tools = await prisma.tool.findMany({
-    where: { isActive: true },
-    orderBy: [{ order: "asc" }, { name: "asc" }],
-    select: {
-      id: true,
-      slug: true,
-      name: true,
-      description: true,
-      category: true,
-      isActive: true,
-      isComingSoon: true,
-      icon: true,
-      order: true,
-    },
-  });
+  let tools: Array<{
+    id: string;
+    slug: string;
+    name: string;
+    description: string;
+    category: string;
+    isActive: boolean;
+    isComingSoon: boolean;
+    icon: string | null;
+    order: number;
+  }> = [];
+
+  try {
+    tools = await prisma.tool.findMany({
+      where: { isActive: true },
+      orderBy: [{ order: "asc" }, { name: "asc" }],
+      select: {
+        id: true,
+        slug: true,
+        name: true,
+        description: true,
+        category: true,
+        isActive: true,
+        isComingSoon: true,
+        icon: true,
+        order: true,
+      },
+    });
+  } catch (error) {
+    console.error("Error fetching tools for homepage:", error);
+  }
 
   const activeLiveCount = tools.filter((t) => !t.isComingSoon).length;
   const comingSoonCount = tools.filter((t) => t.isComingSoon).length;

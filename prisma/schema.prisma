@@ -1,5 +1,5 @@
 datasource db {
-  provider = "sqlite"
+  provider = "mysql"
   url      = env("DATABASE_URL")
 }
 
@@ -26,7 +26,7 @@ model Tool {
   order        Int      @default(0)
   metaTitle    String?
   metaDesc     String?
-  content      String?  // long SEO content
+  content      String?  @db.Text
   usageCount   Int      @default(0)
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
@@ -35,14 +35,14 @@ model Tool {
 model Setting {
   id    String @id @default(cuid())
   key   String @unique
-  value String // JSON string for complex values
+  value String @db.Text
 }
 
 model Page {
   id        String  @id @default(cuid())
-  slug      String  @unique // about, privacy, terms, homepage
+  slug      String  @unique
   title     String
-  content   String  // rich text / markdown
+  content   String  @db.Text
   metaTitle String?
   metaDesc  String?
 }
@@ -51,7 +51,7 @@ model ContactMessage {
   id        String   @id @default(cuid())
   name      String
   email     String
-  message   String
+  message   String   @db.Text
   createdAt DateTime @default(now())
 }
 

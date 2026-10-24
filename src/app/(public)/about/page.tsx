@@ -1,15 +1,22 @@
 import { prisma } from "@/lib/prisma";
 import type { Metadata } from "next";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "About Us | Zoqonyx Solution Hub",
   description: "Learn about Zoqonyx Solution Hub, developed by Newix Tech Solutions to empower creators with free client-side digital tools.",
 };
 
 export default async function AboutPage() {
-  const page = await prisma.page.findUnique({
-    where: { slug: "about" },
-  });
+  let page = null;
+  try {
+    page = await prisma.page.findUnique({
+      where: { slug: "about" },
+    });
+  } catch (e) {
+    console.error("Error fetching about page:", e);
+  }
 
   return (
     <div className="container mx-auto max-w-4xl px-4 py-16">

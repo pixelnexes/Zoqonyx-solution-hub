@@ -8,85 +8,109 @@ import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
 import { ArrowLeft, CheckCircle2, ShieldCheck, Zap } from "lucide-react";
 
+export const dynamic = "force-dynamic";
+
 interface ToolPageProps {
   params: Promise<{ slug: string }>;
 }
 
 export async function generateMetadata({ params }: ToolPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const tool = await prisma.tool.findUnique({
-    where: { slug },
-  });
+  try {
+    const tool = await prisma.tool.findUnique({
+      where: { slug },
+    });
 
-  if (!tool) {
+    if (!tool) {
+      return {
+        title: "Tool Not Found | Zoqonyx Solution Hub",
+      };
+    }
+
+    const title = tool.metaTitle || `${tool.name} | Zoqonyx Solution Hub`;
+    const description = tool.metaDesc || tool.description;
+
     return {
-      title: "Tool Not Found | Zoqonyx Solution Hub",
+      title,
+      description,
+      openGraph: {
+        title,
+        description,
+        url: `https://zoqonyx.com/tools/${slug}`,
+        siteName: "Zoqonyx Solution Hub",
+        images: [
+          {
+            url: "/logo/zoqonyx-logo.png",
+            width: 1200,
+            height: 630,
+            alt: tool.name,
+          },
+        ],
+      },
+      twitter: {
+        card: "summary_large_image",
+        title,
+        description,
+        images: ["/logo/zoqonyx-logo.png"],
+      },
+    };
+  } catch (error) {
+    console.error("Error generating metadata for tool:", error);
+    return {
+      title: "Online Tool | Zoqonyx Solution Hub",
+      description: "Fast, private, client-side digital utility.",
     };
   }
-
-  const title = tool.metaTitle || `${tool.name} | Zoqonyx Solution Hub`;
-  const description = tool.metaDesc || tool.description;
-
-  return {
-    title,
-    description,
-    openGraph: {
-      title,
-      description,
-      url: `https://zoqonyx.com/tools/${slug}`,
-      siteName: "Zoqonyx Solution Hub",
-      images: [
-        {
-          url: "/logo/zoqonyx-logo.png",
-          width: 1200,
-          height: 630,
-          alt: tool.name,
-        },
-      ],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title,
-      description,
-      images: ["/logo/zoqonyx-logo.png"],
-    },
-  };
 }
 
 export default async function ToolPage({ params }: ToolPageProps) {
   const { slug } = await params;
-  const tool = await prisma.tool.findUnique({
-    where: { slug },
-  });
+  let tool = null;
+  let relatedTools: Array<{
+    slug: string;
+    name: string;
+    description: string;
+    category: string;
+    icon: string | null;
+  }> = [];
+
+  try {
+    tool = await prisma.tool.findUnique({
+      where: { slug },
+    });
+
+    if (tool) {
+      // Increment usageCount in background
+      prisma.tool
+        .update({
+          where: { id: tool.id },
+          data: { usageCount: { increment: 1 } },
+        })
+        .catch((e) => console.error("Error updating usage count:", e));
+
+      relatedTools = await prisma.tool.findMany({
+        where: {
+          isActive: true,
+          category: tool.category,
+          id: { not: tool.id },
+        },
+        take: 3,
+        select: {
+          slug: true,
+          name: true,
+          description: true,
+          category: true,
+          icon: true,
+        },
+      });
+    }
+  } catch (error) {
+    console.error("Database connection error in ToolPage:", error);
+  }
 
   if (!tool) {
     notFound();
   }
-
-  // Increment usageCount in background
-  prisma.tool
-    .update({
-      where: { id: tool.id },
-      data: { usageCount: { increment: 1 } },
-    })
-    .catch((e) => console.error("Error updating usage count:", e));
-
-  // Fetch related tools
-  const relatedTools = await prisma.tool.findMany({
-    where: {
-      isActive: true,
-      category: tool.category,
-      id: { not: tool.id },
-    },
-    take: 3,
-    select: {
-      slug: true,
-      name: true,
-      description: true,
-      category: true,
-      icon: true,
-    },
-  });
 
   const jsonLd = {
     "@context": "https://schema.org",

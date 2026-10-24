@@ -1,15 +1,22 @@
 import { prisma } from "@/lib/prisma";
 import type { Metadata } from "next";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Privacy Policy | Zoqonyx Solution Hub",
   description: "Read the Zoqonyx Solution Hub privacy policy. Learn why client-side processing guarantees your private data remains completely confidential.",
 };
 
 export default async function PrivacyPolicyPage() {
-  const page = await prisma.page.findUnique({
-    where: { slug: "privacy-policy" },
-  });
+  let page = null;
+  try {
+    page = await prisma.page.findUnique({
+      where: { slug: "privacy-policy" },
+    });
+  } catch (e) {
+    console.error("Error fetching privacy policy page:", e);
+  }
 
   return (
     <div className="container mx-auto max-w-4xl px-4 py-16">
