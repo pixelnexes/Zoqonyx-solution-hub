@@ -31,8 +31,8 @@ test.describe("Live Tools Execution", () => {
     await page.goto("/tools/qr-code-generator");
     await expect(page.locator("h1")).toContainText("QR Code Generator");
 
-    const qrImg = page.locator('img[alt="QR Code"]');
-    await expect(qrImg).toBeVisible();
+    const qrCanvas = page.locator('canvas, img[alt="QR Code"]').first();
+    await expect(qrCanvas).toBeVisible();
   });
 
   test("Age Calculator computes age", async ({ page }) => {

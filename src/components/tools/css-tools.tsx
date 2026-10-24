@@ -110,15 +110,16 @@ export function BorderRadiusGeneratorTool() {
   );
 }
 
-// --- 2. Box Shadow Generator ---
+// --- 2. Box Shadow Generator Pro ---
 export function BoxShadowGeneratorTool() {
   const [x, setX] = React.useState(0);
-  const [y, setY] = React.useState(15);
-  const [blur, setBlur] = React.useState(30);
-  const [spread, setSpread] = React.useState(-5);
+  const [y, setY] = React.useState(18);
+  const [blur, setBlur] = React.useState(38);
+  const [spread, setSpread] = React.useState(-6);
   const [opacity, setOpacity] = React.useState(25);
   const [color, setColor] = React.useState("#06B6D4");
   const [inset, setInset] = React.useState(false);
+  const [enableLayer2, setEnableLayer2] = React.useState(true);
   const [copied, setCopied] = React.useState(false);
 
   // Convert hex + opacity to rgba
@@ -129,7 +130,12 @@ export function BoxShadowGeneratorTool() {
     return `rgba(${(num >> 16) & 255}, ${(num >> 8) & 255}, ${num & 255}, ${(alpha / 100).toFixed(2)})`;
   };
 
-  const shadowString = `${inset ? "inset " : ""}${x}px ${y}px ${blur}px ${spread}px ${hexToRgba(color, opacity)}`;
+  const layer1 = `${inset ? "inset " : ""}${x}px ${y}px ${blur}px ${spread}px ${hexToRgba(color, opacity)}`;
+  const layer2 = enableLayer2
+    ? `, ${inset ? "inset " : ""}${Math.round(x * 0.3)}px ${Math.max(1, Math.round(y * 0.3))}px ${Math.round(blur * 0.4)}px ${Math.round(spread * 0.5)}px ${hexToRgba(color, Math.min(100, Math.round(opacity * 1.5)))}`
+    : "";
+
+  const shadowString = `${layer1}${layer2}`;
   const cssCode = `box-shadow: ${shadowString};`;
 
   const copyCode = () => {
@@ -138,15 +144,54 @@ export function BoxShadowGeneratorTool() {
     setTimeout(() => setCopied(false), 2000);
   };
 
+  const PRESETS = [
+    { name: "Subtle Card", x: 0, y: 4, blur: 12, spread: 0, opacity: 12, color: "#000000", inset: false, l2: true },
+    { name: "Hover Elevation", x: 0, y: 16, blur: 32, spread: -4, opacity: 20, color: "#000000", inset: false, l2: true },
+    { name: "Floating Modal", x: 0, y: 25, blur: 50, spread: -10, opacity: 35, color: "#000000", inset: false, l2: true },
+    { name: "Cyan Cyber Glow", x: 0, y: 0, blur: 30, spread: 6, opacity: 60, color: "#06B6D4", inset: false, l2: true },
+    { name: "Purple Neon Glow", x: 0, y: 0, blur: 35, spread: 8, opacity: 65, color: "#7C3AED", inset: false, l2: true },
+    { name: "Soft Inner Inset", x: 0, y: 4, blur: 14, spread: 2, opacity: 25, color: "#000000", inset: true, l2: false },
+  ];
+
   return (
     <div className="space-y-8">
-      {/* Shadow Preview */}
-      <div className="p-16 rounded-2xl bg-card border border-border/80 flex items-center justify-center min-h-[300px]">
+      {/* Shadow Preview Canvas */}
+      <div className="p-16 rounded-3xl bg-muted/20 border border-border/80 flex items-center justify-center min-h-[340px] relative overflow-hidden">
         <div
-          className="w-48 h-48 rounded-2xl bg-background border border-border flex items-center justify-center font-heading font-bold text-sm text-foreground transition-all duration-200"
+          className="w-52 h-52 rounded-2xl bg-card border border-border/80 flex flex-col items-center justify-center font-heading font-bold text-sm text-foreground transition-all duration-300 p-4 text-center gap-1 shadow-sm"
           style={{ boxShadow: shadowString }}
         >
-          Shadow Preview
+          <span className="text-brand-cyan">Shadow Preview</span>
+          <span className="text-[11px] font-normal text-muted-foreground">
+            {enableLayer2 ? "Dual-Layer Smooth Elevation" : "Single Layer Shadow"}
+          </span>
+        </div>
+      </div>
+
+      {/* Preset Quick Badges */}
+      <div className="space-y-2">
+        <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+          Curated Elevation Presets
+        </label>
+        <div className="flex flex-wrap items-center gap-2">
+          {PRESETS.map((p) => (
+            <button
+              key={p.name}
+              onClick={() => {
+                setX(p.x);
+                setY(p.y);
+                setBlur(p.blur);
+                setSpread(p.spread);
+                setOpacity(p.opacity);
+                setColor(p.color);
+                setInset(p.inset);
+                setEnableLayer2(p.l2);
+              }}
+              className="px-3 py-1.5 rounded-xl text-xs font-semibold bg-card border border-border/70 hover:border-brand-cyan/60 hover:text-brand-cyan transition-all"
+            >
+              {p.name}
+            </button>
+          ))}
         </div>
       </div>
 
@@ -204,8 +249,8 @@ export function BoxShadowGeneratorTool() {
           </div>
           <input
             type="range"
-            min="-50"
-            max="50"
+            min="-40"
+            max="40"
             value={spread}
             onChange={(e) => setSpread(Number(e.target.value))}
             className="w-full accent-cyan-500 cursor-pointer"
@@ -227,15 +272,15 @@ export function BoxShadowGeneratorTool() {
           />
         </div>
 
-        <div className="flex items-center gap-4 pt-4">
+        <div className="flex flex-wrap items-center gap-4 pt-2">
           <div className="flex items-center gap-2">
             <input
               type="color"
               value={color}
               onChange={(e) => setColor(e.target.value)}
-              className="w-8 h-8 rounded border-0 cursor-pointer"
+              className="w-9 h-9 rounded-lg border-0 cursor-pointer"
             />
-            <span className="text-xs font-semibold uppercase">{color}</span>
+            <span className="text-xs font-semibold uppercase font-mono">{color}</span>
           </div>
           <label className="flex items-center gap-1.5 text-xs font-semibold cursor-pointer">
             <input
@@ -246,9 +291,19 @@ export function BoxShadowGeneratorTool() {
             />
             <span>Inset</span>
           </label>
+          <label className="flex items-center gap-1.5 text-xs font-semibold cursor-pointer">
+            <input
+              type="checkbox"
+              checked={enableLayer2}
+              onChange={(e) => setEnableLayer2(e.target.checked)}
+              className="rounded accent-cyan-500"
+            />
+            <span>Smooth Dual-Layer</span>
+          </label>
         </div>
       </div>
 
+      {/* Code Export */}
       <div className="p-4 rounded-xl bg-card border border-border/80 flex items-center justify-between gap-4">
         <code className="text-xs sm:text-sm font-mono text-foreground font-semibold truncate">
           {cssCode}
@@ -262,18 +317,43 @@ export function BoxShadowGeneratorTool() {
   );
 }
 
-// --- 3. CSS Gradient Generator ---
+// --- 3. CSS Gradient Generator Pro ---
 export function CssGradientGeneratorTool() {
-  const [type, setType] = React.useState<"linear" | "radial">("linear");
+  const [type, setType] = React.useState<"linear" | "radial" | "conic">("linear");
   const [angle, setAngle] = React.useState(135);
   const [color1, setColor1] = React.useState("#06B6D4");
   const [color2, setColor2] = React.useState("#7C3AED");
+  const [color3, setColor3] = React.useState("#1E3A8A");
+  const [use3Colors, setUse3Colors] = React.useState(false);
   const [copied, setCopied] = React.useState(false);
+
+  const GRADIENT_PRESETS = [
+    { name: "Zoqonyx Electric", c1: "#1E3A8A", c2: "#06B6D4", c3: "#7C3AED", use3: true, angle: 135, type: "linear" as const },
+    { name: "Cyberpunk Glow", c1: "#F43F5E", c2: "#7C3AED", c3: "#06B6D4", use3: true, angle: 90, type: "linear" as const },
+    { name: "Sunset Horizon", c1: "#FF512F", c2: "#DD2476", c3: "#F97316", use3: false, angle: 45, type: "linear" as const },
+    { name: "Hyper Emerald", c1: "#059669", c2: "#10B981", c3: "#34D399", use3: true, angle: 120, type: "linear" as const },
+    { name: "Twilight Velvet", c1: "#4A00E0", c2: "#8E2DE2", c3: "#FF512F", use3: false, angle: 135, type: "linear" as const },
+    { name: "Citrus Sunrise", c1: "#F97316", c2: "#FBBF24", c3: "#EF4444", use3: false, angle: 90, type: "linear" as const },
+    { name: "Northern Lights", c1: "#00C9FF", c2: "#92FE9D", c3: "#00E676", use3: false, angle: 180, type: "linear" as const },
+    { name: "Cosmic Conic", c1: "#06B6D4", c2: "#7C3AED", c3: "#EC4899", use3: true, angle: 0, type: "conic" as const },
+    { name: "Radial Pulse", c1: "#38BDF8", c2: "#0F172A", c3: "#000000", use3: false, angle: 0, type: "radial" as const },
+    { name: "Ultra Violet", c1: "#654EA3", c2: "#EA4C89", c3: "#9333EA", use3: false, angle: 225, type: "linear" as const },
+    { name: "Oceanic Abyss", c1: "#0F2027", c2: "#203A43", c3: "#2C5364", use3: true, angle: 180, type: "linear" as const },
+    { name: "Candy Pastel", c1: "#A18CD1", c2: "#FBC2EB", c3: "#FDE68A", use3: false, angle: 135, type: "linear" as const },
+  ];
 
   const gradientString =
     type === "linear"
-      ? `linear-gradient(${angle}deg, ${color1} 0%, ${color2} 100%)`
-      : `radial-gradient(circle, ${color1} 0%, ${color2} 100%)`;
+      ? use3Colors
+        ? `linear-gradient(${angle}deg, ${color1} 0%, ${color2} 50%, ${color3} 100%)`
+        : `linear-gradient(${angle}deg, ${color1} 0%, ${color2} 100%)`
+      : type === "radial"
+      ? use3Colors
+        ? `radial-gradient(circle at 50% 50%, ${color1} 0%, ${color2} 60%, ${color3} 100%)`
+        : `radial-gradient(circle at 50% 50%, ${color1} 0%, ${color2} 100%)`
+      : use3Colors
+      ? `conic-gradient(from ${angle}deg at 50% 50%, ${color1} 0deg, ${color2} 180deg, ${color3} 270deg, ${color1} 360deg)`
+      : `conic-gradient(from ${angle}deg at 50% 50%, ${color1} 0deg, ${color2} 180deg, ${color1} 360deg)`;
 
   const cssCode = `background: ${gradientString};`;
 
@@ -283,18 +363,73 @@ export function CssGradientGeneratorTool() {
     setTimeout(() => setCopied(false), 2000);
   };
 
+  const randomize = () => {
+    const randomHex = () =>
+      "#" + Math.floor(Math.random() * 16777215).toString(16).padStart(6, "0");
+    setColor1(randomHex());
+    setColor2(randomHex());
+    if (use3Colors) setColor3(randomHex());
+    setAngle(Math.floor(Math.random() * 360));
+  };
+
   return (
     <div className="space-y-8">
+      {/* Visual Canvas Display */}
       <div
-        className="h-64 rounded-2xl shadow-xl transition-all duration-300 flex items-center justify-center"
+        className="h-72 rounded-3xl shadow-xl transition-all duration-300 flex items-center justify-center relative overflow-hidden group"
         style={{ background: gradientString }}
       >
-        <span className="px-4 py-2 rounded-xl bg-black/40 backdrop-blur-md text-white font-heading font-bold text-sm tracking-wide">
-          Interactive Gradient Preview
-        </span>
+        <div className="px-5 py-2.5 rounded-2xl bg-black/40 backdrop-blur-md text-white font-heading font-bold text-sm tracking-wide shadow-md flex items-center gap-2">
+          <Sparkles className="w-4 h-4 text-cyan-300" />
+          <span>Interactive Gradient Studio</span>
+        </div>
+
+        <button
+          onClick={randomize}
+          className="absolute top-4 right-4 p-2.5 rounded-xl bg-black/40 backdrop-blur-md text-white hover:bg-black/60 transition-colors text-xs font-semibold flex items-center gap-1.5 shadow"
+          title="Randomize Colors"
+        >
+          <RefreshCw className="w-3.5 h-3.5" />
+          <span>Randomize</span>
+        </button>
       </div>
 
-      <div className="p-6 rounded-2xl bg-card border border-border/80 space-y-5">
+      {/* 12 Curated Presets Bar */}
+      <div className="space-y-2">
+        <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+          Designer Gradient Presets
+        </label>
+        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-2">
+          {GRADIENT_PRESETS.map((gp) => (
+            <button
+              key={gp.name}
+              onClick={() => {
+                setColor1(gp.c1);
+                setColor2(gp.c2);
+                setColor3(gp.c3);
+                setUse3Colors(gp.use3);
+                setAngle(gp.angle);
+                setType(gp.type);
+              }}
+              className="p-2 rounded-xl bg-card border border-border/80 hover:border-brand-cyan/60 flex items-center gap-2 transition-all text-left"
+            >
+              <div
+                className="w-5 h-5 rounded-lg shrink-0 shadow-sm"
+                style={{
+                  background: `linear-gradient(135deg, ${gp.c1}, ${gp.c2})`,
+                }}
+              />
+              <span className="text-[11px] font-semibold text-foreground truncate">
+                {gp.name}
+              </span>
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Control Panel */}
+      <div className="p-6 rounded-2xl bg-card border border-border/80 space-y-6">
+        {/* Mode & Angle */}
         <div className="flex flex-wrap items-center justify-between gap-4">
           <div className="flex items-center gap-2">
             <Button
@@ -311,9 +446,26 @@ export function CssGradientGeneratorTool() {
             >
               Radial
             </Button>
+            <Button
+              variant={type === "conic" ? "gradient" : "outline"}
+              size="sm"
+              onClick={() => setType("conic")}
+            >
+              Conic
+            </Button>
           </div>
 
-          {type === "linear" && (
+          <label className="flex items-center gap-2 text-xs font-semibold cursor-pointer">
+            <input
+              type="checkbox"
+              checked={use3Colors}
+              onChange={(e) => setUse3Colors(e.target.checked)}
+              className="rounded accent-cyan-500"
+            />
+            <span>3 Color Stops</span>
+          </label>
+
+          {(type === "linear" || type === "conic") && (
             <div className="flex items-center gap-3 w-48">
               <span className="text-xs font-semibold text-muted-foreground">Angle: {angle}°</span>
               <input
@@ -328,16 +480,37 @@ export function CssGradientGeneratorTool() {
           )}
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+        {/* Quick Angle Shortcuts */}
+        {(type === "linear" || type === "conic") && (
+          <div className="flex flex-wrap items-center gap-2 pt-1 border-t border-border/40">
+            <span className="text-xs text-muted-foreground mr-1">Angle Presets:</span>
+            {[0, 45, 90, 135, 180, 225, 270, 315].map((deg) => (
+              <button
+                key={deg}
+                onClick={() => setAngle(deg)}
+                className={`px-2.5 py-1 rounded-lg text-xs font-mono font-semibold transition-colors ${
+                  angle === deg
+                    ? "bg-brand-cyan text-brand-navy dark:text-brand-navy"
+                    : "bg-muted/60 text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                {deg}°
+              </button>
+            ))}
+          </div>
+        )}
+
+        {/* Color Pickers */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 pt-1">
           <div className="flex items-center gap-3 p-3 rounded-xl bg-muted/40">
             <input
               type="color"
               value={color1}
               onChange={(e) => setColor1(e.target.value)}
-              className="w-10 h-10 rounded border-0 cursor-pointer"
+              className="w-10 h-10 rounded-lg border-0 cursor-pointer"
             />
             <div>
-              <p className="text-xs font-semibold text-muted-foreground">Start Color</p>
+              <p className="text-xs font-semibold text-muted-foreground">Color 1 (Start)</p>
               <p className="font-mono text-sm font-bold uppercase">{color1}</p>
             </div>
           </div>
@@ -347,16 +520,34 @@ export function CssGradientGeneratorTool() {
               type="color"
               value={color2}
               onChange={(e) => setColor2(e.target.value)}
-              className="w-10 h-10 rounded border-0 cursor-pointer"
+              className="w-10 h-10 rounded-lg border-0 cursor-pointer"
             />
             <div>
-              <p className="text-xs font-semibold text-muted-foreground">End Color</p>
+              <p className="text-xs font-semibold text-muted-foreground">
+                {use3Colors ? "Color 2 (Middle)" : "Color 2 (End)"}
+              </p>
               <p className="font-mono text-sm font-bold uppercase">{color2}</p>
             </div>
           </div>
+
+          {use3Colors && (
+            <div className="flex items-center gap-3 p-3 rounded-xl bg-muted/40">
+              <input
+                type="color"
+                value={color3}
+                onChange={(e) => setColor3(e.target.value)}
+                className="w-10 h-10 rounded-lg border-0 cursor-pointer"
+              />
+              <div>
+                <p className="text-xs font-semibold text-muted-foreground">Color 3 (End)</p>
+                <p className="font-mono text-sm font-bold uppercase">{color3}</p>
+              </div>
+            </div>
+          )}
         </div>
       </div>
 
+      {/* Code Export */}
       <div className="p-4 rounded-xl bg-card border border-border/80 flex items-center justify-between gap-4">
         <code className="text-xs sm:text-sm font-mono text-foreground font-semibold truncate">
           {cssCode}

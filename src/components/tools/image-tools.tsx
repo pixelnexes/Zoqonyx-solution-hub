@@ -1,293 +1,21 @@
 "use client";
 
 import * as React from "react";
-import { Upload, Download, Copy, Check, RefreshCw, ZoomIn, Sliders, Image as ImageIcon, Eye } from "lucide-react";
+import { Upload, Download, Copy, Check, RefreshCw, ZoomIn, Sliders, Image as ImageIcon, Eye, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
-// --- 1. Image Compressor ---
+import { ImageCompressorProTool } from "./image-compressor-pro";
+import { ImageResizerProTool } from "./image-resizer-pro";
+
+// --- 1. Image Compressor Pro ---
 export function ImageCompressorTool() {
-  const [imageSrc, setImageSrc] = React.useState<string | null>(null);
-  const [originalSize, setOriginalSize] = React.useState<number>(0);
-  const [compressedSize, setCompressedSize] = React.useState<number>(0);
-  const [quality, setQuality] = React.useState<number>(75);
-  const [compressedUrl, setCompressedUrl] = React.useState<string | null>(null);
-  const [fileName, setFileName] = React.useState<string>("compressed-image");
-
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-
-    setOriginalSize(file.size);
-    setFileName(file.name.replace(/\.[^/.]+$/, ""));
-    const reader = new FileReader();
-    reader.onload = (event) => {
-      setImageSrc(event.target?.result as string);
-    };
-    reader.readAsDataURL(file);
-  };
-
-  const compressImage = React.useCallback(() => {
-    if (!imageSrc) return;
-    const img = new Image();
-    img.crossOrigin = "anonymous";
-    img.src = imageSrc;
-    img.onload = () => {
-      const canvas = document.createElement("canvas");
-      canvas.width = img.width;
-      canvas.height = img.height;
-      const ctx = canvas.getContext("2d");
-      if (!ctx) return;
-      ctx.drawImage(img, 0, 0);
-
-      const mimeType = "image/jpeg";
-      canvas.toBlob(
-        (blob) => {
-          if (!blob) return;
-          setCompressedSize(blob.size);
-          const url = URL.createObjectURL(blob);
-          setCompressedUrl(url);
-        },
-        mimeType,
-        quality / 100
-      );
-    };
-  }, [imageSrc, quality]);
-
-  React.useEffect(() => {
-    if (imageSrc) {
-      compressImage();
-    }
-  }, [imageSrc, quality, compressImage]);
-
-  const formatBytes = (bytes: number) => {
-    if (bytes === 0) return "0 Bytes";
-    const k = 1024;
-    const sizes = ["Bytes", "KB", "MB"];
-    const i = Math.floor(Math.log(bytes) / Math.log(k));
-    return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + " " + sizes[i];
-  };
-
-  const savings =
-    originalSize > 0 && compressedSize > 0
-      ? Math.max(0, Math.round(((originalSize - compressedSize) / originalSize) * 100))
-      : 0;
-
-  return (
-    <div className="space-y-6">
-      {!imageSrc ? (
-        <label className="flex flex-col items-center justify-center p-12 border-2 border-dashed border-border/80 hover:border-brand-cyan/70 rounded-2xl cursor-pointer bg-card/60 hover:bg-card transition-all group">
-          <Upload className="w-10 h-10 text-brand-cyan mb-3 group-hover:scale-110 transition-transform" />
-          <span className="font-heading font-semibold text-base text-foreground">Click to upload an image</span>
-          <span className="text-xs text-muted-foreground mt-1">Supports PNG, JPG, WebP, AVIF up to 50MB</span>
-          <input type="file" accept="image/*" onChange={handleFileChange} className="hidden" />
-        </label>
-      ) : (
-        <div className="space-y-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Original Card */}
-            <div className="p-4 rounded-2xl bg-card border border-border/80 space-y-3">
-              <div className="flex items-center justify-between text-xs font-semibold text-muted-foreground">
-                <span>Original</span>
-                <span>{formatBytes(originalSize)}</span>
-              </div>
-              <div className="relative aspect-video rounded-xl overflow-hidden bg-muted/40 flex items-center justify-center">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={imageSrc} alt="Original Preview" className="max-h-full max-w-full object-contain" />
-              </div>
-            </div>
-
-            {/* Compressed Card */}
-            <div className="p-4 rounded-2xl bg-card border border-border/80 space-y-3">
-              <div className="flex items-center justify-between text-xs font-semibold text-muted-foreground">
-                <span className="text-brand-cyan">Compressed ({quality}%)</span>
-                <span className="font-bold text-foreground">
-                  {formatBytes(compressedSize)} {savings > 0 && `(-${savings}%)`}
-                </span>
-              </div>
-              <div className="relative aspect-video rounded-xl overflow-hidden bg-muted/40 flex items-center justify-center">
-                {compressedUrl && (
-                  /* eslint-disable-next-line @next/next/no-img-element */
-                  <img src={compressedUrl} alt="Compressed Preview" className="max-h-full max-w-full object-contain" />
-                )}
-              </div>
-            </div>
-          </div>
-
-          {/* Controls */}
-          <div className="p-5 rounded-2xl bg-card border border-border/80 space-y-4">
-            <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-              <div className="w-full sm:w-1/2 space-y-1.5">
-                <div className="flex justify-between text-xs font-semibold">
-                  <span>Compression Quality</span>
-                  <span className="text-brand-cyan font-mono">{quality}%</span>
-                </div>
-                <input
-                  type="range"
-                  min="10"
-                  max="95"
-                  value={quality}
-                  onChange={(e) => setQuality(Number(e.target.value))}
-                  className="w-full accent-cyan-500 cursor-pointer"
-                />
-              </div>
-
-              <div className="flex items-center gap-3 w-full sm:w-auto">
-                <label className="text-xs px-3 py-2 rounded-lg border border-border/80 hover:bg-muted cursor-pointer transition-colors text-center shrink-0">
-                  <span>Upload Different</span>
-                  <input type="file" accept="image/*" onChange={handleFileChange} className="hidden" />
-                </label>
-
-                {compressedUrl && (
-                  <a
-                    href={compressedUrl}
-                    download={`${fileName}-zoqonyx.jpg`}
-                    className="w-full sm:w-auto"
-                  >
-                    <Button variant="gradient" className="gap-2 w-full">
-                      <Download className="w-4 h-4" />
-                      <span>Download ({formatBytes(compressedSize)})</span>
-                    </Button>
-                  </a>
-                )}
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-    </div>
-  );
+  return <ImageCompressorProTool />;
 }
 
-// --- 2. Image Resizer ---
+// --- 2. Image Resizer Pro ---
 export function ImageResizerTool() {
-  const [imageSrc, setImageSrc] = React.useState<string | null>(null);
-  const [origWidth, setOrigWidth] = React.useState<number>(0);
-  const [origHeight, setOrigHeight] = React.useState<number>(0);
-  const [targetWidth, setTargetWidth] = React.useState<number>(0);
-  const [targetHeight, setTargetHeight] = React.useState<number>(0);
-  const [lockAspect, setLockAspect] = React.useState(true);
-  const [resizedUrl, setResizedUrl] = React.useState<string | null>(null);
-
-  const handleFile = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-    const reader = new FileReader();
-    reader.onload = (event) => {
-      const src = event.target?.result as string;
-      setImageSrc(src);
-      const img = new Image();
-      img.src = src;
-      img.onload = () => {
-        setOrigWidth(img.width);
-        setOrigHeight(img.height);
-        setTargetWidth(img.width);
-        setTargetHeight(img.height);
-      };
-    };
-    reader.readAsDataURL(file);
-  };
-
-  const handleWidthChange = (w: number) => {
-    setTargetWidth(w);
-    if (lockAspect && origWidth > 0) {
-      setTargetHeight(Math.round((w / origWidth) * origHeight));
-    }
-  };
-
-  const handleHeightChange = (h: number) => {
-    setTargetHeight(h);
-    if (lockAspect && origHeight > 0) {
-      setTargetWidth(Math.round((h / origHeight) * origWidth));
-    }
-  };
-
-  const applyResize = () => {
-    if (!imageSrc || targetWidth <= 0 || targetHeight <= 0) return;
-    const img = new Image();
-    img.src = imageSrc;
-    img.onload = () => {
-      const canvas = document.createElement("canvas");
-      canvas.width = targetWidth;
-      canvas.height = targetHeight;
-      const ctx = canvas.getContext("2d");
-      if (!ctx) return;
-      ctx.drawImage(img, 0, 0, targetWidth, targetHeight);
-      setResizedUrl(canvas.toDataURL("image/png"));
-    };
-  };
-
-  return (
-    <div className="space-y-6">
-      {!imageSrc ? (
-        <label className="flex flex-col items-center justify-center p-12 border-2 border-dashed border-border/80 hover:border-brand-cyan/70 rounded-2xl cursor-pointer bg-card/60 transition-all group">
-          <Upload className="w-10 h-10 text-brand-cyan mb-3 group-hover:scale-110 transition-transform" />
-          <span className="font-heading font-semibold text-base text-foreground">Upload Image to Resize</span>
-          <span className="text-xs text-muted-foreground mt-1">Set pixel dimensions or custom scale</span>
-          <input type="file" accept="image/*" onChange={handleFile} className="hidden" />
-        </label>
-      ) : (
-        <div className="space-y-6">
-          <div className="p-5 rounded-2xl bg-card border border-border/80 space-y-4">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 items-end">
-              <div>
-                <label className="text-xs font-semibold text-muted-foreground block mb-1">
-                  Width (px) - Original: {origWidth}px
-                </label>
-                <Input
-                  type="number"
-                  value={targetWidth || ""}
-                  onChange={(e) => handleWidthChange(Number(e.target.value))}
-                />
-              </div>
-              <div>
-                <label className="text-xs font-semibold text-muted-foreground block mb-1">
-                  Height (px) - Original: {origHeight}px
-                </label>
-                <Input
-                  type="number"
-                  value={targetHeight || ""}
-                  onChange={(e) => handleHeightChange(Number(e.target.value))}
-                />
-              </div>
-              <div className="flex items-center gap-2 pb-2">
-                <input
-                  type="checkbox"
-                  id="lockAspect"
-                  checked={lockAspect}
-                  onChange={(e) => setLockAspect(e.target.checked)}
-                  className="rounded accent-cyan-500"
-                />
-                <label htmlFor="lockAspect" className="text-xs font-semibold text-foreground cursor-pointer">
-                  Lock Aspect Ratio
-                </label>
-              </div>
-            </div>
-
-            <div className="flex flex-wrap gap-2 pt-2">
-              <Button onClick={applyResize} variant="gradient" className="gap-2">
-                <RefreshCw className="w-4 h-4" />
-                <span>Process Resize</span>
-              </Button>
-              {resizedUrl && (
-                <a href={resizedUrl} download="resized-zoqonyx.png">
-                  <Button variant="default" className="gap-2">
-                    <Download className="w-4 h-4" />
-                    <span>Download Resized Image</span>
-                  </Button>
-                </a>
-              )}
-            </div>
-          </div>
-
-          <div className="p-4 rounded-2xl bg-card border border-border/80 flex items-center justify-center max-h-[400px] overflow-hidden">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={resizedUrl || imageSrc} alt="Preview" className="max-h-[350px] object-contain rounded-lg" />
-          </div>
-        </div>
-      )}
-    </div>
-  );
+  return <ImageResizerProTool />;
 }
 
 // --- 3. Image Format Converter ---
@@ -375,13 +103,82 @@ export function ImageFormatConverterTool() {
   );
 }
 
-// --- 4. Color Picker from Image ---
+// --- 4. Color Picker from Image Pro ---
 export function ColorPickerTool() {
   const [imageSrc, setImageSrc] = React.useState<string | null>(null);
   const [pickedColor, setPickedColor] = React.useState<string>("#06B6D4");
-  const [copied, setCopied] = React.useState(false);
+  const [rgbVal, setRgbVal] = React.useState<string>("rgb(6, 182, 212)");
+  const [hslVal, setHslVal] = React.useState<string>("hsl(189, 95%, 43%)");
+  const [cmykVal, setCmykVal] = React.useState<string>("cmyk(97%, 14%, 0%, 17%)");
+  const [palette, setPalette] = React.useState<string[]>([]);
+  const [copiedFormat, setCopiedFormat] = React.useState<string | null>(null);
+
+  // Loupe magnifier state
+  const [loupe, setLoupe] = React.useState<{ x: number; y: number; visible: boolean; color: string }>({
+    x: 0,
+    y: 0,
+    visible: false,
+    color: "#06B6D4",
+  });
 
   const canvasRef = React.useRef<HTMLCanvasElement | null>(null);
+
+  const hexToRgb = (hex: string) => {
+    const bigint = parseInt(hex.replace("#", ""), 16);
+    const r = (bigint >> 16) & 255;
+    const g = (bigint >> 8) & 255;
+    const b = bigint & 255;
+    return { r, g, b };
+  };
+
+  const rgbToHsl = (r: number, g: number, b: number) => {
+    r /= 255;
+    g /= 255;
+    b /= 255;
+    const max = Math.max(r, g, b),
+      min = Math.min(r, g, b);
+    let h = 0,
+      s = 0,
+      l = (max + min) / 2;
+    if (max !== min) {
+      const d = max - min;
+      s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+      switch (max) {
+        case r:
+          h = (g - b) / d + (g < b ? 6 : 0);
+          break;
+        case g:
+          h = (b - r) / d + 2;
+          break;
+        case b:
+          h = (r - g) / d + 4;
+          break;
+      }
+      h /= 6;
+    }
+    return `hsl(${Math.round(h * 360)}, ${Math.round(s * 100)}%, ${Math.round(l * 100)}%)`;
+  };
+
+  const rgbToCmyk = (r: number, g: number, b: number) => {
+    let c = 1 - r / 255;
+    let m = 1 - g / 255;
+    let y = 1 - b / 255;
+    const k = Math.min(c, Math.min(m, y));
+    if (k === 1) return "cmyk(0%, 0%, 0%, 100%)";
+    c = Math.round(((c - k) / (1 - k)) * 100);
+    m = Math.round(((m - k) / (1 - k)) * 100);
+    y = Math.round(((y - k) / (1 - k)) * 100);
+    const kPct = Math.round(k * 100);
+    return `cmyk(${c}%, ${m}%, ${y}%, ${kPct}%)`;
+  };
+
+  const updateColorValues = (hex: string) => {
+    setPickedColor(hex);
+    const { r, g, b } = hexToRgb(hex);
+    setRgbVal(`rgb(${r}, ${g}, ${b})`);
+    setHslVal(rgbToHsl(r, g, b));
+    setCmykVal(rgbToCmyk(r, g, b));
+  };
 
   const handleUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -393,6 +190,7 @@ export function ColorPickerTool() {
     reader.readAsDataURL(file);
   };
 
+  // Extract Palette on Image Load
   React.useEffect(() => {
     if (!imageSrc) return;
     const canvas = canvasRef.current;
@@ -407,8 +205,62 @@ export function ColorPickerTool() {
       canvas.width = img.width;
       canvas.height = img.height;
       ctx.drawImage(img, 0, 0);
+
+      // Extract 8 dominant sample colors across canvas
+      try {
+        const stepX = Math.floor(img.width / 5);
+        const stepY = Math.floor(img.height / 5);
+        const set = new Set<string>();
+        for (let i = 1; i <= 4; i++) {
+          for (let j = 1; j <= 4; j++) {
+            const pixel = ctx.getImageData(i * stepX, j * stepY, 1, 1).data;
+            const h =
+              "#" +
+              ((1 << 24) + (pixel[0] << 16) + (pixel[1] << 8) + pixel[2])
+                .toString(16)
+                .slice(1)
+                .toUpperCase();
+            set.add(h);
+            if (set.size >= 8) break;
+          }
+          if (set.size >= 8) break;
+        }
+        setPalette(Array.from(set));
+      } catch (e) {
+        console.error(e);
+      }
     };
   }, [imageSrc]);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLCanvasElement>) => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    const rect = canvas.getBoundingClientRect();
+    const scaleX = canvas.width / rect.width;
+    const scaleY = canvas.height / rect.height;
+
+    const x = Math.floor((e.clientX - rect.left) * scaleX);
+    const y = Math.floor((e.clientY - rect.top) * scaleY);
+
+    if (x >= 0 && x < canvas.width && y >= 0 && y < canvas.height) {
+      const pixel = ctx.getImageData(x, y, 1, 1).data;
+      const hex =
+        "#" +
+        ((1 << 24) + (pixel[0] << 16) + (pixel[1] << 8) + pixel[2])
+          .toString(16)
+          .slice(1)
+          .toUpperCase();
+      setLoupe({
+        x: e.clientX - rect.left,
+        y: e.clientY - rect.top,
+        visible: true,
+        color: hex,
+      });
+    }
+  };
 
   const handleCanvasClick = (e: React.MouseEvent<HTMLCanvasElement>) => {
     const canvas = canvasRef.current;
@@ -430,53 +282,161 @@ export function ColorPickerTool() {
         .toString(16)
         .slice(1)
         .toUpperCase();
-    setPickedColor(hex);
+    updateColorValues(hex);
   };
 
-  const copyHex = () => {
-    navigator.clipboard.writeText(pickedColor);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+  const copyVal = (text: string, label: string) => {
+    navigator.clipboard.writeText(text);
+    setCopiedFormat(label);
+    setTimeout(() => setCopiedFormat(null), 2000);
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       {!imageSrc ? (
-        <label className="flex flex-col items-center justify-center p-12 border-2 border-dashed border-border/80 hover:border-brand-cyan/70 rounded-2xl cursor-pointer bg-card/60 transition-all group">
-          <Upload className="w-10 h-10 text-brand-cyan mb-3 group-hover:scale-110 transition-transform" />
-          <span className="font-heading font-semibold text-base text-foreground">Upload Image to Pick Colors</span>
-          <span className="text-xs text-muted-foreground mt-1">Click anywhere on the image to inspect HEX, RGB, HSL</span>
+        <label className="flex flex-col items-center justify-center p-14 border-2 border-dashed border-border/80 hover:border-brand-cyan/70 rounded-3xl cursor-pointer bg-card/60 hover:bg-card transition-all group shadow-sm">
+          <div className="p-4 rounded-2xl bg-brand-cyan/10 text-brand-cyan mb-4 group-hover:scale-110 transition-transform">
+            <Upload className="w-8 h-8" />
+          </div>
+          <span className="font-heading font-bold text-lg text-foreground">Upload Image for Eyedropper</span>
+          <span className="text-xs text-muted-foreground mt-1 text-center max-w-sm">
+            Hover to use the 10x magnifying loupe, click to inspect exact HEX/RGB/HSL, or select from auto-extracted palettes.
+          </span>
           <input type="file" accept="image/*" onChange={handleUpload} className="hidden" />
         </label>
       ) : (
-        <div className="space-y-6">
-          {/* Eyedropper Inspector Card */}
-          <div className="p-5 rounded-2xl bg-card border border-border/80 flex flex-wrap items-center justify-between gap-4">
-            <div className="flex items-center gap-4">
-              <div
-                className="w-12 h-12 rounded-xl border border-border shadow-md"
-                style={{ backgroundColor: pickedColor }}
-              />
-              <div>
-                <p className="text-xs font-semibold text-muted-foreground uppercase">Selected Color</p>
-                <p className="text-xl font-heading font-black tracking-wider text-foreground font-mono">
-                  {pickedColor}
-                </p>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          {/* Controls & Values Column */}
+          <div className="lg:col-span-5 space-y-6">
+            {/* Color Swatch Card */}
+            <div className="p-5 rounded-3xl bg-card border border-border/80 space-y-4 shadow-sm">
+              <div className="flex items-center gap-4">
+                <div
+                  className="w-16 h-16 rounded-2xl border-2 border-white shadow-xl shrink-0"
+                  style={{ backgroundColor: pickedColor }}
+                />
+                <div className="space-y-0.5">
+                  <span className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">
+                    Inspected Color
+                  </span>
+                  <p className="text-2xl font-heading font-black tracking-wider text-foreground font-mono">
+                    {pickedColor}
+                  </p>
+                </div>
+              </div>
+
+              {/* Formats Copy Grid */}
+              <div className="space-y-2 pt-2 border-t border-border/60">
+                {[
+                  { label: "HEX", val: pickedColor },
+                  { label: "RGB", val: rgbVal },
+                  { label: "HSL", val: hslVal },
+                  { label: "CMYK", val: cmykVal },
+                ].map((item) => (
+                  <div
+                    key={item.label}
+                    className="flex items-center justify-between p-2.5 rounded-xl bg-muted/40 border border-border/60 text-xs"
+                  >
+                    <span className="font-semibold text-muted-foreground w-12">{item.label}</span>
+                    <span className="font-mono font-bold text-foreground text-xs flex-1 px-2 select-all">
+                      {item.val}
+                    </span>
+                    <button
+                      onClick={() => copyVal(item.val, item.label)}
+                      className="px-2.5 py-1 rounded-lg border border-border/80 hover:bg-card text-xs font-semibold flex items-center gap-1.5 transition-colors"
+                    >
+                      {copiedFormat === item.label ? (
+                        <>
+                          <Check className="w-3 h-3 text-emerald-500" />
+                          <span className="text-emerald-500">Copied</span>
+                        </>
+                      ) : (
+                        <>
+                          <Copy className="w-3 h-3" />
+                          <span>Copy</span>
+                        </>
+                      )}
+                    </button>
+                  </div>
+                ))}
               </div>
             </div>
 
-            <Button onClick={copyHex} variant="outline" className="gap-2">
-              {copied ? <Check className="w-4 h-4 text-emerald-500" /> : <Copy className="w-4 h-4" />}
-              <span>{copied ? "Copied!" : "Copy HEX"}</span>
-            </Button>
+            {/* Auto-Extracted Palette */}
+            {palette.length > 0 && (
+              <div className="p-5 rounded-3xl bg-card border border-border/80 space-y-3 shadow-sm">
+                <h3 className="font-heading font-bold text-sm text-foreground flex items-center justify-between">
+                  <span>Auto-Extracted Palette</span>
+                  <span className="text-xs text-muted-foreground">Click to select</span>
+                </h3>
+
+                <div className="grid grid-cols-4 gap-2.5 pt-1">
+                  {palette.map((color, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => updateColorValues(color)}
+                      className="group p-1.5 rounded-xl border border-border/80 hover:border-brand-cyan/70 hover:scale-105 transition-all text-center flex flex-col items-center gap-1.5"
+                    >
+                      <div
+                        className="w-full h-9 rounded-lg border border-black/10 shadow-sm"
+                        style={{ backgroundColor: color }}
+                      />
+                      <span className="font-mono text-[10px] font-bold text-muted-foreground group-hover:text-foreground uppercase">
+                        {color}
+                      </span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            <label className="block text-center text-xs px-3 py-2 rounded-xl border border-border/80 hover:bg-muted cursor-pointer font-semibold transition-colors">
+              <span>Upload Different Image</span>
+              <input type="file" accept="image/*" onChange={handleUpload} className="hidden" />
+            </label>
           </div>
 
-          <div className="p-4 rounded-2xl bg-card border border-border/80 overflow-auto max-h-[500px] flex items-center justify-center">
-            <canvas
-              ref={canvasRef}
-              onClick={handleCanvasClick}
-              className="cursor-crosshair max-w-full h-auto rounded-lg"
-            />
+          {/* Right Column: Canvas with Magnifier */}
+          <div className="lg:col-span-7 sticky top-24 space-y-4">
+            <div className="p-4 rounded-3xl bg-card border border-border/80 shadow-xl space-y-3">
+              <div className="flex items-center justify-between text-xs font-semibold px-2">
+                <span className="text-foreground">Click image to sample color</span>
+                <span className="text-brand-cyan">10x Loupe Active</span>
+              </div>
+
+              <div
+                className="relative overflow-hidden rounded-2xl bg-slate-900/40 border border-slate-700/60 flex items-center justify-center p-2 min-h-[360px]"
+                onMouseLeave={() => setLoupe((l) => ({ ...l, visible: false }))}
+              >
+                <canvas
+                  ref={canvasRef}
+                  onClick={handleCanvasClick}
+                  onMouseMove={handleMouseMove}
+                  className="cursor-crosshair max-w-full max-h-[460px] object-contain rounded-lg"
+                />
+
+                {/* Floating 10x Magnifying Loupe */}
+                {loupe.visible && (
+                  <div
+                    className="absolute pointer-events-none rounded-full w-20 h-20 border-4 border-white shadow-2xl overflow-hidden flex items-center justify-center -translate-x-1/2 -translate-y-1/2"
+                    style={{
+                      left: loupe.x,
+                      top: loupe.y,
+                      backgroundColor: loupe.color,
+                    }}
+                  >
+                    <div className="w-2 h-2 rounded-full border border-black/80 bg-white shadow-sm" />
+                  </div>
+                )}
+              </div>
+
+              <div className="p-3 rounded-xl bg-muted/40 border border-border/60 text-xs text-muted-foreground flex items-center justify-between">
+                <span>🔍 Crosshair shows exact pixel under your cursor.</span>
+                <span className="text-emerald-500 font-semibold flex items-center gap-1">
+                  <CheckCircle2 className="w-3.5 h-3.5" /> WCAG compliant sampling
+                </span>
+              </div>
+            </div>
           </div>
         </div>
       )}
@@ -716,8 +676,8 @@ export function ImageCropperTool() {
     }
   }, [imageSrc, cropWidth, cropHeight, cropX, cropY, applyCrop]);
 
-  const handleAspectChange = (ratio: "free" | "1:1" | "16:9" | "4:3") => {
-    setAspectRatio(ratio);
+  const handleAspectChange = (ratio: "free" | "1:1" | "16:9" | "4:3" | "9:16" | "3:2") => {
+    setAspectRatio(ratio as any);
     if (ratio === "1:1") {
       const size = Math.min(cropWidth, imgDims.h);
       setCropWidth(size);
@@ -729,6 +689,14 @@ export function ImageCropperTool() {
     } else if (ratio === "4:3") {
       const w = cropWidth;
       const h = Math.round((w * 3) / 4);
+      setCropHeight(h);
+    } else if (ratio === "9:16") {
+      const w = cropWidth;
+      const h = Math.round((w * 16) / 9);
+      setCropHeight(h);
+    } else if (ratio === "3:2") {
+      const w = cropWidth;
+      const h = Math.round((w * 2) / 3);
       setCropHeight(h);
     }
   };

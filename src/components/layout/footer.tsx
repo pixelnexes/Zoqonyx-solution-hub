@@ -30,28 +30,38 @@ export function Footer() {
             </h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li>
-                <Link href="/#category-image-tools" className="hover:text-brand-cyan transition-colors">
+                <Link href="/category/image-tools" className="hover:text-brand-cyan transition-colors">
                   Image & Photo Tools
                 </Link>
               </li>
               <li>
-                <Link href="/#category-css-design" className="hover:text-brand-cyan transition-colors">
+                <Link href="/category/css-design" className="hover:text-brand-cyan transition-colors">
                   CSS & Design Generators
                 </Link>
               </li>
               <li>
-                <Link href="/#category-text-code" className="hover:text-brand-cyan transition-colors">
+                <Link href="/category/text-code" className="hover:text-brand-cyan transition-colors">
                   Text & Code Utilities
                 </Link>
               </li>
               <li>
-                <Link href="/#category-developer-seo" className="hover:text-brand-cyan transition-colors">
+                <Link href="/category/developer-seo" className="hover:text-brand-cyan transition-colors">
                   Developer & SEO Tools
                 </Link>
               </li>
               <li>
-                <Link href="/#category-calculators" className="hover:text-brand-cyan transition-colors">
-                  Calculators & Converters
+                <Link href="/category/calculators" className="hover:text-brand-cyan transition-colors">
+                  Calculators & Math
+                </Link>
+              </li>
+              <li>
+                <Link href="/category/pdf-documents" className="hover:text-brand-cyan transition-colors">
+                  PDF & Documents
+                </Link>
+              </li>
+              <li>
+                <Link href="/category/ai-tools" className="hover:text-brand-cyan transition-colors">
+                  AI & Smart Tools
                 </Link>
               </li>
             </ul>

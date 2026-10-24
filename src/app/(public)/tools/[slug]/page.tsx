@@ -6,9 +6,22 @@ import { ComingSoonToolView } from "@/components/tools/coming-soon-tool-view";
 import { ToolIcon } from "@/components/common/tool-icon";
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
-import { ArrowLeft, CheckCircle2, ShieldCheck, Zap } from "lucide-react";
+import { ArrowLeft, CheckCircle2, ShieldCheck, Zap, ChevronRight } from "lucide-react";
+import { getDefaultToolBySlug, DEFAULT_TOOLS } from "@/lib/default-tools";
 
 export const dynamic = "force-dynamic";
+
+const CATEGORY_SLUG_MAP: Record<string, string> = {
+  "Image Tools": "image-tools",
+  "CSS & Design": "css-design",
+  "Text & Code": "text-code",
+  "Developer & SEO": "developer-seo",
+  "Calculators": "calculators",
+  "PDF & Documents": "pdf-documents",
+  "Advanced Image / AI": "ai-tools",
+  "AI Writing & Business": "ai-tools",
+  "SEO & Marketing": "developer-seo",
+};
 
 interface ToolPageProps {
   params: Promise<{ slug: string }>;
@@ -17,9 +30,16 @@ interface ToolPageProps {
 export async function generateMetadata({ params }: ToolPageProps): Promise<Metadata> {
   const { slug } = await params;
   try {
-    const tool = await prisma.tool.findUnique({
-      where: { slug },
-    });
+    let tool = null;
+    try {
+      tool = await prisma.tool.findUnique({
+        where: { slug },
+      });
+    } catch {}
+
+    if (!tool) {
+      tool = getDefaultToolBySlug(slug);
+    }
 
     if (!tool) {
       return {
@@ -65,7 +85,7 @@ export async function generateMetadata({ params }: ToolPageProps): Promise<Metad
 
 export default async function ToolPage({ params }: ToolPageProps) {
   const { slug } = await params;
-  let tool = null;
+  let tool: any = null;
   let relatedTools: Array<{
     slug: string;
     name: string;
@@ -108,6 +128,17 @@ export default async function ToolPage({ params }: ToolPageProps) {
     console.error("Database connection error in ToolPage:", error);
   }
 
+  // Resilient fallback to default catalog if DB returned null
+  if (!tool) {
+    tool = getDefaultToolBySlug(slug);
+  }
+
+  if (tool && relatedTools.length === 0) {
+    relatedTools = DEFAULT_TOOLS.filter(
+      (t) => t.category === tool.category && t.slug !== tool.slug
+    ).slice(0, 3);
+  }
+
   if (!tool) {
     notFound();
   }
@@ -127,6 +158,8 @@ export default async function ToolPage({ params }: ToolPageProps) {
     },
   };
 
+  const catSlug = CATEGORY_SLUG_MAP[tool.category] || "developer-seo";
+
   return (
     <>
       <script
@@ -135,16 +168,20 @@ export default async function ToolPage({ params }: ToolPageProps) {
       />
 
       <div className="container mx-auto max-w-5xl px-4 py-8 sm:py-12">
-        {/* Breadcrumb / Back link */}
-        <div className="mb-6">
-          <Link
-            href="/#tools-catalog"
-            className="inline-flex items-center gap-1.5 text-xs font-semibold text-muted-foreground hover:text-brand-cyan transition-colors"
-          >
-            <ArrowLeft className="w-3.5 h-3.5" />
-            <span>Back to All Tools</span>
+        {/* Breadcrumb / Category Navigation */}
+        <nav aria-label="Breadcrumb" className="mb-6 flex items-center gap-1.5 text-xs font-semibold text-muted-foreground">
+          <Link href="/" className="hover:text-brand-cyan transition-colors">
+            Home
           </Link>
-        </div>
+          <ChevronRight className="w-3.5 h-3.5 opacity-50" />
+          <Link href={`/category/${catSlug}`} className="hover:text-brand-cyan transition-colors">
+            {tool.category}
+          </Link>
+          <ChevronRight className="w-3.5 h-3.5 opacity-50" />
+          <span className="text-foreground font-bold truncate max-w-[200px] sm:max-w-none">
+            {tool.name}
+          </span>
+        </nav>
 
         {/* State A: Coming Soon Tool */}
         {tool.isComingSoon ? (
@@ -160,9 +197,12 @@ export default async function ToolPage({ params }: ToolPageProps) {
                     <ToolIcon name={tool.icon} className="w-6 h-6" />
                   </div>
                   <div>
-                    <span className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
+                    <Link
+                      href={`/category/${catSlug}`}
+                      className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground hover:text-brand-cyan transition-colors"
+                    >
                       {tool.category}
-                    </span>
+                    </Link>
                     <h1 className="text-2xl sm:text-3xl font-heading font-black text-foreground">
                       {tool.name}
                     </h1>
@@ -200,7 +240,7 @@ export default async function ToolPage({ params }: ToolPageProps) {
             {tool.content && (
               <div className="p-6 sm:p-10 rounded-3xl bg-card border border-border/80 space-y-6">
                 <div className="prose prose-slate dark:prose-invert max-w-none text-muted-foreground space-y-4 leading-relaxed">
-                  {tool.content.split("\n\n").map((block, idx) => {
+                  {tool.content.split("\n\n").map((block: string, idx: number) => {
                     if (block.startsWith("## ")) {
                       return (
                         <h2 key={idx} className="text-xl sm:text-2xl font-heading font-bold text-foreground pt-4 border-b pb-2">
@@ -216,10 +256,10 @@ export default async function ToolPage({ params }: ToolPageProps) {
                       );
                     }
                     if (block.startsWith("- ")) {
-                      const listItems = block.split("\n").map((item) => item.replace(/^- /, ""));
+                      const listItems = block.split("\n").map((item: string) => item.replace(/^- /, ""));
                       return (
                         <ul key={idx} className="list-disc pl-5 space-y-1">
-                          {listItems.map((li, i) => (
+                          {listItems.map((li: string, i: number) => (
                             <li key={i}>{li}</li>
                           ))}
                         </ul>
@@ -234,9 +274,18 @@ export default async function ToolPage({ params }: ToolPageProps) {
             {/* Related Tools */}
             {relatedTools.length > 0 && (
               <div className="space-y-4 pt-4">
-                <h3 className="text-lg font-heading font-bold text-foreground">
-                  Explore More {tool.category}
-                </h3>
+                <div className="flex items-center justify-between">
+                  <h3 className="text-lg font-heading font-bold text-foreground">
+                    Explore More {tool.category}
+                  </h3>
+                  <Link
+                    href={`/category/${catSlug}`}
+                    className="text-xs font-semibold text-brand-cyan hover:underline inline-flex items-center gap-1"
+                  >
+                    <span>View Category Hub</span>
+                    <ArrowLeft className="w-3.5 h-3.5 rotate-180" />
+                  </Link>
+                </div>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                   {relatedTools.map((rel) => (
                     <Link key={rel.slug} href={`/tools/${rel.slug}`} className="group">

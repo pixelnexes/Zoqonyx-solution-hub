@@ -7,103 +7,11 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 
-// --- 1. QR Code Generator ---
+import { QrCodeGeneratorProTool } from "./qr-code-pro";
+
+// --- 1. QR Code Generator Pro ---
 export function QrCodeGeneratorTool() {
-  const [text, setText] = React.useState("https://zoqonyx.com");
-  const [darkColor, setDarkColor] = React.useState("#0F172A");
-  const [lightColor, setLightColor] = React.useState("#FFFFFF");
-  const [qrUrl, setQrUrl] = React.useState<string>("");
-
-  const generateQr = React.useCallback(async () => {
-    try {
-      if (!text.trim()) {
-        setQrUrl("");
-        return;
-      }
-      const dataUrl = await QRCode.toDataURL(text, {
-        width: 300,
-        margin: 2,
-        color: {
-          dark: darkColor,
-          light: lightColor,
-        },
-      });
-      setQrUrl(dataUrl);
-    } catch (err) {
-      console.error(err);
-    }
-  }, [text, darkColor, lightColor]);
-
-  React.useEffect(() => {
-    generateQr();
-  }, [generateQr]);
-
-  return (
-    <div className="space-y-6">
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
-        <div className="md:col-span-2 space-y-4">
-          <div className="space-y-1.5">
-            <label className="text-xs font-semibold text-muted-foreground">
-              QR Code Content (URL, Text, or Wi-Fi string)
-            </label>
-            <Input
-              value={text}
-              onChange={(e) => setText(e.target.value)}
-              placeholder="https://example.com or phone or message..."
-            />
-          </div>
-
-          <div className="grid grid-cols-2 gap-4 p-4 rounded-xl bg-card border border-border/80">
-            <div className="flex items-center gap-3">
-              <input
-                type="color"
-                value={darkColor}
-                onChange={(e) => setDarkColor(e.target.value)}
-                className="w-9 h-9 rounded border-0 cursor-pointer"
-              />
-              <div>
-                <p className="text-xs font-semibold text-muted-foreground">Pattern Color</p>
-                <p className="font-mono text-xs font-bold uppercase">{darkColor}</p>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-3">
-              <input
-                type="color"
-                value={lightColor}
-                onChange={(e) => setLightColor(e.target.value)}
-                className="w-9 h-9 rounded border-0 cursor-pointer"
-              />
-              <div>
-                <p className="text-xs font-semibold text-muted-foreground">Background Color</p>
-                <p className="font-mono text-xs font-bold uppercase">{lightColor}</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="p-6 rounded-2xl bg-card border border-border/80 flex flex-col items-center justify-center gap-4 text-center">
-          {qrUrl ? (
-            /* eslint-disable-next-line @next/next/no-img-element */
-            <img src={qrUrl} alt="QR Code" className="w-48 h-48 rounded-xl shadow-md border" />
-          ) : (
-            <div className="w-48 h-48 rounded-xl bg-muted/40 flex items-center justify-center text-xs text-muted-foreground">
-              Enter content above
-            </div>
-          )}
-
-          {qrUrl && (
-            <a href={qrUrl} download="zoqonyx-qrcode.png" className="w-full">
-              <Button variant="gradient" size="sm" className="w-full gap-2">
-                <Download className="w-4 h-4" />
-                <span>Download PNG</span>
-              </Button>
-            </a>
-          )}
-        </div>
-      </div>
-    </div>
-  );
+  return <QrCodeGeneratorProTool />;
 }
 
 // --- 2. Meta Tags Generator ---

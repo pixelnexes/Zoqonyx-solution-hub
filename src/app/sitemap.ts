@@ -1,5 +1,7 @@
 import { MetadataRoute } from "next";
 import { prisma } from "@/lib/prisma";
+import { getAllCategories } from "@/lib/categories";
+import { DEFAULT_TOOLS } from "@/lib/default-tools";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://zoqonyx.com";
@@ -38,11 +40,27 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ];
 
+  // Category SEO Hub routes
+  const categoryRoutes: MetadataRoute.Sitemap = getAllCategories().map((cat) => ({
+    url: `${baseUrl}/category/${cat.slug}`,
+    lastModified: new Date(),
+    changeFrequency: "weekly",
+    priority: 0.85,
+  }));
+
   try {
-    const tools = await prisma.tool.findMany({
+    let tools = await prisma.tool.findMany({
       where: { isActive: true },
       select: { slug: true, updatedAt: true, isComingSoon: true },
     });
+
+    if (tools.length === 0) {
+      tools = DEFAULT_TOOLS.map((t) => ({
+        slug: t.slug,
+        updatedAt: new Date(),
+        isComingSoon: t.isComingSoon,
+      }));
+    }
 
     const toolRoutes: MetadataRoute.Sitemap = tools.map((tool) => ({
       url: `${baseUrl}/tools/${tool.slug}`,
@@ -51,9 +69,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: tool.isComingSoon ? 0.7 : 0.9,
     }));
 
-    return [...staticRoutes, ...toolRoutes];
+    return [...staticRoutes, ...categoryRoutes, ...toolRoutes];
   } catch (e) {
     console.error("Error generating sitemap:", e);
-    return staticRoutes;
+    const fallbackToolRoutes: MetadataRoute.Sitemap = DEFAULT_TOOLS.map((t) => ({
+      url: `${baseUrl}/tools/${t.slug}`,
+      lastModified: new Date(),
+      changeFrequency: t.isComingSoon ? "weekly" : "daily",
+      priority: t.isComingSoon ? 0.7 : 0.9,
+    }));
+    return [...staticRoutes, ...categoryRoutes, ...fallbackToolRoutes];
   }
 }

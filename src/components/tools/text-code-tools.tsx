@@ -101,10 +101,10 @@ export function CaseConverterTool() {
   );
 }
 
-// --- 2. JSON Formatter & Validator ---
+// --- 2. JSON Formatter & Validator Pro ---
 export function JsonFormatterTool() {
   const [input, setInput] = React.useState(
-    '{"product":"Zoqonyx Solution Hub","version":1.0,"features":["Free","Fast","Client-Side"],"active":true}'
+    '{\n  "platform": "Zoqonyx Solution Hub",\n  "status": "online",\n  "privacy": "100% Client-Side",\n  "metrics": {\n    "toolsCount": 35,\n    "averageLatencyMs": 0,\n    "isFreeForever": true\n  },\n  "categories": [\n    "Image Tools",\n    "CSS & Design",\n    "Text & Code",\n    "Developer & SEO",\n    "Calculators"\n  ]\n}'
   );
   const [output, setOutput] = React.useState("");
   const [error, setError] = React.useState<string | null>(null);
@@ -140,6 +140,27 @@ export function JsonFormatterTool() {
     }
   };
 
+  const loadSample = () => {
+    setInput(
+      JSON.stringify(
+        {
+          appName: "Zoqonyx Solution Hub",
+          version: "2.0.0",
+          author: "Newix Tech Solutions",
+          developer: "Zawwar Ahmed",
+          features: ["Hardware Accelerated", "Zero Cloud Storage", "Print Ready Exports"],
+          config: {
+            theme: "system",
+            hardwareAcceleration: true,
+            maxConcurrentThreads: 4,
+          },
+        },
+        null,
+        2
+      )
+    );
+  };
+
   React.useEffect(() => {
     formatJson(indent);
   }, [input, indent, formatJson]);
@@ -150,10 +171,14 @@ export function JsonFormatterTool() {
     setTimeout(() => setCopied(false), 2000);
   };
 
+  const rawBytes = new Blob([input]).size;
+  const outBytes = new Blob([output]).size;
+  const savingsPct = rawBytes > 0 && outBytes > 0 ? Math.round(((rawBytes - outBytes) / rawBytes) * 100) : 0;
+
   return (
     <div className="space-y-6">
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2">
           <Button
             size="sm"
             variant={indent === 2 ? "gradient" : "outline"}
@@ -171,36 +196,57 @@ export function JsonFormatterTool() {
           <Button size="sm" variant="outline" onClick={minifyJson}>
             Minify (1 Line)
           </Button>
+          <Button size="sm" variant="ghost" onClick={loadSample} className="text-xs text-brand-cyan">
+            Load Sample
+          </Button>
+          <Button size="sm" variant="ghost" onClick={() => setInput("")} className="text-xs text-muted-foreground hover:text-rose-500">
+            Clear
+          </Button>
         </div>
 
         {output && (
-          <Button onClick={copyOutput} variant="outline" size="sm" className="gap-1.5">
-            {copied ? <Check className="w-3.5 h-3.5 text-emerald-500" /> : <Copy className="w-3.5 h-3.5" />}
-            <span>{copied ? "Copied" : "Copy Formatted"}</span>
+          <Button onClick={copyOutput} variant="gradient" size="sm" className="gap-1.5 shadow-sm">
+            {copied ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
+            <span>{copied ? "Copied" : "Copy Output"}</span>
           </Button>
         )}
       </div>
 
-      {error ? (
-        <div className="p-3 rounded-lg bg-destructive/10 text-destructive text-xs flex items-center gap-2">
-          <AlertCircle className="w-4 h-4 shrink-0" />
-          <span>JSON Error: {error}</span>
+      {/* Validation Status & Quick Stats */}
+      <div className="flex flex-wrap items-center justify-between gap-2 p-3 rounded-xl bg-card border border-border/80">
+        {error ? (
+          <div className="text-destructive text-xs flex items-center gap-2 font-medium">
+            <AlertCircle className="w-4 h-4 shrink-0" />
+            <span>JSON Error: {error}</span>
+          </div>
+        ) : (
+          <div className="text-emerald-600 dark:text-emerald-400 text-xs flex items-center gap-2 font-medium">
+            <CheckCircle2 className="w-4 h-4 shrink-0" />
+            <span>Valid JSON Syntax</span>
+          </div>
+        )}
+
+        <div className="flex items-center gap-3 text-xs text-muted-foreground font-mono">
+          <span>Input: {rawBytes} B</span>
+          <span>•</span>
+          <span>Output: {outBytes} B</span>
+          {savingsPct > 0 && (
+            <span className="text-emerald-600 dark:text-emerald-400 font-semibold">
+              (-{savingsPct}%)
+            </span>
+          )}
         </div>
-      ) : (
-        <div className="p-2.5 rounded-lg bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-xs flex items-center gap-2">
-          <CheckCircle2 className="w-4 h-4 shrink-0" />
-          <span>Valid JSON Syntax</span>
-        </div>
-      )}
+      </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="space-y-2">
           <label className="text-xs font-semibold text-muted-foreground">Input Raw JSON</label>
           <Textarea
-            rows={14}
+            rows={15}
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder="Paste your JSON string here..."
+            className="font-mono text-xs leading-relaxed"
           />
         </div>
 
@@ -208,10 +254,10 @@ export function JsonFormatterTool() {
           <label className="text-xs font-semibold text-muted-foreground">Formatted Output</label>
           <Textarea
             readOnly
-            rows={14}
+            rows={15}
             value={output}
             placeholder="Formatted output will appear here..."
-            className="bg-muted/40"
+            className="bg-muted/30 font-mono text-xs leading-relaxed text-foreground"
           />
         </div>
       </div>
@@ -892,86 +938,216 @@ export function LoremIpsumGeneratorTool() {
   );
 }
 
-// --- 11. Diff Checker ---
+// --- 11. Diff Checker Pro ---
 export function DiffCheckerTool() {
   const [original, setOriginal] = React.useState(
-    "Zoqonyx Solution Hub\nFree Online Tools Platform\n100% Client-side privacy\nVersion 1.0"
+    "function calculateTotal(items) {\n  let total = 0;\n  for (let i = 0; i < items.length; i++) {\n    total += items[i].price;\n  }\n  return total;\n}"
   );
   const [modified, setModified] = React.useState(
-    "Zoqonyx Solution Hub\nFree Online Tools Platform\n100% Client-side privacy & zero latency\nVersion 1.1 released"
+    "function calculateTotal(items, discount = 0) {\n  // Hardware-accelerated reduction with optional discount\n  const subtotal = items.reduce((acc, item) => acc + item.price, 0);\n  return subtotal * (1 - discount);\n}"
   );
+  const [viewMode, setViewMode] = React.useState<"split" | "unified">("split");
 
   const origLines = original.split("\n");
   const modLines = modified.split("\n");
   const maxLines = Math.max(origLines.length, modLines.length);
 
+  let diffCount = 0;
+  for (let i = 0; i < maxLines; i++) {
+    if ((origLines[i] ?? "") !== (modLines[i] ?? "")) {
+      diffCount++;
+    }
+  }
+
+  const swap = () => {
+    const temp = original;
+    setOriginal(modified);
+    setModified(temp);
+  };
+
+  const loadProseSample = () => {
+    setOriginal(
+      "Zoqonyx Solution Hub is a free online tools platform.\nIt offers client-side image editing and CSS generators.\nVersion 1.0 released in 2026."
+    );
+    setModified(
+      "Zoqonyx Solution Hub is an open, 100% free online tools platform.\nIt delivers hardware-accelerated image editing, pro QR codes, and CSS generators.\nVersion 2.0 released with zero server storage."
+    );
+  };
+
+  const loadCodeSample = () => {
+    setOriginal(
+      "function calculateTotal(items) {\n  let total = 0;\n  for (let i = 0; i < items.length; i++) {\n    total += items[i].price;\n  }\n  return total;\n}"
+    );
+    setModified(
+      "function calculateTotal(items, discount = 0) {\n  // Hardware-accelerated reduction with optional discount\n  const subtotal = items.reduce((acc, item) => acc + item.price, 0);\n  return subtotal * (1 - discount);\n}"
+    );
+  };
+
   return (
     <div className="space-y-6">
+      {/* Action Toolbar */}
+      <div className="flex flex-wrap items-center justify-between gap-3 p-3 rounded-2xl bg-card border border-border/80">
+        <div className="flex items-center gap-2">
+          <Button
+            size="sm"
+            variant={viewMode === "split" ? "gradient" : "outline"}
+            onClick={() => setViewMode("split")}
+          >
+            Side-by-Side
+          </Button>
+          <Button
+            size="sm"
+            variant={viewMode === "unified" ? "gradient" : "outline"}
+            onClick={() => setViewMode("unified")}
+          >
+            Unified View
+          </Button>
+          <Button size="sm" variant="outline" onClick={swap} className="text-xs">
+            Swap
+          </Button>
+        </div>
+
+        <div className="flex items-center gap-2">
+          <Button size="sm" variant="ghost" onClick={loadCodeSample} className="text-xs text-brand-cyan">
+            Code Sample
+          </Button>
+          <Button size="sm" variant="ghost" onClick={loadProseSample} className="text-xs text-muted-foreground hover:text-foreground">
+            Prose Sample
+          </Button>
+        </div>
+      </div>
+
+      {/* Input Editors */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="space-y-1.5">
-          <label className="text-xs font-semibold text-muted-foreground">Original Text</label>
+          <div className="flex justify-between items-center text-xs font-semibold text-muted-foreground">
+            <span>Original (Old) Text</span>
+            <span className="font-mono">{origLines.length} lines</span>
+          </div>
           <Textarea
             rows={8}
             value={original}
             onChange={(e) => setOriginal(e.target.value)}
-            className="font-mono text-xs"
+            className="font-mono text-xs leading-relaxed"
           />
         </div>
 
         <div className="space-y-1.5">
-          <label className="text-xs font-semibold text-muted-foreground">Modified Text</label>
+          <div className="flex justify-between items-center text-xs font-semibold text-muted-foreground">
+            <span>Modified (New) Text</span>
+            <span className="font-mono">{modLines.length} lines</span>
+          </div>
           <Textarea
             rows={8}
             value={modified}
             onChange={(e) => setModified(e.target.value)}
-            className="font-mono text-xs"
+            className="font-mono text-xs leading-relaxed"
           />
         </div>
       </div>
 
-      <div className="p-5 rounded-2xl bg-card border border-border/80 space-y-3">
-        <h4 className="text-xs font-bold text-muted-foreground uppercase tracking-wider">
-          Side-by-Side Line Comparison
-        </h4>
+      {/* Comparison Display */}
+      <div className="p-5 rounded-2xl bg-card border border-border/80 space-y-4">
+        <div className="flex flex-wrap items-center justify-between gap-2">
+          <h4 className="text-xs font-bold text-muted-foreground uppercase tracking-wider">
+            {viewMode === "split" ? "Side-by-Side Line Comparison" : "Unified Difference View"}
+          </h4>
 
-        <div className="rounded-xl border border-border/70 overflow-hidden font-mono text-xs divide-y divide-border/40">
-          {Array.from({ length: maxLines }).map((_, idx) => {
-            const origLine = origLines[idx] ?? "";
-            const modLine = modLines[idx] ?? "";
-            const isDiff = origLine !== modLine;
-
-            return (
-              <div
-                key={idx}
-                className={`grid grid-cols-2 divide-x divide-border/40 ${
-                  isDiff ? "bg-amber-500/10" : "bg-card"
-                }`}
-              >
-                <div
-                  className={`p-2.5 break-all ${
-                    isDiff ? "text-rose-600 dark:text-rose-400 font-medium" : "text-muted-foreground"
-                  }`}
-                >
-                  <span className="text-[10px] text-muted-foreground/60 mr-2 select-none">
-                    {idx + 1}
-                  </span>
-                  {origLine || <span className="opacity-30 italic">empty</span>}
-                </div>
-
-                <div
-                  className={`p-2.5 break-all ${
-                    isDiff ? "text-emerald-600 dark:text-emerald-400 font-medium" : "text-muted-foreground"
-                  }`}
-                >
-                  <span className="text-[10px] text-muted-foreground/60 mr-2 select-none">
-                    {idx + 1}
-                  </span>
-                  {modLine || <span className="opacity-30 italic">empty</span>}
-                </div>
-              </div>
-            );
-          })}
+          <div className="flex items-center gap-3 text-xs font-mono">
+            <span className="text-rose-600 dark:text-rose-400 font-semibold">
+              {diffCount} lines changed
+            </span>
+            <span>•</span>
+            <span className="text-muted-foreground">
+              {maxLines - diffCount} unchanged
+            </span>
+          </div>
         </div>
+
+        {viewMode === "split" ? (
+          <div className="rounded-xl border border-border/70 overflow-hidden font-mono text-xs divide-y divide-border/40">
+            {Array.from({ length: maxLines }).map((_, idx) => {
+              const origLine = origLines[idx] ?? "";
+              const modLine = modLines[idx] ?? "";
+              const isDiff = origLine !== modLine;
+
+              return (
+                <div
+                  key={idx}
+                  className={`grid grid-cols-2 divide-x divide-border/40 ${
+                    isDiff ? "bg-amber-500/10" : "bg-card"
+                  }`}
+                >
+                  <div
+                    className={`p-2.5 break-all ${
+                      isDiff ? "text-rose-600 dark:text-rose-400 font-medium" : "text-muted-foreground"
+                    }`}
+                  >
+                    <span className="text-[10px] text-muted-foreground/60 mr-2 select-none">
+                      {idx + 1}
+                    </span>
+                    {origLine || <span className="opacity-30 italic">empty</span>}
+                  </div>
+
+                  <div
+                    className={`p-2.5 break-all ${
+                      isDiff ? "text-emerald-600 dark:text-emerald-400 font-medium" : "text-muted-foreground"
+                    }`}
+                  >
+                    <span className="text-[10px] text-muted-foreground/60 mr-2 select-none">
+                      {idx + 1}
+                    </span>
+                    {modLine || <span className="opacity-30 italic">empty</span>}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        ) : (
+          /* Unified View */
+          <div className="rounded-xl border border-border/70 overflow-hidden font-mono text-xs divide-y divide-border/40">
+            {Array.from({ length: maxLines }).map((_, idx) => {
+              const origLine = origLines[idx] ?? "";
+              const modLine = modLines[idx] ?? "";
+              const isDiff = origLine !== modLine;
+
+              if (!isDiff) {
+                return (
+                  <div key={idx} className="p-2.5 bg-card text-muted-foreground flex items-center gap-3">
+                    <span className="text-[10px] text-muted-foreground/50 w-6 text-right select-none">
+                      {idx + 1}
+                    </span>
+                    <span className="text-muted-foreground/40 font-bold select-none"> </span>
+                    <span className="break-all">{origLine}</span>
+                  </div>
+                );
+              }
+
+              return (
+                <React.Fragment key={idx}>
+                  {origLine && (
+                    <div className="p-2.5 bg-rose-500/10 text-rose-600 dark:text-rose-400 flex items-center gap-3">
+                      <span className="text-[10px] text-rose-500/50 w-6 text-right select-none">
+                        {idx + 1}
+                      </span>
+                      <span className="font-bold select-none">-</span>
+                      <span className="break-all">{origLine}</span>
+                    </div>
+                  )}
+                  {modLine && (
+                    <div className="p-2.5 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center gap-3">
+                      <span className="text-[10px] text-emerald-500/50 w-6 text-right select-none">
+                        {idx + 1}
+                      </span>
+                      <span className="font-bold select-none">+</span>
+                      <span className="break-all">{modLine}</span>
+                    </div>
+                  )}
+                </React.Fragment>
+              );
+            })}
+          </div>
+        )}
       </div>
     </div>
   );

@@ -125,6 +125,42 @@ export function ToolCatalog({ initialTools }: ToolCatalogProps) {
         </button>
       </div>
 
+      {/* Dedicated Category Banner */}
+      {selectedCategory !== "All" &&
+        selectedCategory !== "Coming Soon" && (
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 p-4 rounded-2xl bg-gradient-to-r from-brand-cyan/10 via-brand-purple/10 to-transparent border border-brand-cyan/20">
+            <div className="space-y-0.5">
+              <p className="text-xs font-bold text-brand-cyan uppercase tracking-wider">Dedicated Category Hub</p>
+              <p className="text-sm font-semibold text-foreground">
+                In-depth guides, technical FAQs, and advanced workflows for {selectedCategory}.
+              </p>
+            </div>
+            <Link
+              href={`/category/${
+                selectedCategory.toLowerCase().includes("image")
+                  ? "image-tools"
+                  : selectedCategory.toLowerCase().includes("css") || selectedCategory.toLowerCase().includes("design")
+                  ? "css-design"
+                  : selectedCategory.toLowerCase().includes("text") || selectedCategory.toLowerCase().includes("code")
+                  ? "text-code"
+                  : selectedCategory.toLowerCase().includes("seo") || selectedCategory.toLowerCase().includes("developer")
+                  ? "developer-seo"
+                  : selectedCategory.toLowerCase().includes("calc")
+                  ? "calculators"
+                  : selectedCategory.toLowerCase().includes("pdf")
+                  ? "pdf-documents"
+                  : selectedCategory.toLowerCase().includes("ai")
+                  ? "ai-tools"
+                  : "image-tools"
+              }`}
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-card border border-border/80 text-xs font-bold text-foreground hover:border-brand-cyan/60 hover:text-brand-cyan shadow-sm transition-all shrink-0"
+            >
+              <span>Explore {selectedCategory} Hub</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
+          </div>
+        )}
+
       {/* Tools Grid */}
       {filteredTools.length === 0 ? (
         <div className="text-center py-16 px-4 rounded-2xl border border-dashed border-border/80 bg-muted/20">

@@ -6,17 +6,22 @@ import { usePathname } from "next/navigation";
 import { Logo } from "@/components/layout/logo";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Shield, Sparkles } from "lucide-react";
+import { Menu, X, Shield, Sparkles, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-const NAV_ITEMS = [
-  { label: "All Tools", href: "/#tools-catalog" },
-  { label: "About", href: "/about" },
-  { label: "Contact", href: "/contact" },
+const NAV_CATEGORIES = [
+  { label: "Image & Photo Tools", href: "/category/image-tools", icon: "FileArchive" },
+  { label: "CSS & Design Generators", href: "/category/css-design", icon: "Layers" },
+  { label: "Text & Code Utilities", href: "/category/text-code", icon: "Code2" },
+  { label: "Developer & SEO Tools", href: "/category/developer-seo", icon: "Globe" },
+  { label: "Calculators & Math", href: "/category/calculators", icon: "Calculator" },
+  { label: "PDF & Documents", href: "/category/pdf-documents", icon: "FileEdit" },
+  { label: "AI & Smart Tools", href: "/category/ai-tools", icon: "Sparkles" },
 ];
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
+  const [categoriesOpen, setCategoriesOpen] = React.useState(false);
   const pathname = usePathname();
 
   // Don't show public header on /admin paths
@@ -30,21 +35,81 @@ export function Header() {
         <Logo size="md" />
 
         {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-7 text-sm font-medium">
-          {NAV_ITEMS.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
+        <nav className="hidden md:flex items-center gap-6 text-sm font-medium">
+          <Link
+            href="/#tools-catalog"
+            className={cn(
+              "transition-colors hover:text-brand-cyan",
+              pathname === "/" ? "text-foreground font-semibold" : "text-muted-foreground"
+            )}
+          >
+            All Tools
+          </Link>
+
+          {/* Categories Dropdown */}
+          <div
+            className="relative"
+            onMouseEnter={() => setCategoriesOpen(true)}
+            onMouseLeave={() => setCategoriesOpen(false)}
+          >
+            <button
+              onClick={() => setCategoriesOpen(!categoriesOpen)}
               className={cn(
-                "transition-colors hover:text-brand-cyan",
-                pathname === item.href
+                "inline-flex items-center gap-1 transition-colors hover:text-brand-cyan py-2",
+                pathname.startsWith("/category")
                   ? "text-brand-cyan font-semibold"
                   : "text-muted-foreground"
               )}
             >
-              {item.label}
-            </Link>
-          ))}
+              <span>Categories</span>
+              <ChevronDown
+                className={cn(
+                  "w-3.5 h-3.5 transition-transform duration-200",
+                  categoriesOpen && "rotate-180 text-brand-cyan"
+                )}
+              />
+            </button>
+
+            {categoriesOpen && (
+              <div className="absolute top-full left-0 w-64 pt-2 animate-in fade-in slide-in-from-top-1 duration-150">
+                <div className="rounded-2xl border border-border/80 bg-card/95 backdrop-blur-xl p-2 shadow-xl space-y-1">
+                  {NAV_CATEGORIES.map((cat) => (
+                    <Link
+                      key={cat.href}
+                      href={cat.href}
+                      onClick={() => setCategoriesOpen(false)}
+                      className={cn(
+                        "block px-3 py-2 rounded-xl text-xs font-semibold transition-colors hover:bg-muted/70 hover:text-brand-cyan",
+                        pathname === cat.href ? "bg-muted text-brand-cyan" : "text-foreground"
+                      )}
+                    >
+                      {cat.label}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+
+          <Link
+            href="/about"
+            className={cn(
+              "transition-colors hover:text-brand-cyan",
+              pathname === "/about" ? "text-brand-cyan font-semibold" : "text-muted-foreground"
+            )}
+          >
+            About
+          </Link>
+
+          <Link
+            href="/contact"
+            className={cn(
+              "transition-colors hover:text-brand-cyan",
+              pathname === "/contact" ? "text-brand-cyan font-semibold" : "text-muted-foreground"
+            )}
+          >
+            Contact
+          </Link>
         </nav>
 
         {/* Right Actions */}
@@ -88,17 +153,46 @@ export function Header() {
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
         <div className="md:hidden border-b border-border/80 bg-background/95 backdrop-blur-lg px-4 py-4 space-y-3 animate-in fade-in slide-in-from-top-2 duration-200">
-          <nav className="flex flex-col space-y-2">
-            {NAV_ITEMS.map((item) => (
+          <nav className="flex flex-col space-y-1">
+            <Link
+              href="/#tools-catalog"
+              onClick={() => setMobileMenuOpen(false)}
+              className="px-3 py-2 rounded-lg text-sm font-medium text-foreground hover:bg-muted transition-colors"
+            >
+              All Tools
+            </Link>
+
+            <div className="py-1 px-3 text-[11px] font-bold uppercase tracking-wider text-muted-foreground">
+              Categories
+            </div>
+            {NAV_CATEGORIES.map((cat) => (
               <Link
-                key={item.href}
-                href={item.href}
+                key={cat.href}
+                href={cat.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className="px-3 py-2 rounded-lg text-sm font-medium text-foreground hover:bg-muted transition-colors"
+                className="px-3 py-1.5 rounded-lg text-xs font-semibold text-muted-foreground hover:bg-muted hover:text-brand-cyan transition-colors"
               >
-                {item.label}
+                {cat.label}
               </Link>
             ))}
+
+            <div className="pt-2 border-t border-border/40 space-y-1">
+              <Link
+                href="/about"
+                onClick={() => setMobileMenuOpen(false)}
+                className="block px-3 py-2 rounded-lg text-sm font-medium text-foreground hover:bg-muted transition-colors"
+              >
+                About
+              </Link>
+              <Link
+                href="/contact"
+                onClick={() => setMobileMenuOpen(false)}
+                className="block px-3 py-2 rounded-lg text-sm font-medium text-foreground hover:bg-muted transition-colors"
+              >
+                Contact
+              </Link>
+            </div>
+
             <Link
               href="/admin"
               onClick={() => setMobileMenuOpen(false)}

@@ -4,6 +4,8 @@ import { Sparkles, Shield, Zap, Globe, Check, ArrowDown } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
+import { DEFAULT_TOOLS } from "@/lib/default-tools";
+
 // Force dynamic or ISR to ensure admin toggles reflect immediately without redeploy
 export const dynamic = "force-dynamic";
 
@@ -38,6 +40,20 @@ export default async function HomePage() {
     });
   } catch (error) {
     console.error("Error fetching tools for homepage:", error);
+  }
+
+  if (tools.length === 0) {
+    tools = DEFAULT_TOOLS.map((t) => ({
+      id: t.id,
+      slug: t.slug,
+      name: t.name,
+      description: t.description,
+      category: t.category,
+      isActive: t.isActive,
+      isComingSoon: t.isComingSoon,
+      icon: t.icon,
+      order: t.order,
+    }));
   }
 
   const activeLiveCount = tools.filter((t) => !t.isComingSoon).length;
