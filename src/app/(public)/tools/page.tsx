@@ -17,21 +17,21 @@ import {
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "All Free Online Tools Directory (37+ Digital Utilities)",
+  title: "All Free Online Tools Directory (40+ Digital Utilities)",
   description:
-    "Explore 37+ fast, privacy-first, 100% free digital tools. Compress images, format JSON, generate CSS styles, calculate dates, and convert code client-side with zero data storage.",
+    "Explore 40+ fast, privacy-first, 100% free digital tools. Inpaint watermarks with AI, compress images, format JSON, simulate Open Graph cards, and convert code client-side.",
   alternates: {
     canonical: "https://zoqonyx.com/tools",
   },
   openGraph: {
-    title: "All Free Online Tools Directory (37+ Digital Utilities) | Zoqonyx",
+    title: "All Free Online Tools Directory (40+ Digital Utilities) | Zoqonyx",
     description:
-      "Explore 37+ fast, privacy-first, 100% free digital tools. Zero installations, zero tracking, 100% browser-based.",
+      "Explore 40+ fast, privacy-first, 100% free digital tools. Zero installations, zero tracking, 100% browser-based.",
     url: "https://zoqonyx.com/tools",
     siteName: "Zoqonyx Solution Hub",
     images: [
       {
-        url: "/logo/zoqonyx-logo.png",
+        url: "/logo/zoqonyx-og.png",
         width: 1200,
         height: 630,
         alt: "Zoqonyx All Tools Catalog",
@@ -42,8 +42,8 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "All Free Online Tools Directory | Zoqonyx",
     description:
-      "Explore 37+ fast, privacy-first, 100% free digital tools. Zero installations, zero tracking.",
-    images: ["/logo/zoqonyx-logo.png"],
+      "Explore 40+ fast, privacy-first, 100% free digital tools. Zero installations, zero tracking.",
+    images: ["/logo/zoqonyx-og.png"],
   },
 };
 
@@ -108,7 +108,7 @@ export default async function ToolsPage() {
     "@type": "CollectionPage",
     name: "All Free Online Tools Directory - Zoqonyx Solution Hub",
     description:
-      "Directory of 37+ free client-side digital tools for developers, designers, creators, and marketers.",
+      "Directory of 40+ free client-side digital tools for developers, designers, creators, and marketers.",
     url: "https://zoqonyx.com/tools",
     publisher: {
       "@type": "Organization",
@@ -171,7 +171,7 @@ export default async function ToolsPage() {
           <div className="relative z-10 max-w-3xl space-y-4">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-brand-cyan/30 bg-brand-cyan/10 text-brand-cyan text-xs font-semibold backdrop-blur-sm">
               <ShieldCheck className="w-3.5 h-3.5" />
-              <span>Complete Directory • 37+ Digital Tools</span>
+              <span>Complete Directory • 40+ Digital Tools</span>
             </div>
 
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-black tracking-tight text-foreground leading-tight">

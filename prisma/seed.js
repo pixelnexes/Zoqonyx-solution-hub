@@ -271,6 +271,36 @@ Fix sideways mobile photos or create mirror effects in one click.`,
 
 Embed images directly into your HTML and CSS files to eliminate extra HTTP requests.`,
     },
+    {
+      slug: "ai-watermark-remover",
+      name: "AI Watermark Remover",
+      description: "Erase watermarks, logos, timestamps, and AI generator labels from photos using client-side canvas inpainting.",
+      category: "Image Tools",
+      isActive: true,
+      isComingSoon: false,
+      icon: "Sparkles",
+      order: 9,
+      metaTitle: "AI Watermark Remover Online - Remove Watermarks Free | Zoqonyx",
+      metaDesc: "Remove watermarks, logos, copyright text, and timestamps from images and AI photos for free with interactive brush inpainting.",
+      content: `## Free Online AI Watermark Remover
+
+Erase watermarks, stock stamps, date tags, and AI engine logos seamlessly without quality degradation. 100% private in-browser processing.`,
+    },
+    {
+      slug: "object-remover-photo",
+      name: "Photo Object Remover",
+      description: "Magic eraser tool to remove unwanted people, photobombers, wires, and clutter from photos instantly.",
+      category: "Image Tools",
+      isActive: true,
+      isComingSoon: false,
+      icon: "Eraser",
+      order: 10,
+      metaTitle: "Object Remover from Photo Online - Free Magic Eraser | Zoqonyx",
+      metaDesc: "Erase unwanted objects, photobombers, blemishes, and clutter from photos online for free. Brush over items and reconstruct background textures.",
+      content: `## Magic Object Remover from Photo
+
+Clean up your travel snapshots and portraits by brushing over unwanted distractions with client-side patch inpainting.`,
+    },
 
     // --- Active CSS & Design Generators ---
     {
@@ -547,6 +577,21 @@ Spot differences between code files, essays, or text documents with side-by-side
     },
 
     // --- Active SEO & Developer Tools ---
+    {
+      slug: "open-graph-generator",
+      name: "Open Graph & Social Card Generator",
+      description: "Preview and generate Open Graph, Twitter Cards, and Next.js metadata with live simulators for X, Facebook, LinkedIn, Google, and WhatsApp.",
+      category: "Developer & SEO",
+      isActive: true,
+      isComingSoon: false,
+      icon: "Share2",
+      order: 34,
+      metaTitle: "Open Graph Generator & Social Card Preview Tool | Zoqonyx",
+      metaDesc: "Generate 100% valid Open Graph, Twitter Cards, and Next.js metadata. Live pixel-accurate simulator for X, Facebook, LinkedIn, Google, and WhatsApp.",
+      content: `## Open Graph Generator & Social Card Simulator
+
+Maximize click-through rates across Twitter/X, Facebook, LinkedIn, and search engines with pixel-accurate live card previews and code export.`,
+    },
     {
       slug: "meta-tags-generator",
       name: "Meta Tags Generator",

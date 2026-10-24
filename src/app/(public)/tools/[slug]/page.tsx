@@ -87,7 +87,7 @@ export async function generateMetadata({ params }: ToolPageProps): Promise<Metad
         siteName: "Zoqonyx Solution Hub",
         images: [
           {
-            url: "/logo/zoqonyx-logo.png",
+            url: "/logo/zoqonyx-og.png",
             width: 1200,
             height: 630,
             alt: tool.name,
@@ -98,7 +98,7 @@ export async function generateMetadata({ params }: ToolPageProps): Promise<Metad
         card: "summary_large_image",
         title: seo.title,
         description: seo.metaDesc,
-        images: ["/logo/zoqonyx-logo.png"],
+        images: ["/logo/zoqonyx-og.png"],
       },
     };
   } catch (error) {

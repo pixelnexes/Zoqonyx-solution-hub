@@ -98,40 +98,40 @@ export default async function HomePage() {
         <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-12 pb-16">
           {/* Hero Section */}
           <div className="text-center max-w-3xl mx-auto space-y-6">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-brand-cyan/30 bg-brand-cyan/10 text-brand-cyan text-xs font-semibold backdrop-blur-sm animate-in fade-in zoom-in duration-300">
-              <ShieldCheck className="w-3.5 h-3.5" />
-              <span>Free Online Tools Platform • 100% Client-Side Privacy</span>
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-brand-cyan/30 bg-brand-cyan/10 text-brand-cyan text-xs font-semibold backdrop-blur-sm animate-in fade-in zoom-in duration-300 shadow-sm">
+              <ShieldCheck className="w-3.5 h-3.5 text-brand-cyan" />
+              <span>Next-Gen Web Utilities • Hardware-Accelerated Local Compute • Zero Telemetry</span>
             </div>
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-black tracking-tight text-foreground leading-[1.1]">
-              Free Tools. <br />
-              <span className="brand-gradient-text">Unlimited Power.</span>
+              Next-Gen Digital Tools. <br />
+              <span className="brand-gradient-text">Zero Server Limits.</span>
             </h1>
 
-            <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
-              Every useful tool you need in one place. Compress images, format JSON, generate CSS styles, convert files, and calculate values instantly with zero subscriptions and zero data storage.
+            <p className="text-base sm:text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto">
+              Experience 40+ private, hardware-accelerated digital utilities. Inpaint watermarks and objects with AI, compress high-res media with split sliders, create custom branded QR matrices, simulate social Open Graph cards, and format code—with zero subscriptions and zero cloud uploads.
             </p>
 
             {/* Quick Metrics */}
-            <div className="pt-2 flex flex-wrap items-center justify-center gap-3 sm:gap-6 text-xs sm:text-sm font-medium text-foreground">
-              <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-card border border-border/80 shadow-sm">
+            <div className="pt-2 flex flex-wrap items-center justify-center gap-3 sm:gap-4 text-xs sm:text-sm font-medium text-foreground">
+              <div className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-card border border-border/80 shadow-sm">
                 <Check className="w-4 h-4 text-emerald-500" />
                 <span>{activeLiveCount}+ Live Free Tools</span>
               </div>
-              <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-card border border-border/80 shadow-sm">
+              <div className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-card border border-border/80 shadow-sm">
                 <Shield className="w-4 h-4 text-brand-cyan" />
-                <span>100% Client-Side Processing</span>
+                <span>100% Client-Side Privacy</span>
               </div>
-              <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-card border border-border/80 shadow-sm">
+              <div className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-card border border-border/80 shadow-sm">
                 <Zap className="w-4 h-4 text-amber-500" />
-                <span>No Sign-up Required</span>
+                <span>Zero Server Uploads</span>
               </div>
             </div>
 
             <div className="pt-4 flex items-center justify-center gap-3">
               <Link href="#tools-catalog">
-                <Button variant="gradient" size="lg" className="gap-2 shadow-lg shadow-brand-cyan/20">
-                  <span>Browse All Tools</span>
+                <Button variant="gradient" size="lg" className="gap-2 shadow-lg shadow-brand-cyan/25 hover:shadow-brand-cyan/40 transition-all duration-300">
+                  <span>Explore Tools Catalog</span>
                   <ArrowDown className="w-4 h-4" />
                 </Button>
               </Link>
@@ -147,41 +147,41 @@ export default async function HomePage() {
           <div className="mt-24 pt-16 border-t border-border/60">
             <div className="text-center max-w-2xl mx-auto space-y-3 mb-12">
               <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground">
-                Engineered for Speed, Privacy & Accessibility
+                Engineered for High Speed, Zero Telemetry & Global Access
               </h2>
               <p className="text-sm text-muted-foreground">
-                Why thousands of creators, engineers, and marketers choose Zoqonyx Solution Hub daily.
+                The modern standard for digital utilities—crafted for engineers, creators, and teams worldwide.
               </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="p-6 rounded-2xl bg-card/60 border border-border/80 space-y-3">
+              <div className="p-6 rounded-2xl bg-card/60 border border-border/80 space-y-3 hover:border-brand-cyan/40 transition-colors">
                 <div className="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center">
                   <Shield className="w-5 h-5" />
                 </div>
-                <h3 className="font-heading font-bold text-lg text-foreground">Zero Server Uploads</h3>
+                <h3 className="font-heading font-bold text-lg text-foreground">Zero-Knowledge Privacy</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  Your photos, sensitive documents, and proprietary code are processed locally in your browser. We never retain or sell your data.
+                  Your photos, sensitive documents, and proprietary code execute in your browser’s isolated local memory. No files are transmitted to or stored on remote servers.
                 </p>
               </div>
 
-              <div className="p-6 rounded-2xl bg-card/60 border border-border/80 space-y-3">
+              <div className="p-6 rounded-2xl bg-card/60 border border-border/80 space-y-3 hover:border-brand-cyan/40 transition-colors">
                 <div className="w-10 h-10 rounded-xl bg-brand-cyan/10 text-brand-cyan flex items-center justify-center">
                   <Zap className="w-5 h-5" />
                 </div>
-                <h3 className="font-heading font-bold text-lg text-foreground">Zero Cost & No Paywalls</h3>
+                <h3 className="font-heading font-bold text-lg text-foreground">Hardware-Accelerated Compute</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  No hidden credit limits, watermarks, or monthly subscriptions. Clean utilities designed to get work done without obstacles.
+                  Harnessing HTML5 Canvas, Web Workers, and Web Crypto APIs. Heavy image filtering and data encoding execute at native device speeds with zero cloud latency.
                 </p>
               </div>
 
-              <div className="p-6 rounded-2xl bg-card/60 border border-border/80 space-y-3">
+              <div className="p-6 rounded-2xl bg-card/60 border border-border/80 space-y-3 hover:border-brand-cyan/40 transition-colors">
                 <div className="w-10 h-10 rounded-xl bg-brand-purple/10 text-brand-purple flex items-center justify-center">
                   <Globe className="w-5 h-5" />
                 </div>
-                <h3 className="font-heading font-bold text-lg text-foreground">Continuously Expanding</h3>
+                <h3 className="font-heading font-bold text-lg text-foreground">100% Free Forever</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  From everyday image manipulation to upcoming cutting-edge AI suites, our catalogue grows continuously to cover all creator needs.
+                  No artificial paywalls, usage meters, or mandatory subscriptions. Clean, high-performance tools designed to boost productivity with zero barriers.
                 </p>
               </div>
             </div>

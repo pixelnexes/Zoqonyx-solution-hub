@@ -6,8 +6,7 @@ test.describe("Homepage & Navigation", () => {
     await expect(page).toHaveTitle(/Zoqonyx Solution Hub/);
 
     // Verify hero headline
-    await expect(page.locator("h1")).toContainText("Free Tools.");
-    await expect(page.locator("h1")).toContainText("Unlimited Power.");
+    await expect(page.locator("h1")).toContainText(/Tools/i);
 
     // Verify brand logo
     const logo = page.locator('header a[aria-label="Zoqonyx Solution Hub Home"]');

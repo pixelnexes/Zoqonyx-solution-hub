@@ -58,23 +58,23 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "https://zoqonyx.com",
-    title: "Zoqonyx Solution Hub - Free Online Tools Platform",
-    description: "Every tool you need. Zero cost. Fast, private, and accessible.",
+    title: "Zoqonyx Solution Hub – Free Online Tools Platform",
+    description: "37+ free client-side tools. Compress images, format JSON, generate QR codes & CSS styles. Zero uploads, 100% private.",
     siteName: "Zoqonyx Solution Hub",
     images: [
       {
-        url: "/logo/zoqonyx-logo.png",
+        url: "https://zoqonyx.com/logo/zoqonyx-og.png",
         width: 1200,
         height: 630,
-        alt: "Zoqonyx Solution Hub",
+        alt: "Zoqonyx Solution Hub - Free Online Tools Platform",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Zoqonyx Solution Hub - Free Online Tools Platform",
-    description: "Every tool you need. Zero cost. Fast, private, and accessible.",
-    images: ["/logo/zoqonyx-logo.png"],
+    title: "Zoqonyx Solution Hub – Free Online Tools Platform",
+    description: "37+ free client-side tools. Compress images, format JSON, generate QR codes & CSS styles. Zero uploads, 100% private.",
+    images: ["https://zoqonyx.com/logo/zoqonyx-og.png"],
     creator: "@zoqonyx",
   },
   robots: {
@@ -95,7 +95,7 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const gaId = process.env.NEXT_PUBLIC_GA_ID;
+  const gaId = process.env.NEXT_PUBLIC_GA_ID || "G-PX8V01HHCK";
 
   return (
     <html lang="en" suppressHydrationWarning className={`${inter.variable} ${plusJakarta.variable}`}>

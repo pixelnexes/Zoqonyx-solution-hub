@@ -41,6 +41,8 @@ import {
   PercentageCalculatorTool,
   BmiCalculatorTool,
 } from "./seo-calc-tools";
+import { OpenGraphPreviewTool } from "./open-graph-preview-tool";
+import { WatermarkObjectRemoverTool } from "./watermark-object-remover";
 
 interface ToolRendererProps {
   slug: string;
@@ -63,6 +65,11 @@ export function ToolRenderer({ slug }: ToolRendererProps) {
       return <ImageRotatorTool />;
     case "image-to-base64":
       return <ImageToBase64Tool />;
+    case "ai-watermark-remover":
+      return <WatermarkObjectRemoverTool mode="watermark" />;
+    case "object-remover-photo":
+    case "magic-object-remover":
+      return <WatermarkObjectRemoverTool mode="object" />;
 
     // CSS Tools
     case "border-radius-generator":
@@ -107,8 +114,10 @@ export function ToolRenderer({ slug }: ToolRendererProps) {
     // SEO, Marketing & Calculators
     case "qr-code-generator":
       return <QrCodeGeneratorTool />;
+    case "open-graph-generator":
+    case "open-graph-preview":
     case "meta-tags-generator":
-      return <MetaTagsGeneratorTool />;
+      return <OpenGraphPreviewTool />;
     case "robots-txt-generator":
       return <RobotsTxtGeneratorTool />;
     case "unit-converter":

@@ -485,7 +485,240 @@ The syntax divides the geometry into two quadrant planes:
 border-radius: [horizontal top-left] [horizontal top-right] [horizontal bottom-right] [horizontal bottom-left] / [vertical top-left] [vertical top-right] [vertical bottom-right] [vertical bottom-left];
 \`\`\`
 
-When horizontal and vertical radii differ, the corner boundary morphs from a circle into an ellipse. By varying the eight points across non-uniform percentages, designers can craft organic, fluid containers that mimic natural cellular structures. These 'organic blobs' have become a hallmark of modern luxury web typography, creative portfolios, and micro-interaction animations.
+When horizontal and vertical radii differ, the corner boundary morphs from a circle into an ellipse. By varying the eight points across non-uniform percentages, designers can craft organic, fluid containers that mimic natural cellular structures.
+`,
+  },
+
+  "open-graph-generator": {
+    slug: "open-graph-generator",
+    title: "Open Graph Generator & Social Card Simulator Online | Zoqonyx",
+    metaDesc:
+      "Preview and generate Open Graph, Twitter Cards, and Next.js metadata online. Real-time simulators for Twitter/X, Facebook, LinkedIn, Google SERP, and WhatsApp.",
+    howToSteps: [
+      {
+        step: 1,
+        title: "Input Page Title & Description",
+        instruction:
+          "Enter your webpage title and meta description. Monitor the live character counter meters to ensure your copy fits within search and social feed limits.",
+      },
+      {
+        step: 2,
+        title: "Provide Social Image URL or Upload Test Graphic",
+        instruction:
+          "Input your hosted 1200x630 pixel social banner URL or click Upload Test Image to preview a local graphic directly from your device.",
+      },
+      {
+        step: 3,
+        title: "Switch Between Live Platform Previews",
+        instruction:
+          "Click the platform tabs to simulate how your shared link looks on Twitter/X (Summary & Large Card), Facebook Feed, LinkedIn, Google SERP, WhatsApp, and Discord.",
+      },
+      {
+        step: 4,
+        title: "Export Production-Ready Meta Code",
+        instruction:
+          "Select your preferred code format (HTML <meta> tags, Next.js App Router metadata object, or Schema.org JSON-LD) and click Copy Code to paste into your codebase.",
+      },
+    ],
+    keyBenefits: [
+      {
+        title: "Pixel-Accurate Multi-Network Simulation",
+        desc: "Inspect link cards exactly as they render on Twitter/X, Facebook, LinkedIn, Google Search, WhatsApp bubbles, and Discord embeds before going live.",
+      },
+      {
+        title: "Real-Time SERP & Social Length Gauges",
+        desc: "Color-coded character meters alert you when titles exceed 60 characters or descriptions exceed 160 characters, preventing awkward truncations.",
+      },
+      {
+        title: "Next.js 14/15 & App Router Ready",
+        desc: "Exports standard HTML tags, TypeScript Next.js metadata declarations, and structured Schema.org JSON-LD markup with a single click.",
+      },
+    ],
+    proTips: [
+      "Always design Open Graph banners at 1200 x 630 pixels (1.91:1 aspect ratio) to guarantee razor-sharp display on Retina displays.",
+      "Keep important text and logos centered within the inner 1000 x 520 px safe zone to prevent edge clipping on WhatsApp and mobile news feeds.",
+      "Include a strong call-to-action (CTA) directly in your meta description to increase organic click-through rates by up to 35%.",
+    ],
+    faqs: [
+      {
+        question: "What is Open Graph and why does it matter?",
+        answer:
+          "Open Graph is a protocol originally introduced by Facebook that turns web pages into rich graph objects. When a URL is shared on Twitter, Facebook, LinkedIn, Slack, or WhatsApp, social crawlers read og:title, og:description, and og:image tags to construct interactive preview cards.",
+      },
+      {
+        question: "What is the ideal image size for social media link sharing?",
+        answer:
+          "The universal standard is 1200 x 630 pixels with an aspect ratio of 1.91:1. This dimensions ensures optimal clarity on high-DPI desktop screens without being blurry on mobile feeds.",
+      },
+      {
+        question: "Why does my shared link show an old image or title on social media?",
+        answer:
+          "Platforms like Facebook and Twitter cache link metadata for 7 to 30 days. After updating your tags, run your URL through the Facebook Sharing Debugger or Twitter Card Validator to clear their edge server cache.",
+      },
+    ],
+    deepDiveContent: `
+### The Mechanics of Social Crawlers & Open Graph Metadata
+
+When a link is posted on modern communication platforms—such as Slack, Discord, Twitter/X, or Facebook—the platform dispatches an asynchronous crawler (e.g. \`facebookexternalhit\` or \`Twitterbot\`) to fetch the target URL. Instead of parsing the entire visual DOM, the crawler looks for standardized meta tags in the document \`<head>\`.
+
+Without Open Graph tags, crawlers attempt heuristic fallbacks: selecting random images from the page body and truncating the first paragraph of text. This frequently results in cropped logos, low click-through rates, and an unpolished brand appearance.
+
+### Core Open Graph & Twitter Tag Specifications
+
+1. **\`og:title\`**: The headline of your piece. Should be concise (40–60 characters).
+2. **\`og:description\`**: A compelling summary (110–160 characters).
+3. **\`og:image\`**: The banner image URL. Must be an absolute URL including HTTPS protocol and ideally 1200×630 pixels.
+4. **\`og:url\`**: The canonical address of the content.
+5. **\`twitter:card\`**: Declares whether to render a \`summary\` (square thumbnail) or \`summary_large_image\` (prominent full-width hero card).
+`,
+  },
+
+  "ai-watermark-remover": {
+    slug: "ai-watermark-remover",
+    title: "AI Watermark Remover Online – Erase Watermarks & Logos Free | Zoqonyx",
+    metaDesc:
+      "Remove watermarks, logos, timestamps, and AI generator labels from photos online for free. High-precision canvas inpainting with 100% client-side privacy.",
+    howToSteps: [
+      {
+        step: 1,
+        title: "Upload Your Image",
+        instruction:
+          "Drag and drop any JPEG, PNG, or WebP photo into the workspace, or click Select Image to pick a file from your device.",
+      },
+      {
+        step: 2,
+        title: "Adjust Brush Size & Highlight Watermark",
+        instruction:
+          "Use the brush size slider to match the dimensions of the text or logo, then paint over the watermark until covered by the translucent mask.",
+      },
+      {
+        step: 3,
+        title: "Execute Client-Side Inpainting",
+        instruction:
+          "Click Erase Selected Area. The mathematical inpainting algorithm reconstructs surrounding background textures instantly.",
+      },
+      {
+        step: 4,
+        title: "Compare and Download",
+        instruction:
+          "Toggle the Compare Before/After slider to review the seamless result, then click Download Clean Image to export your high-resolution photo.",
+      },
+    ],
+    keyBenefits: [
+      {
+        title: "100% Private Client-Side Processing",
+        desc: "Unlike cloud-based watermark removers that upload your photos to remote servers, Zoqonyx performs inpainting directly in your web browser. Your private pictures never leave your device.",
+      },
+      {
+        title: "Multi-Pass Boundary Inpainting",
+        desc: "Synthesizes texture and color gradients from surrounding unmasked pixels to blend away text, logos, and camera timestamps without blurry holes.",
+      },
+      {
+        title: "Zero Limits & Zero Cost",
+        desc: "Erase as many watermarks as you need. No subscriptions, credits, daily quotas, or mandatory logins required.",
+      },
+    ],
+    proTips: [
+      "Keep the brush size only slightly larger than the watermark text to minimize the area that requires background reconstruction.",
+      "Use the Eraser mode to clean up edges if you accidentally brush over fine foreground subjects.",
+      "For long watermark sentences, inpaint in smaller segments for the most seamless texture blending.",
+    ],
+    faqs: [
+      {
+        question: "Can I remove watermarks from AI-generated images?",
+        answer:
+          "Yes! Zoqonyx is specifically engineered to remove subtle watermark logos, corner tags, and artifacts generated by Midjourney, DALL-E, Stable Diffusion, and stock photo sites.",
+      },
+      {
+        question: "Are my uploaded photos sent to any external server?",
+        answer:
+          "No. All image processing and pixel interpolation happen locally inside your browser's HTML5 Canvas sandbox. Your images are never transmitted or stored anywhere.",
+      },
+      {
+        question: "Does removing a watermark reduce the overall resolution of my photo?",
+        answer:
+          "No. The clean image retains 100% of the original photo's dimensions, pixel resolution, and color depth.",
+      },
+    ],
+    deepDiveContent: `
+### Mathematical Inpainting & Texture Propagation
+
+Digital image inpainting is the process of reconstructing lost or deteriorated parts of an image. When erasing watermarks, the algorithm must solve two problems: restoring geometric structure (edges and lines) and restoring photometric texture (color variations and sensor noise).
+
+Zoqonyx employs a multi-pass gradient diffusion model. First, the perimeter contour of the user's brush mask is identified. The algorithm then marches inward from the boundary, taking weighted samples from neighboring valid pixels:
+$$I(p) = \\frac{\\sum_{q \\in B(p)} w(p, q) \\cdot I(q)}{\\sum_{q \\in B(p)} w(p, q)}$$
+
+Where $w(p, q)$ accounts for Euclidean distance and gradient alignment. Finally, a subtle sensor noise harmonization pass is applied to ensure the inpainted patch matches the photographic film grain of surrounding pixels.
+`,
+  },
+
+  "object-remover-photo": {
+    slug: "object-remover-photo",
+    title: "Object Remover from Photo Online – Free Magic Photo Eraser | Zoqonyx",
+    metaDesc:
+      "Erase unwanted objects, photobombers, powerlines, and background clutter from photos online for free. Brush over distractions and reconstruct scenes seamlessly.",
+    howToSteps: [
+      {
+        step: 1,
+        title: "Open Your Photo",
+        instruction:
+          "Upload your travel snapshot, portrait, or landscape photo by dragging it into the editor.",
+      },
+      {
+        step: 2,
+        title: "Brush Over the Distraction",
+        instruction:
+          "Paint over unwanted people, photobombers, trash cans, or background clutter using the adjustable brush tool.",
+      },
+      {
+        step: 3,
+        title: "Erase and Reconstruct",
+        instruction:
+          "Click Erase Selected Area to let the client-side inpainter fill in the area with realistic background texture.",
+      },
+      {
+        step: 4,
+        title: "Export Clean Result",
+        instruction:
+          "Inspect the result using the interactive split slider, and save the clean photo at full original resolution.",
+      },
+    ],
+    keyBenefits: [
+      {
+        title: "Eliminate Photobombers & Clutter",
+        desc: "Easily clean up crowded vacation photos by erasing tourists, powerlines, and visual distractions with natural texture filling.",
+      },
+      {
+        title: "Local Hardware Acceleration",
+        desc: "Executes in milliseconds directly on your device CPU/GPU without cloud queues, upload delays, or privacy exposure.",
+      },
+      {
+        title: "Interactive Split Comparison",
+        desc: "Drag the divider across your photo to compare the original and cleaned versions before saving.",
+      },
+    ],
+    proTips: [
+      "For tall objects like telephone poles or wires, use a smaller brush radius to avoid over-sampling neighboring sky or foliage.",
+      "If erasing a person standing on a patterned floor, paint slightly outside their shadow to guarantee complete removal.",
+    ],
+    faqs: [
+      {
+        question: "Can I use this tool to remove photobombers from holiday photos?",
+        answer:
+          "Yes! Simply paint over the unwanted person and click Erase. The algorithm will intelligently fill the space with the background scene.",
+      },
+      {
+        question: "Is there a limit on how many objects I can remove from a single photo?",
+        answer:
+          "None at all. You can brush and erase multiple times in succession until your photo is completely clean.",
+      },
+    ],
+    deepDiveContent: `
+### Object Removal & Semantic Background Reconstruction
+
+Photographic composition often suffers from unpredictable environmental distractions: electrical wires overhead, pedestrians walking into frame, or litter on the ground.
+
+Traditional photo retouching requires manual clone-stamping and healing brushes in expensive desktop software. Zoqonyx brings modern inpainting into any web browser. By analyzing texture vectors along the boundary of the selected region, the algorithm smoothly interpolates background structures—such as grass, sky, walls, and water—seamlessly over the erased item.
 `,
   },
 };

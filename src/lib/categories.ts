@@ -171,6 +171,20 @@ Furthermore, client-side execution means you can work completely offline after t
         icon: "Binary",
       },
       {
+        slug: "ai-watermark-remover",
+        name: "AI Watermark Remover",
+        description: "Erase watermarks, logos, timestamps, and AI generator labels from photos using client-side inpainting.",
+        icon: "Sparkles",
+        tag: "New AI Tool",
+      },
+      {
+        slug: "object-remover-photo",
+        name: "Photo Object Remover",
+        description: "Magic eraser tool to remove unwanted people, photobombers, wires, and clutter from photos instantly.",
+        icon: "Eraser",
+        tag: "New AI Tool",
+      },
+      {
         slug: "ai-background-remover-pro",
         name: "AI Background Remover Pro",
         description: "Ultra-high definition AI background removal for complex hair, fur, and product photography.",
@@ -530,6 +544,13 @@ Similarly, responsive accessibility requires sizing typography and layout paddin
       },
     ],
     fallbackTools: [
+      {
+        slug: "open-graph-generator",
+        name: "Open Graph & Social Preview Generator",
+        description: "Preview and generate Open Graph, Twitter Cards, and Next.js metadata with live social simulators.",
+        icon: "Share2",
+        tag: "Updated Pro",
+      },
       {
         slug: "meta-tags-generator",
         name: "Meta Tags Generator",

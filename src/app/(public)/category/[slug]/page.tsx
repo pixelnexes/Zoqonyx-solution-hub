@@ -61,7 +61,7 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
       siteName: "Zoqonyx Solution Hub",
       images: [
         {
-          url: "/logo/zoqonyx-logo.png",
+          url: "/logo/zoqonyx-og.png",
           width: 1200,
           height: 630,
           alt: category.name,
@@ -72,7 +72,7 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
       card: "summary_large_image",
       title,
       description,
-      images: ["/logo/zoqonyx-logo.png"],
+      images: ["/logo/zoqonyx-og.png"],
     },
   };
 }
