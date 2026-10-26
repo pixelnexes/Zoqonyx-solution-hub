@@ -91,7 +91,48 @@ ON DUPLICATE KEY UPDATE \`password\` = VALUES(\`password\`);
 `;
 
   const { defaultTools } = require('../prisma/seed.js');
-  const records = { settings: [], pages: [], tools: defaultTools };
+  
+  const defaultSettingsArray = [
+    { key: 'site_name', value: 'ZOQONYX Solution Hub' },
+    { key: 'site_tagline', value: 'Free Online Tools Platform' },
+    { key: 'contact_email_primary', value: 'hello@zoqonyx.com' },
+    { key: 'contact_email_secondary', value: 'zawwar.ahmed2006@gmail.com' },
+    { key: 'footer_credit', value: 'Developed by Newix Tech Solutions' },
+    { key: 'footer_url', value: 'https://newixtechsolutions.com/' },
+    { key: 'logo_path', value: '/logo/zoqonyx-logo.png' },
+    { key: 'icon_path', value: '/logo/zoqonyx-icon.png' },
+    { key: 'primary_color', value: '#14B8A6' },
+    { key: 'secondary_color', value: '#0D9488' },
+    { key: 'electric_cyan', value: '#2DD4BF' },
+    { key: 'soft_purple', value: '#8B5CF6' },
+    { key: 'default_theme', value: 'dark' },
+  ];
+
+  const defaultPagesArray = [
+    {
+      slug: 'about',
+      title: 'About Zoqonyx Solution Hub',
+      content: '### Our Mission\\n\\nZoqonyx Solution Hub is an open, high-performance web platform dedicated to delivering free, privacy-first digital utilities. Developed by Newix Tech Solutions, the platform empowers developers, designers, students, and digital creators worldwide.\\n\\n### Zero-Upload Browser Architecture\\n\\nTraditional online tools upload your confidential media, contracts, and source code to remote cloud servers. Zoqonyx overturns this paradigm by processing all files and calculations client-side using WebAssembly, HTML5 Canvas, and Web Workers. Your data never leaves your computer.\\n\\n### 100% Free & No Sign-Up Required\\n\\nEvery utility is completely free with zero subscription fees, no credit card requirements, and no mandatory login walls.',
+      metaTitle: 'About Us – Free Client-Side Tools Mission | Zoqonyx',
+      metaDesc: 'Learn about Zoqonyx Solution Hub, developed by Newix Tech Solutions to empower creators with free client-side digital tools.'
+    },
+    {
+      slug: 'privacy-policy',
+      title: 'Privacy Policy',
+      content: '### Absolute Data Confidentiality\\n\\nAt Zoqonyx Solution Hub, privacy is not an afterthought—it is our core architecture. When you compress an image, merge a PDF, generate a QR code, or inspect an SSL certificate, the computation executes locally on your device.\\n\\n### Zero File Storage\\n\\nWe do not operate backend file storage or telemetry for uploaded files. Once you refresh or close your browser tab, all temporary data in memory is permanently destroyed.\\n\\n### Local Analytics & Cookies\\n\\nWe use standard non-intrusive analytics solely to monitor aggregated traffic patterns. No personal identifiable information is ever monetized or shared with third parties.',
+      metaTitle: 'Privacy Policy – Zero Data Retention Guarantee | Zoqonyx',
+      metaDesc: 'Read our transparent privacy policy. All data processing occurs client-side in your browser with zero remote storage.'
+    },
+    {
+      slug: 'terms',
+      title: 'Terms of Service',
+      content: '### Acceptance of Terms\\n\\nBy accessing and utilizing Zoqonyx Solution Hub, you agree to be bound by these Terms of Service and all applicable local, national, and international laws.\\n\\n### Permitted Use\\n\\nOur utilities are provided free of charge for both personal and commercial use. You agree not to attempt to disrupt or overwhelm our infrastructure through automated denial-of-service attacks or malicious scraping.\\n\\n### Disclaimer of Warranties\\n\\nAll tools and calculations are provided on an "as is" basis. While we strive for absolute mathematical and technical accuracy, Zoqonyx Solution Hub disclaims all implied warranties of fitness for a particular purpose.',
+      metaTitle: 'Terms of Service – Usage Guidelines | Zoqonyx',
+      metaDesc: 'Review the terms and conditions governing the usage of Zoqonyx Solution Hub online tools and services.'
+    }
+  ];
+
+  const records = { settings: defaultSettingsArray, pages: defaultPagesArray, tools: defaultTools };
 
   // Settings
   sql += '-- 2. Insert Default Settings\n';
@@ -108,7 +149,7 @@ ON DUPLICATE KEY UPDATE \`password\` = VALUES(\`password\`);
   }
 
   // Tools
-  sql += '\n-- 4. Insert Initial Tools Suite (37 tools)\n';
+  sql += '\n-- 4. Insert Full 130 Tools Suite (100 Active + 30 Coming Soon)\n';
   for (let i = 0; i < records.tools.length; i++) {
     const t = records.tools[i];
     sql += `INSERT INTO \`Tool\` (\`id\`, \`slug\`, \`name\`, \`description\`, \`category\`, \`isActive\`, \`isComingSoon\`, \`icon\`, \`order\`, \`metaTitle\`, \`metaDesc\`, \`content\`, \`usageCount\`, \`createdAt\`, \`updatedAt\`) VALUES ('tool_${i+1}', ${esc(t.slug)}, ${esc(t.name)}, ${esc(t.description)}, ${esc(t.category)}, ${esc(t.isActive)}, ${esc(t.isComingSoon)}, ${esc(t.icon)}, ${esc(t.order)}, ${esc(t.metaTitle)}, ${esc(t.metaDesc)}, ${esc(t.content)}, 0, NOW(3), NOW(3)) ON DUPLICATE KEY UPDATE \`name\` = VALUES(\`name\`), \`content\` = VALUES(\`content\`), \`isActive\` = VALUES(\`isActive\`), \`isComingSoon\` = VALUES(\`isComingSoon\`);\n`;
