@@ -25,7 +25,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "Minimize2",
     "order": 1,
-    "metaTitle": "Free Image Compressor Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Free Image Compressor | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Compress JPG, PNG, and WebP images client-side with quality slider, before/after preview, and batch processing up to 50 files. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Comprehensive Guide: Image Compressor\n\nCompress JPG, PNG, and WebP images client-side with quality slider, before/after preview, and batch processing up to 50 files.\n\n### Key Technical Highlights\n- **100% Client-Side Processing**: Your media files are rendered and transformed using hardware-accelerated HTML5 Canvas and WebGL APIs. No photos are ever uploaded to cloud servers.\n- **Interactive Visual Comparison**: Inspect edge sharpness, compression fidelity, and dimensions with real-time reactive canvas rendering before downloading.\n- **Optimized for Web Performance & LCP**: Reducing graphic payloads significantly accelerates page render times and boosts Google Core Web Vitals rankings.\n- **Zero Watermarks & Unrestricted Commercial Use**: All exported graphics are yours to use in personal, commercial, and client deliverables with no attribution required."
   },
@@ -39,7 +39,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "Sparkles",
     "order": 2,
-    "metaTitle": "Free Background Remover Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Free Background Remover | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Remove image backgrounds client-side with transparency controls, edge smoothing, and batch processing up to 20 images. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Comprehensive Guide: Background Remover\n\nRemove image backgrounds client-side with transparency controls, edge smoothing, and batch processing up to 20 images.\n\n### Key Technical Highlights\n- **100% Client-Side Processing**: Your media files are rendered and transformed using hardware-accelerated HTML5 Canvas and WebGL APIs. No photos are ever uploaded to cloud servers.\n- **Interactive Visual Comparison**: Inspect edge sharpness, compression fidelity, and dimensions with real-time reactive canvas rendering before downloading.\n- **Optimized for Web Performance & LCP**: Reducing graphic payloads significantly accelerates page render times and boosts Google Core Web Vitals rankings.\n- **Zero Watermarks & Unrestricted Commercial Use**: All exported graphics are yours to use in personal, commercial, and client deliverables with no attribution required."
   },
@@ -53,7 +53,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "Maximize2",
     "order": 3,
-    "metaTitle": "Free Image Resizer Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Free Image Resizer | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Resize photos by pixels or percentage with aspect ratio lock and social media resolution presets in bulk. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Comprehensive Guide: Image Resizer\n\nResize photos by pixels or percentage with aspect ratio lock and social media resolution presets in bulk.\n\n### Key Technical Highlights\n- **100% Client-Side Processing**: Your media files are rendered and transformed using hardware-accelerated HTML5 Canvas and WebGL APIs. No photos are ever uploaded to cloud servers.\n- **Interactive Visual Comparison**: Inspect edge sharpness, compression fidelity, and dimensions with real-time reactive canvas rendering before downloading.\n- **Optimized for Web Performance & LCP**: Reducing graphic payloads significantly accelerates page render times and boosts Google Core Web Vitals rankings.\n- **Zero Watermarks & Unrestricted Commercial Use**: All exported graphics are yours to use in personal, commercial, and client deliverables with no attribution required."
   },
@@ -67,7 +67,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "RefreshCw",
     "order": 4,
-    "metaTitle": "Free Image Format Converter Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Free Image Format Converter | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Convert images seamlessly between PNG, JPG, WebP, AVIF, and BMP formats in batch directly in your browser. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Comprehensive Guide: Image Format Converter\n\nConvert images seamlessly between PNG, JPG, WebP, AVIF, and BMP formats in batch directly in your browser.\n\n### Key Technical Highlights\n- **100% Client-Side Processing**: Your media files are rendered and transformed using hardware-accelerated HTML5 Canvas and WebGL APIs. No photos are ever uploaded to cloud servers.\n- **Interactive Visual Comparison**: Inspect edge sharpness, compression fidelity, and dimensions with real-time reactive canvas rendering before downloading.\n- **Optimized for Web Performance & LCP**: Reducing graphic payloads significantly accelerates page render times and boosts Google Core Web Vitals rankings.\n- **Zero Watermarks & Unrestricted Commercial Use**: All exported graphics are yours to use in personal, commercial, and client deliverables with no attribution required."
   },
@@ -81,7 +81,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "Crop",
     "order": 5,
-    "metaTitle": "Free Image Cropper Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Free Image Cropper | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Crop photos with custom aspect ratios, circular avatars, and interactive canvas selection. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Comprehensive Guide: Image Cropper\n\nCrop photos with custom aspect ratios, circular avatars, and interactive canvas selection.\n\n### Key Technical Highlights\n- **100% Client-Side Processing**: Your media files are rendered and transformed using hardware-accelerated HTML5 Canvas and WebGL APIs. No photos are ever uploaded to cloud servers.\n- **Interactive Visual Comparison**: Inspect edge sharpness, compression fidelity, and dimensions with real-time reactive canvas rendering before downloading.\n- **Optimized for Web Performance & LCP**: Reducing graphic payloads significantly accelerates page render times and boosts Google Core Web Vitals rankings.\n- **Zero Watermarks & Unrestricted Commercial Use**: All exported graphics are yours to use in personal, commercial, and client deliverables with no attribution required."
   },
@@ -95,7 +95,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "RotateCw",
     "order": 6,
-    "metaTitle": "Free Image Rotator & Flipper Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Free Image Rotator & Flipper | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Rotate images 90\u00b0, 180\u00b0, 270\u00b0 and flip horizontally or vertically with real-time preview. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Comprehensive Guide: Image Rotator & Flipper\n\nRotate images 90\u00b0, 180\u00b0, 270\u00b0 and flip horizontally or vertically with real-time preview.\n\n### Key Technical Highlights\n- **100% Client-Side Processing**: Your media files are rendered and transformed using hardware-accelerated HTML5 Canvas and WebGL APIs. No photos are ever uploaded to cloud servers.\n- **Interactive Visual Comparison**: Inspect edge sharpness, compression fidelity, and dimensions with real-time reactive canvas rendering before downloading.\n- **Optimized for Web Performance & LCP**: Reducing graphic payloads significantly accelerates page render times and boosts Google Core Web Vitals rankings.\n- **Zero Watermarks & Unrestricted Commercial Use**: All exported graphics are yours to use in personal, commercial, and client deliverables with no attribution required."
   },
@@ -109,7 +109,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "Code2",
     "order": 7,
-    "metaTitle": "Free Image to Base64 Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Free Image to Base64 | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Convert images into Base64 Data URI strings for HTML, CSS, and markdown embedding. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Comprehensive Guide: Image to Base64\n\nConvert images into Base64 Data URI strings for HTML, CSS, and markdown embedding.\n\n### Key Technical Highlights\n- **100% Client-Side Processing**: Your media files are rendered and transformed using hardware-accelerated HTML5 Canvas and WebGL APIs. No photos are ever uploaded to cloud servers.\n- **Interactive Visual Comparison**: Inspect edge sharpness, compression fidelity, and dimensions with real-time reactive canvas rendering before downloading.\n- **Optimized for Web Performance & LCP**: Reducing graphic payloads significantly accelerates page render times and boosts Google Core Web Vitals rankings.\n- **Zero Watermarks & Unrestricted Commercial Use**: All exported graphics are yours to use in personal, commercial, and client deliverables with no attribution required."
   },
@@ -123,7 +123,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "Pipette",
     "order": 8,
-    "metaTitle": "Free Color Picker from Image Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Free Color Picker from Image | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Inspect and extract exact HEX, RGB, and HSL color values from any uploaded image with zoom loupe. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Comprehensive Guide: Color Picker from Image\n\nInspect and extract exact HEX, RGB, and HSL color values from any uploaded image with zoom loupe.\n\n### Key Technical Highlights\n- **100% Client-Side Processing**: Your media files are rendered and transformed using hardware-accelerated HTML5 Canvas and WebGL APIs. No photos are ever uploaded to cloud servers.\n- **Interactive Visual Comparison**: Inspect edge sharpness, compression fidelity, and dimensions with real-time reactive canvas rendering before downloading.\n- **Optimized for Web Performance & LCP**: Reducing graphic payloads significantly accelerates page render times and boosts Google Core Web Vitals rankings.\n- **Zero Watermarks & Unrestricted Commercial Use**: All exported graphics are yours to use in personal, commercial, and client deliverables with no attribution required."
   },
@@ -137,7 +137,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "Layers",
     "order": 9,
-    "metaTitle": "Free Favicon Generator Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Free Favicon Generator | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Generate multi-size web favicons and app icons (16px to 512px) packaged in a clean ZIP with HTML tags. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Comprehensive Guide: Favicon Generator\n\nGenerate multi-size web favicons and app icons (16px to 512px) packaged in a clean ZIP with HTML tags.\n\n### Key Technical Highlights\n- **100% Client-Side Processing**: Your media files are rendered and transformed using hardware-accelerated HTML5 Canvas and WebGL APIs. No photos are ever uploaded to cloud servers.\n- **Interactive Visual Comparison**: Inspect edge sharpness, compression fidelity, and dimensions with real-time reactive canvas rendering before downloading.\n- **Optimized for Web Performance & LCP**: Reducing graphic payloads significantly accelerates page render times and boosts Google Core Web Vitals rankings.\n- **Zero Watermarks & Unrestricted Commercial Use**: All exported graphics are yours to use in personal, commercial, and client deliverables with no attribution required."
   },
@@ -151,7 +151,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "QrCode",
     "order": 10,
-    "metaTitle": "Free QR Code Generator Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Free QR Code Generator | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Generate custom high-resolution QR codes for URLs, WiFi, vCards, text, and email with logos and custom colors. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Comprehensive Guide: QR Code Generator\n\nGenerate custom high-resolution QR codes for URLs, WiFi, vCards, text, and email with logos and custom colors.\n\n### Key Technical Highlights\n- **100% Client-Side Processing**: Your media files are rendered and transformed using hardware-accelerated HTML5 Canvas and WebGL APIs. No photos are ever uploaded to cloud servers.\n- **Interactive Visual Comparison**: Inspect edge sharpness, compression fidelity, and dimensions with real-time reactive canvas rendering before downloading.\n- **Optimized for Web Performance & LCP**: Reducing graphic payloads significantly accelerates page render times and boosts Google Core Web Vitals rankings.\n- **Zero Watermarks & Unrestricted Commercial Use**: All exported graphics are yours to use in personal, commercial, and client deliverables with no attribution required."
   },
@@ -165,7 +165,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "UserCheck",
     "order": 11,
-    "metaTitle": "Free Passport Photo Maker Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Free Passport Photo Maker | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Create biometric compliance passport and visa photos (US 2x2 in, UK/EU 35x45 mm) with printable 4x6 grid. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Comprehensive Guide: Passport Photo Maker\n\nCreate biometric compliance passport and visa photos (US 2x2 in, UK/EU 35x45 mm) with printable 4x6 grid.\n\n### Key Technical Highlights\n- **100% Client-Side Processing**: Your media files are rendered and transformed using hardware-accelerated HTML5 Canvas and WebGL APIs. No photos are ever uploaded to cloud servers.\n- **Interactive Visual Comparison**: Inspect edge sharpness, compression fidelity, and dimensions with real-time reactive canvas rendering before downloading.\n- **Optimized for Web Performance & LCP**: Reducing graphic payloads significantly accelerates page render times and boosts Google Core Web Vitals rankings.\n- **Zero Watermarks & Unrestricted Commercial Use**: All exported graphics are yours to use in personal, commercial, and client deliverables with no attribution required."
   },
@@ -179,7 +179,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "FileText",
     "order": 12,
-    "metaTitle": "Free Image to PDF Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Free Image to PDF | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Convert multiple JPG, PNG, and WebP images into a single organized PDF document with page sizing controls. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Comprehensive Guide: Image to PDF\n\nConvert multiple JPG, PNG, and WebP images into a single organized PDF document with page sizing controls.\n\n### Why Use Image to PDF on Zoqonyx?\n- **Zero Remote File Uploads**: Confidential contracts, legal documents, and personal records never leave your local device. The entire document pipeline executes inside your web browser sandbox via WebAssembly.\n- **Native Vector & Typography Retention**: Our engine operates directly on underlying PDF streams, preserving embedded TrueType/OpenType fonts, vector lines, and page annotations without raster blur.\n- **No File Size or Page Limitations**: Process multi-page documents freely without hitting artificial paywalls, daily quotas, or watermarks.\n- **Instant Client-Side Speed**: Bypasses network upload delays and cloud processing queues, running with native hardware speed on your machine."
   },
@@ -193,7 +193,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "Shield",
     "order": 13,
-    "metaTitle": "Free Watermark Adder Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Free Watermark Adder | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Protect images with text or logo watermarks, opacity sliders, rotation angles, and 9-point alignment. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Comprehensive Guide: Watermark Adder\n\nProtect images with text or logo watermarks, opacity sliders, rotation angles, and 9-point alignment.\n\n### Key Technical Highlights\n- **100% Client-Side Processing**: Your media files are rendered and transformed using hardware-accelerated HTML5 Canvas and WebGL APIs. No photos are ever uploaded to cloud servers.\n- **Interactive Visual Comparison**: Inspect edge sharpness, compression fidelity, and dimensions with real-time reactive canvas rendering before downloading.\n- **Optimized for Web Performance & LCP**: Reducing graphic payloads significantly accelerates page render times and boosts Google Core Web Vitals rankings.\n- **Zero Watermarks & Unrestricted Commercial Use**: All exported graphics are yours to use in personal, commercial, and client deliverables with no attribution required."
   },
@@ -207,7 +207,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "EyeOff",
     "order": 14,
-    "metaTitle": "Free EXIF Data Remover Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Free EXIF Data Remover | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Strip private GPS coordinates, camera models, shutter speeds, and timestamps before sharing photos online. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Comprehensive Guide: EXIF Data Remover\n\nStrip private GPS coordinates, camera models, shutter speeds, and timestamps before sharing photos online.\n\n### Key Technical Highlights\n- **100% Client-Side Processing**: Your media files are rendered and transformed using hardware-accelerated HTML5 Canvas and WebGL APIs. No photos are ever uploaded to cloud servers.\n- **Interactive Visual Comparison**: Inspect edge sharpness, compression fidelity, and dimensions with real-time reactive canvas rendering before downloading.\n- **Optimized for Web Performance & LCP**: Reducing graphic payloads significantly accelerates page render times and boosts Google Core Web Vitals rankings.\n- **Zero Watermarks & Unrestricted Commercial Use**: All exported graphics are yours to use in personal, commercial, and client deliverables with no attribution required."
   },
@@ -221,7 +221,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "ZoomIn",
     "order": 15,
-    "metaTitle": "Free Image Upscaler Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Free Image Upscaler | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Enlarge images 2x and 4x with client-side bicubic super-resolution and unsharp mask edge enhancement. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Comprehensive Guide: Image Upscaler\n\nEnlarge images 2x and 4x with client-side bicubic super-resolution and unsharp mask edge enhancement.\n\n### Key Technical Highlights\n- **100% Client-Side Processing**: Your media files are rendered and transformed using hardware-accelerated HTML5 Canvas and WebGL APIs. No photos are ever uploaded to cloud servers.\n- **Interactive Visual Comparison**: Inspect edge sharpness, compression fidelity, and dimensions with real-time reactive canvas rendering before downloading.\n- **Optimized for Web Performance & LCP**: Reducing graphic payloads significantly accelerates page render times and boosts Google Core Web Vitals rankings.\n- **Zero Watermarks & Unrestricted Commercial Use**: All exported graphics are yours to use in personal, commercial, and client deliverables with no attribution required."
   },
@@ -235,7 +235,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "FileText",
     "order": 16,
-    "metaTitle": "Free Merge PDF Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Free Merge PDF | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Combine multiple PDF documents into a single organized file in seconds with custom page ordering. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Comprehensive Guide: Merge PDF\n\nCombine multiple PDF documents into a single organized file in seconds with custom page ordering.\n\n### Why Use Merge PDF on Zoqonyx?\n- **Zero Remote File Uploads**: Confidential contracts, legal documents, and personal records never leave your local device. The entire document pipeline executes inside your web browser sandbox via WebAssembly.\n- **Native Vector & Typography Retention**: Our engine operates directly on underlying PDF streams, preserving embedded TrueType/OpenType fonts, vector lines, and page annotations without raster blur.\n- **No File Size or Page Limitations**: Process multi-page documents freely without hitting artificial paywalls, daily quotas, or watermarks.\n- **Instant Client-Side Speed**: Bypasses network upload delays and cloud processing queues, running with native hardware speed on your machine."
   },
@@ -249,7 +249,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "Layers",
     "order": 17,
-    "metaTitle": "Free Split PDF Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Free Split PDF | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Extract specific page ranges or split large PDF documents into smaller independent files. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Comprehensive Guide: Split PDF\n\nExtract specific page ranges or split large PDF documents into smaller independent files.\n\n### Why Use Split PDF on Zoqonyx?\n- **Zero Remote File Uploads**: Confidential contracts, legal documents, and personal records never leave your local device. The entire document pipeline executes inside your web browser sandbox via WebAssembly.\n- **Native Vector & Typography Retention**: Our engine operates directly on underlying PDF streams, preserving embedded TrueType/OpenType fonts, vector lines, and page annotations without raster blur.\n- **No File Size or Page Limitations**: Process multi-page documents freely without hitting artificial paywalls, daily quotas, or watermarks.\n- **Instant Client-Side Speed**: Bypasses network upload delays and cloud processing queues, running with native hardware speed on your machine."
   },
@@ -263,7 +263,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "Minimize2",
     "order": 18,
-    "metaTitle": "Free Compress PDF Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Free Compress PDF | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Reduce PDF file size client-side with stream optimization and visual quality profiles. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Comprehensive Guide: Compress PDF\n\nReduce PDF file size client-side with stream optimization and visual quality profiles.\n\n### Why Use Compress PDF on Zoqonyx?\n- **Zero Remote File Uploads**: Confidential contracts, legal documents, and personal records never leave your local device. The entire document pipeline executes inside your web browser sandbox via WebAssembly.\n- **Native Vector & Typography Retention**: Our engine operates directly on underlying PDF streams, preserving embedded TrueType/OpenType fonts, vector lines, and page annotations without raster blur.\n- **No File Size or Page Limitations**: Process multi-page documents freely without hitting artificial paywalls, daily quotas, or watermarks.\n- **Instant Client-Side Speed**: Bypasses network upload delays and cloud processing queues, running with native hardware speed on your machine."
   },
@@ -277,7 +277,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "FileImage",
     "order": 19,
-    "metaTitle": "Free PDF to Image Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Free PDF to Image | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Convert PDF pages into high-resolution PNG or JPEG images with single-page and bulk ZIP downloads. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Comprehensive Guide: PDF to Image\n\nConvert PDF pages into high-resolution PNG or JPEG images with single-page and bulk ZIP downloads.\n\n### Why Use PDF to Image on Zoqonyx?\n- **Zero Remote File Uploads**: Confidential contracts, legal documents, and personal records never leave your local device. The entire document pipeline executes inside your web browser sandbox via WebAssembly.\n- **Native Vector & Typography Retention**: Our engine operates directly on underlying PDF streams, preserving embedded TrueType/OpenType fonts, vector lines, and page annotations without raster blur.\n- **No File Size or Page Limitations**: Process multi-page documents freely without hitting artificial paywalls, daily quotas, or watermarks.\n- **Instant Client-Side Speed**: Bypasses network upload delays and cloud processing queues, running with native hardware speed on your machine."
   },
@@ -291,7 +291,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "RotateCw",
     "order": 20,
-    "metaTitle": "Free Rotate PDF Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Free Rotate PDF | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Rotate individual or all PDF pages by 90, 180, or 270 degrees with live orientation preview. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Comprehensive Guide: Rotate PDF\n\nRotate individual or all PDF pages by 90, 180, or 270 degrees with live orientation preview.\n\n### Why Use Rotate PDF on Zoqonyx?\n- **Zero Remote File Uploads**: Confidential contracts, legal documents, and personal records never leave your local device. The entire document pipeline executes inside your web browser sandbox via WebAssembly.\n- **Native Vector & Typography Retention**: Our engine operates directly on underlying PDF streams, preserving embedded TrueType/OpenType fonts, vector lines, and page annotations without raster blur.\n- **No File Size or Page Limitations**: Process multi-page documents freely without hitting artificial paywalls, daily quotas, or watermarks.\n- **Instant Client-Side Speed**: Bypasses network upload delays and cloud processing queues, running with native hardware speed on your machine."
   },
@@ -305,7 +305,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "LayoutGrid",
     "order": 21,
-    "metaTitle": "Free Organize PDF Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Free Organize PDF | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Reorder pages, rotate individual pages, and delete unwanted sections visually in your browser. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Comprehensive Guide: Organize PDF\n\nReorder pages, rotate individual pages, and delete unwanted sections visually in your browser.\n\n### Why Use Organize PDF on Zoqonyx?\n- **Zero Remote File Uploads**: Confidential contracts, legal documents, and personal records never leave your local device. The entire document pipeline executes inside your web browser sandbox via WebAssembly.\n- **Native Vector & Typography Retention**: Our engine operates directly on underlying PDF streams, preserving embedded TrueType/OpenType fonts, vector lines, and page annotations without raster blur.\n- **No File Size or Page Limitations**: Process multi-page documents freely without hitting artificial paywalls, daily quotas, or watermarks.\n- **Instant Client-Side Speed**: Bypasses network upload delays and cloud processing queues, running with native hardware speed on your machine."
   },
@@ -319,7 +319,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "Unlock",
     "order": 22,
-    "metaTitle": "Free Unlock PDF Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Free Unlock PDF | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Remove security restrictions and passwords from encrypted PDF files for editing and printing. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Comprehensive Guide: Unlock PDF\n\nRemove security restrictions and passwords from encrypted PDF files for editing and printing.\n\n### Why Use Unlock PDF on Zoqonyx?\n- **Zero Remote File Uploads**: Confidential contracts, legal documents, and personal records never leave your local device. The entire document pipeline executes inside your web browser sandbox via WebAssembly.\n- **Native Vector & Typography Retention**: Our engine operates directly on underlying PDF streams, preserving embedded TrueType/OpenType fonts, vector lines, and page annotations without raster blur.\n- **No File Size or Page Limitations**: Process multi-page documents freely without hitting artificial paywalls, daily quotas, or watermarks.\n- **Instant Client-Side Speed**: Bypasses network upload delays and cloud processing queues, running with native hardware speed on your machine."
   },
@@ -333,7 +333,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "Lock",
     "order": 23,
-    "metaTitle": "Free Protect PDF Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Free Protect PDF | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Encrypt and secure confidential PDF documents with custom owner passwords. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Comprehensive Guide: Protect PDF\n\nEncrypt and secure confidential PDF documents with custom owner passwords.\n\n### Why Use Protect PDF on Zoqonyx?\n- **Zero Remote File Uploads**: Confidential contracts, legal documents, and personal records never leave your local device. The entire document pipeline executes inside your web browser sandbox via WebAssembly.\n- **Native Vector & Typography Retention**: Our engine operates directly on underlying PDF streams, preserving embedded TrueType/OpenType fonts, vector lines, and page annotations without raster blur.\n- **No File Size or Page Limitations**: Process multi-page documents freely without hitting artificial paywalls, daily quotas, or watermarks.\n- **Instant Client-Side Speed**: Bypasses network upload delays and cloud processing queues, running with native hardware speed on your machine."
   },
@@ -347,7 +347,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "Hash",
     "order": 24,
-    "metaTitle": "Free Add Page Numbers Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Free Add Page Numbers | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Stamp customized header or footer page numbers across all pages of your PDF document. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Comprehensive Guide: Add Page Numbers\n\nStamp customized header or footer page numbers across all pages of your PDF document.\n\n### Why Use Add Page Numbers on Zoqonyx?\n- **Zero Remote File Uploads**: Confidential contracts, legal documents, and personal records never leave your local device. The entire document pipeline executes inside your web browser sandbox via WebAssembly.\n- **Native Vector & Typography Retention**: Our engine operates directly on underlying PDF streams, preserving embedded TrueType/OpenType fonts, vector lines, and page annotations without raster blur.\n- **No File Size or Page Limitations**: Process multi-page documents freely without hitting artificial paywalls, daily quotas, or watermarks.\n- **Instant Client-Side Speed**: Bypasses network upload delays and cloud processing queues, running with native hardware speed on your machine."
   },
@@ -361,7 +361,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "FileCheck",
     "order": 25,
-    "metaTitle": "Free PDF Page Counter Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Free PDF Page Counter | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Inspect page counts, document volume, and metadata across single or bulk PDF files instantly. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Comprehensive Guide: PDF Page Counter\n\nInspect page counts, document volume, and metadata across single or bulk PDF files instantly.\n\n### Why Use PDF Page Counter on Zoqonyx?\n- **Zero Remote File Uploads**: Confidential contracts, legal documents, and personal records never leave your local device. The entire document pipeline executes inside your web browser sandbox via WebAssembly.\n- **Native Vector & Typography Retention**: Our engine operates directly on underlying PDF streams, preserving embedded TrueType/OpenType fonts, vector lines, and page annotations without raster blur.\n- **No File Size or Page Limitations**: Process multi-page documents freely without hitting artificial paywalls, daily quotas, or watermarks.\n- **Instant Client-Side Speed**: Bypasses network upload delays and cloud processing queues, running with native hardware speed on your machine."
   },
@@ -375,7 +375,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "FileText",
     "order": 26,
-    "metaTitle": "Free Extract Text from PDF Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Free Extract Text from PDF | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Extract clean readable text and structural metadata from PDF documents with one-click clipboard copy. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Comprehensive Guide: Extract Text from PDF\n\nExtract clean readable text and structural metadata from PDF documents with one-click clipboard copy.\n\n### Why Use Extract Text from PDF on Zoqonyx?\n- **Zero Remote File Uploads**: Confidential contracts, legal documents, and personal records never leave your local device. The entire document pipeline executes inside your web browser sandbox via WebAssembly.\n- **Native Vector & Typography Retention**: Our engine operates directly on underlying PDF streams, preserving embedded TrueType/OpenType fonts, vector lines, and page annotations without raster blur.\n- **No File Size or Page Limitations**: Process multi-page documents freely without hitting artificial paywalls, daily quotas, or watermarks.\n- **Instant Client-Side Speed**: Bypasses network upload delays and cloud processing queues, running with native hardware speed on your machine."
   },
@@ -389,7 +389,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "FileText",
     "order": 27,
-    "metaTitle": "Free PDF Metadata Editor Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Free PDF Metadata Editor | Zoqonyx Online | Zoqonyx",
     "metaDesc": "View and edit document title, author, subject, and keywords without altering document layout. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Comprehensive Guide: PDF Metadata Editor\n\nView and edit document title, author, subject, and keywords without altering document layout.\n\n### Why Use PDF Metadata Editor on Zoqonyx?\n- **Zero Remote File Uploads**: Confidential contracts, legal documents, and personal records never leave your local device. The entire document pipeline executes inside your web browser sandbox via WebAssembly.\n- **Native Vector & Typography Retention**: Our engine operates directly on underlying PDF streams, preserving embedded TrueType/OpenType fonts, vector lines, and page annotations without raster blur.\n- **No File Size or Page Limitations**: Process multi-page documents freely without hitting artificial paywalls, daily quotas, or watermarks.\n- **Instant Client-Side Speed**: Bypasses network upload delays and cloud processing queues, running with native hardware speed on your machine."
   },
@@ -403,7 +403,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "Code2",
     "order": 28,
-    "metaTitle": "Free JSON Formatter & Validator Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Free JSON Formatter & Validator | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Format, beautify, validate, minify, and inspect JSON payloads with line-by-line syntax error detection. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Technical Webmaster Overview: JSON Formatter & Validator\n\nFormat, beautify, validate, minify, and inspect JSON payloads with line-by-line syntax error detection.\n\n### Why Use JSON Formatter & Validator?\n- **Google SERP & Click-Through Optimization**: Generate validated metadata tags and directives that maximize organic search visibility and click-through rates (CTR).\n- **Schema.org & Open Graph Protocol Adherence**: Output conforms strictly to official W3C, Schema.org, and social platform specifications.\n- **Pixel-Accurate Truncation Simulation**: Accurately preview snippet lengths to avoid awkward ellipsis cuts in search engine results pages.\n- **Zero Injected Third-Party Telemetry**: Clean, valid code free of promotional watermarks or tracking scripts."
   },
@@ -417,7 +417,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "Key",
     "order": 29,
-    "metaTitle": "Free Base64 Encode/Decode Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Free Base64 Encode/Decode | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Encode raw text to Base64 format or decode Base64 strings back to clean UTF-8 safely and securely. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Technical Webmaster Overview: Base64 Encode/Decode\n\nEncode raw text to Base64 format or decode Base64 strings back to clean UTF-8 safely and securely.\n\n### Why Use Base64 Encode/Decode?\n- **Google SERP & Click-Through Optimization**: Generate validated metadata tags and directives that maximize organic search visibility and click-through rates (CTR).\n- **Schema.org & Open Graph Protocol Adherence**: Output conforms strictly to official W3C, Schema.org, and social platform specifications.\n- **Pixel-Accurate Truncation Simulation**: Accurately preview snippet lengths to avoid awkward ellipsis cuts in search engine results pages.\n- **Zero Injected Third-Party Telemetry**: Clean, valid code free of promotional watermarks or tracking scripts."
   },
@@ -431,7 +431,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "Globe",
     "order": 30,
-    "metaTitle": "Free URL Encoder/Decoder Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Free URL Encoder/Decoder | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Encode strings into percent-encoded URI format or decode complex URLs and query strings safely. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Technical Webmaster Overview: URL Encoder/Decoder\n\nEncode strings into percent-encoded URI format or decode complex URLs and query strings safely.\n\n### Why Use URL Encoder/Decoder?\n- **Google SERP & Click-Through Optimization**: Generate validated metadata tags and directives that maximize organic search visibility and click-through rates (CTR).\n- **Schema.org & Open Graph Protocol Adherence**: Output conforms strictly to official W3C, Schema.org, and social platform specifications.\n- **Pixel-Accurate Truncation Simulation**: Accurately preview snippet lengths to avoid awkward ellipsis cuts in search engine results pages.\n- **Zero Injected Third-Party Telemetry**: Clean, valid code free of promotional watermarks or tracking scripts."
   },
@@ -445,7 +445,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "Lock",
     "order": 31,
-    "metaTitle": "Free Hash Generator Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Free Hash Generator | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Generate SHA-1, SHA-256, SHA-384, SHA-512, and MD5 cryptographic hashes from any input text. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Technical Webmaster Overview: Hash Generator\n\nGenerate SHA-1, SHA-256, SHA-384, SHA-512, and MD5 cryptographic hashes from any input text.\n\n### Why Use Hash Generator?\n- **Google SERP & Click-Through Optimization**: Generate validated metadata tags and directives that maximize organic search visibility and click-through rates (CTR).\n- **Schema.org & Open Graph Protocol Adherence**: Output conforms strictly to official W3C, Schema.org, and social platform specifications.\n- **Pixel-Accurate Truncation Simulation**: Accurately preview snippet lengths to avoid awkward ellipsis cuts in search engine results pages.\n- **Zero Injected Third-Party Telemetry**: Clean, valid code free of promotional watermarks or tracking scripts."
   },
@@ -459,7 +459,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "Terminal",
     "order": 32,
-    "metaTitle": "Free UUID Generator Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Free UUID Generator | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Generate cryptographically secure Version 4 UUIDs in bulk with uppercase, lowercase, and hyphen options. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Technical Webmaster Overview: UUID Generator\n\nGenerate cryptographically secure Version 4 UUIDs in bulk with uppercase, lowercase, and hyphen options.\n\n### Why Use UUID Generator?\n- **Google SERP & Click-Through Optimization**: Generate validated metadata tags and directives that maximize organic search visibility and click-through rates (CTR).\n- **Schema.org & Open Graph Protocol Adherence**: Output conforms strictly to official W3C, Schema.org, and social platform specifications.\n- **Pixel-Accurate Truncation Simulation**: Accurately preview snippet lengths to avoid awkward ellipsis cuts in search engine results pages.\n- **Zero Injected Third-Party Telemetry**: Clean, valid code free of promotional watermarks or tracking scripts."
   },
@@ -473,7 +473,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "Shield",
     "order": 33,
-    "metaTitle": "Free Password Generator Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Free Password Generator | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Generate ultra-secure, random passwords with custom length, symbols, numbers, and entropy meter. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Practical Guide: Password Generator\n\nGenerate ultra-secure, random passwords with custom length, symbols, numbers, and entropy meter.\n\n### Advantages & Capabilities\n- **Full Unicode 15.1 Compatibility**: Safely processes accented Latin characters, non-Latin alphabets (Arabic, Cyrillic, Greek, Devanagari, CJK), and multi-byte emoji sequences.\n- **Sub-Millisecond Keystroke Execution**: Transform thousands of words without lag or network requests.\n- **Guaranteed Copywriting Confidentiality**: Draft articles, proprietary copy, and sensitive text snippets remain private in your browser memory.\n- **Multiple Case & Naming Formats**: Easily convert between editorial styles (Title Case, Sentence case) and developer identifiers (camelCase, snake_case, kebab-case)."
   },
@@ -487,7 +487,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "ShieldCheck",
     "order": 34,
-    "metaTitle": "Free JWT Decoder Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Free JWT Decoder | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Decode and inspect JSON Web Tokens (Header, Payload, Signature) with expiration validity verification. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Technical Webmaster Overview: JWT Decoder\n\nDecode and inspect JSON Web Tokens (Header, Payload, Signature) with expiration validity verification.\n\n### Why Use JWT Decoder?\n- **Google SERP & Click-Through Optimization**: Generate validated metadata tags and directives that maximize organic search visibility and click-through rates (CTR).\n- **Schema.org & Open Graph Protocol Adherence**: Output conforms strictly to official W3C, Schema.org, and social platform specifications.\n- **Pixel-Accurate Truncation Simulation**: Accurately preview snippet lengths to avoid awkward ellipsis cuts in search engine results pages.\n- **Zero Injected Third-Party Telemetry**: Clean, valid code free of promotional watermarks or tracking scripts."
   },
@@ -501,7 +501,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "Search",
     "order": 35,
-    "metaTitle": "Free Regex Tester Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Free Regex Tester | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Test regular expressions with real-time match highlighting, flag toggles (g, i, m, s), and error warnings. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Technical Webmaster Overview: Regex Tester\n\nTest regular expressions with real-time match highlighting, flag toggles (g, i, m, s), and error warnings.\n\n### Why Use Regex Tester?\n- **Google SERP & Click-Through Optimization**: Generate validated metadata tags and directives that maximize organic search visibility and click-through rates (CTR).\n- **Schema.org & Open Graph Protocol Adherence**: Output conforms strictly to official W3C, Schema.org, and social platform specifications.\n- **Pixel-Accurate Truncation Simulation**: Accurately preview snippet lengths to avoid awkward ellipsis cuts in search engine results pages.\n- **Zero Injected Third-Party Telemetry**: Clean, valid code free of promotional watermarks or tracking scripts."
   },
@@ -515,7 +515,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "FileDiff",
     "order": 36,
-    "metaTitle": "Free Diff Checker Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Free Diff Checker | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Compare two text snippets side-by-side with line-by-line difference highlighting and character diffs. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Technical Webmaster Overview: Diff Checker\n\nCompare two text snippets side-by-side with line-by-line difference highlighting and character diffs.\n\n### Why Use Diff Checker?\n- **Google SERP & Click-Through Optimization**: Generate validated metadata tags and directives that maximize organic search visibility and click-through rates (CTR).\n- **Schema.org & Open Graph Protocol Adherence**: Output conforms strictly to official W3C, Schema.org, and social platform specifications.\n- **Pixel-Accurate Truncation Simulation**: Accurately preview snippet lengths to avoid awkward ellipsis cuts in search engine results pages.\n- **Zero Injected Third-Party Telemetry**: Clean, valid code free of promotional watermarks or tracking scripts."
   },
@@ -529,7 +529,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "Code",
     "order": 37,
-    "metaTitle": "Free HTML Beautifier/Minifier Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Free HTML Beautifier & Minifier Online | Zoqonyx",
     "metaDesc": "Format messy HTML markup with clean indentation or minify production code by stripping whitespace. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Technical Webmaster Overview: HTML Beautifier/Minifier\n\nFormat messy HTML markup with clean indentation or minify production code by stripping whitespace.\n\n### Why Use HTML Beautifier/Minifier?\n- **Google SERP & Click-Through Optimization**: Generate validated metadata tags and directives that maximize organic search visibility and click-through rates (CTR).\n- **Schema.org & Open Graph Protocol Adherence**: Output conforms strictly to official W3C, Schema.org, and social platform specifications.\n- **Pixel-Accurate Truncation Simulation**: Accurately preview snippet lengths to avoid awkward ellipsis cuts in search engine results pages.\n- **Zero Injected Third-Party Telemetry**: Clean, valid code free of promotional watermarks or tracking scripts."
   },
@@ -543,7 +543,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "FileCode",
     "order": 38,
-    "metaTitle": "Free CSS Beautifier/Minifier Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Free CSS Beautifier & Minifier Online | Zoqonyx",
     "metaDesc": "Beautify stylesheets with consistent formatting or compress stylesheets for lightning-fast web delivery. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Technical Webmaster Overview: CSS Beautifier/Minifier\n\nBeautify stylesheets with consistent formatting or compress stylesheets for lightning-fast web delivery.\n\n### Why Use CSS Beautifier/Minifier?\n- **Google SERP & Click-Through Optimization**: Generate validated metadata tags and directives that maximize organic search visibility and click-through rates (CTR).\n- **Schema.org & Open Graph Protocol Adherence**: Output conforms strictly to official W3C, Schema.org, and social platform specifications.\n- **Pixel-Accurate Truncation Simulation**: Accurately preview snippet lengths to avoid awkward ellipsis cuts in search engine results pages.\n- **Zero Injected Third-Party Telemetry**: Clean, valid code free of promotional watermarks or tracking scripts."
   },
@@ -557,7 +557,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "Terminal",
     "order": 39,
-    "metaTitle": "Free JavaScript Beautifier/Minifier Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Free JavaScript Beautifier & Minifier Online | Zoqonyx",
     "metaDesc": "Clean up and indent complex JavaScript code or minify scripts for production deployment. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Technical Webmaster Overview: JavaScript Beautifier/Minifier\n\nClean up and indent complex JavaScript code or minify scripts for production deployment.\n\n### Why Use JavaScript Beautifier/Minifier?\n- **Google SERP & Click-Through Optimization**: Generate validated metadata tags and directives that maximize organic search visibility and click-through rates (CTR).\n- **Schema.org & Open Graph Protocol Adherence**: Output conforms strictly to official W3C, Schema.org, and social platform specifications.\n- **Pixel-Accurate Truncation Simulation**: Accurately preview snippet lengths to avoid awkward ellipsis cuts in search engine results pages.\n- **Zero Injected Third-Party Telemetry**: Clean, valid code free of promotional watermarks or tracking scripts."
   },
@@ -571,7 +571,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "Database",
     "order": 40,
-    "metaTitle": "Free SQL Formatter Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Free SQL Formatter | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Format SQL queries with capitalized keywords and clean clause indentation for readability. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Technical Webmaster Overview: SQL Formatter\n\nFormat SQL queries with capitalized keywords and clean clause indentation for readability.\n\n### Why Use SQL Formatter?\n- **Google SERP & Click-Through Optimization**: Generate validated metadata tags and directives that maximize organic search visibility and click-through rates (CTR).\n- **Schema.org & Open Graph Protocol Adherence**: Output conforms strictly to official W3C, Schema.org, and social platform specifications.\n- **Pixel-Accurate Truncation Simulation**: Accurately preview snippet lengths to avoid awkward ellipsis cuts in search engine results pages.\n- **Zero Injected Third-Party Telemetry**: Clean, valid code free of promotional watermarks or tracking scripts."
   },
@@ -585,7 +585,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "FileText",
     "order": 41,
-    "metaTitle": "Free XML Formatter Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Free XML Formatter | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Format XML tree documents with customizable indentation and instant syntax validation. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Technical Webmaster Overview: XML Formatter\n\nFormat XML tree documents with customizable indentation and instant syntax validation.\n\n### Why Use XML Formatter?\n- **Google SERP & Click-Through Optimization**: Generate validated metadata tags and directives that maximize organic search visibility and click-through rates (CTR).\n- **Schema.org & Open Graph Protocol Adherence**: Output conforms strictly to official W3C, Schema.org, and social platform specifications.\n- **Pixel-Accurate Truncation Simulation**: Accurately preview snippet lengths to avoid awkward ellipsis cuts in search engine results pages.\n- **Zero Injected Third-Party Telemetry**: Clean, valid code free of promotional watermarks or tracking scripts."
   },
@@ -599,7 +599,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "FileCode2",
     "order": 42,
-    "metaTitle": "Free Markdown \u2194 HTML Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Free Markdown \u2194 HTML | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Convert Markdown to clean HTML or convert HTML into formatted Markdown with live split-screen preview. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Technical Webmaster Overview: Markdown \u2194 HTML\n\nConvert Markdown to clean HTML or convert HTML into formatted Markdown with live split-screen preview.\n\n### Why Use Markdown \u2194 HTML?\n- **Google SERP & Click-Through Optimization**: Generate validated metadata tags and directives that maximize organic search visibility and click-through rates (CTR).\n- **Schema.org & Open Graph Protocol Adherence**: Output conforms strictly to official W3C, Schema.org, and social platform specifications.\n- **Pixel-Accurate Truncation Simulation**: Accurately preview snippet lengths to avoid awkward ellipsis cuts in search engine results pages.\n- **Zero Injected Third-Party Telemetry**: Clean, valid code free of promotional watermarks or tracking scripts."
   },
@@ -613,7 +613,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "AlignLeft",
     "order": 43,
-    "metaTitle": "Free Lorem Ipsum Generator Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Free Lorem Ipsum Generator | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Generate dummy placeholder text by paragraphs, sentences, or word counts for design mockups. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Technical Webmaster Overview: Lorem Ipsum Generator\n\nGenerate dummy placeholder text by paragraphs, sentences, or word counts for design mockups.\n\n### Why Use Lorem Ipsum Generator?\n- **Google SERP & Click-Through Optimization**: Generate validated metadata tags and directives that maximize organic search visibility and click-through rates (CTR).\n- **Schema.org & Open Graph Protocol Adherence**: Output conforms strictly to official W3C, Schema.org, and social platform specifications.\n- **Pixel-Accurate Truncation Simulation**: Accurately preview snippet lengths to avoid awkward ellipsis cuts in search engine results pages.\n- **Zero Injected Third-Party Telemetry**: Clean, valid code free of promotional watermarks or tracking scripts."
   },
@@ -627,7 +627,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "Image",
     "order": 44,
-    "metaTitle": "Free Code to Image Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Free Code to Image | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Create beautiful, shareable code snippet cards with syntax highlighting, window frames, and PNG export. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Comprehensive Guide: Code to Image\n\nCreate beautiful, shareable code snippet cards with syntax highlighting, window frames, and PNG export.\n\n### Key Technical Highlights\n- **100% Client-Side Processing**: Your media files are rendered and transformed using hardware-accelerated HTML5 Canvas and WebGL APIs. No photos are ever uploaded to cloud servers.\n- **Interactive Visual Comparison**: Inspect edge sharpness, compression fidelity, and dimensions with real-time reactive canvas rendering before downloading.\n- **Optimized for Web Performance & LCP**: Reducing graphic payloads significantly accelerates page render times and boosts Google Core Web Vitals rankings.\n- **Zero Watermarks & Unrestricted Commercial Use**: All exported graphics are yours to use in personal, commercial, and client deliverables with no attribution required."
   },
@@ -641,7 +641,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "Clock",
     "order": 45,
-    "metaTitle": "Free Timestamp Converter Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Free Timestamp Converter | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Convert Unix epoch timestamps to human-readable ISO/UTC dates and convert calendar dates to epoch seconds. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Technical Webmaster Overview: Timestamp Converter\n\nConvert Unix epoch timestamps to human-readable ISO/UTC dates and convert calendar dates to epoch seconds.\n\n### Why Use Timestamp Converter?\n- **Google SERP & Click-Through Optimization**: Generate validated metadata tags and directives that maximize organic search visibility and click-through rates (CTR).\n- **Schema.org & Open Graph Protocol Adherence**: Output conforms strictly to official W3C, Schema.org, and social platform specifications.\n- **Pixel-Accurate Truncation Simulation**: Accurately preview snippet lengths to avoid awkward ellipsis cuts in search engine results pages.\n- **Zero Injected Third-Party Telemetry**: Clean, valid code free of promotional watermarks or tracking scripts."
   },
@@ -655,7 +655,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "ArrowLeftRight",
     "order": 46,
-    "metaTitle": "Free Unit Converter (px/rem/em) Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Free CSS Unit Converter (px/rem/em) Online | Zoqonyx",
     "metaDesc": "Convert units seamlessly between pixels (px), rem, em, percentage (%), and points (pt) with custom base. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Technical Webmaster Overview: Unit Converter (px/rem/em)\n\nConvert units seamlessly between pixels (px), rem, em, percentage (%), and points (pt) with custom base.\n\n### Why Use Unit Converter (px/rem/em)?\n- **Google SERP & Click-Through Optimization**: Generate validated metadata tags and directives that maximize organic search visibility and click-through rates (CTR).\n- **Schema.org & Open Graph Protocol Adherence**: Output conforms strictly to official W3C, Schema.org, and social platform specifications.\n- **Pixel-Accurate Truncation Simulation**: Accurately preview snippet lengths to avoid awkward ellipsis cuts in search engine results pages.\n- **Zero Injected Third-Party Telemetry**: Clean, valid code free of promotional watermarks or tracking scripts."
   },
@@ -669,7 +669,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "Palette",
     "order": 47,
-    "metaTitle": "Free Color Converter Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Free Color Converter | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Convert colors bidirectionally between HEX, RGB, RGBA, HSL, HSLA, CMYK, and HSV formats. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Technical Webmaster Overview: Color Converter\n\nConvert colors bidirectionally between HEX, RGB, RGBA, HSL, HSLA, CMYK, and HSV formats.\n\n### Why Use Color Converter?\n- **Google SERP & Click-Through Optimization**: Generate validated metadata tags and directives that maximize organic search visibility and click-through rates (CTR).\n- **Schema.org & Open Graph Protocol Adherence**: Output conforms strictly to official W3C, Schema.org, and social platform specifications.\n- **Pixel-Accurate Truncation Simulation**: Accurately preview snippet lengths to avoid awkward ellipsis cuts in search engine results pages.\n- **Zero Injected Third-Party Telemetry**: Clean, valid code free of promotional watermarks or tracking scripts."
   },
@@ -683,7 +683,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "Square",
     "order": 48,
-    "metaTitle": "Free Border Radius Generator Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Free Border Radius Generator | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Visually configure 8-value fancy CSS border radius with real-time box preview and one-click copy. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Technical Overview: Border Radius Generator\n\nVisually configure 8-value fancy CSS border radius with real-time box preview and one-click copy.\n\n### Core Capabilities\n- **W3C Standards & Cross-Browser Stability**: Automatically outputs clean, valid modern CSS rules with vendor prefixes (-webkit-) for dependable legacy compatibility.\n- **Dual CSS & Tailwind CSS Integration**: Copy traditional stylesheet declarations or modern Tailwind utility classes ready for instant React and Next.js integration.\n- **Sub-Pixel Real-Time Preview**: Tweak parameters with reactive sliders and evaluate layout hierarchy, optical spacing, and depth visually.\n- **Dark & Light Mode Tested**: Calibrated to look crisp across dark charcoal and light surfaces to ensure optimal contrast."
   },
@@ -697,7 +697,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "Copy",
     "order": 49,
-    "metaTitle": "Free Box Shadow Generator Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Free Box Shadow Generator | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Build layered, realistic CSS box shadows with blur, spread, opacity, color, and inset controls. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Technical Overview: Box Shadow Generator\n\nBuild layered, realistic CSS box shadows with blur, spread, opacity, color, and inset controls.\n\n### Core Capabilities\n- **W3C Standards & Cross-Browser Stability**: Automatically outputs clean, valid modern CSS rules with vendor prefixes (-webkit-) for dependable legacy compatibility.\n- **Dual CSS & Tailwind CSS Integration**: Copy traditional stylesheet declarations or modern Tailwind utility classes ready for instant React and Next.js integration.\n- **Sub-Pixel Real-Time Preview**: Tweak parameters with reactive sliders and evaluate layout hierarchy, optical spacing, and depth visually.\n- **Dark & Light Mode Tested**: Calibrated to look crisp across dark charcoal and light surfaces to ensure optimal contrast."
   },
@@ -711,7 +711,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "Palette",
     "order": 50,
-    "metaTitle": "Free CSS Gradient Generator Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Free CSS Gradient Generator | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Craft vibrant linear and radial CSS gradients with multi-color stops, angles, and preset palettes. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Technical Overview: CSS Gradient Generator\n\nCraft vibrant linear and radial CSS gradients with multi-color stops, angles, and preset palettes.\n\n### Core Capabilities\n- **W3C Standards & Cross-Browser Stability**: Automatically outputs clean, valid modern CSS rules with vendor prefixes (-webkit-) for dependable legacy compatibility.\n- **Dual CSS & Tailwind CSS Integration**: Copy traditional stylesheet declarations or modern Tailwind utility classes ready for instant React and Next.js integration.\n- **Sub-Pixel Real-Time Preview**: Tweak parameters with reactive sliders and evaluate layout hierarchy, optical spacing, and depth visually.\n- **Dark & Light Mode Tested**: Calibrated to look crisp across dark charcoal and light surfaces to ensure optimal contrast."
   },
@@ -725,7 +725,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "MousePointer",
     "order": 51,
-    "metaTitle": "Free Button Generator Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Free Button Generator | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Design interactive modern CSS buttons with hover states, gradients, shadows, and icons. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Technical Overview: Button Generator\n\nDesign interactive modern CSS buttons with hover states, gradients, shadows, and icons.\n\n### Core Capabilities\n- **W3C Standards & Cross-Browser Stability**: Automatically outputs clean, valid modern CSS rules with vendor prefixes (-webkit-) for dependable legacy compatibility.\n- **Dual CSS & Tailwind CSS Integration**: Copy traditional stylesheet declarations or modern Tailwind utility classes ready for instant React and Next.js integration.\n- **Sub-Pixel Real-Time Preview**: Tweak parameters with reactive sliders and evaluate layout hierarchy, optical spacing, and depth visually.\n- **Dark & Light Mode Tested**: Calibrated to look crisp across dark charcoal and light surfaces to ensure optimal contrast."
   },
@@ -739,7 +739,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "Layout",
     "order": 52,
-    "metaTitle": "Free Flexbox Playground Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Free Flexbox Playground | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Interactive visual flexbox builder with flex-direction, justify-content, align-items, and gap controls. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Technical Overview: Flexbox Playground\n\nInteractive visual flexbox builder with flex-direction, justify-content, align-items, and gap controls.\n\n### Core Capabilities\n- **W3C Standards & Cross-Browser Stability**: Automatically outputs clean, valid modern CSS rules with vendor prefixes (-webkit-) for dependable legacy compatibility.\n- **Dual CSS & Tailwind CSS Integration**: Copy traditional stylesheet declarations or modern Tailwind utility classes ready for instant React and Next.js integration.\n- **Sub-Pixel Real-Time Preview**: Tweak parameters with reactive sliders and evaluate layout hierarchy, optical spacing, and depth visually.\n- **Dark & Light Mode Tested**: Calibrated to look crisp across dark charcoal and light surfaces to ensure optimal contrast."
   },
@@ -753,7 +753,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "Grid",
     "order": 53,
-    "metaTitle": "Free CSS Grid Generator Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Free CSS Grid Generator | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Visual interactive CSS grid builder with columns, rows, gap, and item layout controls. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Technical Overview: CSS Grid Generator\n\nVisual interactive CSS grid builder with columns, rows, gap, and item layout controls.\n\n### Core Capabilities\n- **W3C Standards & Cross-Browser Stability**: Automatically outputs clean, valid modern CSS rules with vendor prefixes (-webkit-) for dependable legacy compatibility.\n- **Dual CSS & Tailwind CSS Integration**: Copy traditional stylesheet declarations or modern Tailwind utility classes ready for instant React and Next.js integration.\n- **Sub-Pixel Real-Time Preview**: Tweak parameters with reactive sliders and evaluate layout hierarchy, optical spacing, and depth visually.\n- **Dark & Light Mode Tested**: Calibrated to look crisp across dark charcoal and light surfaces to ensure optimal contrast."
   },
@@ -767,7 +767,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "Sparkles",
     "order": 54,
-    "metaTitle": "Free Glassmorphism Generator Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Free Glassmorphism Generator | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Generate modern frosted glass UI effects using CSS backdrop-filter, border opacity, and blur. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Technical Overview: Glassmorphism Generator\n\nGenerate modern frosted glass UI effects using CSS backdrop-filter, border opacity, and blur.\n\n### Core Capabilities\n- **W3C Standards & Cross-Browser Stability**: Automatically outputs clean, valid modern CSS rules with vendor prefixes (-webkit-) for dependable legacy compatibility.\n- **Dual CSS & Tailwind CSS Integration**: Copy traditional stylesheet declarations or modern Tailwind utility classes ready for instant React and Next.js integration.\n- **Sub-Pixel Real-Time Preview**: Tweak parameters with reactive sliders and evaluate layout hierarchy, optical spacing, and depth visually.\n- **Dark & Light Mode Tested**: Calibrated to look crisp across dark charcoal and light surfaces to ensure optimal contrast."
   },
@@ -781,7 +781,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "Box",
     "order": 55,
-    "metaTitle": "Free Neumorphism Generator Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Free Neumorphism Generator | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Design soft extruded and inset neumorphic UI shadows with light source angle controls. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Technical Overview: Neumorphism Generator\n\nDesign soft extruded and inset neumorphic UI shadows with light source angle controls.\n\n### Core Capabilities\n- **W3C Standards & Cross-Browser Stability**: Automatically outputs clean, valid modern CSS rules with vendor prefixes (-webkit-) for dependable legacy compatibility.\n- **Dual CSS & Tailwind CSS Integration**: Copy traditional stylesheet declarations or modern Tailwind utility classes ready for instant React and Next.js integration.\n- **Sub-Pixel Real-Time Preview**: Tweak parameters with reactive sliders and evaluate layout hierarchy, optical spacing, and depth visually.\n- **Dark & Light Mode Tested**: Calibrated to look crisp across dark charcoal and light surfaces to ensure optimal contrast."
   },
@@ -795,7 +795,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "Scissors",
     "order": 56,
-    "metaTitle": "Free Clip-Path Generator Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Free Clip-Path Generator | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Create CSS clip-path polygon, circle, and ellipse shapes with drag handles and instant CSS rules. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Technical Overview: Clip-Path Generator\n\nCreate CSS clip-path polygon, circle, and ellipse shapes with drag handles and instant CSS rules.\n\n### Core Capabilities\n- **W3C Standards & Cross-Browser Stability**: Automatically outputs clean, valid modern CSS rules with vendor prefixes (-webkit-) for dependable legacy compatibility.\n- **Dual CSS & Tailwind CSS Integration**: Copy traditional stylesheet declarations or modern Tailwind utility classes ready for instant React and Next.js integration.\n- **Sub-Pixel Real-Time Preview**: Tweak parameters with reactive sliders and evaluate layout hierarchy, optical spacing, and depth visually.\n- **Dark & Light Mode Tested**: Calibrated to look crisp across dark charcoal and light surfaces to ensure optimal contrast."
   },
@@ -809,7 +809,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "Type",
     "order": 57,
-    "metaTitle": "Free Text Shadow Generator Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Free Text Shadow Generator | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Build multi-layered text shadows with horizontal/vertical offsets, blur radius, and color pickers. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Technical Overview: Text Shadow Generator\n\nBuild multi-layered text shadows with horizontal/vertical offsets, blur radius, and color pickers.\n\n### Core Capabilities\n- **W3C Standards & Cross-Browser Stability**: Automatically outputs clean, valid modern CSS rules with vendor prefixes (-webkit-) for dependable legacy compatibility.\n- **Dual CSS & Tailwind CSS Integration**: Copy traditional stylesheet declarations or modern Tailwind utility classes ready for instant React and Next.js integration.\n- **Sub-Pixel Real-Time Preview**: Tweak parameters with reactive sliders and evaluate layout hierarchy, optical spacing, and depth visually.\n- **Dark & Light Mode Tested**: Calibrated to look crisp across dark charcoal and light surfaces to ensure optimal contrast."
   },
@@ -823,7 +823,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "CheckCircle2",
     "order": 58,
-    "metaTitle": "Free Color Palette + Contrast Checker Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Free Color Palette & Contrast Checker Online | Zoqonyx",
     "metaDesc": "Calculate WCAG 2.1 contrast ratios for AA and AAA compliance across normal and large typography. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Technical Overview: Color Palette + Contrast Checker\n\nCalculate WCAG 2.1 contrast ratios for AA and AAA compliance across normal and large typography.\n\n### Core Capabilities\n- **W3C Standards & Cross-Browser Stability**: Automatically outputs clean, valid modern CSS rules with vendor prefixes (-webkit-) for dependable legacy compatibility.\n- **Dual CSS & Tailwind CSS Integration**: Copy traditional stylesheet declarations or modern Tailwind utility classes ready for instant React and Next.js integration.\n- **Sub-Pixel Real-Time Preview**: Tweak parameters with reactive sliders and evaluate layout hierarchy, optical spacing, and depth visually.\n- **Dark & Light Mode Tested**: Calibrated to look crisp across dark charcoal and light surfaces to ensure optimal contrast."
   },
@@ -837,7 +837,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "Play",
     "order": 59,
-    "metaTitle": "Free Animation Keyframes Generator Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Animation Keyframes Generator | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Visual CSS @keyframes builder with presets (bounce, pulse, spin, flip) and timing curve controls. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Technical Overview: Animation Keyframes Generator\n\nVisual CSS @keyframes builder with presets (bounce, pulse, spin, flip) and timing curve controls.\n\n### Core Capabilities\n- **W3C Standards & Cross-Browser Stability**: Automatically outputs clean, valid modern CSS rules with vendor prefixes (-webkit-) for dependable legacy compatibility.\n- **Dual CSS & Tailwind CSS Integration**: Copy traditional stylesheet declarations or modern Tailwind utility classes ready for instant React and Next.js integration.\n- **Sub-Pixel Real-Time Preview**: Tweak parameters with reactive sliders and evaluate layout hierarchy, optical spacing, and depth visually.\n- **Dark & Light Mode Tested**: Calibrated to look crisp across dark charcoal and light surfaces to ensure optimal contrast."
   },
@@ -851,7 +851,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "Type",
     "order": 60,
-    "metaTitle": "Free Case Converter Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Free Case Converter | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Convert text instantly between UPPERCASE, lowercase, Title Case, camelCase, snake_case, and kebab-case. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Practical Guide: Case Converter\n\nConvert text instantly between UPPERCASE, lowercase, Title Case, camelCase, snake_case, and kebab-case.\n\n### Advantages & Capabilities\n- **Full Unicode 15.1 Compatibility**: Safely processes accented Latin characters, non-Latin alphabets (Arabic, Cyrillic, Greek, Devanagari, CJK), and multi-byte emoji sequences.\n- **Sub-Millisecond Keystroke Execution**: Transform thousands of words without lag or network requests.\n- **Guaranteed Copywriting Confidentiality**: Draft articles, proprietary copy, and sensitive text snippets remain private in your browser memory.\n- **Multiple Case & Naming Formats**: Easily convert between editorial styles (Title Case, Sentence case) and developer identifiers (camelCase, snake_case, kebab-case)."
   },
@@ -865,7 +865,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "FileText",
     "order": 61,
-    "metaTitle": "Free Word Counter Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Free Word Counter | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Count words, characters, sentences, paragraphs, and calculate estimated reading and speaking times. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Practical Guide: Word Counter\n\nCount words, characters, sentences, paragraphs, and calculate estimated reading and speaking times.\n\n### Advantages & Capabilities\n- **Full Unicode 15.1 Compatibility**: Safely processes accented Latin characters, non-Latin alphabets (Arabic, Cyrillic, Greek, Devanagari, CJK), and multi-byte emoji sequences.\n- **Sub-Millisecond Keystroke Execution**: Transform thousands of words without lag or network requests.\n- **Guaranteed Copywriting Confidentiality**: Draft articles, proprietary copy, and sensitive text snippets remain private in your browser memory.\n- **Multiple Case & Naming Formats**: Easily convert between editorial styles (Title Case, Sentence case) and developer identifiers (camelCase, snake_case, kebab-case)."
   },
@@ -879,7 +879,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "Hash",
     "order": 62,
-    "metaTitle": "Free Character Counter Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Free Character Counter | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Real-time character and glyph counter with whitespace and non-whitespace breakdowns. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Practical Guide: Character Counter\n\nReal-time character and glyph counter with whitespace and non-whitespace breakdowns.\n\n### Advantages & Capabilities\n- **Full Unicode 15.1 Compatibility**: Safely processes accented Latin characters, non-Latin alphabets (Arabic, Cyrillic, Greek, Devanagari, CJK), and multi-byte emoji sequences.\n- **Sub-Millisecond Keystroke Execution**: Transform thousands of words without lag or network requests.\n- **Guaranteed Copywriting Confidentiality**: Draft articles, proprietary copy, and sensitive text snippets remain private in your browser memory.\n- **Multiple Case & Naming Formats**: Easily convert between editorial styles (Title Case, Sentence case) and developer identifiers (camelCase, snake_case, kebab-case)."
   },
@@ -893,7 +893,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "Search",
     "order": 63,
-    "metaTitle": "Free Find & Replace Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Free Find & Replace | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Search and substitute multiple text patterns with case sensitivity and whole-word matching. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Practical Guide: Find & Replace\n\nSearch and substitute multiple text patterns with case sensitivity and whole-word matching.\n\n### Advantages & Capabilities\n- **Full Unicode 15.1 Compatibility**: Safely processes accented Latin characters, non-Latin alphabets (Arabic, Cyrillic, Greek, Devanagari, CJK), and multi-byte emoji sequences.\n- **Sub-Millisecond Keystroke Execution**: Transform thousands of words without lag or network requests.\n- **Guaranteed Copywriting Confidentiality**: Draft articles, proprietary copy, and sensitive text snippets remain private in your browser memory.\n- **Multiple Case & Naming Formats**: Easily convert between editorial styles (Title Case, Sentence case) and developer identifiers (camelCase, snake_case, kebab-case)."
   },
@@ -907,7 +907,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "AlignJustify",
     "order": 64,
-    "metaTitle": "Free Remove Extra Spaces / Line Breaks Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Free Remove Extra Spaces & Lines Online | Zoqonyx",
     "metaDesc": "Clean up messy text by stripping duplicate spaces, tab stops, and excessive empty line breaks. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Practical Guide: Remove Extra Spaces / Line Breaks\n\nClean up messy text by stripping duplicate spaces, tab stops, and excessive empty line breaks.\n\n### Advantages & Capabilities\n- **Full Unicode 15.1 Compatibility**: Safely processes accented Latin characters, non-Latin alphabets (Arabic, Cyrillic, Greek, Devanagari, CJK), and multi-byte emoji sequences.\n- **Sub-Millisecond Keystroke Execution**: Transform thousands of words without lag or network requests.\n- **Guaranteed Copywriting Confidentiality**: Draft articles, proprietary copy, and sensitive text snippets remain private in your browser memory.\n- **Multiple Case & Naming Formats**: Easily convert between editorial styles (Title Case, Sentence case) and developer identifiers (camelCase, snake_case, kebab-case)."
   },
@@ -921,7 +921,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "ArrowLeftRight",
     "order": 65,
-    "metaTitle": "Free Reverse Text Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Free Reverse Text | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Reverse text character-by-character, word-by-word, or line-by-line with 1-click clipboard copy. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Practical Guide: Reverse Text\n\nReverse text character-by-character, word-by-word, or line-by-line with 1-click clipboard copy.\n\n### Advantages & Capabilities\n- **Full Unicode 15.1 Compatibility**: Safely processes accented Latin characters, non-Latin alphabets (Arabic, Cyrillic, Greek, Devanagari, CJK), and multi-byte emoji sequences.\n- **Sub-Millisecond Keystroke Execution**: Transform thousands of words without lag or network requests.\n- **Guaranteed Copywriting Confidentiality**: Draft articles, proprietary copy, and sensitive text snippets remain private in your browser memory.\n- **Multiple Case & Naming Formats**: Easily convert between editorial styles (Title Case, Sentence case) and developer identifiers (camelCase, snake_case, kebab-case)."
   },
@@ -935,7 +935,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "FileDiff",
     "order": 66,
-    "metaTitle": "Free Text Diff Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Free Text Diff | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Compare two revisions of articles or code side-by-side with colored difference highlighting. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Practical Guide: Text Diff\n\nCompare two revisions of articles or code side-by-side with colored difference highlighting.\n\n### Advantages & Capabilities\n- **Full Unicode 15.1 Compatibility**: Safely processes accented Latin characters, non-Latin alphabets (Arabic, Cyrillic, Greek, Devanagari, CJK), and multi-byte emoji sequences.\n- **Sub-Millisecond Keystroke Execution**: Transform thousands of words without lag or network requests.\n- **Guaranteed Copywriting Confidentiality**: Draft articles, proprietary copy, and sensitive text snippets remain private in your browser memory.\n- **Multiple Case & Naming Formats**: Easily convert between editorial styles (Title Case, Sentence case) and developer identifiers (camelCase, snake_case, kebab-case)."
   },
@@ -949,7 +949,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "Volume2",
     "order": 67,
-    "metaTitle": "Free Text to Speech Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Free Text to Speech | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Synthesize natural spoken audio from text using browser speech synthesis with voice pitch controls. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Practical Guide: Text to Speech\n\nSynthesize natural spoken audio from text using browser speech synthesis with voice pitch controls.\n\n### Advantages & Capabilities\n- **Full Unicode 15.1 Compatibility**: Safely processes accented Latin characters, non-Latin alphabets (Arabic, Cyrillic, Greek, Devanagari, CJK), and multi-byte emoji sequences.\n- **Sub-Millisecond Keystroke Execution**: Transform thousands of words without lag or network requests.\n- **Guaranteed Copywriting Confidentiality**: Draft articles, proprietary copy, and sensitive text snippets remain private in your browser memory.\n- **Multiple Case & Naming Formats**: Easily convert between editorial styles (Title Case, Sentence case) and developer identifiers (camelCase, snake_case, kebab-case)."
   },
@@ -963,7 +963,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "Mic",
     "order": 68,
-    "metaTitle": "Free Speech to Text Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Free Speech to Text | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Dictate spoken voice into structured text in real-time using browser speech recognition. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Practical Guide: Speech to Text\n\nDictate spoken voice into structured text in real-time using browser speech recognition.\n\n### Advantages & Capabilities\n- **Full Unicode 15.1 Compatibility**: Safely processes accented Latin characters, non-Latin alphabets (Arabic, Cyrillic, Greek, Devanagari, CJK), and multi-byte emoji sequences.\n- **Sub-Millisecond Keystroke Execution**: Transform thousands of words without lag or network requests.\n- **Guaranteed Copywriting Confidentiality**: Draft articles, proprietary copy, and sensitive text snippets remain private in your browser memory.\n- **Multiple Case & Naming Formats**: Easily convert between editorial styles (Title Case, Sentence case) and developer identifiers (camelCase, snake_case, kebab-case)."
   },
@@ -977,7 +977,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "Link2",
     "order": 69,
-    "metaTitle": "Free Slug Generator Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Free Slug Generator | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Convert titles into clean, URL-safe SEO slugs with customizable delimiters and lowercase options. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Practical Guide: Slug Generator\n\nConvert titles into clean, URL-safe SEO slugs with customizable delimiters and lowercase options.\n\n### Advantages & Capabilities\n- **Full Unicode 15.1 Compatibility**: Safely processes accented Latin characters, non-Latin alphabets (Arabic, Cyrillic, Greek, Devanagari, CJK), and multi-byte emoji sequences.\n- **Sub-Millisecond Keystroke Execution**: Transform thousands of words without lag or network requests.\n- **Guaranteed Copywriting Confidentiality**: Draft articles, proprietary copy, and sensitive text snippets remain private in your browser memory.\n- **Multiple Case & Naming Formats**: Easily convert between editorial styles (Title Case, Sentence case) and developer identifiers (camelCase, snake_case, kebab-case)."
   },
@@ -991,7 +991,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "Tags",
     "order": 70,
-    "metaTitle": "Free Meta Tags Generator Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Free Meta Tags Generator | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Generate complete HTML meta tags, Open Graph, and Twitter Cards with live Google search preview. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Technical Webmaster Overview: Meta Tags Generator\n\nGenerate complete HTML meta tags, Open Graph, and Twitter Cards with live Google search preview.\n\n### Why Use Meta Tags Generator?\n- **Google SERP & Click-Through Optimization**: Generate validated metadata tags and directives that maximize organic search visibility and click-through rates (CTR).\n- **Schema.org & Open Graph Protocol Adherence**: Output conforms strictly to official W3C, Schema.org, and social platform specifications.\n- **Pixel-Accurate Truncation Simulation**: Accurately preview snippet lengths to avoid awkward ellipsis cuts in search engine results pages.\n- **Zero Injected Third-Party Telemetry**: Clean, valid code free of promotional watermarks or tracking scripts."
   },
@@ -1005,7 +1005,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "FileCode",
     "order": 71,
-    "metaTitle": "Free Robots.txt Generator Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Free Robots.txt Generator | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Create standard robots.txt files with custom user-agents, allow/disallow directives, and sitemaps. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Technical Webmaster Overview: Robots.txt Generator\n\nCreate standard robots.txt files with custom user-agents, allow/disallow directives, and sitemaps.\n\n### Why Use Robots.txt Generator?\n- **Google SERP & Click-Through Optimization**: Generate validated metadata tags and directives that maximize organic search visibility and click-through rates (CTR).\n- **Schema.org & Open Graph Protocol Adherence**: Output conforms strictly to official W3C, Schema.org, and social platform specifications.\n- **Pixel-Accurate Truncation Simulation**: Accurately preview snippet lengths to avoid awkward ellipsis cuts in search engine results pages.\n- **Zero Injected Third-Party Telemetry**: Clean, valid code free of promotional watermarks or tracking scripts."
   },
@@ -1019,7 +1019,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "Network",
     "order": 72,
-    "metaTitle": "Free XML Sitemap Generator Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Free XML Sitemap Generator | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Generate search-engine-ready XML sitemaps with custom page priorities and change frequencies. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Technical Webmaster Overview: XML Sitemap Generator\n\nGenerate search-engine-ready XML sitemaps with custom page priorities and change frequencies.\n\n### Why Use XML Sitemap Generator?\n- **Google SERP & Click-Through Optimization**: Generate validated metadata tags and directives that maximize organic search visibility and click-through rates (CTR).\n- **Schema.org & Open Graph Protocol Adherence**: Output conforms strictly to official W3C, Schema.org, and social platform specifications.\n- **Pixel-Accurate Truncation Simulation**: Accurately preview snippet lengths to avoid awkward ellipsis cuts in search engine results pages.\n- **Zero Injected Third-Party Telemetry**: Clean, valid code free of promotional watermarks or tracking scripts."
   },
@@ -1033,7 +1033,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "Link",
     "order": 73,
-    "metaTitle": "Free UTM Builder Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Free UTM Builder | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Construct tracking URLs with campaign source, medium, name, term, and content parameters. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Technical Webmaster Overview: UTM Builder\n\nConstruct tracking URLs with campaign source, medium, name, term, and content parameters.\n\n### Why Use UTM Builder?\n- **Google SERP & Click-Through Optimization**: Generate validated metadata tags and directives that maximize organic search visibility and click-through rates (CTR).\n- **Schema.org & Open Graph Protocol Adherence**: Output conforms strictly to official W3C, Schema.org, and social platform specifications.\n- **Pixel-Accurate Truncation Simulation**: Accurately preview snippet lengths to avoid awkward ellipsis cuts in search engine results pages.\n- **Zero Injected Third-Party Telemetry**: Clean, valid code free of promotional watermarks or tracking scripts."
   },
@@ -1047,7 +1047,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "Share2",
     "order": 74,
-    "metaTitle": "Free Open Graph Preview Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Free Open Graph Preview | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Simulate how web links appear across Twitter, Facebook, LinkedIn, Google SERP, and WhatsApp. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Technical Webmaster Overview: Open Graph Preview\n\nSimulate how web links appear across Twitter, Facebook, LinkedIn, Google SERP, and WhatsApp.\n\n### Why Use Open Graph Preview?\n- **Google SERP & Click-Through Optimization**: Generate validated metadata tags and directives that maximize organic search visibility and click-through rates (CTR).\n- **Schema.org & Open Graph Protocol Adherence**: Output conforms strictly to official W3C, Schema.org, and social platform specifications.\n- **Pixel-Accurate Truncation Simulation**: Accurately preview snippet lengths to avoid awkward ellipsis cuts in search engine results pages.\n- **Zero Injected Third-Party Telemetry**: Clean, valid code free of promotional watermarks or tracking scripts."
   },
@@ -1061,7 +1061,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "BarChart3",
     "order": 75,
-    "metaTitle": "Free Keyword Density Checker Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Free Keyword Density Checker | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Analyze content for primary keyword frequency, 2-word, and 3-word n-gram density percentages. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Practical Guide: Keyword Density Checker\n\nAnalyze content for primary keyword frequency, 2-word, and 3-word n-gram density percentages.\n\n### Advantages & Capabilities\n- **Full Unicode 15.1 Compatibility**: Safely processes accented Latin characters, non-Latin alphabets (Arabic, Cyrillic, Greek, Devanagari, CJK), and multi-byte emoji sequences.\n- **Sub-Millisecond Keystroke Execution**: Transform thousands of words without lag or network requests.\n- **Guaranteed Copywriting Confidentiality**: Draft articles, proprietary copy, and sensitive text snippets remain private in your browser memory.\n- **Multiple Case & Naming Formats**: Easily convert between editorial styles (Title Case, Sentence case) and developer identifiers (camelCase, snake_case, kebab-case)."
   },
@@ -1075,7 +1075,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "CheckCircle",
     "order": 76,
-    "metaTitle": "Free Canonical Tag Checker Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Free Canonical Tag Checker | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Inspect and validate canonical link tags to avoid search engine duplicate content penalties. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Technical Webmaster Overview: Canonical Tag Checker\n\nInspect and validate canonical link tags to avoid search engine duplicate content penalties.\n\n### Why Use Canonical Tag Checker?\n- **Google SERP & Click-Through Optimization**: Generate validated metadata tags and directives that maximize organic search visibility and click-through rates (CTR).\n- **Schema.org & Open Graph Protocol Adherence**: Output conforms strictly to official W3C, Schema.org, and social platform specifications.\n- **Pixel-Accurate Truncation Simulation**: Accurately preview snippet lengths to avoid awkward ellipsis cuts in search engine results pages.\n- **Zero Injected Third-Party Telemetry**: Clean, valid code free of promotional watermarks or tracking scripts."
   },
@@ -1089,7 +1089,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "Code",
     "order": 77,
-    "metaTitle": "Free Schema Markup Generator Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Free Schema Markup Generator | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Build Article, Product, Organization, and FAQ Schema.org JSON-LD structured data snippets. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Technical Webmaster Overview: Schema Markup Generator\n\nBuild Article, Product, Organization, and FAQ Schema.org JSON-LD structured data snippets.\n\n### Why Use Schema Markup Generator?\n- **Google SERP & Click-Through Optimization**: Generate validated metadata tags and directives that maximize organic search visibility and click-through rates (CTR).\n- **Schema.org & Open Graph Protocol Adherence**: Output conforms strictly to official W3C, Schema.org, and social platform specifications.\n- **Pixel-Accurate Truncation Simulation**: Accurately preview snippet lengths to avoid awkward ellipsis cuts in search engine results pages.\n- **Zero Injected Third-Party Telemetry**: Clean, valid code free of promotional watermarks or tracking scripts."
   },
@@ -1103,7 +1103,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "Percent",
     "order": 78,
-    "metaTitle": "Free Percentage Calculator Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Free Percentage Calculator | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Solve percentage problems quickly: X% of Y, percentage increase/decrease, and what percent X is of Y. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Calculation Guide: Percentage Calculator\n\nSolve percentage problems quickly: X% of Y, percentage increase/decrease, and what percent X is of Y.\n\n### Key Features\n- **High Floating-Point Precision**: Mathematical formulas conform to banking and institutional standards, mitigating cumulative rounding errors.\n- **Instant Reactive Recalculation**: Values compute dynamically as you type without page reloads or delays.\n- **100% Private Financial Modeling**: Your salary figures, personal budgets, interest rates, and health metrics are never logged or stored.\n- **Comprehensive Amortization & Breakdown**: Detailed summaries provide actionable clarity for budgeting, planning, and investment decisions."
   },
@@ -1117,7 +1117,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "Calendar",
     "order": 79,
-    "metaTitle": "Free Age Calculator Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Free Age Calculator | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Calculate exact chronological age in years, months, weeks, days, hours, and minutes with birthday countdown. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Calculation Guide: Age Calculator\n\nCalculate exact chronological age in years, months, weeks, days, hours, and minutes with birthday countdown.\n\n### Key Features\n- **High Floating-Point Precision**: Mathematical formulas conform to banking and institutional standards, mitigating cumulative rounding errors.\n- **Instant Reactive Recalculation**: Values compute dynamically as you type without page reloads or delays.\n- **100% Private Financial Modeling**: Your salary figures, personal budgets, interest rates, and health metrics are never logged or stored.\n- **Comprehensive Amortization & Breakdown**: Detailed summaries provide actionable clarity for budgeting, planning, and investment decisions."
   },
@@ -1131,7 +1131,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "Activity",
     "order": 80,
-    "metaTitle": "Free BMI Calculator Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Free BMI Calculator | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Calculate Body Mass Index (BMI) using Metric or Imperial units with WHO weight category evaluation. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Calculation Guide: BMI Calculator\n\nCalculate Body Mass Index (BMI) using Metric or Imperial units with WHO weight category evaluation.\n\n### Key Features\n- **High Floating-Point Precision**: Mathematical formulas conform to banking and institutional standards, mitigating cumulative rounding errors.\n- **Instant Reactive Recalculation**: Values compute dynamically as you type without page reloads or delays.\n- **100% Private Financial Modeling**: Your salary figures, personal budgets, interest rates, and health metrics are never logged or stored.\n- **Comprehensive Amortization & Breakdown**: Detailed summaries provide actionable clarity for budgeting, planning, and investment decisions."
   },
@@ -1145,7 +1145,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "DollarSign",
     "order": 81,
-    "metaTitle": "Free Loan EMI Calculator Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Free Loan EMI Calculator | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Calculate monthly EMI, total interest payable, and amortization breakdown for mortgages and auto loans. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Calculation Guide: Loan EMI Calculator\n\nCalculate monthly EMI, total interest payable, and amortization breakdown for mortgages and auto loans.\n\n### Key Features\n- **High Floating-Point Precision**: Mathematical formulas conform to banking and institutional standards, mitigating cumulative rounding errors.\n- **Instant Reactive Recalculation**: Values compute dynamically as you type without page reloads or delays.\n- **100% Private Financial Modeling**: Your salary figures, personal budgets, interest rates, and health metrics are never logged or stored.\n- **Comprehensive Amortization & Breakdown**: Detailed summaries provide actionable clarity for budgeting, planning, and investment decisions."
   },
@@ -1159,7 +1159,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "Receipt",
     "order": 82,
-    "metaTitle": "Free Tip Calculator Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Free Tip Calculator | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Calculate restaurant tips, custom service percentages, and split dinner bills evenly per person. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Calculation Guide: Tip Calculator\n\nCalculate restaurant tips, custom service percentages, and split dinner bills evenly per person.\n\n### Key Features\n- **High Floating-Point Precision**: Mathematical formulas conform to banking and institutional standards, mitigating cumulative rounding errors.\n- **Instant Reactive Recalculation**: Values compute dynamically as you type without page reloads or delays.\n- **100% Private Financial Modeling**: Your salary figures, personal budgets, interest rates, and health metrics are never logged or stored.\n- **Comprehensive Amortization & Breakdown**: Detailed summaries provide actionable clarity for budgeting, planning, and investment decisions."
   },
@@ -1173,7 +1173,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "Tag",
     "order": 83,
-    "metaTitle": "Free Discount Calculator Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Free Discount Calculator | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Determine exact sale prices and savings from promotional percentage discounts and clearance tags. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Calculation Guide: Discount Calculator\n\nDetermine exact sale prices and savings from promotional percentage discounts and clearance tags.\n\n### Key Features\n- **High Floating-Point Precision**: Mathematical formulas conform to banking and institutional standards, mitigating cumulative rounding errors.\n- **Instant Reactive Recalculation**: Values compute dynamically as you type without page reloads or delays.\n- **100% Private Financial Modeling**: Your salary figures, personal budgets, interest rates, and health metrics are never logged or stored.\n- **Comprehensive Amortization & Breakdown**: Detailed summaries provide actionable clarity for budgeting, planning, and investment decisions."
   },
@@ -1187,7 +1187,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "FileText",
     "order": 84,
-    "metaTitle": "Free Number to Words Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Free Number to Words | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Convert numbers into formal written English currency words for checks, contracts, and invoices. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Practical Guide: Number to Words\n\nConvert numbers into formal written English currency words for checks, contracts, and invoices.\n\n### Advantages & Capabilities\n- **Full Unicode 15.1 Compatibility**: Safely processes accented Latin characters, non-Latin alphabets (Arabic, Cyrillic, Greek, Devanagari, CJK), and multi-byte emoji sequences.\n- **Sub-Millisecond Keystroke Execution**: Transform thousands of words without lag or network requests.\n- **Guaranteed Copywriting Confidentiality**: Draft articles, proprietary copy, and sensitive text snippets remain private in your browser memory.\n- **Multiple Case & Naming Formats**: Easily convert between editorial styles (Title Case, Sentence case) and developer identifiers (camelCase, snake_case, kebab-case)."
   },
@@ -1201,7 +1201,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "Binary",
     "order": 85,
-    "metaTitle": "Free Binary/Hex/Decimal Converter Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Free Binary/Hex/Decimal Converter Online | Zoqonyx",
     "metaDesc": "Convert values seamlessly across Binary (Base 2), Octal (Base 8), Decimal (Base 10), and Hexadecimal. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Calculation Guide: Binary/Hex/Decimal Converter\n\nConvert values seamlessly across Binary (Base 2), Octal (Base 8), Decimal (Base 10), and Hexadecimal.\n\n### Key Features\n- **High Floating-Point Precision**: Mathematical formulas conform to banking and institutional standards, mitigating cumulative rounding errors.\n- **Instant Reactive Recalculation**: Values compute dynamically as you type without page reloads or delays.\n- **100% Private Financial Modeling**: Your salary figures, personal budgets, interest rates, and health metrics are never logged or stored.\n- **Comprehensive Amortization & Breakdown**: Detailed summaries provide actionable clarity for budgeting, planning, and investment decisions."
   },
@@ -1215,7 +1215,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "FileSpreadsheet",
     "order": 86,
-    "metaTitle": "Free Invoice Generator Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Free Invoice Generator | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Draft professional invoices with custom line items, tax rates, currency symbols, and printable PDF export. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Calculation Guide: Invoice Generator\n\nDraft professional invoices with custom line items, tax rates, currency symbols, and printable PDF export.\n\n### Key Features\n- **High Floating-Point Precision**: Mathematical formulas conform to banking and institutional standards, mitigating cumulative rounding errors.\n- **Instant Reactive Recalculation**: Values compute dynamically as you type without page reloads or delays.\n- **100% Private Financial Modeling**: Your salary figures, personal budgets, interest rates, and health metrics are never logged or stored.\n- **Comprehensive Amortization & Breakdown**: Detailed summaries provide actionable clarity for budgeting, planning, and investment decisions."
   },
@@ -1229,7 +1229,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "Key",
     "order": 87,
-    "metaTitle": "Free Random Password + Passphrase Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Free Random Password Generator Online | Zoqonyx",
     "metaDesc": "Generate high-entropy random strings, passphrases, and cryptographic tokens with character filters. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Calculation Guide: Random Password + Passphrase\n\nGenerate high-entropy random strings, passphrases, and cryptographic tokens with character filters.\n\n### Key Features\n- **High Floating-Point Precision**: Mathematical formulas conform to banking and institutional standards, mitigating cumulative rounding errors.\n- **Instant Reactive Recalculation**: Values compute dynamically as you type without page reloads or delays.\n- **100% Private Financial Modeling**: Your salary figures, personal budgets, interest rates, and health metrics are never logged or stored.\n- **Comprehensive Amortization & Breakdown**: Detailed summaries provide actionable clarity for budgeting, planning, and investment decisions."
   },
@@ -1243,7 +1243,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "Image",
     "order": 88,
-    "metaTitle": "Free Placeholder Image Generator Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Placeholder Image Generator | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Create custom dummy placeholder images with exact dimensions, colors, and label text in PNG/SVG. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Comprehensive Guide: Placeholder Image Generator\n\nCreate custom dummy placeholder images with exact dimensions, colors, and label text in PNG/SVG.\n\n### Key Technical Highlights\n- **100% Client-Side Processing**: Your media files are rendered and transformed using hardware-accelerated HTML5 Canvas and WebGL APIs. No photos are ever uploaded to cloud servers.\n- **Interactive Visual Comparison**: Inspect edge sharpness, compression fidelity, and dimensions with real-time reactive canvas rendering before downloading.\n- **Optimized for Web Performance & LCP**: Reducing graphic payloads significantly accelerates page render times and boosts Google Core Web Vitals rankings.\n- **Zero Watermarks & Unrestricted Commercial Use**: All exported graphics are yours to use in personal, commercial, and client deliverables with no attribution required."
   },
@@ -1257,7 +1257,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "Globe",
     "order": 89,
-    "metaTitle": "Free IP Lookup Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Free IP Lookup | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Inspect public IPv4/IPv6 address, country, ISP organization, and network coordinates client-side. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Calculation Guide: IP Lookup\n\nInspect public IPv4/IPv6 address, country, ISP organization, and network coordinates client-side.\n\n### Key Features\n- **High Floating-Point Precision**: Mathematical formulas conform to banking and institutional standards, mitigating cumulative rounding errors.\n- **Instant Reactive Recalculation**: Values compute dynamically as you type without page reloads or delays.\n- **100% Private Financial Modeling**: Your salary figures, personal budgets, interest rates, and health metrics are never logged or stored.\n- **Comprehensive Amortization & Breakdown**: Detailed summaries provide actionable clarity for budgeting, planning, and investment decisions."
   },
@@ -1271,7 +1271,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "ShieldCheck",
     "order": 90,
-    "metaTitle": "Free SSL Checker Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Free SSL Checker | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Verify SSL certificate validity, issuer authority, expiration timeline, and encryption cipher. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Calculation Guide: SSL Checker\n\nVerify SSL certificate validity, issuer authority, expiration timeline, and encryption cipher.\n\n### Key Features\n- **High Floating-Point Precision**: Mathematical formulas conform to banking and institutional standards, mitigating cumulative rounding errors.\n- **Instant Reactive Recalculation**: Values compute dynamically as you type without page reloads or delays.\n- **100% Private Financial Modeling**: Your salary figures, personal budgets, interest rates, and health metrics are never logged or stored.\n- **Comprehensive Amortization & Breakdown**: Detailed summaries provide actionable clarity for budgeting, planning, and investment decisions."
   },
@@ -1285,7 +1285,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "Clock",
     "order": 91,
-    "metaTitle": "Free Reading Time Calculator Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Free Reading Time Calculator | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Calculate silent reading time and speech presentation duration across slow, average, and fast tempos. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Calculation Guide: Reading Time Calculator\n\nCalculate silent reading time and speech presentation duration across slow, average, and fast tempos.\n\n### Key Features\n- **High Floating-Point Precision**: Mathematical formulas conform to banking and institutional standards, mitigating cumulative rounding errors.\n- **Instant Reactive Recalculation**: Values compute dynamically as you type without page reloads or delays.\n- **100% Private Financial Modeling**: Your salary figures, personal budgets, interest rates, and health metrics are never logged or stored.\n- **Comprehensive Amortization & Breakdown**: Detailed summaries provide actionable clarity for budgeting, planning, and investment decisions."
   },
@@ -1299,7 +1299,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "TrendingUp",
     "order": 92,
-    "metaTitle": "Free Text Statistics Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Free Text Statistics | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Comprehensive readability analysis including Coleman-Liau grade index, syllables, and lexical density. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Calculation Guide: Text Statistics\n\nComprehensive readability analysis including Coleman-Liau grade index, syllables, and lexical density.\n\n### Key Features\n- **High Floating-Point Precision**: Mathematical formulas conform to banking and institutional standards, mitigating cumulative rounding errors.\n- **Instant Reactive Recalculation**: Values compute dynamically as you type without page reloads or delays.\n- **100% Private Financial Modeling**: Your salary figures, personal budgets, interest rates, and health metrics are never logged or stored.\n- **Comprehensive Amortization & Breakdown**: Detailed summaries provide actionable clarity for budgeting, planning, and investment decisions."
   },
@@ -1313,7 +1313,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "Minimize2",
     "order": 93,
-    "metaTitle": "Free Bulk Image Compressor Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Free Bulk Image Compressor | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Batch compress up to 50 JPG, PNG, and WebP images simultaneously with live progress and ZIP download. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Comprehensive Guide: Bulk Image Compressor\n\nBatch compress up to 50 JPG, PNG, and WebP images simultaneously with live progress and ZIP download.\n\n### Key Technical Highlights\n- **100% Client-Side Processing**: Your media files are rendered and transformed using hardware-accelerated HTML5 Canvas and WebGL APIs. No photos are ever uploaded to cloud servers.\n- **Interactive Visual Comparison**: Inspect edge sharpness, compression fidelity, and dimensions with real-time reactive canvas rendering before downloading.\n- **Optimized for Web Performance & LCP**: Reducing graphic payloads significantly accelerates page render times and boosts Google Core Web Vitals rankings.\n- **Zero Watermarks & Unrestricted Commercial Use**: All exported graphics are yours to use in personal, commercial, and client deliverables with no attribution required."
   },
@@ -1327,7 +1327,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "Maximize2",
     "order": 94,
-    "metaTitle": "Free Bulk Image Resizer Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Free Bulk Image Resizer | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Batch resize dozens of photos by dimensions or scale percentage with aspect ratio lock. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Comprehensive Guide: Bulk Image Resizer\n\nBatch resize dozens of photos by dimensions or scale percentage with aspect ratio lock.\n\n### Key Technical Highlights\n- **100% Client-Side Processing**: Your media files are rendered and transformed using hardware-accelerated HTML5 Canvas and WebGL APIs. No photos are ever uploaded to cloud servers.\n- **Interactive Visual Comparison**: Inspect edge sharpness, compression fidelity, and dimensions with real-time reactive canvas rendering before downloading.\n- **Optimized for Web Performance & LCP**: Reducing graphic payloads significantly accelerates page render times and boosts Google Core Web Vitals rankings.\n- **Zero Watermarks & Unrestricted Commercial Use**: All exported graphics are yours to use in personal, commercial, and client deliverables with no attribution required."
   },
@@ -1341,7 +1341,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "Image",
     "order": 95,
-    "metaTitle": "Free SVG to PNG Converter Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Free SVG to PNG Converter | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Render scalable SVG vector graphics into high-resolution PNG raster images with 1x, 2x, 4x multipliers. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Comprehensive Guide: SVG to PNG Converter\n\nRender scalable SVG vector graphics into high-resolution PNG raster images with 1x, 2x, 4x multipliers.\n\n### Key Technical Highlights\n- **100% Client-Side Processing**: Your media files are rendered and transformed using hardware-accelerated HTML5 Canvas and WebGL APIs. No photos are ever uploaded to cloud servers.\n- **Interactive Visual Comparison**: Inspect edge sharpness, compression fidelity, and dimensions with real-time reactive canvas rendering before downloading.\n- **Optimized for Web Performance & LCP**: Reducing graphic payloads significantly accelerates page render times and boosts Google Core Web Vitals rankings.\n- **Zero Watermarks & Unrestricted Commercial Use**: All exported graphics are yours to use in personal, commercial, and client deliverables with no attribution required."
   },
@@ -1355,7 +1355,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "Wind",
     "order": 96,
-    "metaTitle": "Free CSS to Tailwind Converter Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Free CSS to Tailwind Converter | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Convert standard CSS properties and rules into modern utility-first Tailwind CSS classes automatically. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Technical Webmaster Overview: CSS to Tailwind Converter\n\nConvert standard CSS properties and rules into modern utility-first Tailwind CSS classes automatically.\n\n### Why Use CSS to Tailwind Converter?\n- **Google SERP & Click-Through Optimization**: Generate validated metadata tags and directives that maximize organic search visibility and click-through rates (CTR).\n- **Schema.org & Open Graph Protocol Adherence**: Output conforms strictly to official W3C, Schema.org, and social platform specifications.\n- **Pixel-Accurate Truncation Simulation**: Accurately preview snippet lengths to avoid awkward ellipsis cuts in search engine results pages.\n- **Zero Injected Third-Party Telemetry**: Clean, valid code free of promotional watermarks or tracking scripts."
   },
@@ -1369,7 +1369,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "Code2",
     "order": 97,
-    "metaTitle": "Free HTML Entity Encoder/Decoder Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Free HTML Entity Encoder & Decoder Online | Zoqonyx",
     "metaDesc": "Safely encode special HTML characters to prevent XSS or decode entities back to readable text. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Technical Webmaster Overview: HTML Entity Encoder/Decoder\n\nSafely encode special HTML characters to prevent XSS or decode entities back to readable text.\n\n### Why Use HTML Entity Encoder/Decoder?\n- **Google SERP & Click-Through Optimization**: Generate validated metadata tags and directives that maximize organic search visibility and click-through rates (CTR).\n- **Schema.org & Open Graph Protocol Adherence**: Output conforms strictly to official W3C, Schema.org, and social platform specifications.\n- **Pixel-Accurate Truncation Simulation**: Accurately preview snippet lengths to avoid awkward ellipsis cuts in search engine results pages.\n- **Zero Injected Third-Party Telemetry**: Clean, valid code free of promotional watermarks or tracking scripts."
   },
@@ -1383,7 +1383,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "Table",
     "order": 98,
-    "metaTitle": "Free Markdown Table Generator Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Free Markdown Table Generator | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Design structured Markdown data tables with column alignment, row additions, and one-click export. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Practical Guide: Markdown Table Generator\n\nDesign structured Markdown data tables with column alignment, row additions, and one-click export.\n\n### Advantages & Capabilities\n- **Full Unicode 15.1 Compatibility**: Safely processes accented Latin characters, non-Latin alphabets (Arabic, Cyrillic, Greek, Devanagari, CJK), and multi-byte emoji sequences.\n- **Sub-Millisecond Keystroke Execution**: Transform thousands of words without lag or network requests.\n- **Guaranteed Copywriting Confidentiality**: Draft articles, proprietary copy, and sensitive text snippets remain private in your browser memory.\n- **Multiple Case & Naming Formats**: Easily convert between editorial styles (Title Case, Sentence case) and developer identifiers (camelCase, snake_case, kebab-case)."
   },
@@ -1397,7 +1397,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "Clock",
     "order": 99,
-    "metaTitle": "Free Cron Expression Explainer & Generator Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Free Cron Expression Generator Online | Zoqonyx",
     "metaDesc": "Build standard 5-part cron schedules and translate cryptic cron syntax into plain human language. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Technical Webmaster Overview: Cron Expression Explainer & Generator\n\nBuild standard 5-part cron schedules and translate cryptic cron syntax into plain human language.\n\n### Why Use Cron Expression Explainer & Generator?\n- **Google SERP & Click-Through Optimization**: Generate validated metadata tags and directives that maximize organic search visibility and click-through rates (CTR).\n- **Schema.org & Open Graph Protocol Adherence**: Output conforms strictly to official W3C, Schema.org, and social platform specifications.\n- **Pixel-Accurate Truncation Simulation**: Accurately preview snippet lengths to avoid awkward ellipsis cuts in search engine results pages.\n- **Zero Injected Third-Party Telemetry**: Clean, valid code free of promotional watermarks or tracking scripts."
   },
@@ -1411,7 +1411,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "TrendingUp",
     "order": 100,
-    "metaTitle": "Free Compound Interest Calculator Online (100% Free & Private) | Zoqonyx",
+    "metaTitle": "Compound Interest Calculator | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Forecast long-term savings growth with annual, quarterly, or monthly compounding interest schedules. 100% free with zero registration. Processed safely in your browser.",
     "content": "## Calculation Guide: Compound Interest Calculator\n\nForecast long-term savings growth with annual, quarterly, or monthly compounding interest schedules.\n\n### Key Features\n- **High Floating-Point Precision**: Mathematical formulas conform to banking and institutional standards, mitigating cumulative rounding errors.\n- **Instant Reactive Recalculation**: Values compute dynamically as you type without page reloads or delays.\n- **100% Private Financial Modeling**: Your salary figures, personal budgets, interest rates, and health metrics are never logged or stored.\n- **Comprehensive Amortization & Breakdown**: Detailed summaries provide actionable clarity for budgeting, planning, and investment decisions."
   },
@@ -1425,7 +1425,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": true,
     "icon": "Sparkles",
     "order": 101,
-    "metaTitle": "AI Background Remover (High Quality) Online - Coming Soon | Zoqonyx",
+    "metaTitle": "Free AI Background Remover Online | Zoqonyx",
     "metaDesc": "Deep learning portrait and product background cutouts with edge matting for fine hair and glass. Join the early access notification list.",
     "content": "## AI Background Remover (High Quality)\n\nDeep learning portrait and product background cutouts with edge matting for fine hair and glass.\n\n### Planned Capabilities\n- Industry-leading processing quality with zero watermarks.\n- High-speed client-side and cloud acceleration.\n- Enterprise-grade privacy and data protection.\n\n### Early Access\nEnter your email above to receive priority notifications when this tool goes live."
   },
@@ -1439,7 +1439,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": true,
     "icon": "ZoomIn",
     "order": 102,
-    "metaTitle": "AI Image Upscaler Online - Coming Soon | Zoqonyx",
+    "metaTitle": "AI Image Upscaler - Coming Soon | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Enlarge images up to 8x resolution with neural network diffusion super-resolution. Join the early access notification list.",
     "content": "## AI Image Upscaler\n\nEnlarge images up to 8x resolution with neural network diffusion super-resolution.\n\n### Planned Capabilities\n- Industry-leading processing quality with zero watermarks.\n- High-speed client-side and cloud acceleration.\n- Enterprise-grade privacy and data protection.\n\n### Early Access\nEnter your email above to receive priority notifications when this tool goes live."
   },
@@ -1453,7 +1453,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": true,
     "icon": "Eraser",
     "order": 103,
-    "metaTitle": "Object Remover Online - Coming Soon | Zoqonyx",
+    "metaTitle": "Object Remover - Coming Soon | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Intelligent inpainting to eliminate photobombers, powerlines, and blemishes from photos. Join the early access notification list.",
     "content": "## Object Remover\n\nIntelligent inpainting to eliminate photobombers, powerlines, and blemishes from photos.\n\n### Planned Capabilities\n- Industry-leading processing quality with zero watermarks.\n- High-speed client-side and cloud acceleration.\n- Enterprise-grade privacy and data protection.\n\n### Early Access\nEnter your email above to receive priority notifications when this tool goes live."
   },
@@ -1467,7 +1467,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": true,
     "icon": "Palette",
     "order": 104,
-    "metaTitle": "AI Image Colorizer Online - Coming Soon | Zoqonyx",
+    "metaTitle": "AI Image Colorizer - Coming Soon | Zoqonyx",
     "metaDesc": "Restore antique black-and-white family portraits with historically accurate natural colors. Join the early access notification list.",
     "content": "## AI Image Colorizer\n\nRestore antique black-and-white family portraits with historically accurate natural colors.\n\n### Planned Capabilities\n- Industry-leading processing quality with zero watermarks.\n- High-speed client-side and cloud acceleration.\n- Enterprise-grade privacy and data protection.\n\n### Early Access\nEnter your email above to receive priority notifications when this tool goes live."
   },
@@ -1481,7 +1481,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": true,
     "icon": "Video",
     "order": 105,
-    "metaTitle": "Video Background Remover Online - Coming Soon | Zoqonyx",
+    "metaTitle": "Video Background Remover - Coming Soon | Zoqonyx",
     "metaDesc": "Isolate moving human subjects from video clips without green screens or chroma key studios. Join the early access notification list.",
     "content": "## Video Background Remover\n\nIsolate moving human subjects from video clips without green screens or chroma key studios.\n\n### Planned Capabilities\n- Industry-leading processing quality with zero watermarks.\n- High-speed client-side and cloud acceleration.\n- Enterprise-grade privacy and data protection.\n\n### Early Access\nEnter your email above to receive priority notifications when this tool goes live."
   },
@@ -1495,7 +1495,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": true,
     "icon": "Minimize2",
     "order": 106,
-    "metaTitle": "Video Compressor Advanced Online - Coming Soon | Zoqonyx",
+    "metaTitle": "Video Compressor Advanced - Coming Soon | Zoqonyx",
     "metaDesc": "Compress heavy 4K and 1080p MP4 clips with H.265/AV1 codecs for rapid web sharing. Join the early access notification list.",
     "content": "## Video Compressor Advanced\n\nCompress heavy 4K and 1080p MP4 clips with H.265/AV1 codecs for rapid web sharing.\n\n### Planned Capabilities\n- Industry-leading processing quality with zero watermarks.\n- High-speed client-side and cloud acceleration.\n- Enterprise-grade privacy and data protection.\n\n### Early Access\nEnter your email above to receive priority notifications when this tool goes live."
   },
@@ -1509,7 +1509,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": true,
     "icon": "Film",
     "order": 107,
-    "metaTitle": "Video to GIF Advanced Online - Coming Soon | Zoqonyx",
+    "metaTitle": "Video to GIF Advanced - Coming Soon | Zoqonyx",
     "metaDesc": "Create smooth 60fps animated GIFs with custom captions, speed controls, and color dithering. Join the early access notification list.",
     "content": "## Video to GIF Advanced\n\nCreate smooth 60fps animated GIFs with custom captions, speed controls, and color dithering.\n\n### Planned Capabilities\n- Industry-leading processing quality with zero watermarks.\n- High-speed client-side and cloud acceleration.\n- Enterprise-grade privacy and data protection.\n\n### Early Access\nEnter your email above to receive priority notifications when this tool goes live."
   },
@@ -1523,7 +1523,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": true,
     "icon": "Subtitles",
     "order": 108,
-    "metaTitle": "Auto Subtitle Generator Online - Coming Soon | Zoqonyx",
+    "metaTitle": "Auto Subtitle Generator - Coming Soon | Zoqonyx",
     "metaDesc": "Generate synchronized SRT/VTT subtitle tracks using Whisper AI automatic speech recognition. Join the early access notification list.",
     "content": "## Auto Subtitle Generator\n\nGenerate synchronized SRT/VTT subtitle tracks using Whisper AI automatic speech recognition.\n\n### Planned Capabilities\n- Industry-leading processing quality with zero watermarks.\n- High-speed client-side and cloud acceleration.\n- Enterprise-grade privacy and data protection.\n\n### Early Access\nEnter your email above to receive priority notifications when this tool goes live."
   },
@@ -1537,7 +1537,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": true,
     "icon": "FileText",
     "order": 109,
-    "metaTitle": "PDF to Word High Accuracy Online - Coming Soon | Zoqonyx",
+    "metaTitle": "PDF to Word High Accuracy - Coming Soon | Zoqonyx",
     "metaDesc": "Convert scanned and digital PDFs into fully editable Microsoft Word (.docx) documents. Join the early access notification list.",
     "content": "## PDF to Word High Accuracy\n\nConvert scanned and digital PDFs into fully editable Microsoft Word (.docx) documents.\n\n### Planned Capabilities\n- Industry-leading processing quality with zero watermarks.\n- High-speed client-side and cloud acceleration.\n- Enterprise-grade privacy and data protection.\n\n### Early Access\nEnter your email above to receive priority notifications when this tool goes live."
   },
@@ -1551,7 +1551,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": true,
     "icon": "Scan",
     "order": 110,
-    "metaTitle": "PDF OCR Online - Coming Soon | Zoqonyx",
+    "metaTitle": "Free PDF OCR - Coming Soon | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Optical Character Recognition to turn scanned PDF book pages and invoices into searchable text. Join the early access notification list.",
     "content": "## PDF OCR\n\nOptical Character Recognition to turn scanned PDF book pages and invoices into searchable text.\n\n### Planned Capabilities\n- Industry-leading processing quality with zero watermarks.\n- High-speed client-side and cloud acceleration.\n- Enterprise-grade privacy and data protection.\n\n### Early Access\nEnter your email above to receive priority notifications when this tool goes live."
   },
@@ -1565,7 +1565,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": true,
     "icon": "Edit3",
     "order": 111,
-    "metaTitle": "Advanced PDF Editor Online - Coming Soon | Zoqonyx",
+    "metaTitle": "Advanced PDF Editor - Coming Soon | Zoqonyx",
     "metaDesc": "Edit text, insert signatures, annotate paragraphs, and redact confidential data in PDFs. Join the early access notification list.",
     "content": "## Advanced PDF Editor\n\nEdit text, insert signatures, annotate paragraphs, and redact confidential data in PDFs.\n\n### Planned Capabilities\n- Industry-leading processing quality with zero watermarks.\n- High-speed client-side and cloud acceleration.\n- Enterprise-grade privacy and data protection.\n\n### Early Access\nEnter your email above to receive priority notifications when this tool goes live."
   },
@@ -1579,7 +1579,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": true,
     "icon": "PenTool",
     "order": 112,
-    "metaTitle": "eSign PDF Online - Coming Soon | Zoqonyx",
+    "metaTitle": "Free eSign PDF - Coming Soon | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Draw or upload certified digital signatures to legally execute contracts and PDF agreements. Join the early access notification list.",
     "content": "## eSign PDF\n\nDraw or upload certified digital signatures to legally execute contracts and PDF agreements.\n\n### Planned Capabilities\n- Industry-leading processing quality with zero watermarks.\n- High-speed client-side and cloud acceleration.\n- Enterprise-grade privacy and data protection.\n\n### Early Access\nEnter your email above to receive priority notifications when this tool goes live."
   },
@@ -1593,7 +1593,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": true,
     "icon": "PenTool",
     "order": 113,
-    "metaTitle": "AI Content Writer Online - Coming Soon | Zoqonyx",
+    "metaTitle": "AI Content Writer - Coming Soon | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Generate long-form articles, marketing outlines, and thought-leadership essays. Join the early access notification list.",
     "content": "## AI Content Writer\n\nGenerate long-form articles, marketing outlines, and thought-leadership essays.\n\n### Planned Capabilities\n- Industry-leading processing quality with zero watermarks.\n- High-speed client-side and cloud acceleration.\n- Enterprise-grade privacy and data protection.\n\n### Early Access\nEnter your email above to receive priority notifications when this tool goes live."
   },
@@ -1607,7 +1607,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": true,
     "icon": "ShoppingBag",
     "order": 114,
-    "metaTitle": "AI Product Description Generator Online - Coming Soon | Zoqonyx",
+    "metaTitle": "Free AI Product Description Writer Online | Zoqonyx",
     "metaDesc": "Produce compelling, conversion-focused e-commerce descriptions for Shopify and Amazon. Join the early access notification list.",
     "content": "## AI Product Description Generator\n\nProduce compelling, conversion-focused e-commerce descriptions for Shopify and Amazon.\n\n### Planned Capabilities\n- Industry-leading processing quality with zero watermarks.\n- High-speed client-side and cloud acceleration.\n- Enterprise-grade privacy and data protection.\n\n### Early Access\nEnter your email above to receive priority notifications when this tool goes live."
   },
@@ -1621,7 +1621,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": true,
     "icon": "Mail",
     "order": 115,
-    "metaTitle": "AI Sales Pitch Generator Online - Coming Soon | Zoqonyx",
+    "metaTitle": "AI Sales Pitch Generator - Coming Soon | Zoqonyx",
     "metaDesc": "Craft personalized cold email outreach and investor pitches tailored to prospect profiles. Join the early access notification list.",
     "content": "## AI Sales Pitch Generator\n\nCraft personalized cold email outreach and investor pitches tailored to prospect profiles.\n\n### Planned Capabilities\n- Industry-leading processing quality with zero watermarks.\n- High-speed client-side and cloud acceleration.\n- Enterprise-grade privacy and data protection.\n\n### Early Access\nEnter your email above to receive priority notifications when this tool goes live."
   },
@@ -1635,7 +1635,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": true,
     "icon": "CheckCircle",
     "order": 116,
-    "metaTitle": "Grammar Checker Advanced Online - Coming Soon | Zoqonyx",
+    "metaTitle": "Grammar Checker Advanced - Coming Soon | Zoqonyx",
     "metaDesc": "Polish syntax, tone, clarity, and grammatical precision across professional copy. Join the early access notification list.",
     "content": "## Grammar Checker Advanced\n\nPolish syntax, tone, clarity, and grammatical precision across professional copy.\n\n### Planned Capabilities\n- Industry-leading processing quality with zero watermarks.\n- High-speed client-side and cloud acceleration.\n- Enterprise-grade privacy and data protection.\n\n### Early Access\nEnter your email above to receive priority notifications when this tool goes live."
   },
@@ -1649,7 +1649,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": true,
     "icon": "Search",
     "order": 117,
-    "metaTitle": "Plagiarism Checker Online - Coming Soon | Zoqonyx",
+    "metaTitle": "Plagiarism Checker - Coming Soon | Zoqonyx",
     "metaDesc": "Scan billions of web pages and scholarly papers to identify duplicate content citations. Join the early access notification list.",
     "content": "## Plagiarism Checker\n\nScan billions of web pages and scholarly papers to identify duplicate content citations.\n\n### Planned Capabilities\n- Industry-leading processing quality with zero watermarks.\n- High-speed client-side and cloud acceleration.\n- Enterprise-grade privacy and data protection.\n\n### Early Access\nEnter your email above to receive priority notifications when this tool goes live."
   },
@@ -1663,7 +1663,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": true,
     "icon": "TrendingUp",
     "order": 118,
-    "metaTitle": "Rank Tracker Online - Coming Soon | Zoqonyx",
+    "metaTitle": "Free Rank Tracker - Coming Soon | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Track organic keyword ranking positions across Google, Bing, and mobile search results. Join the early access notification list.",
     "content": "## Rank Tracker\n\nTrack organic keyword ranking positions across Google, Bing, and mobile search results.\n\n### Planned Capabilities\n- Industry-leading processing quality with zero watermarks.\n- High-speed client-side and cloud acceleration.\n- Enterprise-grade privacy and data protection.\n\n### Early Access\nEnter your email above to receive priority notifications when this tool goes live."
   },
@@ -1677,7 +1677,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": true,
     "icon": "Link",
     "order": 119,
-    "metaTitle": "Backlink Checker Online - Coming Soon | Zoqonyx",
+    "metaTitle": "Backlink Checker - Coming Soon | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Inspect inbound referring domains, anchor text distribution, and toxic links for any domain. Join the early access notification list.",
     "content": "## Backlink Checker\n\nInspect inbound referring domains, anchor text distribution, and toxic links for any domain.\n\n### Planned Capabilities\n- Industry-leading processing quality with zero watermarks.\n- High-speed client-side and cloud acceleration.\n- Enterprise-grade privacy and data protection.\n\n### Early Access\nEnter your email above to receive priority notifications when this tool goes live."
   },
@@ -1691,7 +1691,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": true,
     "icon": "Activity",
     "order": 120,
-    "metaTitle": "Full Site Audit Online - Coming Soon | Zoqonyx",
+    "metaTitle": "Full Site Audit - Coming Soon | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Audit Core Web Vitals, broken internal links, crawl budget, and schema health. Join the early access notification list.",
     "content": "## Full Site Audit\n\nAudit Core Web Vitals, broken internal links, crawl budget, and schema health.\n\n### Planned Capabilities\n- Industry-leading processing quality with zero watermarks.\n- High-speed client-side and cloud acceleration.\n- Enterprise-grade privacy and data protection.\n\n### Early Access\nEnter your email above to receive priority notifications when this tool goes live."
   },
@@ -1705,7 +1705,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": true,
     "icon": "Search",
     "order": 121,
-    "metaTitle": "Keyword Research Tool Online - Coming Soon | Zoqonyx",
+    "metaTitle": "Keyword Research Tool - Coming Soon | Zoqonyx",
     "metaDesc": "Uncover search volume, CPC estimates, and keyword difficulty for organic SEO campaigns. Join the early access notification list.",
     "content": "## Keyword Research Tool\n\nUncover search volume, CPC estimates, and keyword difficulty for organic SEO campaigns.\n\n### Planned Capabilities\n- Industry-leading processing quality with zero watermarks.\n- High-speed client-side and cloud acceleration.\n- Enterprise-grade privacy and data protection.\n\n### Early Access\nEnter your email above to receive priority notifications when this tool goes live."
   },
@@ -1719,7 +1719,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": true,
     "icon": "Monitor",
     "order": 122,
-    "metaTitle": "Screen Recorder Online - Coming Soon | Zoqonyx",
+    "metaTitle": "Screen Recorder - Coming Soon | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Capture browser tabs, application windows, or desktop screens with microphone voiceovers. Join the early access notification list.",
     "content": "## Screen Recorder\n\nCapture browser tabs, application windows, or desktop screens with microphone voiceovers.\n\n### Planned Capabilities\n- Industry-leading processing quality with zero watermarks.\n- High-speed client-side and cloud acceleration.\n- Enterprise-grade privacy and data protection.\n\n### Early Access\nEnter your email above to receive priority notifications when this tool goes live."
   },
@@ -1733,7 +1733,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": true,
     "icon": "Terminal",
     "order": 123,
-    "metaTitle": "Online Code Editor Online - Coming Soon | Zoqonyx",
+    "metaTitle": "Online Code Editor - Coming Soon | Zoqonyx",
     "metaDesc": "In-browser live sandbox with multi-language syntax highlighting and package compilation. Join the early access notification list.",
     "content": "## Online Code Editor\n\nIn-browser live sandbox with multi-language syntax highlighting and package compilation.\n\n### Planned Capabilities\n- Industry-leading processing quality with zero watermarks.\n- High-speed client-side and cloud acceleration.\n- Enterprise-grade privacy and data protection.\n\n### Early Access\nEnter your email above to receive priority notifications when this tool goes live."
   },
@@ -1747,7 +1747,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": true,
     "icon": "Send",
     "order": 124,
-    "metaTitle": "API Tester Online - Coming Soon | Zoqonyx",
+    "metaTitle": "Free API Tester - Coming Soon | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Postman-alternative browser HTTP client for testing REST, GraphQL, and WebSocket endpoints. Join the early access notification list.",
     "content": "## API Tester\n\nPostman-alternative browser HTTP client for testing REST, GraphQL, and WebSocket endpoints.\n\n### Planned Capabilities\n- Industry-leading processing quality with zero watermarks.\n- High-speed client-side and cloud acceleration.\n- Enterprise-grade privacy and data protection.\n\n### Early Access\nEnter your email above to receive priority notifications when this tool goes live."
   },
@@ -1761,7 +1761,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": true,
     "icon": "Pen",
     "order": 125,
-    "metaTitle": "Whiteboard Tool Online - Coming Soon | Zoqonyx",
+    "metaTitle": "Whiteboard Tool - Coming Soon | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Infinite collaborative vector canvas for sketching architectures, wireframes, and UI mockups. Join the early access notification list.",
     "content": "## Whiteboard Tool\n\nInfinite collaborative vector canvas for sketching architectures, wireframes, and UI mockups.\n\n### Planned Capabilities\n- Industry-leading processing quality with zero watermarks.\n- High-speed client-side and cloud acceleration.\n- Enterprise-grade privacy and data protection.\n\n### Early Access\nEnter your email above to receive priority notifications when this tool goes live."
   },
@@ -1775,7 +1775,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": true,
     "icon": "GitFork",
     "order": 126,
-    "metaTitle": "Mind Map Maker Online - Coming Soon | Zoqonyx",
+    "metaTitle": "Mind Map Maker - Coming Soon | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Organize brainstorms and project nodes into structured hierarchical mind maps. Join the early access notification list.",
     "content": "## Mind Map Maker\n\nOrganize brainstorms and project nodes into structured hierarchical mind maps.\n\n### Planned Capabilities\n- Industry-leading processing quality with zero watermarks.\n- High-speed client-side and cloud acceleration.\n- Enterprise-grade privacy and data protection.\n\n### Early Access\nEnter your email above to receive priority notifications when this tool goes live."
   },
@@ -1789,7 +1789,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": true,
     "icon": "Workflow",
     "order": 127,
-    "metaTitle": "Flowchart Maker Online - Coming Soon | Zoqonyx",
+    "metaTitle": "Flowchart Maker - Coming Soon | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Design professional system flowcharts, decision trees, and UML diagrams with SVG export. Join the early access notification list.",
     "content": "## Flowchart Maker\n\nDesign professional system flowcharts, decision trees, and UML diagrams with SVG export.\n\n### Planned Capabilities\n- Industry-leading processing quality with zero watermarks.\n- High-speed client-side and cloud acceleration.\n- Enterprise-grade privacy and data protection.\n\n### Early Access\nEnter your email above to receive priority notifications when this tool goes live."
   },
@@ -1803,7 +1803,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": true,
     "icon": "Box",
     "order": 128,
-    "metaTitle": "3D Text Generator Online - Coming Soon | Zoqonyx",
+    "metaTitle": "3D Text Generator - Coming Soon | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Create volumetric typography with WebGL shadows, realistic materials, and camera perspectives. Join the early access notification list.",
     "content": "## 3D Text Generator\n\nCreate volumetric typography with WebGL shadows, realistic materials, and camera perspectives.\n\n### Planned Capabilities\n- Industry-leading processing quality with zero watermarks.\n- High-speed client-side and cloud acceleration.\n- Enterprise-grade privacy and data protection.\n\n### Early Access\nEnter your email above to receive priority notifications when this tool goes live."
   },
@@ -1817,7 +1817,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": true,
     "icon": "Film",
     "order": 129,
-    "metaTitle": "Lottie Editor Online - Coming Soon | Zoqonyx",
+    "metaTitle": "Lottie Editor - Coming Soon | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Inspect and customize JSON-based Lottie motion graphics with interactive speed and color curves. Join the early access notification list.",
     "content": "## Lottie Editor\n\nInspect and customize JSON-based Lottie motion graphics with interactive speed and color curves.\n\n### Planned Capabilities\n- Industry-leading processing quality with zero watermarks.\n- High-speed client-side and cloud acceleration.\n- Enterprise-grade privacy and data protection.\n\n### Early Access\nEnter your email above to receive priority notifications when this tool goes live."
   },
@@ -1831,7 +1831,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": true,
     "icon": "Mail",
     "order": 130,
-    "metaTitle": "Temporary Email Online - Coming Soon | Zoqonyx",
+    "metaTitle": "Temporary Email - Coming Soon | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Generate disposable throwaway inboxes to protect your personal identity from marketing spam. Join the early access notification list.",
     "content": "## Temporary Email\n\nGenerate disposable throwaway inboxes to protect your personal identity from marketing spam.\n\n### Planned Capabilities\n- Industry-leading processing quality with zero watermarks.\n- High-speed client-side and cloud acceleration.\n- Enterprise-grade privacy and data protection.\n\n### Early Access\nEnter your email above to receive priority notifications when this tool goes live."
   },
@@ -1845,7 +1845,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "Sparkles",
     "order": 14,
-    "metaTitle": "Free Watermark Remover Online (100% Private & Free) | Zoqonyx",
+    "metaTitle": "Free Watermark Remover | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Remove watermarks, logos, and timestamps from images online for free without uploading files.",
     "content": "## Free Online Watermark Remover\n\nErase watermarks, stamps, and logos from photos client-side.\n\n### Key Benefits\n- 100% Client-Side Inpainting\n- Zero Server File Uploads\n- Instant Brush & Erase"
   },
@@ -1859,7 +1859,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "Sparkles",
     "order": 15,
-    "metaTitle": "Free Object Remover from Photos (100% Private & Free) | Zoqonyx",
+    "metaTitle": "Free Object Remover from Photos | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Erase unwanted objects, people, and defects from photos online using client-side canvas inpainting.",
     "content": "## Free Online Object Remover\n\nRemove unwanted objects, photobombers, and defects from pictures with intelligent canvas inpainting.\n\n### Key Benefits\n- Client-Side Inpainting\n- Interactive Adjustable Brush\n- Zero Server File Uploads"
   },
@@ -1873,7 +1873,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "FileSpreadsheet",
     "order": 42,
-    "metaTitle": "Free JSON to CSV Converter Online | Zoqonyx",
+    "metaTitle": "Free JSON to CSV Converter | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Convert JSON data into CSV spreadsheets client-side with instant download and zero uploads.",
     "content": "## Free Online JSON to CSV Converter\n\nConvert JSON arrays and objects into clean CSV spreadsheets with custom delimiter."
   },
@@ -1915,7 +1915,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "ListOrdered",
     "order": 67,
-    "metaTitle": "Free Online List Sorter & Organizer | Zoqonyx",
+    "metaTitle": "Free List Sorter & Organizer | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Sort text lists alphabetically, numerically, or reversely with custom delimiters.",
     "content": "## Free Online List Sorter\n\nSort lists alphabetically, numerically, by length, or randomly."
   },
@@ -1929,7 +1929,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "Filter",
     "order": 68,
-    "metaTitle": "Free Duplicate Line Remover Online | Zoqonyx",
+    "metaTitle": "Free Duplicate Line Remover | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Remove repeated and duplicate lines from text and lists with case-sensitive filtering.",
     "content": "## Free Duplicate Line Remover\n\nRemove duplicate lines from text documents and data lists."
   },
@@ -1943,7 +1943,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "Palette",
     "order": 59,
-    "metaTitle": "Free Color Palette Generator Online | Zoqonyx",
+    "metaTitle": "Free Color Palette Generator | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Create harmonious color schemes with hex, RGB, and HSL export for designers and developers.",
     "content": "## Free Color Palette Generator\n\nGenerate harmonious color palettes with one-click hex copying."
   },
@@ -1957,7 +1957,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "Maximize",
     "order": 60,
-    "metaTitle": "Free Aspect Ratio Calculator Online (16:9, 4:3, 1:1) | Zoqonyx",
+    "metaTitle": "Aspect Ratio Calculator (16:9, 4:3, 1:1) | Zoqonyx",
     "metaDesc": "Calculate width, height, and aspect ratios for videos, displays, and photos with standard presets.",
     "content": "## Aspect Ratio Calculator\n\nCalculate and resize dimensions while maintaining proportional aspect ratios."
   },
@@ -1971,7 +1971,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "Receipt",
     "order": 89,
-    "metaTitle": "Free Sales Tax Calculator Online | Zoqonyx",
+    "metaTitle": "Free Sales Tax Calculator | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Calculate sales tax, total purchase amounts, and net pre-tax values instantly.",
     "content": "## Sales Tax Calculator\n\nCalculate total price with sales tax, tax rates, and reverse pre-tax amounts."
   },
@@ -1985,7 +1985,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "GraduationCap",
     "order": 90,
-    "metaTitle": "Free GPA Calculator Online (Weighted & Unweighted) | Zoqonyx",
+    "metaTitle": "GPA Calculator (Weighted & Unweighted) | Zoqonyx",
     "metaDesc": "Calculate high school and college GPA with credit weights and customizable letter grade scales.",
     "content": "## Free Online GPA Calculator\n\nCalculate weighted and unweighted semester and cumulative GPA."
   },
@@ -1999,7 +1999,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "Fuel",
     "order": 91,
-    "metaTitle": "Free Fuel Cost Calculator (Trip Gas Cost) | Zoqonyx",
+    "metaTitle": "Fuel Cost Calculator (Trip Gas Cost) | Zoqonyx",
     "metaDesc": "Estimate gasoline and diesel trip costs based on vehicle mileage, distance, and fuel rates.",
     "content": "## Fuel Cost Calculator\n\nCalculate trip gas and diesel expenses based on distance and fuel economy."
   },
@@ -2013,7 +2013,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "Clock",
     "order": 92,
-    "metaTitle": "Free Time Duration Calculator (Hours & Minutes) | Zoqonyx",
+    "metaTitle": "Time Duration Calculator (Hours & Minutes) | Zoqonyx",
     "metaDesc": "Compute elapsed time, hour differences, and work shift durations accurately.",
     "content": "## Time Duration Calculator\n\nCalculate elapsed hours, minutes, and seconds between two timestamps."
   },
@@ -2027,7 +2027,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": true,
     "icon": "Music",
     "order": 144,
-    "metaTitle": "Audio Converter MP3 Online - Coming Soon | Zoqonyx",
+    "metaTitle": "Audio Converter MP3 - Coming Soon | Zoqonyx",
     "metaDesc": "Convert audio files seamlessly between MP3, WAV, AAC, OGG, and FLAC client-side. Join the early access notification list.",
     "content": "## Audio Converter MP3\n\nConvert audio files seamlessly between MP3, WAV, AAC, OGG, and FLAC client-side.\n\n### Planned Capabilities\n- Client-side acceleration with zero server tracking\n- Intuitive professional workflow\n- 100% free with no subscriptions\n\n### Early Access\nEnter your email above to receive priority notifications when this tool launches."
   },
@@ -2041,7 +2041,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": true,
     "icon": "Mic",
     "order": 145,
-    "metaTitle": "Voice Recorder & Audio Editor Online - Coming Soon | Zoqonyx",
+    "metaTitle": "Voice Recorder & Audio Editor - Coming Soon | Zoqonyx",
     "metaDesc": "Record crisp microphone audio and trim waveforms directly in your web browser. Join the early access notification list.",
     "content": "## Voice Recorder & Audio Editor\n\nRecord crisp microphone audio and trim waveforms directly in your web browser.\n\n### Planned Capabilities\n- Client-side acceleration with zero server tracking\n- Intuitive professional workflow\n- 100% free with no subscriptions\n\n### Early Access\nEnter your email above to receive priority notifications when this tool launches."
   },
@@ -2055,7 +2055,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": true,
     "icon": "UserCheck",
     "order": 146,
-    "metaTitle": "AI Headshot Generator Online - Coming Soon | Zoqonyx",
+    "metaTitle": "AI Headshot Generator - Coming Soon | Zoqonyx",
     "metaDesc": "Generate studio-quality business headshots and avatars from casual smartphone selfies. Join the early access notification list.",
     "content": "## AI Headshot Generator\n\nGenerate studio-quality business headshots and avatars from casual smartphone selfies.\n\n### Planned Capabilities\n- Client-side acceleration with zero server tracking\n- Intuitive professional workflow\n- 100% free with no subscriptions\n\n### Early Access\nEnter your email above to receive priority notifications when this tool launches."
   },
@@ -2069,7 +2069,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": true,
     "icon": "FileSignature",
     "order": 147,
-    "metaTitle": "PDF Form Filler Online Online - Coming Soon | Zoqonyx",
+    "metaTitle": "PDF Form Filler - Coming Soon | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Fill out interactive PDF forms, checkboxes, and text inputs directly in your browser. Join the early access notification list.",
     "content": "## PDF Form Filler Online\n\nFill out interactive PDF forms, checkboxes, and text inputs directly in your browser.\n\n### Planned Capabilities\n- Client-side acceleration with zero server tracking\n- Intuitive professional workflow\n- 100% free with no subscriptions\n\n### Early Access\nEnter your email above to receive priority notifications when this tool launches."
   },
@@ -2083,7 +2083,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": true,
     "icon": "PenTool",
     "order": 148,
-    "metaTitle": "PDF Signature Signer Online - Coming Soon | Zoqonyx",
+    "metaTitle": "PDF Signature Signer - Coming Soon | Zoqonyx",
     "metaDesc": "Sign legal PDF contracts and agreements with secure digital and drawn signatures. Join the early access notification list.",
     "content": "## PDF Signature Signer\n\nSign legal PDF contracts and agreements with secure digital and drawn signatures.\n\n### Planned Capabilities\n- Client-side acceleration with zero server tracking\n- Intuitive professional workflow\n- 100% free with no subscriptions\n\n### Early Access\nEnter your email above to receive priority notifications when this tool launches."
   },
@@ -2097,7 +2097,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": true,
     "icon": "Gauge",
     "order": 149,
-    "metaTitle": "Website Speed & Core Web Vitals Audit Online - Coming Soon | Zoqonyx",
+    "metaTitle": "Free Website Speed & Core Web Vitals Online | Zoqonyx",
     "metaDesc": "Benchmark Largest Contentful Paint, CLS, and page load speed with actionable fixes. Join the early access notification list.",
     "content": "## Website Speed & Core Web Vitals Audit\n\nBenchmark Largest Contentful Paint, CLS, and page load speed with actionable fixes.\n\n### Planned Capabilities\n- Client-side acceleration with zero server tracking\n- Intuitive professional workflow\n- 100% free with no subscriptions\n\n### Early Access\nEnter your email above to receive priority notifications when this tool launches."
   },
@@ -2111,7 +2111,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": true,
     "icon": "Link2Off",
     "order": 150,
-    "metaTitle": "Broken Link Checker Online - Coming Soon | Zoqonyx",
+    "metaTitle": "Broken Link Checker - Coming Soon | Zoqonyx",
     "metaDesc": "Crawl web pages to detect dead 404 links, redirect loops, and server timeouts. Join the early access notification list.",
     "content": "## Broken Link Checker\n\nCrawl web pages to detect dead 404 links, redirect loops, and server timeouts.\n\n### Planned Capabilities\n- Client-side acceleration with zero server tracking\n- Intuitive professional workflow\n- 100% free with no subscriptions\n\n### Early Access\nEnter your email above to receive priority notifications when this tool launches."
   },
@@ -2125,7 +2125,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": true,
     "icon": "Network",
     "order": 151,
-    "metaTitle": "DNS Records Lookup Tool Online - Coming Soon | Zoqonyx",
+    "metaTitle": "DNS Records Lookup Tool - Coming Soon | Zoqonyx",
     "metaDesc": "Inspect A, AAAA, MX, TXT, CNAME, and NS DNS records across authoritative nameservers. Join the early access notification list.",
     "content": "## DNS Records Lookup Tool\n\nInspect A, AAAA, MX, TXT, CNAME, and NS DNS records across authoritative nameservers.\n\n### Planned Capabilities\n- Client-side acceleration with zero server tracking\n- Intuitive professional workflow\n- 100% free with no subscriptions\n\n### Early Access\nEnter your email above to receive priority notifications when this tool launches."
   },
@@ -2139,7 +2139,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": true,
     "icon": "Search",
     "order": 152,
-    "metaTitle": "WHOIS Domain & IP Checker Online - Coming Soon | Zoqonyx",
+    "metaTitle": "WHOIS Domain & IP Checker - Coming Soon | Zoqonyx",
     "metaDesc": "Inspect domain registration dates, registrar details, and expiration countdowns. Join the early access notification list.",
     "content": "## WHOIS Domain & IP Checker\n\nInspect domain registration dates, registrar details, and expiration countdowns.\n\n### Planned Capabilities\n- Client-side acceleration with zero server tracking\n- Intuitive professional workflow\n- 100% free with no subscriptions\n\n### Early Access\nEnter your email above to receive priority notifications when this tool launches."
   },
@@ -2153,7 +2153,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": true,
     "icon": "Layers",
     "order": 153,
-    "metaTitle": "Subdomain Scanner & Finder Online - Coming Soon | Zoqonyx",
+    "metaTitle": "Subdomain Scanner & Finder - Coming Soon | Zoqonyx",
     "metaDesc": "Discover hidden subdomains and DNS asset mappings for security auditing. Join the early access notification list.",
     "content": "## Subdomain Scanner & Finder\n\nDiscover hidden subdomains and DNS asset mappings for security auditing.\n\n### Planned Capabilities\n- Client-side acceleration with zero server tracking\n- Intuitive professional workflow\n- 100% free with no subscriptions\n\n### Early Access\nEnter your email above to receive priority notifications when this tool launches."
   },
@@ -2167,7 +2167,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": true,
     "icon": "Server",
     "order": 154,
-    "metaTitle": "API Mock Server Online - Coming Soon | Zoqonyx",
+    "metaTitle": "API Mock Server - Coming Soon | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Simulate REST and GraphQL endpoints with custom JSON responses and status codes. Join the early access notification list.",
     "content": "## API Mock Server\n\nSimulate REST and GraphQL endpoints with custom JSON responses and status codes.\n\n### Planned Capabilities\n- Client-side acceleration with zero server tracking\n- Intuitive professional workflow\n- 100% free with no subscriptions\n\n### Early Access\nEnter your email above to receive priority notifications when this tool launches."
   },
@@ -2181,7 +2181,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": true,
     "icon": "Workflow",
     "order": 155,
-    "metaTitle": "GraphQL Query Builder Online - Coming Soon | Zoqonyx",
+    "metaTitle": "GraphQL Query Builder - Coming Soon | Zoqonyx",
     "metaDesc": "Visually build, inspect, and test GraphQL queries, mutations, and variables. Join the early access notification list.",
     "content": "## GraphQL Query Builder\n\nVisually build, inspect, and test GraphQL queries, mutations, and variables.\n\n### Planned Capabilities\n- Client-side acceleration with zero server tracking\n- Intuitive professional workflow\n- 100% free with no subscriptions\n\n### Early Access\nEnter your email above to receive priority notifications when this tool launches."
   },
@@ -2195,7 +2195,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": true,
     "icon": "Box",
     "order": 156,
-    "metaTitle": "Dockerfile Generator Online - Coming Soon | Zoqonyx",
+    "metaTitle": "Dockerfile Generator - Coming Soon | Zoqonyx",
     "metaDesc": "Generate production-ready multi-stage Dockerfiles for Node.js, Python, Go, and Rust. Join the early access notification list.",
     "content": "## Dockerfile Generator\n\nGenerate production-ready multi-stage Dockerfiles for Node.js, Python, Go, and Rust.\n\n### Planned Capabilities\n- Client-side acceleration with zero server tracking\n- Intuitive professional workflow\n- 100% free with no subscriptions\n\n### Early Access\nEnter your email above to receive priority notifications when this tool launches."
   },
@@ -2209,7 +2209,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": true,
     "icon": "CheckSquare",
     "order": 157,
-    "metaTitle": "Kubernetes YAML Validator Online - Coming Soon | Zoqonyx",
+    "metaTitle": "Kubernetes YAML Validator - Coming Soon | Zoqonyx",
     "metaDesc": "Validate and lint Kubernetes manifests, deployments, and services against K8s schemas. Join the early access notification list.",
     "content": "## Kubernetes YAML Validator\n\nValidate and lint Kubernetes manifests, deployments, and services against K8s schemas.\n\n### Planned Capabilities\n- Client-side acceleration with zero server tracking\n- Intuitive professional workflow\n- 100% free with no subscriptions\n\n### Early Access\nEnter your email above to receive priority notifications when this tool launches."
   },
@@ -2223,7 +2223,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": true,
     "icon": "FileEdit",
     "order": 158,
-    "metaTitle": "AI Article & Long-Form Writer Online - Coming Soon | Zoqonyx",
+    "metaTitle": "AI Article & Long-Form Writer - Coming Soon | Zoqonyx",
     "metaDesc": "Draft SEO-optimized blog posts, essays, and editorial guides with structured outlines. Join the early access notification list.",
     "content": "## AI Article & Long-Form Writer\n\nDraft SEO-optimized blog posts, essays, and editorial guides with structured outlines.\n\n### Planned Capabilities\n- Client-side acceleration with zero server tracking\n- Intuitive professional workflow\n- 100% free with no subscriptions\n\n### Early Access\nEnter your email above to receive priority notifications when this tool launches."
   },
@@ -2237,7 +2237,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": true,
     "icon": "Briefcase",
     "order": 159,
-    "metaTitle": "AI Resume Builder Online - Coming Soon | Zoqonyx",
+    "metaTitle": "AI Resume Builder - Coming Soon | Zoqonyx Online | Zoqonyx",
     "metaDesc": "Generate ATS-friendly resume bullet points and executive summaries tailored to job descriptions. Join the early access notification list.",
     "content": "## AI Resume Builder\n\nGenerate ATS-friendly resume bullet points and executive summaries tailored to job descriptions.\n\n### Planned Capabilities\n- Client-side acceleration with zero server tracking\n- Intuitive professional workflow\n- 100% free with no subscriptions\n\n### Early Access\nEnter your email above to receive priority notifications when this tool launches."
   },
@@ -2251,7 +2251,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": true,
     "icon": "Mail",
     "order": 160,
-    "metaTitle": "AI Email Generator Online - Coming Soon | Zoqonyx",
+    "metaTitle": "AI Email Generator - Coming Soon | Zoqonyx",
     "metaDesc": "Draft personalized professional emails, follow-ups, and negotiation notes in seconds. Join the early access notification list.",
     "content": "## AI Email Generator\n\nDraft personalized professional emails, follow-ups, and negotiation notes in seconds.\n\n### Planned Capabilities\n- Client-side acceleration with zero server tracking\n- Intuitive professional workflow\n- 100% free with no subscriptions\n\n### Early Access\nEnter your email above to receive priority notifications when this tool launches."
   },
@@ -2265,7 +2265,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": true,
     "icon": "Coins",
     "order": 161,
-    "metaTitle": "Crypto Portfolio Tracker Online - Coming Soon | Zoqonyx",
+    "metaTitle": "Crypto Portfolio Tracker - Coming Soon | Zoqonyx",
     "metaDesc": "Track cryptocurrency holdings, profit-and-loss ratios, and dollar-cost averaging. Join the early access notification list.",
     "content": "## Crypto Portfolio Tracker\n\nTrack cryptocurrency holdings, profit-and-loss ratios, and dollar-cost averaging.\n\n### Planned Capabilities\n- Client-side acceleration with zero server tracking\n- Intuitive professional workflow\n- 100% free with no subscriptions\n\n### Early Access\nEnter your email above to receive priority notifications when this tool launches."
   },
@@ -2279,7 +2279,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": true,
     "icon": "TrendingUp",
     "order": 162,
-    "metaTitle": "SIP Wealth Calculator Online - Coming Soon | Zoqonyx",
+    "metaTitle": "SIP Wealth Calculator - Coming Soon | Zoqonyx",
     "metaDesc": "Calculate long-term compound wealth growth for systematic mutual fund investment plans. Join the early access notification list.",
     "content": "## SIP Wealth Calculator\n\nCalculate long-term compound wealth growth for systematic mutual fund investment plans.\n\n### Planned Capabilities\n- Client-side acceleration with zero server tracking\n- Intuitive professional workflow\n- 100% free with no subscriptions\n\n### Early Access\nEnter your email above to receive priority notifications when this tool launches."
   },
@@ -2293,7 +2293,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": true,
     "icon": "Home",
     "order": 163,
-    "metaTitle": "Mortgage Refinance Calculator Online - Coming Soon | Zoqonyx",
+    "metaTitle": "Mortgage Refinance Calculator - Coming Soon | Zoqonyx",
     "metaDesc": "Calculate interest savings, break-even timelines, and monthly payment reductions. Join the early access notification list.",
     "content": "## Mortgage Refinance Calculator\n\nCalculate interest savings, break-even timelines, and monthly payment reductions.\n\n### Planned Capabilities\n- Client-side acceleration with zero server tracking\n- Intuitive professional workflow\n- 100% free with no subscriptions\n\n### Early Access\nEnter your email above to receive priority notifications when this tool launches."
   },
@@ -2307,7 +2307,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": true,
     "icon": "PiggyBank",
     "order": 164,
-    "metaTitle": "Retirement Corpus Calculator Online - Coming Soon | Zoqonyx",
+    "metaTitle": "Retirement Corpus Calculator - Coming Soon | Zoqonyx",
     "metaDesc": "Calculate required retirement savings and pension distributions adjusted for inflation. Join the early access notification list.",
     "content": "## Retirement Corpus Calculator\n\nCalculate required retirement savings and pension distributions adjusted for inflation.\n\n### Planned Capabilities\n- Client-side acceleration with zero server tracking\n- Intuitive professional workflow\n- 100% free with no subscriptions\n\n### Early Access\nEnter your email above to receive priority notifications when this tool launches."
   },
@@ -2321,7 +2321,7 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": true,
     "icon": "DollarSign",
     "order": 165,
-    "metaTitle": "Freelance Hourly Rate Calculator Online - Coming Soon | Zoqonyx",
+    "metaTitle": "Freelance Hourly Rate Calculator - Coming Soon | Zoqonyx",
     "metaDesc": "Calculate ideal freelance hourly and project rates based on expenses and target salary. Join the early access notification list.",
     "content": "## Freelance Hourly Rate Calculator\n\nCalculate ideal freelance hourly and project rates based on expenses and target salary.\n\n### Planned Capabilities\n- Client-side acceleration with zero server tracking\n- Intuitive professional workflow\n- 100% free with no subscriptions\n\n### Early Access\nEnter your email above to receive priority notifications when this tool launches."
   }

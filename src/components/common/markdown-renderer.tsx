@@ -23,15 +23,15 @@ export function MarkdownRenderer({ content, className }: MarkdownRendererProps) 
         const trimmed = block.trim();
         if (!trimmed) return null;
 
-        // Level 1 Heading
+        // Level 1 Heading in markdown -> render as semantic h2 to preserve single authoritative H1 on page
         if (trimmed.startsWith("# ")) {
           return (
-            <h1
+            <h2
               key={blockIdx}
-              className="text-2xl sm:text-3xl font-heading font-black text-foreground tracking-tight pt-4 pb-1 border-b border-border/60"
+              className="text-2xl sm:text-3xl font-heading font-bold text-foreground tracking-tight pt-4 pb-1 border-b border-border/60"
             >
               {renderInline(trimmed.replace(/^#\s+/, ""))}
-            </h1>
+            </h2>
           );
         }
 

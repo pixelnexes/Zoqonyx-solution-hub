@@ -48,7 +48,7 @@ export const CATEGORIES_LIST: CategoryInfo[] = [
     "icon": "FileArchive",
     "tagline": "High-Performance Browser-Based Image Processing with Zero Server Uploads",
     "description": "Compress, resize, crop, rotate, extract colors, and generate custom QR codes directly in your browser. Fast, 100% private, and losslessly optimized.",
-    "metaTitle": "Free Online Image Tools & Converters (100% Private) | Zoqonyx",
+    "metaTitle": "Free Image Tools & Converters Online | Zoqonyx",
     "metaDesc": "Compress JPEG/PNG/WebP, visually resize photos with drag handles, crop, pick colors with 10x magnifying loupe, and create custom branded QR codes online.",
     "badge": "20+ Image Utilities",
     "heroGradient": "from-teal-500/20 via-emerald-500/15 to-cyan-500/20",
@@ -240,7 +240,7 @@ export const CATEGORIES_LIST: CategoryInfo[] = [
         "tag": "Coming Soon"
       },
       {
-        "slug": "video-compressor-online",
+        "slug": "video-compressor-advanced",
         "name": "Video Compressor Online",
         "description": "In-browser WebAssembly FFmpeg video encoder to reduce MP4, MOV, and WebM video sizes without quality loss.",
         "icon": "Video",
@@ -248,7 +248,7 @@ export const CATEGORIES_LIST: CategoryInfo[] = [
         "tag": "Coming Soon"
       },
       {
-        "slug": "video-to-gif-converter",
+        "slug": "video-to-gif-advanced",
         "name": "Video to GIF Converter",
         "description": "Convert video clips into lightweight, animated GIFs with custom frame rates and resolution controls.",
         "icon": "Film",
@@ -272,7 +272,7 @@ export const CATEGORIES_LIST: CategoryInfo[] = [
         "tag": "Coming Soon"
       },
       {
-        "slug": "screen-recorder-pro",
+        "slug": "screen-recorder",
         "name": "Browser Screen Recorder Pro",
         "description": "Record entire screens, application windows, or browser tabs with microphone audio and instant WebM export.",
         "icon": "Monitor",
@@ -439,7 +439,7 @@ export const CATEGORIES_LIST: CategoryInfo[] = [
         "tag": "Active Free"
       },
       {
-        "slug": "pdf-ocr-converter",
+        "slug": "pdf-ocr",
         "name": "PDF OCR Scanned Text Converter",
         "description": "Recognize and convert scanned PDF documents and image files into searchable, selectable text.",
         "icon": "FileSearch",
@@ -816,7 +816,7 @@ export const CATEGORIES_LIST: CategoryInfo[] = [
         "tag": "Coming Soon"
       },
       {
-        "slug": "ssl-certificate-checker",
+        "slug": "ssl-checker",
         "name": "SSL Certificate Health Checker",
         "description": "Verify SSL/TLS certificate validity, issuer trust chains, expiry alerts, and cipher security.",
         "icon": "ShieldAlert",
@@ -1072,7 +1072,7 @@ export const CATEGORIES_LIST: CategoryInfo[] = [
         "tag": "Coming Soon"
       },
       {
-        "slug": "ai-code-explainer",
+        "slug": "ai-content-writer",
         "name": "AI Code Explainer & Reviewer",
         "description": "Understand complex algorithms, detect edge-case bugs, and get human-readable code explanations.",
         "icon": "Code2",
@@ -1096,7 +1096,7 @@ export const CATEGORIES_LIST: CategoryInfo[] = [
         "tag": "Coming Soon"
       },
       {
-        "slug": "ai-grammar-checker",
+        "slug": "grammar-checker-advanced",
         "name": "AI Grammar & Spelling Checker",
         "description": "Polish essays, articles, and communications with advanced stylistic and grammatical enhancements.",
         "icon": "CheckCircle",

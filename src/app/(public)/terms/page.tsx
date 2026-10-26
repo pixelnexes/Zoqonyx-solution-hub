@@ -6,7 +6,9 @@ import { MarkdownRenderer } from "@/components/common/markdown-renderer";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Terms of Service – Free & Open Tool Usage | Zoqonyx",
+  title: {
+    absolute: "Terms of Service & Usage Policy | Zoqonyx",
+  },
   description:
     "Review the Terms of Service governing the usage of Zoqonyx Solution Hub online tools and services. Free for personal and commercial applications.",
   alternates: {

@@ -1,5 +1,5 @@
 import { prisma } from "@/lib/prisma";
-import { notFound } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 import type { Metadata } from "next";
 import { ToolRenderer } from "@/components/tools/tool-renderer";
 import { ComingSoonToolView } from "@/components/tools/coming-soon-tool-view";
@@ -60,6 +60,9 @@ export async function generateMetadata({ params }: ToolPageProps): Promise<Metad
     } catch {}
 
     const canonical = getDefaultToolBySlug(slug);
+    if (canonical && canonical.slug !== slug) {
+      permanentRedirect(`/tools/${canonical.slug}`);
+    }
     if (canonical) {
       tool = {
         ...canonical,
@@ -125,6 +128,13 @@ export async function generateMetadata({ params }: ToolPageProps): Promise<Metad
 
 export default async function ToolPage({ params }: ToolPageProps) {
   const { slug } = await params;
+
+  // 301 Permanent Redirect for Aliased / Legacy Tool Slugs
+  const canonical = getDefaultToolBySlug(slug);
+  if (canonical && canonical.slug !== slug) {
+    permanentRedirect(`/tools/${canonical.slug}`);
+  }
+
   let tool: any = null;
   let relatedTools: Array<{
     slug: string;
@@ -169,7 +179,6 @@ export default async function ToolPage({ params }: ToolPageProps) {
   }
 
   // Reconcile with canonical catalog to prevent database row corruption mismatches
-  const canonical = getDefaultToolBySlug(slug);
   if (canonical) {
     tool = {
       ...canonical,

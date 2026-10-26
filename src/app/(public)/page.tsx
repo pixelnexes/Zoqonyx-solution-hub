@@ -9,7 +9,7 @@ import { DEFAULT_TOOLS } from "@/lib/default-tools";
 
 export const metadata: Metadata = {
   title: {
-    absolute: "Zoqonyx Solution Hub | 113+ Free Online Tools (100% Client-Side)",
+    absolute: "Zoqonyx Solution Hub | 100+ Free Online Tools",
   },
   description:
     "113+ fast, private client-side digital utilities. Compress images in bulk, format JSON, manipulate PDFs, generate CSS, and compute values instantly with zero cloud uploads.",

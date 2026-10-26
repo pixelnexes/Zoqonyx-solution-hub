@@ -24,7 +24,7 @@ export interface ToolSeoArticle {
 export const TOP_TOOLS_SEO_ARTICLES: Record<string, ToolSeoArticle> = {
   "image-compressor": {
     slug: "image-compressor",
-    title: "Free Image Compressor Online – Reduce Size Without Quality Loss | Zoqonyx",
+    title: "Free Image Compressor Online | Zoqonyx",
     metaDesc:
       "Compress JPG, PNG, and WebP images online for free without uploading files to remote servers. Interactive before-and-after slider, target KB compression, and instant download.",
     howToSteps: [
@@ -117,7 +117,7 @@ When a visitor requests a web page with unoptimized 3MB imagery, the browser's m
 
   "image-resizer": {
     slug: "image-resizer",
-    title: "Free Image Resizer Online – Scale Dimensions & Aspect Ratio | Zoqonyx",
+    title: "Free Image Resizer Online | Zoqonyx",
     metaDesc:
       "Resize images by exact pixel dimensions or percentage scaling with interactive canvas drag handles and aspect ratio lock. 1-click social media presets for Instagram, YouTube, and LinkedIn.",
     howToSteps: [
@@ -209,7 +209,7 @@ Social media algorithms and display networks apply aggressive server-side croppi
 
   "qr-code-generator": {
     slug: "qr-code-generator",
-    title: "Free QR Code Generator Online – Custom Logo & Gradients | Zoqonyx",
+    title: "Free QR Code Generator Online | Zoqonyx",
     metaDesc:
       "Generate custom QR codes with brand logos, color gradients, shaped eyes, and high-resolution 2048px print export. Supports Wi-Fi, vCard, WhatsApp, URL, and text.",
     howToSteps: [
@@ -307,7 +307,7 @@ For example, if a restaurant menu QR code is scanned from a typical reading dist
 
   "json-formatter": {
     slug: "json-formatter",
-    title: "Free JSON Formatter & Validator Online – Pretty Print & Minify | Zoqonyx",
+    title: "Free JSON Formatter & Validator Online | Zoqonyx",
     metaDesc:
       "Format, validate, beautify, and minify JSON data online. Instant syntax error detection with line numbers, 2/4 space indentation, byte statistics, and one-click clipboard copy.",
     howToSteps: [
@@ -402,7 +402,7 @@ Minifying JSON before transmission eliminates this non-semantic overhead, reduci
 
   "border-radius-generator": {
     slug: "border-radius-generator",
-    title: "Free CSS Border Radius Generator – 8-Value Organic Shapes | Zoqonyx",
+    title: "CSS Border Radius Generator | Zoqonyx",
     metaDesc:
       "Visually design 8-value organic CSS border-radius curves. Real-time preview box, one-click CSS copy, organic blob presets, and clean cross-browser code.",
     howToSteps: [
@@ -492,7 +492,7 @@ When horizontal and vertical radii differ, the corner boundary morphs from a cir
 
   "open-graph-generator": {
     slug: "open-graph-generator",
-    title: "Open Graph Generator & Social Card Simulator Online | Zoqonyx",
+    title: "Open Graph Generator & Preview | Zoqonyx",
     metaDesc:
       "Preview and generate Open Graph, Twitter Cards, and Next.js metadata online. Real-time simulators for Twitter/X, Facebook, LinkedIn, Google SERP, and WhatsApp.",
     howToSteps: [
@@ -576,7 +576,7 @@ Without Open Graph tags, crawlers attempt heuristic fallbacks: selecting random 
 
   "ai-watermark-remover": {
     slug: "ai-watermark-remover",
-    title: "AI Watermark Remover Online – Erase Watermarks & Logos Free | Zoqonyx",
+    title: "AI Watermark Remover Online | Zoqonyx",
     metaDesc:
       "Remove watermarks, logos, timestamps, and AI generator labels from photos online for free. High-precision canvas inpainting with 100% client-side privacy.",
     howToSteps: [
@@ -655,7 +655,7 @@ Where $w(p, q)$ accounts for Euclidean distance and gradient alignment. Finally,
 
   "object-remover-photo": {
     slug: "object-remover-photo",
-    title: "Object Remover from Photo Online – Free Magic Photo Eraser | Zoqonyx",
+    title: "Object Remover from Photo Online | Zoqonyx",
     metaDesc:
       "Erase unwanted objects, photobombers, powerlines, and background clutter from photos online for free. Brush over distractions and reconstruct scenes seamlessly.",
     howToSteps: [

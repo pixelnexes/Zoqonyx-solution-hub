@@ -6,7 +6,9 @@ import { MarkdownRenderer } from "@/components/common/markdown-renderer";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy – 100% Client-Side Privacy Guarantee | Zoqonyx",
+  title: {
+    absolute: "Privacy Policy & Security Guarantee | Zoqonyx",
+  },
   description:
     "Read the Zoqonyx Solution Hub privacy policy. Learn why client-side processing guarantees your private media, documents, and code remain 100% confidential.",
   alternates: {

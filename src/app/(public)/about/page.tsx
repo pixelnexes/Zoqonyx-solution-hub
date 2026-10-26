@@ -7,7 +7,9 @@ import { MarkdownRenderer } from "@/components/common/markdown-renderer";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "About Us – 113+ Free Client-Side Tools Mission | Zoqonyx",
+  title: {
+    absolute: "About Zoqonyx Solution Hub | Free Online Tools",
+  },
   description:
     "Learn about Zoqonyx Solution Hub, developed by Newix Tech Solutions. Our mission is to provide 113+ fast, privacy-first, zero-upload digital utilities with no subscriptions.",
   alternates: {

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Logo } from "@/components/layout/logo";
-import { Heart, Mail, ExternalLink, ShieldCheck, Zap, Lock } from "lucide-react";
+import { Heart, Mail, ExternalLink, Zap, Lock } from "lucide-react";
 
 export function Footer() {
   return (
@@ -96,11 +96,6 @@ export function Footer() {
               <li>
                 <Link href="/terms" className="hover:text-brand-cyan transition-colors">
                   Terms of Service
-                </Link>
-              </li>
-              <li>
-                <Link href="/admin" className="hover:text-brand-purple transition-colors inline-flex items-center gap-1">
-                  <ShieldCheck className="w-3.5 h-3.5" /> Admin Portal
                 </Link>
               </li>
             </ul>

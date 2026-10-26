@@ -17,7 +17,9 @@ import {
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "All Free Online Tools Directory (113+ Digital Utilities)",
+  title: {
+    absolute: "Free Online Tools Directory | Zoqonyx",
+  },
   description:
     "Explore 113+ fast, privacy-first, 100% free digital tools. Merge PDFs, compress images in bulk, format code, design CSS, simulate SERPs, and run calculations client-side with zero signups.",
   alternates: {
