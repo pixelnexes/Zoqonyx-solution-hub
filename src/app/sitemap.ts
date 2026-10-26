@@ -1,89 +1,101 @@
 import { MetadataRoute } from "next";
 import { prisma } from "@/lib/prisma";
 import { getAllCategories } from "@/lib/categories";
-import { DEFAULT_TOOLS } from "@/lib/default-tools";
+import { DEFAULT_TOOLS, TOOL_ALIASES } from "@/lib/default-tools";
+
+export const revalidate = 3600; // Cache and revalidate sitemap every hour
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://zoqonyx.com";
+  const now = new Date();
 
-  // Static core routes
+  // 1. Static core routes
   const staticRoutes: MetadataRoute.Sitemap = [
     {
       url: `${baseUrl}`,
-      lastModified: new Date(),
+      lastModified: now,
       changeFrequency: "daily",
       priority: 1.0,
     },
     {
       url: `${baseUrl}/tools`,
-      lastModified: new Date(),
+      lastModified: now,
       changeFrequency: "daily",
       priority: 0.95,
     },
     {
       url: `${baseUrl}/about`,
-      lastModified: new Date(),
+      lastModified: now,
       changeFrequency: "monthly",
       priority: 0.8,
     },
     {
       url: `${baseUrl}/contact`,
-      lastModified: new Date(),
+      lastModified: now,
       changeFrequency: "monthly",
       priority: 0.8,
     },
     {
       url: `${baseUrl}/privacy-policy`,
-      lastModified: new Date(),
+      lastModified: now,
       changeFrequency: "monthly",
       priority: 0.5,
     },
     {
       url: `${baseUrl}/terms`,
-      lastModified: new Date(),
+      lastModified: now,
       changeFrequency: "monthly",
       priority: 0.5,
     },
   ];
 
-  // Category SEO Hub routes
+  // 2. Category SEO Hub routes
   const categoryRoutes: MetadataRoute.Sitemap = getAllCategories().map((cat) => ({
     url: `${baseUrl}/category/${cat.slug}`,
-    lastModified: new Date(),
+    lastModified: now,
     changeFrequency: "weekly",
     priority: 0.85,
   }));
 
+  // 3. Tool routes - compiled safely with canonical resolution
+  const toolMap = new Map<string, { slug: string; updatedAt: Date; isComingSoon: boolean }>();
+
+  // Seed default 165 catalog tools
+  for (const t of DEFAULT_TOOLS) {
+    if (!TOOL_ALIASES[t.slug]) {
+      toolMap.set(t.slug, {
+        slug: t.slug,
+        updatedAt: now,
+        isComingSoon: Boolean(t.isComingSoon),
+      });
+    }
+  }
+
+  // Attempt to enrich with live DB timestamps if database is available
   try {
-    let tools = await prisma.tool.findMany({
+    const dbTools = await prisma.tool.findMany({
       where: { isActive: true },
       select: { slug: true, updatedAt: true, isComingSoon: true },
     });
 
-    const dbSlugs = new Set(tools.map((t) => t.slug));
-    const missing = DEFAULT_TOOLS.filter((t) => !dbSlugs.has(t.slug)).map((t) => ({
-      slug: t.slug,
-      updatedAt: new Date(),
-      isComingSoon: t.isComingSoon,
-    }));
-    const allTools = [...tools, ...missing];
-
-    const toolRoutes: MetadataRoute.Sitemap = allTools.map((tool) => ({
-      url: `${baseUrl}/tools/${tool.slug}`,
-      lastModified: tool.updatedAt,
-      changeFrequency: tool.isComingSoon ? "weekly" : "daily",
-      priority: tool.isComingSoon ? 0.7 : 0.9,
-    }));
-
-    return [...staticRoutes, ...categoryRoutes, ...toolRoutes];
-  } catch (e) {
-    console.error("Error generating sitemap:", e);
-    const fallbackToolRoutes: MetadataRoute.Sitemap = DEFAULT_TOOLS.map((t) => ({
-      url: `${baseUrl}/tools/${t.slug}`,
-      lastModified: new Date(),
-      changeFrequency: t.isComingSoon ? "weekly" : "daily",
-      priority: t.isComingSoon ? 0.7 : 0.9,
-    }));
-    return [...staticRoutes, ...categoryRoutes, ...fallbackToolRoutes];
+    for (const t of dbTools) {
+      const canonicalSlug = TOOL_ALIASES[t.slug] || t.slug;
+      toolMap.set(canonicalSlug, {
+        slug: canonicalSlug,
+        updatedAt: t.updatedAt || now,
+        isComingSoon: Boolean(t.isComingSoon),
+      });
+    }
+  } catch {
+    // Database offline or during build - fallback catalog is already fully populated
   }
+
+  const toolRoutes: MetadataRoute.Sitemap = Array.from(toolMap.values()).map((tool) => ({
+    url: `${baseUrl}/tools/${tool.slug}`,
+    lastModified: tool.updatedAt,
+    changeFrequency: tool.isComingSoon ? "weekly" : "daily",
+    priority: tool.isComingSoon ? 0.7 : 0.9,
+  }));
+
+  return [...staticRoutes, ...categoryRoutes, ...toolRoutes];
 }

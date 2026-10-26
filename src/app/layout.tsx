@@ -3,6 +3,8 @@ import { Inter, Plus_Jakarta_Sans } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
+import { getSiteSettings } from "@/lib/settings";
+import { SiteSettingsProvider } from "@/components/providers/site-settings-provider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -90,16 +92,21 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   const gaId = process.env.NEXT_PUBLIC_GA_ID || "G-PX8V01HHCK";
+  const settings = await getSiteSettings();
+  const iconUrl = settings.icon_path || "/logo/zoqonyx-icon.png";
 
   return (
     <html lang="en" suppressHydrationWarning className={`${inter.variable} ${plusJakarta.variable}`}>
       <head>
+        <link rel="icon" href={iconUrl} />
+        <link rel="shortcut icon" href={iconUrl} />
+        <link rel="apple-touch-icon" href={iconUrl} />
         {gaId && (
           <>
             <Script
@@ -126,11 +133,13 @@ export default function RootLayout({
       <body className="min-h-screen bg-background font-sans antialiased text-foreground flex flex-col">
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
-          enableSystem
+          defaultTheme={settings.default_theme || "system"}
+          enableSystem={settings.default_theme === "system"}
           disableTransitionOnChange
         >
-          {children}
+          <SiteSettingsProvider initialSettings={settings}>
+            {children}
+          </SiteSettingsProvider>
         </ThemeProvider>
       </body>
     </html>

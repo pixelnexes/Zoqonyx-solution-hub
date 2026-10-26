@@ -9,6 +9,9 @@ export interface SiteSettings {
   footer_url: string;
   logo_path: string;
   icon_path: string;
+  light_logo_path: string;
+  dark_logo_path: string;
+  logo_type: string;
   primary_color: string;
   secondary_color: string;
   electric_cyan: string;
@@ -25,6 +28,9 @@ export const defaultSettings: SiteSettings = {
   footer_url: "https://newixtechsolutions.com/",
   logo_path: "/logo/zoqonyx-logo.png",
   icon_path: "/logo/zoqonyx-icon.png",
+  light_logo_path: "/logo/zoqonyx-logo.png",
+  dark_logo_path: "/logo/zoqonyx-logo.png",
+  logo_type: "text",
   primary_color: "#1E3A8A",
   secondary_color: "#2563EB",
   electric_cyan: "#06B6D4",
@@ -33,6 +39,11 @@ export const defaultSettings: SiteSettings = {
 };
 
 export async function getSiteSettings(): Promise<SiteSettings> {
+  const dbUrl = process.env.DATABASE_URL;
+  if (!dbUrl || !dbUrl.startsWith("mysql://")) {
+    return defaultSettings;
+  }
+
   try {
     const settings = await prisma.setting.findMany();
     const map: Record<string, string> = {};
@@ -43,8 +54,7 @@ export async function getSiteSettings(): Promise<SiteSettings> {
       ...defaultSettings,
       ...map,
     };
-  } catch (error) {
-    console.error("Error fetching site settings:", error);
+  } catch {
     return defaultSettings;
   }
 }
