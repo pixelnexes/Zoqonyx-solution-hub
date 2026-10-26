@@ -8,6 +8,7 @@ import { ThemeToggle } from "@/components/theme-toggle";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Zap, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { SessionHistoryModal } from "@/components/common/session-history-modal";
 
 const NAV_CATEGORIES = [
   { label: "Image & Photo Tools", href: "/category/image-tools", icon: "FileArchive" },
@@ -114,6 +115,7 @@ export function Header() {
 
         {/* Right Actions */}
         <div className="hidden md:flex items-center gap-3">
+          <SessionHistoryModal />
           <ThemeToggle />
 
           <Link href="/tools">
@@ -126,6 +128,7 @@ export function Header() {
 
         {/* Mobile Hamburger */}
         <div className="flex md:hidden items-center gap-2">
+          <SessionHistoryModal />
           <ThemeToggle />
           <Button
             variant="ghost"
@@ -186,7 +189,7 @@ export function Header() {
             <Link href="/tools" onClick={() => setMobileMenuOpen(false)}>
               <Button variant="gradient" className="w-full gap-2">
                 <Zap className="w-4 h-4" />
-                <span>Explore 35+ Free Tools</span>
+                <span>Explore 100+ Free Tools</span>
               </Button>
             </Link>
           </div>

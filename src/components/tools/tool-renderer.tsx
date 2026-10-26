@@ -44,13 +44,128 @@ import {
 import { OpenGraphPreviewTool } from "./open-graph-preview-tool";
 import { WatermarkObjectRemoverTool } from "./watermark-object-remover";
 
+// PDF Tools
+import {
+  MergePdfTool,
+  SplitPdfTool,
+  RotatePdfTool,
+  ProtectPdfTool,
+  UnlockPdfTool,
+  AddPageNumbersPdfTool,
+  PdfPageCounterTool,
+  PdfMetadataEditorTool,
+  ImageToPdfTool,
+  PdfToTextTool,
+} from "./pdf-tools";
+
+// Expanded Image Tools
+import {
+  BulkImageCompressorTool,
+  BulkImageResizerTool,
+  FaviconGeneratorTool,
+  PassportPhotoMakerTool,
+  WatermarkAdderTool,
+  ExifDataRemoverTool,
+  SvgToPngConverterTool,
+} from "./image-tools-expanded";
+
+// Expanded Developer Tools
+import {
+  JwtDecoderTool,
+  RegexTesterTool,
+  HtmlBeautifierMinifierTool,
+  CssBeautifierMinifierTool,
+  JsBeautifierMinifierTool,
+  SqlFormatterTool,
+  XmlFormatterTool,
+  CodeToImageTool,
+  TimestampConverterTool,
+  CssToTailwindTool,
+  HtmlEntityEncoderDecoderTool,
+  CronExpressionGeneratorTool,
+  JsonToCsvTool,
+} from "./developer-tools-expanded";
+
+// Expanded Text Tools
+import {
+  CharacterCounterTool,
+  FindAndReplaceTool,
+  RemoveExtraSpacesTool,
+  ReverseTextTool,
+  SlugGeneratorTool,
+  MarkdownTableGeneratorTool,
+  TextToSpeechTool,
+  SpeechToTextTool,
+  ListSorterTool,
+  DuplicateLineRemoverTool,
+  RandomStringGeneratorTool,
+  TextStatisticsTool,
+} from "./text-tools-expanded";
+
+// Expanded CSS Tools
+import {
+  NeumorphismGeneratorTool,
+  ClipPathGeneratorTool,
+  TextShadowGeneratorTool,
+  ColorPaletteGeneratorTool,
+  AspectRatioCalculatorTool,
+} from "./css-tools-expanded";
+
+// Expanded SEO Tools
+import {
+  XmlSitemapGeneratorTool,
+  UtmBuilderTool,
+  KeywordDensityCheckerTool,
+  CanonicalTagCheckerTool,
+  SchemaMarkupGeneratorTool,
+  HttpStatusCodesTool,
+  SerpSnippetPreviewTool,
+} from "./seo-tools-expanded";
+
+// Expanded Calculators
+import {
+  LoanEmiCalculatorTool,
+  TipCalculatorTool,
+  DiscountCalculatorTool,
+  CompoundInterestCalculatorTool,
+  SalesTaxCalculatorTool,
+  NumberToWordsTool,
+  BinaryHexDecimalTool,
+  InvoiceGeneratorTool,
+  GpaCalculatorTool,
+  FuelCostCalculatorTool,
+  TimeDurationCalculatorTool,
+} from "./calculators-expanded";
+
 interface ToolRendererProps {
   slug: string;
 }
 
 export function ToolRenderer({ slug }: ToolRendererProps) {
   switch (slug) {
-    // Image Tools
+    // PDF Tools (10 tools)
+    case "merge-pdf":
+      return <MergePdfTool />;
+    case "split-pdf":
+      return <SplitPdfTool />;
+    case "rotate-pdf":
+      return <RotatePdfTool />;
+    case "protect-pdf":
+      return <ProtectPdfTool />;
+    case "unlock-pdf":
+      return <UnlockPdfTool />;
+    case "add-page-numbers-pdf":
+      return <AddPageNumbersPdfTool />;
+    case "pdf-page-counter":
+      return <PdfPageCounterTool />;
+    case "pdf-metadata-editor":
+      return <PdfMetadataEditorTool />;
+    case "image-to-pdf":
+      return <ImageToPdfTool />;
+    case "pdf-to-text":
+      return <PdfToTextTool />;
+
+    // Image & Photo Tools (16 tools)
     case "image-compressor":
       return <ImageCompressorTool />;
     case "image-resizer":
@@ -70,8 +185,98 @@ export function ToolRenderer({ slug }: ToolRendererProps) {
     case "object-remover-photo":
     case "magic-object-remover":
       return <WatermarkObjectRemoverTool mode="object" />;
+    case "bulk-image-compressor":
+      return <BulkImageCompressorTool />;
+    case "bulk-image-resizer":
+      return <BulkImageResizerTool />;
+    case "favicon-generator":
+      return <FaviconGeneratorTool />;
+    case "passport-photo-maker":
+      return <PassportPhotoMakerTool />;
+    case "watermark-adder":
+      return <WatermarkAdderTool />;
+    case "exif-data-remover":
+      return <ExifDataRemoverTool />;
+    case "svg-to-png-converter":
+      return <SvgToPngConverterTool />;
 
-    // CSS Tools
+    // Developer & Code Tools (20 tools)
+    case "json-formatter":
+      return <JsonFormatterTool />;
+    case "base64-encode-decode":
+      return <Base64EncodeDecodeTool />;
+    case "uuid-generator":
+      return <UuidGeneratorTool />;
+    case "password-generator":
+      return <PasswordGeneratorTool />;
+    case "diff-checker":
+      return <DiffCheckerTool />;
+    case "hash-generator":
+      return <HashGeneratorTool />;
+    case "url-encoder-decoder":
+      return <UrlEncoderDecoderTool />;
+    case "jwt-decoder":
+      return <JwtDecoderTool />;
+    case "regex-tester":
+      return <RegexTesterTool />;
+    case "html-beautifier-minifier":
+      return <HtmlBeautifierMinifierTool />;
+    case "css-beautifier-minifier":
+      return <CssBeautifierMinifierTool />;
+    case "javascript-beautifier-minifier":
+      return <JsBeautifierMinifierTool />;
+    case "sql-formatter":
+      return <SqlFormatterTool />;
+    case "xml-formatter":
+      return <XmlFormatterTool />;
+    case "code-to-image":
+      return <CodeToImageTool />;
+    case "timestamp-converter":
+      return <TimestampConverterTool />;
+    case "css-to-tailwind":
+      return <CssToTailwindTool />;
+    case "html-entity-encoder-decoder":
+      return <HtmlEntityEncoderDecoderTool />;
+    case "cron-expression-generator":
+      return <CronExpressionGeneratorTool />;
+    case "json-to-csv":
+      return <JsonToCsvTool />;
+
+    // Text & Writing Tools (16 tools)
+    case "case-converter":
+      return <CaseConverterTool />;
+    case "markdown-html-converter":
+      return <MarkdownHtmlConverterTool />;
+    case "lorem-ipsum-generator":
+      return <LoremIpsumGeneratorTool />;
+    case "word-counter":
+      return <WordCounterTool />;
+    case "character-counter":
+      return <CharacterCounterTool />;
+    case "find-and-replace":
+      return <FindAndReplaceTool />;
+    case "remove-extra-spaces":
+      return <RemoveExtraSpacesTool />;
+    case "reverse-text":
+      return <ReverseTextTool />;
+    case "slug-generator":
+      return <SlugGeneratorTool />;
+    case "markdown-table-generator":
+      return <MarkdownTableGeneratorTool />;
+    case "text-to-speech":
+      return <TextToSpeechTool />;
+    case "speech-to-text":
+      return <SpeechToTextTool />;
+    case "list-sorter":
+      return <ListSorterTool />;
+    case "duplicate-line-remover":
+      return <DuplicateLineRemoverTool />;
+    case "random-string-generator":
+      return <RandomStringGeneratorTool />;
+    case "text-statistics":
+      return <TextStatisticsTool />;
+
+    // CSS & Design Tools (12 tools)
     case "border-radius-generator":
       return <BorderRadiusGeneratorTool />;
     case "box-shadow-generator":
@@ -86,40 +291,43 @@ export function ToolRenderer({ slug }: ToolRendererProps) {
       return <GlassmorphismGeneratorTool />;
     case "css-grid-generator":
       return <CssGridGeneratorTool />;
+    case "neumorphism-generator":
+      return <NeumorphismGeneratorTool />;
+    case "clip-path-generator":
+      return <ClipPathGeneratorTool />;
+    case "text-shadow-generator":
+      return <TextShadowGeneratorTool />;
+    case "color-palette-generator":
+      return <ColorPaletteGeneratorTool />;
+    case "aspect-ratio-calculator":
+      return <AspectRatioCalculatorTool />;
 
-    // Text & Code Tools
-    case "case-converter":
-      return <CaseConverterTool />;
-    case "json-formatter":
-      return <JsonFormatterTool />;
-    case "base64-encode-decode":
-      return <Base64EncodeDecodeTool />;
-    case "markdown-html-converter":
-      return <MarkdownHtmlConverterTool />;
-    case "uuid-generator":
-      return <UuidGeneratorTool />;
-    case "password-generator":
-      return <PasswordGeneratorTool />;
-    case "lorem-ipsum-generator":
-      return <LoremIpsumGeneratorTool />;
-    case "diff-checker":
-      return <DiffCheckerTool />;
-    case "word-counter":
-      return <WordCounterTool />;
-    case "hash-generator":
-      return <HashGeneratorTool />;
-    case "url-encoder-decoder":
-      return <UrlEncoderDecoderTool />;
-
-    // SEO, Marketing & Calculators
+    // SEO, Webmaster & Marketing Tools (11 tools)
     case "qr-code-generator":
       return <QrCodeGeneratorTool />;
     case "open-graph-generator":
     case "open-graph-preview":
-    case "meta-tags-generator":
       return <OpenGraphPreviewTool />;
+    case "meta-tags-generator":
+      return <MetaTagsGeneratorTool />;
     case "robots-txt-generator":
       return <RobotsTxtGeneratorTool />;
+    case "xml-sitemap-generator":
+      return <XmlSitemapGeneratorTool />;
+    case "utm-builder":
+      return <UtmBuilderTool />;
+    case "keyword-density-checker":
+      return <KeywordDensityCheckerTool />;
+    case "canonical-tag-checker":
+      return <CanonicalTagCheckerTool />;
+    case "schema-markup-generator":
+      return <SchemaMarkupGeneratorTool />;
+    case "http-status-codes":
+      return <HttpStatusCodesTool />;
+    case "serp-snippet-preview":
+      return <SerpSnippetPreviewTool />;
+
+    // Calculators & Math (15 tools)
     case "unit-converter":
       return <UnitConverterTool />;
     case "age-calculator":
@@ -128,6 +336,28 @@ export function ToolRenderer({ slug }: ToolRendererProps) {
       return <PercentageCalculatorTool />;
     case "bmi-calculator":
       return <BmiCalculatorTool />;
+    case "loan-emi-calculator":
+      return <LoanEmiCalculatorTool />;
+    case "tip-calculator":
+      return <TipCalculatorTool />;
+    case "discount-calculator":
+      return <DiscountCalculatorTool />;
+    case "compound-interest-calculator":
+      return <CompoundInterestCalculatorTool />;
+    case "sales-tax-calculator":
+      return <SalesTaxCalculatorTool />;
+    case "number-to-words":
+      return <NumberToWordsTool />;
+    case "binary-hex-decimal":
+      return <BinaryHexDecimalTool />;
+    case "invoice-generator":
+      return <InvoiceGeneratorTool />;
+    case "gpa-calculator":
+      return <GpaCalculatorTool />;
+    case "fuel-cost-calculator":
+      return <FuelCostCalculatorTool />;
+    case "time-duration-calculator":
+      return <TimeDurationCalculatorTool />;
 
     default:
       return (

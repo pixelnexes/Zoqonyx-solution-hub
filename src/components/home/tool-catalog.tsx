@@ -71,7 +71,7 @@ export function ToolCatalog({ initialTools }: ToolCatalogProps) {
           <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" />
           <Input
             type="text"
-            placeholder="Search all 35+ tools (e.g. image compress, border radius, json, age)..."
+            placeholder="Search 100+ free tools (e.g. merge pdf, bulk compress, jwt, regex, emi)..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="pl-10 h-11 bg-background/80 text-base"

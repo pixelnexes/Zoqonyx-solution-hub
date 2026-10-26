@@ -13,8 +13,8 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222 47% 11%;
 
-    --primary: 224 64% 33%; /* #1E3A8A */
-    --primary-foreground: 210 40% 98%;
+    --primary: 173 80% 36%; /* Teal #0D9488 */
+    --primary-foreground: 0 0% 100%;
 
     --secondary: 214 32% 91%;
     --secondary-foreground: 222 47% 11%;
@@ -22,47 +22,47 @@
     --muted: 210 40% 96.1%;
     --muted-foreground: 215 16% 47%;
 
-    --accent: 217 91% 60%; /* #2563EB */
-    --accent-foreground: 210 40% 98%;
+    --accent: 173 80% 40%; /* Electric Teal #14B8A6 */
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 224 64% 33%;
+    --ring: 173 80% 40%;
 
-    --radius: 0.75rem;
+    --radius: 0.625rem; /* Max 10px - sharp, confident, human-designed */
   }
 
   .dark {
-    --background: 222 47% 11%; /* #0F172A Deep Navy */
+    --background: 222 47% 7%; /* #0B0F19 Deep Charcoal Dark Slate */
     --foreground: 210 40% 98%;
 
-    --card: 222 47% 14%;
+    --card: 222 47% 10%; /* #111827 Charcoal Card */
     --card-foreground: 210 40% 98%;
 
-    --popover: 222 47% 14%;
+    --popover: 222 47% 10%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 189 94% 43%; /* Electric Cyan #06B6D4 */
-    --primary-foreground: 222 47% 11%;
+    --primary: 173 80% 40%; /* Electric Teal #14B8A6 */
+    --primary-foreground: 222 47% 7%;
 
-    --secondary: 217 33% 17%;
+    --secondary: 217 33% 15%;
     --secondary-foreground: 210 40% 98%;
 
-    --muted: 217 33% 17%;
+    --muted: 217 33% 14%;
     --muted-foreground: 215 20% 65%;
 
-    --accent: 262 83% 58%; /* Soft Purple #7C3AED */
+    --accent: 12 90% 63%; /* Soft Coral / Amber accent */
     --accent-foreground: 210 40% 98%;
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 217 33% 20%;
-    --input: 217 33% 20%;
-    --ring: 189 94% 43%;
+    --border: 217 33% 16%;
+    --input: 217 33% 16%;
+    --ring: 173 80% 40%;
   }
 }
 
@@ -71,20 +71,20 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground antialiased selection:bg-brand-cyan/20 selection:text-brand-purple;
+    @apply bg-background text-foreground antialiased selection:bg-teal-500/20 selection:text-teal-300;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   }
 }
 
-/* Custom Signature Gradients */
+/* Custom Signature Gradients - Linear/Vercel Technical Style */
 .brand-gradient-text {
-  background: linear-gradient(135deg, #06B6D4 0%, #7C3AED 100%);
+  background: linear-gradient(135deg, #14B8A6 0%, #2DD4BF 50%, #38BDF8 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .brand-gradient-bg {
-  background: linear-gradient(135deg, #06B6D4 0%, #7C3AED 100%);
+  background: linear-gradient(135deg, #14B8A6 0%, #0F766E 100%);
 }
 
 .brand-gradient-border {
@@ -96,7 +96,7 @@
   inset: -1px;
   border-radius: inherit;
   padding: 1px;
-  background: linear-gradient(135deg, #06B6D4 0%, #7C3AED 100%);
+  background: linear-gradient(135deg, #14B8A6 0%, #0F766E 100%);
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;

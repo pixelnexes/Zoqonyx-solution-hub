@@ -1,819 +1,1867 @@
 const { PrismaClient } = require("@prisma/client");
-const bcrypt = require("bcryptjs");
-
 const prisma = new PrismaClient();
 
+const TOOLS = [
+  {
+    "id": "default-merge-pdf",
+    "slug": "merge-pdf",
+    "name": "Merge PDF Files",
+    "description": "Combine multiple PDF documents into a single organized file in seconds with custom page ordering.",
+    "category": "PDF & Documents",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "FileText",
+    "order": 1,
+    "metaTitle": "Free Merge PDF Files Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "Combine multiple PDF documents into a single organized file in seconds with custom page ordering. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online Merge PDF Files\n\nCombine multiple PDF documents into a single organized file in seconds with custom page ordering.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-split-pdf",
+    "slug": "split-pdf",
+    "name": "Split PDF Pages",
+    "description": "Extract specific page ranges or split large PDF documents into smaller independent files.",
+    "category": "PDF & Documents",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "Layers",
+    "order": 2,
+    "metaTitle": "Free Split PDF Pages Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "Extract specific page ranges or split large PDF documents into smaller independent files. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online Split PDF Pages\n\nExtract specific page ranges or split large PDF documents into smaller independent files.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-rotate-pdf",
+    "slug": "rotate-pdf",
+    "name": "Rotate PDF Pages",
+    "description": "Rotate individual or all PDF pages by 90, 180, or 270 degrees with live orientation preview.",
+    "category": "PDF & Documents",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "RotateCw",
+    "order": 3,
+    "metaTitle": "Free Rotate PDF Pages Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "Rotate individual or all PDF pages by 90, 180, or 270 degrees with live orientation preview. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online Rotate PDF Pages\n\nRotate individual or all PDF pages by 90, 180, or 270 degrees with live orientation preview.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-protect-pdf",
+    "slug": "protect-pdf",
+    "name": "Password Protect PDF",
+    "description": "Encrypt and secure confidential PDF documents with custom owner passwords.",
+    "category": "PDF & Documents",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "Lock",
+    "order": 4,
+    "metaTitle": "Free Password Protect PDF Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "Encrypt and secure confidential PDF documents with custom owner passwords. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online Password Protect PDF\n\nEncrypt and secure confidential PDF documents with custom owner passwords.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-unlock-pdf",
+    "slug": "unlock-pdf",
+    "name": "Unlock PDF Document",
+    "description": "Remove security restrictions and passwords from encrypted PDF files for editing and printing.",
+    "category": "PDF & Documents",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "Unlock",
+    "order": 5,
+    "metaTitle": "Free Unlock PDF Document Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "Remove security restrictions and passwords from encrypted PDF files for editing and printing. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online Unlock PDF Document\n\nRemove security restrictions and passwords from encrypted PDF files for editing and printing.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-add-page-numbers-pdf",
+    "slug": "add-page-numbers-pdf",
+    "name": "Add Page Numbers to PDF",
+    "description": "Stamp customized header or footer page numbers across all pages of your PDF document.",
+    "category": "PDF & Documents",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "Hash",
+    "order": 6,
+    "metaTitle": "Free Add Page Numbers to PDF Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "Stamp customized header or footer page numbers across all pages of your PDF document. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online Add Page Numbers to PDF\n\nStamp customized header or footer page numbers across all pages of your PDF document.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-pdf-page-counter",
+    "slug": "pdf-page-counter",
+    "name": "PDF Page Counter",
+    "description": "Instantly inspect total page counts, file dimensions, and structural volumes across bulk PDF files.",
+    "category": "PDF & Documents",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "FileCheck",
+    "order": 7,
+    "metaTitle": "Free PDF Page Counter Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "Instantly inspect total page counts, file dimensions, and structural volumes across bulk PDF files. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online PDF Page Counter\n\nInstantly inspect total page counts, file dimensions, and structural volumes across bulk PDF files.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-pdf-metadata-editor",
+    "slug": "pdf-metadata-editor",
+    "name": "PDF Metadata Editor",
+    "description": "View and edit document title, author, subject, and search keywords inside any PDF document.",
+    "category": "PDF & Documents",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "FileText",
+    "order": 8,
+    "metaTitle": "Free PDF Metadata Editor Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "View and edit document title, author, subject, and search keywords inside any PDF document. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online PDF Metadata Editor\n\nView and edit document title, author, subject, and search keywords inside any PDF document.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-image-to-pdf",
+    "slug": "image-to-pdf",
+    "name": "Image to PDF Converter",
+    "description": "Convert multiple JPG, PNG, and WebP images into a single professional A4 or fitted PDF document.",
+    "category": "PDF & Documents",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "Upload",
+    "order": 9,
+    "metaTitle": "Free Image to PDF Converter Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "Convert multiple JPG, PNG, and WebP images into a single professional A4 or fitted PDF document. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online Image to PDF Converter\n\nConvert multiple JPG, PNG, and WebP images into a single professional A4 or fitted PDF document.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-pdf-to-text",
+    "slug": "pdf-to-text",
+    "name": "PDF to Text Extractor",
+    "description": "Extract raw text content, structural data, and metadata streams directly from PDF files.",
+    "category": "PDF & Documents",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "FileText",
+    "order": 10,
+    "metaTitle": "Free PDF to Text Extractor Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "Extract raw text content, structural data, and metadata streams directly from PDF files. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online PDF to Text Extractor\n\nExtract raw text content, structural data, and metadata streams directly from PDF files.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-image-compressor",
+    "slug": "image-compressor",
+    "name": "Image Compressor",
+    "description": "Compress JPG, PNG, and WebP images client-side with zero quality loss and instant savings preview.",
+    "category": "Image Tools",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "FileArchive",
+    "order": 11,
+    "metaTitle": "Free Image Compressor Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "Compress JPG, PNG, and WebP images client-side with zero quality loss and instant savings preview. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online Image Compressor\n\nCompress JPG, PNG, and WebP images client-side with zero quality loss and instant savings preview.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-image-resizer",
+    "slug": "image-resizer",
+    "name": "Image Resizer",
+    "description": "Resize images by exact pixels or percentage with aspect ratio lock and high-definition smoothing.",
+    "category": "Image Tools",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "Maximize2",
+    "order": 12,
+    "metaTitle": "Free Image Resizer Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "Resize images by exact pixels or percentage with aspect ratio lock and high-definition smoothing. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online Image Resizer\n\nResize images by exact pixels or percentage with aspect ratio lock and high-definition smoothing.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-image-format-converter",
+    "slug": "image-format-converter",
+    "name": "Image Format Converter",
+    "description": "Convert photos seamlessly between PNG, JPG, WebP, AVIF, and BMP formats in your browser.",
+    "category": "Image Tools",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "RefreshCw",
+    "order": 13,
+    "metaTitle": "Free Image Format Converter Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "Convert photos seamlessly between PNG, JPG, WebP, AVIF, and BMP formats in your browser. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online Image Format Converter\n\nConvert photos seamlessly between PNG, JPG, WebP, AVIF, and BMP formats in your browser.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-color-picker-image",
+    "slug": "color-picker-image",
+    "name": "Color Picker from Image",
+    "description": "Extract color palettes and pinpoint exact HEX, RGB, and HSL values from any uploaded image.",
+    "category": "Image Tools",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "Pipette",
+    "order": 14,
+    "metaTitle": "Free Color Picker from Image Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "Extract color palettes and pinpoint exact HEX, RGB, and HSL values from any uploaded image. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online Color Picker from Image\n\nExtract color palettes and pinpoint exact HEX, RGB, and HSL values from any uploaded image.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-image-cropper",
+    "slug": "image-cropper",
+    "name": "Image Cropper",
+    "description": "Crop photos to square 1:1, 16:9, 4:3, or custom dimensions with interactive canvas preview.",
+    "category": "Image Tools",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "Crop",
+    "order": 15,
+    "metaTitle": "Free Image Cropper Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "Crop photos to square 1:1, 16:9, 4:3, or custom dimensions with interactive canvas preview. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online Image Cropper\n\nCrop photos to square 1:1, 16:9, 4:3, or custom dimensions with interactive canvas preview.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-image-rotator-flipper",
+    "slug": "image-rotator-flipper",
+    "name": "Image Rotator & Flipper",
+    "description": "Rotate images by 90, 180, or 270 degrees and flip horizontally or vertically with instant export.",
+    "category": "Image Tools",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "RotateCw",
+    "order": 16,
+    "metaTitle": "Free Image Rotator & Flipper Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "Rotate images by 90, 180, or 270 degrees and flip horizontally or vertically with instant export. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online Image Rotator & Flipper\n\nRotate images by 90, 180, or 270 degrees and flip horizontally or vertically with instant export.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-image-to-base64",
+    "slug": "image-to-base64",
+    "name": "Image to Base64 Converter",
+    "description": "Convert image files into base64 encoded Data URIs ready for embedding directly in HTML or CSS.",
+    "category": "Image Tools",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "Code2",
+    "order": 17,
+    "metaTitle": "Free Image to Base64 Converter Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "Convert image files into base64 encoded Data URIs ready for embedding directly in HTML or CSS. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online Image to Base64 Converter\n\nConvert image files into base64 encoded Data URIs ready for embedding directly in HTML or CSS.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-ai-watermark-remover",
+    "slug": "ai-watermark-remover",
+    "name": "Watermark Remover",
+    "description": "Erase watermarks, logos, timestamps, and unwanted text from photos client-side.",
+    "category": "Image Tools",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "Sparkles",
+    "order": 18,
+    "metaTitle": "Free Watermark Remover Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "Erase watermarks, logos, timestamps, and unwanted text from photos client-side. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online Watermark Remover\n\nErase watermarks, logos, timestamps, and unwanted text from photos client-side.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-object-remover-photo",
+    "slug": "object-remover-photo",
+    "name": "Object Remover",
+    "description": "Remove unwanted objects, photobombers, and defects from pictures with intelligent canvas inpainting.",
+    "category": "Image Tools",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "Sparkles",
+    "order": 19,
+    "metaTitle": "Free Object Remover Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "Remove unwanted objects, photobombers, and defects from pictures with intelligent canvas inpainting. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online Object Remover\n\nRemove unwanted objects, photobombers, and defects from pictures with intelligent canvas inpainting.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-bulk-image-compressor",
+    "slug": "bulk-image-compressor",
+    "name": "Bulk Image Compressor",
+    "description": "Compress up to 50 photos simultaneously in your browser with zip archive export.",
+    "category": "Image Tools",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "FileArchive",
+    "order": 20,
+    "metaTitle": "Free Bulk Image Compressor Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "Compress up to 50 photos simultaneously in your browser with zip archive export. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online Bulk Image Compressor\n\nCompress up to 50 photos simultaneously in your browser with zip archive export.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-bulk-image-resizer",
+    "slug": "bulk-image-resizer",
+    "name": "Bulk Image Resizer",
+    "description": "Batch resize dozens of photos at once with uniform scale percentage and zip download.",
+    "category": "Image Tools",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "Maximize2",
+    "order": 21,
+    "metaTitle": "Free Bulk Image Resizer Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "Batch resize dozens of photos at once with uniform scale percentage and zip download. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online Bulk Image Resizer\n\nBatch resize dozens of photos at once with uniform scale percentage and zip download.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-favicon-generator",
+    "slug": "favicon-generator",
+    "name": "Favicon Generator",
+    "description": "Generate 16x16, 32x32, 48x48, 180x180, and 512x512 website icons plus HTML link tags.",
+    "category": "Image Tools",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "Sparkles",
+    "order": 22,
+    "metaTitle": "Free Favicon Generator Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "Generate 16x16, 32x32, 48x48, 180x180, and 512x512 website icons plus HTML link tags. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online Favicon Generator\n\nGenerate 16x16, 32x32, 48x48, 180x180, and 512x512 website icons plus HTML link tags.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-passport-photo-maker",
+    "slug": "passport-photo-maker",
+    "name": "Passport Photo Maker",
+    "description": "Crop and format photos to US, UK, and Schengen passport specs with 4x6 printable grid sheets.",
+    "category": "Image Tools",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "Crop",
+    "order": 23,
+    "metaTitle": "Free Passport Photo Maker Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "Crop and format photos to US, UK, and Schengen passport specs with 4x6 printable grid sheets. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online Passport Photo Maker\n\nCrop and format photos to US, UK, and Schengen passport specs with 4x6 printable grid sheets.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-watermark-adder",
+    "slug": "watermark-adder",
+    "name": "Watermark Adder",
+    "description": "Stamp customized copyright watermarks, text badges, and branding onto images.",
+    "category": "Image Tools",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "Layers",
+    "order": 24,
+    "metaTitle": "Free Watermark Adder Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "Stamp customized copyright watermarks, text badges, and branding onto images. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online Watermark Adder\n\nStamp customized copyright watermarks, text badges, and branding onto images.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-exif-data-remover",
+    "slug": "exif-data-remover",
+    "name": "EXIF Data Remover",
+    "description": "Strip GPS coordinates, camera serial numbers, and device metadata from photos for privacy.",
+    "category": "Image Tools",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "Shield",
+    "order": 25,
+    "metaTitle": "Free EXIF Data Remover Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "Strip GPS coordinates, camera serial numbers, and device metadata from photos for privacy. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online EXIF Data Remover\n\nStrip GPS coordinates, camera serial numbers, and device metadata from photos for privacy.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-svg-to-png-converter",
+    "slug": "svg-to-png-converter",
+    "name": "SVG to PNG Converter",
+    "description": "Render SVG vector markup into high-definition rasterized PNG images with transparent backgrounds.",
+    "category": "Image Tools",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "Image",
+    "order": 26,
+    "metaTitle": "Free SVG to PNG Converter Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "Render SVG vector markup into high-definition rasterized PNG images with transparent backgrounds. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online SVG to PNG Converter\n\nRender SVG vector markup into high-definition rasterized PNG images with transparent backgrounds.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-json-formatter",
+    "slug": "json-formatter",
+    "name": "JSON Formatter & Validator",
+    "description": "Validate, format, indent, and minify complex JSON documents with real-time error detection.",
+    "category": "Developer & SEO",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "Braces",
+    "order": 27,
+    "metaTitle": "Free JSON Formatter & Validator Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "Validate, format, indent, and minify complex JSON documents with real-time error detection. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online JSON Formatter & Validator\n\nValidate, format, indent, and minify complex JSON documents with real-time error detection.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-base64-encode-decode",
+    "slug": "base64-encode-decode",
+    "name": "Base64 Encoder / Decoder",
+    "description": "Encode and decode text strings, binary data, and payloads using standard Base64 encoding.",
+    "category": "Developer & SEO",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "Binary",
+    "order": 28,
+    "metaTitle": "Free Base64 Encoder / Decoder Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "Encode and decode text strings, binary data, and payloads using standard Base64 encoding. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online Base64 Encoder / Decoder\n\nEncode and decode text strings, binary data, and payloads using standard Base64 encoding.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-uuid-generator",
+    "slug": "uuid-generator",
+    "name": "UUID / GUID Generator",
+    "description": "Generate cryptographically secure Version 4 UUIDs in bulk for database keys and testing.",
+    "category": "Developer & SEO",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "Fingerprint",
+    "order": 29,
+    "metaTitle": "Free UUID / GUID Generator Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "Generate cryptographically secure Version 4 UUIDs in bulk for database keys and testing. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online UUID / GUID Generator\n\nGenerate cryptographically secure Version 4 UUIDs in bulk for database keys and testing.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-password-generator",
+    "slug": "password-generator",
+    "name": "Strong Password Generator",
+    "description": "Create random high-entropy passwords with custom length, symbols, and memorability settings.",
+    "category": "Developer & SEO",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "Lock",
+    "order": 30,
+    "metaTitle": "Free Strong Password Generator Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "Create random high-entropy passwords with custom length, symbols, and memorability settings. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online Strong Password Generator\n\nCreate random high-entropy passwords with custom length, symbols, and memorability settings.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-diff-checker",
+    "slug": "diff-checker",
+    "name": "Text & Code Diff Checker",
+    "description": "Compare two blocks of code or text side-by-side with line-by-line difference highlights.",
+    "category": "Developer & SEO",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "GitCompare",
+    "order": 31,
+    "metaTitle": "Free Text & Code Diff Checker Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "Compare two blocks of code or text side-by-side with line-by-line difference highlights. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online Text & Code Diff Checker\n\nCompare two blocks of code or text side-by-side with line-by-line difference highlights.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-hash-generator",
+    "slug": "hash-generator",
+    "name": "Hash Generator",
+    "description": "Compute secure cryptographic checksums including MD5, SHA-1, SHA-256, and SHA-512.",
+    "category": "Developer & SEO",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "ShieldCheck",
+    "order": 32,
+    "metaTitle": "Free Hash Generator Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "Compute secure cryptographic checksums including MD5, SHA-1, SHA-256, and SHA-512. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online Hash Generator\n\nCompute secure cryptographic checksums including MD5, SHA-1, SHA-256, and SHA-512.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-url-encoder-decoder",
+    "slug": "url-encoder-decoder",
+    "name": "URL Encoder / Decoder",
+    "description": "Safely encode and decode query parameters, special characters, and URI components.",
+    "category": "Developer & SEO",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "Link",
+    "order": 33,
+    "metaTitle": "Free URL Encoder / Decoder Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "Safely encode and decode query parameters, special characters, and URI components. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online URL Encoder / Decoder\n\nSafely encode and decode query parameters, special characters, and URI components.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-jwt-decoder",
+    "slug": "jwt-decoder",
+    "name": "JWT Token Decoder",
+    "description": "Decode JSON Web Tokens, inspect header algorithms, payload claims, and check expiration status.",
+    "category": "Developer & SEO",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "Key",
+    "order": 34,
+    "metaTitle": "Free JWT Token Decoder Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "Decode JSON Web Tokens, inspect header algorithms, payload claims, and check expiration status. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online JWT Token Decoder\n\nDecode JSON Web Tokens, inspect header algorithms, payload claims, and check expiration status.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-regex-tester",
+    "slug": "regex-tester",
+    "name": "Regular Expression Tester",
+    "description": "Test regular expressions interactively with live match highlights, flags, and capture groups.",
+    "category": "Developer & SEO",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "Code2",
+    "order": 35,
+    "metaTitle": "Free Regular Expression Tester Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "Test regular expressions interactively with live match highlights, flags, and capture groups. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online Regular Expression Tester\n\nTest regular expressions interactively with live match highlights, flags, and capture groups.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-html-beautifier-minifier",
+    "slug": "html-beautifier-minifier",
+    "name": "HTML Beautifier & Minifier",
+    "description": "Format, indent, or compress HTML markup with clean spacing and tag preservation.",
+    "category": "Developer & SEO",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "FileCode",
+    "order": 36,
+    "metaTitle": "Free HTML Beautifier & Minifier Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "Format, indent, or compress HTML markup with clean spacing and tag preservation. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online HTML Beautifier & Minifier\n\nFormat, indent, or compress HTML markup with clean spacing and tag preservation.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-css-beautifier-minifier",
+    "slug": "css-beautifier-minifier",
+    "name": "CSS Beautifier & Minifier",
+    "description": "Format messy CSS stylesheets or minify them into lightweight production bundles.",
+    "category": "Developer & SEO",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "Palette",
+    "order": 37,
+    "metaTitle": "Free CSS Beautifier & Minifier Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "Format messy CSS stylesheets or minify them into lightweight production bundles. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online CSS Beautifier & Minifier\n\nFormat messy CSS stylesheets or minify them into lightweight production bundles.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-javascript-beautifier-minifier",
+    "slug": "javascript-beautifier-minifier",
+    "name": "JavaScript Beautifier & Minifier",
+    "description": "Cleanly format and indent JavaScript scripts or minify code to reduce bundle sizes.",
+    "category": "Developer & SEO",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "Terminal",
+    "order": 38,
+    "metaTitle": "Free JavaScript Beautifier & Minifier Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "Cleanly format and indent JavaScript scripts or minify code to reduce bundle sizes. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online JavaScript Beautifier & Minifier\n\nCleanly format and indent JavaScript scripts or minify code to reduce bundle sizes.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-sql-formatter",
+    "slug": "sql-formatter",
+    "name": "SQL Query Formatter",
+    "description": "Beautify complex SQL queries with standard uppercase keywords and readable line breaks.",
+    "category": "Developer & SEO",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "Database",
+    "order": 39,
+    "metaTitle": "Free SQL Query Formatter Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "Beautify complex SQL queries with standard uppercase keywords and readable line breaks. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online SQL Query Formatter\n\nBeautify complex SQL queries with standard uppercase keywords and readable line breaks.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-xml-formatter",
+    "slug": "xml-formatter",
+    "name": "XML Formatter",
+    "description": "Indent, format, and validate hierarchical XML documents with syntax error detection.",
+    "category": "Developer & SEO",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "FileText",
+    "order": 40,
+    "metaTitle": "Free XML Formatter Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "Indent, format, and validate hierarchical XML documents with syntax error detection. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online XML Formatter\n\nIndent, format, and validate hierarchical XML documents with syntax error detection.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-code-to-image",
+    "slug": "code-to-image",
+    "name": "Code Snippet to Image",
+    "description": "Turn source code snippets into beautiful social media screenshots with custom themes and Mac window buttons.",
+    "category": "Developer & SEO",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "Image",
+    "order": 41,
+    "metaTitle": "Free Code Snippet to Image Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "Turn source code snippets into beautiful social media screenshots with custom themes and Mac window buttons. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online Code Snippet to Image\n\nTurn source code snippets into beautiful social media screenshots with custom themes and Mac window buttons.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-timestamp-converter",
+    "slug": "timestamp-converter",
+    "name": "Unix Timestamp Converter",
+    "description": "Convert Unix epoch timestamps to UTC and local date formats, or dates to epoch seconds.",
+    "category": "Developer & SEO",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "Clock",
+    "order": 42,
+    "metaTitle": "Free Unix Timestamp Converter Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "Convert Unix epoch timestamps to UTC and local date formats, or dates to epoch seconds. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online Unix Timestamp Converter\n\nConvert Unix epoch timestamps to UTC and local date formats, or dates to epoch seconds.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-css-to-tailwind",
+    "slug": "css-to-tailwind",
+    "name": "CSS to Tailwind Converter",
+    "description": "Convert standard CSS property declarations into Tailwind CSS utility classes.",
+    "category": "Developer & SEO",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "Code2",
+    "order": 43,
+    "metaTitle": "Free CSS to Tailwind Converter Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "Convert standard CSS property declarations into Tailwind CSS utility classes. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online CSS to Tailwind Converter\n\nConvert standard CSS property declarations into Tailwind CSS utility classes.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-html-entity-encoder-decoder",
+    "slug": "html-entity-encoder-decoder",
+    "name": "HTML Entity Encoder",
+    "description": "Convert special characters into HTML entities and decode numeric entity codes back to text.",
+    "category": "Developer & SEO",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "Type",
+    "order": 44,
+    "metaTitle": "Free HTML Entity Encoder Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "Convert special characters into HTML entities and decode numeric entity codes back to text. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online HTML Entity Encoder\n\nConvert special characters into HTML entities and decode numeric entity codes back to text.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-cron-expression-generator",
+    "slug": "cron-expression-generator",
+    "name": "Cron Expression Generator",
+    "description": "Build cron job schedules visually and get instant plain-English explanations.",
+    "category": "Developer & SEO",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "Calendar",
+    "order": 45,
+    "metaTitle": "Free Cron Expression Generator Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "Build cron job schedules visually and get instant plain-English explanations. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online Cron Expression Generator\n\nBuild cron job schedules visually and get instant plain-English explanations.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-json-to-csv",
+    "slug": "json-to-csv",
+    "name": "JSON to CSV Converter",
+    "description": "Transform structured JSON arrays into clean CSV spreadsheets with one-click export.",
+    "category": "Developer & SEO",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "Table",
+    "order": 46,
+    "metaTitle": "Free JSON to CSV Converter Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "Transform structured JSON arrays into clean CSV spreadsheets with one-click export. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online JSON to CSV Converter\n\nTransform structured JSON arrays into clean CSV spreadsheets with one-click export.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-case-converter",
+    "slug": "case-converter",
+    "name": "Case Converter",
+    "description": "Convert text instantly between UPPERCASE, lowercase, Title Case, camelCase, snake_case, and kebab-case.",
+    "category": "Text & Code",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "CaseSensitive",
+    "order": 47,
+    "metaTitle": "Free Case Converter Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "Convert text instantly between UPPERCASE, lowercase, Title Case, camelCase, snake_case, and kebab-case. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online Case Converter\n\nConvert text instantly between UPPERCASE, lowercase, Title Case, camelCase, snake_case, and kebab-case.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-markdown-html-converter",
+    "slug": "markdown-html-converter",
+    "name": "Markdown to HTML Converter",
+    "description": "Convert Markdown syntax into sanitized HTML markup with real-time rendered preview.",
+    "category": "Text & Code",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "FileCode",
+    "order": 48,
+    "metaTitle": "Free Markdown to HTML Converter Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "Convert Markdown syntax into sanitized HTML markup with real-time rendered preview. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online Markdown to HTML Converter\n\nConvert Markdown syntax into sanitized HTML markup with real-time rendered preview.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-lorem-ipsum-generator",
+    "slug": "lorem-ipsum-generator",
+    "name": "Lorem Ipsum Generator",
+    "description": "Generate custom paragraphs, sentences, or words of classic placeholder filler text.",
+    "category": "Text & Code",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "AlignLeft",
+    "order": 49,
+    "metaTitle": "Free Lorem Ipsum Generator Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "Generate custom paragraphs, sentences, or words of classic placeholder filler text. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online Lorem Ipsum Generator\n\nGenerate custom paragraphs, sentences, or words of classic placeholder filler text.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-word-counter",
+    "slug": "word-counter",
+    "name": "Word Counter",
+    "description": "Count words, characters, sentences, and estimated reading time with real-time text analysis.",
+    "category": "Text & Code",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "FileText",
+    "order": 50,
+    "metaTitle": "Free Word Counter Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "Count words, characters, sentences, and estimated reading time with real-time text analysis. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online Word Counter\n\nCount words, characters, sentences, and estimated reading time with real-time text analysis.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-character-counter",
+    "slug": "character-counter",
+    "name": "Character Counter",
+    "description": "Count characters with and without whitespace, syllables, and speaking durations.",
+    "category": "Text & Code",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "Type",
+    "order": 51,
+    "metaTitle": "Free Character Counter Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "Count characters with and without whitespace, syllables, and speaking durations. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online Character Counter\n\nCount characters with and without whitespace, syllables, and speaking durations.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-find-and-replace",
+    "slug": "find-and-replace",
+    "name": "Find and Replace Text",
+    "description": "Search and replace words or regex patterns across text documents in real time.",
+    "category": "Text & Code",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "Search",
+    "order": 52,
+    "metaTitle": "Free Find and Replace Text Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "Search and replace words or regex patterns across text documents in real time. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online Find and Replace Text\n\nSearch and replace words or regex patterns across text documents in real time.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-remove-extra-spaces",
+    "slug": "remove-extra-spaces",
+    "name": "Remove Extra Spaces",
+    "description": "Strip multiple consecutive spaces, trailing whitespace, and blank lines from text.",
+    "category": "Text & Code",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "Scissors",
+    "order": 53,
+    "metaTitle": "Free Remove Extra Spaces Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "Strip multiple consecutive spaces, trailing whitespace, and blank lines from text. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online Remove Extra Spaces\n\nStrip multiple consecutive spaces, trailing whitespace, and blank lines from text.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-reverse-text",
+    "slug": "reverse-text",
+    "name": "Reverse Text Generator",
+    "description": "Reverse text character by character, word by word, or line by line.",
+    "category": "Text & Code",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "RotateCcw",
+    "order": 54,
+    "metaTitle": "Free Reverse Text Generator Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "Reverse text character by character, word by word, or line by line. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online Reverse Text Generator\n\nReverse text character by character, word by word, or line by line.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-slug-generator",
+    "slug": "slug-generator",
+    "name": "URL Slug Generator",
+    "description": "Convert article titles and headlines into clean, search-engine-friendly URL slugs.",
+    "category": "Text & Code",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "Link",
+    "order": 55,
+    "metaTitle": "Free URL Slug Generator Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "Convert article titles and headlines into clean, search-engine-friendly URL slugs. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online URL Slug Generator\n\nConvert article titles and headlines into clean, search-engine-friendly URL slugs.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-markdown-table-generator",
+    "slug": "markdown-table-generator",
+    "name": "Markdown Table Generator",
+    "description": "Interactive visual table builder that outputs formatted Markdown and HTML table code.",
+    "category": "Text & Code",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "Table",
+    "order": 56,
+    "metaTitle": "Free Markdown Table Generator Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "Interactive visual table builder that outputs formatted Markdown and HTML table code. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online Markdown Table Generator\n\nInteractive visual table builder that outputs formatted Markdown and HTML table code.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-text-to-speech",
+    "slug": "text-to-speech",
+    "name": "Text to Speech",
+    "description": "Listen to natural speech playback of any text with customizable voice pitch and speed.",
+    "category": "Text & Code",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "Volume2",
+    "order": 57,
+    "metaTitle": "Free Text to Speech Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "Listen to natural speech playback of any text with customizable voice pitch and speed. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online Text to Speech\n\nListen to natural speech playback of any text with customizable voice pitch and speed.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-speech-to-text",
+    "slug": "speech-to-text",
+    "name": "Speech to Text Dictation",
+    "description": "Transcribe spoken words from your microphone directly into text using web speech recognition.",
+    "category": "Text & Code",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "Mic",
+    "order": 58,
+    "metaTitle": "Free Speech to Text Dictation Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "Transcribe spoken words from your microphone directly into text using web speech recognition. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online Speech to Text Dictation\n\nTranscribe spoken words from your microphone directly into text using web speech recognition.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-list-sorter",
+    "slug": "list-sorter",
+    "name": "List Sorter",
+    "description": "Sort text lists alphabetically (A-Z or Z-A), by length, or randomize order.",
+    "category": "Text & Code",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "ArrowUpDown",
+    "order": 59,
+    "metaTitle": "Free List Sorter Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "Sort text lists alphabetically (A-Z or Z-A), by length, or randomize order. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online List Sorter\n\nSort text lists alphabetically (A-Z or Z-A), by length, or randomize order.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-duplicate-line-remover",
+    "slug": "duplicate-line-remover",
+    "name": "Duplicate Line Remover",
+    "description": "Detect and remove duplicate lines from lists and datasets while preserving line order.",
+    "category": "Text & Code",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "Trash2",
+    "order": 60,
+    "metaTitle": "Free Duplicate Line Remover Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "Detect and remove duplicate lines from lists and datasets while preserving line order. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online Duplicate Line Remover\n\nDetect and remove duplicate lines from lists and datasets while preserving line order.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-random-string-generator",
+    "slug": "random-string-generator",
+    "name": "Random String Generator",
+    "description": "Generate random strings, cryptographic salts, and test tokens with customizable characters.",
+    "category": "Text & Code",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "Sparkles",
+    "order": 61,
+    "metaTitle": "Free Random String Generator Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "Generate random strings, cryptographic salts, and test tokens with customizable characters. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online Random String Generator\n\nGenerate random strings, cryptographic salts, and test tokens with customizable characters.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-text-statistics",
+    "slug": "text-statistics",
+    "name": "Text Readability Statistics",
+    "description": "Calculate Flesch Reading Ease scores, average sentence lengths, and vocabulary metrics.",
+    "category": "Text & Code",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "BookOpen",
+    "order": 62,
+    "metaTitle": "Free Text Readability Statistics Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "Calculate Flesch Reading Ease scores, average sentence lengths, and vocabulary metrics. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online Text Readability Statistics\n\nCalculate Flesch Reading Ease scores, average sentence lengths, and vocabulary metrics.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-border-radius-generator",
+    "slug": "border-radius-generator",
+    "name": "Border Radius Generator",
+    "description": "Design custom 8-value rounded corners visually and copy clean CSS border-radius code.",
+    "category": "CSS & Design",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "Square",
+    "order": 63,
+    "metaTitle": "Free Border Radius Generator Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "Design custom 8-value rounded corners visually and copy clean CSS border-radius code. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online Border Radius Generator\n\nDesign custom 8-value rounded corners visually and copy clean CSS border-radius code.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-box-shadow-generator",
+    "slug": "box-shadow-generator",
+    "name": "Box Shadow Generator",
+    "description": "Create complex multi-layer CSS drop shadows and inset glow effects with live preview.",
+    "category": "CSS & Design",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "Layers",
+    "order": 64,
+    "metaTitle": "Free Box Shadow Generator Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "Create complex multi-layer CSS drop shadows and inset glow effects with live preview. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online Box Shadow Generator\n\nCreate complex multi-layer CSS drop shadows and inset glow effects with live preview.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-css-gradient-generator",
+    "slug": "css-gradient-generator",
+    "name": "CSS Gradient Generator",
+    "description": "Design linear, radial, and multi-color gradients with angle controls and CSS output.",
+    "category": "CSS & Design",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "Sparkles",
+    "order": 65,
+    "metaTitle": "Free CSS Gradient Generator Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "Design linear, radial, and multi-color gradients with angle controls and CSS output. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online CSS Gradient Generator\n\nDesign linear, radial, and multi-color gradients with angle controls and CSS output.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-button-generator",
+    "slug": "button-generator",
+    "name": "CSS Button Generator",
+    "description": "Style modern buttons with hover transitions, padding, shadows, and copy ready-to-use CSS.",
+    "category": "CSS & Design",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "MousePointer",
+    "order": 66,
+    "metaTitle": "Free CSS Button Generator Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "Style modern buttons with hover transitions, padding, shadows, and copy ready-to-use CSS. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online CSS Button Generator\n\nStyle modern buttons with hover transitions, padding, shadows, and copy ready-to-use CSS.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-flexbox-playground",
+    "slug": "flexbox-playground",
+    "name": "Flexbox Playground",
+    "description": "Interactive visual simulator to master CSS flex directions, alignments, wraps, and gaps.",
+    "category": "CSS & Design",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "Layout",
+    "order": 67,
+    "metaTitle": "Free Flexbox Playground Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "Interactive visual simulator to master CSS flex directions, alignments, wraps, and gaps. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online Flexbox Playground\n\nInteractive visual simulator to master CSS flex directions, alignments, wraps, and gaps.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-glassmorphism-generator",
+    "slug": "glassmorphism-generator",
+    "name": "Glassmorphism Generator",
+    "description": "Generate frosted-glass UI styling with backdrop filters, border transparency, and reflection shadows.",
+    "category": "CSS & Design",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "Eye",
+    "order": 68,
+    "metaTitle": "Free Glassmorphism Generator Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "Generate frosted-glass UI styling with backdrop filters, border transparency, and reflection shadows. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online Glassmorphism Generator\n\nGenerate frosted-glass UI styling with backdrop filters, border transparency, and reflection shadows.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-css-grid-generator",
+    "slug": "css-grid-generator",
+    "name": "CSS Grid Generator",
+    "description": "Visually create CSS grid layouts with dynamic columns, rows, and gaps.",
+    "category": "CSS & Design",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "Grid",
+    "order": 69,
+    "metaTitle": "Free CSS Grid Generator Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "Visually create CSS grid layouts with dynamic columns, rows, and gaps. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online CSS Grid Generator\n\nVisually create CSS grid layouts with dynamic columns, rows, and gaps.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-neumorphism-generator",
+    "slug": "neumorphism-generator",
+    "name": "Neumorphism Generator",
+    "description": "Generate soft UI neumorphic shadow elevations with inset and flat surface toggles.",
+    "category": "CSS & Design",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "Layers",
+    "order": 70,
+    "metaTitle": "Free Neumorphism Generator Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "Generate soft UI neumorphic shadow elevations with inset and flat surface toggles. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online Neumorphism Generator\n\nGenerate soft UI neumorphic shadow elevations with inset and flat surface toggles.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-clip-path-generator",
+    "slug": "clip-path-generator",
+    "name": "CSS Clip Path Generator",
+    "description": "Design polygons, circles, stars, and complex geometric shapes using CSS clip-path.",
+    "category": "CSS & Design",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "Crop",
+    "order": 71,
+    "metaTitle": "Free CSS Clip Path Generator Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "Design polygons, circles, stars, and complex geometric shapes using CSS clip-path. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online CSS Clip Path Generator\n\nDesign polygons, circles, stars, and complex geometric shapes using CSS clip-path.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-text-shadow-generator",
+    "slug": "text-shadow-generator",
+    "name": "Text Shadow Generator",
+    "description": "Create vibrant neon glows, 3D text effects, and deep typographic shadows with CSS code.",
+    "category": "CSS & Design",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "Type",
+    "order": 72,
+    "metaTitle": "Free Text Shadow Generator Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "Create vibrant neon glows, 3D text effects, and deep typographic shadows with CSS code. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online Text Shadow Generator\n\nCreate vibrant neon glows, 3D text effects, and deep typographic shadows with CSS code.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-color-palette-generator",
+    "slug": "color-palette-generator",
+    "name": "Color Palette Generator",
+    "description": "Generate cohesive color palettes with copy-ready HEX codes and contrast previews.",
+    "category": "CSS & Design",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "Palette",
+    "order": 73,
+    "metaTitle": "Free Color Palette Generator Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "Generate cohesive color palettes with copy-ready HEX codes and contrast previews. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online Color Palette Generator\n\nGenerate cohesive color palettes with copy-ready HEX codes and contrast previews.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-aspect-ratio-calculator",
+    "slug": "aspect-ratio-calculator",
+    "name": "Aspect Ratio Calculator",
+    "description": "Calculate 16:9, 4:3, 1:1, and 21:9 dimensions and copy CSS aspect-ratio properties.",
+    "category": "CSS & Design",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "Maximize2",
+    "order": 74,
+    "metaTitle": "Free Aspect Ratio Calculator Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "Calculate 16:9, 4:3, 1:1, and 21:9 dimensions and copy CSS aspect-ratio properties. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online Aspect Ratio Calculator\n\nCalculate 16:9, 4:3, 1:1, and 21:9 dimensions and copy CSS aspect-ratio properties.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-qr-code-generator",
+    "slug": "qr-code-generator",
+    "name": "QR Code Generator",
+    "description": "Create customized, high-resolution QR codes for websites, text, and Wi-Fi credentials.",
+    "category": "Developer & SEO",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "QrCode",
+    "order": 75,
+    "metaTitle": "Free QR Code Generator Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "Create customized, high-resolution QR codes for websites, text, and Wi-Fi credentials. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online QR Code Generator\n\nCreate customized, high-resolution QR codes for websites, text, and Wi-Fi credentials.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-open-graph-preview",
+    "slug": "open-graph-preview",
+    "name": "Open Graph Generator & Preview",
+    "description": "Generate Open Graph and Twitter Card meta tags with live social media card previews.",
+    "category": "Developer & SEO",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "Globe",
+    "order": 76,
+    "metaTitle": "Free Open Graph Generator & Preview Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "Generate Open Graph and Twitter Card meta tags with live social media card previews. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online Open Graph Generator & Preview\n\nGenerate Open Graph and Twitter Card meta tags with live social media card previews.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-meta-tags-generator",
+    "slug": "meta-tags-generator",
+    "name": "Meta Tags Generator",
+    "description": "Generate comprehensive search engine meta tags for optimal Google indexing.",
+    "category": "Developer & SEO",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "FileCode",
+    "order": 77,
+    "metaTitle": "Free Meta Tags Generator Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "Generate comprehensive search engine meta tags for optimal Google indexing. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online Meta Tags Generator\n\nGenerate comprehensive search engine meta tags for optimal Google indexing.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-robots-txt-generator",
+    "slug": "robots-txt-generator",
+    "name": "Robots.txt Generator",
+    "description": "Create customized robots.txt files to manage search engine crawler crawl budgets.",
+    "category": "Developer & SEO",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "Bot",
+    "order": 78,
+    "metaTitle": "Free Robots.txt Generator Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "Create customized robots.txt files to manage search engine crawler crawl budgets. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online Robots.txt Generator\n\nCreate customized robots.txt files to manage search engine crawler crawl budgets.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-xml-sitemap-generator",
+    "slug": "xml-sitemap-generator",
+    "name": "XML Sitemap Generator",
+    "description": "Build search-engine-ready XML sitemaps from URL lists with change frequencies and priorities.",
+    "category": "Developer & SEO",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "FileText",
+    "order": 79,
+    "metaTitle": "Free XML Sitemap Generator Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "Build search-engine-ready XML sitemaps from URL lists with change frequencies and priorities. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online XML Sitemap Generator\n\nBuild search-engine-ready XML sitemaps from URL lists with change frequencies and priorities.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-utm-builder",
+    "slug": "utm-builder",
+    "name": "Google Analytics UTM Builder",
+    "description": "Build trackable campaign URLs with source, medium, campaign, and content parameters.",
+    "category": "Developer & SEO",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "Link",
+    "order": 80,
+    "metaTitle": "Free Google Analytics UTM Builder Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "Build trackable campaign URLs with source, medium, campaign, and content parameters. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online Google Analytics UTM Builder\n\nBuild trackable campaign URLs with source, medium, campaign, and content parameters.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-keyword-density-checker",
+    "slug": "keyword-density-checker",
+    "name": "Keyword Density Checker",
+    "description": "Analyze word frequency and keyword density percentages to prevent search engine over-optimization.",
+    "category": "Developer & SEO",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "Search",
+    "order": 81,
+    "metaTitle": "Free Keyword Density Checker Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "Analyze word frequency and keyword density percentages to prevent search engine over-optimization. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online Keyword Density Checker\n\nAnalyze word frequency and keyword density percentages to prevent search engine over-optimization.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-canonical-tag-checker",
+    "slug": "canonical-tag-checker",
+    "name": "Canonical Tag Generator",
+    "description": "Format and validate search engine canonical link tags to resolve duplicate content issues.",
+    "category": "Developer & SEO",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "CheckCircle",
+    "order": 82,
+    "metaTitle": "Free Canonical Tag Generator Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "Format and validate search engine canonical link tags to resolve duplicate content issues. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online Canonical Tag Generator\n\nFormat and validate search engine canonical link tags to resolve duplicate content issues.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-schema-markup-generator",
+    "slug": "schema-markup-generator",
+    "name": "Schema Markup Generator",
+    "description": "Generate structured JSON-LD schema code for FAQ pages, articles, and corporate entities.",
+    "category": "Developer & SEO",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "Braces",
+    "order": 83,
+    "metaTitle": "Free Schema Markup Generator Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "Generate structured JSON-LD schema code for FAQ pages, articles, and corporate entities. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online Schema Markup Generator\n\nGenerate structured JSON-LD schema code for FAQ pages, articles, and corporate entities.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-http-status-codes",
+    "slug": "http-status-codes",
+    "name": "HTTP Status Codes Diagnostic",
+    "description": "Look up 1xx to 5xx HTTP response codes with clear definitions and SEO implications.",
+    "category": "Developer & SEO",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "HelpCircle",
+    "order": 84,
+    "metaTitle": "Free HTTP Status Codes Diagnostic Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "Look up 1xx to 5xx HTTP response codes with clear definitions and SEO implications. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online HTTP Status Codes Diagnostic\n\nLook up 1xx to 5xx HTTP response codes with clear definitions and SEO implications.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-serp-snippet-preview",
+    "slug": "serp-snippet-preview",
+    "name": "Google SERP Snippet Simulator",
+    "description": "Preview how your page title, meta description, and URL will appear in Google search results.",
+    "category": "Developer & SEO",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "Search",
+    "order": 85,
+    "metaTitle": "Free Google SERP Snippet Simulator Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "Preview how your page title, meta description, and URL will appear in Google search results. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online Google SERP Snippet Simulator\n\nPreview how your page title, meta description, and URL will appear in Google search results.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-unit-converter",
+    "slug": "unit-converter",
+    "name": "Universal Unit Converter",
+    "description": "Convert units of length, mass, temperature, area, volume, and digital data storage.",
+    "category": "Calculators",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "Scale",
+    "order": 86,
+    "metaTitle": "Free Universal Unit Converter Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "Convert units of length, mass, temperature, area, volume, and digital data storage. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online Universal Unit Converter\n\nConvert units of length, mass, temperature, area, volume, and digital data storage.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-age-calculator",
+    "slug": "age-calculator",
+    "name": "Age Calculator",
+    "description": "Calculate your exact age in years, months, weeks, days, hours, and minutes.",
+    "category": "Calculators",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "Calendar",
+    "order": 87,
+    "metaTitle": "Free Age Calculator Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "Calculate your exact age in years, months, weeks, days, hours, and minutes. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online Age Calculator\n\nCalculate your exact age in years, months, weeks, days, hours, and minutes.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-percentage-calculator",
+    "slug": "percentage-calculator",
+    "name": "Percentage Calculator",
+    "description": "Compute percentages, fractional differences, percentage increases, and discounts.",
+    "category": "Calculators",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "Percent",
+    "order": 88,
+    "metaTitle": "Free Percentage Calculator Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "Compute percentages, fractional differences, percentage increases, and discounts. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online Percentage Calculator\n\nCompute percentages, fractional differences, percentage increases, and discounts.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-bmi-calculator",
+    "slug": "bmi-calculator",
+    "name": "BMI Health Calculator",
+    "description": "Calculate Body Mass Index (BMI) and discover healthy weight ranges based on height.",
+    "category": "Calculators",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "Activity",
+    "order": 89,
+    "metaTitle": "Free BMI Health Calculator Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "Calculate Body Mass Index (BMI) and discover healthy weight ranges based on height. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online BMI Health Calculator\n\nCalculate Body Mass Index (BMI) and discover healthy weight ranges based on height.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-loan-emi-calculator",
+    "slug": "loan-emi-calculator",
+    "name": "Loan EMI Calculator",
+    "description": "Calculate monthly installments, total interest, and repayment schedules for loans.",
+    "category": "Calculators",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "DollarSign",
+    "order": 90,
+    "metaTitle": "Free Loan EMI Calculator Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "Calculate monthly installments, total interest, and repayment schedules for loans. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online Loan EMI Calculator\n\nCalculate monthly installments, total interest, and repayment schedules for loans.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-tip-calculator",
+    "slug": "tip-calculator",
+    "name": "Tip Calculator",
+    "description": "Split restaurant bills evenly and calculate custom tip percentages per person.",
+    "category": "Calculators",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "Receipt",
+    "order": 91,
+    "metaTitle": "Free Tip Calculator Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "Split restaurant bills evenly and calculate custom tip percentages per person. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online Tip Calculator\n\nSplit restaurant bills evenly and calculate custom tip percentages per person.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-discount-calculator",
+    "slug": "discount-calculator",
+    "name": "Discount & Sale Calculator",
+    "description": "Calculate sale prices, final costs, and total dollars saved during retail shopping.",
+    "category": "Calculators",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "Percent",
+    "order": 92,
+    "metaTitle": "Free Discount & Sale Calculator Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "Calculate sale prices, final costs, and total dollars saved during retail shopping. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online Discount & Sale Calculator\n\nCalculate sale prices, final costs, and total dollars saved during retail shopping.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-compound-interest-calculator",
+    "slug": "compound-interest-calculator",
+    "name": "Compound Interest Calculator",
+    "description": "Calculate long-term investment growth with recurring monthly contributions.",
+    "category": "Calculators",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "TrendingUp",
+    "order": 93,
+    "metaTitle": "Free Compound Interest Calculator Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "Calculate long-term investment growth with recurring monthly contributions. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online Compound Interest Calculator\n\nCalculate long-term investment growth with recurring monthly contributions.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-sales-tax-calculator",
+    "slug": "sales-tax-calculator",
+    "name": "Sales Tax Calculator",
+    "description": "Calculate gross totals and net tax amounts based on local VAT and sales tax rates.",
+    "category": "Calculators",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "Receipt",
+    "order": 94,
+    "metaTitle": "Free Sales Tax Calculator Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "Calculate gross totals and net tax amounts based on local VAT and sales tax rates. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online Sales Tax Calculator\n\nCalculate gross totals and net tax amounts based on local VAT and sales tax rates.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-number-to-words",
+    "slug": "number-to-words",
+    "name": "Number to Words Converter",
+    "description": "Convert numeric currency figures and integers into formal English words.",
+    "category": "Calculators",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "Type",
+    "order": 95,
+    "metaTitle": "Free Number to Words Converter Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "Convert numeric currency figures and integers into formal English words. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online Number to Words Converter\n\nConvert numeric currency figures and integers into formal English words.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-binary-hex-decimal",
+    "slug": "binary-hex-decimal",
+    "name": "Binary / Hex / Decimal Calculator",
+    "description": "Convert numbers across Decimal, Binary, Hexadecimal, and Octal bases simultaneously.",
+    "category": "Calculators",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "Binary",
+    "order": 96,
+    "metaTitle": "Free Binary / Hex / Decimal Calculator Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "Convert numbers across Decimal, Binary, Hexadecimal, and Octal bases simultaneously. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online Binary / Hex / Decimal Calculator\n\nConvert numbers across Decimal, Binary, Hexadecimal, and Octal bases simultaneously.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-invoice-generator",
+    "slug": "invoice-generator",
+    "name": "Client Invoice Generator",
+    "description": "Create and print professional client invoices with itemized line totals and tax.",
+    "category": "Calculators",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "FileText",
+    "order": 97,
+    "metaTitle": "Free Client Invoice Generator Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "Create and print professional client invoices with itemized line totals and tax. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online Client Invoice Generator\n\nCreate and print professional client invoices with itemized line totals and tax.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-gpa-calculator",
+    "slug": "gpa-calculator",
+    "name": "College GPA Calculator",
+    "description": "Calculate semester and cumulative Grade Point Averages across custom credit courses.",
+    "category": "Calculators",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "GraduationCap",
+    "order": 98,
+    "metaTitle": "Free College GPA Calculator Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "Calculate semester and cumulative Grade Point Averages across custom credit courses. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online College GPA Calculator\n\nCalculate semester and cumulative Grade Point Averages across custom credit courses.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-fuel-cost-calculator",
+    "slug": "fuel-cost-calculator",
+    "name": "Trip Fuel Cost Calculator",
+    "description": "Estimate road trip gasoline expenses using distance, vehicle fuel economy, and gas prices.",
+    "category": "Calculators",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "Car",
+    "order": 99,
+    "metaTitle": "Free Trip Fuel Cost Calculator Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "Estimate road trip gasoline expenses using distance, vehicle fuel economy, and gas prices. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online Trip Fuel Cost Calculator\n\nEstimate road trip gasoline expenses using distance, vehicle fuel economy, and gas prices.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-time-duration-calculator",
+    "slug": "time-duration-calculator",
+    "name": "Time Duration Calculator",
+    "description": "Calculate exact hours and minutes elapsed between two times or dates.",
+    "category": "Calculators",
+    "isActive": true,
+    "isComingSoon": false,
+    "icon": "Clock",
+    "order": 100,
+    "metaTitle": "Free Time Duration Calculator Online (100% Free & Private) | Zoqonyx",
+    "metaDesc": "Calculate exact hours and minutes elapsed between two times or dates. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Free Online Time Duration Calculator\n\nCalculate exact hours and minutes elapsed between two times or dates.\n\n### Key Benefits\n- **100% Free**: No paywalls, daily quotas, or premium subscriptions.\n- **Zero Server Uploads**: Processed locally inside your browser for total confidentiality.\n- **Sub-Millisecond Speed**: Runs directly on your device CPU/GPU with no server latency.\n- **No Login Required**: Open the page and get results immediately."
+  },
+  {
+    "id": "default-ai-background-remover",
+    "slug": "ai-background-remover",
+    "name": "AI Background Remover",
+    "description": "Neural edge-detection model to remove backgrounds from portraits and product photography with 100% precision.",
+    "category": "Image Tools",
+    "isActive": true,
+    "isComingSoon": true,
+    "icon": "Sparkles",
+    "order": 101,
+    "metaTitle": "AI Background Remover Online - Coming Soon | Zoqonyx",
+    "metaDesc": "Neural edge-detection model to remove backgrounds from portraits and product photography with 100% precision. Join the early access notification list.",
+    "content": "## AI Background Remover\n\nNeural edge-detection model to remove backgrounds from portraits and product photography with 100% precision.\n\n### Planned Capabilities\n- Industry-leading processing quality with zero watermarks.\n- High-speed client-side and cloud acceleration.\n- Enterprise-grade privacy and data protection.\n\n### Early Access\nEnter your email above to receive priority notifications when this tool goes live."
+  },
+  {
+    "id": "default-video-compressor-online",
+    "slug": "video-compressor-online",
+    "name": "Video Compressor Online",
+    "description": "In-browser WebAssembly FFmpeg video encoder to reduce MP4, MOV, and WebM video sizes without quality loss.",
+    "category": "Image Tools",
+    "isActive": true,
+    "isComingSoon": true,
+    "icon": "Video",
+    "order": 102,
+    "metaTitle": "Video Compressor Online Online - Coming Soon | Zoqonyx",
+    "metaDesc": "In-browser WebAssembly FFmpeg video encoder to reduce MP4, MOV, and WebM video sizes without quality loss. Join the early access notification list.",
+    "content": "## Video Compressor Online\n\nIn-browser WebAssembly FFmpeg video encoder to reduce MP4, MOV, and WebM video sizes without quality loss.\n\n### Planned Capabilities\n- Industry-leading processing quality with zero watermarks.\n- High-speed client-side and cloud acceleration.\n- Enterprise-grade privacy and data protection.\n\n### Early Access\nEnter your email above to receive priority notifications when this tool goes live."
+  },
+  {
+    "id": "default-video-to-gif-converter",
+    "slug": "video-to-gif-converter",
+    "name": "Video to GIF Converter",
+    "description": "Convert video clips into lightweight, animated GIFs with custom frame rates and resolution controls.",
+    "category": "Image Tools",
+    "isActive": true,
+    "isComingSoon": true,
+    "icon": "Film",
+    "order": 103,
+    "metaTitle": "Video to GIF Converter Online - Coming Soon | Zoqonyx",
+    "metaDesc": "Convert video clips into lightweight, animated GIFs with custom frame rates and resolution controls. Join the early access notification list.",
+    "content": "## Video to GIF Converter\n\nConvert video clips into lightweight, animated GIFs with custom frame rates and resolution controls.\n\n### Planned Capabilities\n- Industry-leading processing quality with zero watermarks.\n- High-speed client-side and cloud acceleration.\n- Enterprise-grade privacy and data protection.\n\n### Early Access\nEnter your email above to receive priority notifications when this tool goes live."
+  },
+  {
+    "id": "default-audio-converter-mp3",
+    "slug": "audio-converter-mp3",
+    "name": "Audio Converter to MP3",
+    "description": "Convert audio recordings, WAV, and AAC files into high-bitrate MP3 format in your browser.",
+    "category": "Image Tools",
+    "isActive": true,
+    "isComingSoon": true,
+    "icon": "Music",
+    "order": 104,
+    "metaTitle": "Audio Converter to MP3 Online - Coming Soon | Zoqonyx",
+    "metaDesc": "Convert audio recordings, WAV, and AAC files into high-bitrate MP3 format in your browser. Join the early access notification list.",
+    "content": "## Audio Converter to MP3\n\nConvert audio recordings, WAV, and AAC files into high-bitrate MP3 format in your browser.\n\n### Planned Capabilities\n- Industry-leading processing quality with zero watermarks.\n- High-speed client-side and cloud acceleration.\n- Enterprise-grade privacy and data protection.\n\n### Early Access\nEnter your email above to receive priority notifications when this tool goes live."
+  },
+  {
+    "id": "default-voice-recorder-editor",
+    "slug": "voice-recorder-editor",
+    "name": "Voice Recorder & Audio Editor",
+    "description": "Capture voice audio, trim clips, and export high-clarity voice recordings directly in the browser.",
+    "category": "Image Tools",
+    "isActive": true,
+    "isComingSoon": true,
+    "icon": "Mic",
+    "order": 105,
+    "metaTitle": "Voice Recorder & Audio Editor Online - Coming Soon | Zoqonyx",
+    "metaDesc": "Capture voice audio, trim clips, and export high-clarity voice recordings directly in the browser. Join the early access notification list.",
+    "content": "## Voice Recorder & Audio Editor\n\nCapture voice audio, trim clips, and export high-clarity voice recordings directly in the browser.\n\n### Planned Capabilities\n- Industry-leading processing quality with zero watermarks.\n- High-speed client-side and cloud acceleration.\n- Enterprise-grade privacy and data protection.\n\n### Early Access\nEnter your email above to receive priority notifications when this tool goes live."
+  },
+  {
+    "id": "default-screen-recorder-pro",
+    "slug": "screen-recorder-pro",
+    "name": "Browser Screen Recorder Pro",
+    "description": "Record entire screens, application windows, or browser tabs with microphone audio and instant WebM export.",
+    "category": "Image Tools",
+    "isActive": true,
+    "isComingSoon": true,
+    "icon": "Monitor",
+    "order": 106,
+    "metaTitle": "Browser Screen Recorder Pro Online - Coming Soon | Zoqonyx",
+    "metaDesc": "Record entire screens, application windows, or browser tabs with microphone audio and instant WebM export. Join the early access notification list.",
+    "content": "## Browser Screen Recorder Pro\n\nRecord entire screens, application windows, or browser tabs with microphone audio and instant WebM export.\n\n### Planned Capabilities\n- Industry-leading processing quality with zero watermarks.\n- High-speed client-side and cloud acceleration.\n- Enterprise-grade privacy and data protection.\n\n### Early Access\nEnter your email above to receive priority notifications when this tool goes live."
+  },
+  {
+    "id": "default-ai-headshot-generator",
+    "slug": "ai-headshot-generator",
+    "name": "AI Headshot Photo Enhancer",
+    "description": "Transform casual portraits into studio-quality executive headshots with balanced studio lighting.",
+    "category": "Image Tools",
+    "isActive": true,
+    "isComingSoon": true,
+    "icon": "UserCheck",
+    "order": 107,
+    "metaTitle": "AI Headshot Photo Enhancer Online - Coming Soon | Zoqonyx",
+    "metaDesc": "Transform casual portraits into studio-quality executive headshots with balanced studio lighting. Join the early access notification list.",
+    "content": "## AI Headshot Photo Enhancer\n\nTransform casual portraits into studio-quality executive headshots with balanced studio lighting.\n\n### Planned Capabilities\n- Industry-leading processing quality with zero watermarks.\n- High-speed client-side and cloud acceleration.\n- Enterprise-grade privacy and data protection.\n\n### Early Access\nEnter your email above to receive priority notifications when this tool goes live."
+  },
+  {
+    "id": "default-ai-article-writer",
+    "slug": "ai-article-writer",
+    "name": "AI Article & Blog Writer",
+    "description": "Generate well-researched, SEO-optimized blog posts, outlines, and educational articles.",
+    "category": "Text & Code",
+    "isActive": true,
+    "isComingSoon": true,
+    "icon": "PenTool",
+    "order": 108,
+    "metaTitle": "AI Article & Blog Writer Online - Coming Soon | Zoqonyx",
+    "metaDesc": "Generate well-researched, SEO-optimized blog posts, outlines, and educational articles. Join the early access notification list.",
+    "content": "## AI Article & Blog Writer\n\nGenerate well-researched, SEO-optimized blog posts, outlines, and educational articles.\n\n### Planned Capabilities\n- Industry-leading processing quality with zero watermarks.\n- High-speed client-side and cloud acceleration.\n- Enterprise-grade privacy and data protection.\n\n### Early Access\nEnter your email above to receive priority notifications when this tool goes live."
+  },
+  {
+    "id": "default-ai-code-explainer",
+    "slug": "ai-code-explainer",
+    "name": "AI Code Explainer & Reviewer",
+    "description": "Understand complex algorithms, detect edge-case bugs, and get human-readable code explanations.",
+    "category": "Text & Code",
+    "isActive": true,
+    "isComingSoon": true,
+    "icon": "Code2",
+    "order": 109,
+    "metaTitle": "AI Code Explainer & Reviewer Online - Coming Soon | Zoqonyx",
+    "metaDesc": "Understand complex algorithms, detect edge-case bugs, and get human-readable code explanations. Join the early access notification list.",
+    "content": "## AI Code Explainer & Reviewer\n\nUnderstand complex algorithms, detect edge-case bugs, and get human-readable code explanations.\n\n### Planned Capabilities\n- Industry-leading processing quality with zero watermarks.\n- High-speed client-side and cloud acceleration.\n- Enterprise-grade privacy and data protection.\n\n### Early Access\nEnter your email above to receive priority notifications when this tool goes live."
+  },
+  {
+    "id": "default-ai-resume-builder",
+    "slug": "ai-resume-builder",
+    "name": "AI Resume & CV Builder",
+    "description": "Build ATS-friendly modern resumes with automated bullet-point suggestions and formatting.",
+    "category": "Text & Code",
+    "isActive": true,
+    "isComingSoon": true,
+    "icon": "FileText",
+    "order": 110,
+    "metaTitle": "AI Resume & CV Builder Online - Coming Soon | Zoqonyx",
+    "metaDesc": "Build ATS-friendly modern resumes with automated bullet-point suggestions and formatting. Join the early access notification list.",
+    "content": "## AI Resume & CV Builder\n\nBuild ATS-friendly modern resumes with automated bullet-point suggestions and formatting.\n\n### Planned Capabilities\n- Industry-leading processing quality with zero watermarks.\n- High-speed client-side and cloud acceleration.\n- Enterprise-grade privacy and data protection.\n\n### Early Access\nEnter your email above to receive priority notifications when this tool goes live."
+  },
+  {
+    "id": "default-ai-email-generator",
+    "slug": "ai-email-generator",
+    "name": "AI Professional Email Generator",
+    "description": "Draft persuasive cold outreach emails, customer support responses, and executive correspondence.",
+    "category": "Text & Code",
+    "isActive": true,
+    "isComingSoon": true,
+    "icon": "Mail",
+    "order": 111,
+    "metaTitle": "AI Professional Email Generator Online - Coming Soon | Zoqonyx",
+    "metaDesc": "Draft persuasive cold outreach emails, customer support responses, and executive correspondence. Join the early access notification list.",
+    "content": "## AI Professional Email Generator\n\nDraft persuasive cold outreach emails, customer support responses, and executive correspondence.\n\n### Planned Capabilities\n- Industry-leading processing quality with zero watermarks.\n- High-speed client-side and cloud acceleration.\n- Enterprise-grade privacy and data protection.\n\n### Early Access\nEnter your email above to receive priority notifications when this tool goes live."
+  },
+  {
+    "id": "default-ai-grammar-checker",
+    "slug": "ai-grammar-checker",
+    "name": "AI Grammar & Spelling Checker",
+    "description": "Polish essays, articles, and communications with advanced stylistic and grammatical enhancements.",
+    "category": "Text & Code",
+    "isActive": true,
+    "isComingSoon": true,
+    "icon": "CheckCircle",
+    "order": 112,
+    "metaTitle": "AI Grammar & Spelling Checker Online - Coming Soon | Zoqonyx",
+    "metaDesc": "Polish essays, articles, and communications with advanced stylistic and grammatical enhancements. Join the early access notification list.",
+    "content": "## AI Grammar & Spelling Checker\n\nPolish essays, articles, and communications with advanced stylistic and grammatical enhancements.\n\n### Planned Capabilities\n- Industry-leading processing quality with zero watermarks.\n- High-speed client-side and cloud acceleration.\n- Enterprise-grade privacy and data protection.\n\n### Early Access\nEnter your email above to receive priority notifications when this tool goes live."
+  },
+  {
+    "id": "default-website-speed-audit",
+    "slug": "website-speed-audit",
+    "name": "Website Speed & Core Web Vitals Audit",
+    "description": "Benchmark website load times, Largest Contentful Paint (LCP), and render bottlenecks.",
+    "category": "Developer & SEO",
+    "isActive": true,
+    "isComingSoon": true,
+    "icon": "Gauge",
+    "order": 113,
+    "metaTitle": "Website Speed & Core Web Vitals Audit Online - Coming Soon | Zoqonyx",
+    "metaDesc": "Benchmark website load times, Largest Contentful Paint (LCP), and render bottlenecks. Join the early access notification list.",
+    "content": "## Website Speed & Core Web Vitals Audit\n\nBenchmark website load times, Largest Contentful Paint (LCP), and render bottlenecks.\n\n### Planned Capabilities\n- Industry-leading processing quality with zero watermarks.\n- High-speed client-side and cloud acceleration.\n- Enterprise-grade privacy and data protection.\n\n### Early Access\nEnter your email above to receive priority notifications when this tool goes live."
+  },
+  {
+    "id": "default-broken-link-checker",
+    "slug": "broken-link-checker",
+    "name": "Broken Link Checker",
+    "description": "Crawl domains to detect 404 dead links, redirect loops, and server connection failures.",
+    "category": "Developer & SEO",
+    "isActive": true,
+    "isComingSoon": true,
+    "icon": "Link2Off",
+    "order": 114,
+    "metaTitle": "Broken Link Checker Online - Coming Soon | Zoqonyx",
+    "metaDesc": "Crawl domains to detect 404 dead links, redirect loops, and server connection failures. Join the early access notification list.",
+    "content": "## Broken Link Checker\n\nCrawl domains to detect 404 dead links, redirect loops, and server connection failures.\n\n### Planned Capabilities\n- Industry-leading processing quality with zero watermarks.\n- High-speed client-side and cloud acceleration.\n- Enterprise-grade privacy and data protection.\n\n### Early Access\nEnter your email above to receive priority notifications when this tool goes live."
+  },
+  {
+    "id": "default-dns-lookup-tool",
+    "slug": "dns-lookup-tool",
+    "name": "DNS Records Lookup",
+    "description": "Query A, AAAA, MX, CNAME, TXT, and NS records across global DNS nameservers.",
+    "category": "Developer & SEO",
+    "isActive": true,
+    "isComingSoon": true,
+    "icon": "Server",
+    "order": 115,
+    "metaTitle": "DNS Records Lookup Online - Coming Soon | Zoqonyx",
+    "metaDesc": "Query A, AAAA, MX, CNAME, TXT, and NS records across global DNS nameservers. Join the early access notification list.",
+    "content": "## DNS Records Lookup\n\nQuery A, AAAA, MX, CNAME, TXT, and NS records across global DNS nameservers.\n\n### Planned Capabilities\n- Industry-leading processing quality with zero watermarks.\n- High-speed client-side and cloud acceleration.\n- Enterprise-grade privacy and data protection.\n\n### Early Access\nEnter your email above to receive priority notifications when this tool goes live."
+  },
+  {
+    "id": "default-whois-domain-checker",
+    "slug": "whois-domain-checker",
+    "name": "WHOIS Domain & Registrar Lookup",
+    "description": "Inspect domain ownership records, expiry dates, registrar information, and DNS servers.",
+    "category": "Developer & SEO",
+    "isActive": true,
+    "isComingSoon": true,
+    "icon": "Search",
+    "order": 116,
+    "metaTitle": "WHOIS Domain & Registrar Lookup Online - Coming Soon | Zoqonyx",
+    "metaDesc": "Inspect domain ownership records, expiry dates, registrar information, and DNS servers. Join the early access notification list.",
+    "content": "## WHOIS Domain & Registrar Lookup\n\nInspect domain ownership records, expiry dates, registrar information, and DNS servers.\n\n### Planned Capabilities\n- Industry-leading processing quality with zero watermarks.\n- High-speed client-side and cloud acceleration.\n- Enterprise-grade privacy and data protection.\n\n### Early Access\nEnter your email above to receive priority notifications when this tool goes live."
+  },
+  {
+    "id": "default-ssl-certificate-checker",
+    "slug": "ssl-certificate-checker",
+    "name": "SSL Certificate Health Checker",
+    "description": "Verify SSL/TLS certificate validity, issuer trust chains, expiry alerts, and cipher security.",
+    "category": "Developer & SEO",
+    "isActive": true,
+    "isComingSoon": true,
+    "icon": "ShieldAlert",
+    "order": 117,
+    "metaTitle": "SSL Certificate Health Checker Online - Coming Soon | Zoqonyx",
+    "metaDesc": "Verify SSL/TLS certificate validity, issuer trust chains, expiry alerts, and cipher security. Join the early access notification list.",
+    "content": "## SSL Certificate Health Checker\n\nVerify SSL/TLS certificate validity, issuer trust chains, expiry alerts, and cipher security.\n\n### Planned Capabilities\n- Industry-leading processing quality with zero watermarks.\n- High-speed client-side and cloud acceleration.\n- Enterprise-grade privacy and data protection.\n\n### Early Access\nEnter your email above to receive priority notifications when this tool goes live."
+  },
+  {
+    "id": "default-subdomain-finder",
+    "slug": "subdomain-finder",
+    "name": "Subdomain Scanner & Discovery",
+    "description": "Discover public subdomains and web assets associated with any target domain name.",
+    "category": "Developer & SEO",
+    "isActive": true,
+    "isComingSoon": true,
+    "icon": "Network",
+    "order": 118,
+    "metaTitle": "Subdomain Scanner & Discovery Online - Coming Soon | Zoqonyx",
+    "metaDesc": "Discover public subdomains and web assets associated with any target domain name. Join the early access notification list.",
+    "content": "## Subdomain Scanner & Discovery\n\nDiscover public subdomains and web assets associated with any target domain name.\n\n### Planned Capabilities\n- Industry-leading processing quality with zero watermarks.\n- High-speed client-side and cloud acceleration.\n- Enterprise-grade privacy and data protection.\n\n### Early Access\nEnter your email above to receive priority notifications when this tool goes live."
+  },
+  {
+    "id": "default-api-mock-server",
+    "slug": "api-mock-server",
+    "name": "API Mock Server & Endpoint Tester",
+    "description": "Simulate REST and GraphQL API responses with custom JSON schema mocks and latency control.",
+    "category": "Developer & SEO",
+    "isActive": true,
+    "isComingSoon": true,
+    "icon": "Cpu",
+    "order": 119,
+    "metaTitle": "API Mock Server & Endpoint Tester Online - Coming Soon | Zoqonyx",
+    "metaDesc": "Simulate REST and GraphQL API responses with custom JSON schema mocks and latency control. Join the early access notification list.",
+    "content": "## API Mock Server & Endpoint Tester\n\nSimulate REST and GraphQL API responses with custom JSON schema mocks and latency control.\n\n### Planned Capabilities\n- Industry-leading processing quality with zero watermarks.\n- High-speed client-side and cloud acceleration.\n- Enterprise-grade privacy and data protection.\n\n### Early Access\nEnter your email above to receive priority notifications when this tool goes live."
+  },
+  {
+    "id": "default-graphql-query-builder",
+    "slug": "graphql-query-builder",
+    "name": "GraphQL Query & Schema Builder",
+    "description": "Build, test, and lint GraphQL queries, mutations, and fragments against live endpoints.",
+    "category": "Developer & SEO",
+    "isActive": true,
+    "isComingSoon": true,
+    "icon": "Share2",
+    "order": 120,
+    "metaTitle": "GraphQL Query & Schema Builder Online - Coming Soon | Zoqonyx",
+    "metaDesc": "Build, test, and lint GraphQL queries, mutations, and fragments against live endpoints. Join the early access notification list.",
+    "content": "## GraphQL Query & Schema Builder\n\nBuild, test, and lint GraphQL queries, mutations, and fragments against live endpoints.\n\n### Planned Capabilities\n- Industry-leading processing quality with zero watermarks.\n- High-speed client-side and cloud acceleration.\n- Enterprise-grade privacy and data protection.\n\n### Early Access\nEnter your email above to receive priority notifications when this tool goes live."
+  },
+  {
+    "id": "default-dockerfile-generator",
+    "slug": "dockerfile-generator",
+    "name": "Dockerfile & Container Generator",
+    "description": "Generate hardened, multi-stage Dockerfiles for Node.js, Python, Go, and Rust applications.",
+    "category": "Developer & SEO",
+    "isActive": true,
+    "isComingSoon": true,
+    "icon": "Box",
+    "order": 121,
+    "metaTitle": "Dockerfile & Container Generator Online - Coming Soon | Zoqonyx",
+    "metaDesc": "Generate hardened, multi-stage Dockerfiles for Node.js, Python, Go, and Rust applications. Join the early access notification list.",
+    "content": "## Dockerfile & Container Generator\n\nGenerate hardened, multi-stage Dockerfiles for Node.js, Python, Go, and Rust applications.\n\n### Planned Capabilities\n- Industry-leading processing quality with zero watermarks.\n- High-speed client-side and cloud acceleration.\n- Enterprise-grade privacy and data protection.\n\n### Early Access\nEnter your email above to receive priority notifications when this tool goes live."
+  },
+  {
+    "id": "default-kubernetes-yaml-validator",
+    "slug": "kubernetes-yaml-validator",
+    "name": "Kubernetes YAML Validator & Linter",
+    "description": "Validate Kubernetes deployments, services, and ingress manifests against official schemas.",
+    "category": "Developer & SEO",
+    "isActive": true,
+    "isComingSoon": true,
+    "icon": "CheckSquare",
+    "order": 122,
+    "metaTitle": "Kubernetes YAML Validator & Linter Online - Coming Soon | Zoqonyx",
+    "metaDesc": "Validate Kubernetes deployments, services, and ingress manifests against official schemas. Join the early access notification list.",
+    "content": "## Kubernetes YAML Validator & Linter\n\nValidate Kubernetes deployments, services, and ingress manifests against official schemas.\n\n### Planned Capabilities\n- Industry-leading processing quality with zero watermarks.\n- High-speed client-side and cloud acceleration.\n- Enterprise-grade privacy and data protection.\n\n### Early Access\nEnter your email above to receive priority notifications when this tool goes live."
+  },
+  {
+    "id": "default-pdf-ocr-converter",
+    "slug": "pdf-ocr-converter",
+    "name": "PDF OCR Scanned Text Converter",
+    "description": "Recognize and convert scanned PDF documents and image files into searchable, selectable text.",
+    "category": "PDF & Documents",
+    "isActive": true,
+    "isComingSoon": true,
+    "icon": "FileSearch",
+    "order": 123,
+    "metaTitle": "PDF OCR Scanned Text Converter Online - Coming Soon | Zoqonyx",
+    "metaDesc": "Recognize and convert scanned PDF documents and image files into searchable, selectable text. Join the early access notification list.",
+    "content": "## PDF OCR Scanned Text Converter\n\nRecognize and convert scanned PDF documents and image files into searchable, selectable text.\n\n### Planned Capabilities\n- Industry-leading processing quality with zero watermarks.\n- High-speed client-side and cloud acceleration.\n- Enterprise-grade privacy and data protection.\n\n### Early Access\nEnter your email above to receive priority notifications when this tool goes live."
+  },
+  {
+    "id": "default-pdf-form-filler",
+    "slug": "pdf-form-filler",
+    "name": "PDF Form Field Filler & Signer",
+    "description": "Fill out interactive PDF forms, checkboxes, and form fields directly in your browser.",
+    "category": "PDF & Documents",
+    "isActive": true,
+    "isComingSoon": true,
+    "icon": "FileSignature",
+    "order": 124,
+    "metaTitle": "PDF Form Field Filler & Signer Online - Coming Soon | Zoqonyx",
+    "metaDesc": "Fill out interactive PDF forms, checkboxes, and form fields directly in your browser. Join the early access notification list.",
+    "content": "## PDF Form Field Filler & Signer\n\nFill out interactive PDF forms, checkboxes, and form fields directly in your browser.\n\n### Planned Capabilities\n- Industry-leading processing quality with zero watermarks.\n- High-speed client-side and cloud acceleration.\n- Enterprise-grade privacy and data protection.\n\n### Early Access\nEnter your email above to receive priority notifications when this tool goes live."
+  },
+  {
+    "id": "default-pdf-signature-signer",
+    "slug": "pdf-signature-signer",
+    "name": "PDF Electronic Signature Signer",
+    "description": "Draw or upload electronic signatures to legally sign agreements and contracts in PDF format.",
+    "category": "PDF & Documents",
+    "isActive": true,
+    "isComingSoon": true,
+    "icon": "PenTool",
+    "order": 125,
+    "metaTitle": "PDF Electronic Signature Signer Online - Coming Soon | Zoqonyx",
+    "metaDesc": "Draw or upload electronic signatures to legally sign agreements and contracts in PDF format. Join the early access notification list.",
+    "content": "## PDF Electronic Signature Signer\n\nDraw or upload electronic signatures to legally sign agreements and contracts in PDF format.\n\n### Planned Capabilities\n- Industry-leading processing quality with zero watermarks.\n- High-speed client-side and cloud acceleration.\n- Enterprise-grade privacy and data protection.\n\n### Early Access\nEnter your email above to receive priority notifications when this tool goes live."
+  },
+  {
+    "id": "default-crypto-portfolio-tracker",
+    "slug": "crypto-portfolio-tracker",
+    "name": "Crypto Portfolio & Profit Tracker",
+    "description": "Track cryptocurrency balances, average buy prices, profit/loss, and portfolio allocation.",
+    "category": "Calculators",
+    "isActive": true,
+    "isComingSoon": true,
+    "icon": "Coins",
+    "order": 126,
+    "metaTitle": "Crypto Portfolio & Profit Tracker Online - Coming Soon | Zoqonyx",
+    "metaDesc": "Track cryptocurrency balances, average buy prices, profit/loss, and portfolio allocation. Join the early access notification list.",
+    "content": "## Crypto Portfolio & Profit Tracker\n\nTrack cryptocurrency balances, average buy prices, profit/loss, and portfolio allocation.\n\n### Planned Capabilities\n- Industry-leading processing quality with zero watermarks.\n- High-speed client-side and cloud acceleration.\n- Enterprise-grade privacy and data protection.\n\n### Early Access\nEnter your email above to receive priority notifications when this tool goes live."
+  },
+  {
+    "id": "default-sip-investment-calculator",
+    "slug": "sip-investment-calculator",
+    "name": "SIP Mutual Fund Investment Calculator",
+    "description": "Calculate expected mutual fund returns and wealth accumulation for Systematic Investment Plans.",
+    "category": "Calculators",
+    "isActive": true,
+    "isComingSoon": true,
+    "icon": "TrendingUp",
+    "order": 127,
+    "metaTitle": "SIP Mutual Fund Investment Calculator Online - Coming Soon | Zoqonyx",
+    "metaDesc": "Calculate expected mutual fund returns and wealth accumulation for Systematic Investment Plans. Join the early access notification list.",
+    "content": "## SIP Mutual Fund Investment Calculator\n\nCalculate expected mutual fund returns and wealth accumulation for Systematic Investment Plans.\n\n### Planned Capabilities\n- Industry-leading processing quality with zero watermarks.\n- High-speed client-side and cloud acceleration.\n- Enterprise-grade privacy and data protection.\n\n### Early Access\nEnter your email above to receive priority notifications when this tool goes live."
+  },
+  {
+    "id": "default-mortgage-refinance-calculator",
+    "slug": "mortgage-refinance-calculator",
+    "name": "Mortgage Refinance Savings Calculator",
+    "description": "Determine whether refinancing your home mortgage reduces monthly payments and lifetime interest.",
+    "category": "Calculators",
+    "isActive": true,
+    "isComingSoon": true,
+    "icon": "Home",
+    "order": 128,
+    "metaTitle": "Mortgage Refinance Savings Calculator Online - Coming Soon | Zoqonyx",
+    "metaDesc": "Determine whether refinancing your home mortgage reduces monthly payments and lifetime interest. Join the early access notification list.",
+    "content": "## Mortgage Refinance Savings Calculator\n\nDetermine whether refinancing your home mortgage reduces monthly payments and lifetime interest.\n\n### Planned Capabilities\n- Industry-leading processing quality with zero watermarks.\n- High-speed client-side and cloud acceleration.\n- Enterprise-grade privacy and data protection.\n\n### Early Access\nEnter your email above to receive priority notifications when this tool goes live."
+  },
+  {
+    "id": "default-retirement-corpus-calculator",
+    "slug": "retirement-corpus-calculator",
+    "name": "Retirement Corpus & Pension Calculator",
+    "description": "Estimate the nest egg needed to retire comfortably based on inflation and life expectancy.",
+    "category": "Calculators",
+    "isActive": true,
+    "isComingSoon": true,
+    "icon": "Clock",
+    "order": 129,
+    "metaTitle": "Retirement Corpus & Pension Calculator Online - Coming Soon | Zoqonyx",
+    "metaDesc": "Estimate the nest egg needed to retire comfortably based on inflation and life expectancy. Join the early access notification list.",
+    "content": "## Retirement Corpus & Pension Calculator\n\nEstimate the nest egg needed to retire comfortably based on inflation and life expectancy.\n\n### Planned Capabilities\n- Industry-leading processing quality with zero watermarks.\n- High-speed client-side and cloud acceleration.\n- Enterprise-grade privacy and data protection.\n\n### Early Access\nEnter your email above to receive priority notifications when this tool goes live."
+  },
+  {
+    "id": "default-freelance-hourly-rate-calculator",
+    "slug": "freelance-hourly-rate-calculator",
+    "name": "Freelance Hourly Rate & Income Calculator",
+    "description": "Calculate the ideal billable hourly rate needed to cover taxes, expenses, and desired salary.",
+    "category": "Calculators",
+    "isActive": true,
+    "isComingSoon": true,
+    "icon": "DollarSign",
+    "order": 130,
+    "metaTitle": "Freelance Hourly Rate & Income Calculator Online - Coming Soon | Zoqonyx",
+    "metaDesc": "Calculate the ideal billable hourly rate needed to cover taxes, expenses, and desired salary. Join the early access notification list.",
+    "content": "## Freelance Hourly Rate & Income Calculator\n\nCalculate the ideal billable hourly rate needed to cover taxes, expenses, and desired salary.\n\n### Planned Capabilities\n- Industry-leading processing quality with zero watermarks.\n- High-speed client-side and cloud acceleration.\n- Enterprise-grade privacy and data protection.\n\n### Early Access\nEnter your email above to receive priority notifications when this tool goes live."
+  }
+];
+
 async function main() {
-  console.log("Seeding Zoqonyx Solution Hub database...");
-
-  // 1. Seed Admin User
-  const existingAdmin = await prisma.user.findUnique({
-    where: { username: "admin" },
-  });
-
-  if (!existingAdmin) {
-    const hashedPassword = await bcrypt.hash("AdminPassword2026!", 10);
-    await prisma.user.create({
-      data: {
-        username: "admin",
-        password: hashedPassword,
-      },
-    });
-    console.log("Created admin user: admin");
-  }
-
-  // 2. Seed Default Settings
-  const defaultSettings = [
-    { key: "site_name", value: "ZOQONYX Solution Hub" },
-    { key: "site_tagline", value: "Free Online Tools Platform" },
-    { key: "contact_email_primary", value: "hello@zoqonyx.com" },
-    { key: "contact_email_secondary", value: "zawwar.ahmed2006@gmail.com" },
-    { key: "footer_credit", value: "Developed by Newix Tech Solutions" },
-    { key: "footer_url", value: "https://newixtechsolutions.com/" },
-    { key: "logo_path", value: "/logo/zoqonyx-logo.png" },
-    { key: "icon_path", value: "/logo/zoqonyx-icon.png" },
-    { key: "primary_color", value: "#1E3A8A" },
-    { key: "secondary_color", value: "#2563EB" },
-    { key: "electric_cyan", value: "#06B6D4" },
-    { key: "soft_purple", value: "#7C3AED" },
-    { key: "default_theme", value: "system" },
-  ];
-
-  for (const s of defaultSettings) {
-    await prisma.setting.upsert({
-      where: { key: s.key },
-      update: { value: s.value },
-      create: s,
-    });
-  }
-
-  // 3. Seed Core Pages
-  const defaultPages = [
-    {
-      slug: "about",
-      title: "About Zoqonyx Solution Hub",
-      metaTitle: "About Us | Zoqonyx Solution Hub - Free Online Tools Platform",
-      metaDesc: "Learn about Zoqonyx Solution Hub, created by Newix Tech Solutions to provide fast, accessible, 100% free digital tools for everyone.",
-      content: `### Welcome to Zoqonyx Solution Hub
-
-Zoqonyx (pronounced *Zo-kon-ix*) is a comprehensive, modern online tools platform built to empower creators, developers, designers, marketers, students, and professionals with powerful, client-side, zero-cost digital utilities.
-
-#### Our Mission
-Our mission is simple: **Eliminate paywalls and software bloat for essential everyday digital tasks.** We believe everyone deserves instant access to high-performance image tools, code formatters, CSS generators, calculators, and SEO utilities without subscriptions, watermarks, or intrusive data collection.
-
-#### Why Choose Zoqonyx?
-- **100% Free**: No surprise paywalls, monthly subscription traps, or credit systems.
-- **Privacy First**: Most tools run entirely inside your browser (client-side), meaning your images, code, and text never touch external servers without your permission.
-- **Fast & Responsive**: Built on cutting-edge Next.js 15 technology for lightning-fast speeds and top Core Web Vitals performance.
-- **Continuous Evolution**: Regularly expanding with next-generation tools, AI capabilities, and advanced workflow generators.
-
-Zoqonyx is proudly designed and engineered by **Newix Tech Solutions** under the direction of **Zawwar Ahmed**.`,
-    },
-    {
-      slug: "privacy-policy",
-      title: "Privacy Policy",
-      metaTitle: "Privacy Policy | Zoqonyx Solution Hub",
-      metaDesc: "Read the Zoqonyx Solution Hub privacy policy. Learn how we prioritize client-side processing to ensure your data stays secure and private.",
-      content: `### Privacy Policy
-
-*Effective Date: October 2026*
-
-At Zoqonyx Solution Hub (https://zoqonyx.com), we place the highest priority on user privacy and data security. This Privacy Policy outlines what information we collect, how it is handled, and why your data is secure with us.
-
-#### 1. Client-Side Processing Architecture
-The vast majority of utilities on Zoqonyx operate **client-side directly within your web browser** using HTML5 Canvas, Web Crypto API, Web Workers, and local JavaScript. When you compress an image, convert text, format JSON, generate CSS, or create a QR code:
-- Your files and inputs are processed locally on your device.
-- Your sensitive files are **not** uploaded to or stored on our servers.
-
-#### 2. Information We Collect
-- **Contact Inquiries**: When you submit a message through our Contact form, we collect your name, email address, and message content solely to reply to your inquiry.
-- **Tool Notifications**: If you opt into email alerts for Coming Soon tools, we store your email address solely to notify you when the tool goes live.
-- **Technical Logs**: Standard web server logs (IP address, browser user-agent, pages viewed) for uptime monitoring and DDoS prevention.
-
-#### 3. Cookies and Analytics
-We may use lightweight, privacy-friendly cookies to store your preferred visual theme (Light / Dark mode). We do not sell, rent, or trade your personal information.
-
-#### 4. Contact Us
-For any privacy questions or requests, contact us at:
-- **Email**: hello@zoqonyx.com / zawwar.ahmed2006@gmail.com
-- **Website**: https://zoqonyx.com`,
-    },
-    {
-      slug: "terms",
-      title: "Terms of Service",
-      metaTitle: "Terms of Service | Zoqonyx Solution Hub",
-      metaDesc: "Read the terms of service governing your use of Zoqonyx Solution Hub's free online tools and utilities.",
-      content: `### Terms of Service
-
-*Effective Date: October 2026*
-
-By accessing or using Zoqonyx Solution Hub (https://zoqonyx.com), you agree to comply with and be bound by the following Terms of Service.
-
-#### 1. Permitted Use
-Zoqonyx grants you a non-exclusive, revocable, free license to use our tools and utilities for personal, educational, commercial, and professional projects. You may freely use the outputs generated by our tools (such as images, CSS, formatted code, QR codes, and calculators) without royalties or attribution.
-
-#### 2. Acceptable Use
-You agree not to use Zoqonyx for:
-- Any unlawful purpose, including malware distribution or unauthorized scraping.
-- Attempting to disrupt, compromise, or bypass the platform's security, server infrastructure, or administrative endpoints.
-
-#### 3. Disclaimer of Warranties
-Zoqonyx tools are provided on an "as is" and "as available" basis without warranties of any kind. While we strive for extreme accuracy and reliability, we do not warrant that calculations, conversions, or outputs are error-free.
-
-#### 4. Attribution & Ownership
-Zoqonyx Solution Hub is developed and owned by Newix Tech Solutions and Zawwar Ahmed. All brand identity, logos, custom software architecture, and website content are protected by intellectual property laws.`,
-    },
-  ];
-
-  for (const p of defaultPages) {
-    await prisma.page.upsert({
-      where: { slug: p.slug },
-      update: p,
-      create: p,
-    });
-  }
-
-  // 4. Seed Initial Tools Catalog
-  const tools = [
-    // --- Active Image Tools ---
-    {
-      slug: "image-compressor",
-      name: "Image Compressor",
-      description: "Compress JPG, PNG, and WebP images client-side with zero quality loss and instant savings preview.",
-      category: "Image Tools",
-      isActive: true,
-      isComingSoon: false,
-      icon: "FileArchive",
-      order: 1,
-      metaTitle: "Free Image Compressor Online - Reduce File Size Fast | Zoqonyx",
-      metaDesc: "Compress JPEG, PNG, and WebP images online for free. Adjust quality in real-time, preserve visual fidelity, and download reduced files instantly.",
-      content: `## Free Online Image Compressor
-
-Optimize your images instantly without compromising visual fidelity. The Zoqonyx Image Compressor processes images directly in your browser using high-performance canvas algorithms.
-
-### Key Benefits
-- **Zero Server Uploads**: Your private photos never leave your device.
-- **Custom Quality Control**: Fine-tune your compression ratio between 1% and 100%.
-- **Live Size Comparison**: See original vs compressed file sizes with exact percentage reduction before downloading.
-- **Multiple Formats**: Supports JPEG, PNG, WebP, and AVIF.
-
-### Frequently Asked Questions
-**Does image compression affect SEO?**
-Yes! Faster loading images drastically improve Core Web Vitals (LCP), leading to better Google rankings and reduced bounce rates.`,
-    },
-    {
-      slug: "image-resizer",
-      name: "Image Resizer",
-      description: "Resize images by exact pixels or percentage with aspect ratio lock and high-definition smoothing.",
-      category: "Image Tools",
-      isActive: true,
-      isComingSoon: false,
-      icon: "Maximize2",
-      order: 2,
-      metaTitle: "Free Image Resizer Online - Change Picture Dimensions | Zoqonyx",
-      metaDesc: "Resize image dimensions online for free. Lock aspect ratio, enter target dimensions or percentage scaling, and export in seconds.",
-      content: `## Fast & Free Image Resizer
-
-Quickly resize images for social media headers, profile avatars, website banners, and e-commerce listings with zero blurriness.
-
-### Features
-- Scale by pixel dimensions (width/height) or scale factor percentage.
-- Automatic aspect ratio locking to prevent distortion.
-- Instant client-side download with smooth interpolation.`,
-    },
-    {
-      slug: "image-format-converter",
-      name: "Image Format Converter",
-      description: "Convert photos seamlessly between PNG, JPG, WebP, AVIF, and BMP formats in your browser.",
-      category: "Image Tools",
-      isActive: true,
-      isComingSoon: false,
-      icon: "RefreshCw",
-      order: 3,
-      metaTitle: "Image Format Converter Online - Convert PNG, JPG, WebP | Zoqonyx",
-      metaDesc: "Easily convert between PNG, JPG, WebP, and BMP format online. 100% free client-side image converter with high quality output.",
-      content: `## Universal Image Format Converter
-
-Convert any image to modern formats like WebP for ultra-fast website loading, or export transparent PNGs with a single click.`,
-    },
-    {
-      slug: "color-picker-image",
-      name: "Color Picker from Image",
-      description: "Extract color palettes and pinpoint exact HEX, RGB, and HSL values from any uploaded image.",
-      category: "Image Tools",
-      isActive: true,
-      isComingSoon: false,
-      icon: "Pipette",
-      order: 4,
-      metaTitle: "Color Picker from Image - Extract HEX & RGB Codes | Zoqonyx",
-      metaDesc: "Upload an image and use our precision magnifying eyedropper to extract exact HEX, RGB, and HSL color values instantly.",
-      content: `## Precise Eyedropper & Palette Extractor
-
-Find exact color harmonies and inspect design colors directly from UI screenshots, photographs, or graphics.`,
-    },
-    {
-      slug: "qr-code-generator",
-      name: "QR Code Generator",
-      description: "Generate custom QR codes for URLs, text, Wi-Fi credentials, and contact cards with custom colors.",
-      category: "Image Tools",
-      isActive: true,
-      isComingSoon: false,
-      icon: "QrCode",
-      order: 5,
-      metaTitle: "Free QR Code Generator Online - Create Custom QR Codes | Zoqonyx",
-      metaDesc: "Create high-resolution QR codes for websites, Wi-Fi passwords, text, and vCards. Customize colors and download in PNG format.",
-      content: `## High-Resolution Custom QR Code Generator
-
-Create scannable, crystal-clear QR codes for print marketing, restaurant menus, Wi-Fi sharing, and digital business cards.`,
-    },
-    {
-      slug: "image-cropper",
-      name: "Image Cropper",
-      description: "Crop photos to square 1:1, 16:9, 4:3, or custom dimensions with interactive canvas preview.",
-      category: "Image Tools",
-      isActive: true,
-      isComingSoon: false,
-      icon: "Crop",
-      order: 6,
-      metaTitle: "Free Image Cropper Online - Crop Pictures Easily | Zoqonyx",
-      metaDesc: "Crop images online with preset aspect ratios for Instagram, YouTube, and LinkedIn, or create custom crops with live canvas preview.",
-      content: `## Browser-Based Free Image Cropper
-
-Crop your images with precision without installing expensive photo editing suites.`,
-    },
-    {
-      slug: "image-rotator-flipper",
-      name: "Image Rotator & Flipper",
-      description: "Rotate images 90, 180, or 270 degrees and flip horizontally or vertically with real-time preview.",
-      category: "Image Tools",
-      isActive: true,
-      isComingSoon: false,
-      icon: "RotateCw",
-      order: 7,
-      metaTitle: "Rotate & Flip Images Online Free | Zoqonyx Solution Hub",
-      metaDesc: "Quickly rotate images clockwise, counter-clockwise, or mirror flip horizontally and vertically in your browser.",
-      content: `## Rotate and Mirror Images Online
-
-Fix sideways mobile photos or create mirror effects in one click.`,
-    },
-    {
-      slug: "image-to-base64",
-      name: "Image to Base64 Converter",
-      description: "Convert any image file into Base64 Data URI strings for HTML, CSS, and markdown embedding.",
-      category: "Image Tools",
-      isActive: true,
-      isComingSoon: false,
-      icon: "Binary",
-      order: 8,
-      metaTitle: "Image to Base64 Converter Online - Free Data URI Tool | Zoqonyx",
-      metaDesc: "Convert image files to Base64 strings. Copy raw string, HTML <img> tag, or CSS background syntax instantly.",
-      content: `## Image to Base64 Data URI Converter
-
-Embed images directly into your HTML and CSS files to eliminate extra HTTP requests.`,
-    },
-    {
-      slug: "ai-watermark-remover",
-      name: "AI Watermark Remover",
-      description: "Erase watermarks, logos, timestamps, and AI generator labels from photos using client-side canvas inpainting.",
-      category: "Image Tools",
-      isActive: true,
-      isComingSoon: false,
-      icon: "Sparkles",
-      order: 9,
-      metaTitle: "AI Watermark Remover Online - Remove Watermarks Free | Zoqonyx",
-      metaDesc: "Remove watermarks, logos, copyright text, and timestamps from images and AI photos for free with interactive brush inpainting.",
-      content: `## Free Online AI Watermark Remover
-
-Erase watermarks, stock stamps, date tags, and AI engine logos seamlessly without quality degradation. 100% private in-browser processing.`,
-    },
-    {
-      slug: "object-remover-photo",
-      name: "Photo Object Remover",
-      description: "Magic eraser tool to remove unwanted people, photobombers, wires, and clutter from photos instantly.",
-      category: "Image Tools",
-      isActive: true,
-      isComingSoon: false,
-      icon: "Eraser",
-      order: 10,
-      metaTitle: "Object Remover from Photo Online - Free Magic Eraser | Zoqonyx",
-      metaDesc: "Erase unwanted objects, photobombers, blemishes, and clutter from photos online for free. Brush over items and reconstruct background textures.",
-      content: `## Magic Object Remover from Photo
-
-Clean up your travel snapshots and portraits by brushing over unwanted distractions with client-side patch inpainting.`,
-    },
-
-    // --- Active CSS & Design Generators ---
-    {
-      slug: "border-radius-generator",
-      name: "Border Radius Generator",
-      description: "Visually configure 8-value fancy CSS border radius with real-time box preview and one-click copy.",
-      category: "CSS & Design",
-      isActive: true,
-      isComingSoon: false,
-      icon: "Square",
-      order: 10,
-      metaTitle: "CSS Border Radius Generator - Visual 8-Value Tool | Zoqonyx",
-      metaDesc: "Design modern organic shapes and smooth rounded corners with our interactive 8-point CSS border radius generator.",
-      content: `## Interactive CSS Border Radius Generator
-
-Create modern organic blobs and custom card borders visually. Copy clean CSS declarations ready for production.`,
-    },
-    {
-      slug: "box-shadow-generator",
-      name: "Box Shadow Generator",
-      description: "Build layered, realistic CSS box shadows with blur, spread, opacity, color, and inset controls.",
-      category: "CSS & Design",
-      isActive: true,
-      isComingSoon: false,
-      icon: "Layers",
-      order: 11,
-      metaTitle: "CSS Box Shadow Generator - Create Smooth Elevation Shadows | Zoqonyx",
-      metaDesc: "Design realistic, multi-layered CSS box shadows with interactive sliders for blur, spread, offset, and color.",
-      content: `## Modern CSS Box Shadow Generator
-
-Add depth and elevation to your UI components with realistic, smooth shadows.`,
-    },
-    {
-      slug: "css-gradient-generator",
-      name: "CSS Gradient Generator",
-      description: "Craft vibrant linear and radial CSS gradients with multi-color stops, angles, and preset palettes.",
-      category: "CSS & Design",
-      isActive: true,
-      isComingSoon: false,
-      icon: "Palette",
-      order: 12,
-      metaTitle: "CSS Gradient Generator - Linear & Radial Backgrounds | Zoqonyx",
-      metaDesc: "Generate beautiful CSS gradients with color stops, angle controls, and copy-paste ready CSS background code.",
-      content: `## Free CSS Gradient Generator
-
-Create stunning gradients with custom color stops, angles, and copy clean CSS code instantly.`,
-    },
-    {
-      slug: "button-generator",
-      name: "CSS Button Generator",
-      description: "Design interactive modern CSS buttons with hover states, gradients, shadows, and icons.",
-      category: "CSS & Design",
-      isActive: true,
-      isComingSoon: false,
-      icon: "MousePointerClick",
-      order: 13,
-      metaTitle: "CSS Button Generator - Design Interactive Buttons | Zoqonyx",
-      metaDesc: "Create stylish buttons with CSS styling, hover effects, padding, border-radius, and ready-to-use HTML/CSS code.",
-      content: `## Interactive CSS Button Styler
-
-Design call-to-action buttons for websites and landing pages with custom padding, borders, shadows, and hover transitions.`,
-    },
-    {
-      slug: "flexbox-playground",
-      name: "Flexbox Playground",
-      description: "Interactive visual flexbox builder with flex-direction, justify-content, align-items, and gap controls.",
-      category: "CSS & Design",
-      isActive: true,
-      isComingSoon: false,
-      icon: "LayoutGrid",
-      order: 14,
-      metaTitle: "CSS Flexbox Playground - Interactive Layout Builder | Zoqonyx",
-      metaDesc: "Master and preview CSS Flexbox visually. Adjust justify-content, align-items, flex-direction, and copy the CSS layout code.",
-      content: `## Visual CSS Flexbox Playground
-
-Learn and build flexbox layouts visually. Add or remove items, change alignment properties, and export pure CSS.`,
-    },
-    {
-      slug: "glassmorphism-generator",
-      name: "Glassmorphism Generator",
-      description: "Generate modern frosted glass UI effects using CSS backdrop-filter, border opacity, and blur.",
-      category: "CSS & Design",
-      isActive: true,
-      isComingSoon: false,
-      icon: "Sparkles",
-      order: 15,
-      metaTitle: "Glassmorphism CSS Generator - Frosted Glass UI | Zoqonyx",
-      metaDesc: "Create trendy frosted glass cards with interactive sliders for backdrop blur, transparency, border, and shadow.",
-      content: `## Frosted Glass Glassmorphism Generator
-
-Produce the Apple-style frosted glass UI aesthetic with CSS backdrop-filter blur and subtle transparent borders.`,
-    },
-    {
-      slug: "css-grid-generator",
-      name: "CSS Grid Generator",
-      description: "Visual interactive CSS grid builder with columns, rows, gap, and item layout controls.",
-      category: "CSS & Design",
-      isActive: true,
-      isComingSoon: false,
-      icon: "LayoutGrid",
-      order: 16,
-      metaTitle: "CSS Grid Generator - Visual Layout Builder | Zoqonyx",
-      metaDesc: "Create responsive CSS Grid layouts with real-time preview and export clean CSS grid-template code.",
-      content: `## Interactive CSS Grid Generator
-
-Build complex responsive grid layouts visually and copy clean CSS declarations for your web applications.`,
-    },
-
-    // --- Active Text & Code Tools ---
-    {
-      slug: "case-converter",
-      name: "Case Converter",
-      description: "Convert text instantly between UPPERCASE, lowercase, Title Case, camelCase, snake_case, and kebab-case.",
-      category: "Text & Code",
-      isActive: true,
-      isComingSoon: false,
-      icon: "Type",
-      order: 20,
-      metaTitle: "Case Converter Online - Upper, Lower, Camel, Snake Case | Zoqonyx",
-      metaDesc: "Convert text cases online for free. Transform titles, code variable names, slugify text, and copy to clipboard.",
-      content: `## Universal Text Case Converter
-
-Easily switch text casing for programmers, writers, and copy editors. Supports Sentence case, Title Case, UPPERCASE, lowercase, camelCase, PascalCase, snake_case, and kebab-case.`,
-    },
-    {
-      slug: "json-formatter",
-      name: "JSON Formatter & Validator",
-      description: "Format, beautify, validate, minify, and inspect JSON with detailed syntax error highlighting.",
-      category: "Text & Code",
-      isActive: true,
-      isComingSoon: false,
-      icon: "Code2",
-      order: 21,
-      metaTitle: "Free JSON Formatter & Validator Online | Zoqonyx Solution Hub",
-      metaDesc: "Format and validate JSON online with syntax highlighting, indentation options (2 or 4 spaces), minification, and instant error line detection.",
-      content: `## High-Performance JSON Formatter & Validator
-
-Clean up messy JSON payloads, validate structure, minify for production, and spot syntax mistakes in seconds.`,
-    },
-    {
-      slug: "base64-encode-decode",
-      name: "Base64 Encoder & Decoder",
-      description: "Encode text to Base64 or decode Base64 strings back to clean UTF-8 text safely and securely.",
-      category: "Text & Code",
-      isActive: true,
-      isComingSoon: false,
-      icon: "FileCode",
-      order: 22,
-      metaTitle: "Base64 Encode and Decode Online - Fast & Free | Zoqonyx",
-      metaDesc: "Encode strings to Base64 or decode Base64 data to plain text. 100% client-side with UTF-8 character support.",
-      content: `## Secure Base64 Text Encoder & Decoder
-
-Convert UTF-8 text strings to Base64 format and decode encoded data safely in your browser.`,
-    },
-    {
-      slug: "markdown-html-converter",
-      name: "Markdown <-> HTML Converter",
-      description: "Convert Markdown to clean HTML or convert HTML into formatted Markdown with live split-screen preview.",
-      category: "Text & Code",
-      isActive: true,
-      isComingSoon: false,
-      icon: "FileText",
-      order: 23,
-      metaTitle: "Markdown to HTML & HTML to Markdown Converter | Zoqonyx",
-      metaDesc: "Convert Markdown syntax to HTML markup and vice-versa with live dual-pane preview and one-click copy.",
-      content: `## Live Markdown and HTML Converter
-
-Write Markdown and get instant semantic HTML, or paste HTML to get clean GitHub-flavored Markdown.`,
-    },
-    {
-      slug: "uuid-generator",
-      name: "UUID / GUID Generator",
-      description: "Generate cryptographically secure Version 4 UUIDs in bulk with uppercase, lowercase, and hyphen options.",
-      category: "Text & Code",
-      isActive: true,
-      isComingSoon: false,
-      icon: "Key",
-      order: 24,
-      metaTitle: "UUID / GUID Generator Online - Cryptographically Secure | Zoqonyx",
-      metaDesc: "Generate single or bulk Version 4 UUIDs using browser crypto. getRandomValues. Customize format with uppercase or hyphens.",
-      content: `## RFC 4122 v4 UUID Generator
-
-Generate unique identifiers using the browser's native Web Crypto API for maximum randomness and security.`,
-    },
-    {
-      slug: "password-generator",
-      name: "Password Generator",
-      description: "Generate ultra-secure, random passwords with custom length, symbols, numbers, and entropy meter.",
-      category: "Text & Code",
-      isActive: true,
-      isComingSoon: false,
-      icon: "Lock",
-      order: 25,
-      metaTitle: "Strong Password Generator Online - Secure & Random | Zoqonyx",
-      metaDesc: "Create unbreakable, secure passwords with custom character sets, entropy score calculation, and zero server storage.",
-      content: `## Cryptographically Secure Password Generator
-
-Protect your online accounts with cryptographically strong random passwords generated purely on your device.`,
-    },
-    {
-      slug: "lorem-ipsum-generator",
-      name: "Lorem Ipsum Generator",
-      description: "Generate dummy placeholder text by paragraphs, sentences, or word counts for designers and developers.",
-      category: "Text & Code",
-      isActive: true,
-      isComingSoon: false,
-      icon: "Pilcrow",
-      order: 26,
-      metaTitle: "Lorem Ipsum Generator - Dummy Text for Designers | Zoqonyx",
-      metaDesc: "Generate standard Lorem Ipsum dummy placeholder text for website mockups, layouts, and typography testing.",
-      content: `## Free Lorem Ipsum Generator
-
-Quickly generate placeholder text for mockups, graphic designs, and web layouts.`,
-    },
-    {
-      slug: "word-counter",
-      name: "Word & Character Counter",
-      description: "Count words, characters, sentences, paragraphs, and calculate estimated reading and speaking times.",
-      category: "Text & Code",
-      isActive: true,
-      isComingSoon: false,
-      icon: "AlignLeft",
-      order: 27,
-      metaTitle: "Word Counter & Character Count Tool Online | Zoqonyx",
-      metaDesc: "Real-time word counter, character counter, sentence counter, and reading time estimator for essays, articles, and social posts.",
-      content: `## Real-Time Word & Character Counter
-
-Analyze your text metrics in real-time. Track character limits for Twitter/X, Google Meta descriptions, and essays.`,
-    },
-    {
-      slug: "hash-generator",
-      name: "Hash Generator",
-      description: "Generate SHA-1, SHA-256, SHA-384, SHA-512, and MD5 cryptographic hashes from any input text.",
-      category: "Text & Code",
-      isActive: true,
-      isComingSoon: false,
-      icon: "Hash",
-      order: 28,
-      metaTitle: "Hash Generator Online - SHA-256, SHA-512, MD5 | Zoqonyx",
-      metaDesc: "Calculate cryptographic hash digests using Web Crypto API. Support for SHA-256, SHA-512, SHA-1, and MD5.",
-      content: `## Cryptographic Hash Digest Generator
-
-Compute cryptographic checksums and hash digests client-side using industry-standard hashing algorithms.`,
-    },
-    {
-      slug: "url-encoder-decoder",
-      name: "URL Encoder & Decoder",
-      description: "Encode strings into percent-encoded URI format or decode complex URLs and query strings safely.",
-      category: "Text & Code",
-      isActive: true,
-      isComingSoon: false,
-      icon: "Link2",
-      order: 29,
-      metaTitle: "URL Encoder & Decoder Online - URI Percent Encoding | Zoqonyx",
-      metaDesc: "Encode and decode URLs, query parameters, and URI components online with UTF-8 character compatibility.",
-      content: `## URL Percent Encoding & Decoding Tool
-
-Ensure query parameters and URL components are safely encoded according to RFC 3986.`,
-    },
-    {
-      slug: "diff-checker",
-      name: "Diff Checker",
-      description: "Compare two text snippets side-by-side with line-by-line difference highlighting.",
-      category: "Text & Code",
-      isActive: true,
-      isComingSoon: false,
-      icon: "GitCompare",
-      order: 30,
-      metaTitle: "Text Diff Checker Online - Compare Text Difference | Zoqonyx",
-      metaDesc: "Compare two text documents side-by-side and highlight additions, removals, and changes instantly in your browser.",
-      content: `## Online Text Diff Checker
-
-Spot differences between code files, essays, or text documents with side-by-side visual difference highlighting.`,
-    },
-
-    // --- Active SEO & Developer Tools ---
-    {
-      slug: "open-graph-generator",
-      name: "Open Graph & Social Card Generator",
-      description: "Preview and generate Open Graph, Twitter Cards, and Next.js metadata with live simulators for X, Facebook, LinkedIn, Google, and WhatsApp.",
-      category: "Developer & SEO",
-      isActive: true,
-      isComingSoon: false,
-      icon: "Share2",
-      order: 34,
-      metaTitle: "Open Graph Generator & Social Card Preview Tool | Zoqonyx",
-      metaDesc: "Generate 100% valid Open Graph, Twitter Cards, and Next.js metadata. Live pixel-accurate simulator for X, Facebook, LinkedIn, Google, and WhatsApp.",
-      content: `## Open Graph Generator & Social Card Simulator
-
-Maximize click-through rates across Twitter/X, Facebook, LinkedIn, and search engines with pixel-accurate live card previews and code export.`,
-    },
-    {
-      slug: "meta-tags-generator",
-      name: "Meta Tags Generator",
-      description: "Generate complete HTML meta tags, Open Graph, and Twitter Cards with live Google search snippet preview.",
-      category: "Developer & SEO",
-      isActive: true,
-      isComingSoon: false,
-      icon: "Globe",
-      order: 35,
-      metaTitle: "Meta Tags Generator - Open Graph & Twitter Cards | Zoqonyx",
-      metaDesc: "Generate SEO-optimized title, description, Open Graph, and Twitter Card meta tags with live social previews.",
-      content: `## Complete SEO Meta Tags & Open Graph Generator
-
-Boost click-through rates on Google, Facebook, Twitter, and LinkedIn with properly formatted meta tags.`,
-    },
-    {
-      slug: "robots-txt-generator",
-      name: "Robots.txt Generator",
-      description: "Create standard robots.txt files with custom user-agents, allow/disallow directives, and sitemap paths.",
-      category: "Developer & SEO",
-      isActive: true,
-      isComingSoon: false,
-      icon: "Bot",
-      order: 36,
-      metaTitle: "Robots.txt Generator Online - Create Crawl Rules | Zoqonyx",
-      metaDesc: "Generate a clean robots.txt file to guide search engine crawlers like Googlebot, Bingbot, and protect private paths.",
-      content: `## Free Robots.txt Generator
-
-Tell search engine web crawlers which URLs they can access on your site to optimize crawl budget.`,
-    },
-    {
-      slug: "unit-converter",
-      name: "CSS Unit Converter",
-      description: "Convert units seamlessly between pixels (px), rem, em, percentage (%), and points (pt) with custom root base.",
-      category: "Developer & SEO",
-      isActive: true,
-      isComingSoon: false,
-      icon: "ArrowRightLeft",
-      order: 37,
-      metaTitle: "CSS Unit Converter - px to rem, em, and % | Zoqonyx",
-      metaDesc: "Convert between px, rem, em, and % instantly. Set custom root font size (16px default) for fluid responsive typography.",
-      content: `## CSS Unit Converter (px to rem, em, %)
-
-Simplify responsive design calculations by converting pixel values to scalable rem and em units.`,
-    },
-
-    // --- Active Calculators & Utilities ---
-    {
-      slug: "age-calculator",
-      name: "Age Calculator",
-      description: "Calculate exact chronological age in years, months, weeks, days, hours, and minutes with next birthday countdown.",
-      category: "Calculators",
-      isActive: true,
-      isComingSoon: false,
-      icon: "Calendar",
-      order: 40,
-      metaTitle: "Age Calculator Online - Calculate Exact Age | Zoqonyx",
-      metaDesc: "Calculate your exact age in years, months, and days from date of birth, plus days remaining until next birthday.",
-      content: `## Precise Chronological Age Calculator
-
-Find out your exact age down to the day, along with interesting milestones and your upcoming birthday countdown.`,
-    },
-    {
-      slug: "percentage-calculator",
-      name: "Percentage Calculator",
-      description: "Solve percentage problems quickly: X% of Y, percentage increase/decrease, and what percent X is of Y.",
-      category: "Calculators",
-      isActive: true,
-      isComingSoon: false,
-      icon: "Percent",
-      order: 41,
-      metaTitle: "Percentage Calculator Online - Quick Math Tool | Zoqonyx",
-      metaDesc: "Calculate percentages easily. Find percentage increase, percentage discount, and fraction percentages instantly.",
-      content: `## All-in-One Percentage Calculator
-
-Calculate discounts, markups, tips, test scores, and percentage changes with step-by-step formulas.`,
-    },
-    {
-      slug: "bmi-calculator",
-      name: "BMI Calculator",
-      description: "Calculate Body Mass Index (BMI) using Metric or Imperial units with WHO weight category evaluation.",
-      category: "Calculators",
-      isActive: true,
-      isComingSoon: false,
-      icon: "Activity",
-      order: 42,
-      metaTitle: "BMI Calculator Online - Body Mass Index Chart | Zoqonyx",
-      metaDesc: "Calculate your Body Mass Index (BMI) using height and weight. Understand your healthy weight range with official WHO categories.",
-      content: `## Free BMI (Body Mass Index) Calculator
-
-Determine your BMI score using metric (cm/kg) or imperial (ft/in/lbs) units and view healthy body mass guidance.`,
-    },
-
-    // --- Coming Soon Tools (Full SEO Content + Animated Component) ---
-    {
-      slug: "ai-background-remover-pro",
-      name: "AI Background Remover Pro",
-      description: "Ultra-high definition AI background removal for complex hair, transparent fabrics, and product photography.",
-      category: "Advanced Image / AI",
-      isActive: true,
-      isComingSoon: true,
-      icon: "Sparkles",
-      order: 100,
-      metaTitle: "AI Background Remover Pro - Remove Image Backgrounds Online | Zoqonyx",
-      metaDesc: "Remove backgrounds from images automatically in seconds with deep learning AI. Perfect for e-commerce, portraits, and marketing.",
-      content: `## Professional AI Background Remover
-
-Say goodbye to manual clipping paths and tedious lasso tool selections. The upcoming Zoqonyx AI Background Remover Pro uses advanced neural network edge detection to isolate subjects with pinpoint hair and boundary accuracy.
-
-### Planned Capabilities
-- **One-Click Instant Extraction**: Upload any portrait, product photo, animal, or graphic, and let the AI compute clean transparency in under 3 seconds.
-- **Feathered Hair & Fur Handling**: Deep learning segmentation trained on millions of high-resolution images to preserve fine strands of hair and semi-transparent fabrics.
-- **Custom Background Replacements**: Swap transparent backgrounds with solid studio backdrops, aesthetic gradients, or custom uploaded scenes.
-- **Batch Processing**: Upload dozens of product catalog images at once for automated e-commerce optimization.
-
-### Why Quality Background Removal Matters
-For digital retailers selling on Shopify, Amazon, or eBay, high-quality isolated product photography increases conversion rates by up to 35%. Zoqonyx is engineering a zero-compromise, free-tier accessible solution to make professional editing available to all creators.
-
-Be the first to know when AI Background Remover Pro goes live by entering your email above!`,
-    },
-    {
-      slug: "ai-image-upscaler",
-      name: "AI Image Upscaler",
-      description: "Enlarge images up to 4x and 8x resolution without pixelation using generative super-resolution AI.",
-      category: "Advanced Image / AI",
-      isActive: true,
-      isComingSoon: true,
-      icon: "Zap",
-      order: 101,
-      metaTitle: "AI Image Upscaler - Enlarge Photos Without Quality Loss | Zoqonyx",
-      metaDesc: "Upscale low-resolution photos and digital art up to 8x resolution with AI detail enhancement. Free coming soon on Zoqonyx.",
-      content: `## Generative AI Image Upscaler
-
-Restore low-resolution images, vintage family photographs, and compressed graphics into crisp, 4K print-ready masterpieces.
-
-### Advanced Super-Resolution Architecture
-Unlike standard bicubic interpolation that blurs pixels, our AI model predicts and synthesizes missing high-frequency details, textures, and edges.
-
-### Target Applications
-- Print production for posters and merchandise.
-- Enhancing low-res smartphone photos.
-- Sharpening AI-generated artworks for wall displays.`,
-    },
-    {
-      slug: "ai-content-writer",
-      name: "AI Content Writer",
-      description: "Generate compelling blog articles, marketing copy, social media hooks, and sales copy powered by LLMs.",
-      category: "AI Writing & Business",
-      isActive: true,
-      isComingSoon: true,
-      icon: "PenTool",
-      order: 102,
-      metaTitle: "AI Content Writer - Generate Articles & Marketing Copy | Zoqonyx",
-      metaDesc: "Craft high-ranking SEO articles, engaging newsletters, and persuasive ad copy with Zoqonyx AI Content Writer.",
-      content: `## Next-Gen AI Content & Copywriting Engine
-
-Supercharge your content workflow with an intelligent assistant designed to produce human-sounding, authoritative copy across any niche.
-
-### Key Content Templates
-- Long-form SEO blog posts with structured headings and FAQs.
-- High-converting email marketing sequences and pitch emails.
-- Viral social media hooks for X, LinkedIn, and Instagram.
-- E-commerce product descriptions tailored to increase buyer urgency.`,
-    },
-    {
-      slug: "ai-full-pdf-editor",
-      name: "Full PDF Editor Online",
-      description: "Edit text, rearrange pages, insert signatures, and annotate PDF documents directly in the browser.",
-      category: "PDF & Documents",
-      isActive: true,
-      isComingSoon: true,
-      icon: "FileEdit",
-      order: 103,
-      metaTitle: "Full PDF Editor Online - Edit Text & Sign Documents Free | Zoqonyx",
-      metaDesc: "Edit PDF text, merge contracts, insert digital e-signatures, and annotate pages online with Zoqonyx PDF Editor.",
-      content: `## Complete Online PDF Editing Suite
-
-Manage and edit your business documents without expensive Adobe Acrobat subscriptions.
-
-### Planned Features
-- In-place text editing and font matching.
-- Visual page reordering, rotation, and deletion.
-- Legally binding electronic signatures (eSign).
-- Form field filling and PDF form creation.`,
-    },
-    {
-      slug: "full-site-audit-tool",
-      name: "Full Website SEO Audit",
-      description: "Analyze any domain for Core Web Vitals, broken links, meta tag health, and indexing bottlenecks.",
-      category: "SEO & Marketing",
-      isActive: true,
-      isComingSoon: true,
-      icon: "SearchCheck",
-      order: 104,
-      metaTitle: "Website SEO Audit Tool - Deep Site Health Analysis | Zoqonyx",
-      metaDesc: "Audit your website for technical SEO issues, page speed warnings, broken links, and mobile responsiveness.",
-      content: `## Comprehensive Technical SEO Site Auditor
-
-Uncover critical technical issues holding your website back from Google page 1 rankings.
-
-### What We Inspect
-- Status codes, redirects, and 404 broken links.
-- Meta title, description length, and Open Graph compliance.
-- Google Lighthouse Core Web Vitals metrics (LCP, FID, CLS).
-- Heading hierarchy (H1-H6) and image alt tag coverage.`,
-    },
-  ];
-
-  for (const t of tools) {
+  console.log("Seeding catalog of 130 tools (100 working, 30 coming soon)...");
+  for (const t of TOOLS) {
     await prisma.tool.upsert({
       where: { slug: t.slug },
-      update: t,
-      create: t,
+      update: {
+        name: t.name,
+        description: t.description,
+        category: t.category,
+        isActive: t.isActive,
+        isComingSoon: t.isComingSoon,
+        icon: t.icon,
+        order: t.order,
+        metaTitle: t.metaTitle,
+        metaDesc: t.metaDesc,
+        content: t.content,
+      },
+      create: {
+        slug: t.slug,
+        name: t.name,
+        description: t.description,
+        category: t.category,
+        isActive: t.isActive,
+        isComingSoon: t.isComingSoon,
+        icon: t.icon,
+        order: t.order,
+        metaTitle: t.metaTitle,
+        metaDesc: t.metaDesc,
+        content: t.content,
+      },
     });
   }
-
-  console.log(`Seeded ${tools.length} initial tools successfully.`);
+  console.log("Catalog seeded successfully!");
 }
 
 main()
   .catch((e) => {
-    console.error("Error during seeding:", e);
+    console.error(e);
     process.exit(1);
   })
   .finally(async () => {

@@ -17,16 +17,16 @@ import {
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "All Free Online Tools Directory (40+ Digital Utilities)",
+  title: "All Free Online Tools Directory (100+ Digital Utilities)",
   description:
-    "Explore 40+ fast, privacy-first, 100% free digital tools. Inpaint watermarks with AI, compress images, format JSON, simulate Open Graph cards, and convert code client-side.",
+    "Explore 100+ fast, privacy-first, 100% free digital tools. Merge PDFs, compress images in bulk, format code, design CSS, simulate SERPs, and run calculations client-side with zero signups.",
   alternates: {
     canonical: "https://zoqonyx.com/tools",
   },
   openGraph: {
-    title: "All Free Online Tools Directory (40+ Digital Utilities) | Zoqonyx",
+    title: "All Free Online Tools Directory (100+ Digital Utilities) | Zoqonyx",
     description:
-      "Explore 40+ fast, privacy-first, 100% free digital tools. Zero installations, zero tracking, 100% browser-based.",
+      "Explore 100+ fast, privacy-first, 100% free digital tools. Zero installations, zero tracking, 100% browser-based.",
     url: "https://zoqonyx.com/tools",
     siteName: "Zoqonyx Solution Hub",
     images: [
@@ -108,7 +108,7 @@ export default async function ToolsPage() {
     "@type": "CollectionPage",
     name: "All Free Online Tools Directory - Zoqonyx Solution Hub",
     description:
-      "Directory of 40+ free client-side digital tools for developers, designers, creators, and marketers.",
+      "Directory of 100+ free client-side digital tools for developers, designers, creators, and marketers.",
     url: "https://zoqonyx.com/tools",
     publisher: {
       "@type": "Organization",
@@ -165,13 +165,13 @@ export default async function ToolsPage() {
         </nav>
 
         {/* Hero Header */}
-        <div className="relative overflow-hidden rounded-3xl border border-border/80 bg-card p-6 sm:p-10 lg:p-12 shadow-sm space-y-6">
-          <div className="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-gradient-to-br from-cyan-500/15 via-blue-500/10 to-indigo-500/15 blur-3xl opacity-70 pointer-events-none" />
+        <div className="relative overflow-hidden rounded-2xl border border-border bg-card p-6 sm:p-10 lg:p-12 shadow-sm space-y-6">
+          <div className="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-teal-500/10 blur-3xl opacity-70 pointer-events-none" />
 
           <div className="relative z-10 max-w-3xl space-y-4">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-brand-cyan/30 bg-brand-cyan/10 text-brand-cyan text-xs font-semibold backdrop-blur-sm">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-lg border border-teal-500/30 bg-teal-500/10 text-teal-400 text-xs font-semibold backdrop-blur-sm">
               <ShieldCheck className="w-3.5 h-3.5" />
-              <span>Complete Directory • 40+ Digital Tools</span>
+              <span>Complete Directory • 100+ Working Tools (130 Total)</span>
             </div>
 
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-black tracking-tight text-foreground leading-tight">

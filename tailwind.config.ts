@@ -24,11 +24,14 @@ const config: Config = {
         foreground: "hsl(var(--foreground))",
         brand: {
           navy: "#0F172A",
-          blue: "#1E3A8A",
-          accent: "#2563EB",
-          cyan: "#06B6D4",
-          purple: "#7C3AED",
-          lightGray: "#F1F5F9",
+          charcoal: "#1E293B",
+          dark: "#0B0F19",
+          teal: "#14B8A6",
+          cyan: "#14B8A6", // Electric Teal primary accent
+          coral: "#F43F5E",
+          amber: "#F59E0B",
+          purple: "#6366F1", // Indigo/Slate accent
+          lightGray: "#F8FAFC",
           gray: "#64748B",
         },
         primary: {
@@ -66,13 +69,13 @@ const config: Config = {
         sm: "calc(var(--radius) - 4px)",
       },
       fontFamily: {
-        sans: ["var(--font-sans)", "Inter", "sans-serif"],
-        heading: ["var(--font-heading)", "Plus Jakarta Sans", "sans-serif"],
+        sans: ["var(--font-sans)", "Inter", "system-ui", "sans-serif"],
+        heading: ["var(--font-heading)", "Plus Jakarta Sans", "system-ui", "sans-serif"],
       },
       backgroundImage: {
-        "brand-gradient": "linear-gradient(135deg, #06B6D4 0%, #7C3AED 100%)",
-        "brand-gradient-hover": "linear-gradient(135deg, #0891B2 0%, #6D28D9 100%)",
-        "hero-glow": "radial-gradient(circle at 50% 0%, rgba(6, 182, 212, 0.15), rgba(124, 58, 237, 0.05) 50%, transparent 80%)",
+        "brand-gradient": "linear-gradient(135deg, #14B8A6 0%, #0F766E 100%)",
+        "brand-gradient-hover": "linear-gradient(135deg, #0D9488 0%, #115E59 100%)",
+        "hero-glow": "radial-gradient(circle at 50% 0%, rgba(20, 184, 166, 0.12), transparent 70%)",
       },
     },
   },

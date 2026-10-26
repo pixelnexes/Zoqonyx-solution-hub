@@ -109,7 +109,7 @@ export default async function HomePage() {
             </h1>
 
             <p className="text-base sm:text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto">
-              Experience 40+ private, hardware-accelerated digital utilities. Inpaint watermarks and objects with AI, compress high-res media with split sliders, create custom branded QR matrices, simulate social Open Graph cards, and format code—with zero subscriptions and zero cloud uploads.
+              Experience 100+ private, hardware-accelerated digital utilities and 30 upcoming pro tools. Merge PDFs, compress high-res media in bulk, generate QR matrices, format code, and calculate values—with zero subscriptions, zero tracking, and zero cloud uploads.
             </p>
 
             {/* Quick Metrics */}
