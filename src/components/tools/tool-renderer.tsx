@@ -203,8 +203,11 @@ export function ToolRenderer({ slug }: ToolRendererProps) {
     case "image-to-base64":
       return <ImageToBase64Tool />;
     case "ai-watermark-remover":
+    case "watermark-remover":
       return <WatermarkObjectRemoverTool mode="watermark" />;
+    case "object-remover":
     case "object-remover-photo":
+    case "object-remover-ai":
     case "magic-object-remover":
       return <WatermarkObjectRemoverTool mode="object" />;
     case "bulk-image-compressor":

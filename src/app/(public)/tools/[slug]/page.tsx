@@ -64,6 +64,7 @@ export async function generateMetadata({ params }: ToolPageProps): Promise<Metad
       tool = {
         ...canonical,
         ...(tool || {}),
+        slug: canonical.slug,
         name: canonical.name,
         category: canonical.category,
         description: canonical.description,
@@ -173,6 +174,7 @@ export default async function ToolPage({ params }: ToolPageProps) {
     tool = {
       ...canonical,
       ...(tool || {}),
+      slug: canonical.slug,
       name: canonical.name,
       category: canonical.category,
       description: canonical.description,

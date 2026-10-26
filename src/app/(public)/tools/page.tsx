@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "All Free Online Tools Directory | Zoqonyx",
     description:
-      "Explore 40+ fast, privacy-first, 100% free digital tools. Zero installations, zero tracking.",
+      "Explore 100+ fast, privacy-first, 100% free digital tools. Zero installations, zero tracking.",
     images: ["/logo/zoqonyx-og.png"],
   },
 };
