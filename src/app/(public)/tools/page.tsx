@@ -89,18 +89,25 @@ export default async function ToolsPage() {
     console.error("Database fetch error on /tools, using static catalog:", error);
   }
 
+  const defaultToolsFormatted = DEFAULT_TOOLS.map((t) => ({
+    id: t.id,
+    slug: t.slug,
+    name: t.name,
+    description: t.description,
+    category: t.category,
+    isActive: t.isActive,
+    isComingSoon: t.isComingSoon,
+    icon: t.icon,
+    order: t.order,
+  }));
+
   if (tools.length === 0) {
-    tools = DEFAULT_TOOLS.map((t) => ({
-      id: t.id,
-      slug: t.slug,
-      name: t.name,
-      description: t.description,
-      category: t.category,
-      isActive: t.isActive,
-      isComingSoon: t.isComingSoon,
-      icon: t.icon,
-      order: t.order,
-    }));
+    tools = defaultToolsFormatted;
+  } else {
+    // Merge: ensure all 130 tools are always displayed even if DB has only 37 seeded rows
+    const dbSlugs = new Set(tools.map((t) => t.slug));
+    const missing = defaultToolsFormatted.filter((t) => !dbSlugs.has(t.slug));
+    tools = [...tools, ...missing].sort((a, b) => a.order - b.order);
   }
 
   const collectionJsonLd = {
@@ -203,25 +210,25 @@ export default async function ToolsPage() {
         </section>
 
         {/* Below-the-fold Comprehensive SEO Guide */}
-        <section className="p-6 sm:p-10 rounded-3xl bg-card border border-border/80 space-y-8">
-          <div className="max-w-3xl space-y-4">
+        <section className="p-6 sm:p-8 rounded-xl bg-card border border-border/80 space-y-8">
+          <div className="max-w-3xl space-y-3">
             <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground">
               Why Browser-Native Digital Tools Are Superior
             </h2>
-            <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
+            <p className="text-sm text-muted-foreground leading-relaxed">
               Traditional online utilities frequently upload your sensitive assets—such as customer databases, confidential contract PDFs, and high-resolution creative media—to third-party cloud servers. This introduces significant privacy vulnerabilities, upload latency, and artificial rate-limiting paywalls.
             </p>
-            <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
+            <p className="text-sm text-muted-foreground leading-relaxed">
               Zoqonyx Solution Hub was built to overturn this model. By leveraging modern browser technologies including the HTML5 Canvas API, Web Workers, and WebAssembly, all data processing occurs entirely within your local device memory. Your confidential graphics and source code never leave your computer.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4">
-            <div className="p-5 rounded-2xl bg-muted/30 border border-border/60 space-y-2.5">
-              <div className="p-2.5 rounded-xl bg-brand-cyan/10 text-brand-cyan w-fit">
-                <ShieldCheck className="w-5 h-5" />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
+            <div className="p-4 rounded-lg bg-muted/20 border border-border/60 space-y-2 hover:border-teal-500/40 transition-colors">
+              <div className="p-2 rounded-md bg-teal-500/10 text-teal-400 w-fit">
+                <ShieldCheck className="w-4 h-4" />
               </div>
-              <h3 className="font-heading font-bold text-base text-foreground">
+              <h3 className="font-heading font-bold text-sm text-foreground">
                 Absolute Data Privacy
               </h3>
               <p className="text-xs text-muted-foreground leading-relaxed">
@@ -229,11 +236,11 @@ export default async function ToolsPage() {
               </p>
             </div>
 
-            <div className="p-5 rounded-2xl bg-muted/30 border border-border/60 space-y-2.5">
-              <div className="p-2.5 rounded-xl bg-brand-purple/10 text-brand-purple w-fit">
-                <Zap className="w-5 h-5" />
+            <div className="p-4 rounded-lg bg-muted/20 border border-border/60 space-y-2 hover:border-teal-500/40 transition-colors">
+              <div className="p-2 rounded-md bg-teal-500/10 text-teal-400 w-fit">
+                <Zap className="w-4 h-4" />
               </div>
-              <h3 className="font-heading font-bold text-base text-foreground">
+              <h3 className="font-heading font-bold text-sm text-foreground">
                 Zero Network Latency
               </h3>
               <p className="text-xs text-muted-foreground leading-relaxed">
@@ -241,11 +248,11 @@ export default async function ToolsPage() {
               </p>
             </div>
 
-            <div className="p-5 rounded-2xl bg-muted/30 border border-border/60 space-y-2.5">
-              <div className="p-2.5 rounded-xl bg-emerald-500/10 text-emerald-500 w-fit">
-                <Layers className="w-5 h-5" />
+            <div className="p-4 rounded-lg bg-muted/20 border border-border/60 space-y-2 hover:border-teal-500/40 transition-colors">
+              <div className="p-2 rounded-md bg-emerald-500/10 text-emerald-400 w-fit">
+                <Layers className="w-4 h-4" />
               </div>
-              <h3 className="font-heading font-bold text-base text-foreground">
+              <h3 className="font-heading font-bold text-sm text-foreground">
                 No Artificial Paywalls
               </h3>
               <p className="text-xs text-muted-foreground leading-relaxed">
@@ -275,21 +282,21 @@ export default async function ToolsPage() {
                 <Link
                   key={c.slug}
                   href={`/category/${c.slug}`}
-                  className="p-3 rounded-xl bg-card border border-border/70 hover:border-brand-cyan/60 hover:bg-muted/50 transition-all flex items-center justify-between group"
+                  className="p-3 rounded-lg bg-card border border-border/70 hover:border-teal-500/50 hover:bg-muted/30 transition-all flex items-center justify-between group"
                 >
-                  <span className="text-xs font-semibold text-foreground group-hover:text-brand-cyan transition-colors">
+                  <span className="text-xs font-semibold text-foreground group-hover:text-teal-400 transition-colors">
                     {c.name}
                   </span>
-                  <ArrowRight className="w-3.5 h-3.5 text-muted-foreground group-hover:text-brand-cyan group-hover:translate-x-0.5 transition-all" />
+                  <ArrowRight className="w-3.5 h-3.5 text-muted-foreground group-hover:text-teal-400 group-hover:translate-x-0.5 transition-all" />
                 </Link>
               ))}
             </div>
           </div>
 
           {/* FAQs Section */}
-          <div className="pt-8 border-t border-border/60 space-y-4">
+          <div className="pt-6 border-t border-border/60 space-y-4">
             <div className="flex items-center gap-2">
-              <HelpCircle className="w-5 h-5 text-brand-cyan" />
+              <HelpCircle className="w-5 h-5 text-teal-400" />
               <h3 className="text-xl font-heading font-bold text-foreground">
                 Frequently Asked Questions
               </h3>
@@ -298,7 +305,7 @@ export default async function ToolsPage() {
               {TOOLS_PAGE_FAQS.map((faq, i) => (
                 <div
                   key={i}
-                  className="p-4 rounded-xl bg-muted/20 border border-border/60 space-y-1.5"
+                  className="p-4 rounded-lg bg-muted/20 border border-border/60 space-y-1.5"
                 >
                   <p className="font-semibold text-xs sm:text-sm text-foreground">
                     {faq.q}

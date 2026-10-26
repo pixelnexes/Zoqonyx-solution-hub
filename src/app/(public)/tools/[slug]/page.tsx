@@ -277,20 +277,20 @@ export default async function ToolPage({ params }: ToolPageProps) {
           /* State B: Live Interactive Tool */
           <div className="space-y-12">
             {/* Tool Header Banner */}
-            <div className="p-6 sm:p-8 rounded-3xl bg-card border border-border/80 space-y-4 shadow-sm">
+            <div className="p-6 sm:p-8 rounded-xl bg-card border border-border/80 space-y-4 shadow-sm">
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <div className="flex items-center gap-3">
-                  <div className="p-3 rounded-2xl bg-gradient-to-br from-brand-cyan/20 to-brand-purple/20 text-brand-cyan dark:text-cyan-400">
+                  <div className="p-3 rounded-lg bg-teal-500/10 text-teal-400 border border-teal-500/20">
                     <ToolIcon name={tool.icon} className="w-6 h-6" />
                   </div>
                   <div>
                     <Link
                       href={`/category/${catSlug}`}
-                      className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground hover:text-brand-cyan transition-colors"
+                      className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground hover:text-teal-400 transition-colors"
                     >
                       {tool.category}
                     </Link>
-                    <h1 className="text-2xl sm:text-3xl font-heading font-black text-foreground">
+                    <h1 className="text-2xl sm:text-3xl font-heading font-black text-foreground tracking-tight">
                       {tool.name}
                     </h1>
                   </div>
@@ -313,7 +313,7 @@ export default async function ToolPage({ params }: ToolPageProps) {
                   <ShieldCheck className="w-4 h-4 text-emerald-500" /> Runs 100% in your browser
                 </span>
                 <span className="flex items-center gap-1.5">
-                  <Lock className="w-4 h-4 text-brand-cyan" /> Zero server file uploads
+                  <Lock className="w-4 h-4 text-teal-400" /> Zero server file uploads
                 </span>
                 <span className="flex items-center gap-1.5">
                   <Zap className="w-4 h-4 text-amber-500" /> Instant sub-millisecond execution
@@ -322,15 +322,15 @@ export default async function ToolPage({ params }: ToolPageProps) {
             </div>
 
             {/* Interactive Tool Workstation Canvas */}
-            <div className="p-6 sm:p-8 rounded-3xl bg-card border border-border/80 shadow-sm">
+            <div className="p-6 sm:p-8 rounded-xl bg-card border border-border/80 shadow-sm">
               <ToolRenderer slug={tool.slug} />
             </div>
 
             {/* Section 1: Step-by-Step "How to Use" Guide */}
-            <section className="p-6 sm:p-10 rounded-3xl bg-card border border-border/80 space-y-6">
+            <section className="p-6 sm:p-8 rounded-xl bg-card border border-border/80 space-y-5">
               <div className="space-y-1">
-                <span className="text-[11px] font-bold uppercase tracking-wider text-brand-cyan">
-                  User Tutorial
+                <span className="text-[11px] font-bold uppercase tracking-wider text-teal-400 font-mono">
+                  STEP-BY-STEP WORKFLOW
                 </span>
                 <h2 className="text-xl sm:text-2xl font-heading font-bold text-foreground">
                   How to Use {tool.name} in 4 Simple Steps
@@ -341,10 +341,10 @@ export default async function ToolPage({ params }: ToolPageProps) {
                 {seo.howToSteps.map((s) => (
                   <div
                     key={s.step}
-                    className="p-5 rounded-2xl bg-muted/20 border border-border/60 space-y-2 hover:border-brand-cyan/40 transition-colors"
+                    className="p-4 rounded-lg bg-muted/20 border border-border/60 space-y-2 hover:border-teal-500/40 transition-colors"
                   >
                     <div className="flex items-center gap-2.5">
-                      <span className="w-6 h-6 rounded-full bg-brand-cyan/15 text-brand-cyan font-mono text-xs font-bold flex items-center justify-center shrink-0">
+                      <span className="w-6 h-6 rounded-md bg-teal-500/15 text-teal-400 font-mono text-xs font-bold flex items-center justify-center shrink-0">
                         {s.step}
                       </span>
                       <h3 className="font-heading font-semibold text-sm text-foreground">
@@ -360,10 +360,10 @@ export default async function ToolPage({ params }: ToolPageProps) {
             </section>
 
             {/* Section 2: Key Benefits & Browser Architecture */}
-            <section className="p-6 sm:p-10 rounded-3xl bg-card border border-border/80 space-y-6">
+            <section className="p-6 sm:p-8 rounded-xl bg-card border border-border/80 space-y-5">
               <div className="space-y-1">
-                <span className="text-[11px] font-bold uppercase tracking-wider text-brand-purple">
-                  Architectural Advantages
+                <span className="text-[11px] font-bold uppercase tracking-wider text-teal-400 font-mono">
+                  CLIENT ARCHITECTURE
                 </span>
                 <h2 className="text-xl sm:text-2xl font-heading font-bold text-foreground">
                   Why {tool.name} on Zoqonyx Beats Cloud Server Tools
@@ -374,10 +374,10 @@ export default async function ToolPage({ params }: ToolPageProps) {
                 {seo.keyBenefits.map((b, idx) => (
                   <div
                     key={idx}
-                    className="p-5 rounded-2xl bg-muted/20 border border-border/60 space-y-2 hover:border-brand-purple/40 transition-colors"
+                    className="p-4 rounded-lg bg-muted/20 border border-border/60 space-y-2 hover:border-teal-500/40 transition-colors"
                   >
-                    <div className="flex items-center gap-2 text-brand-purple">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
+                    <div className="flex items-center gap-2 text-teal-400">
+                      <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
                       <h3 className="font-heading font-semibold text-sm text-foreground">
                         {b.title}
                       </h3>
@@ -392,10 +392,10 @@ export default async function ToolPage({ params }: ToolPageProps) {
 
             {/* Section 3: In-Depth Technical Guide & Deep Dive */}
             {seo.deepDiveContent && (
-              <section className="p-6 sm:p-10 rounded-3xl bg-card border border-border/80 space-y-6">
+              <section className="p-6 sm:p-8 rounded-xl bg-card border border-border/80 space-y-5">
                 <div className="space-y-1">
-                  <span className="text-[11px] font-bold uppercase tracking-wider text-muted-foreground">
-                    Deep Dive Guide
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-muted-foreground font-mono">
+                    TECHNICAL DEEP DIVE
                   </span>
                   <h2 className="text-xl sm:text-2xl font-heading font-bold text-foreground">
                     Comprehensive Technical Overview & Best Practices
@@ -433,17 +433,17 @@ export default async function ToolPage({ params }: ToolPageProps) {
 
                 {/* Pro Tips Box */}
                 {seo.proTips && seo.proTips.length > 0 && (
-                  <div className="p-5 rounded-2xl bg-brand-cyan/5 border border-brand-cyan/20 space-y-3 mt-6">
-                    <div className="flex items-center gap-2 text-brand-cyan">
+                  <div className="p-4 rounded-lg bg-teal-500/5 border border-teal-500/20 space-y-2.5 mt-4">
+                    <div className="flex items-center gap-2 text-teal-400">
                       <Lightbulb className="w-4 h-4 shrink-0" />
-                      <h4 className="font-heading font-bold text-xs uppercase tracking-wider">
-                        Pro Developer & Designer Tips
+                      <h4 className="font-heading font-bold text-xs uppercase tracking-wider font-mono">
+                        Pro Engineering & Workflow Tips
                       </h4>
                     </div>
-                    <ul className="space-y-2 text-xs text-muted-foreground">
+                    <ul className="space-y-1.5 text-xs text-muted-foreground">
                       {seo.proTips.map((tip, i) => (
                         <li key={i} className="flex items-start gap-2">
-                          <span className="text-brand-cyan font-bold">•</span>
+                          <span className="text-teal-400 font-bold">•</span>
                           <span>{tip}</span>
                         </li>
                       ))}
@@ -455,9 +455,9 @@ export default async function ToolPage({ params }: ToolPageProps) {
 
             {/* Section 4: Frequently Asked Questions (FAQs) */}
             {seo.faqs && seo.faqs.length > 0 && (
-              <section className="p-6 sm:p-10 rounded-3xl bg-card border border-border/80 space-y-6">
+              <section className="p-6 sm:p-8 rounded-xl bg-card border border-border/80 space-y-5">
                 <div className="flex items-center gap-2">
-                  <HelpCircle className="w-5 h-5 text-brand-cyan" />
+                  <HelpCircle className="w-5 h-5 text-teal-400" />
                   <h2 className="text-xl sm:text-2xl font-heading font-bold text-foreground">
                     Frequently Asked Questions About {tool.name}
                   </h2>
@@ -467,7 +467,7 @@ export default async function ToolPage({ params }: ToolPageProps) {
                   {seo.faqs.map((faq, idx) => (
                     <div
                       key={idx}
-                      className="p-5 rounded-2xl bg-muted/20 border border-border/60 space-y-2"
+                      className="p-4 rounded-lg bg-muted/20 border border-border/60 space-y-2"
                     >
                       <h3 className="font-semibold text-xs sm:text-sm text-foreground">
                         {faq.question}
@@ -483,14 +483,14 @@ export default async function ToolPage({ params }: ToolPageProps) {
 
             {/* Section 5: Related Tools in Same Category */}
             {relatedTools.length > 0 && (
-              <section className="space-y-4 pt-4">
+              <section className="space-y-4 pt-2">
                 <div className="flex items-center justify-between">
                   <h3 className="text-lg font-heading font-bold text-foreground">
                     More {tool.category} on Zoqonyx
                   </h3>
                   <Link
                     href={`/category/${catSlug}`}
-                    className="text-xs font-semibold text-brand-cyan hover:underline inline-flex items-center gap-1"
+                    className="text-xs font-semibold text-teal-400 hover:underline inline-flex items-center gap-1"
                   >
                     <span>View Category Hub</span>
                     <ArrowRight className="w-3.5 h-3.5" />
@@ -499,11 +499,11 @@ export default async function ToolPage({ params }: ToolPageProps) {
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                   {relatedTools.map((rel) => (
                     <Link key={rel.slug} href={`/tools/${rel.slug}`} className="group">
-                      <div className="p-4 rounded-xl bg-card border border-border/80 hover:border-brand-cyan/60 transition-all space-y-1.5 h-full flex flex-col justify-between">
+                      <div className="p-4 rounded-lg bg-card border border-border/80 hover:border-teal-500/50 transition-all space-y-1.5 h-full flex flex-col justify-between">
                         <div className="space-y-1.5">
                           <div className="flex items-center gap-2">
-                            <ToolIcon name={rel.icon} className="w-4 h-4 text-brand-cyan" />
-                            <span className="font-heading font-semibold text-sm group-hover:text-brand-cyan transition-colors">
+                            <ToolIcon name={rel.icon} className="w-4 h-4 text-teal-400" />
+                            <span className="font-heading font-semibold text-sm group-hover:text-teal-400 transition-colors">
                               {rel.name}
                             </span>
                           </div>
@@ -511,7 +511,7 @@ export default async function ToolPage({ params }: ToolPageProps) {
                             {rel.description}
                           </p>
                         </div>
-                        <div className="text-[11px] font-semibold text-brand-cyan flex items-center gap-1 pt-2">
+                        <div className="text-[11px] font-semibold text-teal-400 flex items-center gap-1 pt-2">
                           <span>Launch Tool</span>
                           <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
                         </div>
@@ -531,20 +531,20 @@ export default async function ToolPage({ params }: ToolPageProps) {
                   </h3>
                   <Link
                     href="/tools"
-                    className="text-xs font-semibold text-brand-cyan hover:underline inline-flex items-center gap-1"
+                    className="text-xs font-semibold text-teal-400 hover:underline inline-flex items-center gap-1"
                   >
-                    <span>Browse All 37+ Tools</span>
+                    <span>Browse All 100+ Free Tools</span>
                     <ArrowRight className="w-3.5 h-3.5" />
                   </Link>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                   {popularTools.map((pop) => (
                     <Link key={pop.slug} href={`/tools/${pop.slug}`} className="group">
-                      <div className="p-4 rounded-xl bg-card border border-border/80 hover:border-brand-cyan/60 transition-all space-y-1.5 h-full flex flex-col justify-between">
+                      <div className="p-4 rounded-lg bg-card border border-border/80 hover:border-teal-500/50 transition-all space-y-1.5 h-full flex flex-col justify-between">
                         <div className="space-y-1.5">
                           <div className="flex items-center gap-2">
-                            <ToolIcon name={pop.icon} className="w-4 h-4 text-brand-purple" />
-                            <span className="font-heading font-semibold text-xs text-foreground group-hover:text-brand-cyan transition-colors">
+                            <ToolIcon name={pop.icon} className="w-4 h-4 text-teal-400" />
+                            <span className="font-heading font-semibold text-xs text-foreground group-hover:text-teal-400 transition-colors">
                               {pop.name}
                             </span>
                           </div>
@@ -552,7 +552,7 @@ export default async function ToolPage({ params }: ToolPageProps) {
                             {pop.description}
                           </p>
                         </div>
-                        <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider pt-2">
+                        <span className="text-[10px] font-mono font-bold text-muted-foreground uppercase tracking-wider pt-2">
                           {pop.category}
                         </span>
                       </div>

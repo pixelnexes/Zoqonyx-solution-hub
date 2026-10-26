@@ -43,6 +43,18 @@ import {
 } from "./seo-calc-tools";
 import { OpenGraphPreviewTool } from "./open-graph-preview-tool";
 import { WatermarkObjectRemoverTool } from "./watermark-object-remover";
+import { BackgroundRemoverTool } from "./background-remover-tool";
+import { ImageUpscalerTool } from "./image-upscaler-tool";
+import { CompressPdfTool } from "./compress-pdf-tool";
+import { PdfToImageTool } from "./pdf-to-image-tool";
+import { OrganizePdfTool } from "./organize-pdf-tool";
+import { ColorConverterTool } from "./color-converter-tool";
+import { AnimationKeyframesTool } from "./animation-keyframes-tool";
+import { ContrastCheckerTool } from "./contrast-checker-tool";
+import { PlaceholderImageTool } from "./placeholder-image-tool";
+import { IpLookupTool } from "./ip-lookup-tool";
+import { SslCheckerTool } from "./ssl-checker-tool";
+import { ReadingTimeTool } from "./reading-time-tool";
 
 // PDF Tools
 import {
@@ -164,10 +176,20 @@ export function ToolRenderer({ slug }: ToolRendererProps) {
       return <ImageToPdfTool />;
     case "pdf-to-text":
       return <PdfToTextTool />;
+    case "compress-pdf":
+      return <CompressPdfTool />;
+    case "pdf-to-image":
+      return <PdfToImageTool />;
+    case "organize-pdf":
+      return <OrganizePdfTool />;
 
-    // Image & Photo Tools (16 tools)
+    // Image & Photo Tools (18 tools)
     case "image-compressor":
       return <ImageCompressorTool />;
+    case "background-remover":
+      return <BackgroundRemoverTool />;
+    case "image-upscaler":
+      return <ImageUpscalerTool />;
     case "image-resizer":
       return <ImageResizerTool />;
     case "image-format-converter":
@@ -241,6 +263,8 @@ export function ToolRenderer({ slug }: ToolRendererProps) {
       return <CronExpressionGeneratorTool />;
     case "json-to-csv":
       return <JsonToCsvTool />;
+    case "color-converter":
+      return <ColorConverterTool />;
 
     // Text & Writing Tools (16 tools)
     case "case-converter":
@@ -301,6 +325,10 @@ export function ToolRenderer({ slug }: ToolRendererProps) {
       return <ColorPaletteGeneratorTool />;
     case "aspect-ratio-calculator":
       return <AspectRatioCalculatorTool />;
+    case "animation-keyframes-generator":
+      return <AnimationKeyframesTool />;
+    case "contrast-checker":
+      return <ContrastCheckerTool />;
 
     // SEO, Webmaster & Marketing Tools (11 tools)
     case "qr-code-generator":
@@ -327,7 +355,7 @@ export function ToolRenderer({ slug }: ToolRendererProps) {
     case "serp-snippet-preview":
       return <SerpSnippetPreviewTool />;
 
-    // Calculators & Math (15 tools)
+    // Calculators & Math (19 tools)
     case "unit-converter":
       return <UnitConverterTool />;
     case "age-calculator":
@@ -358,6 +386,14 @@ export function ToolRenderer({ slug }: ToolRendererProps) {
       return <FuelCostCalculatorTool />;
     case "time-duration-calculator":
       return <TimeDurationCalculatorTool />;
+    case "placeholder-image-generator":
+      return <PlaceholderImageTool />;
+    case "ip-lookup":
+      return <IpLookupTool />;
+    case "ssl-checker":
+      return <SslCheckerTool />;
+    case "reading-time-calculator":
+      return <ReadingTimeTool />;
 
     default:
       return (

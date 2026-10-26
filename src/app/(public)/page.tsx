@@ -54,18 +54,25 @@ export default async function HomePage() {
     console.error("Error fetching tools for homepage:", error);
   }
 
+  const defaultToolsFormatted = DEFAULT_TOOLS.map((t) => ({
+    id: t.id,
+    slug: t.slug,
+    name: t.name,
+    description: t.description,
+    category: t.category,
+    isActive: t.isActive,
+    isComingSoon: t.isComingSoon,
+    icon: t.icon,
+    order: t.order,
+  }));
+
   if (tools.length === 0) {
-    tools = DEFAULT_TOOLS.map((t) => ({
-      id: t.id,
-      slug: t.slug,
-      name: t.name,
-      description: t.description,
-      category: t.category,
-      isActive: t.isActive,
-      isComingSoon: t.isComingSoon,
-      icon: t.icon,
-      order: t.order,
-    }));
+    tools = defaultToolsFormatted;
+  } else {
+    // Merge: ensure all 130 tools are always displayed even if DB has only 37 seeded rows
+    const dbSlugs = new Set(tools.map((t) => t.slug));
+    const missing = defaultToolsFormatted.filter((t) => !dbSlugs.has(t.slug));
+    tools = [...tools, ...missing].sort((a, b) => a.order - b.order);
   }
 
   const activeLiveCount = tools.filter((t) => !t.isComingSoon).length;
@@ -91,48 +98,45 @@ export default async function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <div className="relative overflow-hidden">
-        {/* Subtle Ambient Radial Glow */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-gradient-to-b from-brand-cyan/15 via-brand-purple/10 to-transparent blur-3xl pointer-events-none -z-10" />
-
-        <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-12 pb-16">
+      <div className="relative">
+        <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-10 pb-16">
           {/* Hero Section */}
-          <div className="text-center max-w-3xl mx-auto space-y-6">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-brand-cyan/30 bg-brand-cyan/10 text-brand-cyan text-xs font-semibold backdrop-blur-sm animate-in fade-in zoom-in duration-300 shadow-sm">
-              <ShieldCheck className="w-3.5 h-3.5 text-brand-cyan" />
-              <span>Next-Gen Web Utilities • Hardware-Accelerated Local Compute • Zero Telemetry</span>
+          <div className="text-center max-w-3xl mx-auto space-y-5">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md border border-border bg-card/60 text-xs font-mono text-muted-foreground shadow-sm">
+              <span className="w-1.5 h-1.5 rounded-full bg-teal-400 animate-pulse"></span>
+              <span>100 Tools Live • 30 in Development • Zero Cloud Uploads</span>
             </div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-black tracking-tight text-foreground leading-[1.1]">
-              Next-Gen Digital Tools. <br />
-              <span className="brand-gradient-text">Zero Server Limits.</span>
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-foreground leading-[1.08]">
+              High-performance browser tools.<br />
+              <span className="text-teal-400">Zero tracking, zero uploads.</span>
             </h1>
 
-            <p className="text-base sm:text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto">
-              Experience 100+ private, hardware-accelerated digital utilities and 30 upcoming pro tools. Merge PDFs, compress high-res media in bulk, generate QR matrices, format code, and calculate values—with zero subscriptions, zero tracking, and zero cloud uploads.
+            <p className="text-sm sm:text-base text-muted-foreground leading-relaxed max-w-xl mx-auto">
+              Every utility executes client-side on your device. Compress photos in bulk, manipulate PDFs, format code, and compute values with zero subscriptions, zero accounts, and zero latency.
             </p>
 
             {/* Quick Metrics */}
-            <div className="pt-2 flex flex-wrap items-center justify-center gap-3 sm:gap-4 text-xs sm:text-sm font-medium text-foreground">
-              <div className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-card border border-border/80 shadow-sm">
-                <Check className="w-4 h-4 text-emerald-500" />
-                <span>{activeLiveCount}+ Live Free Tools</span>
+            <div className="pt-1 flex flex-wrap items-center justify-center gap-2.5 sm:gap-3 text-xs font-medium text-foreground">
+              <div className="flex items-center gap-1.5 px-3 py-1 rounded-lg bg-card border border-border shadow-xs">
+                <Check className="w-3.5 h-3.5 text-teal-400" />
+                <span>{activeLiveCount} Live Free Tools</span>
               </div>
-              <div className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-card border border-border/80 shadow-sm">
-                <Shield className="w-4 h-4 text-brand-cyan" />
+              <div className="flex items-center gap-1.5 px-3 py-1 rounded-lg bg-card border border-border shadow-xs">
+                <Shield className="w-3.5 h-3.5 text-teal-400" />
                 <span>100% Client-Side Privacy</span>
               </div>
-              <div className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-card border border-border/80 shadow-sm">
-                <Zap className="w-4 h-4 text-amber-500" />
-                <span>Zero Server Uploads</span>
+              <div className="flex items-center gap-1.5 px-3 py-1 rounded-lg bg-card border border-border shadow-xs">
+                <Zap className="w-3.5 h-3.5 text-teal-400" />
+                <span>Non-Blocking Bulk Batching</span>
               </div>
             </div>
 
-            <div className="pt-4 flex items-center justify-center gap-3">
+            <div className="pt-2 flex items-center justify-center gap-3">
               <Link href="#tools-catalog">
-                <Button variant="gradient" size="lg" className="gap-2 shadow-lg shadow-brand-cyan/25 hover:shadow-brand-cyan/40 transition-all duration-300">
-                  <span>Explore Tools Catalog</span>
-                  <ArrowDown className="w-4 h-4" />
+                <Button className="bg-teal-600 hover:bg-teal-500 text-white rounded-lg px-5 py-2.5 text-xs font-semibold gap-2 shadow-sm transition-colors">
+                  <span>Browse 100 Free Tools</span>
+                  <ArrowDown className="w-3.5 h-3.5" />
                 </Button>
               </Link>
             </div>

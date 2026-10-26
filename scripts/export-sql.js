@@ -90,26 +90,8 @@ ON DUPLICATE KEY UPDATE \`password\` = VALUES(\`password\`);
 
 `;
 
-  // Read data from seed.js
-  const records = { settings: [], pages: [], tools: [] };
-  const mockPrisma = {
-    $disconnect: async () => {},
-    user: { findUnique: async () => null, create: async () => {} },
-    setting: { upsert: async ({ create }) => records.settings.push(create) },
-    page: { upsert: async ({ create }) => records.pages.push(create) },
-    tool: { upsert: async ({ create }) => records.tools.push(create) }
-  };
-
-  const seedCode = fs.readFileSync('prisma/seed.js', 'utf8');
-  // strip out existing require and prisma instantiation so we can pass mock
-  const wrapped = `
-    const bcrypt = arguments[0];
-    const prisma = arguments[1];
-    ${seedCode.replace(/const { PrismaClient }[^;]+;/, '').replace(/const bcrypt =[^;]+;/, '').replace(/const prisma =[^;]+;/, '')}
-    return main();
-  `;
-  const fn = new Function(wrapped);
-  await fn(bcrypt, mockPrisma);
+  const { defaultTools } = require('../prisma/seed.js');
+  const records = { settings: [], pages: [], tools: defaultTools };
 
   // Settings
   sql += '-- 2. Insert Default Settings\n';

@@ -101,10 +101,10 @@ export function ToolCatalog({ initialTools }: ToolCatalogProps) {
               key={cat}
               onClick={() => setSelectedCategory(cat)}
               className={cn(
-                "whitespace-nowrap px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 border",
+                "whitespace-nowrap px-3.5 py-1.5 rounded-lg text-xs font-medium transition-all border",
                 isSelected
-                  ? "bg-brand-navy text-white dark:bg-brand-cyan dark:text-brand-navy border-transparent shadow-sm"
-                  : "bg-card hover:bg-muted/80 text-muted-foreground hover:text-foreground border-border/60"
+                  ? "bg-teal-600 text-white border-teal-500 shadow-xs"
+                  : "bg-card hover:bg-muted text-muted-foreground hover:text-foreground border-border"
               )}
             >
               {cat}
@@ -114,10 +114,10 @@ export function ToolCatalog({ initialTools }: ToolCatalogProps) {
         <button
           onClick={() => setSelectedCategory("Coming Soon")}
           className={cn(
-            "whitespace-nowrap px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 border flex items-center gap-1.5",
+            "whitespace-nowrap px-3.5 py-1.5 rounded-lg text-xs font-medium transition-all border flex items-center gap-1.5",
             selectedCategory === "Coming Soon"
-              ? "bg-brand-purple text-white border-transparent shadow-sm"
-              : "bg-card hover:bg-muted/80 text-brand-purple dark:text-purple-300 border-brand-purple/30"
+              ? "bg-amber-600 text-white border-amber-500 shadow-xs"
+              : "bg-card hover:bg-muted text-amber-400 border-border"
           )}
         >
           <Clock className="w-3.5 h-3.5" />
@@ -128,9 +128,9 @@ export function ToolCatalog({ initialTools }: ToolCatalogProps) {
       {/* Dedicated Category Banner */}
       {selectedCategory !== "All" &&
         selectedCategory !== "Coming Soon" && (
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 p-4 rounded-2xl bg-gradient-to-r from-brand-cyan/10 via-brand-purple/10 to-transparent border border-brand-cyan/20">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 p-4 rounded-xl bg-card border border-border">
             <div className="space-y-0.5">
-              <p className="text-xs font-bold text-brand-cyan uppercase tracking-wider">Dedicated Category Hub</p>
+              <p className="text-[10px] font-bold text-teal-400 uppercase tracking-wider font-mono">Category Hub</p>
               <p className="text-sm font-semibold text-foreground">
                 In-depth guides, technical FAQs, and advanced workflows for {selectedCategory}.
               </p>
@@ -153,7 +153,7 @@ export function ToolCatalog({ initialTools }: ToolCatalogProps) {
                   ? "ai-tools"
                   : "image-tools"
               }`}
-              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-card border border-border/80 text-xs font-bold text-foreground hover:border-brand-cyan/60 hover:text-brand-cyan shadow-sm transition-all shrink-0"
+              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-teal-500/10 border border-teal-500/20 text-xs font-semibold text-teal-400 hover:bg-teal-500/20 transition-all shrink-0"
             >
               <span>Explore {selectedCategory} Hub</span>
               <ArrowRight className="w-3.5 h-3.5" />
@@ -163,9 +163,9 @@ export function ToolCatalog({ initialTools }: ToolCatalogProps) {
 
       {/* Tools Grid */}
       {filteredTools.length === 0 ? (
-        <div className="text-center py-16 px-4 rounded-2xl border border-dashed border-border/80 bg-muted/20">
-          <p className="text-lg font-heading font-semibold text-foreground">No tools matched your search</p>
-          <p className="text-sm text-muted-foreground mt-1 max-w-md mx-auto">
+        <div className="text-center py-16 px-4 rounded-xl border border-dashed border-border bg-muted/10">
+          <p className="text-base font-semibold text-foreground">No tools matched your search</p>
+          <p className="text-xs text-muted-foreground mt-1 max-w-md mx-auto">
             Try adjusting your search terms or clearing category filters.
           </p>
           <button
@@ -173,55 +173,53 @@ export function ToolCatalog({ initialTools }: ToolCatalogProps) {
               setSearchQuery("");
               setSelectedCategory("All");
             }}
-            className="mt-4 px-4 py-2 text-sm font-medium text-brand-cyan hover:underline"
+            className="mt-3 px-3 py-1.5 text-xs font-medium text-teal-400 hover:underline"
           >
             Reset Filters
           </button>
         </div>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
           {filteredTools.map((tool) => (
             <Link
               key={tool.slug}
               href={`/tools/${tool.slug}`}
-              className="group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-cyan rounded-xl"
+              className="group focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-teal-500 rounded-xl block"
             >
-              <Card className="h-full flex flex-col justify-between transition-all duration-200 hover:-translate-y-1 hover:shadow-lg hover:border-brand-cyan/60 bg-card/80">
-                <CardHeader className="space-y-3 pb-3">
+              <Card className="h-full flex flex-col justify-between transition-all duration-150 hover:-translate-y-0.5 hover:border-teal-500/50 bg-card rounded-xl border border-border">
+                <CardHeader className="space-y-3 pb-2.5">
                   <div className="flex items-center justify-between gap-2">
-                    <div className="p-2.5 rounded-xl bg-gradient-to-br from-brand-cyan/15 to-brand-purple/15 text-brand-cyan dark:text-cyan-400 group-hover:scale-110 transition-transform">
-                      <ToolIcon name={tool.icon} className="w-5 h-5" />
+                    <div className="p-2 rounded-lg bg-teal-500/10 text-teal-400 border border-teal-500/20">
+                      <ToolIcon name={tool.icon} className="w-4 h-4" />
                     </div>
 
                     {tool.isComingSoon ? (
-                      <Badge variant="comingSoon" className="gap-1 text-[11px]">
-                        <Clock className="w-3 h-3" />
-                        <span>Coming Soon</span>
-                      </Badge>
+                      <span className="px-2 py-0.5 rounded text-[10px] font-mono font-medium bg-amber-500/10 text-amber-400 border border-amber-500/20 flex items-center gap-1">
+                        <Clock className="w-3 h-3" /> Coming Soon
+                      </span>
                     ) : (
-                      <Badge variant="success" className="gap-1 text-[11px]">
-                        <CheckCircle2 className="w-3 h-3" />
-                        <span>Free & Live</span>
-                      </Badge>
+                      <span className="px-2 py-0.5 rounded text-[10px] font-mono font-medium bg-teal-500/10 text-teal-400 border border-teal-500/20 flex items-center gap-1">
+                        <CheckCircle2 className="w-3 h-3" /> Free
+                      </span>
                     )}
                   </div>
 
                   <div>
-                    <span className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
+                    <span className="text-[10px] font-mono uppercase tracking-wider text-muted-foreground">
                       {tool.category}
                     </span>
-                    <CardTitle className="text-base font-heading group-hover:text-brand-cyan transition-colors mt-0.5 line-clamp-1">
+                    <CardTitle className="text-sm font-bold group-hover:text-teal-400 transition-colors mt-0.5 line-clamp-1">
                       {tool.name}
                     </CardTitle>
                   </div>
                 </CardHeader>
 
-                <CardContent className="space-y-4">
-                  <CardDescription className="text-xs line-clamp-2">
+                <CardContent className="space-y-3 pt-0">
+                  <CardDescription className="text-xs line-clamp-2 text-muted-foreground">
                     {tool.description}
                   </CardDescription>
 
-                  <div className="pt-2 flex items-center justify-between text-xs font-semibold text-brand-accent dark:text-brand-cyan group-hover:translate-x-0.5 transition-transform">
+                  <div className="pt-2 flex items-center justify-between text-xs font-semibold text-teal-400 group-hover:translate-x-0.5 transition-transform">
                     <span>{tool.isComingSoon ? "Preview Roadmap" : "Launch Tool"}</span>
                     <ArrowRight className="w-3.5 h-3.5" />
                   </div>

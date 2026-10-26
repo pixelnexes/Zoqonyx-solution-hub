@@ -60,15 +60,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       select: { slug: true, updatedAt: true, isComingSoon: true },
     });
 
-    if (tools.length === 0) {
-      tools = DEFAULT_TOOLS.map((t) => ({
-        slug: t.slug,
-        updatedAt: new Date(),
-        isComingSoon: t.isComingSoon,
-      }));
-    }
+    const dbSlugs = new Set(tools.map((t) => t.slug));
+    const missing = DEFAULT_TOOLS.filter((t) => !dbSlugs.has(t.slug)).map((t) => ({
+      slug: t.slug,
+      updatedAt: new Date(),
+      isComingSoon: t.isComingSoon,
+    }));
+    const allTools = [...tools, ...missing];
 
-    const toolRoutes: MetadataRoute.Sitemap = tools.map((tool) => ({
+    const toolRoutes: MetadataRoute.Sitemap = allTools.map((tool) => ({
       url: `${baseUrl}/tools/${tool.slug}`,
       lastModified: tool.updatedAt,
       changeFrequency: tool.isComingSoon ? "weekly" : "daily",

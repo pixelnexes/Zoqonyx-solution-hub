@@ -125,20 +125,21 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
     console.error("Error fetching category tools from DB:", err);
   }
 
-  // Fallback if DB is empty or down
-  const displayedTools =
-    liveTools.length > 0
-      ? liveTools
-      : category.fallbackTools.map((t, idx) => ({
-          id: `fallback-${t.slug}`,
-          slug: t.slug,
-          name: t.name,
-          description: t.description,
-          icon: t.icon,
-          isComingSoon: !!t.isComingSoon,
-          category: category.name,
-          order: idx + 1,
-        }));
+  // Merge DB tools with category fallback tools to guarantee full catalog visibility
+  const fallbackFormatted = category.fallbackTools.map((t, idx) => ({
+    id: `fallback-${t.slug}`,
+    slug: t.slug,
+    name: t.name,
+    description: t.description,
+    icon: t.icon,
+    isComingSoon: !!t.isComingSoon,
+    category: category.name,
+    order: idx + 1,
+  }));
+
+  const dbSlugs = new Set(liveTools.map((t) => t.slug));
+  const missingFallback = fallbackFormatted.filter((t) => !dbSlugs.has(t.slug));
+  const displayedTools = [...liveTools, ...missingFallback].sort((a, b) => a.order - b.order);
 
   // JSON-LD structured data for SEO (CollectionPage + ItemList + FAQPage)
   const collectionJsonLd = {
@@ -208,18 +209,18 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
         </nav>
 
         {/* Category Hero Section */}
-        <div className="relative overflow-hidden rounded-3xl border border-border/80 bg-card p-6 sm:p-10 lg:p-12 shadow-sm">
+        <div className="relative overflow-hidden rounded-xl border border-border/80 bg-card p-6 sm:p-10 lg:p-12 shadow-sm">
           {/* Ambient Glow */}
           <div
-            className={`absolute -top-24 -right-24 w-96 h-96 rounded-full bg-gradient-to-br ${category.heroGradient} blur-3xl opacity-70 pointer-events-none`}
+            className={`absolute -top-24 -right-24 w-96 h-96 rounded-full bg-gradient-to-br ${category.heroGradient} blur-3xl opacity-40 pointer-events-none`}
           />
 
           <div className="relative z-10 space-y-5 max-w-3xl">
             <div className="flex flex-wrap items-center gap-3">
-              <div className="p-3.5 rounded-2xl bg-gradient-to-br from-brand-cyan/20 to-brand-purple/20 text-brand-cyan dark:text-cyan-400 shadow-inner">
-                <ToolIcon name={category.icon} className="w-7 h-7" />
+              <div className="p-3 rounded-lg bg-teal-500/10 text-teal-400 border border-teal-500/20">
+                <ToolIcon name={category.icon} className="w-6 h-6" />
               </div>
-              <Badge variant="outline" className="text-xs px-3 py-1 font-semibold border-brand-cyan/40 text-brand-cyan">
+              <Badge variant="outline" className="text-xs px-3 py-1 font-semibold border-teal-500/40 text-teal-400 font-mono">
                 {category.badge}
               </Badge>
               <Badge variant="secondary" className="text-xs px-3 py-1 font-medium">
@@ -231,7 +232,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
               {category.name}
             </h1>
 
-            <p className="text-lg sm:text-xl font-medium text-brand-cyan dark:text-cyan-400">
+            <p className="text-base sm:text-lg font-medium text-teal-400">
               {category.tagline}
             </p>
 
@@ -242,13 +243,13 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
             {/* Quick Badges */}
             <div className="flex flex-wrap items-center gap-5 pt-3 text-xs font-semibold text-muted-foreground">
               <span className="flex items-center gap-1.5">
-                <CheckCircle2 className="w-4 h-4 text-emerald-500" /> No Account or Login Required
+                <CheckCircle2 className="w-4 h-4 text-emerald-400" /> No Account or Login Required
               </span>
               <span className="flex items-center gap-1.5">
-                <ShieldCheck className="w-4 h-4 text-brand-cyan" /> 100% Private (No Cloud Storage)
+                <ShieldCheck className="w-4 h-4 text-teal-400" /> 100% Private (No Cloud Storage)
               </span>
               <span className="flex items-center gap-1.5">
-                <Zap className="w-4 h-4 text-amber-500" /> Instant Hardware Acceleration
+                <Zap className="w-4 h-4 text-amber-400" /> Instant Hardware Acceleration
               </span>
             </div>
           </div>
@@ -265,41 +266,41 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
                 Click any tool below to launch instantly in your web browser.
               </p>
             </div>
-            <span className="text-xs font-semibold px-3 py-1.5 rounded-full bg-muted/60 text-muted-foreground">
+            <span className="text-xs font-mono font-semibold px-3 py-1.5 rounded-md bg-muted/60 text-muted-foreground border border-border/60">
               {displayedTools.length} {displayedTools.length === 1 ? "Tool" : "Tools"}
             </span>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {displayedTools.map((tool) => (
               <Card
                 key={tool.slug}
-                className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border-border/80 bg-card/60 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-brand-cyan/50 hover:shadow-lg hover:shadow-brand-cyan/5"
+                className="group relative flex flex-col justify-between overflow-hidden rounded-lg border-border/80 bg-card/60 backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-teal-500/50 shadow-sm"
               >
-                <CardHeader className="space-y-3 pb-3">
+                <CardHeader className="space-y-2.5 pb-2.5">
                   <div className="flex items-center justify-between">
-                    <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-brand-cyan/15 to-brand-purple/15 text-brand-cyan dark:text-cyan-400 transition-transform duration-300 group-hover:scale-110">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-teal-500/10 text-teal-400 border border-teal-500/20 transition-transform duration-200 group-hover:scale-105">
                       <ToolIcon name={tool.icon} className="h-5 w-5" />
                     </div>
 
                     {tool.isComingSoon ? (
-                      <Badge variant="secondary" className="text-[11px] font-semibold bg-amber-500/15 text-amber-600 dark:text-amber-400 border-amber-500/30">
-                        Coming Soon
+                      <Badge variant="secondary" className="text-[10px] font-mono font-semibold bg-amber-500/10 text-amber-400 border-amber-500/30">
+                        DEV STAGE
                       </Badge>
                     ) : (
-                      <Badge variant="outline" className="text-[11px] font-medium border-emerald-500/30 text-emerald-600 dark:text-emerald-400">
-                        Live Ready
+                      <Badge variant="outline" className="text-[10px] font-mono font-medium border-emerald-500/30 text-emerald-400">
+                        READY
                       </Badge>
                     )}
                   </div>
 
-                  <CardTitle className="font-heading text-lg font-bold group-hover:text-brand-cyan transition-colors">
+                  <CardTitle className="font-heading text-base font-bold group-hover:text-teal-400 transition-colors">
                     <Link href={`/tools/${tool.slug}`} className="focus:outline-none">
                       {tool.name}
                     </Link>
                   </CardTitle>
 
-                  <CardDescription className="text-xs sm:text-sm line-clamp-2 leading-relaxed">
+                  <CardDescription className="text-xs line-clamp-2 leading-relaxed">
                     {tool.description}
                   </CardDescription>
                 </CardHeader>
@@ -307,11 +308,15 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
                 <CardContent className="pt-2">
                   <Link href={`/tools/${tool.slug}`} className="block">
                     <Button
-                      variant={tool.isComingSoon ? "outline" : "gradient"}
+                      variant={tool.isComingSoon ? "outline" : "default"}
                       size="sm"
-                      className="w-full justify-between group/btn text-xs font-semibold"
+                      className={`w-full justify-between group/btn text-xs font-semibold rounded-md ${
+                        tool.isComingSoon
+                          ? "hover:border-teal-500/50 hover:text-teal-400"
+                          : "bg-teal-500 hover:bg-teal-400 text-slate-950"
+                      }`}
                     >
-                      <span>{tool.isComingSoon ? "View Preview & Notify" : "Launch Tool"}</span>
+                      <span>{tool.isComingSoon ? "Preview & Notify" : "Launch Tool"}</span>
                       <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover/btn:translate-x-1" />
                     </Button>
                   </Link>
@@ -322,37 +327,37 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
         </section>
 
         {/* Comprehensive SEO Content & Educational Guide */}
-        <section className="space-y-10 rounded-3xl border border-border/80 bg-card p-6 sm:p-10 shadow-sm">
+        <section className="space-y-8 rounded-xl border border-border/80 bg-card p-6 sm:p-8 shadow-sm">
           {/* Overview */}
-          <div className="space-y-4">
-            <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-brand-cyan">
-              <Sparkles className="w-4 h-4" />
-              <span>Comprehensive Category Guide</span>
+          <div className="space-y-3">
+            <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-teal-400 font-mono">
+              <Sparkles className="w-3.5 h-3.5" />
+              <span>CATEGORY ARCHITECTURE & GUIDE</span>
             </div>
             <h2 className="text-2xl sm:text-3xl font-heading font-black text-foreground">
               About {category.name} on Zoqonyx
             </h2>
-            <div className="text-sm sm:text-base text-muted-foreground leading-relaxed whitespace-pre-line space-y-4">
+            <div className="text-sm text-muted-foreground leading-relaxed whitespace-pre-line space-y-4">
               {category.longContent.overview}
             </div>
           </div>
 
           {/* Key Advantages Grid */}
           <div className="space-y-4 pt-4 border-t border-border/60">
-            <h3 className="text-xl font-heading font-bold text-foreground">
+            <h3 className="text-lg font-heading font-bold text-foreground">
               Key Advantages & Architectural Features
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {category.longContent.keyBenefits.map((b, idx) => (
                 <div
                   key={idx}
-                  className="p-5 rounded-2xl bg-muted/30 border border-border/60 space-y-2 transition-all hover:bg-muted/50"
+                  className="p-4 rounded-lg bg-muted/20 border border-border/60 space-y-2 transition-all hover:border-teal-500/40"
                 >
                   <h4 className="font-heading font-bold text-sm text-foreground flex items-center gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
+                    <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
                     <span>{b.title}</span>
                   </h4>
-                  <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed pl-6">
+                  <p className="text-xs text-muted-foreground leading-relaxed pl-6">
                     {b.desc}
                   </p>
                 </div>
@@ -363,19 +368,19 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
           {/* Popular Workflows */}
           {category.longContent.popularWorkflows.length > 0 && (
             <div className="space-y-4 pt-4 border-t border-border/60">
-              <h3 className="text-xl font-heading font-bold text-foreground">
+              <h3 className="text-lg font-heading font-bold text-foreground">
                 Popular Workflows & Best Practices
               </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {category.longContent.popularWorkflows.map((flow, fIdx) => (
                   <div
                     key={fIdx}
-                    className="p-6 rounded-2xl bg-card border border-border/80 space-y-3"
+                    className="p-5 rounded-lg bg-card border border-border/80 space-y-2.5"
                   >
-                    <h4 className="font-heading font-bold text-base text-brand-cyan">
+                    <h4 className="font-heading font-bold text-sm text-teal-400">
                       {flow.title}
                     </h4>
-                    <ol className="space-y-2 text-xs sm:text-sm text-muted-foreground list-decimal list-inside">
+                    <ol className="space-y-1.5 text-xs text-muted-foreground list-decimal list-inside">
                       {flow.steps.map((step, sIdx) => (
                         <li key={sIdx} className="leading-relaxed">
                           {step}
@@ -394,11 +399,11 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
               <div
                 dangerouslySetInnerHTML={{
                   __html: category.longContent.deepDiveArticle
-                    .replace(/^### (.*$)/gim, '<h3 class="text-xl font-heading font-bold text-foreground mt-6 mb-3">$1</h3>')
-                    .replace(/^## (.*$)/gim, '<h2 class="text-2xl font-heading font-black text-foreground mt-8 mb-4">$1</h2>')
-                    .replace(/^\- (.*$)/gim, '<li class="list-disc ml-5 text-sm my-1">$1</li>')
+                    .replace(/^### (.*$)/gim, '<h3 class="text-base font-heading font-bold text-foreground mt-5 mb-2">$1</h3>')
+                    .replace(/^## (.*$)/gim, '<h2 class="text-xl font-heading font-black text-foreground mt-6 mb-3">$1</h2>')
+                    .replace(/^\- (.*$)/gim, '<li class="list-disc ml-5 text-xs sm:text-sm my-1">$1</li>')
                     .replace(/\*\*(.*?)\*\*/g, '<strong class="text-foreground font-semibold">$1</strong>')
-                    .replace(/\n\n/g, '<p class="text-sm leading-relaxed my-3">')
+                    .replace(/\n\n/g, '<p class="text-xs sm:text-sm leading-relaxed my-2.5">')
                     .replace(/\n/g, '<br />'),
                 }}
               />
@@ -407,28 +412,28 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
         </section>
 
         {/* Interactive FAQ Section */}
-        <section className="space-y-6 rounded-3xl border border-border/80 bg-card p-6 sm:p-10 shadow-sm">
+        <section className="space-y-6 rounded-xl border border-border/80 bg-card p-6 sm:p-8 shadow-sm">
           <div className="space-y-1">
-            <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-brand-cyan">
-              <HelpCircle className="w-4 h-4" />
-              <span>Questions & Answers</span>
+            <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-teal-400 font-mono">
+              <HelpCircle className="w-3.5 h-3.5" />
+              <span>FREQUENTLY ASKED QUESTIONS</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground">
+            <h2 className="text-xl sm:text-2xl font-heading font-bold text-foreground">
               Frequently Asked Questions
             </h2>
-            <p className="text-xs sm:text-sm text-muted-foreground">
+            <p className="text-xs text-muted-foreground">
               Common questions about {category.name} and how our tools work.
             </p>
           </div>
 
-          <div className="space-y-4 divide-y divide-border/60">
+          <div className="space-y-3 divide-y divide-border/60">
             {category.faqs.map((faq, fIdx) => (
-              <div key={fIdx} className="pt-4 first:pt-0 space-y-2">
-                <h3 className="font-heading font-bold text-base text-foreground flex items-start gap-2.5">
-                  <span className="text-brand-cyan font-mono text-sm">Q:</span>
+              <div key={fIdx} className="pt-3 first:pt-0 space-y-1.5">
+                <h3 className="font-heading font-bold text-sm text-foreground flex items-start gap-2">
+                  <span className="text-teal-400 font-mono text-xs">Q:</span>
                   <span>{faq.question}</span>
                 </h3>
-                <p className="text-sm text-muted-foreground leading-relaxed pl-6">
+                <p className="text-xs text-muted-foreground leading-relaxed pl-5">
                   {faq.answer}
                 </p>
               </div>
@@ -437,18 +442,18 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
         </section>
 
         {/* Explore Other Categories */}
-        <section className="space-y-4 pt-4">
-          <h3 className="text-base font-heading font-bold text-foreground uppercase tracking-wider">
+        <section className="space-y-3 pt-2">
+          <h3 className="text-xs font-mono font-bold text-muted-foreground uppercase tracking-wider">
             Explore Other Tool Categories
           </h3>
-          <div className="flex flex-wrap items-center gap-3">
+          <div className="flex flex-wrap items-center gap-2.5">
             {otherCategories.map((other) => (
               <Link
                 key={other.slug}
                 href={`/category/${other.slug}`}
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-card border border-border/80 text-xs font-semibold text-muted-foreground hover:border-brand-cyan/50 hover:text-brand-cyan transition-all"
+                className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-card border border-border/80 text-xs font-semibold text-muted-foreground hover:border-teal-500/50 hover:text-teal-400 transition-all"
               >
-                <ToolIcon name={other.icon} className="w-4 h-4" />
+                <ToolIcon name={other.icon} className="w-3.5 h-3.5" />
                 <span>{other.name}</span>
               </Link>
             ))}
