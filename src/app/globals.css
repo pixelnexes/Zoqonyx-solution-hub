@@ -32,7 +32,7 @@
     --input: 214.3 31.8% 91.4%;
     --ring: 173 80% 40%;
 
-    --radius: 0.625rem; /* Max 10px - sharp, confident, human-designed */
+    --radius: 0.375rem; /* 6px - precision engineered Linear/Vercel styling */
   }
 
   .dark {

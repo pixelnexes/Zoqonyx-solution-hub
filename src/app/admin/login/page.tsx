@@ -40,11 +40,8 @@ export default function AdminLoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4 bg-background relative overflow-hidden">
-      {/* Background glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gradient-to-tr from-brand-cyan/15 to-brand-purple/15 blur-3xl pointer-events-none rounded-full" />
-
-      <div className="w-full max-w-md p-8 rounded-3xl bg-card border border-border/80 shadow-2xl space-y-6 relative z-10">
+    <div className="min-h-screen flex items-center justify-center p-4 bg-background relative">
+      <div className="w-full max-w-md p-8 rounded-xl bg-card border border-border/80 shadow-md space-y-6 relative z-10">
         <div className="text-center space-y-2">
           <div className="flex justify-center mb-2">
             <Logo size="lg" />

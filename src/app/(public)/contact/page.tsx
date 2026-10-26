@@ -67,8 +67,7 @@ export default function ContactPage() {
       </div>
 
       {/* Form Container */}
-      <div className="relative rounded-3xl border border-border/80 bg-card/60 backdrop-blur-xl p-6 sm:p-10 shadow-xl shadow-black/5 dark:shadow-black/20">
-        <div className="absolute inset-0 -z-10 rounded-3xl bg-gradient-to-br from-brand-cyan/5 via-transparent to-brand-purple/5 opacity-50 pointer-events-none" />
+      <div className="relative rounded-xl border border-border/80 bg-card p-6 sm:p-10 shadow-sm">
 
         {status === "success" ? (
           <div className="py-12 text-center space-y-4 animate-in fade-in zoom-in duration-300">

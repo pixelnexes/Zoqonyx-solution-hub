@@ -66,9 +66,26 @@ export default async function HomePage() {
     order: t.order,
   }));
 
+  const canonicalMap = new Map(DEFAULT_TOOLS.map((t) => [t.slug, t]));
+
   if (tools.length === 0) {
     tools = defaultToolsFormatted;
   } else {
+    // Reconcile DB tools against canonical catalog to eliminate corrupted names/categories
+    tools = tools.map((t) => {
+      const c = canonicalMap.get(t.slug);
+      return c
+        ? {
+            ...t,
+            name: c.name,
+            category: c.category,
+            description: c.description,
+            icon: c.icon,
+            isComingSoon: c.isComingSoon,
+          }
+        : t;
+    });
+
     // Merge: ensure all 130 tools are always displayed even if DB has only 37 seeded rows
     const dbSlugs = new Set(tools.map((t) => t.slug));
     const missing = defaultToolsFormatted.filter((t) => !dbSlugs.has(t.slug));

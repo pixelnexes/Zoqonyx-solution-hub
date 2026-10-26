@@ -59,8 +59,17 @@ export async function generateMetadata({ params }: ToolPageProps): Promise<Metad
       });
     } catch {}
 
-    if (!tool) {
-      tool = getDefaultToolBySlug(slug);
+    const canonical = getDefaultToolBySlug(slug);
+    if (canonical) {
+      tool = {
+        ...canonical,
+        ...(tool || {}),
+        name: canonical.name,
+        category: canonical.category,
+        description: canonical.description,
+        icon: canonical.icon,
+        isComingSoon: canonical.isComingSoon,
+      };
     }
 
     if (!tool) {
@@ -158,9 +167,20 @@ export default async function ToolPage({ params }: ToolPageProps) {
     console.error("Database connection error in ToolPage:", error);
   }
 
-  // Resilient fallback to default catalog if DB returned null
-  if (!tool) {
-    tool = getDefaultToolBySlug(slug);
+  // Reconcile with canonical catalog to prevent database row corruption mismatches
+  const canonical = getDefaultToolBySlug(slug);
+  if (canonical) {
+    tool = {
+      ...canonical,
+      ...(tool || {}),
+      name: canonical.name,
+      category: canonical.category,
+      description: canonical.description,
+      icon: canonical.icon,
+      isComingSoon: canonical.isComingSoon,
+    };
+  } else if (!tool) {
+    notFound();
   }
 
   if (tool && relatedTools.length === 0) {
@@ -326,14 +346,14 @@ export default async function ToolPage({ params }: ToolPageProps) {
               <ToolRenderer slug={tool.slug} />
             </div>
 
-            {/* Section 1: Step-by-Step "How to Use" Guide */}
+            {/* Section 1: Step-by-Step Practical Guide */}
             <section className="p-6 sm:p-8 rounded-xl bg-card border border-border/80 space-y-5">
               <div className="space-y-1">
                 <span className="text-[11px] font-bold uppercase tracking-wider text-teal-400 font-mono">
-                  STEP-BY-STEP WORKFLOW
+                  PRACTICAL GUIDE
                 </span>
                 <h2 className="text-xl sm:text-2xl font-heading font-bold text-foreground">
-                  How to Use {tool.name} in 4 Simple Steps
+                  {seo.workflowHeading || `How to Use ${tool.name}`}
                 </h2>
               </div>
 
@@ -359,14 +379,14 @@ export default async function ToolPage({ params }: ToolPageProps) {
               </div>
             </section>
 
-            {/* Section 2: Key Benefits & Browser Architecture */}
+            {/* Section 2: Key Capabilities & Architecture */}
             <section className="p-6 sm:p-8 rounded-xl bg-card border border-border/80 space-y-5">
               <div className="space-y-1">
                 <span className="text-[11px] font-bold uppercase tracking-wider text-teal-400 font-mono">
-                  CLIENT ARCHITECTURE
+                  ARCHITECTURE & ADVANTAGES
                 </span>
                 <h2 className="text-xl sm:text-2xl font-heading font-bold text-foreground">
-                  Why {tool.name} on Zoqonyx Beats Cloud Server Tools
+                  Key Technical Capabilities of {tool.name}
                 </h2>
               </div>
 

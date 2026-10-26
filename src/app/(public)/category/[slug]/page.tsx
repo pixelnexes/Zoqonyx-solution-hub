@@ -18,6 +18,7 @@ import {
   Layers,
   ChevronRight,
 } from "lucide-react";
+import { DEFAULT_TOOLS } from "@/lib/default-tools";
 
 export const dynamic = "force-dynamic";
 
@@ -137,6 +138,21 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
     order: idx + 1,
   }));
 
+  const canonicalMap = new Map(DEFAULT_TOOLS.map((t) => [t.slug, t]));
+  liveTools = liveTools.map((t) => {
+    const c = canonicalMap.get(t.slug);
+    return c
+      ? {
+          ...t,
+          name: c.name,
+          category: c.category,
+          description: c.description,
+          icon: c.icon,
+          isComingSoon: c.isComingSoon,
+        }
+      : t;
+  });
+
   const dbSlugs = new Set(liveTools.map((t) => t.slug));
   const missingFallback = fallbackFormatted.filter((t) => !dbSlugs.has(t.slug));
   const displayedTools = [...liveTools, ...missingFallback].sort((a, b) => a.order - b.order);
@@ -210,11 +226,6 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
 
         {/* Category Hero Section */}
         <div className="relative overflow-hidden rounded-xl border border-border/80 bg-card p-6 sm:p-10 lg:p-12 shadow-sm">
-          {/* Ambient Glow */}
-          <div
-            className={`absolute -top-24 -right-24 w-96 h-96 rounded-full bg-gradient-to-br ${category.heroGradient} blur-3xl opacity-40 pointer-events-none`}
-          />
-
           <div className="relative z-10 space-y-5 max-w-3xl">
             <div className="flex flex-wrap items-center gap-3">
               <div className="p-3 rounded-lg bg-teal-500/10 text-teal-400 border border-teal-500/20">

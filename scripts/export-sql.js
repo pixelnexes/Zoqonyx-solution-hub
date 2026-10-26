@@ -149,10 +149,12 @@ ON DUPLICATE KEY UPDATE \`password\` = VALUES(\`password\`);
   }
 
   // Tools
-  sql += '\n-- 4. Insert Full 130 Tools Suite (100 Active + 30 Coming Soon)\n';
+  sql += '\n-- 4. Clean & Insert Full 130 Tools Suite (100 Active + 30 Coming Soon)\n';
+  sql += 'DELETE FROM `Tool`;\n';
   for (let i = 0; i < records.tools.length; i++) {
     const t = records.tools[i];
-    sql += `INSERT INTO \`Tool\` (\`id\`, \`slug\`, \`name\`, \`description\`, \`category\`, \`isActive\`, \`isComingSoon\`, \`icon\`, \`order\`, \`metaTitle\`, \`metaDesc\`, \`content\`, \`usageCount\`, \`createdAt\`, \`updatedAt\`) VALUES ('tool_${i+1}', ${esc(t.slug)}, ${esc(t.name)}, ${esc(t.description)}, ${esc(t.category)}, ${esc(t.isActive)}, ${esc(t.isComingSoon)}, ${esc(t.icon)}, ${esc(t.order)}, ${esc(t.metaTitle)}, ${esc(t.metaDesc)}, ${esc(t.content)}, 0, NOW(3), NOW(3)) ON DUPLICATE KEY UPDATE \`name\` = VALUES(\`name\`), \`content\` = VALUES(\`content\`), \`isActive\` = VALUES(\`isActive\`), \`isComingSoon\` = VALUES(\`isComingSoon\`);\n`;
+    const toolId = `tool_${t.slug.replace(/[^a-zA-Z0-9_]/g, '_')}`;
+    sql += `INSERT INTO \`Tool\` (\`id\`, \`slug\`, \`name\`, \`description\`, \`category\`, \`isActive\`, \`isComingSoon\`, \`icon\`, \`order\`, \`metaTitle\`, \`metaDesc\`, \`content\`, \`usageCount\`, \`createdAt\`, \`updatedAt\`) VALUES (${esc(toolId)}, ${esc(t.slug)}, ${esc(t.name)}, ${esc(t.description)}, ${esc(t.category)}, ${esc(t.isActive)}, ${esc(t.isComingSoon)}, ${esc(t.icon)}, ${esc(t.order)}, ${esc(t.metaTitle)}, ${esc(t.metaDesc)}, ${esc(t.content)}, 0, NOW(3), NOW(3)) ON DUPLICATE KEY UPDATE \`slug\` = VALUES(\`slug\`), \`name\` = VALUES(\`name\`), \`description\` = VALUES(\`description\`), \`category\` = VALUES(\`category\`), \`isActive\` = VALUES(\`isActive\`), \`isComingSoon\` = VALUES(\`isComingSoon\`), \`icon\` = VALUES(\`icon\`), \`order\` = VALUES(\`order\`), \`metaTitle\` = VALUES(\`metaTitle\`), \`metaDesc\` = VALUES(\`metaDesc\`), \`content\` = VALUES(\`content\`);\n`;
   }
 
   sql += '\nSET FOREIGN_KEY_CHECKS = 1;\n';

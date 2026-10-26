@@ -232,6 +232,7 @@ export function ToolRenderer({ slug }: ToolRendererProps) {
     case "password-generator":
       return <PasswordGeneratorTool />;
     case "diff-checker":
+    case "text-diff":
       return <DiffCheckerTool />;
     case "hash-generator":
       return <HashGeneratorTool />;

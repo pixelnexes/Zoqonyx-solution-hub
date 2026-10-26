@@ -101,9 +101,26 @@ export default async function ToolsPage() {
     order: t.order,
   }));
 
+  const canonicalMap = new Map(DEFAULT_TOOLS.map((t) => [t.slug, t]));
+
   if (tools.length === 0) {
     tools = defaultToolsFormatted;
   } else {
+    // Reconcile DB tools against canonical catalog to eliminate corrupted names/categories
+    tools = tools.map((t) => {
+      const c = canonicalMap.get(t.slug);
+      return c
+        ? {
+            ...t,
+            name: c.name,
+            category: c.category,
+            description: c.description,
+            icon: c.icon,
+            isComingSoon: c.isComingSoon,
+          }
+        : t;
+    });
+
     // Merge: ensure all 130 tools are always displayed even if DB has only 37 seeded rows
     const dbSlugs = new Set(tools.map((t) => t.slug));
     const missing = defaultToolsFormatted.filter((t) => !dbSlugs.has(t.slug));
@@ -172,9 +189,7 @@ export default async function ToolsPage() {
         </nav>
 
         {/* Hero Header */}
-        <div className="relative overflow-hidden rounded-2xl border border-border bg-card p-6 sm:p-10 lg:p-12 shadow-sm space-y-6">
-          <div className="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-teal-500/10 blur-3xl opacity-70 pointer-events-none" />
-
+        <div className="relative overflow-hidden rounded-xl border border-border/80 bg-card p-6 sm:p-10 lg:p-12 shadow-sm space-y-6">
           <div className="relative z-10 max-w-3xl space-y-4">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-lg border border-teal-500/30 bg-teal-500/10 text-teal-400 text-xs font-semibold backdrop-blur-sm">
               <ShieldCheck className="w-3.5 h-3.5" />
