@@ -17,16 +17,16 @@ import {
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "All Free Online Tools Directory (100+ Digital Utilities)",
+  title: "All Free Online Tools Directory (113+ Digital Utilities)",
   description:
-    "Explore 100+ fast, privacy-first, 100% free digital tools. Merge PDFs, compress images in bulk, format code, design CSS, simulate SERPs, and run calculations client-side with zero signups.",
+    "Explore 113+ fast, privacy-first, 100% free digital tools. Merge PDFs, compress images in bulk, format code, design CSS, simulate SERPs, and run calculations client-side with zero signups.",
   alternates: {
     canonical: "https://zoqonyx.com/tools",
   },
   openGraph: {
-    title: "All Free Online Tools Directory (100+ Digital Utilities) | Zoqonyx",
+    title: "All Free Online Tools Directory (113+ Digital Utilities) | Zoqonyx",
     description:
-      "Explore 100+ fast, privacy-first, 100% free digital tools. Zero installations, zero tracking, 100% browser-based.",
+      "Explore 113+ fast, privacy-first, 100% free digital tools. Zero installations, zero tracking, 100% browser-based.",
     url: "https://zoqonyx.com/tools",
     siteName: "Zoqonyx Solution Hub",
     images: [
@@ -191,9 +191,9 @@ export default async function ToolsPage() {
         {/* Hero Header */}
         <div className="relative overflow-hidden rounded-xl border border-border/80 bg-card p-6 sm:p-10 lg:p-12 shadow-sm space-y-6">
           <div className="relative z-10 max-w-3xl space-y-4">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-lg border border-teal-500/30 bg-teal-500/10 text-teal-400 text-xs font-semibold backdrop-blur-sm">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-lg border border-teal-500/30 bg-teal-500/10 text-teal-400 text-xs font-mono backdrop-blur-sm">
               <ShieldCheck className="w-3.5 h-3.5" />
-              <span>Complete Directory • 100+ Working Tools (130 Total)</span>
+              <span>Complete Directory • 113 Free Tools Live (165 Total Catalog)</span>
             </div>
 
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-black tracking-tight text-foreground leading-tight">

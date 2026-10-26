@@ -555,7 +555,7 @@ export default async function ToolPage({ params }: ToolPageProps) {
                     href="/tools"
                     className="text-xs font-semibold text-teal-400 hover:underline inline-flex items-center gap-1"
                   >
-                    <span>Browse All 100+ Free Tools</span>
+                    <span>Browse All 113+ Free Tools</span>
                     <ArrowRight className="w-3.5 h-3.5" />
                   </Link>
                 </div>

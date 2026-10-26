@@ -25,13 +25,13 @@ import {
   Base64EncodeDecodeTool,
   MarkdownHtmlConverterTool,
   UuidGeneratorTool,
-  PasswordGeneratorTool,
   WordCounterTool,
   HashGeneratorTool,
   UrlEncoderDecoderTool,
   LoremIpsumGeneratorTool,
   DiffCheckerTool,
 } from "./text-code-tools";
+import { PasswordGeneratorTool } from "./password-generator";
 import {
   QrCodeGeneratorTool,
   MetaTagsGeneratorTool,
