@@ -9,7 +9,7 @@ export default function AdminSettingsPage() {
   const [siteName, setSiteName] = React.useState("ZOQONYX Solution Hub");
   const [siteTagline, setSiteTagline] = React.useState("Free Online Tools Platform");
   const [email1, setEmail1] = React.useState("hello@zoqonyx.com");
-  const [email2, setEmail2] = React.useState("zawwar.ahmed2006@gmail.com");
+  const [email2, setEmail2] = React.useState("");
   const [footerCredit, setFooterCredit] = React.useState("Developed by Newix Tech Solutions");
   const [footerUrl, setFooterUrl] = React.useState("https://newixtechsolutions.com/");
   const [isSaving, setIsSaving] = React.useState(false);

@@ -19,10 +19,7 @@ const plusJakarta = Plus_Jakarta_Sans({
 });
 
 export const viewport: Viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#FFFFFF" },
-    { media: "(prefers-color-scheme: dark)", color: "#0F172A" },
-  ],
+  themeColor: "#FFFFFF",
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
@@ -102,7 +99,7 @@ export default async function RootLayout({
   const iconUrl = settings.icon_path || "/logo/zoqonyx-icon.png";
 
   return (
-    <html lang="en" suppressHydrationWarning className={`${inter.variable} ${plusJakarta.variable}`}>
+    <html lang="en" className={`light ${inter.variable} ${plusJakarta.variable}`}>
       <head>
         <link rel="icon" href={iconUrl} />
         <link rel="shortcut icon" href={iconUrl} />
@@ -133,8 +130,9 @@ export default async function RootLayout({
       <body className="min-h-screen bg-background font-sans antialiased text-foreground flex flex-col">
         <ThemeProvider
           attribute="class"
-          defaultTheme={settings.default_theme || "system"}
-          enableSystem={settings.default_theme === "system"}
+          defaultTheme="light"
+          forcedTheme="light"
+          enableSystem={false}
           disableTransitionOnChange
         >
           <SiteSettingsProvider initialSettings={settings}>

@@ -181,38 +181,38 @@ export default async function ToolsPage() {
         {/* Breadcrumb Navigation */}
         <nav
           aria-label="Breadcrumb"
-          className="flex items-center gap-2 text-xs font-semibold text-muted-foreground"
+          className="flex items-center gap-2 text-xs font-medium text-slate-500"
         >
-          <Link href="/" className="hover:text-brand-cyan transition-colors">
+          <Link href="/" className="hover:text-teal-700 transition-colors">
             Home
           </Link>
           <ChevronRight className="w-3.5 h-3.5 opacity-60" />
-          <span className="text-foreground font-bold">All Tools Directory</span>
+          <span className="text-slate-900 font-bold">All Tools Directory</span>
         </nav>
 
         {/* Hero Header */}
-        <div className="relative overflow-hidden rounded-xl border border-border/80 bg-card p-6 sm:p-10 lg:p-12 shadow-sm space-y-6">
+        <div className="relative overflow-hidden rounded-lg border border-slate-200 bg-white p-6 sm:p-8 shadow-[0_1px_3px_rgba(0,0,0,0.03)] space-y-5">
           <div className="relative z-10 max-w-3xl space-y-4">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-lg border border-teal-500/30 bg-teal-500/10 text-teal-400 text-xs font-mono backdrop-blur-sm">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md border border-teal-200 bg-teal-50 text-teal-800 text-xs font-mono">
               <ShieldCheck className="w-3.5 h-3.5" />
               <span>Complete Directory • 113 Free Tools Live (165 Total Catalog)</span>
             </div>
 
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-black tracking-tight text-foreground leading-tight">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-black tracking-tight text-slate-900 leading-tight">
               All Free Online Tools Directory
             </h1>
 
-            <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
+            <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
               Browse our comprehensive directory of high-performance digital tools. Whether you need to compress photos, visually generate CSS gradients, validate complex JSON payloads, or format text, every tool runs 100% inside your web browser.
             </p>
 
             {/* Quick Guarantees */}
-            <div className="pt-2 flex flex-wrap gap-4 text-xs font-medium text-muted-foreground">
+            <div className="pt-2 flex flex-wrap gap-4 text-xs font-medium text-slate-600">
               <span className="flex items-center gap-1.5">
                 <CheckCircle2 className="w-4 h-4 text-emerald-500" /> 100% Free Always
               </span>
               <span className="flex items-center gap-1.5">
-                <Lock className="w-4 h-4 text-brand-cyan" /> Zero Server Uploads
+                <Lock className="w-4 h-4 text-teal-700" /> Zero Server Uploads
               </span>
               <span className="flex items-center gap-1.5">
                 <Zap className="w-4 h-4 text-amber-500" /> Zero Sign-up Required
@@ -227,52 +227,52 @@ export default async function ToolsPage() {
         </section>
 
         {/* Below-the-fold Comprehensive SEO Guide */}
-        <section className="p-6 sm:p-8 rounded-xl bg-card border border-border/80 space-y-8">
+        <section className="p-5 sm:p-6 rounded-lg bg-white border border-slate-200 space-y-6 shadow-[0_1px_3px_rgba(0,0,0,0.03)]">
           <div className="max-w-3xl space-y-3">
-            <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground">
+            <h2 className="text-xl sm:text-2xl font-heading font-bold text-slate-900">
               Why Browser-Native Digital Tools Are Superior
             </h2>
-            <p className="text-sm text-muted-foreground leading-relaxed">
+            <p className="text-sm text-slate-600 leading-relaxed">
               Traditional online utilities frequently upload your sensitive assets—such as customer databases, confidential contract PDFs, and high-resolution creative media—to third-party cloud servers. This introduces significant privacy vulnerabilities, upload latency, and artificial rate-limiting paywalls.
             </p>
-            <p className="text-sm text-muted-foreground leading-relaxed">
+            <p className="text-sm text-slate-600 leading-relaxed">
               Zoqonyx Solution Hub was built to overturn this model. By leveraging modern browser technologies including the HTML5 Canvas API, Web Workers, and WebAssembly, all data processing occurs entirely within your local device memory. Your confidential graphics and source code never leave your computer.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
-            <div className="p-4 rounded-lg bg-muted/20 border border-border/60 space-y-2 hover:border-teal-500/40 transition-colors">
-              <div className="p-2 rounded-md bg-teal-500/10 text-teal-400 w-fit">
+            <div className="p-4 rounded-md bg-slate-50 border border-slate-200 space-y-2 hover:border-slate-300 transition-colors">
+              <div className="p-2 rounded-md bg-teal-50 text-teal-700 border border-teal-200 w-fit">
                 <ShieldCheck className="w-4 h-4" />
               </div>
-              <h3 className="font-heading font-bold text-sm text-foreground">
+              <h3 className="font-heading font-bold text-sm text-slate-900">
                 Absolute Data Privacy
               </h3>
-              <p className="text-xs text-muted-foreground leading-relaxed">
+              <p className="text-xs text-slate-600 leading-relaxed">
                 Zero telemetry on your files. No cookies tracking your uploads. Your photos and source code remain your private property.
               </p>
             </div>
 
-            <div className="p-4 rounded-lg bg-muted/20 border border-border/60 space-y-2 hover:border-teal-500/40 transition-colors">
-              <div className="p-2 rounded-md bg-teal-500/10 text-teal-400 w-fit">
+            <div className="p-4 rounded-md bg-slate-50 border border-slate-200 space-y-2 hover:border-slate-300 transition-colors">
+              <div className="p-2 rounded-md bg-teal-50 text-teal-700 border border-teal-200 w-fit">
                 <Zap className="w-4 h-4" />
               </div>
-              <h3 className="font-heading font-bold text-sm text-foreground">
+              <h3 className="font-heading font-bold text-sm text-slate-900">
                 Zero Network Latency
               </h3>
-              <p className="text-xs text-muted-foreground leading-relaxed">
+              <p className="text-xs text-slate-600 leading-relaxed">
                 Processing speed is limited only by your device hardware, completely bypassing sluggish internet upload and download queues.
               </p>
             </div>
 
-            <div className="p-4 rounded-lg bg-muted/20 border border-border/60 space-y-2 hover:border-teal-500/40 transition-colors">
+            <div className="p-4 rounded-md bg-slate-50 border border-slate-200 space-y-2 hover:border-slate-300 transition-colors">
               <div className="p-2 rounded-md bg-emerald-500/10 text-emerald-400 w-fit">
                 <Layers className="w-4 h-4" />
               </div>
-              <h3 className="font-heading font-bold text-sm text-foreground">
+              <h3 className="font-heading font-bold text-sm text-slate-900">
                 No Artificial Paywalls
               </h3>
-              <p className="text-xs text-muted-foreground leading-relaxed">
+              <p className="text-xs text-slate-600 leading-relaxed">
                 Export 2048px high-resolution QR codes, compress multiple megabytes of imagery, and inspect deep code diffs completely unrestricted.
               </p>
             </div>
@@ -301,10 +301,10 @@ export default async function ToolsPage() {
                   href={`/category/${c.slug}`}
                   className="p-3 rounded-lg bg-card border border-border/70 hover:border-teal-500/50 hover:bg-muted/30 transition-all flex items-center justify-between group"
                 >
-                  <span className="text-xs font-semibold text-foreground group-hover:text-teal-400 transition-colors">
+                  <span className="text-xs font-semibold text-foreground group-hover:text-teal-700 transition-colors">
                     {c.name}
                   </span>
-                  <ArrowRight className="w-3.5 h-3.5 text-muted-foreground group-hover:text-teal-400 group-hover:translate-x-0.5 transition-all" />
+                  <ArrowRight className="w-3.5 h-3.5 text-muted-foreground group-hover:text-teal-700 group-hover:translate-x-0.5 transition-all" />
                 </Link>
               ))}
             </div>
@@ -313,7 +313,7 @@ export default async function ToolsPage() {
           {/* FAQs Section */}
           <div className="pt-6 border-t border-border/60 space-y-4">
             <div className="flex items-center gap-2">
-              <HelpCircle className="w-5 h-5 text-teal-400" />
+              <HelpCircle className="w-5 h-5 text-teal-700" />
               <h3 className="text-xl font-heading font-bold text-foreground">
                 Frequently Asked Questions
               </h3>
@@ -327,7 +327,7 @@ export default async function ToolsPage() {
                   <p className="font-semibold text-xs sm:text-sm text-foreground">
                     {faq.q}
                   </p>
-                  <p className="text-xs text-muted-foreground leading-relaxed">
+                  <p className="text-xs text-slate-600 leading-relaxed">
                     {faq.a}
                   </p>
                 </div>

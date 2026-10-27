@@ -8,7 +8,7 @@ import { useSiteSettings } from "@/components/providers/site-settings-provider";
 export function Footer() {
   const { settings } = useSiteSettings();
   return (
-    <footer className="mt-auto border-t border-border/70 bg-card/60 backdrop-blur-sm text-foreground/80">
+    <footer className="mt-auto border-t border-slate-200 bg-slate-50/70 text-slate-700">
       <div className="container mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 lg:gap-12">
           {/* Brand Info */}
@@ -110,32 +110,23 @@ export function Footer() {
             <h4 className="font-heading font-semibold text-sm text-foreground uppercase tracking-wider mb-3">
               Get in Touch
             </h4>
-            <div className="space-y-2.5 text-sm text-muted-foreground">
+            <div className="space-y-2.5 text-sm text-slate-600">
               <a
                 href={`mailto:${settings.contact_email_primary || "hello@zoqonyx.com"}`}
-                className="flex items-center gap-2 hover:text-brand-cyan transition-colors"
+                className="flex items-center gap-2 hover:text-teal-600 transition-colors font-medium text-slate-800"
               >
-                <Mail className="w-4 h-4 text-brand-cyan" />
+                <Mail className="w-4 h-4 text-teal-600" />
                 <span>{settings.contact_email_primary || "hello@zoqonyx.com"}</span>
               </a>
-              {settings.contact_email_secondary && (
-                <a
-                  href={`mailto:${settings.contact_email_secondary}`}
-                  className="flex items-center gap-2 hover:text-brand-cyan transition-colors text-xs"
-                >
-                  <Mail className="w-4 h-4 text-brand-purple" />
-                  <span>{settings.contact_email_secondary}</span>
-                </a>
-              )}
-              <p className="text-xs text-muted-foreground/80 pt-2 leading-relaxed">
-                Have a feature request or need a custom web tool built? Drop us a line anytime!
+              <p className="text-xs text-slate-500 pt-1 leading-relaxed">
+                Have a feature request or need a custom web tool built? Drop us a line anytime.
               </p>
             </div>
           </div>
         </div>
 
-        {/* Bottom Bar with mandatory credit */}
-        <div className="mt-12 pt-8 border-t border-border/60 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-muted-foreground">
+        {/* Bottom Bar with credit */}
+        <div className="mt-12 pt-6 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
           <p>© {new Date().getFullYear()} {settings.site_name || "Zoqonyx Solution Hub"}. All rights reserved.</p>
 
           <div className="flex items-center gap-1.5 font-medium">
@@ -146,7 +137,7 @@ export function Footer() {
               href={settings.footer_url || "https://newixtechsolutions.com/"}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-brand-accent dark:text-brand-cyan hover:underline inline-flex items-center gap-0.5 font-semibold"
+              className="text-teal-700 hover:text-teal-800 hover:underline inline-flex items-center gap-0.5 font-semibold"
             >
               <span>{settings.footer_credit || "Newix Tech Solutions"}</span>
               <ExternalLink className="w-3 h-3" />

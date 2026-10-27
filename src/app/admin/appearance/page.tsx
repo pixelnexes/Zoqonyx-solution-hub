@@ -120,7 +120,7 @@ export default function AppearancePage() {
         dark_logo_path: darkLogoPath,
         logo_path: lightLogoPath, // fallback for legacy
         logo_type: logoType,
-        default_theme: defaultTheme,
+        default_theme: "light",
         primary_color: primaryColor,
         secondary_color: secondaryColor,
         electric_cyan: electricCyan,
@@ -173,14 +173,14 @@ export default function AppearancePage() {
       </div>
 
       {savedSuccess && (
-        <div className="p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs sm:text-sm font-semibold flex items-center gap-3">
+        <div className="p-4 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs sm:text-sm font-semibold flex items-center gap-3">
           <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0" />
           <span>Appearance and theme settings updated successfully! All website components now reflect your changes.</span>
         </div>
       )}
 
       {uploadError && (
-        <div className="p-4 rounded-xl bg-destructive/10 border border-destructive/20 text-destructive text-xs sm:text-sm font-semibold flex items-center gap-3">
+        <div className="p-4 rounded-lg bg-destructive/10 border border-destructive/20 text-destructive text-xs sm:text-sm font-semibold flex items-center gap-3">
           <AlertCircle className="w-5 h-5 text-destructive shrink-0" />
           <span>{uploadError}</span>
         </div>
@@ -188,7 +188,7 @@ export default function AppearancePage() {
 
       <form onSubmit={handleSave} className="space-y-8">
         {/* SECTION 1: Web Theme Selector */}
-        <div className="p-6 rounded-2xl bg-card border border-border/80 space-y-4 shadow-sm">
+        <div className="p-6 rounded-lg bg-card border border-border/80 space-y-4 shadow-sm">
           <div className="flex items-center gap-2">
             <Palette className="w-5 h-5 text-teal-400" />
             <h3 className="font-heading font-bold text-base text-foreground">Default Website Theme</h3>
@@ -200,7 +200,7 @@ export default function AppearancePage() {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1">
             {/* System / Adaptive */}
             <label
-              className={`flex flex-col p-4 rounded-xl border cursor-pointer transition-all ${
+              className={`flex flex-col p-4 rounded-lg border cursor-pointer transition-all ${
                 defaultTheme === "system"
                   ? "bg-teal-500/10 border-teal-500 text-teal-400 shadow-sm"
                   : "bg-muted/30 border-border/70 hover:bg-muted/60 text-muted-foreground"
@@ -226,7 +226,7 @@ export default function AppearancePage() {
 
             {/* Dark Theme */}
             <label
-              className={`flex flex-col p-4 rounded-xl border cursor-pointer transition-all ${
+              className={`flex flex-col p-4 rounded-lg border cursor-pointer transition-all ${
                 defaultTheme === "dark"
                   ? "bg-teal-500/10 border-teal-500 text-teal-400 shadow-sm"
                   : "bg-muted/30 border-border/70 hover:bg-muted/60 text-muted-foreground"
@@ -252,7 +252,7 @@ export default function AppearancePage() {
 
             {/* Light Theme */}
             <label
-              className={`flex flex-col p-4 rounded-xl border cursor-pointer transition-all ${
+              className={`flex flex-col p-4 rounded-lg border cursor-pointer transition-all ${
                 defaultTheme === "light"
                   ? "bg-teal-500/10 border-teal-500 text-teal-400 shadow-sm"
                   : "bg-muted/30 border-border/70 hover:bg-muted/60 text-muted-foreground"
@@ -279,7 +279,7 @@ export default function AppearancePage() {
         </div>
 
         {/* SECTION 2: Logo Style & Mode */}
-        <div className="p-6 rounded-2xl bg-card border border-border/80 space-y-5 shadow-sm">
+        <div className="p-6 rounded-lg bg-card border border-border/80 space-y-5 shadow-sm">
           <div className="flex items-center gap-2">
             <ImageIcon className="w-5 h-5 text-teal-400" />
             <h3 className="font-heading font-bold text-base text-foreground">Logo Rendering Mode</h3>
@@ -287,7 +287,7 @@ export default function AppearancePage() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <label
-              className={`flex items-start gap-3 p-4 rounded-xl border cursor-pointer transition-all ${
+              className={`flex items-start gap-3 p-4 rounded-lg border cursor-pointer transition-all ${
                 logoType === "text"
                   ? "bg-teal-500/10 border-teal-500 text-teal-400"
                   : "bg-muted/30 border-border/70 text-muted-foreground"
@@ -312,7 +312,7 @@ export default function AppearancePage() {
             </label>
 
             <label
-              className={`flex items-start gap-3 p-4 rounded-xl border cursor-pointer transition-all ${
+              className={`flex items-start gap-3 p-4 rounded-lg border cursor-pointer transition-all ${
                 logoType === "image"
                   ? "bg-teal-500/10 border-teal-500 text-teal-400"
                   : "bg-muted/30 border-border/70 text-muted-foreground"
@@ -339,14 +339,14 @@ export default function AppearancePage() {
         </div>
 
         {/* SECTION 3: Brand Assets (Icon, Light Logo, Dark Logo) */}
-        <div className="p-6 rounded-2xl bg-card border border-border/80 space-y-6 shadow-sm">
+        <div className="p-6 rounded-lg bg-card border border-border/80 space-y-6 shadow-sm">
           <h3 className="font-heading font-bold text-base text-foreground">
             Brand Assets (Icon, Light Logo & Dark Logo)
           </h3>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {/* 1. Website Icon / Favicon */}
-            <div className="space-y-3 p-4 rounded-xl bg-muted/20 border border-border/60">
+            <div className="space-y-3 p-4 rounded-lg bg-muted/20 border border-border/60">
               <div className="flex items-center justify-between">
                 <label className="text-xs font-bold text-foreground">Website Icon</label>
                 <span className="text-[10px] text-muted-foreground">PNG, SVG, ICO</span>
@@ -398,7 +398,7 @@ export default function AppearancePage() {
             </div>
 
             {/* 2. Light Mode Logo */}
-            <div className="space-y-3 p-4 rounded-xl bg-muted/20 border border-border/60">
+            <div className="space-y-3 p-4 rounded-lg bg-muted/20 border border-border/60">
               <div className="flex items-center justify-between">
                 <label className="text-xs font-bold text-foreground">Light Mode Logo</label>
                 <span className="text-[10px] text-amber-500 font-semibold flex items-center gap-1">
@@ -453,7 +453,7 @@ export default function AppearancePage() {
             </div>
 
             {/* 3. Dark Mode Logo */}
-            <div className="space-y-3 p-4 rounded-xl bg-muted/20 border border-border/60">
+            <div className="space-y-3 p-4 rounded-lg bg-muted/20 border border-border/60">
               <div className="flex items-center justify-between">
                 <label className="text-xs font-bold text-foreground">Dark Mode Logo</label>
                 <span className="text-[10px] text-teal-400 font-semibold flex items-center gap-1">
@@ -510,14 +510,14 @@ export default function AppearancePage() {
         </div>
 
         {/* SECTION 4: Brand Accent Colors */}
-        <div className="p-6 rounded-2xl bg-card border border-border/80 space-y-4 shadow-sm">
+        <div className="p-6 rounded-lg bg-card border border-border/80 space-y-4 shadow-sm">
           <h3 className="font-heading font-bold text-base text-foreground">Brand Color System</h3>
           <p className="text-xs text-muted-foreground">
             Configure primary accent tones used across buttons, badges, and interactive components.
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            <div className="space-y-2 p-3 rounded-xl bg-muted/30 border border-border/50">
+            <div className="space-y-2 p-3 rounded-lg bg-muted/30 border border-border/50">
               <label className="text-xs font-semibold text-muted-foreground">Primary Teal</label>
               <div className="flex items-center gap-2">
                 <input
@@ -534,7 +534,7 @@ export default function AppearancePage() {
               </div>
             </div>
 
-            <div className="space-y-2 p-3 rounded-xl bg-muted/30 border border-border/50">
+            <div className="space-y-2 p-3 rounded-lg bg-muted/30 border border-border/50">
               <label className="text-xs font-semibold text-muted-foreground">Electric Accent</label>
               <div className="flex items-center gap-2">
                 <input
@@ -551,7 +551,7 @@ export default function AppearancePage() {
               </div>
             </div>
 
-            <div className="space-y-2 p-3 rounded-xl bg-muted/30 border border-border/50">
+            <div className="space-y-2 p-3 rounded-lg bg-muted/30 border border-border/50">
               <label className="text-xs font-semibold text-muted-foreground">Electric Cyan</label>
               <div className="flex items-center gap-2">
                 <input
@@ -568,7 +568,7 @@ export default function AppearancePage() {
               </div>
             </div>
 
-            <div className="space-y-2 p-3 rounded-xl bg-muted/30 border border-border/50">
+            <div className="space-y-2 p-3 rounded-lg bg-muted/30 border border-border/50">
               <label className="text-xs font-semibold text-muted-foreground">Soft Purple Accent</label>
               <div className="flex items-center gap-2">
                 <input

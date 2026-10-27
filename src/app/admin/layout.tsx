@@ -4,7 +4,6 @@ import * as React from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { Logo } from "@/components/layout/logo";
-import { ThemeToggle } from "@/components/theme-toggle";
 import { Button } from "@/components/ui/button";
 import {
   LayoutDashboard,
@@ -59,7 +58,6 @@ export default function AdminLayout({
       <div className="md:hidden flex items-center justify-between p-4 border-b border-border bg-card">
         <Logo size="sm" />
         <div className="flex items-center gap-2">
-          <ThemeToggle />
           <Button
             variant="ghost"
             size="icon"
@@ -116,10 +114,6 @@ export default function AdminLayout({
 
         {/* Bottom Sidebar Actions */}
         <div className="p-4 border-t border-border space-y-2">
-          <div className="flex items-center justify-between px-2">
-            <span className="text-xs text-muted-foreground">Appearance</span>
-            <ThemeToggle />
-          </div>
 
           <Link
             href="/"

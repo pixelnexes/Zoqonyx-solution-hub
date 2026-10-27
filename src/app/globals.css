@@ -4,10 +4,10 @@
 
 @layer base {
   :root {
-    --background: 210 40% 98%;
-    --foreground: 222 47% 11%;
+    --background: 210 20% 99%; /* #FAFAFC crisp light background */
+    --foreground: 222 47% 11%; /* #0F172A Deep Charcoal text */
 
-    --card: 0 0% 100%;
+    --card: 0 0% 100%; /* #FFFFFF crisp white cards */
     --card-foreground: 222 47% 11%;
 
     --popover: 0 0% 100%;
@@ -16,53 +16,23 @@
     --primary: 173 80% 36%; /* Teal #0D9488 */
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 214 32% 91%;
+    --secondary: 214 32% 95%; /* #F1F5F9 */
     --secondary-foreground: 222 47% 11%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215 16% 47%;
+    --muted: 210 25% 96%; /* #F1F5F9 */
+    --muted-foreground: 215 16% 40%; /* #475569 high-contrast readable text */
 
-    --accent: 173 80% 40%; /* Electric Teal #14B8A6 */
+    --accent: 173 80% 36%; /* Electric Teal #0D9488 */
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 214.3 31.8% 91.4%;
+    --border: 214.3 31.8% 91.4%; /* #E2E8F0 */
     --input: 214.3 31.8% 91.4%;
-    --ring: 173 80% 40%;
+    --ring: 173 80% 36%;
 
-    --radius: 0.5rem; /* 8px - precision engineered Linear/Vercel styling */
-  }
-
-  .dark {
-    --background: 222 47% 7%; /* #0B0F19 Deep Charcoal Dark Slate */
-    --foreground: 210 40% 98%;
-
-    --card: 222 47% 10%; /* #111827 Charcoal Card */
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222 47% 10%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 173 80% 40%; /* Electric Teal #14B8A6 */
-    --primary-foreground: 222 47% 7%;
-
-    --secondary: 217 33% 15%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217 33% 14%;
-    --muted-foreground: 215 20% 65%;
-
-    --accent: 12 90% 63%; /* Soft Coral / Amber accent */
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217 33% 16%;
-    --input: 217 33% 16%;
-    --ring: 173 80% 40%;
+    --radius: 0.5rem; /* 8px max - precision Linear/Vercel styling */
   }
 }
 

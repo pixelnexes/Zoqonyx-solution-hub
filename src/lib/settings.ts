@@ -23,7 +23,7 @@ export const defaultSettings: SiteSettings = {
   site_name: "ZOQONYX Solution Hub",
   site_tagline: "Free Online Tools Platform",
   contact_email_primary: "hello@zoqonyx.com",
-  contact_email_secondary: "zawwar.ahmed2006@gmail.com",
+  contact_email_secondary: "",
   footer_credit: "Developed by Newix Tech Solutions",
   footer_url: "https://newixtechsolutions.com/",
   logo_path: "/logo/zoqonyx-logo.png",
