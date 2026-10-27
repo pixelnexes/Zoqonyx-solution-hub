@@ -17,6 +17,7 @@ import {
   HelpCircle,
   Layers,
   ChevronRight,
+  Clock,
 } from "lucide-react";
 import { DEFAULT_TOOLS } from "@/lib/default-tools";
 
@@ -282,57 +283,55 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
             </span>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 sm:gap-2.5">
             {displayedTools.map((tool) => (
-              <Card
+              <Link
                 key={tool.slug}
-                className="group relative flex flex-col justify-between overflow-hidden rounded-[8px] border-border/80 bg-white/60 backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-teal-500/50 shadow-sm"
+                href={`/tools/${tool.slug}`}
+                className="group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900 rounded-[8px] block h-full"
               >
-                <CardHeader className="space-y-2.5 pb-2.5">
-                  <div className="flex items-center justify-between">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-[8px] bg-teal-500/10 text-teal-400 border border-teal-500/20 transition-transform duration-200 group-hover:scale-105">
-                      <ToolIcon name={tool.icon} className="h-5 w-5" />
+                <div className="h-full flex flex-col justify-between p-3 rounded-[8px] border border-slate-300/80 bg-white hover:border-slate-900 hover:shadow-[0_4px_16px_rgba(15,23,42,0.12)] hover:-translate-y-[1px] transition-all duration-150 shadow-xs">
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between gap-2">
+                      <div className="w-8 h-8 rounded-[6px] bg-slate-900 text-white flex items-center justify-center shrink-0 shadow-xs transition-transform group-hover:scale-105">
+                        <ToolIcon name={tool.icon} className="w-4.5 h-4.5 text-white" strokeWidth={2.5} />
+                      </div>
+                      <div className="flex items-center gap-1 shrink-0">
+                        {tool.isComingSoon ? (
+                          <span className="px-1.5 py-0.5 rounded-[4px] text-[10px] font-mono font-bold bg-amber-100 text-amber-900 border border-amber-300 flex items-center gap-1">
+                            <Clock className="w-2.5 h-2.5" />
+                            <span>SOON</span>
+                          </span>
+                        ) : (
+                          <span className="px-1.5 py-0.5 rounded-[4px] text-[10px] font-mono font-bold text-slate-600 bg-slate-100 border border-slate-200">
+                            FREE
+                          </span>
+                        )}
+                      </div>
                     </div>
-
-                    {tool.isComingSoon ? (
-                      <Badge variant="secondary" className="text-[10px] font-mono font-semibold bg-amber-500/10 text-amber-400 border-amber-500/30">
-                        DEV STAGE
-                      </Badge>
-                    ) : (
-                      <Badge variant="outline" className="text-[10px] font-mono font-medium border-emerald-500/30 text-emerald-400">
-                        READY
-                      </Badge>
-                    )}
+                    <div>
+                      <h3 className="text-[14px] font-black text-slate-900 group-hover:text-teal-700 transition-colors line-clamp-1 leading-snug tracking-tight">
+                        {tool.name}
+                      </h3>
+                      <p className="text-[11.5px] text-slate-600 line-clamp-2 leading-relaxed mt-0.5 font-normal">
+                        {tool.description}
+                      </p>
+                    </div>
                   </div>
-
-                  <CardTitle className="font-heading text-base font-bold group-hover:text-teal-400 transition-colors">
-                    <Link href={`/tools/${tool.slug}`} className="focus:outline-none">
-                      {tool.name}
-                    </Link>
-                  </CardTitle>
-
-                  <CardDescription className="text-xs line-clamp-2 leading-relaxed">
-                    {tool.description}
-                  </CardDescription>
-                </CardHeader>
-
-                <CardContent className="pt-2">
-                  <Link href={`/tools/${tool.slug}`} className="block">
-                    <Button
-                      variant={tool.isComingSoon ? "outline" : "default"}
-                      size="sm"
-                      className={`w-full justify-between group/btn text-xs font-semibold rounded-md ${
-                        tool.isComingSoon
-                          ? "hover:border-teal-500/50 hover:text-teal-400"
-                          : "bg-teal-500 hover:bg-teal-400 text-slate-950"
-                      }`}
-                    >
-                      <span>{tool.isComingSoon ? "Preview & Notify" : "Launch Tool"}</span>
-                      <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover/btn:translate-x-1" />
-                    </Button>
-                  </Link>
-                </CardContent>
-              </Card>
+                  <div className="pt-2 mt-2 border-t border-slate-100 flex items-center justify-between text-xs font-mono">
+                    <span className="text-slate-400 text-[10px] flex items-center gap-1.5 font-medium">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 shrink-0" />
+                      <span className="uppercase font-bold tracking-tight">
+                        {tool.isComingSoon ? "IN DEV" : "BROWSER ONLY"}
+                      </span>
+                    </span>
+                    <span className="inline-flex items-center gap-1 text-[11px] font-bold text-slate-800 group-hover:text-teal-700 transition-colors shrink-0">
+                      <span>{tool.isComingSoon ? "SPECS" : "OPEN"}</span>
+                      <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
+                    </span>
+                  </div>
+                </div>
+              </Link>
             ))}
           </div>
         </section>
