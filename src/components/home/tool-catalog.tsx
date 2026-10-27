@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { Search, ArrowRight, Clock, Star, Zap, ShieldCheck } from "lucide-react";
+import { Search, ArrowRight, Clock, Star } from "lucide-react";
 import { ToolIcon } from "@/components/common/tool-icon";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
@@ -42,90 +42,29 @@ const POPULAR_SLUGS = new Set([
   "age-calculator",
 ]);
 
-interface CategoryStyle {
-  iconBg: string;
-  badgeBg: string;
-  badgeText: string;
-  badgeBorder: string;
-  tag: string;
-  engine: string;
-}
+const FEATURED_SHORTCUTS = [
+  { slug: "image-compressor", label: "Compress Image", icon: "FileArchive" },
+  { slug: "pdf-merge", label: "Merge PDF", icon: "FileText" },
+  { slug: "json-formatter", label: "Format JSON", icon: "Code2" },
+  { slug: "background-remover", label: "Remove Background", icon: "Crop" },
+  { slug: "qr-code-generator", label: "QR Generator", icon: "QrCode" },
+  { slug: "css-gradient-generator", label: "CSS Gradient", icon: "Palette" },
+  { slug: "password-generator", label: "Password Gen", icon: "Key" },
+  { slug: "base64-encoder-decoder", label: "Base64", icon: "Binary" },
+];
 
-const CATEGORY_STYLES: Record<string, CategoryStyle> = {
-  "Image Tools": {
-    iconBg: "bg-emerald-600 text-white",
-    badgeBg: "bg-emerald-50",
-    badgeText: "text-emerald-800",
-    badgeBorder: "border-emerald-200",
-    tag: "IMAGE",
-    engine: "CANVAS 2D • WASM",
-  },
-  "CSS & Design": {
-    iconBg: "bg-violet-600 text-white",
-    badgeBg: "bg-violet-50",
-    badgeText: "text-violet-800",
-    badgeBorder: "border-violet-200",
-    tag: "CSS",
-    engine: "LIVE CSS3 • VISUAL",
-  },
-  "Text & Code": {
-    iconBg: "bg-sky-600 text-white",
-    badgeBg: "bg-sky-50",
-    badgeText: "text-sky-800",
-    badgeBorder: "border-sky-200",
-    tag: "CODE",
-    engine: "REGEX • SUB-MS",
-  },
-  "Developer & SEO": {
-    iconBg: "bg-slate-900 text-white",
-    badgeBg: "bg-slate-100",
-    badgeText: "text-slate-800",
-    badgeBorder: "border-slate-300",
-    tag: "DEV",
-    engine: "RFC SPEC • ZERO LOG",
-  },
-  "Calculators": {
-    iconBg: "bg-amber-600 text-white",
-    badgeBg: "bg-amber-50",
-    badgeText: "text-amber-800",
-    badgeBorder: "border-amber-200",
-    tag: "CALC",
-    engine: "MATH.JS • ACCURATE",
-  },
-  "PDF & Documents": {
-    iconBg: "bg-rose-600 text-white",
-    badgeBg: "bg-rose-50",
-    badgeText: "text-rose-800",
-    badgeBorder: "border-rose-200",
-    tag: "PDF",
-    engine: "PDF-LIB • IN-MEMORY",
-  },
-  "PDF Documents": {
-    iconBg: "bg-rose-600 text-white",
-    badgeBg: "bg-rose-50",
-    badgeText: "text-rose-800",
-    badgeBorder: "border-rose-200",
-    tag: "PDF",
-    engine: "PDF-LIB • IN-MEMORY",
-  },
-  "AI & Smart Tools": {
-    iconBg: "bg-purple-600 text-white",
-    badgeBg: "bg-purple-50",
-    badgeText: "text-purple-800",
-    badgeBorder: "border-purple-200",
-    tag: "AI",
-    engine: "LOCAL INFERENCE",
-  },
+const CATEGORY_STYLES: Record<string, { iconBg: string }> = {
+  "Image Tools": { iconBg: "bg-emerald-600 text-white" },
+  "CSS & Design": { iconBg: "bg-violet-600 text-white" },
+  "Text & Code": { iconBg: "bg-sky-600 text-white" },
+  "Developer & SEO": { iconBg: "bg-slate-900 text-white" },
+  "Calculators": { iconBg: "bg-amber-600 text-white" },
+  "PDF & Documents": { iconBg: "bg-rose-600 text-white" },
+  "PDF Documents": { iconBg: "bg-rose-600 text-white" },
+  "AI & Smart Tools": { iconBg: "bg-indigo-600 text-white" },
 };
 
-const DEFAULT_STYLE: CategoryStyle = {
-  iconBg: "bg-teal-700 text-white",
-  badgeBg: "bg-teal-50",
-  badgeText: "text-teal-800",
-  badgeBorder: "border-teal-200",
-  tag: "TOOL",
-  engine: "CLIENT-SIDE",
-};
+const DEFAULT_STYLE = { iconBg: "bg-teal-700 text-white" };
 
 export function ToolCatalog({ initialTools }: ToolCatalogProps) {
   const [searchQuery, setSearchQuery] = React.useState("");
@@ -165,42 +104,66 @@ export function ToolCatalog({ initialTools }: ToolCatalogProps) {
   }, [initialTools, searchQuery, selectedCategory]);
 
   return (
-    <section id="tools-catalog" className="w-full space-y-2.5 scroll-mt-14">
-      {/* Dense Command Bar (Search + Counter) */}
-      <div className="bg-white p-2 rounded-[8px] border border-slate-300 shadow-xs flex items-center justify-between gap-2">
+    <section id="tools-catalog" className="w-full space-y-3.5 scroll-mt-14">
+      {/* Featured Quick Launch Shortcuts */}
+      {!searchQuery && selectedCategory === "All" && (
+        <div className="bg-white p-3 rounded-[10px] border border-slate-200/90 shadow-[0_1px_3px_rgba(15,23,42,0.04)] space-y-2">
+          <div className="flex items-center justify-between px-0.5">
+            <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500 font-mono">
+              Quick Launch • Most Used Utilities
+            </span>
+            <span className="text-[11px] text-slate-500 font-medium">Instant Browser Launch</span>
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-1.5">
+            {FEATURED_SHORTCUTS.map((sc) => (
+              <Link
+                key={sc.slug}
+                href={`/tools/${sc.slug}`}
+                className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-[6px] bg-slate-50 hover:bg-teal-50/60 border border-slate-200/80 hover:border-teal-300 transition-all text-xs font-semibold text-slate-800 hover:text-teal-800 truncate group"
+              >
+                <ToolIcon name={sc.icon} className="w-3.5 h-3.5 text-slate-600 group-hover:text-teal-700 shrink-0 transition-colors" strokeWidth={2.2} />
+                <span className="truncate">{sc.label}</span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Tactile Command Bar (Search + Counter) */}
+      <div className="bg-white p-2.5 rounded-[10px] border border-slate-200/90 shadow-[0_1px_3px_rgba(15,23,42,0.06),0_1px_2px_rgba(15,23,42,0.04)] flex items-center justify-between gap-2.5">
         <div className="relative flex-1">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500 pointer-events-none" />
+          <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500 pointer-events-none" />
           <Input
             type="text"
-            placeholder="Search 113+ tools (e.g. compress image, format json, merge pdf, jwt, regex, emi)..."
+            placeholder="Search 113+ utilities (e.g. compress image, format json, merge pdf, jwt, regex, emi)..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="pl-9 pr-24 h-9 bg-slate-50 text-slate-900 placeholder:text-slate-500 text-xs sm:text-sm font-medium rounded-[6px] border-slate-200 focus-visible:ring-1 focus-visible:ring-slate-900 focus-visible:border-slate-900"
+            className="pl-9.5 pr-24 h-10 bg-slate-50/80 text-slate-900 placeholder:text-slate-500 text-xs sm:text-sm font-medium rounded-[8px] border-slate-200 focus-visible:ring-2 focus-visible:ring-teal-600 focus-visible:border-transparent transition-all"
           />
-          <div className="absolute right-2 top-1/2 -translate-y-1/2 flex items-center gap-1.5">
+          <div className="absolute right-2.5 top-1/2 -translate-y-1/2 flex items-center gap-2">
             {searchQuery && (
               <button
                 onClick={() => setSearchQuery("")}
-                className="text-[11px] font-mono text-slate-500 hover:text-slate-900 px-1 py-0.5 rounded hover:bg-slate-200"
+                className="text-[11px] font-semibold text-slate-500 hover:text-slate-900 px-1.5 py-0.5 rounded hover:bg-slate-200 transition-colors"
               >
                 Clear
               </button>
             )}
-            <span className="text-[10px] font-mono font-bold text-slate-700 bg-slate-200 px-2 py-0.5 rounded-[4px] border border-slate-300 hidden sm:inline-block">
-              {filteredTools.length} / {initialTools.length} TOOLS
+            <span className="text-[11px] font-mono font-bold text-slate-700 bg-slate-100 px-2.5 py-1 rounded-[6px] border border-slate-200/80 hidden sm:inline-block">
+              {filteredTools.length} of {initialTools.length}
             </span>
           </div>
         </div>
 
-        {/* Mobile counter tag */}
-        <div className="shrink-0 text-[10px] font-mono font-bold text-slate-800 bg-slate-100 px-2 py-1.5 rounded-[6px] border border-slate-300 sm:hidden">
+        {/* Mobile counter badge */}
+        <div className="shrink-0 text-[11px] font-mono font-bold text-slate-800 bg-slate-100 px-2.5 py-1.5 rounded-[6px] border border-slate-200 sm:hidden">
           {filteredTools.length}
         </div>
       </div>
 
       {/* Filter Tabs (Horizontal Snap Touch Scroller) */}
       <div className="relative w-full">
-        <div className="flex items-center gap-1 overflow-x-auto pb-0.5 scrollbar-none no-scrollbar -mx-4 px-4 sm:mx-0 sm:px-0">
+        <div className="flex items-center gap-1.5 overflow-x-auto pb-0.5 scrollbar-none no-scrollbar -mx-4 px-4 sm:mx-0 sm:px-0">
           {categories.map((cat) => {
             const isSelected = selectedCategory === cat;
             return (
@@ -208,10 +171,10 @@ export function ToolCatalog({ initialTools }: ToolCatalogProps) {
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
                 className={cn(
-                  "whitespace-nowrap px-2.5 py-1 rounded-[6px] text-xs transition-all border shrink-0 font-medium",
+                  "whitespace-nowrap px-3 py-1.5 rounded-[7px] text-xs transition-all border shrink-0 font-semibold",
                   isSelected
-                    ? "bg-slate-900 text-white border-slate-900 shadow-xs font-bold"
-                    : "bg-white hover:bg-slate-50 text-slate-700 hover:text-slate-900 border-slate-300"
+                    ? "bg-slate-900 text-white border-slate-900 shadow-xs"
+                    : "bg-white hover:bg-slate-50 text-slate-700 hover:text-slate-900 border-slate-200 shadow-[0_1px_2px_rgba(0,0,0,0.04)]"
                 )}
               >
                 {cat}
@@ -221,21 +184,21 @@ export function ToolCatalog({ initialTools }: ToolCatalogProps) {
           <button
             onClick={() => setSelectedCategory("Coming Soon")}
             className={cn(
-              "whitespace-nowrap px-2.5 py-1 rounded-[6px] text-xs transition-all border flex items-center gap-1 shrink-0 font-medium",
+              "whitespace-nowrap px-3 py-1.5 rounded-[7px] text-xs transition-all border flex items-center gap-1.5 shrink-0 font-semibold",
               selectedCategory === "Coming Soon"
-                ? "bg-amber-600 text-white border-amber-600 shadow-xs font-bold"
-                : "bg-amber-50 hover:bg-amber-100 text-amber-900 border-amber-300"
+                ? "bg-amber-600 text-white border-amber-600 shadow-xs"
+                : "bg-amber-50 hover:bg-amber-100 text-amber-900 border-amber-200 shadow-[0_1px_2px_rgba(0,0,0,0.04)]"
             )}
           >
-            <Clock className="w-3 h-3 text-amber-700" />
+            <Clock className="w-3.5 h-3.5 text-amber-700" />
             <span>Coming Soon</span>
           </button>
         </div>
       </div>
 
-      {/* Tools Grid - Dense, Punchy, High-Contrast Cards */}
+      {/* Tools Grid - Substantial, Tactile, Crafted Cards */}
       {filteredTools.length === 0 ? (
-        <div className="text-center py-10 px-4 rounded-[8px] border border-dashed border-slate-300 bg-white">
+        <div className="text-center py-12 px-4 rounded-[10px] border border-dashed border-slate-300 bg-white">
           <p className="text-sm font-bold text-slate-900">No tools found matching &quot;{searchQuery}&quot;</p>
           <p className="text-xs text-slate-500 mt-1">Try other keywords or reset your category filter.</p>
           <button
@@ -243,13 +206,13 @@ export function ToolCatalog({ initialTools }: ToolCatalogProps) {
               setSearchQuery("");
               setSelectedCategory("All");
             }}
-            className="mt-2.5 px-3 py-1 text-xs font-bold text-slate-900 bg-slate-100 hover:bg-slate-200 rounded-[6px] border border-slate-300"
+            className="mt-3 px-3.5 py-1.5 text-xs font-bold text-slate-900 bg-slate-100 hover:bg-slate-200 rounded-[6px] border border-slate-300 transition-colors"
           >
             Reset Filters
           </button>
         </div>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 sm:gap-2.5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-3.5">
           {filteredTools.map((tool) => {
             const style = CATEGORY_STYLES[tool.category] || DEFAULT_STYLE;
             const isPopular = POPULAR_SLUGS.has(tool.slug);
@@ -258,76 +221,63 @@ export function ToolCatalog({ initialTools }: ToolCatalogProps) {
               <Link
                 key={tool.slug}
                 href={`/tools/${tool.slug}`}
-                className="group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900 rounded-[8px] block h-full"
+                className="group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900 rounded-[10px] block h-full"
               >
-                <div className="h-full flex flex-col justify-between p-3 rounded-[8px] border border-slate-300/80 bg-white hover:border-slate-900 hover:shadow-[0_4px_16px_rgba(15,23,42,0.12)] hover:-translate-y-[1px] transition-all duration-150 shadow-xs">
-                  <div className="space-y-2">
-                    {/* Header Row: Solid Punchy Icon Tile + Tag */}
+                <div className="h-full flex flex-col justify-between p-3.5 rounded-[10px] bg-white border border-slate-200/90 shadow-[0_1px_3px_rgba(15,23,42,0.06),0_1px_2px_rgba(15,23,42,0.04)] hover:shadow-[0_10px_25px_-4px_rgba(15,23,42,0.08),0_4px_10px_-2px_rgba(15,23,42,0.04)] hover:border-slate-400 hover:-translate-y-0.5 transition-all duration-200">
+                  <div className="space-y-2.5">
+                    {/* Header: Solid Category Icon + Category / Badge */}
                     <div className="flex items-center justify-between gap-2">
-                      <div className="flex items-center gap-2">
-                        {/* Solid Branded Icon Tile - Bold & High-Contrast */}
+                      <div className="flex items-center gap-2.5">
                         <div
                           className={cn(
-                            "w-8 h-8 rounded-[6px] flex items-center justify-center shrink-0 shadow-xs transition-transform group-hover:scale-105",
+                            "w-8 h-8 rounded-[7px] flex items-center justify-center shrink-0 shadow-xs transition-transform group-hover:scale-105",
                             style.iconBg
                           )}
                         >
                           <ToolIcon name={tool.icon} className="w-4.5 h-4.5 text-white" strokeWidth={2.5} />
                         </div>
-
-                        <span className="text-[10px] font-mono font-bold text-slate-500 uppercase tracking-wider">
-                          {style.tag}
+                        <span className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider">
+                          {tool.category}
                         </span>
                       </div>
 
-                      {/* Right Tag */}
-                      <div className="flex items-center gap-1 shrink-0">
-                        {tool.isComingSoon ? (
-                          <span className="px-1.5 py-0.5 rounded-[4px] text-[10px] font-mono font-bold bg-amber-100 text-amber-900 border border-amber-300 flex items-center gap-1">
-                            <Clock className="w-2.5 h-2.5" />
-                            <span>SOON</span>
-                          </span>
-                        ) : isPopular ? (
-                          <span className="px-1.5 py-0.5 rounded-[4px] text-[10px] font-mono font-black bg-slate-900 text-white flex items-center gap-1 shadow-xs tracking-wider">
-                            <Star className="w-2.5 h-2.5 fill-amber-400 text-amber-400" />
-                            <span>CORE</span>
-                          </span>
-                        ) : (
-                          <span className="px-1.5 py-0.5 rounded-[4px] text-[10px] font-mono font-bold text-slate-600 bg-slate-100 border border-slate-200">
-                            FREE
-                          </span>
-                        )}
-                      </div>
+                      {tool.isComingSoon ? (
+                        <span className="px-2 py-0.5 rounded-full text-[10.5px] font-semibold bg-amber-50 text-amber-800 border border-amber-200">
+                          Coming Soon
+                        </span>
+                      ) : isPopular ? (
+                        <span className="px-2 py-0.5 rounded-full text-[10.5px] font-semibold bg-teal-50 text-teal-800 border border-teal-200 flex items-center gap-1">
+                          ★ Popular
+                        </span>
+                      ) : null}
                     </div>
 
                     {/* Tool Name & Description */}
                     <div>
-                      <h3 className="text-[14px] font-black text-slate-900 group-hover:text-teal-700 transition-colors line-clamp-1 leading-snug tracking-tight">
+                      <h3 className="text-[14.5px] font-bold text-slate-900 group-hover:text-teal-700 transition-colors line-clamp-1 leading-snug">
                         {tool.name}
                       </h3>
-                      <p className="text-[11.5px] text-slate-600 line-clamp-2 leading-relaxed mt-0.5 font-normal">
+                      <p className="text-[12px] text-slate-600 line-clamp-2 leading-relaxed mt-1 font-normal">
                         {tool.description}
                       </p>
                     </div>
                   </div>
 
-                  {/* Bottom Spec Bar */}
-                  <div className="pt-2 mt-2 border-t border-slate-100 flex items-center justify-between text-xs font-mono">
-                    <span className="text-slate-400 text-[10px] flex items-center gap-1.5 font-medium">
+                  {/* Bottom Bar: Natural Human Indicators */}
+                  <div className="pt-2.5 mt-2.5 border-t border-slate-100 flex items-center justify-between text-xs">
+                    <span className="text-slate-500 text-[11px] flex items-center gap-1.5 font-medium">
                       <span
                         className={cn(
                           "w-1.5 h-1.5 rounded-full shrink-0",
-                          tool.isComingSoon ? "bg-amber-500" : "bg-emerald-600"
+                          tool.isComingSoon ? "bg-amber-400" : "bg-emerald-500"
                         )}
                       />
-                      <span className="truncate max-w-[140px] uppercase font-bold tracking-tight">
-                        {tool.isComingSoon ? "IN DEV" : style.engine}
-                      </span>
+                      <span>{tool.isComingSoon ? "In Development" : "Client-Side • Fast"}</span>
                     </span>
 
-                    <span className="inline-flex items-center gap-1 text-[11px] font-bold text-slate-800 group-hover:text-teal-700 transition-colors shrink-0">
-                      <span>{tool.isComingSoon ? "SPECS" : "OPEN"}</span>
-                      <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
+                    <span className="inline-flex items-center gap-1 text-[11.5px] font-semibold text-slate-700 group-hover:text-teal-700 group-hover:translate-x-0.5 transition-all">
+                      <span>Launch</span>
+                      <ArrowRight className="w-3.5 h-3.5" />
                     </span>
                   </div>
                 </div>

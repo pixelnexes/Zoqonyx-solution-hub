@@ -39,37 +39,37 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/category/image-tools" className="hover:text-brand-cyan transition-colors">
+                <Link href="/category/image-tools" className="hover:text-teal-700 transition-colors">
                   Image & Photo Tools
                 </Link>
               </li>
               <li>
-                <Link href="/category/css-design" className="hover:text-brand-cyan transition-colors">
+                <Link href="/category/css-design" className="hover:text-teal-700 transition-colors">
                   CSS & Design Generators
                 </Link>
               </li>
               <li>
-                <Link href="/category/text-code" className="hover:text-brand-cyan transition-colors">
+                <Link href="/category/text-code" className="hover:text-teal-700 transition-colors">
                   Text & Code Utilities
                 </Link>
               </li>
               <li>
-                <Link href="/category/developer-seo" className="hover:text-brand-cyan transition-colors">
+                <Link href="/category/developer-seo" className="hover:text-teal-700 transition-colors">
                   Developer & SEO Tools
                 </Link>
               </li>
               <li>
-                <Link href="/category/calculators" className="hover:text-brand-cyan transition-colors">
+                <Link href="/category/calculators" className="hover:text-teal-700 transition-colors">
                   Calculators & Math
                 </Link>
               </li>
               <li>
-                <Link href="/category/pdf-documents" className="hover:text-brand-cyan transition-colors">
+                <Link href="/category/pdf-documents" className="hover:text-teal-700 transition-colors">
                   PDF & Documents
                 </Link>
               </li>
               <li>
-                <Link href="/category/ai-tools" className="hover:text-brand-cyan transition-colors">
+                <Link href="/category/ai-tools" className="hover:text-teal-700 transition-colors">
                   AI & Smart Tools
                 </Link>
               </li>
@@ -83,22 +83,22 @@ export function Footer() {
             </h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li>
-                <Link href="/about" className="hover:text-brand-cyan transition-colors">
+                <Link href="/about" className="hover:text-teal-700 transition-colors">
                   About Zoqonyx
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="hover:text-brand-cyan transition-colors">
+                <Link href="/contact" className="hover:text-teal-700 transition-colors">
                   Contact Support
                 </Link>
               </li>
               <li>
-                <Link href="/privacy-policy" className="hover:text-brand-cyan transition-colors">
+                <Link href="/privacy-policy" className="hover:text-teal-700 transition-colors">
                   Privacy Policy
                 </Link>
               </li>
               <li>
-                <Link href="/terms" className="hover:text-brand-cyan transition-colors">
+                <Link href="/terms" className="hover:text-teal-700 transition-colors">
                   Terms of Service
                 </Link>
               </li>

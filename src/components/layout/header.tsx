@@ -71,16 +71,16 @@ export function Header() {
             </button>
 
             {categoriesOpen && (
-              <div className="absolute top-full left-0 w-60 pt-1.5 animate-in fade-in slide-in-from-top-1 duration-150 z-50">
-                <div className="rounded-lg border border-slate-200 bg-white p-1.5 shadow-lg space-y-0.5">
+              <div className="absolute top-full left-0 w-64 pt-2 animate-in fade-in slide-in-from-top-1 duration-150 z-50">
+                <div className="rounded-[10px] border border-slate-200/90 bg-white p-2 shadow-[0_12px_28px_-6px_rgba(15,23,42,0.12),0_4px_10px_-2px_rgba(15,23,42,0.05)] space-y-0.5">
                   {NAV_CATEGORIES.map((cat) => (
                     <Link
                       key={cat.href}
                       href={cat.href}
                       onClick={() => setCategoriesOpen(false)}
                       className={cn(
-                        "block px-2.5 py-1.5 rounded-md text-xs font-medium transition-colors hover:bg-slate-50 hover:text-teal-600",
-                        pathname === cat.href ? "bg-teal-50 text-teal-700 font-semibold" : "text-slate-700"
+                        "block px-3 py-2 rounded-[6px] text-xs font-semibold transition-colors hover:bg-slate-100/80 hover:text-teal-700",
+                        pathname === cat.href ? "bg-teal-50 text-teal-800 font-bold" : "text-slate-700"
                       )}
                     >
                       {cat.label}
@@ -94,8 +94,8 @@ export function Header() {
           <Link
             href="/about"
             className={cn(
-              "transition-colors hover:text-teal-600 font-medium py-1 px-2 rounded-md hover:bg-slate-50",
-              pathname === "/about" ? "text-teal-600 font-semibold" : "text-slate-600"
+              "transition-colors hover:text-teal-600 font-semibold py-1 px-2.5 rounded-md hover:bg-slate-100/60",
+              pathname === "/about" ? "text-teal-700 font-bold" : "text-slate-600"
             )}
           >
             About
@@ -104,8 +104,8 @@ export function Header() {
           <Link
             href="/contact"
             className={cn(
-              "transition-colors hover:text-teal-600 font-medium py-1 px-2 rounded-md hover:bg-slate-50",
-              pathname === "/contact" ? "text-teal-600 font-semibold" : "text-slate-600"
+              "transition-colors hover:text-teal-600 font-semibold py-1 px-2.5 rounded-md hover:bg-slate-100/60",
+              pathname === "/contact" ? "text-teal-700 font-bold" : "text-slate-600"
             )}
           >
             Contact
@@ -117,9 +117,9 @@ export function Header() {
           <SessionHistoryModal />
 
           <Link href="/tools">
-            <Button size="sm" className="bg-teal-600 hover:bg-teal-500 text-white rounded-md text-xs font-semibold px-3.5 h-8 gap-1.5 shadow-xs">
-              <Zap className="w-3.5 h-3.5" />
-              <span>Explore 113 Tools</span>
+            <Button size="sm" className="bg-slate-900 hover:bg-slate-800 text-white rounded-[7px] text-xs font-semibold px-3.5 h-8 gap-1.5 shadow-[0_1px_2px_rgba(0,0,0,0.06)] hover:shadow-sm transition-all">
+              <Zap className="w-3.5 h-3.5 text-amber-400" />
+              <span>All 113 Tools</span>
             </Button>
           </Link>
         </div>

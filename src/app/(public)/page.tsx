@@ -1,6 +1,6 @@
 import { prisma } from "@/lib/prisma";
 import { ToolCatalog } from "@/components/home/tool-catalog";
-import { ShieldCheck, Shield, Zap, Globe, Check, Cpu } from "lucide-react";
+import { ShieldCheck, Cpu, Globe } from "lucide-react";
 import type { Metadata } from "next";
 
 import { DEFAULT_TOOLS } from "@/lib/default-tools";
@@ -110,91 +110,73 @@ export default async function HomePage() {
       />
 
       <div className="relative">
-        <div className="container mx-auto max-w-7xl px-3 sm:px-6 lg:px-8 pt-2 sm:pt-2.5 pb-6">
-          {/* Dense High-Contrast Technical Hero */}
-          <div className="text-center max-w-3xl mx-auto space-y-2 pt-0 pb-1.5">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-[6px] border border-slate-300 bg-white shadow-xs">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-600" />
-              </span>
-              <span className="text-[11px] font-mono font-bold tracking-tight text-slate-900 uppercase">
-                113 Client-Side Utilities
-              </span>
-              <span className="h-3 w-px bg-slate-200" />
-              <span className="text-[11px] font-mono text-slate-500 font-semibold">Zero Cloud Uploads</span>
+        <div className="container mx-auto max-w-7xl px-3 sm:px-6 lg:px-8 pt-3 sm:pt-4 pb-12">
+          {/* Confident Human Hero Section */}
+          <div className="text-center max-w-3xl mx-auto space-y-3 pt-2 pb-4">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-slate-200/90 bg-white text-slate-700 shadow-[0_1px_2px_rgba(0,0,0,0.04)] text-xs font-semibold">
+              <span className="w-2 h-2 rounded-full bg-emerald-500" />
+              <span>113 Browser-Native Utilities</span>
+              <span className="text-slate-300">•</span>
+              <span className="text-slate-500">100% Free & Private</span>
             </div>
 
-            <h1 className="text-3xl sm:text-5xl lg:text-[52px] font-black tracking-[-0.035em] text-slate-900 leading-[1.04]">
-              Professional browser utilities.<br className="hidden sm:inline" />{" "}
-              <span className="text-teal-700">Engineered for raw speed & zero tracking.</span>
+            <h1 className="text-3xl sm:text-5xl lg:text-[54px] font-black tracking-[-0.035em] text-slate-900 leading-[1.06]">
+              Every digital utility you need,<br className="hidden sm:inline" />{" "}
+              <span className="text-teal-700">executed privately in your browser.</span>
             </h1>
 
-            <p className="text-xs sm:text-[13.5px] text-slate-600 leading-normal max-w-2xl mx-auto font-normal">
-              113 single-purpose utilities for images, PDFs, code, and documents. Files process locally in your device&apos;s isolated browser memory—no remote storage, no signup walls, and no server queue latency.
+            <p className="text-sm sm:text-[15px] text-slate-600 leading-relaxed max-w-2xl mx-auto font-normal">
+              Compress images, edit PDFs, format code, and calculate values at native device speeds. Files never leave your computer—no servers, no logins, and zero usage limits.
             </p>
-
-            {/* Quick Metrics Bar */}
-            <div className="pt-0.5 flex flex-wrap items-center justify-center gap-2 text-xs font-mono font-bold text-slate-800">
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-[6px] bg-white border border-slate-300 shadow-xs hover:border-slate-800 transition-colors">
-                <Shield className="w-3.5 h-3.5 text-teal-700" strokeWidth={2.2} />
-                <span>ZERO SERVER STORAGE</span>
-              </div>
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-[6px] bg-white border border-slate-300 shadow-xs hover:border-slate-800 transition-colors">
-                <Zap className="w-3.5 h-3.5 text-amber-600" strokeWidth={2.2} />
-                <span>HARDWARE ACCELERATED</span>
-              </div>
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-[6px] bg-white border border-slate-300 shadow-xs hover:border-slate-800 transition-colors">
-                <Check className="w-3.5 h-3.5 text-emerald-600" strokeWidth={2.2} />
-                <span>NO ACCOUNTS OR API KEYS</span>
-              </div>
-            </div>
           </div>
 
-          {/* Interactive Tool Catalog (Directly Below Hero with Minimum Margin) */}
-          <div className="mt-2.5">
+          {/* Interactive Tool Catalog */}
+          <div className="mt-3">
             <ToolCatalog initialTools={tools} />
           </div>
 
-          {/* Value Proposition Grid (Compact & Dense) */}
-          <div className="mt-10 pt-6 border-t border-slate-300">
-            <div className="text-center max-w-2xl mx-auto space-y-1 mb-4">
-              <h2 className="text-lg sm:text-xl font-heading font-black text-slate-900">
-                Engineered for High Speed, Zero Telemetry & Global Access
+          {/* Security & Architecture Guarantee (Human Craftsmanship) */}
+          <div className="mt-14 pt-10 border-t border-slate-200/90">
+            <div className="text-center max-w-2xl mx-auto space-y-2 mb-8">
+              <span className="text-xs font-bold uppercase tracking-wider text-teal-700 font-mono">
+                SECURITY ARCHITECTURE
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
+                Why client-side processing matters.
               </h2>
-              <p className="text-xs text-slate-600">
-                The modern standard for digital utilities—crafted for engineers, creators, and teams worldwide.
+              <p className="text-sm text-slate-600 leading-relaxed">
+                Most online tools secretly upload your images, contracts, and code to remote cloud servers. Zoqonyx was engineered from day one to operate entirely inside your device&apos;s memory sandbox.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-2.5">
-              <div className="p-3.5 rounded-[8px] bg-white border border-slate-300 space-y-1.5 hover:border-slate-800 transition-all shadow-xs">
-                <div className="w-7 h-7 rounded-[4px] bg-emerald-600 text-white flex items-center justify-center shadow-xs">
-                  <ShieldCheck className="w-4 h-4" strokeWidth={2.5} />
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="p-5 rounded-[10px] bg-white border border-slate-200/90 shadow-[0_1px_3px_rgba(15,23,42,0.04)] space-y-2.5">
+                <div className="w-9 h-9 rounded-[8px] bg-emerald-50 border border-emerald-200 text-emerald-700 flex items-center justify-center font-bold">
+                  <ShieldCheck className="w-5 h-5" strokeWidth={2.2} />
                 </div>
-                <h3 className="font-heading font-bold text-sm text-slate-900">Zero-Knowledge Privacy</h3>
-                <p className="text-xs text-slate-600 leading-relaxed font-normal">
-                  Your photos, sensitive documents, and proprietary code execute in your browser&apos;s isolated local memory. No files are transmitted to or stored on remote servers.
+                <h3 className="font-bold text-base text-slate-900">Zero Cloud Uploads</h3>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  Your files never travel across the internet. Image compression, PDF splitting, and text transformations happen strictly inside HTML5 Canvas and WebAssembly modules on your computer.
                 </p>
               </div>
 
-              <div className="p-3.5 rounded-[8px] bg-white border border-slate-300 space-y-1.5 hover:border-slate-800 transition-all shadow-xs">
-                <div className="w-7 h-7 rounded-[4px] bg-slate-900 text-white flex items-center justify-center shadow-xs">
-                  <Cpu className="w-4 h-4" strokeWidth={2.5} />
+              <div className="p-5 rounded-[10px] bg-white border border-slate-200/90 shadow-[0_1px_3px_rgba(15,23,42,0.04)] space-y-2.5">
+                <div className="w-9 h-9 rounded-[8px] bg-slate-100 border border-slate-200 text-slate-900 flex items-center justify-center font-bold">
+                  <Cpu className="w-5 h-5" strokeWidth={2.2} />
                 </div>
-                <h3 className="font-heading font-bold text-sm text-slate-900">Hardware-Accelerated Compute</h3>
-                <p className="text-xs text-slate-600 leading-relaxed font-normal">
-                  Harnessing HTML5 Canvas, Web Workers, and Web Crypto APIs. Heavy image filtering and data encoding execute at native device speeds with zero cloud latency.
+                <h3 className="font-bold text-base text-slate-900">Hardware Acceleration</h3>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  Using local CPU and GPU threads via modern Web Workers. Heavy operations process with instant latency because there are no network bottlenecks or server upload queues.
                 </p>
               </div>
 
-              <div className="p-3.5 rounded-[8px] bg-white border border-slate-300 space-y-1.5 hover:border-slate-800 transition-all shadow-xs">
-                <div className="w-7 h-7 rounded-[4px] bg-teal-700 text-white flex items-center justify-center shadow-xs">
-                  <Globe className="w-4 h-4" strokeWidth={2.5} />
+              <div className="p-5 rounded-[10px] bg-white border border-slate-200/90 shadow-[0_1px_3px_rgba(15,23,42,0.04)] space-y-2.5">
+                <div className="w-9 h-9 rounded-[8px] bg-teal-50 border border-teal-200 text-teal-700 flex items-center justify-center font-bold">
+                  <Globe className="w-5 h-5" strokeWidth={2.2} />
                 </div>
-                <h3 className="font-heading font-bold text-sm text-slate-900">100% Free Forever</h3>
-                <p className="text-xs text-slate-600 leading-relaxed font-normal">
-                  No artificial paywalls, usage meters, or mandatory subscriptions. Clean, high-performance tools designed to boost productivity with zero barriers.
+                <h3 className="font-bold text-base text-slate-900">Open Access Guarantee</h3>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  Every utility is fully unlocked. No credit cards, no premium tiers, no daily quota limits, and no forced email signups. A true community utility built for daily workflow speed.
                 </p>
               </div>
             </div>
