@@ -1,20 +1,20 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Plus_Jakarta_Sans } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { getSiteSettings } from "@/lib/settings";
 import { SiteSettingsProvider } from "@/components/providers/site-settings-provider";
 
-const inter = Inter({
+const geistSans = Geist({
   subsets: ["latin"],
   variable: "--font-sans",
   display: "swap",
 });
 
-const plusJakarta = Plus_Jakarta_Sans({
+const geistMono = Geist_Mono({
   subsets: ["latin"],
-  variable: "--font-heading",
+  variable: "--font-mono",
   display: "swap",
 });
 
@@ -99,7 +99,7 @@ export default async function RootLayout({
   const iconUrl = settings.icon_path || "/logo/zoqonyx-icon.png";
 
   return (
-    <html lang="en" className={`light ${inter.variable} ${plusJakarta.variable}`}>
+    <html lang="en" className={`light ${geistSans.variable} ${geistMono.variable} font-sans`}>
       <head>
         <link rel="icon" href={iconUrl} />
         <link rel="shortcut icon" href={iconUrl} />

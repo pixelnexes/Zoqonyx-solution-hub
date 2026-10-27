@@ -69,8 +69,9 @@ const config: Config = {
         sm: "calc(var(--radius) - 4px)",
       },
       fontFamily: {
-        sans: ["var(--font-sans)", "Inter", "system-ui", "sans-serif"],
-        heading: ["var(--font-heading)", "Plus Jakarta Sans", "system-ui", "sans-serif"],
+        sans: ["var(--font-sans)", "system-ui", "-apple-system", "sans-serif"],
+        heading: ["var(--font-sans)", "system-ui", "-apple-system", "sans-serif"],
+        mono: ["var(--font-mono)", "ui-monospace", "SFMono-Regular", "monospace"],
       },
       backgroundImage: {
         "brand-gradient": "linear-gradient(135deg, #14B8A6 0%, #0F766E 100%)",

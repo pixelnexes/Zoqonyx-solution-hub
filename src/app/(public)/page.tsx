@@ -110,36 +110,43 @@ export default async function HomePage() {
       />
 
       <div className="relative">
-        <div className="container mx-auto max-w-7xl px-3 sm:px-6 lg:px-8 pt-2 sm:pt-3 pb-8">
+        <div className="container mx-auto max-w-7xl px-3 sm:px-6 lg:px-8 pt-2 sm:pt-2.5 pb-6">
           {/* Dense High-Contrast Technical Hero */}
-          <div className="text-center max-w-3xl mx-auto space-y-1.5 pt-0.5 pb-2.5">
-            <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-[4px] border border-slate-300 bg-white text-[11px] font-mono font-bold text-slate-800 shadow-xs">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse" />
-              <span>113 FREE UTILITIES • 100% IN-BROWSER • ZERO CLOUD STORAGE</span>
+          <div className="text-center max-w-3xl mx-auto space-y-2 pt-0 pb-1.5">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-[6px] border border-slate-300 bg-white shadow-xs">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-600" />
+              </span>
+              <span className="text-[11px] font-mono font-bold tracking-tight text-slate-900 uppercase">
+                113 Client-Side Utilities
+              </span>
+              <span className="h-3 w-px bg-slate-200" />
+              <span className="text-[11px] font-mono text-slate-500 font-semibold">Zero Cloud Uploads</span>
             </div>
 
-            <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight text-slate-900 leading-[1.08]">
-              High-performance browser tools.<br className="hidden sm:inline" />{" "}
-              <span className="text-teal-700">Zero tracking, zero uploads.</span>
+            <h1 className="text-3xl sm:text-5xl lg:text-[52px] font-black tracking-[-0.035em] text-slate-900 leading-[1.04]">
+              Professional browser utilities.<br className="hidden sm:inline" />{" "}
+              <span className="text-teal-700">Engineered for raw speed & zero tracking.</span>
             </h1>
 
-            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed max-w-xl mx-auto font-normal">
-              Every utility executes client-side in your device&apos;s isolated browser memory. Compress photos in bulk, manipulate PDFs, format code, and compute values with zero accounts, zero fees, and zero server latency.
+            <p className="text-xs sm:text-[13.5px] text-slate-600 leading-normal max-w-2xl mx-auto font-normal">
+              113 single-purpose utilities for images, PDFs, code, and documents. Files process locally in your device&apos;s isolated browser memory—no remote storage, no signup walls, and no server queue latency.
             </p>
 
             {/* Quick Metrics Bar */}
-            <div className="pt-0.5 flex flex-wrap items-center justify-center gap-1.5 text-xs font-mono font-bold text-slate-800">
-              <div className="flex items-center gap-1 px-2.5 py-0.5 rounded-[4px] bg-white border border-slate-300 shadow-xs">
-                <Check className="w-3.5 h-3.5 text-emerald-600" />
-                <span>113 Live Tools</span>
+            <div className="pt-0.5 flex flex-wrap items-center justify-center gap-2 text-xs font-mono font-bold text-slate-800">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-[6px] bg-white border border-slate-300 shadow-xs hover:border-slate-800 transition-colors">
+                <Shield className="w-3.5 h-3.5 text-teal-700" strokeWidth={2.2} />
+                <span>ZERO SERVER STORAGE</span>
               </div>
-              <div className="flex items-center gap-1 px-2.5 py-0.5 rounded-[4px] bg-white border border-slate-300 shadow-xs">
-                <Shield className="w-3.5 h-3.5 text-teal-700" />
-                <span>100% Local Privacy</span>
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-[6px] bg-white border border-slate-300 shadow-xs hover:border-slate-800 transition-colors">
+                <Zap className="w-3.5 h-3.5 text-amber-600" strokeWidth={2.2} />
+                <span>HARDWARE ACCELERATED</span>
               </div>
-              <div className="flex items-center gap-1 px-2.5 py-0.5 rounded-[4px] bg-white border border-slate-300 shadow-xs">
-                <Zap className="w-3.5 h-3.5 text-amber-600" />
-                <span>Instant Execution</span>
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-[6px] bg-white border border-slate-300 shadow-xs hover:border-slate-800 transition-colors">
+                <Check className="w-3.5 h-3.5 text-emerald-600" strokeWidth={2.2} />
+                <span>NO ACCOUNTS OR API KEYS</span>
               </div>
             </div>
           </div>
