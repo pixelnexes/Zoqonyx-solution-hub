@@ -177,7 +177,7 @@ export default async function ToolsPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
 
-      <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 sm:py-12 space-y-12">
+      <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-4 sm:py-6 space-y-5">
         {/* Breadcrumb Navigation */}
         <nav
           aria-label="Breadcrumb"
@@ -191,14 +191,14 @@ export default async function ToolsPage() {
         </nav>
 
         {/* Hero Header */}
-        <div className="relative overflow-hidden rounded-lg border border-slate-200 bg-white p-6 sm:p-8 shadow-[0_1px_3px_rgba(0,0,0,0.03)] space-y-5">
-          <div className="relative z-10 max-w-3xl space-y-4">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md border border-teal-200 bg-teal-50 text-teal-800 text-xs font-mono">
+        <div className="relative overflow-hidden rounded-[8px] border border-slate-200 bg-white p-4 sm:p-5 shadow-xs space-y-3">
+          <div className="relative z-10 max-w-3xl space-y-2.5">
+            <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-[6px] border border-slate-200 bg-slate-50 text-slate-700 text-xs font-mono">
               <ShieldCheck className="w-3.5 h-3.5" />
               <span>Complete Directory • 113 Free Tools Live (165 Total Catalog)</span>
             </div>
 
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-black tracking-tight text-slate-900 leading-tight">
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-black tracking-tight text-slate-900 leading-tight">
               All Free Online Tools Directory
             </h1>
 
@@ -222,12 +222,12 @@ export default async function ToolsPage() {
         </div>
 
         {/* Live Search & Catalog Component */}
-        <section className="space-y-6">
+        <section className="space-y-4">
           <ToolCatalog initialTools={tools} />
         </section>
 
         {/* Below-the-fold Comprehensive SEO Guide */}
-        <section className="p-5 sm:p-6 rounded-lg bg-white border border-slate-200 space-y-6 shadow-[0_1px_3px_rgba(0,0,0,0.03)]">
+        <section className="p-4 sm:p-5 rounded-[8px] bg-white border border-slate-200 space-y-4 shadow-xs">
           <div className="max-w-3xl space-y-3">
             <h2 className="text-xl sm:text-2xl font-heading font-bold text-slate-900">
               Why Browser-Native Digital Tools Are Superior

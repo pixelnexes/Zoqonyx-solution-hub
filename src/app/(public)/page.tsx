@@ -112,15 +112,15 @@ export default async function HomePage() {
       />
 
       <div className="relative">
-        <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-6 pb-14">
+        <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-3 pb-8">
           {/* Hero Section - High-Density Technical Precision */}
-          <div className="text-center max-w-3xl mx-auto space-y-3.5 pt-2 pb-6">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md border border-slate-200 bg-white text-xs font-mono text-slate-700 shadow-xs">
+          <div className="text-center max-w-3xl mx-auto space-y-2.5 pt-1 pb-3">
+            <div className="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-[6px] border border-slate-200 bg-white text-xs font-mono text-slate-700 shadow-xs">
               <span className="w-2 h-2 rounded-full bg-teal-600 animate-pulse" />
               <span>113 Free Tools Live • Zero Cloud Uploads • 100% Client-Side</span>
             </div>
 
-            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-slate-900 leading-[1.08]">
+            <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight text-slate-900 leading-[1.1]">
               High-performance browser tools.<br />
               <span className="text-teal-700">Zero tracking, zero uploads.</span>
             </h1>
@@ -131,15 +131,15 @@ export default async function HomePage() {
 
             {/* Quick Metrics */}
             <div className="pt-1 flex flex-wrap items-center justify-center gap-2 sm:gap-2.5 text-xs font-mono text-slate-800">
-              <div className="flex items-center gap-1.5 px-3 py-1 rounded-md bg-white border border-slate-200 shadow-xs">
+              <div className="flex items-center gap-1.5 px-2.5 py-0.5 rounded-[6px] bg-white border border-slate-200 shadow-xs text-xs">
                 <Check className="w-3.5 h-3.5 text-teal-600" />
                 <span>113 Live Free Tools</span>
               </div>
-              <div className="flex items-center gap-1.5 px-3 py-1 rounded-md bg-white border border-slate-200 shadow-xs">
+              <div className="flex items-center gap-1.5 px-2.5 py-0.5 rounded-[6px] bg-white border border-slate-200 shadow-xs text-xs">
                 <Shield className="w-3.5 h-3.5 text-teal-600" />
                 <span>100% Client Privacy</span>
               </div>
-              <div className="flex items-center gap-1.5 px-3 py-1 rounded-md bg-white border border-slate-200 shadow-xs">
+              <div className="flex items-center gap-1.5 px-2.5 py-0.5 rounded-[6px] bg-white border border-slate-200 shadow-xs text-xs">
                 <Zap className="w-3.5 h-3.5 text-teal-600" />
                 <span>Non-Blocking Bulk Batching</span>
               </div>
@@ -147,7 +147,7 @@ export default async function HomePage() {
 
             <div className="pt-2 flex items-center justify-center gap-3">
               <Link href="#tools-catalog">
-                <Button className="bg-teal-700 hover:bg-teal-800 text-white rounded-md px-5 py-2.5 text-xs font-semibold gap-2 shadow-xs transition-colors">
+                <Button className="bg-slate-900 hover:bg-slate-800 text-white rounded-[6px] px-4 py-2 text-xs font-semibold gap-1.5 shadow-xs transition-colors">
                   <span>Explore 113 Free Tools</span>
                   <ArrowDown className="w-3.5 h-3.5" />
                 </Button>
@@ -161,8 +161,8 @@ export default async function HomePage() {
           </div>
 
           {/* Value Proposition Grid */}
-          <div className="mt-16 pt-12 border-t border-slate-200">
-            <div className="text-center max-w-2xl mx-auto space-y-1.5 mb-8">
+          <div className="mt-10 pt-8 border-t border-slate-200">
+            <div className="text-center max-w-2xl mx-auto space-y-1.5 mb-5">
               <h2 className="text-xl sm:text-2xl font-heading font-bold text-slate-900">
                 Engineered for High Speed, Zero Telemetry & Global Access
               </h2>
@@ -172,8 +172,8 @@ export default async function HomePage() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div className="p-5 rounded-lg bg-white border border-slate-200 space-y-2.5 hover:border-teal-500/50 transition-all shadow-[0_1px_2px_rgba(0,0,0,0.03)]">
-                <div className="w-8 h-8 rounded-md bg-teal-50 text-teal-700 border border-teal-200 flex items-center justify-center">
+              <div className="p-3.5 sm:p-4 rounded-[8px] bg-white border border-slate-200 space-y-2 hover:border-slate-400 transition-all shadow-[0_1px_2px_rgba(0,0,0,0.03)]">
+                <div className="w-8 h-8 rounded-[6px] bg-slate-100 text-slate-800 border border-slate-200 flex items-center justify-center">
                   <ShieldCheck className="w-4 h-4" />
                 </div>
                 <h3 className="font-heading font-bold text-base text-slate-900">Zero-Knowledge Privacy</h3>
@@ -182,8 +182,8 @@ export default async function HomePage() {
                 </p>
               </div>
 
-              <div className="p-5 rounded-lg bg-white border border-slate-200 space-y-2.5 hover:border-teal-500/50 transition-all shadow-[0_1px_2px_rgba(0,0,0,0.03)]">
-                <div className="w-8 h-8 rounded-md bg-teal-50 text-teal-700 border border-teal-200 flex items-center justify-center">
+              <div className="p-3.5 sm:p-4 rounded-[8px] bg-white border border-slate-200 space-y-2 hover:border-slate-400 transition-all shadow-[0_1px_2px_rgba(0,0,0,0.03)]">
+                <div className="w-8 h-8 rounded-[6px] bg-slate-100 text-slate-800 border border-slate-200 flex items-center justify-center">
                   <Cpu className="w-4 h-4" />
                 </div>
                 <h3 className="font-heading font-bold text-base text-slate-900">Hardware-Accelerated Compute</h3>
@@ -192,8 +192,8 @@ export default async function HomePage() {
                 </p>
               </div>
 
-              <div className="p-5 rounded-lg bg-white border border-slate-200 space-y-2.5 hover:border-teal-500/50 transition-all shadow-[0_1px_2px_rgba(0,0,0,0.03)]">
-                <div className="w-8 h-8 rounded-md bg-teal-50 text-teal-700 border border-teal-200 flex items-center justify-center">
+              <div className="p-3.5 sm:p-4 rounded-[8px] bg-white border border-slate-200 space-y-2 hover:border-slate-400 transition-all shadow-[0_1px_2px_rgba(0,0,0,0.03)]">
+                <div className="w-8 h-8 rounded-[6px] bg-slate-100 text-slate-800 border border-slate-200 flex items-center justify-center">
                   <Globe className="w-4 h-4" />
                 </div>
                 <h3 className="font-heading font-bold text-base text-slate-900">100% Free Forever</h3>

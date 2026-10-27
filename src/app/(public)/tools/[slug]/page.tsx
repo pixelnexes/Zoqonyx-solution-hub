@@ -282,11 +282,11 @@ export default async function ToolPage({ params }: ToolPageProps) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
 
-      <div className="container mx-auto max-w-5xl px-4 py-8 sm:py-12">
+      <div className="container mx-auto max-w-5xl px-4 py-4 sm:py-6">
         {/* Breadcrumb Navigation */}
         <nav
           aria-label="Breadcrumb"
-          className="mb-6 flex items-center gap-1.5 text-xs font-medium text-slate-500"
+          className="mb-3 flex items-center gap-1.5 text-xs font-medium text-slate-500"
         >
           <Link href="/" className="hover:text-teal-700 transition-colors">
             Home
@@ -306,13 +306,13 @@ export default async function ToolPage({ params }: ToolPageProps) {
           <ComingSoonToolView tool={tool} relatedTools={relatedTools} />
         ) : (
           /* State B: Live Interactive Tool */
-          <div className="space-y-12">
+          <div className="space-y-6">
             {/* Tool Header Banner */}
-            <div className="p-5 sm:p-6 rounded-lg bg-white border border-slate-200 space-y-4 shadow-[0_1px_3px_rgba(0,0,0,0.03)]">
+            <div className="p-3.5 sm:p-4 rounded-[8px] bg-white border border-slate-200 space-y-3 shadow-xs">
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <div className="flex items-center gap-3">
-                  <div className="p-2.5 rounded-md bg-teal-50 text-teal-700 border border-teal-200">
-                    <ToolIcon name={tool.icon} className="w-6 h-6" />
+                  <div className="p-2 rounded-[6px] bg-teal-50 text-teal-700 border border-teal-200">
+                    <ToolIcon name={tool.icon} className="w-5 h-5" strokeWidth={2.25} />
                   </div>
                   <div>
                     <Link
@@ -321,7 +321,7 @@ export default async function ToolPage({ params }: ToolPageProps) {
                     >
                       {tool.category}
                     </Link>
-                    <h1 className="text-2xl sm:text-3xl font-heading font-black text-slate-900 tracking-tight">
+                    <h1 className="text-xl sm:text-2xl font-heading font-black text-slate-900 tracking-tight">
                       {tool.name}
                     </h1>
                   </div>
@@ -339,7 +339,7 @@ export default async function ToolPage({ params }: ToolPageProps) {
                 {tool.description}
               </p>
 
-              <div className="flex flex-wrap gap-4 pt-3 text-xs text-slate-600 border-t border-slate-100">
+              <div className="flex flex-wrap gap-3 pt-2 text-[11px] text-slate-500 border-t border-slate-100">
                 <span className="flex items-center gap-1.5">
                   <ShieldCheck className="w-4 h-4 text-emerald-500" /> Runs 100% in your browser
                 </span>
@@ -353,12 +353,12 @@ export default async function ToolPage({ params }: ToolPageProps) {
             </div>
 
             {/* Interactive Tool Workstation Canvas */}
-            <div className="p-5 sm:p-6 rounded-lg bg-white border border-slate-200 shadow-[0_1px_3px_rgba(0,0,0,0.03)]">
+            <div className="p-3.5 sm:p-5 rounded-[8px] bg-white border border-slate-200 shadow-xs">
               <ToolRenderer slug={tool.slug} />
             </div>
 
             {/* Section 1: Step-by-Step Practical Guide */}
-            <section className="p-5 sm:p-6 rounded-lg bg-white border border-slate-200 space-y-5 shadow-[0_1px_3px_rgba(0,0,0,0.03)]">
+            <section className="p-3.5 sm:p-4 rounded-[8px] bg-white border border-slate-200 space-y-3 shadow-xs">
               <div className="space-y-1">
                 <span className="text-[11px] font-bold uppercase tracking-wider text-teal-700 font-mono font-bold">
                   PRACTICAL GUIDE
@@ -372,7 +372,7 @@ export default async function ToolPage({ params }: ToolPageProps) {
                 {seo.howToSteps.map((s) => (
                   <div
                     key={s.step}
-                    className="p-3.5 rounded-md bg-slate-50 border border-slate-200 space-y-2 hover:border-slate-300 transition-colors"
+                    className="p-2.5 rounded-[6px] bg-slate-50 border border-slate-200 space-y-1.5 hover:border-slate-300 transition-colors"
                   >
                     <div className="flex items-center gap-2.5">
                       <span className="w-6 h-6 rounded-md bg-teal-700 text-white font-mono text-xs font-bold flex items-center justify-center shrink-0">
@@ -391,7 +391,7 @@ export default async function ToolPage({ params }: ToolPageProps) {
             </section>
 
             {/* Section 2: Key Capabilities & Architecture */}
-            <section className="p-5 sm:p-6 rounded-lg bg-white border border-slate-200 space-y-5 shadow-[0_1px_3px_rgba(0,0,0,0.03)]">
+            <section className="p-3.5 sm:p-4 rounded-[8px] bg-white border border-slate-200 space-y-3 shadow-xs">
               <div className="space-y-1">
                 <span className="text-[11px] font-bold uppercase tracking-wider text-teal-700 font-mono font-bold">
                   ARCHITECTURE & ADVANTAGES
@@ -405,7 +405,7 @@ export default async function ToolPage({ params }: ToolPageProps) {
                 {seo.keyBenefits.map((b, idx) => (
                   <div
                     key={idx}
-                    className="p-3.5 rounded-md bg-slate-50 border border-slate-200 space-y-2 hover:border-slate-300 transition-colors"
+                    className="p-2.5 rounded-[6px] bg-slate-50 border border-slate-200 space-y-1.5 hover:border-slate-300 transition-colors"
                   >
                     <div className="flex items-center gap-2 text-teal-700">
                       <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
@@ -423,7 +423,7 @@ export default async function ToolPage({ params }: ToolPageProps) {
 
             {/* Section 3: In-Depth Technical Guide & Deep Dive */}
             {seo.deepDiveContent && (
-              <section className="p-5 sm:p-6 rounded-lg bg-white border border-slate-200 space-y-5 shadow-[0_1px_3px_rgba(0,0,0,0.03)]">
+              <section className="p-3.5 sm:p-4 rounded-[8px] bg-white border border-slate-200 space-y-3 shadow-xs">
                 <div className="space-y-1">
                   <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500 font-mono font-bold">
                     TECHNICAL DEEP DIVE
@@ -486,7 +486,7 @@ export default async function ToolPage({ params }: ToolPageProps) {
 
             {/* Section 4: Frequently Asked Questions (FAQs) */}
             {seo.faqs && seo.faqs.length > 0 && (
-              <section className="p-5 sm:p-6 rounded-lg bg-white border border-slate-200 space-y-5 shadow-[0_1px_3px_rgba(0,0,0,0.03)]">
+              <section className="p-3.5 sm:p-4 rounded-[8px] bg-white border border-slate-200 space-y-3 shadow-xs">
                 <div className="flex items-center gap-2">
                   <HelpCircle className="w-5 h-5 text-teal-700" />
                   <h2 className="text-xl sm:text-2xl font-heading font-bold text-slate-900">
@@ -498,7 +498,7 @@ export default async function ToolPage({ params }: ToolPageProps) {
                   {seo.faqs.map((faq, idx) => (
                     <div
                       key={idx}
-                      className="p-4 rounded-md bg-slate-50 border border-slate-200 space-y-1.5"
+                      className="p-2.5 rounded-[6px] bg-slate-50 border border-slate-200 space-y-1"
                     >
                       <h3 className="font-semibold text-sm text-slate-900">
                         {faq.question}
@@ -530,7 +530,7 @@ export default async function ToolPage({ params }: ToolPageProps) {
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                   {relatedTools.map((rel) => (
                     <Link key={rel.slug} href={`/tools/${rel.slug}`} className="group">
-                      <div className="p-4 rounded-lg bg-white border border-slate-200 hover:border-teal-500 hover:shadow-[0_4px_16px_rgba(13,148,136,0.1)] transition-all space-y-1.5 h-full flex flex-col justify-between">
+                      <div className="p-3 rounded-[8px] bg-white border border-slate-200 hover:border-slate-400 hover:shadow-[0_4px_12px_rgba(15,23,42,0.08)] transition-all space-y-1 h-full flex flex-col justify-between">
                         <div className="space-y-1.5">
                           <div className="flex items-center gap-2">
                             <ToolIcon name={rel.icon} className="w-4 h-4 text-teal-700" />
@@ -571,7 +571,7 @@ export default async function ToolPage({ params }: ToolPageProps) {
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                   {popularTools.map((pop) => (
                     <Link key={pop.slug} href={`/tools/${pop.slug}`} className="group">
-                      <div className="p-4 rounded-lg bg-white border border-slate-200 hover:border-teal-500 hover:shadow-[0_4px_16px_rgba(13,148,136,0.1)] transition-all space-y-1.5 h-full flex flex-col justify-between">
+                      <div className="p-3 rounded-[8px] bg-white border border-slate-200 hover:border-slate-400 hover:shadow-[0_4px_12px_rgba(15,23,42,0.08)] transition-all space-y-1 h-full flex flex-col justify-between">
                         <div className="space-y-1.5">
                           <div className="flex items-center gap-2">
                             <ToolIcon name={pop.icon} className="w-4 h-4 text-teal-700" />
