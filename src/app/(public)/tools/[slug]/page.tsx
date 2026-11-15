@@ -64,6 +64,11 @@ export async function generateMetadata({ params }: ToolPageProps): Promise<Metad
       permanentRedirect(`/tools/${canonical.slug}`);
     }
     if (canonical) {
+      if (canonical.isActive === false) {
+        return {
+          title: "Tool Not Found | Zoqonyx",
+        };
+      }
       tool = {
         ...canonical,
         ...(tool || {}),
@@ -72,7 +77,8 @@ export async function generateMetadata({ params }: ToolPageProps): Promise<Metad
         category: canonical.category,
         description: canonical.description,
         icon: canonical.icon,
-        isComingSoon: canonical.isComingSoon,
+        isActive: canonical.isActive,
+        isComingSoon: false,
       };
     }
 
@@ -180,6 +186,9 @@ export default async function ToolPage({ params }: ToolPageProps) {
 
   // Reconcile with canonical catalog to prevent database row corruption mismatches
   if (canonical) {
+    if (canonical.isActive === false) {
+      notFound();
+    }
     tool = {
       ...canonical,
       ...(tool || {}),
@@ -188,7 +197,8 @@ export default async function ToolPage({ params }: ToolPageProps) {
       category: canonical.category,
       description: canonical.description,
       icon: canonical.icon,
-      isComingSoon: canonical.isComingSoon,
+      isActive: canonical.isActive,
+      isComingSoon: false,
     };
   } else if (!tool) {
     notFound();
@@ -301,12 +311,8 @@ export default async function ToolPage({ params }: ToolPageProps) {
           </span>
         </nav>
 
-        {/* State A: Coming Soon Tool */}
-        {tool.isComingSoon ? (
-          <ComingSoonToolView tool={tool} relatedTools={relatedTools} />
-        ) : (
-          /* State B: Live Interactive Tool */
-          <div className="space-y-6">
+        {/* Live Interactive Tool */}
+        <div className="space-y-6">
             {/* Tool Header Banner */}
             <div className="p-3.5 sm:p-4 rounded-[10px] bg-white border border-slate-200/90 space-y-3.5 shadow-[0_1px_3px_rgba(15,23,42,0.06),0_1px_2px_rgba(15,23,42,0.04)]">
               <div className="flex flex-wrap items-center justify-between gap-3">
@@ -566,7 +572,7 @@ export default async function ToolPage({ params }: ToolPageProps) {
                     href="/tools"
                     className="text-xs font-bold text-slate-700 hover:text-slate-900 hover:underline inline-flex items-center gap-1"
                   >
-                    <span>Browse All 113+ Tools</span>
+                    <span>Browse All 148+ Tools</span>
                     <ArrowRight className="w-3.5 h-3.5" />
                   </Link>
                 </div>
@@ -597,7 +603,6 @@ export default async function ToolPage({ params }: ToolPageProps) {
               </section>
             )}
           </div>
-        )}
       </div>
     </>
   );

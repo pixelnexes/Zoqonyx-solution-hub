@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     absolute: "Zoqonyx Solution Hub | 100+ Free Online Tools",
   },
   description:
-    "113+ fast, private client-side digital utilities. Compress images in bulk, format JSON, manipulate PDFs, generate CSS, and compute values instantly with zero cloud uploads.",
+    "148+ fast, private client-side digital utilities. Compress images in bulk, format JSON, manipulate PDFs, generate CSS, and compute values instantly with zero cloud uploads.",
   alternates: {
     canonical: "https://zoqonyx.com",
   },
@@ -115,7 +115,7 @@ export default async function HomePage() {
           <div className="text-center max-w-3xl mx-auto space-y-3 pt-2 pb-4">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-slate-200/90 bg-white text-slate-700 shadow-[0_1px_2px_rgba(0,0,0,0.04)] text-xs font-semibold">
               <span className="w-2 h-2 rounded-full bg-emerald-500" />
-              <span>113 Browser-Native Utilities</span>
+              <span>148 Browser-Native Utilities</span>
               <span className="text-slate-300">•</span>
               <span className="text-slate-500">100% Free & Private</span>
             </div>

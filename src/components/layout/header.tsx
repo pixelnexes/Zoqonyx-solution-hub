@@ -119,7 +119,7 @@ export function Header() {
           <Link href="/tools">
             <Button size="sm" className="bg-slate-900 hover:bg-slate-800 text-white rounded-[7px] text-xs font-semibold px-3.5 h-8 gap-1.5 shadow-[0_1px_2px_rgba(0,0,0,0.06)] hover:shadow-sm transition-all">
               <Zap className="w-3.5 h-3.5 text-amber-400" />
-              <span>All 113 Tools</span>
+              <span>All 148 Tools</span>
             </Button>
           </Link>
         </div>

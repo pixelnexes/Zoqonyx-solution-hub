@@ -21,14 +21,14 @@ export const metadata: Metadata = {
     absolute: "Free Online Tools Directory | Zoqonyx",
   },
   description:
-    "Explore 113+ fast, privacy-first, 100% free digital tools. Merge PDFs, compress images in bulk, format code, design CSS, simulate SERPs, and run calculations client-side with zero signups.",
+    "Explore 148+ fast, privacy-first, 100% free digital tools. Merge PDFs, compress images in bulk, format code, design CSS, simulate SERPs, and run calculations client-side with zero signups.",
   alternates: {
     canonical: "https://zoqonyx.com/tools",
   },
   openGraph: {
-    title: "All Free Online Tools Directory (113+ Digital Utilities) | Zoqonyx",
+    title: "All Free Online Tools Directory (148+ Digital Utilities) | Zoqonyx",
     description:
-      "Explore 113+ fast, privacy-first, 100% free digital tools. Zero installations, zero tracking, 100% browser-based.",
+      "Explore 148+ fast, privacy-first, 100% free digital tools. Zero installations, zero tracking, 100% browser-based.",
     url: "https://zoqonyx.com/tools",
     siteName: "Zoqonyx Solution Hub",
     images: [
@@ -195,7 +195,7 @@ export default async function ToolsPage() {
           <div className="relative z-10 max-w-3xl space-y-2.5">
             <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-[6px] border border-slate-200 bg-slate-50 text-slate-700 text-xs font-mono">
               <ShieldCheck className="w-3.5 h-3.5" />
-              <span>Complete Directory • 113 Free Tools Live (165 Total Catalog)</span>
+              <span>Complete Directory • 148 Free Tools Live (167 Total Catalog)</span>
             </div>
 
             <h1 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-black tracking-tight text-slate-900 leading-tight">
