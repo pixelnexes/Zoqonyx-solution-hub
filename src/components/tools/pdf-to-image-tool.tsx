@@ -7,6 +7,8 @@ import { Label } from "@/components/ui/label";
 import { Upload, Download, FileImage, CheckCircle2, Image as ImageIcon } from "lucide-react";
 import { addSessionHistory } from "@/lib/session-history";
 import { createZipDownload } from "@/lib/batch-processor";
+import { StandardFileUploader } from "@/components/common/standard-file-uploader";
+import { MAX_COMBINED_SIZE_BYTES } from "@/lib/file-standards";
 
 interface ExtractedPage {
   pageNumber: number;
@@ -130,28 +132,20 @@ export function PdfToImageTool() {
 
   return (
     <div className="space-y-6">
-      <div className="border-2 border-dashed border-border rounded-xl p-8 text-center bg-card hover:border-teal-500/50 transition-colors">
-        <input
-          type="file"
-          id="pdf-img-upload"
-          accept="application/pdf"
-          onChange={handleFile}
-          className="hidden"
-        />
-        <label htmlFor="pdf-img-upload" className="cursor-pointer flex flex-col items-center gap-3">
-          <div className="p-3 rounded-xl bg-teal-500/10 text-teal-400">
-            <FileImage className="w-6 h-6" />
-          </div>
-          <div>
-            <p className="font-semibold text-foreground">
-              {file ? file.name : "Select PDF Document to Convert to Images"}
-            </p>
-            <p className="text-xs text-muted-foreground mt-0.5">
-              Extract every page as crisp PNG or JPEG image files (100% in-browser)
-            </p>
-          </div>
-        </label>
-      </div>
+      <StandardFileUploader
+        files={file ? [file] : []}
+        onFilesChange={(newFiles) => {
+          setFile(newFiles[0] || null);
+          setPages([]);
+        }}
+        maxFiles={1}
+        maxCombinedSizeBytes={MAX_COMBINED_SIZE_BYTES}
+        acceptedExtensions={[".pdf"]}
+        acceptedTypes={["application/pdf"]}
+        title="Drop a PDF document to convert to images"
+        subtitle="Extract every page as crisp PNG or JPEG images (supports up to 1 GB documents)."
+        disabled={isProcessing}
+      />
 
       {file && (
         <div className="p-5 rounded-xl border border-border bg-card space-y-4">

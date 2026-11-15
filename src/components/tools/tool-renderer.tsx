@@ -129,10 +129,15 @@ import {
   UtmBuilderTool,
   KeywordDensityCheckerTool,
   CanonicalTagCheckerTool,
-  SchemaMarkupGeneratorTool,
   HttpStatusCodesTool,
   SerpSnippetPreviewTool,
 } from "./seo-tools-expanded";
+
+// GSC Priority Tools
+import { BacklinkCheckerTool } from "./backlink-checker-tool";
+import { SchemaMarkupGeneratorTool } from "./schema-markup-generator-tool";
+import { AiProductDescriptionTool } from "./ai-product-description-tool";
+import { AiSalesPitchTool } from "./ai-sales-pitch-tool";
 
 // Expanded Calculators
 import {
@@ -354,6 +359,12 @@ export function ToolRenderer({ slug }: ToolRendererProps) {
       return <CanonicalTagCheckerTool />;
     case "schema-markup-generator":
       return <SchemaMarkupGeneratorTool />;
+    case "backlink-checker":
+      return <BacklinkCheckerTool />;
+    case "ai-product-description":
+      return <AiProductDescriptionTool />;
+    case "ai-sales-pitch":
+      return <AiSalesPitchTool />;
     case "http-status-codes":
       return <HttpStatusCodesTool />;
     case "serp-snippet-preview":

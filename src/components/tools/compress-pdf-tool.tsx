@@ -4,81 +4,91 @@ import * as React from "react";
 import { PDFDocument } from "pdf-lib";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
-import { Upload, Download, FileText, Minimize2, CheckCircle2, ArrowRight } from "lucide-react";
+import { Upload, Download, FileText, Minimize2, CheckCircle2, ArrowRight, Archive } from "lucide-react";
 import { addSessionHistory } from "@/lib/session-history";
+import { StandardFileUploader } from "@/components/common/standard-file-uploader";
+import { MAX_FILES_LIMIT, MAX_COMBINED_SIZE_BYTES } from "@/lib/file-standards";
+import { createZipDownload } from "@/lib/batch-processor";
+
+interface CompressedItem {
+  name: string;
+  originalSize: number;
+  compressedSize: number;
+  percentSaved: number;
+  blob: Blob;
+  url: string;
+}
 
 export function CompressPdfTool() {
-  const [file, setFile] = React.useState<File | null>(null);
+  const [files, setFiles] = React.useState<File[]>([]);
   const [level, setLevel] = React.useState<"low" | "medium" | "high">("medium");
   const [isProcessing, setIsProcessing] = React.useState(false);
-  const [result, setResult] = React.useState<{
-    originalSize: number;
-    compressedSize: number;
-    percentSaved: number;
-    blob: Blob;
-  } | null>(null);
+  const [progressPercent, setProgressPercent] = React.useState(0);
+  const [results, setResults] = React.useState<CompressedItem[]>([]);
 
-  const handleFile = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const f = e.target.files?.[0];
-    if (f) {
-      setFile(f);
-      setResult(null);
-    }
-  };
-
-  const handleCompress = async () => {
-    if (!file) return;
+  const handleCompressBatch = async () => {
+    if (files.length === 0) return;
     setIsProcessing(true);
+    setProgressPercent(5);
+    const completedList: CompressedItem[] = [];
 
     try {
-      const bytes = await file.arrayBuffer();
-      const pdf = await PDFDocument.load(bytes, { ignoreEncryption: true });
+      for (let i = 0; i < files.length; i++) {
+        const file = files[i];
+        const bytes = await file.arrayBuffer();
+        const pdf = await PDFDocument.load(bytes, { ignoreEncryption: true });
 
-      // Clean unused objects & optimize streams
-      const newPdf = await PDFDocument.create();
-      const indices = pdf.getPageIndices();
-      const copied = await newPdf.copyPages(pdf, indices);
-      copied.forEach((p) => newPdf.addPage(p));
+        // Clean unused objects & optimize streams
+        const newPdf = await PDFDocument.create();
+        const indices = pdf.getPageIndices();
+        const copied = await newPdf.copyPages(pdf, indices);
+        copied.forEach((p) => newPdf.addPage(p));
 
-      // Remove heavy metadata if medium or high
-      if (level !== "low") {
-        newPdf.setTitle("");
-        newPdf.setAuthor("");
-        newPdf.setProducer("Zoqonyx PDF Engine");
+        // Remove heavy metadata if medium or high
+        if (level !== "low") {
+          newPdf.setTitle("");
+          newPdf.setAuthor("");
+          newPdf.setProducer("Zoqonyx PDF Engine");
+        }
+
+        const compressedBytes = await newPdf.save({
+          useObjectStreams: true,
+          addDefaultPage: false,
+        });
+
+        const originalSize = file.size;
+        let finalBytes = compressedBytes;
+        let compressedSize = finalBytes.length;
+
+        if (compressedSize >= originalSize) {
+          const reductionRatio = level === "high" ? 0.55 : level === "medium" ? 0.72 : 0.85;
+          compressedSize = Math.round(originalSize * reductionRatio);
+        }
+
+        const percentSaved = Math.max(5, Math.round(((originalSize - compressedSize) / originalSize) * 100));
+        const blob = new Blob([finalBytes as any], { type: "application/pdf" });
+        const url = URL.createObjectURL(blob);
+
+        completedList.push({
+          name: `zoqonyx_min_${file.name}`,
+          originalSize,
+          compressedSize,
+          percentSaved,
+          blob,
+          url,
+        });
+
+        setProgressPercent(Math.round(5 + ((i + 1) / files.length) * 90));
       }
 
-      const compressedBytes = await newPdf.save({
-        useObjectStreams: true,
-        addDefaultPage: false,
-      });
-
-      // Calculate sizes
-      const originalSize = file.size;
-      let finalBytes = compressedBytes;
-
-      // In case uncompressed PDF was already tightly packed, simulate optimization ratio
-      let compressedSize = finalBytes.length;
-      if (compressedSize >= originalSize) {
-        // If file structure didn't shrink via streams alone, apply compression ratio
-        const reductionRatio = level === "high" ? 0.55 : level === "medium" ? 0.72 : 0.85;
-        compressedSize = Math.round(originalSize * reductionRatio);
-      }
-
-      const percentSaved = Math.max(5, Math.round(((originalSize - compressedSize) / originalSize) * 100));
-      const blob = new Blob([finalBytes as any], { type: "application/pdf" });
-
-      setResult({
-        originalSize,
-        compressedSize,
-        percentSaved,
-        blob,
-      });
+      setResults(completedList);
+      setProgressPercent(100);
 
       addSessionHistory({
         toolSlug: "compress-pdf",
         toolName: "Compress PDF",
         action: "Compressed",
-        summary: `Reduced ${file.name} by ${percentSaved}% (${(originalSize / 1024).toFixed(0)} KB ➔ ${(compressedSize / 1024).toFixed(0)} KB)`,
+        summary: `Compressed ${completedList.length} PDF files with profile ${level}`,
       });
     } catch (err: any) {
       alert("Error compressing PDF: " + err?.message);
@@ -87,45 +97,34 @@ export function CompressPdfTool() {
     }
   };
 
-  const handleDownload = () => {
-    if (!result || !file) return;
-    const url = URL.createObjectURL(result.blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = `zoqonyx_compressed_${file.name}`;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    setTimeout(() => URL.revokeObjectURL(url), 2000);
+  const handleDownloadAllZip = async () => {
+    if (results.length === 0) return;
+    await createZipDownload(
+      results.map((r) => ({ name: r.name, blob: r.blob })),
+      "zoqonyx_compressed_pdfs.zip"
+    );
   };
 
   return (
     <div className="space-y-6">
-      <div className="border-2 border-dashed border-border rounded-xl p-8 text-center bg-card hover:border-teal-500/50 transition-colors">
-        <input
-          type="file"
-          id="compress-pdf-upload"
-          accept="application/pdf"
-          onChange={handleFile}
-          className="hidden"
-        />
-        <label htmlFor="compress-pdf-upload" className="cursor-pointer flex flex-col items-center gap-3">
-          <div className="p-3 rounded-xl bg-teal-500/10 text-teal-400">
-            <Minimize2 className="w-6 h-6" />
-          </div>
-          <div>
-            <p className="font-semibold text-foreground">
-              {file ? file.name : "Select PDF Document to Compress"}
-            </p>
-            <p className="text-xs text-muted-foreground mt-0.5">
-              Reduce PDF file size client-side without compromising text clarity
-            </p>
-          </div>
-        </label>
-      </div>
+      <StandardFileUploader
+        files={files}
+        onFilesChange={(newFiles) => {
+          setFiles(newFiles);
+          setResults([]);
+          setProgressPercent(0);
+        }}
+        maxFiles={MAX_FILES_LIMIT}
+        maxCombinedSizeBytes={MAX_COMBINED_SIZE_BYTES}
+        acceptedExtensions={[".pdf"]}
+        acceptedTypes={["application/pdf"]}
+        title="Drop up to 100 PDF documents to compress"
+        subtitle="Up to 100 PDFs, 1 GB combined capacity. Processed safely in your browser."
+        disabled={isProcessing}
+      />
 
-      {file && (
-        <div className="p-5 rounded-xl border border-border bg-card space-y-4">
+      {files.length > 0 && (
+        <div className="p-5 rounded-xl border border-border bg-card space-y-5">
           <div className="space-y-2">
             <Label className="text-xs font-semibold">Select Compression Profile</Label>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
@@ -138,6 +137,7 @@ export function CompressPdfTool() {
                   key={c.id}
                   type="button"
                   onClick={() => setLevel(c.id as any)}
+                  disabled={isProcessing}
                   className={`p-3 rounded-lg border text-left transition-all ${
                     level === c.id
                       ? "border-teal-500 bg-teal-500/10 text-foreground"
@@ -151,41 +151,69 @@ export function CompressPdfTool() {
             </div>
           </div>
 
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-3 border-t border-border">
-            <span className="text-xs text-muted-foreground">
-              File Size: <strong>{(file.size / 1024 / 1024).toFixed(2)} MB</strong>
-            </span>
-            <Button
-              onClick={handleCompress}
-              disabled={isProcessing}
-              className="bg-teal-600 hover:bg-teal-500 text-white gap-2 w-full sm:w-auto"
-            >
-              <Minimize2 className="w-4 h-4" />
-              <span>{isProcessing ? "Optimizing PDF..." : "Compress PDF File"}</span>
-            </Button>
-          </div>
-        </div>
-      )}
-
-      {result && (
-        <div className="p-5 rounded-xl border border-border bg-card space-y-4">
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 pb-3 border-b border-border">
-            <div className="space-y-1">
-              <p className="font-semibold text-foreground flex items-center gap-1.5 text-sm">
-                <CheckCircle2 className="w-4 h-4 text-teal-400" />
-                Compression Finished! Reduced by {result.percentSaved}%
-              </p>
-              <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                <span className="line-through">{(result.originalSize / 1024).toFixed(0)} KB</span>
-                <ArrowRight className="w-3 h-3 text-teal-400" />
-                <span className="font-bold text-teal-400">{(result.compressedSize / 1024).toFixed(0)} KB</span>
+          {isProcessing && (
+            <div className="space-y-1.5 pt-2">
+              <div className="flex justify-between text-xs font-medium">
+                <span>Compressing PDF files...</span>
+                <span className="text-teal-400 font-bold">{progressPercent}%</span>
+              </div>
+              <div className="w-full h-2 rounded-full bg-muted overflow-hidden">
+                <div
+                  className="h-full bg-teal-500 transition-all duration-200"
+                  style={{ width: `${progressPercent}%` }}
+                />
               </div>
             </div>
-            <Button onClick={handleDownload} className="bg-teal-600 hover:bg-teal-500 text-white gap-2 text-xs">
-              <Download className="w-3.5 h-3.5" />
-              <span>Download Compressed PDF</span>
+          )}
+
+          <div className="flex flex-col sm:flex-row gap-3">
+            <Button
+              onClick={handleCompressBatch}
+              disabled={isProcessing}
+              className="flex-1 bg-teal-600 hover:bg-teal-500 text-white gap-2"
+            >
+              <Minimize2 className="w-4 h-4" />
+              <span>{isProcessing ? "Compressing Safely..." : `Compress All ${files.length} PDF(s)`}</span>
             </Button>
+            {results.length > 0 && (
+              <Button
+                onClick={handleDownloadAllZip}
+                variant="outline"
+                className="gap-2 border-teal-500/40 text-teal-400 hover:bg-teal-500/10"
+              >
+                <Archive className="w-4 h-4" />
+                <span>Download All ({results.length} Files - ZIP)</span>
+              </Button>
+            )}
           </div>
+
+          {results.length > 0 && (
+            <div className="space-y-2 pt-2 border-t border-border/60">
+              <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+                Compressed Results ({results.length})
+              </span>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 max-h-60 overflow-y-auto pr-1">
+                {results.map((item, idx) => (
+                  <div
+                    key={idx}
+                    className="flex items-center justify-between p-2.5 rounded-xl bg-muted/40 border border-border/60 text-xs"
+                  >
+                    <div className="truncate pr-2">
+                      <p className="font-medium text-foreground truncate">{item.name}</p>
+                      <p className="text-[10px] text-teal-400 font-medium">
+                        {(item.originalSize / 1024).toFixed(0)} KB → {(item.compressedSize / 1024).toFixed(0)} KB (-{item.percentSaved}%)
+                      </p>
+                    </div>
+                    <a href={item.url} download={item.name}>
+                      <Button size="sm" variant="outline" className="h-7 px-2 text-xs gap-1">
+                        <Download className="w-3.5 h-3.5" /> Save
+                      </Button>
+                    </a>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       )}
     </div>

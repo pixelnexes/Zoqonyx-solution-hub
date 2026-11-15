@@ -18,6 +18,8 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import JSZip from "jszip";
+import { StandardFileUploader } from "@/components/common/standard-file-uploader";
+import { MAX_FILES_LIMIT, MAX_COMBINED_SIZE_BYTES } from "@/lib/file-standards";
 
 interface BatchItem {
   id: string;
@@ -175,28 +177,32 @@ export function ImageCompressorProTool() {
     };
   }, [isSliding]);
 
-  // Batch file upload
-  const handleBatchFiles = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = Array.from(e.target.files || []);
-    if (files.length === 0) return;
+  // Batch file upload with 100-file, 1 GB standard
+  const [batchRawFiles, setBatchRawFiles] = React.useState<File[]>([]);
 
-    const newItems: BatchItem[] = files.slice(0, 20).map((file, idx) => ({
-      id: `${Date.now()}-${idx}`,
-      name: file.name,
-      file,
-      originalSize: file.size,
-      compressedSize: 0,
-      blob: null,
-      url: null,
-      savings: 0,
-      status: "pending",
-    }));
+  const handleBatchFilesChange = (incoming: File[]) => {
+    setBatchRawFiles(incoming);
+    const newItems: BatchItem[] = incoming.map((file, idx) => {
+      const existing = batchList.find((b) => b.name === file.name && b.originalSize === file.size);
+      if (existing) return existing;
+      return {
+        id: `${file.name}_${file.size}_${idx}`,
+        name: file.name,
+        file,
+        originalSize: file.size,
+        compressedSize: 0,
+        blob: null,
+        url: null,
+        savings: 0,
+        status: "pending",
+      };
+    });
 
     setBatchList(newItems);
-    runBatchCompression(newItems);
   };
 
   const runBatchCompression = async (items: BatchItem[]) => {
+    if (items.length === 0) return;
     setIsBatchProcessing(true);
     setBatchProgress(0);
 
@@ -207,18 +213,18 @@ export function ImageCompressorProTool() {
       item.status = "processing";
       setBatchList([...updatedList]);
 
-      try {
-        const dataUrl: string = await new Promise((resolve) => {
-          const r = new FileReader();
-          r.onload = (e) => resolve(e.target?.result as string);
-          r.readAsDataURL(item.file);
-        });
+      // Yield to UI thread to keep smooth rendering
+      await new Promise((r) => setTimeout(r, 16));
 
+      try {
+        const objectUrl = URL.createObjectURL(item.file);
         const img = new Image();
-        img.src = dataUrl;
-        await new Promise((resolve) => {
+        await new Promise((resolve, reject) => {
           img.onload = resolve;
+          img.onerror = reject;
+          img.src = objectUrl;
         });
+        URL.revokeObjectURL(objectUrl);
 
         const canvas = document.createElement("canvas");
         canvas.width = img.width;
@@ -563,26 +569,18 @@ export function ImageCompressorProTool() {
       ) : (
         /* Batch Processing Mode */
         <div className="space-y-4">
-          {batchList.length === 0 ? (
-            <label className="flex flex-col items-center justify-center p-12 sm:p-16 border-2 border-dashed border-border/80 hover:border-teal-500/70 rounded-2xl cursor-pointer bg-card/60 hover:bg-card transition-all group shadow-xs">
-              <div className="p-4 rounded-xl bg-teal-500/10 text-teal-400 mb-3 group-hover:scale-110 transition-transform">
-                <Layers className="w-7 h-7" />
-              </div>
-              <span className="font-heading font-bold text-base sm:text-lg text-foreground">
-                Upload Multiple Images to Bulk Compress
-              </span>
-              <span className="text-xs text-muted-foreground mt-1 text-center max-w-sm">
-                Select up to 20 images at once. Background multi-threaded processing with ZIP bundle export.
-              </span>
-              <input
-                type="file"
-                multiple
-                accept="image/*"
-                onChange={handleBatchFiles}
-                className="hidden"
-              />
-            </label>
-          ) : (
+          <StandardFileUploader
+            files={batchRawFiles}
+            onFilesChange={handleBatchFilesChange}
+            maxFiles={MAX_FILES_LIMIT}
+            maxCombinedSizeBytes={MAX_COMBINED_SIZE_BYTES}
+            acceptedExtensions={[".png", ".jpg", ".jpeg", ".webp", ".avif", ".bmp"]}
+            title="Drop up to 100 images to bulk compress"
+            subtitle="Up to 100 images, 1 GB combined capacity. Processed safely in your browser."
+            disabled={isBatchProcessing}
+          />
+
+          {batchList.length > 0 && (
             <div className="space-y-4">
               {/* Progress & Batch Header */}
               <div className="p-4 rounded-xl bg-card border border-border shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
@@ -604,9 +602,18 @@ export function ImageCompressorProTool() {
                 <div className="flex items-center gap-2">
                   <Button
                     size="sm"
+                    onClick={() => runBatchCompression(batchList)}
+                    disabled={isBatchProcessing || batchList.length === 0}
+                    className="bg-teal-600 hover:bg-teal-500 text-white text-xs font-semibold gap-1.5 shadow-xs"
+                  >
+                    <RefreshCw className={`w-3.5 h-3.5 ${isBatchProcessing ? "animate-spin" : ""}`} />
+                    <span>{isBatchProcessing ? "Compressing..." : `Compress All ${batchList.length}`}</span>
+                  </Button>
+                  <Button
+                    size="sm"
                     onClick={downloadAllAsZip}
                     disabled={isBatchProcessing || batchList.every((b) => !b.blob)}
-                    className="bg-teal-600 hover:bg-teal-500 text-white text-xs font-semibold gap-1.5 shadow-xs"
+                    className="bg-teal-700 hover:bg-teal-600 text-white text-xs font-semibold gap-1.5 shadow-xs"
                   >
                     <Archive className="w-3.5 h-3.5" />
                     <span>Download All (ZIP)</span>
@@ -614,7 +621,11 @@ export function ImageCompressorProTool() {
                   <Button
                     variant="outline"
                     size="sm"
-                    onClick={() => setBatchList([])}
+                    onClick={() => {
+                      setBatchList([]);
+                      setBatchRawFiles([]);
+                    }}
+                    disabled={isBatchProcessing}
                     className="text-xs"
                   >
                     Clear All

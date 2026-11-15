@@ -19,6 +19,8 @@ import {
   FileCheck,
 } from "lucide-react";
 import { addSessionHistory } from "@/lib/session-history";
+import { StandardFileUploader } from "@/components/common/standard-file-uploader";
+import { MAX_FILES_LIMIT, MAX_COMBINED_SIZE_BYTES } from "@/lib/file-standards";
 
 function downloadBlob(blob: Blob, filename: string) {
   const url = URL.createObjectURL(blob);
@@ -37,21 +39,16 @@ function downloadPdfBytes(bytes: Uint8Array, filename: string) {
 }
 
 
-// 1. Merge PDF Tool
+// 1. Merge PDF Tool (Up to 100 PDFs, 1 GB)
 export function MergePdfTool() {
   const [files, setFiles] = React.useState<File[]>([]);
   const [isProcessing, setIsProcessing] = React.useState(false);
+  const [progressPercent, setProgressPercent] = React.useState(0);
   const [success, setSuccess] = React.useState(false);
-
-  const handleFiles = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files) {
-      setFiles((prev) => [...prev, ...Array.from(e.target.files || [])]);
-      setSuccess(false);
-    }
-  };
 
   const removeFile = (idx: number) => {
     setFiles((prev) => prev.filter((_, i) => i !== idx));
+    setSuccess(false);
   };
 
   const moveFile = (idx: number, dir: -1 | 1) => {
@@ -65,15 +62,19 @@ export function MergePdfTool() {
   const handleMerge = async () => {
     if (files.length < 2) return;
     setIsProcessing(true);
+    setProgressPercent(10);
     try {
       const mergedPdf = await PDFDocument.create();
-      for (const file of files) {
+      for (let i = 0; i < files.length; i++) {
+        const file = files[i];
         const bytes = await file.arrayBuffer();
         const pdf = await PDFDocument.load(bytes);
         const copiedPages = await mergedPdf.copyPages(pdf, pdf.getPageIndices());
         copiedPages.forEach((page) => mergedPdf.addPage(page));
+        setProgressPercent(Math.round(10 + ((i + 1) / files.length) * 80));
       }
       const pdfBytes = await mergedPdf.save();
+      setProgressPercent(100);
       downloadPdfBytes(pdfBytes, `zoqonyx_merged_${Date.now()}.pdf`);
       setSuccess(true);
       addSessionHistory({
@@ -91,43 +92,39 @@ export function MergePdfTool() {
 
   return (
     <div className="space-y-6">
-      <div className="border-2 border-dashed border-border rounded-xl p-8 text-center hover:border-teal-500/50 transition-colors bg-card">
-        <input
-          type="file"
-          id="merge-upload"
-          accept="application/pdf"
-          multiple
-          onChange={handleFiles}
-          className="hidden"
-        />
-        <label htmlFor="merge-upload" className="cursor-pointer flex flex-col items-center gap-3">
-          <div className="p-3 rounded-xl bg-teal-500/10 text-teal-400">
-            <Upload className="w-6 h-6" />
-          </div>
-          <div>
-            <p className="font-semibold text-foreground">Click to upload PDF files</p>
-            <p className="text-xs text-muted-foreground mt-0.5">Select 2 or more PDF documents to merge</p>
-          </div>
-        </label>
-      </div>
+      <StandardFileUploader
+        files={files}
+        onFilesChange={(newFiles) => {
+          setFiles(newFiles);
+          setSuccess(false);
+        }}
+        maxFiles={MAX_FILES_LIMIT}
+        maxCombinedSizeBytes={MAX_COMBINED_SIZE_BYTES}
+        acceptedExtensions={[".pdf"]}
+        acceptedTypes={["application/pdf"]}
+        title="Drop up to 100 PDF files to merge"
+        subtitle="Combine up to 100 PDF documents (up to 1 GB) in custom order."
+        disabled={isProcessing}
+      />
 
       {files.length > 0 && (
-        <div className="space-y-3">
+        <div className="space-y-4 p-5 rounded-2xl bg-card border border-border">
           <div className="flex items-center justify-between">
             <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
-              {files.length} Document(s) Loaded
+              {files.length} Document(s) Loaded — Adjust Merge Order
             </span>
-            <Button variant="ghost" size="sm" onClick={() => setFiles([])} className="text-xs text-destructive">
-              Clear All
-            </Button>
           </div>
-          <div className="space-y-2">
+
+          <div className="space-y-2 max-h-64 overflow-y-auto pr-1">
             {files.map((file, idx) => (
               <div
-                key={idx}
+                key={`${file.name}_${idx}`}
                 className="flex items-center justify-between p-3 rounded-xl bg-muted/30 border border-border text-sm"
               >
                 <div className="flex items-center gap-2.5 truncate">
+                  <span className="w-5 h-5 rounded bg-teal-500/10 text-teal-400 font-mono text-xs font-bold flex items-center justify-center shrink-0">
+                    {idx + 1}
+                  </span>
                   <FileText className="w-4 h-4 text-teal-400 shrink-0" />
                   <span className="truncate font-medium">{file.name}</span>
                   <span className="text-xs text-muted-foreground shrink-0">
@@ -136,20 +133,31 @@ export function MergePdfTool() {
                 </div>
                 <div className="flex items-center gap-1 shrink-0">
                   <button
+                    type="button"
                     onClick={() => moveFile(idx, -1)}
-                    disabled={idx === 0}
+                    disabled={idx === 0 || isProcessing}
                     className="px-2 py-1 text-xs border rounded hover:bg-muted disabled:opacity-30"
+                    title="Move up"
                   >
                     ▲
                   </button>
                   <button
+                    type="button"
                     onClick={() => moveFile(idx, 1)}
-                    disabled={idx === files.length - 1}
+                    disabled={idx === files.length - 1 || isProcessing}
                     className="px-2 py-1 text-xs border rounded hover:bg-muted disabled:opacity-30"
+                    title="Move down"
                   >
                     ▼
                   </button>
-                  <Button variant="ghost" size="icon" onClick={() => removeFile(idx)} className="h-7 w-7 text-destructive">
+                  <Button
+                    type="button"
+                    variant="ghost"
+                    size="icon"
+                    onClick={() => removeFile(idx)}
+                    disabled={isProcessing}
+                    className="h-7 w-7 text-destructive"
+                  >
                     <Trash2 className="w-3.5 h-3.5" />
                   </Button>
                 </div>
@@ -157,10 +165,25 @@ export function MergePdfTool() {
             ))}
           </div>
 
+          {isProcessing && (
+            <div className="space-y-1.5 pt-2">
+              <div className="flex justify-between text-xs font-medium">
+                <span>Merging documents...</span>
+                <span className="text-teal-400 font-bold">{progressPercent}%</span>
+              </div>
+              <div className="w-full h-2 rounded-full bg-muted overflow-hidden">
+                <div
+                  className="h-full bg-teal-500 transition-all duration-200"
+                  style={{ width: `${progressPercent}%` }}
+                />
+              </div>
+            </div>
+          )}
+
           <div className="pt-2 flex flex-col sm:flex-row gap-3 items-center justify-end">
             {success && (
               <span className="text-xs text-teal-400 flex items-center gap-1">
-                <CheckCircle2 className="w-4 h-4" /> Downloaded successfully!
+                <CheckCircle2 className="w-4 h-4" /> Merged and downloaded successfully!
               </span>
             )}
             <Button
@@ -169,7 +192,7 @@ export function MergePdfTool() {
               className="bg-teal-600 hover:bg-teal-500 text-white gap-2 w-full sm:w-auto"
             >
               <Download className="w-4 h-4" />
-              <span>{isProcessing ? "Merging in Browser..." : "Merge & Download PDF"}</span>
+              <span>{isProcessing ? "Merging in Browser..." : `Merge All ${files.length} PDFs`}</span>
             </Button>
           </div>
         </div>
@@ -837,31 +860,55 @@ export function PdfMetadataEditorTool() {
   );
 }
 
-// 9. Image to PDF Converter
+// 9. Image to PDF Converter (Up to 100 Images, 1 GB)
 export function ImageToPdfTool() {
   const [images, setImages] = React.useState<File[]>([]);
   const [pageSize, setPageSize] = React.useState<"A4" | "Fit">("A4");
   const [isProcessing, setIsProcessing] = React.useState(false);
-
-  const handleImages = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files) {
-      setImages((prev) => [...prev, ...Array.from(e.target.files || [])]);
-    }
-  };
+  const [progressPercent, setProgressPercent] = React.useState(0);
 
   const handleConvert = async () => {
     if (images.length === 0) return;
     setIsProcessing(true);
+    setProgressPercent(5);
     try {
       const pdfDoc = await PDFDocument.create();
 
-      for (const imgFile of images) {
-        const bytes = await imgFile.arrayBuffer();
-        let embeddedImage;
-        if (imgFile.type === "image/png") {
-          embeddedImage = await pdfDoc.embedPng(bytes);
+      for (let i = 0; i < images.length; i++) {
+        const imgFile = images[i];
+        let imageBytes: Uint8Array;
+        let isPng = imgFile.type === "image/png";
+
+        // Convert WebP/other formats to PNG bytes via canvas if not pure PNG/JPEG
+        if (imgFile.type !== "image/png" && imgFile.type !== "image/jpeg") {
+          const objectUrl = URL.createObjectURL(imgFile);
+          const img = new Image();
+          await new Promise((res, rej) => {
+            img.onload = res;
+            img.onerror = rej;
+            img.src = objectUrl;
+          });
+          const canvas = document.createElement("canvas");
+          canvas.width = img.width;
+          canvas.height = img.height;
+          const ctx = canvas.getContext("2d")!;
+          ctx.drawImage(img, 0, 0);
+          URL.revokeObjectURL(objectUrl);
+
+          const pngBlob: Blob = await new Promise((res) => canvas.toBlob((b) => res(b!), "image/png"));
+          const buf = await pngBlob.arrayBuffer();
+          imageBytes = new Uint8Array(buf);
+          isPng = true;
         } else {
-          embeddedImage = await pdfDoc.embedJpg(bytes);
+          const buf = await imgFile.arrayBuffer();
+          imageBytes = new Uint8Array(buf);
+        }
+
+        let embeddedImage;
+        if (isPng) {
+          embeddedImage = await pdfDoc.embedPng(imageBytes);
+        } else {
+          embeddedImage = await pdfDoc.embedJpg(imageBytes);
         }
 
         const imgWidth = embeddedImage.width;
@@ -889,15 +936,18 @@ export function ImageToPdfTool() {
             height: drawH,
           });
         }
+
+        setProgressPercent(Math.round(5 + ((i + 1) / images.length) * 85));
       }
 
       const resBytes = await pdfDoc.save();
-      downloadPdfBytes(resBytes, `zoqonyx_images_to_pdf.pdf`);
+      setProgressPercent(100);
+      downloadPdfBytes(resBytes, `zoqonyx_images_to_pdf_${Date.now()}.pdf`);
       addSessionHistory({
         toolSlug: "image-to-pdf",
         toolName: "Image to PDF Converter",
         action: "Converted",
-        summary: `Converted ${images.length} images into a PDF`,
+        summary: `Converted ${images.length} images into a single PDF`,
       });
     } catch (e: any) {
       alert("Error converting images to PDF: " + e?.message);
@@ -908,44 +958,59 @@ export function ImageToPdfTool() {
 
   return (
     <div className="space-y-6">
-      <div className="border-2 border-dashed border-border rounded-xl p-8 text-center bg-card">
-        <input
-          type="file"
-          id="imgpdf-upload"
-          accept="image/png,image/jpeg,image/webp"
-          multiple
-          onChange={handleImages}
-          className="hidden"
-        />
-        <label htmlFor="imgpdf-upload" className="cursor-pointer flex flex-col items-center gap-3">
-          <div className="p-3 rounded-xl bg-teal-500/10 text-teal-400">
-            <Upload className="w-6 h-6" />
-          </div>
-          <p className="font-semibold text-foreground">Upload Photos or Scans</p>
-          <p className="text-xs text-muted-foreground">Supports JPG, PNG, WebP images</p>
-        </label>
-      </div>
+      <StandardFileUploader
+        files={images}
+        onFilesChange={setImages}
+        maxFiles={MAX_FILES_LIMIT}
+        maxCombinedSizeBytes={MAX_COMBINED_SIZE_BYTES}
+        acceptedExtensions={[".png", ".jpg", ".jpeg", ".webp", ".avif", ".bmp"]}
+        title="Drop up to 100 images to convert to PDF"
+        subtitle="Merge up to 100 photos, scans, or receipts (up to 1 GB) into a single PDF."
+        disabled={isProcessing}
+      />
 
       {images.length > 0 && (
         <div className="p-5 rounded-xl border border-border bg-card space-y-4">
-          <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold">{images.length} Image(s) Queued</span>
-            <select
-              value={pageSize}
-              onChange={(e: any) => setPageSize(e.target.value)}
-              className="p-1.5 text-xs rounded border border-border bg-background"
-            >
-              <option value="A4">Standard A4 Document</option>
-              <option value="Fit">Fit to Image Dimensions</option>
-            </select>
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <span className="text-xs font-semibold text-foreground">
+              {images.length} Image(s) Ready to Convert
+            </span>
+            <div className="flex items-center gap-2">
+              <span className="text-xs text-muted-foreground">Page Layout:</span>
+              <select
+                value={pageSize}
+                onChange={(e: any) => setPageSize(e.target.value)}
+                disabled={isProcessing}
+                className="p-1.5 text-xs rounded border border-border bg-background"
+              >
+                <option value="A4">Standard A4 Document (Margins)</option>
+                <option value="Fit">Fit Page to Image Dimensions</option>
+              </select>
+            </div>
           </div>
+
+          {isProcessing && (
+            <div className="space-y-1.5 pt-2">
+              <div className="flex justify-between text-xs font-medium">
+                <span>Generating PDF pages...</span>
+                <span className="text-teal-400 font-bold">{progressPercent}%</span>
+              </div>
+              <div className="w-full h-2 rounded-full bg-muted overflow-hidden">
+                <div
+                  className="h-full bg-teal-500 transition-all duration-200"
+                  style={{ width: `${progressPercent}%` }}
+                />
+              </div>
+            </div>
+          )}
+
           <Button
             onClick={handleConvert}
             disabled={isProcessing}
             className="w-full bg-teal-600 hover:bg-teal-500 text-white gap-2"
           >
             <Download className="w-4 h-4" />
-            <span>{isProcessing ? "Converting..." : "Generate & Download PDF"}</span>
+            <span>{isProcessing ? "Generating PDF..." : `Convert All ${images.length} Images to PDF`}</span>
           </Button>
         </div>
       )}

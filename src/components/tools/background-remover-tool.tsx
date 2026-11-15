@@ -5,8 +5,9 @@ import { Button } from "@/components/ui/button";
 import { Slider } from "@/components/ui/slider";
 import { Label } from "@/components/ui/label";
 import { Upload, Download, Sparkles, RefreshCw, Layers, CheckCircle2 } from "lucide-react";
-import { addSessionHistory } from "@/lib/session-history";
 import { processBatch, createZipDownload, type BatchProgress } from "@/lib/batch-processor";
+import { StandardFileUploader } from "@/components/common/standard-file-uploader";
+import { MAX_FILES_LIMIT, MAX_COMBINED_SIZE_BYTES } from "@/lib/file-standards";
 
 interface ProcessedImage {
   id: string;
@@ -28,14 +29,11 @@ export function BackgroundRemoverTool() {
 
   const canvasRef = React.useRef<HTMLCanvasElement | null>(null);
 
-  const handleFiles = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files) {
-      const selected = Array.from(e.target.files).slice(0, 20);
-      setFiles(selected);
-      setProcessedImages([]);
-      setActiveIdx(0);
-      setBgColorSample(null);
-    }
+  const handleFilesChange = (newFiles: File[]) => {
+    setFiles(newFiles);
+    setProcessedImages([]);
+    setActiveIdx(0);
+    setBgColorSample(null);
   };
 
   const removeBackgroundFromCanvas = (
@@ -137,19 +135,13 @@ export function BackgroundRemoverTool() {
         },
         {
           concurrency: 2,
-          maxItems: 20,
+          maxItems: MAX_FILES_LIMIT,
           onProgress: setProgress,
         }
       );
 
       setProcessedImages(results);
       setActiveIdx(0);
-      addSessionHistory({
-        toolSlug: "background-remover",
-        toolName: "Background Remover",
-        action: "Removed Background",
-        summary: `Processed ${results.length} image(s) to transparent PNG`,
-      });
     } catch (err: any) {
       alert("Error processing images: " + err?.message);
     } finally {
@@ -176,27 +168,16 @@ export function BackgroundRemoverTool() {
 
   return (
     <div className="space-y-6">
-      <div className="border-2 border-dashed border-border rounded-xl p-8 text-center bg-card hover:border-teal-500/50 transition-colors">
-        <input
-          type="file"
-          id="bg-upload"
-          accept="image/png,image/jpeg,image/webp"
-          multiple
-          onChange={handleFiles}
-          className="hidden"
-        />
-        <label htmlFor="bg-upload" className="cursor-pointer flex flex-col items-center gap-3">
-          <div className="p-3 rounded-xl bg-teal-500/10 text-teal-400">
-            <Upload className="w-6 h-6" />
-          </div>
-          <div>
-            <p className="font-semibold text-foreground">Upload 1 to 20 Images</p>
-            <p className="text-xs text-muted-foreground mt-0.5">
-              Client-side background remover with transparent PNG export (Max 20 files)
-            </p>
-          </div>
-        </label>
-      </div>
+      <StandardFileUploader
+        files={files}
+        onFilesChange={handleFilesChange}
+        maxFiles={MAX_FILES_LIMIT}
+        maxCombinedSizeBytes={MAX_COMBINED_SIZE_BYTES}
+        acceptedExtensions={[".png", ".jpg", ".jpeg", ".webp"]}
+        title="Drop up to 100 images for background removal"
+        subtitle="Up to 100 images, 1 GB combined capacity. Processed safely in your browser."
+        disabled={isProcessing}
+      />
 
       {files.length > 0 && (
         <div className="p-5 rounded-xl border border-border bg-card space-y-5">

@@ -22,6 +22,322 @@ export interface ToolSeoArticle {
 }
 
 export const TOP_TOOLS_SEO_ARTICLES: Record<string, ToolSeoArticle> = {
+  "backlink-checker": {
+    slug: "backlink-checker",
+    title: "Free Backlink Checker & Domain SEO Link Audit Tool | Zoqonyx",
+    metaDesc:
+      "Audit inbound backlinks, referring domains, anchor text ratios, and toxic spam links for any domain. Batch import up to 100 files and 1 GB with instant Google Disavow export.",
+    howToSteps: [
+      {
+        step: 1,
+        title: "Enter Target Domain or Upload Backlink Export",
+        instruction:
+          "Input any website URL or domain into the audit bar, or drag and drop up to 100 backlink CSV files (up to 1 GB total) from Ahrefs, Semrush, Moz, or Google Search Console.",
+      },
+      {
+        step: 2,
+        title: "Run Real-Time Link Profile Audit",
+        instruction:
+          "Click Analyze to compute estimated Domain Rating (DR), total inbound backlinks, unique referring domains, dofollow vs. nofollow ratio, and anchor text diversity.",
+      },
+      {
+        step: 3,
+        title: "Analyze Anchor Text & Toxic Link Ratios",
+        instruction:
+          "Review the toxic link risk score, flag suspicious top-level domains (.xyz, .top, .buzz, etc.), and detect over-optimized anchor text clusters that may risk Google penalties.",
+      },
+      {
+        step: 4,
+        title: "Generate Disavow File or Export Audit CSV",
+        instruction:
+          "Click Generate Disavow File to download a Google Search Console-ready disavow.txt document, or export the filtered backlink report as a clean spreadsheet.",
+      },
+    ],
+    keyBenefits: [
+      {
+        title: "Google Algorithmic Penalty Protection",
+        desc: "Proactively detect unnatural backlink spikes, automated link farms, and private blog networks (PBNs) before algorithmic search filters degrade your organic keyword rankings.",
+      },
+      {
+        title: "High-Performance 100 Files & 1 GB Batch Import",
+        desc: "Engineered with client-side chunked stream processing to seamlessly analyze massive multi-gigabyte backlink exports across up to 100 CSV spreadsheets without freezing your browser.",
+      },
+      {
+        title: "100% Client-Side Privacy",
+        desc: "Your proprietary backlink datasets and competitor research are processed locally in your browser session. No raw client files are stored on remote web servers.",
+      },
+      {
+        title: "Instant Google Disavow Generator",
+        desc: "Automatically format high-risk spam domains into the official Google Disavow Tool syntax (domain:spamsite.com) for immediate submission in Google Search Console.",
+      },
+    ],
+    proTips: [
+      "Maintain a branded anchor text ratio between 40% and 55% to look natural to Google's ranking algorithms.",
+      "Audit your referring domains at least once per month to catch automated scraper link spikes early.",
+      "When disavowing spammy networks, prefer domain-level disavow entries (domain:spamsite.com) rather than individual page URLs.",
+    ],
+    faqs: [
+      {
+        question: "How does the Zoqonyx Backlink Checker determine toxic links?",
+        answer:
+          "The tool cross-references backlink patterns against algorithmic spam signals, including high-risk spam TLDs (.xyz, .top, .click, .loan), suspicious exact-match anchor clusters, commercial gambling/pharma keywords, and low-reputation referring domain profiles.",
+      },
+      {
+        question: "Can I upload backlink exports from Ahrefs, Semrush, or Moz?",
+        answer:
+          "Yes. The batch uploader automatically parses standard backlink export formats with column auto-detection for Referring Page URL, Target URL, Anchor Text, and Link Status.",
+      },
+      {
+        question: "What is the upload limit for backlink CSV files?",
+        answer:
+          "Zoqonyx supports up to 100 files simultaneously with a combined size of up to 1 GB (1024 MB). Processing is streamed efficiently through memory to prevent browser tab crashes.",
+      },
+      {
+        question: "How do I submit the generated disavow.txt to Google?",
+        answer:
+          "Navigate to the official Google Search Console Disavow Links tool (search.google.com/search-console/disavow-links), select your verified domain property, and upload the generated disavow.txt file directly.",
+      },
+    ],
+    deepDiveContent:
+      "A healthy backlink profile is the foundation of high-ranking organic search performance. Unnatural link spikes, negative SEO attacks, or legacy directory links can trigger algorithmic filters such as Google Penguin. The Zoqonyx Backlink Checker provides digital marketing teams and SEO webmasters with a high-speed, secure link audit suite supporting up to 100 files and 1 GB of data. Compute domain authority metrics, analyze anchor text diversity, and generate disavow lists in seconds.",
+  },
+  "schema-markup-generator": {
+    slug: "schema-markup-generator",
+    title: "Free Schema Markup Generator (JSON-LD Structured Data) | Zoqonyx",
+    metaDesc:
+      "Generate 100% valid Schema.org JSON-LD structured data for FAQ, Article, Product, LocalBusiness, HowTo, Recipe, Event, Breadcrumb, and WebSite for Google Rich Results.",
+    howToSteps: [
+      {
+        step: 1,
+        title: "Select Schema.org Entity Type",
+        instruction:
+          "Choose between 10 official Schema.org types: FAQPage, Article, Product, LocalBusiness, HowTo, Recipe, Event, BreadcrumbList, Organization, or WebSite.",
+      },
+      {
+        step: 2,
+        title: "Fill In Structured Properties",
+        instruction:
+          "Complete the dedicated property fields including titles, descriptions, URLs, review ratings, pricing, ingredients, or dynamic question-and-answer pairs.",
+      },
+      {
+        step: 3,
+        title: "Inspect Real-Time JSON-LD Code",
+        instruction:
+          "Review the dynamically generated, syntax-highlighted JSON-LD structured data script as you type, formatted strictly according to W3C and Schema.org guidelines.",
+      },
+      {
+        step: 4,
+        title: "Copy or Download and Test with Google",
+        instruction:
+          "Copy the snippet to your clipboard, download as a .jsonld file, or click 'Test with Google' to launch Google's official Rich Results Test immediately.",
+      },
+    ],
+    keyBenefits: [
+      {
+        title: "Google Rich Snippets & Star Ratings",
+        desc: "Structured data enables Google search engines to render rich SERP snippets with review star ratings, FAQ accordions, pricing, and availability.",
+      },
+      {
+        title: "10 Comprehensive Official Schema Types",
+        desc: "Covers all major commercial search use cases including e-commerce products, editorial articles, FAQs, recipe instructions, local businesses, and events.",
+      },
+      {
+        title: "100% Valid W3C JSON-LD Output",
+        desc: "Output is generated in Google's officially recommended JSON-LD format with zero syntax errors, missing context tags, or broken brackets.",
+      },
+      {
+        title: "Integrated Google Rich Results Testing",
+        desc: "One-click handoff directly into Google's Rich Results Testing tool for immediate live crawler validation before publishing.",
+      },
+    ],
+    proTips: [
+      "For FAQ schema, make sure every question and answer in your JSON-LD snippet is visibly present on the web page to avoid manual action penalties.",
+      "Always include aggregateRating and offers fields in Product schema to unlock rich star ratings and pricing badges in Google SERPs.",
+      "Embed the generated JSON-LD inside a <script type='application/ld+json'> tag within the <head> section of your HTML template.",
+    ],
+    faqs: [
+      {
+        question: "Which Schema.org types are supported?",
+        answer:
+          "The generator supports FAQPage, Article, Product (with reviews & offers), LocalBusiness/Organization, HowTo, Recipe, Event, BreadcrumbList, and WebSite.",
+      },
+      {
+        question: "Why does Google recommend JSON-LD over Microdata?",
+        answer:
+          "Google explicitly recommends JSON-LD because it is decoupled from HTML presentation, easier to maintain, less prone to parsing errors, and can be injected dynamically via JavaScript or CMS plugins.",
+      },
+      {
+        question: "Will adding Schema markup guarantee rich snippets in Google?",
+        answer:
+          "While structured data makes your page eligible for rich snippets, Google's algorithms decide whether to display them based on user search intent, query relevance, and overall page quality.",
+      },
+      {
+        question: "Where should I paste the generated JSON-LD on my website?",
+        answer:
+          "Paste the generated <script type='application/ld+json'> block in the <head> section of your HTML, or into the custom head code / SEO script section of your CMS (WordPress, Webflow, Shopify, Next.js).",
+      },
+    ],
+    deepDiveContent:
+      "Structured data is essential for modern search engine optimization. By implementing Schema.org JSON-LD markup, webmasters translate human-readable page content into unambiguous machine-readable entities that Google, Bing, and AI search engines can index with high precision. This unlocks rich results, higher click-through rates (CTR), and conversational AI search inclusion.",
+  },
+  "ai-product-description": {
+    slug: "ai-product-description",
+    title: "Free AI Product Description Generator for Shopify & Amazon | Zoqonyx",
+    metaDesc:
+      "Generate compelling, high-converting product descriptions across Shopify listings, Amazon 5-point bullets, social media ads, and Google SEO snippets in seconds.",
+    howToSteps: [
+      {
+        step: 1,
+        title: "Enter Product Details & Key Specs",
+        instruction:
+          "Input your product name, category, key technical specifications, and primary target audience. Or click a quick preset (Headphones, Matcha, Lamp) to test immediately.",
+      },
+      {
+        step: 2,
+        title: "Select Tone of Voice & Channel Format",
+        instruction:
+          "Choose your desired brand voice (Persuasive, Luxury, Minimalist, Playful, Technical, Urgent) and select your target output channel (Shopify, Amazon, Social Ad, or Google SEO).",
+      },
+      {
+        step: 3,
+        title: "Generate Multi-Angle Copy Variations",
+        instruction:
+          "Click Generate to produce 3 distinctive creative variants (Emotional Lifestyle, Performance & Specs, Problem-Solver) with hooks, bullets, and conversion CTAs.",
+      },
+      {
+        step: 4,
+        title: "Copy, Edit, or Export Markdown",
+        instruction:
+          "Copy individual variants with 1 click, or click 'Export .md' to download the complete copy pack ready for import into your e-commerce platform.",
+      },
+    ],
+    keyBenefits: [
+      {
+        title: "Multi-Channel Marketplace Compliance",
+        desc: "Generate copy specifically tailored to Amazon Seller Central 5-bullet limits, Shopify rich product descriptions, Facebook/Instagram ad scripts, and Google SERP snippets.",
+      },
+      {
+        title: "3 Multi-Angle Creative Variants",
+        desc: "Never get stuck with a single generic paragraph. Access emotional lifestyle hooks, technical spec breakdowns, and problem-solver angles simultaneously.",
+      },
+      {
+        title: "Conversion-Focused Persuasion Architecture",
+        desc: "Every generated description incorporates high-converting copywriting principles: compelling headline hooks, feature-to-benefit translation, and decisive calls-to-action.",
+      },
+      {
+        title: "1-Click Quick Presets & Instant Export",
+        desc: "Test out copy directions in seconds with pre-loaded product scenarios and download clean markdown files for immediate publishing.",
+      },
+    ],
+    proTips: [
+      "Always translate technical specifications into tangible end-user benefits (e.g., '50-hour battery life' becomes 'conquer a full workweek without reaching for a charger').",
+      "For Amazon listings, capitalize the first 2-4 words of each bullet point to create eye-catching visual anchors for mobile shoppers.",
+      "Pair your product descriptions with targeted SEO keywords in the product title and first 100 words of body copy.",
+    ],
+    faqs: [
+      {
+        question: "Can I use the generated descriptions commercially on Amazon and Shopify?",
+        answer:
+          "Yes. All descriptions generated with the Zoqonyx AI Product Description tool are 100% royalty-free and ready for unrestricted commercial use on your stores and marketplaces.",
+      },
+      {
+        question: "What channels and formats does the AI writer support?",
+        answer:
+          "The tool natively supports Shopify & WooCommerce e-commerce listings, Amazon 5-point keyword-optimized bullet points, Facebook/Instagram/TikTok social ad copy, and Google SEO title/meta description snippets.",
+      },
+      {
+        question: "Can I customize the brand tone for luxury or minimalist products?",
+        answer:
+          "Yes. You can switch between Persuasive, Luxury/Sophisticated, Minimalist/Clean, Playful/Casual, Technical/Spec-Driven, and Urgent/Promo tones with a single click.",
+      },
+      {
+        question: "Is there a word or character limit on generated copy?",
+        answer:
+          "Generated outputs are automatically calibrated to marketplace best practices (e.g. 150-250 words for e-commerce listings, under 200 characters per Amazon bullet, and under 155 characters for SEO meta snippets).",
+      },
+    ],
+    deepDiveContent:
+      "E-commerce product descriptions do much more than list technical specifications — they bridge customer skepticism, communicate brand value, and directly influence conversion rates. The Zoqonyx AI Product Description Generator combines consumer psychology with platform-specific formatting to help online retailers, Amazon sellers, and dropshippers produce copy that turns visitors into repeat customers.",
+  },
+  "ai-sales-pitch": {
+    slug: "ai-sales-pitch",
+    title: "Free AI Sales Pitch & Cold Outreach Generator | B2B Playbooks | Zoqonyx",
+    metaDesc:
+      "Generate complete B2B sales playbooks: cold emails, 30-second elevator pitches, LinkedIn DMs, phone cold call scripts, and objection handlers in seconds.",
+    howToSteps: [
+      {
+        step: 1,
+        title: "Input Product & Target Prospect Details",
+        instruction:
+          "Enter your product or service name, the target decision maker title (e.g. VP of Sales, CTO, CMO), target industry, and your core offer/call-to-action.",
+      },
+      {
+        step: 2,
+        title: "Define Core Pain Point & Value Proposition",
+        instruction:
+          "Describe the key friction point your prospect faces daily, and state the primary quantifiable outcome your solution delivers.",
+      },
+      {
+        step: 3,
+        title: "Choose Persuasion Framework",
+        instruction:
+          "Select between proven sales methodologies: PAS (Problem-Agitate-Solve), AIDA (Attention-Interest-Desire-Action), BAB (Before-After-Bridge), or The Challenger Insight pitch.",
+      },
+      {
+        step: 4,
+        title: "Export Full Multi-Touch Sales Playbook",
+        instruction:
+          "Inspect cold email subject lines, phone cold call scripts with objection handling, LinkedIn DMs, and 3-touch follow-ups. Export the complete playbook as Markdown.",
+      },
+    ],
+    keyBenefits: [
+      {
+        title: "Complete 5-Channel Sales Playbooks",
+        desc: "Generate ready-to-deploy outreach across cold emails, 30-second verbal elevator pitches, LinkedIn messages, phone call scripts, and multi-touch follow-up sequences.",
+      },
+      {
+        title: "Battle-Tested Objection Handling Matrix",
+        desc: "Includes instant rebuttals for common sales objections: 'We already have a solution', 'Just send me an email', and 'We don't have budget'.",
+      },
+      {
+        title: "Psychologically Grounded Copywriting Frameworks",
+        desc: "Built on battle-tested enterprise sales methodologies including PAS, AIDA, Before-After-Bridge, and The Challenger Sale.",
+      },
+      {
+        title: "1-Click Markdown Playbook Export",
+        desc: "Export your entire sales collateral playbook as clean markdown to easily distribute across your SDR and account executive teams.",
+      },
+    ],
+    proTips: [
+      "Keep cold outreach emails under 120 words — emails between 50 and 100 words achieve the highest response rates across B2B campaigns.",
+      "When cold calling, use a pattern-interrupt opener to disarm prospects before pitching your solution.",
+      "In follow-up emails, lead with new proof points, benchmark studies, or peer case studies rather than asking 'Did you see my last email?'.",
+    ],
+    faqs: [
+      {
+        question: "Which sales frameworks are supported?",
+        answer:
+          "The generator supports PAS (Problem, Agitate, Solve), AIDA (Attention, Interest, Desire, Action), BAB (Before-After-Bridge), and The Challenger Insight methodology.",
+      },
+      {
+        question: "Can this tool handle phone sales objection rebuttals?",
+        answer:
+          "Yes. The cold call script includes an objection handling matrix specifically addressing budget pushbacks, incumbent provider lock-in, and brush-offs.",
+      },
+      {
+        question: "How many follow-up touches are generated?",
+        answer:
+          "The tool provides a comprehensive 3-touch follow-up sequence: Day 3 gentle value nudge, Day 7 case study proof point, and Day 14 permission-to-close breakup email.",
+      },
+      {
+        question: "Is there a limit on how many sales pitches I can generate?",
+        answer:
+          "No. You can generate unlimited B2B sales playbooks, test different buyer personas, and export markdown documentation completely free of charge.",
+      },
+    ],
+    deepDiveContent:
+      "Modern B2B buyers receive hundreds of generic cold pitches each week. Cutting through inbox noise requires deep persona relevance, concise communication, and sharp objection handling. The Zoqonyx AI Sales Pitch Generator empowers founders, SDRs, and agency owners to produce complete multi-channel outreach playbooks in seconds, transforming cold prospects into engaged pipeline opportunities.",
+  },
   "image-compressor": {
     slug: "image-compressor",
     title: "Free Image Compressor Online | Zoqonyx",

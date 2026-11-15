@@ -8,6 +8,11 @@ import { Input } from "@/components/ui/input";
 import { ImageCompressorProTool } from "./image-compressor-pro";
 import { ImageResizerProTool } from "./image-resizer-pro";
 
+import { StandardFileUploader } from "@/components/common/standard-file-uploader";
+import { processBatch, createZipDownload, BatchProgress } from "@/lib/batch-processor";
+import { MAX_FILES_LIMIT, MAX_COMBINED_SIZE_BYTES } from "@/lib/file-standards";
+import { addSessionHistory } from "@/lib/session-history";
+
 // --- 1. Image Compressor Pro ---
 export function ImageCompressorTool() {
   return <ImageCompressorProTool />;
@@ -18,85 +23,190 @@ export function ImageResizerTool() {
   return <ImageResizerProTool />;
 }
 
-// --- 3. Image Format Converter ---
+// --- 3. Image Format Converter (Up to 100 Images, 1 GB) ---
 export function ImageFormatConverterTool() {
-  const [imageSrc, setImageSrc] = React.useState<string | null>(null);
-  const [targetFormat, setTargetFormat] = React.useState<string>("image/webp");
-  const [convertedUrl, setConvertedUrl] = React.useState<string | null>(null);
+  const [files, setFiles] = React.useState<File[]>([]);
+  const [targetFormat, setTargetFormat] = React.useState<"image/webp" | "image/png" | "image/jpeg">("image/webp");
+  const [convertedResults, setConvertedResults] = React.useState<
+    { name: string; blob: Blob; url: string; origSize: number; newSize: number }[]
+  >([]);
+  const [isProcessing, setIsProcessing] = React.useState(false);
+  const [progress, setProgress] = React.useState<BatchProgress | null>(null);
 
-  const handleUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-    const reader = new FileReader();
-    reader.onload = (ev) => {
-      setImageSrc(ev.target?.result as string);
-      setConvertedUrl(null);
+  const formatExtension = targetFormat === "image/webp" ? "webp" : targetFormat === "image/png" ? "png" : "jpg";
+
+  const handleConvertBatch = async () => {
+    if (files.length === 0) return;
+    setIsProcessing(true);
+
+    const convertSingle = async (file: File): Promise<{ name: string; blob: Blob; url: string; origSize: number; newSize: number }> => {
+      return new Promise((resolve, reject) => {
+        const objectUrl = URL.createObjectURL(file);
+        const img = new Image();
+        img.onload = () => {
+          URL.revokeObjectURL(objectUrl);
+          const canvas = document.createElement("canvas");
+          canvas.width = img.width;
+          canvas.height = img.height;
+          const ctx = canvas.getContext("2d");
+          if (!ctx) return reject(new Error("Canvas context failed"));
+          ctx.drawImage(img, 0, 0);
+
+          canvas.toBlob(
+            (blob) => {
+              if (blob) {
+                const baseName = file.name.replace(/\.[^/.]+$/, "");
+                const outName = `${baseName}.${formatExtension}`;
+                const resultUrl = URL.createObjectURL(blob);
+                resolve({
+                  name: outName,
+                  blob,
+                  url: resultUrl,
+                  origSize: file.size,
+                  newSize: blob.size,
+                });
+              } else {
+                reject(new Error("Format conversion failed"));
+              }
+            },
+            targetFormat,
+            targetFormat === "image/png" ? undefined : 0.92
+          );
+        };
+        img.onerror = () => {
+          URL.revokeObjectURL(objectUrl);
+          reject(new Error("Failed to load image"));
+        };
+        img.src = objectUrl;
+      });
     };
-    reader.readAsDataURL(file);
+
+    try {
+      const { results } = await processBatch(files, convertSingle, {
+        concurrency: 2,
+        maxItems: MAX_FILES_LIMIT,
+        onProgress: (p) => setProgress(p),
+      });
+
+      setConvertedResults(results);
+      addSessionHistory({
+        toolSlug: "image-format-converter",
+        toolName: "Image Format Converter",
+        action: "Batch Converted",
+        summary: `Converted ${results.length} images to ${formatExtension.toUpperCase()}`,
+      });
+    } catch (e: any) {
+      alert("Conversion error: " + e?.message);
+    } finally {
+      setIsProcessing(false);
+    }
   };
 
-  const handleConvert = () => {
-    if (!imageSrc) return;
-    const img = new Image();
-    img.src = imageSrc;
-    img.onload = () => {
-      const canvas = document.createElement("canvas");
-      canvas.width = img.width;
-      canvas.height = img.height;
-      const ctx = canvas.getContext("2d");
-      if (!ctx) return;
-      ctx.drawImage(img, 0, 0);
-      setConvertedUrl(canvas.toDataURL(targetFormat, 0.92));
-    };
+  const handleDownloadAllZip = async () => {
+    if (convertedResults.length === 0) return;
+    await createZipDownload(convertedResults, `zoqonyx_converted_${formatExtension}.zip`);
   };
 
   return (
     <div className="space-y-6">
-      {!imageSrc ? (
-        <label className="flex flex-col items-center justify-center p-12 border-2 border-dashed border-border/80 hover:border-brand-cyan/70 rounded-2xl cursor-pointer bg-card/60 transition-all group">
-          <Upload className="w-10 h-10 text-brand-cyan mb-3 group-hover:scale-110 transition-transform" />
-          <span className="font-heading font-semibold text-base text-foreground">Upload Image to Convert</span>
-          <span className="text-xs text-muted-foreground mt-1">Convert to WebP, PNG, JPG, or AVIF</span>
-          <input type="file" accept="image/*" onChange={handleUpload} className="hidden" />
-        </label>
-      ) : (
-        <div className="p-6 rounded-2xl bg-card border border-border/80 space-y-5">
+      <StandardFileUploader
+        files={files}
+        onFilesChange={(newFiles) => {
+          setFiles(newFiles);
+          setConvertedResults([]);
+          setProgress(null);
+        }}
+        maxFiles={MAX_FILES_LIMIT}
+        maxCombinedSizeBytes={MAX_COMBINED_SIZE_BYTES}
+        acceptedExtensions={[".png", ".jpg", ".jpeg", ".webp", ".avif", ".bmp"]}
+        title="Drop up to 100 images to convert format"
+        subtitle={`Up to 100 images, 1 GB combined capacity. Convert seamlessly to WebP, PNG, or JPEG.`}
+        disabled={isProcessing}
+      />
+
+      {files.length > 0 && (
+        <div className="p-5 rounded-2xl bg-card border border-border/80 space-y-5">
           <div className="flex flex-wrap items-center justify-between gap-4">
             <div className="space-y-1">
-              <label className="text-xs font-semibold text-muted-foreground">Select Output Format</label>
+              <label className="text-xs font-semibold text-muted-foreground">Select Target Output Format</label>
               <select
                 value={targetFormat}
-                onChange={(e) => setTargetFormat(e.target.value)}
-                className="block w-48 h-10 px-3 rounded-lg border border-border bg-background text-sm font-medium"
+                onChange={(e) => setTargetFormat(e.target.value as any)}
+                disabled={isProcessing}
+                className="block w-52 h-10 px-3 rounded-lg border border-border bg-background text-sm font-medium"
               >
-                <option value="image/webp">WebP (Modern & Small)</option>
-                <option value="image/png">PNG (Lossless & Alpha)</option>
-                <option value="image/jpeg">JPEG (Universal)</option>
+                <option value="image/webp">WebP (Modern, Small, Web-Ready)</option>
+                <option value="image/png">PNG (Lossless & Transparency)</option>
+                <option value="image/jpeg">JPEG (Universal Compatibility)</option>
               </select>
             </div>
 
             <div className="flex items-center gap-2">
-              <Button onClick={handleConvert} variant="gradient">
-                Convert Format
+              <Button
+                onClick={handleConvertBatch}
+                disabled={isProcessing}
+                variant="gradient"
+                className="gap-2"
+              >
+                <RefreshCw className={`w-4 h-4 ${isProcessing ? "animate-spin" : ""}`} />
+                <span>{isProcessing ? "Converting..." : `Convert All ${files.length} Images`}</span>
               </Button>
-              {convertedUrl && (
-                <a
-                  href={convertedUrl}
-                  download={`converted.${targetFormat.split("/")[1]}`}
+              {convertedResults.length > 0 && (
+                <Button
+                  onClick={handleDownloadAllZip}
+                  variant="default"
+                  className="gap-2 bg-teal-600 hover:bg-teal-500 text-white"
                 >
-                  <Button variant="default" className="gap-2">
-                    <Download className="w-4 h-4" />
-                    <span>Download</span>
-                  </Button>
-                </a>
+                  <Download className="w-4 h-4" />
+                  <span>Download All ({convertedResults.length} Files - ZIP)</span>
+                </Button>
               )}
             </div>
           </div>
 
-          <div className="p-4 rounded-xl bg-muted/30 flex items-center justify-center max-h-[350px]">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={convertedUrl || imageSrc} alt="Preview" className="max-h-[300px] object-contain rounded-lg" />
-          </div>
+          {progress && (
+            <div className="space-y-1.5 pt-2">
+              <div className="flex justify-between text-xs font-medium">
+                <span>Progress ({progress.current}/{progress.total})</span>
+                <span className="text-teal-400 font-bold">{progress.percent}%</span>
+              </div>
+              <div className="w-full h-2 rounded-full bg-muted overflow-hidden">
+                <div
+                  className="h-full bg-teal-500 transition-all duration-200"
+                  style={{ width: `${progress.percent}%` }}
+                />
+              </div>
+            </div>
+          )}
+
+          {/* Results Grid / List */}
+          {convertedResults.length > 0 && (
+            <div className="space-y-2 pt-2 border-t border-border/60">
+              <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+                Converted Results ({convertedResults.length})
+              </span>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 max-h-60 overflow-y-auto pr-1">
+                {convertedResults.map((item, idx) => (
+                  <div
+                    key={idx}
+                    className="flex items-center justify-between p-2.5 rounded-xl bg-muted/40 border border-border/60 text-xs"
+                  >
+                    <div className="truncate pr-2">
+                      <p className="font-medium text-foreground truncate">{item.name}</p>
+                      <p className="text-[10px] text-muted-foreground">
+                        {(item.origSize / 1024).toFixed(1)} KB → {(item.newSize / 1024).toFixed(1)} KB
+                      </p>
+                    </div>
+                    <a href={item.url} download={item.name}>
+                      <Button size="sm" variant="outline" className="h-7 px-2 text-xs gap-1">
+                        <Download className="w-3.5 h-3.5" /> Save
+                      </Button>
+                    </a>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       )}
     </div>
@@ -623,25 +733,29 @@ export function ImageCropperTool() {
   const [croppedUrl, setCroppedUrl] = React.useState<string | null>(null);
   const [imgDims, setImgDims] = React.useState<{ w: number; h: number }>({ w: 0, h: 0 });
 
-  const handleUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-    const reader = new FileReader();
-    reader.onload = (ev) => {
-      const src = ev.target?.result as string;
-      setImageSrc(src);
-      const img = new Image();
-      img.src = src;
-      img.onload = () => {
-        setImgDims({ w: img.width, h: img.height });
-        const initialSize = Math.min(img.width, img.height, 400);
-        setCropWidth(initialSize);
-        setCropHeight(initialSize);
-        setCropX(Math.floor((img.width - initialSize) / 2));
-        setCropY(Math.floor((img.height - initialSize) / 2));
-      };
+  const [selectedFile, setSelectedFile] = React.useState<File | null>(null);
+
+  const handleFileChange = (newFiles: File[]) => {
+    const file = newFiles[0] || null;
+    setSelectedFile(file);
+    if (!file) {
+      setImageSrc(null);
+      setCroppedUrl(null);
+      return;
+    }
+
+    const objectUrl = URL.createObjectURL(file);
+    const img = new Image();
+    img.onload = () => {
+      setImageSrc(objectUrl);
+      setImgDims({ w: img.width, h: img.height });
+      const initialSize = Math.min(img.width, img.height, 400);
+      setCropWidth(initialSize);
+      setCropHeight(initialSize);
+      setCropX(Math.floor((img.width - initialSize) / 2));
+      setCropY(Math.floor((img.height - initialSize) / 2));
     };
-    reader.readAsDataURL(file);
+    img.src = objectUrl;
   };
 
   const applyCrop = React.useCallback(() => {
@@ -703,14 +817,17 @@ export function ImageCropperTool() {
 
   return (
     <div className="space-y-6">
-      {!imageSrc ? (
-        <label className="flex flex-col items-center justify-center p-12 border-2 border-dashed border-border/80 hover:border-brand-cyan/70 rounded-2xl cursor-pointer bg-card/60 transition-all group">
-          <Upload className="w-10 h-10 text-brand-cyan mb-3 group-hover:scale-110 transition-transform" />
-          <span className="font-heading font-semibold text-base text-foreground">Upload Image to Crop</span>
-          <span className="text-xs text-muted-foreground mt-1">Preset ratios 1:1, 16:9, 4:3, or custom crop coordinates</span>
-          <input type="file" accept="image/*" onChange={handleUpload} className="hidden" />
-        </label>
-      ) : (
+      <StandardFileUploader
+        files={selectedFile ? [selectedFile] : []}
+        onFilesChange={handleFileChange}
+        maxFiles={1}
+        maxCombinedSizeBytes={MAX_COMBINED_SIZE_BYTES}
+        acceptedExtensions={[".png", ".jpg", ".jpeg", ".webp", ".avif", ".bmp"]}
+        title="Drop an image to crop"
+        subtitle="Preset ratios 1:1, 16:9, 4:3, or custom crop coordinates (supports up to 1 GB files)."
+      />
+
+      {imageSrc && (
         <div className="space-y-6">
           <div className="p-5 rounded-2xl bg-card border border-border/80 space-y-4">
             <div className="flex flex-wrap items-center justify-between gap-3">

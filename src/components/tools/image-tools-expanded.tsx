@@ -20,8 +20,10 @@ import {
 } from "lucide-react";
 import { processBatch, createZipDownload, BatchProgress } from "@/lib/batch-processor";
 import { addSessionHistory } from "@/lib/session-history";
+import { StandardFileUploader } from "@/components/common/standard-file-uploader";
+import { MAX_FILES_LIMIT, MAX_COMBINED_SIZE_BYTES } from "@/lib/file-standards";
 
-// 1. Bulk Image Compressor (Up to 50 Images)
+// 1. Bulk Image Compressor (Up to 100 Images, 1 GB)
 export function BulkImageCompressorTool() {
   const [files, setFiles] = React.useState<File[]>([]);
   const [quality, setQuality] = React.useState<number>(75);
@@ -29,15 +31,6 @@ export function BulkImageCompressorTool() {
   const [results, setResults] = React.useState<{ name: string; blob: Blob; origSize: number; newSize: number }[]>([]);
   const [isProcessing, setIsProcessing] = React.useState(false);
   const abortRef = React.useRef<AbortController | null>(null);
-
-  const handleFiles = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files) {
-      const selected = Array.from(e.target.files).slice(0, 50);
-      setFiles(selected);
-      setResults([]);
-      setProgress(null);
-    }
-  };
 
   const handleCompress = async () => {
     if (files.length === 0) return;
@@ -47,12 +40,10 @@ export function BulkImageCompressorTool() {
 
     const compressImage = async (file: File): Promise<{ name: string; blob: Blob; origSize: number; newSize: number }> => {
       return new Promise((resolve, reject) => {
+        const objectUrl = URL.createObjectURL(file);
         const img = new Image();
-        const reader = new FileReader();
-        reader.onload = () => {
-          img.src = reader.result as string;
-        };
         img.onload = () => {
+          URL.revokeObjectURL(objectUrl);
           const canvas = document.createElement("canvas");
           canvas.width = img.width;
           canvas.height = img.height;
@@ -76,16 +67,18 @@ export function BulkImageCompressorTool() {
             quality / 100
           );
         };
-        img.onerror = () => reject(new Error("Failed to load image"));
-        reader.onerror = () => reject(new Error("Failed to read file"));
-        reader.readAsDataURL(file);
+        img.onerror = () => {
+          URL.revokeObjectURL(objectUrl);
+          reject(new Error("Failed to load image"));
+        };
+        img.src = objectUrl;
       });
     };
 
     try {
       const { results: compressed } = await processBatch(files, compressImage, {
         concurrency: 2,
-        maxItems: 50,
+        maxItems: MAX_FILES_LIMIT,
         signal: controller.signal,
         onProgress: (p) => setProgress(p),
       });
@@ -111,28 +104,25 @@ export function BulkImageCompressorTool() {
 
   return (
     <div className="space-y-6">
-      <div className="border-2 border-dashed border-border rounded-xl p-8 text-center bg-card">
-        <input
-          type="file"
-          id="bulk-comp-upload"
-          accept="image/png,image/jpeg,image/webp"
-          multiple
-          onChange={handleFiles}
-          className="hidden"
-        />
-        <label htmlFor="bulk-comp-upload" className="cursor-pointer flex flex-col items-center gap-3">
-          <div className="p-3 rounded-xl bg-teal-500/10 text-teal-400">
-            <Upload className="w-6 h-6" />
-          </div>
-          <p className="font-semibold text-foreground">Select up to 50 photos to compress in bulk</p>
-          <p className="text-xs text-muted-foreground">Processed safely in-browser with zero freezing</p>
-        </label>
-      </div>
+      <StandardFileUploader
+        files={files}
+        onFilesChange={(newFiles) => {
+          setFiles(newFiles);
+          setResults([]);
+          setProgress(null);
+        }}
+        maxFiles={MAX_FILES_LIMIT}
+        maxCombinedSizeBytes={MAX_COMBINED_SIZE_BYTES}
+        acceptedExtensions={[".png", ".jpg", ".jpeg", ".webp", ".avif", ".bmp"]}
+        title="Drop up to 100 photos to compress in bulk"
+        subtitle="Up to 100 images, 1 GB combined capacity. Processed safely in your browser."
+        disabled={isProcessing}
+      />
 
       {files.length > 0 && (
         <div className="p-5 rounded-xl border border-border bg-card space-y-4">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold">{files.length} Photo(s) Selected (Max 50)</span>
+            <span className="text-xs font-semibold">{files.length} Photo(s) Selected</span>
             <div className="flex items-center gap-2">
               <span className="text-xs font-bold text-teal-400">Quality: {quality}%</span>
             </div>
@@ -162,7 +152,7 @@ export function BulkImageCompressorTool() {
               className="flex-1 bg-teal-600 hover:bg-teal-500 text-white gap-2"
             >
               <FileArchive className="w-4 h-4" />
-              <span>{isProcessing ? "Processing Safely..." : "Compress All Images"}</span>
+              <span>{isProcessing ? "Processing Safely..." : `Compress All ${files.length} Images`}</span>
             </Button>
             {results.length > 0 && (
               <Button
@@ -171,7 +161,7 @@ export function BulkImageCompressorTool() {
                 className="gap-2 border-teal-500/40 text-teal-400 hover:bg-teal-500/10"
               >
                 <Download className="w-4 h-4" />
-                <span>Download All (ZIP)</span>
+                <span>Download All ({results.length} Files - ZIP)</span>
               </Button>
             )}
           </div>
@@ -181,12 +171,13 @@ export function BulkImageCompressorTool() {
   );
 }
 
-// 2. Bulk Image Resizer
+// 2. Bulk Image Resizer (Up to 100 Images, 1 GB)
 export function BulkImageResizerTool() {
   const [files, setFiles] = React.useState<File[]>([]);
   const [scale, setScale] = React.useState<number>(50);
   const [results, setResults] = React.useState<{ name: string; blob: Blob }[]>([]);
   const [isProcessing, setIsProcessing] = React.useState(false);
+  const [progress, setProgress] = React.useState<BatchProgress | null>(null);
 
   const handleResize = async () => {
     if (files.length === 0) return;
@@ -195,12 +186,10 @@ export function BulkImageResizerTool() {
 
     const resizeImage = async (file: File): Promise<{ name: string; blob: Blob }> => {
       return new Promise((resolve, reject) => {
+        const objectUrl = URL.createObjectURL(file);
         const img = new Image();
-        const reader = new FileReader();
-        reader.onload = () => {
-          img.src = reader.result as string;
-        };
         img.onload = () => {
+          URL.revokeObjectURL(objectUrl);
           const canvas = document.createElement("canvas");
           canvas.width = Math.max(1, Math.round(img.width * factor));
           canvas.height = Math.max(1, Math.round(img.height * factor));
@@ -220,12 +209,20 @@ export function BulkImageResizerTool() {
             }
           }, "image/png");
         };
-        reader.readAsDataURL(file);
+        img.onerror = () => {
+          URL.revokeObjectURL(objectUrl);
+          reject(new Error("Failed to load image"));
+        };
+        img.src = objectUrl;
       });
     };
 
     try {
-      const { results: resized } = await processBatch(files, resizeImage, { concurrency: 2, maxItems: 50 });
+      const { results: resized } = await processBatch(files, resizeImage, {
+        concurrency: 2,
+        maxItems: MAX_FILES_LIMIT,
+        onProgress: (p) => setProgress(p),
+      });
       setResults(resized);
       addSessionHistory({
         toolSlug: "bulk-image-resizer",
@@ -242,24 +239,20 @@ export function BulkImageResizerTool() {
 
   return (
     <div className="space-y-6">
-      <div className="border-2 border-dashed border-border rounded-xl p-8 text-center bg-card">
-        <input
-          type="file"
-          id="bulk-resize-upload"
-          accept="image/*"
-          multiple
-          onChange={(e) => {
-            if (e.target.files) setFiles(Array.from(e.target.files).slice(0, 50));
-          }}
-          className="hidden"
-        />
-        <label htmlFor="bulk-resize-upload" className="cursor-pointer flex flex-col items-center gap-3">
-          <div className="p-3 rounded-xl bg-teal-500/10 text-teal-400">
-            <Upload className="w-6 h-6" />
-          </div>
-          <p className="font-semibold text-foreground">Select up to 50 images to batch resize</p>
-        </label>
-      </div>
+      <StandardFileUploader
+        files={files}
+        onFilesChange={(newFiles) => {
+          setFiles(newFiles);
+          setResults([]);
+          setProgress(null);
+        }}
+        maxFiles={MAX_FILES_LIMIT}
+        maxCombinedSizeBytes={MAX_COMBINED_SIZE_BYTES}
+        acceptedExtensions={[".png", ".jpg", ".jpeg", ".webp", ".avif", ".bmp"]}
+        title="Drop up to 100 images to batch resize"
+        subtitle="Up to 100 images, 1 GB combined capacity. Processed safely in your browser."
+        disabled={isProcessing}
+      />
 
       {files.length > 0 && (
         <div className="p-5 rounded-xl border border-border bg-card space-y-4">
@@ -269,13 +262,28 @@ export function BulkImageResizerTool() {
           </div>
           <Slider value={[scale]} min={10} max={200} step={5} onValueChange={(v) => setScale(v[0])} />
 
+          {progress && (
+            <div className="space-y-1.5 pt-2">
+              <div className="flex justify-between text-xs font-medium">
+                <span>Progress ({progress.current}/{progress.total})</span>
+                <span className="text-teal-400 font-bold">{progress.percent}%</span>
+              </div>
+              <div className="w-full h-2 rounded-full bg-muted overflow-hidden">
+                <div
+                  className="h-full bg-teal-500 transition-all duration-200"
+                  style={{ width: `${progress.percent}%` }}
+                />
+              </div>
+            </div>
+          )}
+
           <div className="flex gap-3 pt-2">
             <Button
               onClick={handleResize}
               disabled={isProcessing}
               className="flex-1 bg-teal-600 hover:bg-teal-500 text-white gap-2"
             >
-              <span>{isProcessing ? "Resizing in Browser..." : `Resize All to ${scale}%`}</span>
+              <span>{isProcessing ? "Resizing in Browser..." : `Resize All ${files.length} to ${scale}%`}</span>
             </Button>
             {results.length > 0 && (
               <Button
