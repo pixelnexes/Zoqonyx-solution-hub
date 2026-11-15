@@ -227,33 +227,41 @@ export function SchemaMarkupGeneratorTool() {
           },
         };
 
-      case "Product":
-        return {
+      case "Product": {
+        const productObj: Record<string, any> = {
           "@context": "https://schema.org",
           "@type": "Product",
           name: product.name,
           image: [product.imageUrl],
           description: product.description,
           sku: product.sku,
-          gtin: product.gtin,
           brand: {
             "@type": "Brand",
             name: product.brand,
           },
-          offers: {
+        };
+        if (product.gtin) {
+          productObj.gtin = product.gtin;
+        }
+        if (product.price && product.price.trim() !== "") {
+          productObj.offers = {
             "@type": "Offer",
             url: "https://example.com/product/" + product.sku,
             priceCurrency: product.currency,
             price: product.price,
             availability: product.availability,
             priceValidUntil: "2026-12-31",
-          },
-          aggregateRating: {
+          };
+        }
+        if (product.ratingValue && product.reviewCount && product.ratingValue.trim() !== "") {
+          productObj.aggregateRating = {
             "@type": "AggregateRating",
             ratingValue: product.ratingValue,
             reviewCount: product.reviewCount,
-          },
-        };
+          };
+        }
+        return productObj;
+      }
 
       case "LocalBusiness":
       case "Organization":
@@ -579,6 +587,9 @@ export function SchemaMarkupGeneratorTool() {
           {/* 3. Product */}
           {schemaType === "Product" && (
             <div className="space-y-3 text-xs">
+              <div className="p-2.5 rounded-lg bg-amber-50/80 border border-amber-200/80 text-[11px] text-amber-900 leading-relaxed">
+                <strong>Google Guidelines Note:</strong> Only include <code>offers</code> (pricing) and <code>aggregateRating</code> (reviews) if they are visibly present on your public product page. Fabricated review markup violates Google Structured Data guidelines and can result in manual penalties. Leave them blank if not applicable.
+              </div>
               <div className="space-y-1">
                 <Label className="text-xs">Product Name</Label>
                 <Input

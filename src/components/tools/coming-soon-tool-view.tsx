@@ -80,17 +80,10 @@ export function ComingSoonToolView({ tool, relatedTools }: ComingSoonToolViewPro
             {tool.description}
           </p>
 
-          {/* Progress Animation Bar */}
-          <div className="space-y-1.5 max-w-md mx-auto pt-2">
-            <div className="flex justify-between text-xs font-medium text-slate-600 font-mono">
-              <span className="flex items-center gap-1.5 text-teal-700">
-                <Rocket className="w-3.5 h-3.5" /> Client Engine Build
-              </span>
-              <span className="font-bold text-slate-900">85% Complete</span>
-            </div>
-            <div className="w-full h-2 rounded-md bg-slate-100 overflow-hidden relative">
-              <div className="h-full rounded-md bg-teal-600 w-[85%] transition-all" />
-            </div>
+          {/* Roadmap Status Indicator */}
+          <div className="flex items-center justify-center gap-2 text-xs font-mono text-slate-600 pt-1">
+            <span className="w-2 h-2 rounded-full bg-teal-600 animate-pulse" />
+            <span>Client Engine Architecture: Scheduled on Product Roadmap</span>
           </div>
 
           {/* Email Notify Form */}

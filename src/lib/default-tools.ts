@@ -89,15 +89,15 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "id": "default-image-format-converter",
     "slug": "image-format-converter",
     "name": "Image Format Converter",
-    "description": "Convert images seamlessly between PNG, JPG, WebP, AVIF, and BMP formats in batch directly in your browser.",
+    "description": "Convert PNG to WebP, JPG to PNG, WebP to PNG, and PNG to JPG in bulk with up to 100 files and 1 GB capacity.",
     "category": "Image Tools",
     "isActive": true,
     "isComingSoon": false,
     "icon": "RefreshCw",
     "order": 4,
-    "metaTitle": "Free Image Format Converter | Zoqonyx Online | Zoqonyx",
-    "metaDesc": "Convert images seamlessly between PNG, JPG, WebP, AVIF, and BMP formats in batch directly in your browser. 100% free with zero registration. Processed safely in your browser.",
-    "content": "## Comprehensive Guide: Image Format Converter\n\nConvert images seamlessly between PNG, JPG, WebP, AVIF, and BMP formats in batch directly in your browser.\n\n### Key Technical Highlights\n- **100% Client-Side Processing**: Your media files are rendered and transformed using hardware-accelerated HTML5 Canvas and WebGL APIs. No photos are ever uploaded to cloud servers.\n- **Interactive Visual Comparison**: Inspect edge sharpness, compression fidelity, and dimensions with real-time reactive canvas rendering before downloading.\n- **Optimized for Web Performance & LCP**: Reducing graphic payloads significantly accelerates page render times and boosts Google Core Web Vitals rankings.\n- **Zero Watermarks & Unrestricted Commercial Use**: All exported graphics are yours to use in personal, commercial, and client deliverables with no attribution required."
+    "metaTitle": "Convert PNG to WebP Online – Free Image Format Converter | Zoqonyx",
+    "metaDesc": "Convert PNG to WebP, JPG to PNG, WebP to PNG, and PNG to JPG online in bulk. Free client-side image converter supporting up to 100 files and 1 GB with instant ZIP download.",
+    "content": "## How to Convert Image Formats Online\n\nConvert images seamlessly between PNG, JPG, WebP, AVIF, and BMP formats in batch directly in your browser with up to 100 files and 1 GB combined capacity.\n\n### Popular Conversion Workflows\n- **PNG to WebP**: Reduce image file size by 25% to 35% while retaining transparent alpha backgrounds for modern web performance.\n- **JPG to PNG**: Convert photos and graphics into lossless PNG format with zero compression artifacts.\n- **WebP to PNG & JPG**: Extract modern WebP graphics into universally compatible formats for legacy design and desktop applications.\n- **Bulk Image Conversion**: Convert whole photo folders at once with high-speed client-side canvas processing and single-click ZIP export."
   },
   {
     "id": "default-image-cropper",
@@ -1145,9 +1145,9 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "Calendar",
     "order": 79,
-    "metaTitle": "Free Age Calculator | Zoqonyx Online | Zoqonyx",
-    "metaDesc": "Calculate exact chronological age in years, months, weeks, days, hours, and minutes with birthday countdown. 100% free with zero registration. Processed safely in your browser.",
-    "content": "## Calculation Guide: Age Calculator\n\nCalculate exact chronological age in years, months, weeks, days, hours, and minutes with birthday countdown.\n\n### Key Features\n- **High Floating-Point Precision**: Mathematical formulas conform to banking and institutional standards, mitigating cumulative rounding errors.\n- **Instant Reactive Recalculation**: Values compute dynamically as you type without page reloads or delays.\n- **100% Private Financial Modeling**: Your salary figures, personal budgets, interest rates, and health metrics are never logged or stored.\n- **Comprehensive Amortization & Breakdown**: Detailed summaries provide actionable clarity for budgeting, planning, and investment decisions."
+    "metaTitle": "Free Age Calculator – Calculate Exact Chronological Age Online | Zoqonyx",
+    "metaDesc": "Calculate exact chronological age from date of birth in years, months, weeks, days, hours, and seconds. Includes leap year accuracy and upcoming birthday countdown.",
+    "content": "## How to Calculate Exact Age & Time Duration\n\nCalculate your exact chronological age or duration between two calendar dates with day-by-day precision.\n\n### Key Features\n- **Gregorian Leap Year Precision**: Accurately accounts for 365/366 day cycles and variable month lengths.\n- **Multi-Unit Time Breakdown**: View elapsed time in years, total months, total weeks, days, hours, and minutes.\n- **Milestone Countdown**: Track exact months and days remaining until your next birthday.\n- **100% Private Date Evaluation**: Calculations run locally in your browser with zero data logging."
   },
   {
     "id": "default-bmi-calculator",
@@ -1159,9 +1159,9 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "isComingSoon": false,
     "icon": "Activity",
     "order": 80,
-    "metaTitle": "Free BMI Calculator | Zoqonyx Online | Zoqonyx",
-    "metaDesc": "Calculate Body Mass Index (BMI) using Metric or Imperial units with WHO weight category evaluation. 100% free with zero registration. Processed safely in your browser.",
-    "content": "## Calculation Guide: BMI Calculator\n\nCalculate Body Mass Index (BMI) using Metric or Imperial units with WHO weight category evaluation.\n\n### Key Features\n- **High Floating-Point Precision**: Mathematical formulas conform to banking and institutional standards, mitigating cumulative rounding errors.\n- **Instant Reactive Recalculation**: Values compute dynamically as you type without page reloads or delays.\n- **100% Private Financial Modeling**: Your salary figures, personal budgets, interest rates, and health metrics are never logged or stored.\n- **Comprehensive Amortization & Breakdown**: Detailed summaries provide actionable clarity for budgeting, planning, and investment decisions."
+    "metaTitle": "Free BMI Calculator – Calculate Body Mass Index Online | Zoqonyx",
+    "metaDesc": "Calculate your Body Mass Index (BMI) using Metric or Imperial units with official WHO adult weight category classifications and healthy weight range targets.",
+    "content": "## How to Calculate Body Mass Index (BMI)\n\nCalculate your Body Mass Index (BMI) instantly using Metric (cm/kg) or Imperial (ft/in/lbs) units with official World Health Organization (WHO) weight category classifications.\n\n### Key Features\n- **Official WHO Weight Categories**: Evaluate your score against Underweight (<18.5), Normal (18.5–24.9), Overweight (25–29.9), and Obese (≥30) classifications.\n- **Dual Unit System**: Toggle seamlessly between Metric and Imperial measurement systems.\n- **Healthy Weight Target Range**: Calculate recommended healthy weight boundaries for your specific height.\n- **100% Private Health Assessment**: All calculations run locally in your browser with zero data logging or server storage."
   },
   {
     "id": "default-loan-emi-calculator",

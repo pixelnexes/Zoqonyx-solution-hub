@@ -23,16 +23,11 @@ const config: Config = {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         brand: {
-          navy: "#0F172A",
-          charcoal: "#1E293B",
-          dark: "#0B0F19",
-          teal: "#14B8A6",
-          cyan: "#14B8A6", // Electric Teal primary accent
-          coral: "#F43F5E",
-          amber: "#F59E0B",
-          purple: "#6366F1", // Indigo/Slate accent
-          lightGray: "#F8FAFC",
-          gray: "#64748B",
+          navy: "#111827", // Deep navy
+          blue: "#2563EB", // Primary blue
+          teal: "#0D9488", // Teal accent
+          lightGray: "#F8FAFC", // Main background
+          gray: "#64748B", // Secondary text
         },
         primary: {
           DEFAULT: "hsl(var(--primary))",
@@ -69,14 +64,13 @@ const config: Config = {
         sm: "calc(var(--radius) - 4px)",
       },
       fontFamily: {
-        sans: ["var(--font-sans)", "system-ui", "-apple-system", "sans-serif"],
-        heading: ["var(--font-sans)", "system-ui", "-apple-system", "sans-serif"],
-        mono: ["var(--font-mono)", "ui-monospace", "SFMono-Regular", "monospace"],
+        sans: ["var(--font-poppins)", "system-ui", "-apple-system", "sans-serif"],
+        heading: ["var(--font-poppins)", "system-ui", "-apple-system", "sans-serif"],
+        mono: ["ui-monospace", "SFMono-Regular", "Menlo", "Monaco", "Consolas", "monospace"],
       },
       backgroundImage: {
-        "brand-gradient": "linear-gradient(135deg, #14B8A6 0%, #0F766E 100%)",
-        "brand-gradient-hover": "linear-gradient(135deg, #0D9488 0%, #115E59 100%)",
-        "hero-glow": "radial-gradient(circle at 50% 0%, rgba(20, 184, 166, 0.12), transparent 70%)",
+        "brand-gradient": "linear-gradient(135deg, #2563EB 0%, #0D9488 100%)",
+        "brand-gradient-hover": "linear-gradient(135deg, #1D4ED8 0%, #0F766E 100%)",
       },
     },
   },

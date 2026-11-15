@@ -309,7 +309,7 @@ export function ImageCompressorProTool() {
             }`}
           >
             <Layers className="w-3.5 h-3.5" />
-            <span>Bulk Batch Compressor (Up to 20 files)</span>
+            <span>Bulk Batch Compressor (Up to 100 Files & 1 GB)</span>
           </button>
         </div>
 

@@ -24,78 +24,78 @@ export interface ToolSeoArticle {
 export const TOP_TOOLS_SEO_ARTICLES: Record<string, ToolSeoArticle> = {
   "backlink-checker": {
     slug: "backlink-checker",
-    title: "Free Backlink Checker & Domain SEO Link Audit Tool | Zoqonyx",
+    title: "Free Backlink Checker & Backlink CSV Audit Tool | Zoqonyx",
     metaDesc:
-      "Audit inbound backlinks, referring domains, anchor text ratios, and toxic spam links for any domain. Batch import up to 100 files and 1 GB with instant Google Disavow export.",
+      "Audit inbound backlinks, referring domains, anchor text distribution, and spam TLD signals. Batch import up to 100 CSV files and 1 GB from GSC, Ahrefs, Moz, and Semrush with instant Google Disavow export.",
     howToSteps: [
       {
         step: 1,
-        title: "Enter Target Domain or Upload Backlink Export",
+        title: "Enter Target Domain or Upload Backlink CSV Export",
         instruction:
-          "Input any website URL or domain into the audit bar, or drag and drop up to 100 backlink CSV files (up to 1 GB total) from Ahrefs, Semrush, Moz, or Google Search Console.",
+          "Input any website domain for a fast heuristic profile audit, or drop up to 100 exported CSV files (up to 1 GB total) from Google Search Console, Ahrefs, Semrush, or Moz for complete dataset analysis.",
       },
       {
         step: 2,
-        title: "Run Real-Time Link Profile Audit",
+        title: "Analyze Authority Index & Referring Domains",
         instruction:
-          "Click Analyze to compute estimated Domain Rating (DR), total inbound backlinks, unique referring domains, dofollow vs. nofollow ratio, and anchor text diversity.",
+          "Compute estimated authority index, total inbound backlinks, unique root referring domains, dofollow vs. nofollow ratio, and anchor text diversity distributions.",
       },
       {
         step: 3,
-        title: "Analyze Anchor Text & Toxic Link Ratios",
+        title: "Review Anchor Diversity & Spam Signal Footprints",
         instruction:
-          "Review the toxic link risk score, flag suspicious top-level domains (.xyz, .top, .buzz, etc.), and detect over-optimized anchor text clusters that may risk Google penalties.",
+          "Examine potential spam signals, suspicious top-level domains (.xyz, .top, .buzz), and repetitive exact-match commercial anchor clusters.",
       },
       {
         step: 4,
-        title: "Generate Disavow File or Export Audit CSV",
+        title: "Download Disavow File or Export Audit CSV",
         instruction:
-          "Click Generate Disavow File to download a Google Search Console-ready disavow.txt document, or export the filtered backlink report as a clean spreadsheet.",
+          "Generate a Search Console-ready disavow.txt file for identified spam domains, or export your filtered backlink spreadsheet for client reporting.",
       },
     ],
     keyBenefits: [
       {
-        title: "Google Algorithmic Penalty Protection",
-        desc: "Proactively detect unnatural backlink spikes, automated link farms, and private blog networks (PBNs) before algorithmic search filters degrade your organic keyword rankings.",
-      },
-      {
-        title: "High-Performance 100 Files & 1 GB Batch Import",
-        desc: "Engineered with client-side chunked stream processing to seamlessly analyze massive multi-gigabyte backlink exports across up to 100 CSV spreadsheets without freezing your browser.",
+        title: "Client-Side CSV Stream Processing (100 Files & 1 GB)",
+        desc: "Engineered with client-side chunked stream processing to seamlessly parse massive multi-gigabyte backlink exports across up to 100 CSV spreadsheets without freezing your browser.",
       },
       {
         title: "100% Client-Side Privacy",
-        desc: "Your proprietary backlink datasets and competitor research are processed locally in your browser session. No raw client files are stored on remote web servers.",
+        desc: "Your proprietary client backlink datasets and competitor research are processed strictly within your browser session. No raw files are transmitted to or stored on remote web servers.",
       },
       {
-        title: "Instant Google Disavow Generator",
-        desc: "Automatically format high-risk spam domains into the official Google Disavow Tool syntax (domain:spamsite.com) for immediate submission in Google Search Console.",
+        title: "Spam TLD & Format Anomaly Detection",
+        desc: "Automatically highlights low-reputation top-level domains and repetitive commercial anchor clusters across your backlink profile.",
+      },
+      {
+        title: "Formatted Google Disavow Export",
+        desc: "Formats high-risk spam domains into official Google Disavow Tool syntax (domain:spamsite.com) for cautious manual submission in Google Search Console.",
       },
     ],
     proTips: [
-      "Maintain a branded anchor text ratio between 40% and 55% to look natural to Google's ranking algorithms.",
-      "Audit your referring domains at least once per month to catch automated scraper link spikes early.",
-      "When disavowing spammy networks, prefer domain-level disavow entries (domain:spamsite.com) rather than individual page URLs.",
+      "For complete live crawl data of competitors, always export verified backlink reports from Google Search Console or SEO suites and upload the CSV here.",
+      "Google's search quality team recommends using the Disavow Tool with extreme caution, primarily when your domain faces manual penalties or severe unnatural link schemes.",
+      "When disavowing spammy networks, prefer domain-level entries (domain:spamsite.com) rather than individual page URLs.",
     ],
     faqs: [
       {
-        question: "How does the Zoqonyx Backlink Checker determine toxic links?",
+        question: "How does the Zoqonyx Backlink Checker analyze link data?",
         answer:
-          "The tool cross-references backlink patterns against algorithmic spam signals, including high-risk spam TLDs (.xyz, .top, .click, .loan), suspicious exact-match anchor clusters, commercial gambling/pharma keywords, and low-reputation referring domain profiles.",
+          "The tool provides two modes: a client-side heuristic audit for quick domain inspection, and a high-volume batch CSV analyzer that parses raw backlink exports from Google Search Console, Ahrefs, Moz, and Semrush up to 100 files and 1 GB.",
       },
       {
-        question: "Can I upload backlink exports from Ahrefs, Semrush, or Moz?",
+        question: "Does this tool directly access live third-party backlink crawlers?",
         answer:
-          "Yes. The batch uploader automatically parses standard backlink export formats with column auto-detection for Referring Page URL, Target URL, Anchor Text, and Link Status.",
+          "No. Zoqonyx is a 100% free, private client-side utility that operates without paid third-party crawler API keys. For complete web-wide crawl analysis, export your backlink CSVs from GSC or your preferred SEO provider and upload them for instant processing.",
       },
       {
-        question: "What is the upload limit for backlink CSV files?",
+        question: "When should I use the generated disavow.txt file?",
         answer:
-          "Zoqonyx supports up to 100 files simultaneously with a combined size of up to 1 GB (1024 MB). Processing is streamed efficiently through memory to prevent browser tab crashes.",
+          "Google's search guidelines recommend disavowing links only if you have received an unnatural links manual action from Google, or if you have a significant number of artificial, paid, or spam links that cannot be removed by contacting site owners.",
       },
       {
-        question: "How do I submit the generated disavow.txt to Google?",
+        question: "What is the upload limit for backlink CSV spreadsheets?",
         answer:
-          "Navigate to the official Google Search Console Disavow Links tool (search.google.com/search-console/disavow-links), select your verified domain property, and upload the generated disavow.txt file directly.",
+          "Zoqonyx supports up to 100 CSV files simultaneously with a combined size limit of 1 GB (1,024 MB), processed locally using memory-safe streaming.",
       },
     ],
     deepDiveContent:
@@ -152,14 +152,14 @@ export const TOP_TOOLS_SEO_ARTICLES: Record<string, ToolSeoArticle> = {
     ],
     proTips: [
       "For FAQ schema, make sure every question and answer in your JSON-LD snippet is visibly present on the web page to avoid manual action penalties.",
-      "Always include aggregateRating and offers fields in Product schema to unlock rich star ratings and pricing badges in Google SERPs.",
+      "Only include aggregateRating and offers fields in Product schema if your page visibly features real customer reviews and pricing. Adding fake reviews violates Google Structured Data guidelines.",
       "Embed the generated JSON-LD inside a <script type='application/ld+json'> tag within the <head> section of your HTML template.",
     ],
     faqs: [
       {
         question: "Which Schema.org types are supported?",
         answer:
-          "The generator supports FAQPage, Article, Product (with reviews & offers), LocalBusiness/Organization, HowTo, Recipe, Event, BreadcrumbList, and WebSite.",
+          "The generator supports FAQPage, Article, Product (with optional reviews & offers), LocalBusiness/Organization, HowTo, Recipe, Event, BreadcrumbList, and WebSite.",
       },
       {
         question: "Why does Google recommend JSON-LD over Microdata?",
@@ -169,7 +169,7 @@ export const TOP_TOOLS_SEO_ARTICLES: Record<string, ToolSeoArticle> = {
       {
         question: "Will adding Schema markup guarantee rich snippets in Google?",
         answer:
-          "While structured data makes your page eligible for rich snippets, Google's algorithms decide whether to display them based on user search intent, query relevance, and overall page quality.",
+          "No. Adding structured data makes your page eligible for rich snippets, but Google's ranking algorithms determine whether to display rich results based on user query intent, page quality, and strict adherence to Google Search Essentials.",
       },
       {
         question: "Where should I paste the generated JSON-LD on my website?",
@@ -178,7 +178,7 @@ export const TOP_TOOLS_SEO_ARTICLES: Record<string, ToolSeoArticle> = {
       },
     ],
     deepDiveContent:
-      "Structured data is essential for modern search engine optimization. By implementing Schema.org JSON-LD markup, webmasters translate human-readable page content into unambiguous machine-readable entities that Google, Bing, and AI search engines can index with high precision. This unlocks rich results, higher click-through rates (CTR), and conversational AI search inclusion.",
+      "Structured data is essential for modern search engine optimization. By implementing Schema.org JSON-LD markup, webmasters translate human-readable page content into unambiguous machine-readable entities that Google, Bing, and AI search engines can index with high precision. While structured data establishes technical eligibility for rich snippets, search engines award rich results based on content helpfulness, authority, and accurate reflection of on-page facts.",
   },
   "ai-product-description": {
     slug: "ai-product-description",
@@ -338,17 +338,108 @@ export const TOP_TOOLS_SEO_ARTICLES: Record<string, ToolSeoArticle> = {
     deepDiveContent:
       "Modern B2B buyers receive hundreds of generic cold pitches each week. Cutting through inbox noise requires deep persona relevance, concise communication, and sharp objection handling. The Zoqonyx AI Sales Pitch Generator empowers founders, SDRs, and agency owners to produce complete multi-channel outreach playbooks in seconds, transforming cold prospects into engaged pipeline opportunities.",
   },
+  "image-format-converter": {
+    slug: "image-format-converter",
+    title: "Free Image Format Converter: Convert PNG to WebP, JPG & More | Zoqonyx",
+    metaDesc:
+      "Convert PNG to WebP online, JPG to PNG, WebP to PNG, and PNG to JPG in bulk. Free client-side image converter supporting up to 100 files and 1 GB with instant ZIP download.",
+    workflowHeading: "How to Convert Image Formats in Bulk",
+    howToSteps: [
+      {
+        step: 1,
+        title: "Upload Images for Conversion",
+        instruction:
+          "Drag and drop up to 100 images (up to 1 GB combined capacity) into the workstation dropzone, or click browse to pick PNG, JPG, WebP, AVIF, or BMP files from your device.",
+      },
+      {
+        step: 2,
+        title: "Select Target Output Format",
+        instruction:
+          "Choose your desired output format: WebP for optimal web speed and transparency, PNG for lossless graphic preservation, or JPEG for universal cross-platform compatibility.",
+      },
+      {
+        step: 3,
+        title: "Execute Client-Side Transcoding",
+        instruction:
+          "Click Convert to transcode all images simultaneously using your browser's hardware-accelerated Canvas engine with zero cloud uploads.",
+      },
+      {
+        step: 4,
+        title: "Download Converted Images or ZIP",
+        instruction:
+          "Download individual converted files or click 'Download All' to save the complete batch as a clean ZIP archive with zero watermarks.",
+      },
+    ],
+    keyBenefits: [
+      {
+        title: "Convert PNG to WebP Online for 30%+ Size Savings",
+        desc: "WebP encoding delivers 25% to 35% smaller file sizes compared to PNG while preserving full alpha-channel transparency for website banners and UI graphics.",
+      },
+      {
+        title: "Bulk Batch Transcoding (Up to 100 Files & 1 GB)",
+        desc: "Batch transcode massive folders of photography and assets in one operation without server queuing or waiting in cloud pipelines.",
+      },
+      {
+        title: "100% Client-Side Privacy & Security",
+        desc: "Your files never leave your computer. Transcoding runs locally in browser sandbox memory, ensuring sensitive photos and brand assets are never exposed.",
+      },
+      {
+        title: "Broad Format Interoperability",
+        desc: "Easily handle PNG to WebP, JPG to PNG, WebP to PNG, JPEG to WebP, and BMP to JPG workflows with one simple interface.",
+      },
+    ],
+    proTips: [
+      "When converting transparent PNGs for web use, WebP supports full alpha transparency while substantially reducing payload weight.",
+      "If converting for print or legacy software, convert WebP or PNG images to universal high-quality JPEG.",
+      "Vector SVG files cannot be converted to raster images with this tool; use our dedicated SVG to PNG converter for vector rasterization.",
+    ],
+    faqs: [
+      {
+        question: "How do I convert PNG to WebP online?",
+        answer:
+          "Simply drag and drop your PNG files into the uploader, ensure WebP is selected as the target format, and click Convert. You can download individual WebP files or all files in a single ZIP archive.",
+      },
+      {
+        question: "Does converting PNG to WebP preserve transparency?",
+        answer:
+          "Yes. Modern WebP natively supports 8-bit alpha-channel transparency just like PNG, while yielding significantly smaller file sizes.",
+      },
+      {
+        question: "Can I convert images to JPG in bulk?",
+        answer:
+          "Yes. You can upload up to 100 PNG, WebP, AVIF, or BMP images simultaneously and convert all of them to universal JPEG format in a single click.",
+      },
+      {
+        question: "Why does the tool support WebP, PNG, and JPEG outputs?",
+        answer:
+          "WebP, PNG, and JPEG are the three universal raster formats natively supported for hardware-accelerated encoding in modern web browsers. Vector formats like SVG require separate mathematical parsing.",
+      },
+    ],
+    deepDiveContent: `
+### The Mechanics of Image Format Transcoding
+
+Image formats use distinct compression algorithms and structural containers tailored for specific visual use cases:
+
+1. **PNG (Portable Network Graphics)**: Employs lossless DEFLATE compression and full 8-bit alpha transparency. It is optimal for screenshots, typography, diagrams, and UI assets with sharp contrasting edges, but produces heavy payloads for natural photography.
+2. **WebP (Web Picture Format)**: Developed by Google, WebP provides both lossy and lossless compression with predictive block coding and transparency. Transcoding PNG to WebP typically reduces payload size by 25%–35% while retaining identical visual fidelity.
+3. **JPEG (Joint Photographic Experts Group)**: Utilizes lossy discrete cosine transform (DCT) compression. It is universally supported across every operating system, email client, and print service, making it the standard choice for photo distribution.
+
+### Client-Side Canvas Transcoding vs Server-Side Pipelines
+
+Traditional converter websites upload your graphics to remote cloud servers, incurring network upload latency and privacy vulnerabilities. Zoqonyx decodes source image bitstreams directly into an in-memory HTML5 Canvas element and encodes the pixel buffer into target format blobs using native browser APIs, delivering sub-second execution with absolute privacy.
+`,
+  },
   "image-compressor": {
     slug: "image-compressor",
-    title: "Free Image Compressor Online | Zoqonyx",
+    title: "Free Image Compressor: Compress JPG, PNG & WebP Online | Zoqonyx",
     metaDesc:
-      "Compress JPG, PNG, and WebP images online for free without uploading files to remote servers. Interactive before-and-after slider, target KB compression, and instant download.",
+      "Compress JPG, PNG, and WebP images online for free without uploading files to remote servers. Interactive visual split slider, exact target KB mode, and bulk compression up to 100 files & 1 GB.",
     howToSteps: [
       {
         step: 1,
         title: "Upload Your Image",
         instruction:
-          "Drag and drop any JPEG, PNG, or WebP photo into the upload dropzone, or click browse to pick a file from your device.",
+          "Drag and drop any JPEG, PNG, or WebP photo into the upload dropzone, or click browse to pick a file from your device. Switch to Bulk Batch tab to process up to 100 images.",
       },
       {
         step: 2,
@@ -364,9 +455,9 @@ export const TOP_TOOLS_SEO_ARTICLES: Record<string, ToolSeoArticle> = {
       },
       {
         step: 4,
-        title: "Download Compressed File",
+        title: "Download Compressed File or ZIP",
         instruction:
-          "Review the exact byte savings and percentage reduction, then click Download to instantly save your optimized image with zero watermarks.",
+          "Review byte savings and percentage reduction, then click Download to save your optimized image with zero watermarks.",
       },
     ],
     keyBenefits: [
@@ -379,12 +470,12 @@ export const TOP_TOOLS_SEO_ARTICLES: Record<string, ToolSeoArticle> = {
         desc: "Never guess compression artifacts. Drag the interactive split bar back and forth to inspect fine text, skin textures, and gradients before downloading.",
       },
       {
-        title: "Drastically Improves Google Core Web Vitals (LCP)",
-        desc: "Uncompressed images account for over 65% of web page payload. Reducing image weight by 70–85% immediately improves Largest Contentful Paint (LCP) and SEO rankings.",
+        title: "Optimized for Faster Page Load Times",
+        desc: "Uncompressed images account for the majority of webpage transfer payload. Reducing image weight by 60%–80% accelerates network load times and enhances Core Web Vitals performance.",
       },
       {
-        title: "Zero Artificial Limits or Daily Caps",
-        desc: "Compress as many photos as you want. There are no hourly throttling limits, file count restrictions, or paywalls blocking high-resolution exports.",
+        title: "Dual Mode: Single Precision & 100-File Batch",
+        desc: "Fine-tune individual photos with pixel-level split preview or switch to batch mode to compress up to 100 files (up to 1 GB) simultaneously with one-click ZIP download.",
       },
     ],
     proTips: [
@@ -396,12 +487,12 @@ export const TOP_TOOLS_SEO_ARTICLES: Record<string, ToolSeoArticle> = {
       {
         question: "Does compressing an image hurt its visual quality?",
         answer:
-          "With intelligent lossy algorithms (such as MozJPEG and WebP predictive encoding), imperceptible high-frequency color variations are simplified while edges and textures remain razor sharp. At 80% quality, the human eye cannot detect degradation on retina displays.",
+          "With perceptual lossy algorithms, high-frequency color variations that the human eye is less sensitive to are simplified while edge structures remain sharp. At 75%–85% quality, the visual difference is virtually imperceptible on standard displays.",
       },
       {
         question: "Is there a file size limit on how large an image I can compress?",
         answer:
-          "Because compression runs locally on your computer rather than across a constrained server queue, you can compress large 20MB+ DSLR camera photos smoothly as long as your browser has sufficient memory.",
+          "Single-image mode processes high-resolution photos smoothly up to your device memory limits. In batch mode, Zoqonyx supports up to 100 files and 1 GB combined capacity.",
       },
       {
         question: "Are my uploaded photos stored on Zoqonyx servers?",
@@ -415,19 +506,13 @@ export const TOP_TOOLS_SEO_ARTICLES: Record<string, ToolSeoArticle> = {
       },
     ],
     deepDiveContent: `
-### The Science of Lossy vs Lossless Image Compression
+### Client-Side Perceptual Image Compression
 
-Digital images consist of multidimensional matrices containing millions of pixel coordinates, each assigned 8-bit or 16-bit color depth values across Red, Green, Blue, and Alpha channels. In raw formats, this results in bloated file payloads that dramatically degrade web performance, consume mobile cellular bandwidth, and trigger Google Core Web Vitals ranking penalties.
+Digital images consist of pixel matrices with red, green, blue, and alpha channel values. In uncompressed form, high-resolution photographs can easily exceed 10 MB, causing high bandwidth usage and slow page rendering.
 
-Lossless compression algorithms (such as DEFLATE in PNG) locate repetitive data sequences and store them symbolically. While preserving 100% of the original binary bitstream, lossless reduction is mathematically capped at roughly 10%–20% size savings for natural photographs.
-
-In contrast, intelligent perceptual lossy compression leverages the human visual system's physiological limitations (psychovisual redundancy). The human eye is substantially more sensitive to variations in luminance (brightness) than to fine nuances in chrominance (color frequency). By performing discrete cosine transformations (DCT) and quantizing chrominance matrices, Zoqonyx strips redundant high-frequency spectral data that human vision cannot distinguish, yielding dramatic 70% to 90% reductions in file weight without perceptible blurriness.
-
-### Why Core Web Vitals (LCP) Depend on Image Weight
-
-Google's search indexing algorithms treat Largest Contentful Paint (LCP) as a core organic ranking signal. On modern content and e-commerce websites, the LCP element is almost universally a featured hero image, banner graphic, or product photograph. 
-
-When a visitor requests a web page with unoptimized 3MB imagery, the browser's main rendering thread is blocked awaiting TCP packets. This delays DOM painting, inflates bounce rates past 40%, and demotes the URL in search rankings. Compressing that graphic to under 300KB cuts download latency from multiple seconds to sub-100 milliseconds, boosting page speed, user conversions, and SERP visibility.
+1. **Quantization & Chroma Subsampling**: Browser-native canvas encoders perform discrete cosine transform (DCT) and quantize color components. Because the human eye is less sensitive to fine chrominance variations than luminance changes, lossy compression achieves 60% to 85% byte savings with minimal perceptible loss.
+2. **Target File Size Optimization**: Zoqonyx employs a fast binary search algorithm in browser memory to find the exact quality setting that achieves your specified target size in KB within ±5%.
+3. **Memory Safety in Batch Processing**: In batch mode, images are loaded, compressed, and written to a JSZip stream sequentially with explicit URL revocation to avoid browser tab crashes even when processing 100 high-resolution images.
 `,
   },
 
@@ -1436,57 +1521,57 @@ Zoqonyx synthesizes these standards into intuitive, client-side generators, elim
 `
   },
 
-  calculator: {
-    workflowHeading: (name) => `Calculation Guide: ${name}`,
+  financialCalculator: {
+    workflowHeading: (name) => `Financial Calculation Guide: ${name}`,
     howToSteps: (name, desc) => [
       {
         step: 1,
-        title: "Input Numerical Values",
-        instruction: "Enter your principal amount, interest rate, dates, dimensions, or measurement values into the input fields."
+        title: "Input Financial Parameters",
+        instruction: "Enter your principal amount, interest rate, loan tenure, discount rate, or tax percentage into the designated inputs."
       },
       {
         step: 2,
-        title: "Select Calculation Parameters",
-        instruction: "Toggle compounding frequency, payment periods, or measurement units according to your scenario."
+        title: "Select Compounding & Term Options",
+        instruction: "Toggle compounding frequency, payment periods, or measurement units according to your specific scenario."
       },
       {
         step: 3,
         title: "Review Instant Reactive Calculations",
-        instruction: "The engine recalculates results in real time with high mathematical precision, updating totals and breakdowns instantaneously."
+        instruction: "The engine recalculates results in real time with double-precision accuracy, updating totals, interest, and monthly installments dynamically."
       },
       {
         step: 4,
-        title: "Export or Copy Results",
-        instruction: "Review the comprehensive amortization schedule, percentage breakdown, or formatted invoice and copy or download the summary."
+        title: "Copy or Download Financial Summary",
+        instruction: "Review the full amortization schedule, percentage breakdown, or itemized invoice, and copy or save the results."
       }
     ],
     keyBenefits: (name) => [
       {
-        title: "High-Precision Mathematical Formulas",
-        desc: "Engineered with high floating-point precision to eliminate rounding errors in compounding interest, amortization schedules, and unit conversions."
+        title: "Institutional-Grade Banking Formulas",
+        desc: "Engineered with standard amortization and compounding algorithms to eliminate cumulative rounding errors."
       },
       {
         title: "Instant Keystroke Recalculation",
-        desc: "Bypass slow page reloads. Values recompute instantaneously as you type for frictionless financial planning."
+        desc: "Values recompute instantaneously as you type, eliminating slow server round-trips for frictionless financial planning."
       },
       {
         title: "100% Private Financial Modeling",
-        desc: "Your personal financial figures, salary numbers, loans, and health metrics are calculated locally in your browser memory and never uploaded to cloud servers."
+        desc: "Your personal financial figures, salary numbers, loan amounts, and tax figures are processed strictly inside your local browser memory."
       },
       {
-        title: "Comprehensive Visual Breakdowns",
+        title: "Comprehensive Amortization & Breakdown",
         desc: "Inspect clear visual summaries including total interest paid, principal amortization tables, and unit breakdown cards."
       }
     ],
     proTips: (name) => [
       "When comparing loans, evaluate total interest paid over the life of the loan in addition to the monthly EMI payment.",
-      "Use compound interest calculations to visualize the dramatic long-term exponential growth of early retirement investments.",
-      "Bookmark this calculator on your mobile device for quick real-time estimations while shopping, budgeting, or dining out."
+      "Use compound interest calculations to visualize the exponential growth of early retirement and index fund investments.",
+      "Bookmark this calculator on your mobile device for quick real-time estimations while shopping, budgeting, or negotiating loans."
     ],
     faqs: (name) => [
       {
-        question: `How accurate are the calculations produced by ${name}?`,
-        answer: "Our calculations use standard mathematical and banking formulas accepted globally by financial institutions. While results provide high-precision estimates for planning, always consult with your lending institution for final contract figures."
+        question: `How accurate are the financial calculations produced by ${name}?`,
+        answer: "Our calculations use standard mathematical and banking formulas accepted globally by lending institutions. While results provide high-precision estimates for planning, always consult with your lending provider for contractual terms."
       },
       {
         question: `Are my entered financial figures or personal numbers saved?`,
@@ -1497,20 +1582,249 @@ Zoqonyx synthesizes these standards into intuitive, client-side generators, elim
         answer: "Yes. You can copy the generated calculation figures or use your browser's print dialog (Ctrl+P / Cmd+P) to save the summary directly as a PDF."
       },
       {
-        question: `Does this calculator support international currencies and units?`,
-        answer: "Yes. All calculators are designed to work seamlessly with any currency symbol and standard metric/imperial measurement systems."
+        question: `Does this calculator support international currencies?`,
+        answer: "Yes. The calculator works seamlessly with any currency symbol (USD, EUR, GBP, INR, PKR, etc.) and arbitrary decimal increments."
       }
     ],
     deepDive: (name, desc) => `
-### Financial Mathematics & Algorithmic Computation
+### Financial Mathematics & Amortization Mechanics
 
 Accurate financial modeling requires precise mathematical formulas to prevent cumulative rounding discrepancies. For example, Equated Monthly Installment (EMI) calculations are governed by the standard amortization formula:
 
 $$E = P \\cdot \\frac{r(1+r)^n}{(1+r)^n - 1}$$
 
-Where P is the principal loan amount, r is the monthly interest rate, and n is the total number of monthly payments. In high-tenure mortgages (such as 30-year terms), even minute rounding errors in monthly interest can cascade into significant variances.
+Where $P$ is the principal loan amount, $r$ is the periodic interest rate, and $n$ is the total number of monthly payments. In high-tenure mortgages (such as 30-year terms), even minute rounding errors in monthly interest can cascade into significant variances.
 
 Zoqonyx calculates amortization schedules, compound interest growth curves, and geometric ratios client-side with full double-precision floating-point accuracy, delivering institutional-grade computations directly in your browser.
+`
+  },
+
+  healthCalculator: {
+    workflowHeading: (name) => `Health & Wellness Guide: ${name}`,
+    howToSteps: (name, desc) => [
+      {
+        step: 1,
+        title: "Select Unit System (Metric or Imperial)",
+        instruction: "Toggle between Metric (centimeters & kilograms) or Imperial (feet, inches & pounds) according to your preference."
+      },
+      {
+        step: 2,
+        title: "Input Height and Weight Values",
+        instruction: "Enter your accurate height and body weight into the respective input fields for real-time evaluation."
+      },
+      {
+        step: 3,
+        title: "Review WHO Weight Category Evaluation",
+        instruction: "The calculator instantly computes your Body Mass Index (BMI) score and displays your classification according to World Health Organization criteria."
+      },
+      {
+        step: 4,
+        title: "Inspect Healthy Weight Range Targets",
+        instruction: "Review the recommended healthy weight range for your height to set realistic wellness, fitness, or nutritional goals."
+      }
+    ],
+    keyBenefits: (name) => [
+      {
+        title: "Official WHO Adult Classification Standards",
+        desc: "Classifies scores against World Health Organization clinical thresholds: Underweight (<18.5), Normal (18.5–24.9), Overweight (25–29.9), and Obese (≥30)."
+      },
+      {
+        title: "Instant Dual Unit Conversion",
+        desc: "Seamlessly switch between Metric (cm/kg) and Imperial (ft/in/lbs) without losing your entered data."
+      },
+      {
+        title: "100% Private Health Metrics",
+        desc: "Your personal biometric data, weight, and health measurements never leave your computer and are never shared or stored."
+      },
+      {
+        title: "Recommended Weight Range Insights",
+        desc: "Calculates the exact healthy weight boundaries for your height to assist in fitness planning and doctor consultations."
+      }
+    ],
+    proTips: (name) => [
+      "BMI is an epidemiological screening metric, not a direct measurement of body fat percentage or muscular composition.",
+      "Athletes and bodybuilders with high muscle mass may register an 'overweight' BMI despite having healthy low body fat.",
+      "Pair your BMI assessment with waist-to-hip ratio and cardiovascular fitness metrics for a comprehensive health picture."
+    ],
+    faqs: (name) => [
+      {
+        question: "How is Body Mass Index (BMI) calculated?",
+        answer: "BMI is calculated by dividing weight in kilograms by the square of height in meters: BMI = kg / (m)². In imperial units, the formula is: BMI = (weight in lbs × 703) / (height in inches)²."
+      },
+      {
+        question: "What is considered a normal BMI score?",
+        answer: "According to the World Health Organization (WHO), a BMI between 18.5 and 24.9 represents normal, healthy weight for adults."
+      },
+      {
+        question: "Why can BMI be misleading for athletes?",
+        answer: "Because muscle tissue is significantly denser than adipose fat tissue, athletic individuals with substantial muscle mass can register an elevated BMI while maintaining optimal metabolic health."
+      },
+      {
+        question: "Is my personal health data saved on Zoqonyx?",
+        answer: "Never. All health calculations occur locally within your browser sandbox. No biometric figures are logged, transmitted, or stored on remote servers."
+      }
+    ],
+    deepDive: (name, desc) => `
+### Anthropometric Mathematics & Clinical BMI Principles
+
+Body Mass Index (BMI), originally devised by Belgian mathematician Adolphe Quetelet in the 19th century, remains the international standard screening tool utilized by the World Health Organization (WHO) and healthcare providers worldwide.
+
+The formula normalizes body weight across varying heights:
+
+$$\\text{BMI} = \\frac{\\text{weight (kg)}}{[\\text{height (m)}]^2}$$
+
+#### WHO Weight Classification Categories:
+- **Underweight**: BMI < 18.5
+- **Normal weight**: BMI 18.5 – 24.9
+- **Overweight**: BMI 25.0 – 29.9
+- **Obesity Class I**: BMI 30.0 – 34.9
+- **Obesity Class II**: BMI 35.0 – 39.9
+- **Obesity Class III**: BMI ≥ 40.0
+
+While BMI is an effective statistical benchmark for population health and cardiovascular risk assessment, clinical evaluations should also consider visceral adiposity, waist circumference, and metabolic biomarkers.
+`
+  },
+
+  dateTimeCalculator: {
+    workflowHeading: (name) => `Chronological Guide: ${name}`,
+    howToSteps: (name, desc) => [
+      {
+        step: 1,
+        title: "Select Start Date or Birthdate",
+        instruction: "Pick your reference starting date from the calendar picker or enter day, month, and year."
+      },
+      {
+        step: 2,
+        title: "Choose Target Comparison Date",
+        instruction: "Select today's date for current age, or pick any past or future date for historical or projected interval calculation."
+      },
+      {
+        step: 3,
+        title: "Review Exact Chronological Breakdown",
+        instruction: "View the exact elapsed time broken down into years, months, weeks, days, hours, and seconds with leap year precision."
+      },
+      {
+        step: 4,
+        title: "Check Milestone & Countdown Information",
+        instruction: "Inspect the upcoming birthday countdown, total days lived, and weekday of birth summary."
+      }
+    ],
+    keyBenefits: (name) => [
+      {
+        title: "Astronomical & Gregorian Calendar Accuracy",
+        desc: "Accounts accurately for varying calendar month lengths (28, 29, 30, and 31 days) and quadrennial leap years."
+      },
+      {
+        title: "Multi-Unit Time Decomposition",
+        desc: "Displays age and durations simultaneously across years, total months, total weeks, days, hours, and minutes."
+      },
+      {
+        title: "Upcoming Milestone Countdown",
+        desc: "Calculates the exact number of months and days remaining until your next birthday or target anniversary."
+      },
+      {
+        title: "Zero Personal Date Tracking",
+        desc: "Your birthdates, milestones, and personal dates are never transmitted to external servers or logged in databases."
+      }
+    ],
+    proTips: (name) => [
+      "Use the 'total days lived' metric when verifying statutory deadlines, legal notice periods, or visa eligibility requirements.",
+      "When planning retirement or financial milestones, compute exact age intervals against target vesting dates.",
+      "The calculator accurately accounts for leap day births (February 29th) across standard non-leap years."
+    ],
+    faqs: (name) => [
+      {
+        question: "How does the calculator handle leap years?",
+        answer: "The algorithm utilizes full Gregorian calendar arithmetic, correctly accounting for 366-day leap years occurring every 4 years (except century years not divisible by 400)."
+      },
+      {
+        question: "Can I calculate age as of a specific date in the future?",
+        answer: "Yes. You can adjust the end date to any past or future point in time to calculate milestone ages, retirement dates, or historical anniversaries."
+      },
+      {
+        question: "Are my entered birthdates stored on your servers?",
+        answer: "No. All date calculations run purely in your device's browser memory. Your personal dates and family milestones remain strictly private."
+      }
+    ],
+    deepDive: (name, desc) => `
+### Chronological Arithmetic & Astronomical Time Standards
+
+Calculating elapsed time across astronomical calendars presents unique mathematical complexities due to irregularities in the Gregorian calendar:
+
+1. **Non-Uniform Month Lengths**: Calendar months range from 28 to 31 days. Simple division by 30 or 365.25 introduces cumulative rounding drift.
+2. **Intercalation & Leap Days**: A solar year is approximately 365.2422 days. The Gregorian reform compensates by adding February 29th in years divisible by 4, except for end-of-century years unless divisible by 400.
+
+Zoqonyx evaluates chronological intervals day-by-day across Gregorian month boundaries, yielding exact integer distributions of years, elapsed months, and residual days without fractional approximation errors.
+`
+  },
+
+  mathCalculator: {
+    workflowHeading: (name) => `Calculation Guide: ${name}`,
+    howToSteps: (name, desc) => [
+      {
+        step: 1,
+        title: "Enter Input Numerical Values",
+        instruction: "Input your starting numbers, percentages, grades, dimensions, or fuel metrics into the designated fields."
+      },
+      {
+        step: 2,
+        title: "Select Operational Modes & Units",
+        instruction: "Toggle calculation modes, unit systems, or rounding precision based on your specific requirements."
+      },
+      {
+        step: 3,
+        title: "Inspect Reactive Results",
+        instruction: "The engine recalculates results dynamically as you type, updating step-by-step mathematical breakdowns in real time."
+      },
+      {
+        step: 4,
+        title: "Copy or Share Calculation Summary",
+        instruction: "Review the calculated outputs, ratio visualizations, or percentage differences and copy the result with one click."
+      }
+    ],
+    keyBenefits: (name) => [
+      {
+        title: "Double-Precision Floating Point Engine",
+        desc: "Computes values using IEEE 754 64-bit floating point arithmetic to eliminate truncation errors."
+      },
+      {
+        title: "Instant Keystroke Recalculation",
+        desc: "Values update dynamically with every keystroke without waiting for slow server roundtrips."
+      },
+      {
+        title: "100% Private Client-Side Calculation",
+        desc: "Your data, grades, financial values, and numbers are processed entirely in browser memory."
+      },
+      {
+        title: "Comprehensive Step-by-Step Breakdown",
+        desc: "Provides clear formula explanations alongside final outputs to assist in verification and learning."
+      }
+    ],
+    proTips: (name) => [
+      "Use percentage difference calculations to evaluate inflation adjustments, price changes, and year-over-year metrics.",
+      "When computing aspect ratios for video or web graphics, lock proportions to prevent distortion on retina displays.",
+      "Bookmark this tool for quick real-time estimations during study, design work, or financial planning."
+    ],
+    faqs: (name) => [
+      {
+        question: `How does ${name} compute results?`,
+        answer: "The tool executes standard mathematical algorithms in your local browser sandbox, displaying both the final calculated output and the underlying formula."
+      },
+      {
+        question: `Are my numbers or calculations saved on Zoqonyx?`,
+        answer: "No. All computations occur within client-side JavaScript memory. No data is logged, transmitted, or stored on remote web servers."
+      },
+      {
+        question: `Does the calculator support decimal and negative inputs?`,
+        answer: "Yes. The computation engine handles standard real numbers including positive, negative, and high-precision fractional decimals."
+      }
+    ],
+    deepDive: (name, desc) => `
+### Computational Mathematics & Numerical Precision
+
+Digital calculations require rigorous numerical safeguards against IEEE 754 floating-point rounding quirks (e.g., \`0.1 + 0.2 = 0.30000000000000004\`).
+
+Zoqonyx employs calibrated epsilon scaling and rational arithmetic routines to ensure that percentage increments, ratios, and algebraic conversions resolve with clean decimal precision suitable for engineering, academic, and business applications.
 `
   },
 
@@ -1525,7 +1839,7 @@ Zoqonyx calculates amortization schedules, compound interest growth curves, and 
       {
         step: 2,
         title: "Configure Processing Parameters",
-        instruction: "Adjust dimensions, compression quality, crop aspect ratios, or color settings with live visual feedback."
+        instruction: "Select target formats, quality sliders, or tool parameters according to your specific task."
       },
       {
         step: 3,
@@ -1548,11 +1862,11 @@ Zoqonyx calculates amortization schedules, compound interest growth curves, and 
         desc: "Inspect pixel clarity, texture retention, and compression quality side-by-side before exporting."
       },
       {
-        title: "Optimized for Google Core Web Vitals (LCP)",
-        desc: "Cutting image payload size by 60%–80% dramatically improves Largest Contentful Paint (LCP) and organic search rankings."
+        title: "Optimized for Faster Web Performance",
+        desc: "Reducing graphic payload size accelerates page loading and improves Core Web Vitals metrics."
       },
       {
-        title: "No Artificial Paywalls or File Limits",
+        title: "No Artificial Paywalls or Daily Caps",
         desc: "Process high-resolution camera photos without daily export caps, subscriptions, or watermarks."
       }
     ],
@@ -1572,7 +1886,7 @@ Zoqonyx calculates amortization schedules, compound interest growth curves, and 
       },
       {
         question: `What image formats are supported?`,
-        answer: "The utility natively supports standard formats including JPEG, PNG, WebP, AVIF, and SVG."
+        answer: "The utility natively supports standard web raster formats including JPEG, PNG, WebP, and AVIF."
       },
       {
         question: `Does processing reduce the visual quality of my images?`,
@@ -1584,7 +1898,7 @@ Zoqonyx calculates amortization schedules, compound interest growth curves, and 
 
 Digital photographs consist of multidimensional matrices containing millions of pixel coordinates, each assigned 8-bit or 16-bit color depth values across Red, Green, Blue, and Alpha channels. In raw formats, this results in bloated file payloads that degrade web performance and mobile bandwidth.
 
-Perceptual optimization algorithms leverage the human visual system's physiological characteristics. The human eye is significantly more sensitive to variations in luminance (brightness) than to subtle variations in chrominance (color frequency). By quantizing high-frequency spectral components, Zoqonyx achieves 60% to 85% reductions in file weight without perceptible visual degradation.
+Perceptual optimization algorithms leverage the human visual system's physiological characteristics. The human eye is significantly more sensitive to variations in luminance (brightness) than to subtle variations in chrominance (color frequency). By quantizing high-frequency spectral components, Zoqonyx achieves substantial reductions in file weight without perceptible visual degradation.
 
 Zoqonyx executes all image manipulation client-side using hardware-accelerated HTML5 Canvas, WebGL, and modern WebAssembly routines, delivering instant exports without third-party server exposure.
 `
@@ -1607,7 +1921,15 @@ export function getToolSeoContent(
 
   let profile: CategoryProfile = CATEGORY_PROFILES.developer;
 
-  if (c.includes("pdf") || s.includes("pdf")) {
+  if (s.includes("bmi")) {
+    profile = CATEGORY_PROFILES.healthCalculator;
+  } else if (s.includes("age") || s.includes("time") || s.includes("duration") || s.includes("date") || s.includes("timestamp")) {
+    profile = CATEGORY_PROFILES.dateTimeCalculator;
+  } else if (s.includes("emi") || s.includes("interest") || s.includes("tax") || s.includes("tip") || s.includes("discount") || s.includes("invoice") || s.includes("loan")) {
+    profile = CATEGORY_PROFILES.financialCalculator;
+  } else if (c.includes("calc") || s.includes("calc") || s.includes("percentage") || s.includes("gpa") || s.includes("aspect-ratio") || s.includes("fuel")) {
+    profile = CATEGORY_PROFILES.mathCalculator;
+  } else if (c.includes("pdf") || s.includes("pdf")) {
     profile = CATEGORY_PROFILES.pdf;
   } else if (c.includes("image") || s.includes("image") || s.includes("photo") || s.includes("watermark") || s.includes("exif")) {
     profile = CATEGORY_PROFILES.image;
@@ -1615,8 +1937,6 @@ export function getToolSeoContent(
     profile = CATEGORY_PROFILES.css;
   } else if (c.includes("text") || s.includes("case") || s.includes("word") || s.includes("char") || s.includes("text") || s.includes("speech") || s.includes("lorem")) {
     profile = CATEGORY_PROFILES.text;
-  } else if (c.includes("calc") || s.includes("calc") || s.includes("emi") || s.includes("bmi") || s.includes("tip") || s.includes("discount") || s.includes("percentage") || s.includes("interest") || s.includes("tax") || s.includes("invoice")) {
-    profile = CATEGORY_PROFILES.calculator;
   } else if (c.includes("seo") || s.includes("seo") || s.includes("meta") || s.includes("sitemap") || s.includes("robots") || s.includes("utm") || s.includes("og") || s.includes("canonical")) {
     profile = CATEGORY_PROFILES.seo;
   }

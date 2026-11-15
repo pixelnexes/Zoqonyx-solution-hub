@@ -290,14 +290,14 @@ ${formatVariantText(v)}`
     <div className="w-full max-w-5xl mx-auto space-y-8">
       {/* Header */}
       <div className="text-center space-y-2">
-        <div className="inline-flex items-center gap-2 px-3 py-1 bg-amber-500/10 text-amber-600 dark:text-amber-400 rounded-full text-xs font-semibold uppercase tracking-wider">
-          <Sparkles className="w-3.5 h-3.5" /> High-Converting Copywriting Studio
+        <div className="inline-flex items-center gap-2 px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-xs font-semibold uppercase tracking-wider border border-blue-200">
+          <Sparkles className="w-3.5 h-3.5 text-blue-600" /> Client-Side Copywriting Studio
         </div>
-        <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-          AI Product Description Generator
-        </h1>
-        <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
-          Generate irresistible, SEO-optimized product descriptions for Shopify, Amazon, social media ads, and Google search snippets in seconds.
+        <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+          Product Description Generator for Shopify & Amazon
+        </h2>
+        <p className="text-xs sm:text-sm text-slate-600 max-w-2xl mx-auto">
+          Client-side algorithmic copy generator. Craft targeted product copy for Shopify, Amazon 5-point bullets, social ad scripts, and Google search snippets with 100% privacy and zero subscription fees.
         </p>
       </div>
 

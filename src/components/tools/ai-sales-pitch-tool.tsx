@@ -243,14 +243,14 @@ ${pitch.followUp.day14Breakup}
     <div className="w-full max-w-5xl mx-auto space-y-8">
       {/* Header */}
       <div className="text-center space-y-2">
-        <div className="inline-flex items-center gap-2 px-3 py-1 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 rounded-full text-xs font-semibold uppercase tracking-wider">
-          <Sparkles className="w-3.5 h-3.5" /> High-Conversion Sales Playbook Studio
+        <div className="inline-flex items-center gap-2 px-3 py-1 bg-emerald-50 text-emerald-700 rounded-full text-xs font-semibold uppercase tracking-wider border border-emerald-200">
+          <Sparkles className="w-3.5 h-3.5 text-emerald-600" /> Client-Side B2B Sales Studio
         </div>
-        <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-          AI Sales Pitch & Cold Outreach Generator
-        </h1>
-        <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
-          Generate complete B2B sales playbooks: cold emails, 30-second elevator pitches, LinkedIn messages, cold call phone scripts, and objection handlers in seconds.
+        <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+          Sales Pitch & Cold Outreach Playbook Generator
+        </h2>
+        <p className="text-xs sm:text-sm text-slate-600 max-w-2xl mx-auto">
+          Client-side algorithmic B2B sales playbook generator. Generate multi-framework cold emails, 30s elevator pitches, LinkedIn InMails, cold call scripts, and objection matrices with 100% data privacy.
         </p>
       </div>
 

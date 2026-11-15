@@ -492,7 +492,16 @@ export function BacklinkCheckerTool() {
         </button>
       </div>
 
-      {/* Mode 1: Domain Audit Form */}
+      {/* Data Transparency Banner */}
+      <div className="p-3.5 rounded-lg bg-blue-50/70 border border-blue-200/80 text-xs text-blue-900 flex items-start gap-2.5 leading-relaxed">
+        <ShieldCheck className="w-4 h-4 text-blue-600 shrink-0 mt-0.5" />
+        <div>
+          <p className="font-semibold text-blue-950">Data Source & Audit Scope Transparency</p>
+          <p className="text-[11.5px] text-blue-800/90 mt-0.5">
+            This tool performs client-side heuristic link profile analysis and high-volume batch CSV audits (up to 100 files & 1 GB). Metrics are heuristic estimates calculated locally in your browser without querying paid external web crawling APIs. For 100% verified competitor crawl coverage, export raw CSV reports from Google Search Console, Ahrefs, Moz, or Semrush and upload them via the CSV tab.
+          </p>
+        </div>
+      </div>
       {activeTab === "domain" ? (
         <div className="p-4 sm:p-5 rounded-xl border border-border bg-card space-y-4 shadow-xs">
           <div className="space-y-1.5">
@@ -571,16 +580,16 @@ export function BacklinkCheckerTool() {
       {metrics && (
         <div className="space-y-6">
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3.5">
-            {/* Metric 1: Estimated DR */}
+            {/* Metric 1: Authority Estimate */}
             <div className="p-3.5 rounded-xl border border-slate-200 bg-white shadow-xs space-y-1">
               <span className="text-[10px] uppercase font-mono font-bold tracking-wider text-slate-500">
-                Domain Rating (DR)
+                Authority Index (Heuristic)
               </span>
               <div className="flex items-baseline gap-2">
                 <span className="text-2xl font-black text-slate-900 font-mono">{metrics.estimatedDR}</span>
                 <span className="text-[11px] text-slate-500">/ 100</span>
               </div>
-              <p className="text-[10px] text-slate-500">Estimated link popularity authority</p>
+              <p className="text-[10px] text-slate-500">Heuristic profile estimate; not official Ahrefs DR</p>
             </div>
 
             {/* Metric 2: Referring Domains */}
@@ -605,13 +614,13 @@ export function BacklinkCheckerTool() {
                 <span className="text-2xl font-black text-teal-700 font-mono">{metrics.dofollowPercent}%</span>
                 <span className="text-[11px] text-slate-500">({metrics.nofollowPercent}% nofollow)</span>
               </div>
-              <p className="text-[10px] text-slate-500">High search authority pass-through</p>
+              <p className="text-[10px] text-slate-500">Search authority pass-through ratio</p>
             </div>
 
-            {/* Metric 4: Toxic Link Risk */}
+            {/* Metric 4: Spam Signal Indicator */}
             <div className="p-3.5 rounded-xl border border-slate-200 bg-white shadow-xs space-y-1">
               <span className="text-[10px] uppercase font-mono font-bold tracking-wider text-slate-500">
-                Toxic Risk Score
+                Spam Signal Indicator
               </span>
               <div className="flex items-baseline gap-2">
                 <span
@@ -623,7 +632,7 @@ export function BacklinkCheckerTool() {
                 </span>
                 <span className="text-[11px] text-slate-500">({metrics.toxicLinksCount} flagged)</span>
               </div>
-              <p className="text-[10px] text-slate-500">Spam / non-standard TLD footprint</p>
+              <p className="text-[10px] text-slate-500">Spam TLD and over-optimized pattern signals</p>
             </div>
           </div>
 
@@ -667,7 +676,7 @@ export function BacklinkCheckerTool() {
                   </span>
                 </div>
                 <p className="text-xs text-muted-foreground leading-relaxed">
-                  Toxic backlinks from spam TLDs or manipulative commercial anchors can trigger Google algorithmic penalties. Generate a formatted Google Disavow file to submit in Search Console.
+                  Flagged links represent suspicious spam TLDs (.xyz, .top, .buzz) or over-optimized anchor clusters. <strong>Caution:</strong> Google officially advises using the Disavow Tool only if your site has received an unnatural links manual action or has engaged in paid link campaigns that cannot be removed.
                 </p>
               </div>
 

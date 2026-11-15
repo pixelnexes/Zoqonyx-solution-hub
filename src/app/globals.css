@@ -4,35 +4,35 @@
 
 @layer base {
   :root {
-    --background: 210 20% 97.5%; /* #F8FAFC - High-contrast technical backdrop */
-    --foreground: 222 47% 11%; /* #0F172A Deep Charcoal text */
+    --background: 210 20% 98%; /* #F8FAFC - Clean main technical background */
+    --foreground: 222 47% 11%; /* #111827 - Deep Navy primary text & headings */
 
-    --card: 0 0% 100%; /* #FFFFFF pure crisp white cards */
+    --card: 0 0% 100%; /* #FFFFFF - Pure crisp white card surfaces */
     --card-foreground: 222 47% 11%;
 
     --popover: 0 0% 100%;
     --popover-foreground: 222 47% 11%;
 
-    --primary: 173 80% 36%; /* Teal #0D9488 */
+    --primary: 221.2 83.2% 53.3%; /* #2563EB - Primary Blue */
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 214 32% 95%; /* #F1F5F9 */
+    --secondary: 210 40% 96.1%; /* #F1F5F9 - Subtle secondary surface */
     --secondary-foreground: 222 47% 11%;
 
-    --muted: 210 25% 96%; /* #F1F5F9 */
-    --muted-foreground: 215 16% 40%; /* #475569 high-contrast readable text */
+    --muted: 210 40% 96.1%; /* #F1F5F9 */
+    --muted-foreground: 215 16% 47%; /* #64748B - Secondary text with high readability */
 
-    --accent: 173 80% 36%; /* Electric Teal #0D9488 */
+    --accent: 173 80% 36%; /* #0D9488 - Teal Accent */
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 214.3 31.8% 91.4%; /* #E2E8F0 */
+    --border: 214.3 31.8% 91.4%; /* #E2E8F0 - Subtle clean borders */
     --input: 214.3 31.8% 91.4%;
-    --ring: 173 80% 36%;
+    --ring: 221.2 83.2% 53.3%; /* Focus ring matches primary blue */
 
-    --radius: 0.5rem; /* 8px max - precision Linear/Vercel styling */
+    --radius: 0.5rem; /* 8px precision rounding */
   }
 }
 
@@ -41,20 +41,20 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground antialiased selection:bg-teal-500/20 selection:text-teal-300;
+    @apply bg-background text-foreground antialiased selection:bg-blue-500/20 selection:text-blue-900;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   }
 }
 
-/* Custom Signature Gradients - Linear/Vercel Technical Style */
+/* Professional Accent Gradients - Restrained & Clean */
 .brand-gradient-text {
-  background: linear-gradient(135deg, #14B8A6 0%, #2DD4BF 50%, #38BDF8 100%);
+  background: linear-gradient(135deg, #111827 0%, #2563EB 50%, #0D9488 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .brand-gradient-bg {
-  background: linear-gradient(135deg, #14B8A6 0%, #0F766E 100%);
+  background: linear-gradient(135deg, #2563EB 0%, #0D9488 100%);
 }
 
 .brand-gradient-border {
@@ -66,7 +66,7 @@
   inset: -1px;
   border-radius: inherit;
   padding: 1px;
-  background: linear-gradient(135deg, #14B8A6 0%, #0F766E 100%);
+  background: linear-gradient(135deg, #2563EB 0%, #0D9488 100%);
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;

@@ -109,6 +109,37 @@ export function ImageFormatConverterTool() {
 
   return (
     <div className="space-y-6">
+      {/* Quick Search Intent Presets */}
+      <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200/90 space-y-2">
+        <span className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider font-mono">
+          Popular Conversion Tasks
+        </span>
+        <div className="flex flex-wrap gap-1.5">
+          {[
+            { label: "PNG to WebP", format: "image/webp" as const },
+            { label: "Convert PNG to WebP Online", format: "image/webp" as const },
+            { label: "JPG to PNG", format: "image/png" as const },
+            { label: "WebP to PNG", format: "image/png" as const },
+            { label: "PNG to JPG", format: "image/jpeg" as const },
+            { label: "JPEG to WebP", format: "image/webp" as const },
+            { label: "Convert Image to JPG", format: "image/jpeg" as const },
+          ].map((preset) => (
+            <button
+              key={preset.label}
+              type="button"
+              onClick={() => setTargetFormat(preset.format)}
+              className={`px-2.5 py-1 text-xs rounded-md font-medium transition-colors border ${
+                targetFormat === preset.format
+                  ? "bg-teal-600 text-white border-teal-600 shadow-xs"
+                  : "bg-white text-slate-700 border-slate-200 hover:border-slate-300 hover:bg-slate-50"
+              }`}
+            >
+              {preset.label}
+            </button>
+          ))}
+        </div>
+      </div>
+
       <StandardFileUploader
         files={files}
         onFilesChange={(newFiles) => {
@@ -120,7 +151,7 @@ export function ImageFormatConverterTool() {
         maxCombinedSizeBytes={MAX_COMBINED_SIZE_BYTES}
         acceptedExtensions={[".png", ".jpg", ".jpeg", ".webp", ".avif", ".bmp"]}
         title="Drop up to 100 images to convert format"
-        subtitle={`Up to 100 images, 1 GB combined capacity. Convert seamlessly to WebP, PNG, or JPEG.`}
+        subtitle={`Supports PNG, JPG, WebP, AVIF, and BMP input files. Exports to modern WebP, lossless PNG, or universal JPEG.`}
         disabled={isProcessing}
       />
 
@@ -133,7 +164,7 @@ export function ImageFormatConverterTool() {
                 value={targetFormat}
                 onChange={(e) => setTargetFormat(e.target.value as any)}
                 disabled={isProcessing}
-                className="block w-52 h-10 px-3 rounded-lg border border-border bg-background text-sm font-medium"
+                className="block w-56 h-10 px-3 rounded-lg border border-border bg-background text-sm font-medium"
               >
                 <option value="image/webp">WebP (Modern, Small, Web-Ready)</option>
                 <option value="image/png">PNG (Lossless & Transparency)</option>

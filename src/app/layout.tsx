@@ -1,20 +1,15 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Poppins } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { getSiteSettings } from "@/lib/settings";
 import { SiteSettingsProvider } from "@/components/providers/site-settings-provider";
 
-const geistSans = Geist({
+const poppins = Poppins({
   subsets: ["latin"],
-  variable: "--font-sans",
-  display: "swap",
-});
-
-const geistMono = Geist_Mono({
-  subsets: ["latin"],
-  variable: "--font-mono",
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-poppins",
   display: "swap",
 });
 
@@ -99,7 +94,7 @@ export default async function RootLayout({
   const iconUrl = settings.icon_path || "/logo/zoqonyx-icon.png";
 
   return (
-    <html lang="en" className={`light ${geistSans.variable} ${geistMono.variable} font-sans`}>
+    <html lang="en" className={`light ${poppins.variable} font-sans`}>
       <head>
         <link rel="icon" href={iconUrl} />
         <link rel="shortcut icon" href={iconUrl} />

@@ -15,10 +15,10 @@ test.describe("GSC Prioritized Tools - Full Functional E2E Suite", () => {
     await analyzeBtn.click();
 
     // Verify 4 primary metric cards rendered
-    await expect(page.getByText("Domain Rating (DR)", { exact: true })).toBeVisible();
-    await expect(page.getByText("Referring Domains", { exact: true })).toBeVisible();
-    await expect(page.getByText("Dofollow Ratio", { exact: true })).toBeVisible();
-    await expect(page.getByText("Toxic Risk Score", { exact: true })).toBeVisible();
+    await expect(page.getByText(/Authority Index/i).first()).toBeVisible();
+    await expect(page.getByText("Referring Domains", { exact: false }).first()).toBeVisible();
+    await expect(page.getByText("Dofollow Ratio", { exact: false }).first()).toBeVisible();
+    await expect(page.getByText(/Spam Signal Indicator/i).first()).toBeVisible();
 
     // Verify anchor text section
     await expect(page.getByText("Anchor Text Distribution", { exact: false })).toBeVisible();

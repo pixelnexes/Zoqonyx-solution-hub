@@ -32,8 +32,7 @@ Zoqonyx Solution Hub was created by **Newix Tech Solutions** to establish an unc
 ### The Zero-Upload Browser Architecture
 
 Every tool in our catalog is engineered to execute within your device's sandboxed browser runtime using modern Web APIs:
-- **HTML5 Canvas & WebGL**: Hardware-accelerated image scaling, format transcoding, and bicubic bicompression on your local GPU/CPU.
-- **Web Workers**: Background multi-threading that processes heavy batch operations (up to 50 files) without freezing your user interface.
+- **Web Workers & Chunked Streaming**: Background multi-threading that processes heavy batch operations (up to 100 files and 1 GB combined capacity) without freezing your user interface.
 - **WebAssembly (WASM)**: Native-speed PDF parsing, stream manipulation, and document reconstruction directly in client memory.
 - **Web Crypto API**: High-entropy cryptographic hashing, key generation, and UUID generation with zero telemetry.
 
@@ -121,7 +120,7 @@ export default async function AboutPage() {
               <span>Non-Blocking Bulk Batching</span>
             </div>
             <p className="text-xs text-muted-foreground leading-relaxed">
-              Batch process up to 50 photos or documents simultaneously with responsive progress indicators.
+              Batch process up to 100 photos or documents (up to 1 GB combined capacity) simultaneously with responsive progress indicators.
             </p>
           </div>
         </div>
