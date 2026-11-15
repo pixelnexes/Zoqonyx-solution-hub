@@ -57,16 +57,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.85,
   }));
 
-  // 3. Tool routes - compiled safely with canonical resolution
-  const toolMap = new Map<string, { slug: string; updatedAt: Date; isComingSoon: boolean }>();
+  // 3. Tool routes - compiled safely with canonical resolution for active tools only
+  const toolMap = new Map<string, { slug: string; updatedAt: Date }>();
 
-  // Seed default 165 catalog tools
+  // Seed default catalog tools (active only)
   for (const t of DEFAULT_TOOLS) {
-    if (!TOOL_ALIASES[t.slug]) {
+    if (t.isActive && !TOOL_ALIASES[t.slug]) {
       toolMap.set(t.slug, {
         slug: t.slug,
         updatedAt: now,
-        isComingSoon: Boolean(t.isComingSoon),
       });
     }
   }
@@ -75,16 +74,17 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   try {
     const dbTools = await prisma.tool.findMany({
       where: { isActive: true },
-      select: { slug: true, updatedAt: true, isComingSoon: true },
+      select: { slug: true, updatedAt: true },
     });
 
     for (const t of dbTools) {
       const canonicalSlug = TOOL_ALIASES[t.slug] || t.slug;
-      toolMap.set(canonicalSlug, {
-        slug: canonicalSlug,
-        updatedAt: t.updatedAt || now,
-        isComingSoon: Boolean(t.isComingSoon),
-      });
+      if (toolMap.has(canonicalSlug)) {
+        toolMap.set(canonicalSlug, {
+          slug: canonicalSlug,
+          updatedAt: t.updatedAt || now,
+        });
+      }
     }
   } catch {
     // Database offline or during build - fallback catalog is already fully populated
@@ -93,8 +93,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const toolRoutes: MetadataRoute.Sitemap = Array.from(toolMap.values()).map((tool) => ({
     url: `${baseUrl}/tools/${tool.slug}`,
     lastModified: tool.updatedAt,
-    changeFrequency: tool.isComingSoon ? "weekly" : "daily",
-    priority: tool.isComingSoon ? 0.7 : 0.9,
+    changeFrequency: "daily",
+    priority: 0.9,
   }));
 
   return [...staticRoutes, ...categoryRoutes, ...toolRoutes];

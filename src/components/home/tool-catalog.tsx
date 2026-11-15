@@ -87,8 +87,6 @@ export function ToolCatalog({ initialTools }: ToolCatalogProps) {
       const matchesCategory =
         selectedCategory === "All"
           ? true
-          : selectedCategory === "Coming Soon"
-          ? tool.isComingSoon
           : tool.category === selectedCategory;
 
       const q = searchQuery.toLowerCase().trim();
@@ -135,7 +133,7 @@ export function ToolCatalog({ initialTools }: ToolCatalogProps) {
           <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500 pointer-events-none" />
           <Input
             type="text"
-            placeholder="Search 113+ utilities (e.g. compress image, format json, merge pdf, jwt, regex, emi)..."
+            placeholder="Search 148+ utilities (e.g. compress image, format json, merge pdf, jwt, regex, emi)..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="pl-9.5 pr-24 h-10 bg-slate-50/80 text-slate-900 placeholder:text-slate-500 text-xs sm:text-sm font-medium rounded-[8px] border-slate-200 focus-visible:ring-2 focus-visible:ring-teal-600 focus-visible:border-transparent transition-all"
@@ -181,18 +179,6 @@ export function ToolCatalog({ initialTools }: ToolCatalogProps) {
               </button>
             );
           })}
-          <button
-            onClick={() => setSelectedCategory("Coming Soon")}
-            className={cn(
-              "whitespace-nowrap px-3 py-1.5 rounded-[7px] text-xs transition-all border flex items-center gap-1.5 shrink-0 font-semibold",
-              selectedCategory === "Coming Soon"
-                ? "bg-amber-600 text-white border-amber-600 shadow-xs"
-                : "bg-amber-50 hover:bg-amber-100 text-amber-900 border-amber-200 shadow-[0_1px_2px_rgba(0,0,0,0.04)]"
-            )}
-          >
-            <Clock className="w-3.5 h-3.5 text-amber-700" />
-            <span>Coming Soon</span>
-          </button>
         </div>
       </div>
 
@@ -241,15 +227,11 @@ export function ToolCatalog({ initialTools }: ToolCatalogProps) {
                         </span>
                       </div>
 
-                      {tool.isComingSoon ? (
-                        <span className="px-2 py-0.5 rounded-full text-[10.5px] font-semibold bg-amber-50 text-amber-800 border border-amber-200">
-                          Coming Soon
-                        </span>
-                      ) : isPopular ? (
+                      {isPopular && (
                         <span className="px-2 py-0.5 rounded-full text-[10.5px] font-semibold bg-teal-50 text-teal-800 border border-teal-200 flex items-center gap-1">
                           ★ Popular
                         </span>
-                      ) : null}
+                      )}
                     </div>
 
                     {/* Tool Name & Description */}

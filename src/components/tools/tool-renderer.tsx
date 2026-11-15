@@ -154,6 +154,56 @@ import {
   TimeDurationCalculatorTool,
 } from "./calculators-expanded";
 
+// Calculators Suite 2
+import {
+  SipInvestmentCalculatorTool,
+  MortgageRefinanceCalculatorTool,
+  RetirementCorpusCalculatorTool,
+  FreelanceHourlyRateCalculatorTool,
+  CryptoPortfolioTrackerTool,
+} from "./calculators-suite-2";
+
+// Developer Tools Suite 2
+import {
+  DockerfileGeneratorTool,
+  KubernetesYamlValidatorTool,
+  ApiMockServerTool,
+  GraphqlQueryBuilderTool,
+  ScreenRecorderTool,
+  OnlineCodeEditorTool,
+  ApiTesterTool,
+  DnsLookupTool,
+} from "./developer-tools-suite-2";
+
+// CSS & Design Suite 2
+import {
+  ThreeDTextGeneratorTool,
+  FlowchartMakerTool,
+  MindMapMakerTool,
+  WhiteboardTool,
+} from "./css-design-suite-2";
+
+// PDF Tools Suite 2
+import {
+  EsignPdfTool,
+  AdvancedPdfEditorTool,
+} from "./pdf-tools-suite-2";
+
+// Audio & Media Tools
+import {
+  VoiceRecorderEditorTool,
+  AudioConverterMp3Tool,
+  VideoToGifAdvancedTool,
+} from "./audio-media-tools";
+
+// Text & Copywriting Suite 2
+import {
+  AiResumeBuilderTool,
+  AiEmailGeneratorTool,
+  GrammarCheckerAdvancedTool,
+  AiArticleWriterTool,
+} from "./text-copy-suite-2";
+
 interface ToolRendererProps {
   slug: string;
 }
@@ -409,6 +459,83 @@ export function ToolRenderer({ slug }: ToolRendererProps) {
       return <SslCheckerTool />;
     case "reading-time-calculator":
       return <ReadingTimeTool />;
+
+    // Calculators Suite 2
+    case "sip-investment-calculator":
+      return <SipInvestmentCalculatorTool />;
+    case "mortgage-refinance-calculator":
+      return <MortgageRefinanceCalculatorTool />;
+    case "retirement-corpus-calculator":
+      return <RetirementCorpusCalculatorTool />;
+    case "freelance-hourly-rate-calculator":
+      return <FreelanceHourlyRateCalculatorTool />;
+    case "crypto-portfolio-tracker":
+      return <CryptoPortfolioTrackerTool />;
+
+    // Developer Tools Suite 2
+    case "dockerfile-generator":
+      return <DockerfileGeneratorTool />;
+    case "kubernetes-yaml-validator":
+      return <KubernetesYamlValidatorTool />;
+    case "api-mock-server":
+      return <ApiMockServerTool />;
+    case "graphql-query-builder":
+      return <GraphqlQueryBuilderTool />;
+    case "screen-recorder":
+    case "screen-recorder-pro":
+      return <ScreenRecorderTool />;
+    case "online-code-editor":
+      return <OnlineCodeEditorTool />;
+    case "api-tester":
+      return <ApiTesterTool />;
+    case "dns-lookup-tool":
+      return <DnsLookupTool />;
+
+    // CSS & Design Suite 2
+    case "3d-text-generator":
+      return <ThreeDTextGeneratorTool />;
+    case "flowchart-maker":
+      return <FlowchartMakerTool />;
+    case "mind-map-maker":
+      return <MindMapMakerTool />;
+    case "whiteboard-tool":
+      return <WhiteboardTool />;
+
+    // PDF Tools Suite 2
+    case "esign-pdf":
+    case "pdf-signature-signer":
+      return <EsignPdfTool />;
+    case "advanced-pdf-editor":
+    case "pdf-form-filler":
+      return <AdvancedPdfEditorTool />;
+
+    // Audio & Media Tools
+    case "voice-recorder-editor":
+      return <VoiceRecorderEditorTool />;
+    case "audio-converter-mp3":
+      return <AudioConverterMp3Tool />;
+    case "video-to-gif-advanced":
+    case "video-to-gif-converter":
+      return <VideoToGifAdvancedTool />;
+
+    // Text & Copywriting Suite 2
+    case "ai-resume-builder":
+      return <AiResumeBuilderTool />;
+    case "ai-email-generator":
+      return <AiEmailGeneratorTool />;
+    case "grammar-checker-advanced":
+    case "ai-grammar-checker":
+      return <GrammarCheckerAdvancedTool />;
+    case "ai-article-writer":
+    case "ai-content-writer":
+    case "ai-code-explainer":
+      return <AiArticleWriterTool />;
+
+    // Object Remover via Canvas Inpainting
+    case "object-remover-ai":
+    case "object-remover":
+    case "magic-object-remover":
+      return <WatermarkObjectRemoverTool />;
 
     default:
       return (

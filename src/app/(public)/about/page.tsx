@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     absolute: "About Zoqonyx Solution Hub | Free Online Tools",
   },
   description:
-    "Learn about Zoqonyx Solution Hub, developed by Newix Tech Solutions. Our mission is to provide 113+ fast, privacy-first, zero-upload digital utilities with no subscriptions.",
+    "Learn about Zoqonyx Solution Hub, developed by Newix Tech Solutions. Our mission is to provide 148+ fast, privacy-first, zero-upload digital utilities with no subscriptions.",
   alternates: {
     canonical: "https://zoqonyx.com/about",
   },
@@ -74,14 +74,14 @@ export default async function AboutPage() {
         </h1>
 
         <p className="text-base text-muted-foreground leading-relaxed max-w-2xl">
-          A modern suite of 113+ professional digital utilities engineered for developers, designers, creators, and teams—running entirely client-side with zero remote data collection.
+          A modern suite of 148+ professional digital utilities engineered for developers, designers, creators, and teams—running entirely client-side with zero remote data collection.
         </p>
       </div>
 
       {/* Metrics Row */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-10">
         <div className="p-4 rounded-xl border border-border bg-card/70 space-y-1">
-          <p className="text-2xl font-black font-mono text-foreground">113+</p>
+          <p className="text-2xl font-black font-mono text-foreground">148+</p>
           <p className="text-xs text-muted-foreground font-medium">Live Free Tools</p>
         </div>
         <div className="p-4 rounded-xl border border-border bg-card/70 space-y-1">
@@ -129,13 +129,13 @@ export default async function AboutPage() {
         <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 p-5 rounded-lg bg-teal-500/5 border border-teal-500/20">
           <div>
             <p className="text-sm font-bold text-foreground">Ready to streamline your workflow?</p>
-            <p className="text-xs text-muted-foreground">Access all 113 free tools instantly with no sign-up.</p>
+            <p className="text-xs text-muted-foreground">Access all 148 free tools instantly with no sign-up.</p>
           </div>
           <Link
             href="/tools"
             className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-teal-600 hover:bg-teal-500 text-white text-xs font-semibold shadow-xs transition-colors shrink-0"
           >
-            <span>Explore All 113 Tools</span>
+            <span>Explore All 148 Tools</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </Link>
         </div>
