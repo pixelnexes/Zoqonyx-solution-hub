@@ -96,7 +96,8 @@ export default async function RootLayout({
   const iconUrl = settings.icon_path || "/logo/zoqonyx-icon.png";
 
   return (
-    <html lang="en" className={`light ${siteFont.variable} font-sans`}>
+    // next-themes sets the theme class and color-scheme on <html> before React hydrates.
+    <html lang="en" className={`light ${siteFont.variable} font-sans`} suppressHydrationWarning>
       <head>
         <link rel="icon" href={iconUrl} />
         <link rel="shortcut icon" href={iconUrl} />

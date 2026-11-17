@@ -4,6 +4,7 @@ import * as React from "react";
 import Link from "next/link";
 import { Search, X } from "lucide-react";
 import type { SerializedTool } from "@/components/home/tool-catalog";
+import { ToolIcon } from "@/components/common/tool-icon";
 
 // Homepage only. Lists tools as a labeled drawer: one column per category,
 // tool names in full, and a search that replaces the drawer with results.
@@ -23,9 +24,37 @@ interface ToolDrawerProps {
   tools: SerializedTool[];
   /** How many tools to list per category before "See all" (homepage: 7, /tools: all). */
   perCategory?: number;
+  /** Show an icon and a one-line description under each tool name. */
+  detailed?: boolean;
 }
 
-export function ToolDrawer({ tools, perCategory = TOOLS_PER_CATEGORY }: ToolDrawerProps) {
+function ToolRow({ tool, detailed = false }: { tool: SerializedTool; detailed?: boolean }) {
+  return (
+    <Link
+      href={`/tools/${tool.slug}`}
+      className={`zq-focus zq-row flex gap-3 rounded-[2px] ${detailed ? "py-3 items-start" : "py-2.5 items-center"}`}
+      style={{ color: "var(--zq-ink)" }}
+    >
+      <span
+        aria-hidden="true"
+        className={`zq-row-icon shrink-0 inline-flex ${detailed ? "mt-0.5" : ""}`}
+        style={{ color: "var(--zq-muted)" }}
+      >
+        <ToolIcon name={tool.icon} className="w-[18px] h-[18px]" strokeWidth={1.75} />
+      </span>
+      <span className="min-w-0">
+        <span className={`block ${detailed ? "font-semibold text-[15px]" : "font-medium text-[15px]"}`}>{tool.name}</span>
+        {detailed && (
+          <span className="block text-sm mt-0.5 leading-snug line-clamp-2" style={{ color: "var(--zq-muted)" }}>
+            {tool.description}
+          </span>
+        )}
+      </span>
+    </Link>
+  );
+}
+
+export function ToolDrawer({ tools, perCategory = TOOLS_PER_CATEGORY, detailed = false }: ToolDrawerProps) {
   const [query, setQuery] = React.useState("");
   const inputRef = React.useRef<HTMLInputElement>(null);
 
@@ -77,7 +106,7 @@ export function ToolDrawer({ tools, perCategory = TOOLS_PER_CATEGORY }: ToolDraw
   return (
     <section aria-label="All tools" className="space-y-10">
       {/* Search strip: the one bold element on the page */}
-      <div>
+      <div className="zq-reveal" style={{ ["--zq-delay" as string]: "140ms" }}>
         <label htmlFor="home-search" className="sr-only">
           Search tools
         </label>
@@ -127,26 +156,23 @@ export function ToolDrawer({ tools, perCategory = TOOLS_PER_CATEGORY }: ToolDraw
               : `${results.length} ${results.length === 1 ? "tool matches" : "tools match"} "${query.trim()}"`}
           </p>
           {results.length > 0 && (
-            <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 border-t" style={{ borderColor: "var(--zq-line)" }}>
+            <ul
+              key={q}
+              className="zq-fade grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 border-t"
+              style={{ borderColor: "var(--zq-line)" }}
+            >
               {results.map((t) => (
                 <li key={t.slug} className="border-b" style={{ borderColor: "var(--zq-line)" }}>
-                  <Link href={`/tools/${t.slug}`} className="zq-focus zq-row block py-3 rounded-[2px]">
-                    <span className="block font-semibold" style={{ color: "var(--zq-ink)" }}>
-                      {t.name}
-                    </span>
-                    <span className="block text-sm mt-0.5 line-clamp-2" style={{ color: "var(--zq-muted)" }}>
-                      {t.description}
-                    </span>
-                  </Link>
+                  <ToolRow tool={t} detailed />
                 </li>
               ))}
             </ul>
           )}
         </div>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-10">
-          {groups.map((g) => (
-            <div key={g.slug}>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-12">
+          {groups.map((g, gi) => (
+            <div key={g.slug} className="zq-reveal" style={{ ["--zq-delay" as string]: `${240 + gi * 70}ms` }}>
               <h2 className="flex items-baseline justify-between gap-3 pb-2 border-b-2" style={{ borderColor: "var(--zq-ink)" }}>
                 <Link
                   href={`/category/${g.slug}`}
@@ -162,13 +188,7 @@ export function ToolDrawer({ tools, perCategory = TOOLS_PER_CATEGORY }: ToolDraw
               <ul>
                 {g.tools.slice(0, perCategory).map((t) => (
                   <li key={t.slug} className="border-b" style={{ borderColor: "var(--zq-line)" }}>
-                    <Link
-                      href={`/tools/${t.slug}`}
-                      className="zq-focus zq-row block py-2.5 text-[15px] font-medium rounded-[2px]"
-                      style={{ color: "var(--zq-ink)" }}
-                    >
-                      {t.name}
-                    </Link>
+                    <ToolRow tool={t} detailed={detailed} />
                   </li>
                 ))}
               </ul>

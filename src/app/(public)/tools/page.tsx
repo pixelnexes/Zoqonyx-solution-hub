@@ -194,7 +194,7 @@ export default async function ToolsPage() {
             </p>
           </header>
 
-          <ToolDrawer tools={tools} perCategory={Number.POSITIVE_INFINITY} />
+          <ToolDrawer tools={tools} perCategory={Number.POSITIVE_INFINITY} detailed />
         </div>
 
         {/* Below-the-fold Comprehensive SEO Guide */}

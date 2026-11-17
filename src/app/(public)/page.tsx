@@ -117,10 +117,13 @@ export default async function HomePage() {
       <div className="zq-home">
         <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 pt-10 sm:pt-16 pb-16">
           <header className="max-w-[46rem] mb-8 sm:mb-10">
-            <h1 className="text-[2.25rem] sm:text-[3.25rem] leading-[1.05] font-bold tracking-[-0.025em]" style={{ color: "var(--zq-ink)" }}>
+            <h1 className="zq-reveal-solid text-[2.25rem] sm:text-[3.25rem] leading-[1.05] font-bold tracking-[-0.025em]" style={{ color: "var(--zq-ink)" }}>
               Free tools for images, PDFs, code and text.
             </h1>
-            <p className="mt-4 text-[17px] sm:text-lg leading-relaxed max-w-[38rem]" style={{ color: "var(--zq-muted)" }}>
+            <p
+              className="zq-reveal mt-4 text-[17px] sm:text-lg leading-relaxed max-w-[38rem]"
+              style={{ color: "var(--zq-muted)", ["--zq-delay" as string]: "70ms" }}
+            >
               Open a tool and use it. No sign-up, no account. Most tools run in your browser, so the files you add stay on your device.
             </p>
           </header>
