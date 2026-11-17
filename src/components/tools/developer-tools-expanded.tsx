@@ -705,7 +705,9 @@ export function CodeToImageTool() {
 
 // 9. Timestamp Converter
 export function TimestampConverterTool() {
-  const [epoch, setEpoch] = React.useState<number>(Math.floor(Date.now() / 1000));
+  // Start at 0 on the server and fill in "now" after mount, so server and
+  // client HTML match (Date.now() differs between them).
+  const [epoch, setEpoch] = React.useState<number>(0);
   const [humanDate, setHumanDate] = React.useState<string>("");
 
   const updateFromEpoch = (val: number) => {
@@ -713,6 +715,10 @@ export function TimestampConverterTool() {
     const d = new Date(val * 1000);
     setHumanDate(d.toISOString());
   };
+
+  React.useEffect(() => {
+    updateFromEpoch(Math.floor(Date.now() / 1000));
+  }, []);
 
   const updateFromDate = (val: string) => {
     setHumanDate(val);

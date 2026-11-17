@@ -7,6 +7,91 @@ import type { ToolSeoArticle } from "@/lib/tool-seo-content";
 // These override the older articles in tool-seo-content.ts.
 
 export const KEYWORD_ARTICLES: Record<string, ToolSeoArticle> = {
+  "backlink-checker": {
+    slug: "backlink-checker",
+    title: "Free Backlink Checker: Audit Your Website Backlinks | Zoqonyx",
+    metaDesc:
+      "Check backlinks for free: upload your Search Console, Ahrefs or Semrush export and see referring domains, anchor text and spam links. No sign-up.",
+    workflowHeading: "How to check your backlinks for free",
+    howToSteps: [
+      {
+        step: 1,
+        title: "Export your backlinks",
+        instruction:
+          "In Google Search Console open Links, then export Top linking sites or Latest links. Ahrefs, Semrush and Moz exports work too.",
+      },
+      { step: 2, title: "Upload or paste", instruction: "Drop the CSV files here, or paste linking URLs or domains, one per line." },
+      {
+        step: 3,
+        title: "Review the audit",
+        instruction:
+          "See the number of backlinks and referring domains, follow vs nofollow (if your file has it), top anchors and flagged links.",
+      },
+      { step: 4, title: "Export", instruction: "Download the audit as CSV, or a disavow file draft for the flagged domains." },
+    ],
+    keyBenefits: [
+      { title: "Works with free Search Console data", desc: "No paid SEO tool needed: Google Search Console's link export is enough." },
+      { title: "Referring domains and anchors", desc: "Counts unique linking domains and shows which anchor texts point to you most." },
+      { title: "Spam link flags", desc: "Flags links from low-reputation domain endings and anchors with spam words." },
+      { title: "Your file stays on your device", desc: "Files are read in your browser and are not uploaded." },
+    ],
+    proTips: [
+      "Look at referring domains, not just total backlinks: 100 links from one site count far less than 10 links from 10 sites.",
+      "A natural profile has many branded and URL anchors. Lots of exact-match keyword anchors can look manipulative.",
+      "Only disavow links after a manual action for unnatural links, or when you know of paid links you can't remove.",
+    ],
+    faqs: [
+      {
+        question: "How do I check the backlinks of my website for free?",
+        answer:
+          "Open Google Search Console, go to Links and export Top linking sites or Latest links, then upload the file here. You'll see your referring domains, anchors and any suspicious links.",
+      },
+      {
+        question: "Can this tool check backlinks of any domain?",
+        answer:
+          "Only from data you provide. A browser can't crawl the web, so the tool analyses exports from Search Console, Ahrefs, Semrush or Moz, or a list you paste. For a competitor, export their backlinks from a paid SEO tool.",
+      },
+      {
+        question: "Is there a backlink checker API?",
+        answer:
+          "Zoqonyx doesn't offer an API. To automate backlink data, use the Search Console API or a paid SEO tool's API, then upload the export here to audit it.",
+      },
+      {
+        question: "What are referring domains?",
+        answer:
+          "Referring domains are the unique websites that link to you. Ten links from one website count as one referring domain.",
+      },
+      {
+        question: "Can I see my backlink history?",
+        answer:
+          "This tool doesn't store history. To compare over time, export your links on different dates and audit each file.",
+      },
+      {
+        question: "When should I use a disavow file?",
+        answer:
+          "Google advises disavowing links only after a manual action for unnatural links, or when you have many paid or spam links you can't get removed. Most sites never need one.",
+      },
+    ],
+    deepDiveContent: `
+### What a backlink check tells you
+
+A backlink is a link from another website to yours. Search engines treat links from relevant, trusted sites as a sign that your page is useful. Checking your backlinks shows who links to you, which pages they point to, and whether any of those links look like spam.
+
+### Backlinks vs referring domains
+
+- **Backlinks**: every individual link, including many from the same site.
+- **Referring domains**: the number of different websites linking to you. This is usually the better measure.
+
+### Getting the data from Search Console
+
+In Search Console, the Links report lists your top linking sites and recent links. Export them as CSV and upload them here. Search Console shows a sample of your links, not every one, but it is free and comes straight from Google.
+
+### Spotting bad links
+
+Look for links from domains that have nothing to do with your topic, unusual domain endings, or anchors stuffed with keywords or adult and gambling terms. Most sites can ignore these: Google already discounts most spam links.
+`,
+  },
+
   "schema-markup-generator": {
     slug: "schema-markup-generator",
     title: "Schema Markup Generator: Free JSON-LD & FAQ Schema | Zoqonyx",

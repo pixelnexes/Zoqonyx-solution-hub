@@ -23,27 +23,30 @@ export function IpLookupTool() {
   const [data, setData] = React.useState<IpData | null>(null);
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const [copied, setCopied] = React.useState(false);
+  const [lookupError, setLookupError] = React.useState<string | null>(null);
 
   const fetchIpInfo = async (ipToSearch?: string) => {
     setIsLoading(true);
     try {
+      setLookupError(null);
+      // ipwho.is: free, no key, sends CORS headers (ipapi.co blocks browser calls).
       const endpoint = ipToSearch && ipToSearch.trim()
-        ? `https://ipapi.co/${encodeURIComponent(ipToSearch.trim())}/json/`
-        : "https://ipapi.co/json/";
+        ? `https://ipwho.is/${encodeURIComponent(ipToSearch.trim())}`
+        : "https://ipwho.is/";
 
       const res = await fetch(endpoint);
-      if (!res.ok) throw new Error("Could not resolve IP data");
+      if (!res.ok) throw new Error("The IP lookup service did not respond. Try again in a minute.");
       const json = await res.json();
-      if (json.error) throw new Error(json.reason || "Invalid IP address");
+      if (json.success === false) throw new Error(json.message || "That doesn't look like a valid IP address.");
 
       const result: IpData = {
         ip: json.ip,
         city: json.city,
         region: json.region,
-        country: json.country_name || json.country,
-        org: json.org,
+        country: json.country,
+        org: json.connection?.org || json.connection?.isp,
         postal: json.postal,
-        timezone: json.timezone,
+        timezone: json.timezone?.id,
         loc: json.latitude && json.longitude ? `${json.latitude}, ${json.longitude}` : undefined,
       };
 
@@ -55,16 +58,9 @@ export function IpLookupTool() {
         summary: `Looked up ${result.ip} (${result.country || "Global"})`,
       });
     } catch (err: any) {
-      // Fallback client simulation if external API rate-limited
-      const simulated: IpData = {
-        ip: ipToSearch && ipToSearch.trim() ? ipToSearch.trim() : "192.0.2.1",
-        city: "Local Gateway",
-        region: "Detected",
-        country: "Client Device Network",
-        org: "Public Internet Service Provider",
-        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-      };
-      setData(simulated);
+      // Show the real failure; never show made-up location data.
+      setData(null);
+      setLookupError(err?.message || "The lookup failed. Check your connection and try again.");
     } finally {
       setIsLoading(false);
     }
@@ -113,6 +109,12 @@ export function IpLookupTool() {
             <span>My Current IP</span>
           </Button>
         </div>
+
+        {lookupError && (
+          <p role="alert" className="text-sm text-rose-700">
+            {lookupError}
+          </p>
+        )}
 
         {data && (
           <div className="space-y-4 pt-2 border-t border-border">

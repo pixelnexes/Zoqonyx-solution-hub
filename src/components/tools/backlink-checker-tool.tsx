@@ -1,798 +1,422 @@
 "use client";
 
 import * as React from "react";
-import {
-  Link as LinkIcon,
-  Search,
-  ShieldAlert,
-  ShieldCheck,
-  Download,
-  FileText,
-  AlertTriangle,
-  CheckCircle2,
-  ExternalLink,
-  Globe,
-  BarChart3,
-  Filter,
-  FileSpreadsheet,
-  RefreshCw,
-  Copy,
-  Check,
-} from "lucide-react";
+import { ShieldAlert, Download, AlertTriangle, CheckCircle2, ExternalLink, FileSpreadsheet, RefreshCw } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { addSessionHistory } from "@/lib/session-history";
 import { StandardFileUploader } from "@/components/common/standard-file-uploader";
 import { MAX_FILES_LIMIT, MAX_COMBINED_SIZE_BYTES } from "@/lib/file-standards";
 
+// Backlink audit for data the user already has: a backlink export (Google
+// Search Console, Ahrefs, Semrush, Moz) or a pasted list of linking URLs.
+// A browser cannot crawl the web, so this tool never invents links or scores:
+// every number shown is counted from the rows you provide.
+
 export interface BacklinkRecord {
   sourceUrl: string;
+  sourceHost: string;
   targetUrl: string;
   anchorText: string;
-  rel: "dofollow" | "nofollow" | "ugc" | "sponsored";
-  domainAuthority: number;
-  isToxic: boolean;
-  toxicReason?: string;
+  rel: "dofollow" | "nofollow" | "ugc" | "sponsored" | "unknown";
+  isSuspicious: boolean;
+  reason?: string;
 }
 
-export interface DomainMetrics {
-  domain: string;
-  estimatedDR: number;
-  totalBacklinks: number;
+interface AuditSummary {
+  totalLinks: number;
   referringDomains: number;
-  dofollowPercent: number;
-  nofollowPercent: number;
-  toxicLinksCount: number;
-  toxicRiskScore: number; // 0 to 100
-  anchorDistribution: { anchor: string; count: number; percent: number }[];
+  hasRel: boolean;
+  followCount: number;
+  nofollowCount: number;
+  hasAnchors: boolean;
+  suspiciousCount: number;
+  topAnchors: { anchor: string; count: number; percent: number }[];
+  topDomains: { domain: string; count: number }[];
 }
 
-const SAMPLE_BENCHMARKS: Record<string, { metrics: DomainMetrics; links: BacklinkRecord[] }> = {
-  "zoqonyx.com": {
-    metrics: {
-      domain: "zoqonyx.com",
-      estimatedDR: 42,
-      totalBacklinks: 148,
-      referringDomains: 37,
-      dofollowPercent: 78,
-      nofollowPercent: 22,
-      toxicLinksCount: 2,
-      toxicRiskScore: 6,
-      anchorDistribution: [
-        { anchor: "zoqonyx solution hub", count: 48, percent: 32 },
-        { anchor: "free online tools", count: 34, percent: 23 },
-        { anchor: "https://zoqonyx.com", count: 29, percent: 20 },
-        { anchor: "image compressor online", count: 18, percent: 12 },
-        { anchor: "brand website", count: 19, percent: 13 },
-      ],
-    },
-    links: [
-      {
-        sourceUrl: "https://techradar.example.com/best-free-webmaster-tools-2026",
-        targetUrl: "https://zoqonyx.com",
-        anchorText: "zoqonyx solution hub",
-        rel: "dofollow",
-        domainAuthority: 74,
-        isToxic: false,
-      },
-      {
-        sourceUrl: "https://github.com/topics/client-side-tools",
-        targetUrl: "https://zoqonyx.com/tools",
-        anchorText: "free online tools",
-        rel: "dofollow",
-        domainAuthority: 96,
-        isToxic: false,
-      },
-      {
-        sourceUrl: "https://medium.com/@devdigest/top-privacy-first-utilities",
-        targetUrl: "https://zoqonyx.com",
-        anchorText: "https://zoqonyx.com",
-        rel: "nofollow",
-        domainAuthority: 82,
-        isToxic: false,
-      },
-      {
-        sourceUrl: "https://producthunt.com/posts/zoqonyx",
-        targetUrl: "https://zoqonyx.com",
-        anchorText: "Zoqonyx Solution Hub",
-        rel: "dofollow",
-        domainAuthority: 91,
-        isToxic: false,
-      },
-      {
-        sourceUrl: "https://cheap-seo-backlink-blast.xyz/blog/p-49102",
-        targetUrl: "https://zoqonyx.com",
-        anchorText: "cheap backlinks blast buy now",
-        rel: "dofollow",
-        domainAuthority: 8,
-        isToxic: true,
-        toxicReason: "Spammy low-trust TLD (.xyz) with over-optimized commercial anchor text",
-      },
-      {
-        sourceUrl: "https://automated-pbn-directory.top/sites",
-        targetUrl: "https://zoqonyx.com",
-        anchorText: "click here",
-        rel: "dofollow",
-        domainAuthority: 5,
-        isToxic: true,
-        toxicReason: "Known PBN / directory footprint with suspicious zero-context anchor",
-      },
-    ],
-  },
-  "github.com": {
-    metrics: {
-      domain: "github.com",
-      estimatedDR: 96,
-      totalBacklinks: 2450000,
-      referringDomains: 480000,
-      dofollowPercent: 86,
-      nofollowPercent: 14,
-      toxicLinksCount: 120,
-      toxicRiskScore: 2,
-      anchorDistribution: [
-        { anchor: "github", count: 980000, percent: 40 },
-        { anchor: "source code repository", count: 490000, percent: 20 },
-        { anchor: "https://github.com", count: 390000, percent: 16 },
-        { anchor: "view on github", count: 290000, percent: 12 },
-        { anchor: "open source project", count: 300000, percent: 12 },
-      ],
-    },
-    links: [
-      {
-        sourceUrl: "https://en.wikipedia.org/wiki/GitHub",
-        targetUrl: "https://github.com",
-        anchorText: "official website",
-        rel: "nofollow",
-        domainAuthority: 98,
-        isToxic: false,
-      },
-      {
-        sourceUrl: "https://microsoft.com/en-us/developers",
-        targetUrl: "https://github.com",
-        anchorText: "GitHub Enterprise",
-        rel: "dofollow",
-        domainAuthority: 95,
-        isToxic: false,
-      },
-    ],
-  },
-};
+const SUSPICIOUS_TLD = /\.(xyz|top|click|fun|loan|stream|bid|buzz|gq|tk|ml|cf)$/i;
+const SPAM_ANCHOR = /(viagra|casino|poker|porn|payday|crypto bonus|replica|escort|betting)/i;
+
+// Minimal CSV/TSV line parser that respects quoted fields.
+function parseLine(line: string, delimiter: string): string[] {
+  const out: string[] = [];
+  let cur = "";
+  let quoted = false;
+  for (let i = 0; i < line.length; i++) {
+    const ch = line[i];
+    if (ch === '"') {
+      if (quoted && line[i + 1] === '"') {
+        cur += '"';
+        i++;
+      } else {
+        quoted = !quoted;
+      }
+    } else if (ch === delimiter && !quoted) {
+      out.push(cur.trim());
+      cur = "";
+    } else {
+      cur += ch;
+    }
+  }
+  out.push(cur.trim());
+  return out;
+}
+
+function hostOf(value: string): string | null {
+  const v = value.trim();
+  if (!v) return null;
+  try {
+    const url = new URL(/^https?:\/\//i.test(v) ? v : `https://${v}`);
+    if (!url.hostname.includes(".")) return null;
+    return url.hostname.replace(/^www\./, "").toLowerCase();
+  } catch {
+    return null;
+  }
+}
+
+function findColumn(headers: string[], patterns: RegExp[]): number {
+  return headers.findIndex((h) => patterns.some((p) => p.test(h)));
+}
+
+function parseRows(text: string): BacklinkRecord[] {
+  const lines = text.split(/\r?\n/).filter((l) => l.trim().length > 0);
+  if (lines.length === 0) return [];
+
+  const delimiter = lines[0].includes("\t") ? "\t" : ",";
+  const first = parseLine(lines[0], delimiter).map((h) => h.toLowerCase());
+  const looksLikeHeader = first.some((h) => /url|link|site|domain|anchor|source|referring|page/.test(h)) && !first.some((h) => /^https?:\/\//.test(h));
+
+  let sourceCol = 0;
+  let targetCol = -1;
+  let anchorCol = -1;
+  let relCol = -1;
+  let nofollowCol = -1;
+  if (looksLikeHeader) {
+    sourceCol = findColumn(first, [/source/, /referring page/, /linking page/, /^from/, /^url$/, /^site$/, /referring domain/, /domain/]);
+    if (sourceCol < 0) sourceCol = 0;
+    targetCol = findColumn(first, [/target/, /^to/, /destination/]);
+    anchorCol = findColumn(first, [/anchor/]);
+    relCol = findColumn(first, [/^rel$/, /link type/, /follow/]);
+    nofollowCol = findColumn(first, [/^nofollow$/]);
+  }
+
+  const rows = looksLikeHeader ? lines.slice(1) : lines;
+  const records: BacklinkRecord[] = [];
+
+  for (const line of rows) {
+    const cells = parseLine(line, delimiter);
+    const rawSource = cells[sourceCol] ?? "";
+    const host = hostOf(rawSource);
+    if (!host) continue;
+
+    const anchorText = anchorCol >= 0 ? cells[anchorCol] ?? "" : "";
+    let rel: BacklinkRecord["rel"] = "unknown";
+    if (relCol >= 0) {
+      const r = (cells[relCol] ?? "").toLowerCase();
+      rel = r.includes("nofollow") || r === "true" ? "nofollow" : r.includes("ugc") ? "ugc" : r.includes("spons") ? "sponsored" : r ? "dofollow" : "unknown";
+    } else if (nofollowCol >= 0) {
+      const r = (cells[nofollowCol] ?? "").toLowerCase();
+      rel = r === "true" || r === "1" || r === "yes" ? "nofollow" : r ? "dofollow" : "unknown";
+    }
+
+    const reasons: string[] = [];
+    if (SUSPICIOUS_TLD.test(host)) reasons.push("Low-reputation top-level domain");
+    if (anchorText && SPAM_ANCHOR.test(anchorText)) reasons.push("Spam keyword in anchor text");
+
+    records.push({
+      sourceUrl: /^https?:\/\//i.test(rawSource) ? rawSource : `https://${rawSource}`,
+      sourceHost: host,
+      targetUrl: targetCol >= 0 ? cells[targetCol] ?? "" : "",
+      anchorText,
+      rel,
+      isSuspicious: reasons.length > 0,
+      reason: reasons.join("; ") || undefined,
+    });
+  }
+  return records;
+}
+
+function summarize(list: BacklinkRecord[]): AuditSummary {
+  const domains: Record<string, number> = {};
+  const anchors: Record<string, number> = {};
+  let follow = 0;
+  let nofollow = 0;
+  let suspicious = 0;
+  let withAnchor = 0;
+  let withRel = 0;
+
+  for (const b of list) {
+    domains[b.sourceHost] = (domains[b.sourceHost] || 0) + 1;
+    if (b.anchorText) {
+      withAnchor++;
+      const a = b.anchorText.toLowerCase().trim();
+      anchors[a] = (anchors[a] || 0) + 1;
+    }
+    if (b.rel !== "unknown") withRel++;
+    if (b.rel === "dofollow") follow++;
+    if (b.rel === "nofollow" || b.rel === "ugc" || b.rel === "sponsored") nofollow++;
+    if (b.isSuspicious) suspicious++;
+  }
+
+  const total = list.length;
+  return {
+    totalLinks: total,
+    referringDomains: Object.keys(domains).length,
+    hasRel: withRel > 0,
+    followCount: follow,
+    nofollowCount: nofollow,
+    hasAnchors: withAnchor > 0,
+    suspiciousCount: suspicious,
+    topAnchors: Object.entries(anchors)
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 8)
+      .map(([anchor, count]) => ({ anchor, count, percent: Math.round((count / Math.max(1, withAnchor)) * 100) })),
+    topDomains: Object.entries(domains)
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 8)
+      .map(([domain, count]) => ({ domain, count })),
+  };
+}
+
+function download(name: string, content: string, type: string) {
+  const blob = new Blob([content], { type });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = name;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  setTimeout(() => URL.revokeObjectURL(url), 2000);
+}
 
 export function BacklinkCheckerTool() {
-  const [activeTab, setActiveTab] = React.useState<"domain" | "csv">("domain");
-  const [domainInput, setDomainInput] = React.useState<string>("zoqonyx.com");
-  const [isLoading, setIsLoading] = React.useState<boolean>(false);
-  const [metrics, setMetrics] = React.useState<DomainMetrics | null>(null);
-  const [backlinks, setBacklinks] = React.useState<BacklinkRecord[]>([]);
-  const [filterRel, setFilterRel] = React.useState<string>("all");
-  const [filterToxicOnly, setFilterToxicOnly] = React.useState<boolean>(false);
-  const [copiedDisavow, setCopiedDisavow] = React.useState<boolean>(false);
-
-  // CSV Audit state (supports up to 100 files, 1 GB)
   const [csvFiles, setCsvFiles] = React.useState<File[]>([]);
-  const [isCsvParsing, setIsCsvParsing] = React.useState<boolean>(false);
+  const [pasted, setPasted] = React.useState("");
+  const [isParsing, setIsParsing] = React.useState(false);
+  const [links, setLinks] = React.useState<BacklinkRecord[]>([]);
+  const [error, setError] = React.useState<string | null>(null);
+  const [filter, setFilter] = React.useState<"all" | "suspicious" | "dofollow" | "nofollow">("all");
 
-  // Compute metrics from backlink list
-  const computeMetrics = (domain: string, list: BacklinkRecord[]): DomainMetrics => {
-    const total = list.length;
-    if (total === 0) {
-      return {
-        domain,
-        estimatedDR: 10,
-        totalBacklinks: 0,
-        referringDomains: 0,
-        dofollowPercent: 0,
-        nofollowPercent: 0,
-        toxicLinksCount: 0,
-        toxicRiskScore: 0,
-        anchorDistribution: [],
-      };
-    }
+  const summary = React.useMemo(() => (links.length ? summarize(links) : null), [links]);
 
-    const uniqueDomains = new Set<string>();
-    let dofollowCount = 0;
-    let toxicCount = 0;
-    let sumDa = 0;
-    const anchorCounts: Record<string, number> = {};
-
-    list.forEach((b) => {
-      try {
-        const host = new URL(b.sourceUrl).hostname;
-        uniqueDomains.add(host);
-      } catch {
-        uniqueDomains.add("unknown-source");
-      }
-
-      if (b.rel === "dofollow") dofollowCount++;
-      if (b.isToxic) toxicCount++;
-      sumDa += b.domainAuthority;
-
-      const normAnchor = (b.anchorText || "(empty anchor)").toLowerCase().trim();
-      anchorCounts[normAnchor] = (anchorCounts[normAnchor] || 0) + 1;
-    });
-
-    const dofollowPct = Math.round((dofollowCount / total) * 100);
-    const nofollowPct = 100 - dofollowPct;
-    const toxicPct = Math.round((toxicCount / total) * 100);
-    const avgDa = Math.round(sumDa / total);
-
-    // Estimated DR based on referring domain count and average source DA
-    const refCount = uniqueDomains.size;
-    let estimatedDr = Math.min(99, Math.round(avgDa * 0.4 + Math.log10(Math.max(1, refCount)) * 18));
-    if (refCount <= 1) estimatedDr = Math.min(25, estimatedDr);
-
-    // Anchor distribution
-    const sortedAnchors = Object.entries(anchorCounts)
-      .sort((a, b) => b[1] - a[1])
-      .slice(0, 5)
-      .map(([anchor, count]) => ({
-        anchor,
-        count,
-        percent: Math.round((count / total) * 100),
-      }));
-
-    return {
-      domain,
-      estimatedDR: estimatedDr,
-      totalBacklinks: total,
-      referringDomains: refCount,
-      dofollowPercent: dofollowPct,
-      nofollowPercent: nofollowPct,
-      toxicLinksCount: toxicCount,
-      toxicRiskScore: toxicPct,
-      anchorDistribution: sortedAnchors,
-    };
-  };
-
-  const handleAuditDomain = (targetDomain?: string) => {
-    const raw = (targetDomain || domainInput).trim();
-    if (!raw) return;
-
-    const cleanDomain = raw
-      .replace(/^https?:\/\//i, "")
-      .replace(/\/.*$/, "")
-      .toLowerCase();
-
-    setIsLoading(true);
-
-    setTimeout(() => {
-      // Check if known benchmark or synthesize realistic link profile for domain
-      if (SAMPLE_BENCHMARKS[cleanDomain]) {
-        const data = SAMPLE_BENCHMARKS[cleanDomain];
-        setMetrics(data.metrics);
-        setBacklinks(data.links);
-      } else {
-        // Generate realistic crawl profile for entered domain
-        const generatedLinks: BacklinkRecord[] = [
-          {
-            sourceUrl: `https://techdirectory.org/listings/${cleanDomain}`,
-            targetUrl: `https://${cleanDomain}`,
-            anchorText: cleanDomain,
-            rel: "dofollow",
-            domainAuthority: 58,
-            isToxic: false,
-          },
-          {
-            sourceUrl: `https://industry-review-portal.com/review/${cleanDomain}`,
-            targetUrl: `https://${cleanDomain}/services`,
-            anchorText: "official website",
-            rel: "dofollow",
-            domainAuthority: 64,
-            isToxic: false,
-          },
-          {
-            sourceUrl: `https://twitter.com/search?q=${cleanDomain}`,
-            targetUrl: `https://${cleanDomain}`,
-            anchorText: `https://${cleanDomain}`,
-            rel: "nofollow",
-            domainAuthority: 94,
-            isToxic: false,
-          },
-          {
-            sourceUrl: `https://newsblog-insights.net/post-719`,
-            targetUrl: `https://${cleanDomain}`,
-            anchorText: "learn more here",
-            rel: "nofollow",
-            domainAuthority: 41,
-            isToxic: false,
-          },
-          {
-            sourceUrl: `https://free-seo-traffic-boost.top/link-${cleanDomain}`,
-            targetUrl: `https://${cleanDomain}`,
-            anchorText: "casino poker bonus buy",
-            rel: "dofollow",
-            domainAuthority: 9,
-            isToxic: true,
-            toxicReason: "Spammy anchor text mismatch with low-trust TLD (.top)",
-          },
-        ];
-
-        const calculated = computeMetrics(cleanDomain, generatedLinks);
-        setMetrics(calculated);
-        setBacklinks(generatedLinks);
-      }
-
-      setIsLoading(false);
-
-      addSessionHistory({
-        toolSlug: "backlink-checker",
-        toolName: "Backlink Checker",
-        action: "Audited",
-        summary: `Audited backlink profile for ${cleanDomain}`,
-      });
-    }, 450);
-  };
-
-  // CSV parsing logic for external reports
-  const handleParseCsvFiles = async () => {
-    if (csvFiles.length === 0) return;
-    setIsCsvParsing(true);
-
-    const parsedLinks: BacklinkRecord[] = [];
-
+  const runAudit = async () => {
+    setIsParsing(true);
+    setError(null);
+    const all: BacklinkRecord[] = [];
     for (const file of csvFiles) {
       try {
-        const text = await file.text();
-        const lines = text.split(/\r?\n/).filter((l) => l.trim().length > 0);
-        if (lines.length <= 1) continue;
-
-        // Skip header
-        const header = lines[0].toLowerCase();
-        const isHeader = header.includes("url") || header.includes("anchor") || header.includes("source");
-        const dataRows = isHeader ? lines.slice(1) : lines;
-
-        dataRows.forEach((row) => {
-          const parts = row.split(",").map((p) => p.replace(/^["']|["']$/g, "").trim());
-          if (parts.length >= 1 && parts[0].startsWith("http")) {
-            const sourceUrl = parts[0];
-            const targetUrl = parts[1]?.startsWith("http") ? parts[1] : `https://${domainInput}`;
-            const anchorText = parts[2] || "link";
-            const relRaw = (parts[3] || "dofollow").toLowerCase();
-            const rel: BacklinkRecord["rel"] =
-              relRaw.includes("no") ? "nofollow" : relRaw.includes("ugc") ? "ugc" : relRaw.includes("spon") ? "sponsored" : "dofollow";
-
-            const isSuspiciousTld = /\.(xyz|top|click|fun|loan|stream|bid)$/i.test(sourceUrl);
-            const isSpamAnchor = /(buy|cheap|viagra|casino|poker|crypto bonus)/i.test(anchorText);
-            const isToxic = isSuspiciousTld || isSpamAnchor;
-
-            parsedLinks.push({
-              sourceUrl,
-              targetUrl,
-              anchorText,
-              rel,
-              domainAuthority: Math.floor(Math.random() * 50) + (isToxic ? 5 : 35),
-              isToxic,
-              toxicReason: isToxic ? "Flagged for suspicious TLD or commercial spam anchor" : undefined,
-            });
-          }
-        });
-      } catch (err: any) {
-        console.error("CSV parse error:", err);
+        all.push(...parseRows(await file.text()));
+      } catch {
+        setError(`Could not read ${file.name}.`);
       }
     }
+    if (pasted.trim()) all.push(...parseRows(pasted));
+    setIsParsing(false);
 
-    if (parsedLinks.length > 0) {
-      const calculated = computeMetrics(domainInput || "custom-import", parsedLinks);
-      setMetrics(calculated);
-      setBacklinks(parsedLinks);
-    } else {
-      alert("No valid backlink URLs found in uploaded CSV files. Ensure rows have Source URL as the first column.");
-    }
-
-    setIsCsvParsing(false);
-  };
-
-  const filteredBacklinks = React.useMemo(() => {
-    return backlinks.filter((b) => {
-      if (filterToxicOnly && !b.isToxic) return false;
-      if (filterRel !== "all" && b.rel !== filterRel) return false;
-      return true;
-    });
-  }, [backlinks, filterToxicOnly, filterRel]);
-
-  // Google Disavow Generator (disavow.txt)
-  const generateDisavowFile = () => {
-    const toxicLinks = backlinks.filter((b) => b.isToxic);
-    if (toxicLinks.length === 0) {
-      alert("No toxic links detected to disavow!");
+    if (all.length === 0) {
+      setLinks([]);
+      setError("No linking URLs or domains were found. The first column (or a column named Source, Linking page, URL or Site) must contain the linking page or domain.");
       return;
     }
-
-    const uniqueDomains = new Set<string>();
-    toxicLinks.forEach((b) => {
-      try {
-        uniqueDomains.add(new URL(b.sourceUrl).hostname);
-      } catch {
-        uniqueDomains.add(b.sourceUrl);
-      }
+    setLinks(all);
+    addSessionHistory({
+      toolSlug: "backlink-checker",
+      toolName: "Backlink Checker",
+      action: "Audited",
+      summary: `Audited ${all.length} backlinks from ${new Set(all.map((l) => l.sourceHost)).size} domains`,
     });
-
-    const lines = [
-      `# Google Search Console Disavow File for ${metrics?.domain || domainInput}`,
-      `# Generated automatically by Zoqonyx Backlink Checker on ${new Date().toISOString()}`,
-      `# Total toxic domains disavowed: ${uniqueDomains.size}`,
-      "",
-    ];
-
-    uniqueDomains.forEach((d) => {
-      lines.push(`domain:${d}`);
-    });
-
-    const blob = new Blob([lines.join("\n")], { type: "text/plain;charset=utf-8" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = `disavow_${metrics?.domain || "backlinks"}.txt`;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    setTimeout(() => URL.revokeObjectURL(url), 2000);
   };
+
+  const shown = links.filter((l) =>
+    filter === "all" ? true : filter === "suspicious" ? l.isSuspicious : filter === "dofollow" ? l.rel === "dofollow" : l.rel === "nofollow"
+  );
 
   const exportCsv = () => {
-    if (backlinks.length === 0) return;
-    const rows = [["Source URL", "Target URL", "Anchor Text", "Rel", "Domain Authority", "Toxic", "Toxic Reason"]];
-    backlinks.forEach((b) => {
-      rows.push([
-        `"${b.sourceUrl}"`,
-        `"${b.targetUrl}"`,
-        `"${b.anchorText.replace(/"/g, '""')}"`,
-        `"${b.rel}"`,
-        `${b.domainAuthority}`,
-        `${b.isToxic}`,
-        `"${b.toxicReason || ""}"`,
-      ]);
-    });
-
-    const csvContent = rows.map((r) => r.join(",")).join("\n");
-    const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = `backlinks_${metrics?.domain || "audit"}.csv`;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    setTimeout(() => URL.revokeObjectURL(url), 2000);
+    const rows = [["Source URL", "Source domain", "Target URL", "Anchor text", "Rel", "Flagged", "Reason"]];
+    links.forEach((b) =>
+      rows.push([b.sourceUrl, b.sourceHost, b.targetUrl, b.anchorText, b.rel, String(b.isSuspicious), b.reason || ""].map((c) => `"${c.replace(/"/g, '""')}"`))
+    );
+    download("backlink-audit.csv", rows.map((r) => r.join(",")).join("\n"), "text/csv;charset=utf-8");
   };
 
-  // Run initial audit on load
-  React.useEffect(() => {
-    handleAuditDomain("zoqonyx.com");
-  }, []);
+  const exportDisavow = () => {
+    const domains = Array.from(new Set(links.filter((l) => l.isSuspicious).map((l) => l.sourceHost)));
+    if (domains.length === 0) return;
+    const lines = [
+      "# Disavow file draft from Zoqonyx Backlink Checker",
+      "# Review every line before uploading to Google's Disavow Links tool.",
+      ...domains.map((d) => `domain:${d}`),
+    ];
+    download("disavow.txt", lines.join("\n"), "text/plain;charset=utf-8");
+  };
 
   return (
     <div className="space-y-6">
-      {/* Mode Navigation Tabs */}
-      <div className="flex border-b border-border/80">
-        <button
-          type="button"
-          onClick={() => setActiveTab("domain")}
-          className={`px-4 py-2.5 text-xs font-semibold border-b-2 transition-colors flex items-center gap-1.5 ${
-            activeTab === "domain"
-              ? "border-teal-600 text-teal-700 font-bold"
-              : "border-transparent text-muted-foreground hover:text-foreground"
-          }`}
-        >
-          <Globe className="w-3.5 h-3.5" />
-          <span>Live Domain Link Audit</span>
-        </button>
-        <button
-          type="button"
-          onClick={() => setActiveTab("csv")}
-          className={`px-4 py-2.5 text-xs font-semibold border-b-2 transition-colors flex items-center gap-1.5 ${
-            activeTab === "csv"
-              ? "border-teal-600 text-teal-700 font-bold"
-              : "border-transparent text-muted-foreground hover:text-foreground"
-          }`}
-        >
-          <FileSpreadsheet className="w-3.5 h-3.5" />
-          <span>Import Backlinks CSV (Up to 100 Files / 1 GB)</span>
-        </button>
+      <div className="p-4 rounded-lg bg-[#F3F5F8] border border-[#D5DCE4] text-[15px] leading-relaxed text-[#14213D]">
+        <p className="font-semibold">Where to get your backlink list</p>
+        <ul className="mt-1.5 list-disc pl-5 space-y-1 text-[14px] text-[#4A5568]">
+          <li>
+            <strong className="text-[#14213D]">Google Search Console (free):</strong> Links → Top linking sites → Export, or Links → Export external
+            links → Latest links.
+          </li>
+          <li>
+            <strong className="text-[#14213D]">Ahrefs, Semrush or Moz:</strong> export the backlinks report as CSV.
+          </li>
+          <li>Or paste linking URLs or domains below, one per line.</li>
+        </ul>
+        <p className="mt-2 text-[13px] text-[#4A5568]">
+          Your browser cannot crawl other websites, so this tool only analyses the links you give it. Files are read in your browser and not uploaded.
+        </p>
       </div>
 
-      {/* Data Transparency Banner */}
-      <div className="p-3.5 rounded-lg bg-blue-50/70 border border-blue-200/80 text-xs text-blue-900 flex items-start gap-2.5 leading-relaxed">
-        <ShieldCheck className="w-4 h-4 text-blue-600 shrink-0 mt-0.5" />
-        <div>
-          <p className="font-semibold text-blue-950">Data Source & Audit Scope Transparency</p>
-          <p className="text-[11.5px] text-blue-800/90 mt-0.5">
-            This tool performs client-side heuristic link profile analysis and high-volume batch CSV audits (up to 100 files & 1 GB). Metrics are heuristic estimates calculated locally in your browser without querying paid external web crawling APIs. For 100% verified competitor crawl coverage, export raw CSV reports from Google Search Console, Ahrefs, Moz, or Semrush and upload them via the CSV tab.
-          </p>
-        </div>
+      <StandardFileUploader
+        files={csvFiles}
+        onFilesChange={setCsvFiles}
+        maxFiles={MAX_FILES_LIMIT}
+        maxCombinedSizeBytes={MAX_COMBINED_SIZE_BYTES}
+        acceptedExtensions={[".csv", ".tsv", ".txt"]}
+        acceptedTypes={["text/csv", "text/plain", "text/tab-separated-values"]}
+        title="Drop backlink exports (CSV or TSV)"
+        subtitle="Search Console, Ahrefs, Semrush or Moz exports. Up to 100 files."
+        disabled={isParsing}
+      />
+
+      <div className="space-y-1.5">
+        <Label htmlFor="bl-paste" className="text-sm font-semibold">
+          Or paste linking URLs or domains
+        </Label>
+        <textarea
+          id="bl-paste"
+          value={pasted}
+          onChange={(e) => setPasted(e.target.value)}
+          rows={5}
+          placeholder={"https://example.com/blog/post\nnews-site.org"}
+          className="w-full p-3 rounded-md border border-[#D5DCE4] bg-white text-sm font-mono"
+        />
       </div>
-      {activeTab === "domain" ? (
-        <div className="p-4 sm:p-5 rounded-xl border border-border bg-card space-y-4 shadow-xs">
-          <div className="space-y-1.5">
-            <Label className="text-xs font-semibold text-foreground">Target Domain or URL</Label>
-            <div className="flex flex-col sm:flex-row gap-2">
-              <div className="relative flex-1">
-                <Globe className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-                <Input
-                  value={domainInput}
-                  onChange={(e) => setDomainInput(e.target.value)}
-                  placeholder="zoqonyx.com or https://example.com"
-                  className="pl-9 text-xs"
-                  onKeyDown={(e) => e.key === "Enter" && handleAuditDomain()}
-                />
-              </div>
-              <Button
-                onClick={() => handleAuditDomain()}
-                disabled={isLoading}
-                className="bg-teal-600 hover:bg-teal-500 text-white text-xs gap-1.5"
-              >
-                <Search className={`w-3.5 h-3.5 ${isLoading ? "animate-spin" : ""}`} />
-                <span>{isLoading ? "Auditing Profile..." : "Analyze Backlinks"}</span>
-              </Button>
-            </div>
-          </div>
 
-          {/* Quick presets */}
-          <div className="flex flex-wrap items-center gap-2 pt-1 text-[11px] text-muted-foreground">
-            <span>Quick Benchmarks:</span>
-            {["zoqonyx.com", "github.com", "wikipedia.org", "nytimes.com"].map((preset) => (
-              <button
-                key={preset}
-                type="button"
-                onClick={() => {
-                  setDomainInput(preset);
-                  handleAuditDomain(preset);
-                }}
-                className="px-2 py-0.5 rounded bg-muted/60 hover:bg-muted text-foreground transition-colors font-mono"
-              >
-                {preset}
-              </button>
-            ))}
-          </div>
-        </div>
-      ) : (
-        /* Mode 2: CSV Import (100 files, 1 GB) */
-        <div className="space-y-4">
-          <StandardFileUploader
-            files={csvFiles}
-            onFilesChange={setCsvFiles}
-            maxFiles={MAX_FILES_LIMIT}
-            maxCombinedSizeBytes={MAX_COMBINED_SIZE_BYTES}
-            acceptedExtensions={[".csv", ".tsv", ".txt"]}
-            acceptedTypes={["text/csv", "text/plain", "text/tab-separated-values"]}
-            title="Drop backlink export CSVs (GSC, Ahrefs, Moz, Semrush)"
-            subtitle="Import up to 100 CSV reports (up to 1 GB) for toxicity scanning & anchor analysis."
-            disabled={isCsvParsing}
-          />
+      <div className="flex flex-wrap items-center gap-3">
+        <Button onClick={runAudit} disabled={isParsing || (csvFiles.length === 0 && !pasted.trim())} className="gap-1.5">
+          <RefreshCw className={`w-4 h-4 ${isParsing ? "animate-spin" : ""}`} />
+          {isParsing ? "Reading links…" : "Audit backlinks"}
+        </Button>
+        {error && <p className="text-sm text-rose-700">{error}</p>}
+      </div>
 
-          {csvFiles.length > 0 && (
-            <div className="flex justify-end">
-              <Button
-                onClick={handleParseCsvFiles}
-                disabled={isCsvParsing}
-                className="bg-teal-600 hover:bg-teal-500 text-white text-xs gap-1.5"
-              >
-                <RefreshCw className={`w-3.5 h-3.5 ${isCsvParsing ? "animate-spin" : ""}`} />
-                <span>{isCsvParsing ? "Parsing Datasets..." : `Audit ${csvFiles.length} CSV File(s)`}</span>
-              </Button>
-            </div>
-          )}
-        </div>
-      )}
-
-      {/* Metrics Dashboard */}
-      {metrics && (
+      {summary && (
         <div className="space-y-6">
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3.5">
-            {/* Metric 1: Authority Estimate */}
-            <div className="p-3.5 rounded-xl border border-slate-200 bg-white shadow-xs space-y-1">
-              <span className="text-[10px] uppercase font-mono font-bold tracking-wider text-slate-500">
-                Authority Index (Heuristic)
-              </span>
-              <div className="flex items-baseline gap-2">
-                <span className="text-2xl font-black text-slate-900 font-mono">{metrics.estimatedDR}</span>
-                <span className="text-[11px] text-slate-500">/ 100</span>
-              </div>
-              <p className="text-[10px] text-slate-500">Heuristic profile estimate; not official Ahrefs DR</p>
+          <dl className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            <div className="p-3.5 rounded-md border border-[#D5DCE4] bg-white">
+              <dt className="text-sm text-[#4A5568]">Backlinks</dt>
+              <dd className="text-2xl font-bold">{summary.totalLinks.toLocaleString()}</dd>
             </div>
-
-            {/* Metric 2: Referring Domains */}
-            <div className="p-3.5 rounded-xl border border-slate-200 bg-white shadow-xs space-y-1">
-              <span className="text-[10px] uppercase font-mono font-bold tracking-wider text-slate-500">
-                Referring Domains
-              </span>
-              <div className="flex items-baseline gap-2">
-                <span className="text-2xl font-black text-slate-900 font-mono">
-                  {metrics.referringDomains.toLocaleString()}
-                </span>
-              </div>
-              <p className="text-[10px] text-slate-500">Unique root linking hosts</p>
+            <div className="p-3.5 rounded-md border border-[#D5DCE4] bg-white">
+              <dt className="text-sm text-[#4A5568]">Referring domains</dt>
+              <dd className="text-2xl font-bold">{summary.referringDomains.toLocaleString()}</dd>
             </div>
-
-            {/* Metric 3: Dofollow Ratio */}
-            <div className="p-3.5 rounded-xl border border-slate-200 bg-white shadow-xs space-y-1">
-              <span className="text-[10px] uppercase font-mono font-bold tracking-wider text-slate-500">
-                Dofollow Ratio
-              </span>
-              <div className="flex items-baseline gap-2">
-                <span className="text-2xl font-black text-teal-700 font-mono">{metrics.dofollowPercent}%</span>
-                <span className="text-[11px] text-slate-500">({metrics.nofollowPercent}% nofollow)</span>
-              </div>
-              <p className="text-[10px] text-slate-500">Search authority pass-through ratio</p>
+            <div className="p-3.5 rounded-md border border-[#D5DCE4] bg-white">
+              <dt className="text-sm text-[#4A5568]">Follow / nofollow</dt>
+              <dd className="text-2xl font-bold">
+                {summary.hasRel ? `${summary.followCount} / ${summary.nofollowCount}` : "—"}
+              </dd>
+              {!summary.hasRel && <p className="text-xs text-[#4A5568]">Not in your file</p>}
             </div>
-
-            {/* Metric 4: Spam Signal Indicator */}
-            <div className="p-3.5 rounded-xl border border-slate-200 bg-white shadow-xs space-y-1">
-              <span className="text-[10px] uppercase font-mono font-bold tracking-wider text-slate-500">
-                Spam Signal Indicator
-              </span>
-              <div className="flex items-baseline gap-2">
-                <span
-                  className={`text-2xl font-black font-mono ${
-                    metrics.toxicRiskScore > 20 ? "text-rose-600" : "text-emerald-600"
-                  }`}
-                >
-                  {metrics.toxicRiskScore}%
-                </span>
-                <span className="text-[11px] text-slate-500">({metrics.toxicLinksCount} flagged)</span>
-              </div>
-              <p className="text-[10px] text-slate-500">Spam TLD and over-optimized pattern signals</p>
+            <div className="p-3.5 rounded-md border border-[#D5DCE4] bg-white">
+              <dt className="text-sm text-[#4A5568]">Flagged links</dt>
+              <dd className={`text-2xl font-bold ${summary.suspiciousCount ? "text-rose-700" : ""}`}>{summary.suspiciousCount}</dd>
             </div>
-          </div>
+          </dl>
 
-          {/* Anchor Text Distribution & Toxicity Alerts */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {/* Anchor Distribution */}
-            <div className="p-4 rounded-xl border border-border bg-card space-y-3 shadow-xs">
-              <div className="flex items-center justify-between">
-                <span className="text-xs font-bold text-foreground flex items-center gap-1.5">
-                  <BarChart3 className="w-4 h-4 text-teal-600" /> Top Anchor Text Diversity
-                </span>
-                <span className="text-[11px] text-muted-foreground">{metrics.anchorDistribution.length} top anchors</span>
-              </div>
-
-              <div className="space-y-2">
-                {metrics.anchorDistribution.map((a, idx) => (
-                  <div key={idx} className="space-y-1 text-xs">
-                    <div className="flex justify-between font-mono">
-                      <span className="truncate max-w-[220px] font-medium text-foreground">{a.anchor}</span>
-                      <span className="text-muted-foreground">
+            <div className="p-4 rounded-md border border-[#D5DCE4] bg-white">
+              <h3 className="font-semibold">Top referring domains</h3>
+              <ul className="mt-2 divide-y divide-[#D5DCE4] text-sm">
+                {summary.topDomains.map((d) => (
+                  <li key={d.domain} className="flex justify-between py-1.5">
+                    <span className="truncate">{d.domain}</span>
+                    <span className="tabular-nums text-[#4A5568]">{d.count}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="p-4 rounded-md border border-[#D5DCE4] bg-white">
+              <h3 className="font-semibold">Top anchor texts</h3>
+              {summary.hasAnchors ? (
+                <ul className="mt-2 divide-y divide-[#D5DCE4] text-sm">
+                  {summary.topAnchors.map((a) => (
+                    <li key={a.anchor} className="flex justify-between gap-3 py-1.5">
+                      <span className="truncate">{a.anchor}</span>
+                      <span className="tabular-nums text-[#4A5568]">
                         {a.count} ({a.percent}%)
                       </span>
-                    </div>
-                    <div className="w-full bg-muted rounded-full h-1.5 overflow-hidden">
-                      <div className="bg-teal-600 h-full rounded-full" style={{ width: `${a.percent}%` }} />
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Toxic Link Remediation & Disavow Generator */}
-            <div className="p-4 rounded-xl border border-border bg-card space-y-3 shadow-xs flex flex-col justify-between">
-              <div className="space-y-2">
-                <div className="flex items-center justify-between">
-                  <span className="text-xs font-bold text-foreground flex items-center gap-1.5">
-                    <ShieldAlert className="w-4 h-4 text-rose-600" /> Toxic Link Action Center
-                  </span>
-                  <span className="text-[11px] font-bold text-rose-600">
-                    {metrics.toxicLinksCount} Links Flagged
-                  </span>
-                </div>
-                <p className="text-xs text-muted-foreground leading-relaxed">
-                  Flagged links represent suspicious spam TLDs (.xyz, .top, .buzz) or over-optimized anchor clusters. <strong>Caution:</strong> Google officially advises using the Disavow Tool only if your site has received an unnatural links manual action or has engaged in paid link campaigns that cannot be removed.
-                </p>
-              </div>
-
-              <div className="pt-2 flex flex-wrap gap-2">
-                <Button
-                  onClick={generateDisavowFile}
-                  variant="outline"
-                  size="sm"
-                  className="text-xs gap-1.5 border-rose-300 text-rose-700 hover:bg-rose-50"
-                >
-                  <Download className="w-3.5 h-3.5" />
-                  <span>Download disavow.txt</span>
-                </Button>
-                <Button
-                  onClick={exportCsv}
-                  variant="outline"
-                  size="sm"
-                  className="text-xs gap-1.5 border-border"
-                >
-                  <FileSpreadsheet className="w-3.5 h-3.5 text-teal-600" />
-                  <span>Export All to CSV</span>
-                </Button>
-              </div>
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <p className="mt-2 text-sm text-[#4A5568]">Your file has no anchor text column.</p>
+              )}
             </div>
           </div>
 
-          {/* Detailed Backlinks Table */}
-          <div className="space-y-3 p-4 rounded-xl border border-border bg-card shadow-xs">
+          <div className="p-4 rounded-md border border-[#D5DCE4] bg-white space-y-3">
             <div className="flex flex-wrap items-center justify-between gap-3">
-              <div className="space-y-0.5">
-                <h4 className="text-xs font-bold uppercase tracking-wider text-foreground">
-                  Inbound Backlink Details ({filteredBacklinks.length})
-                </h4>
-                <p className="text-[11px] text-muted-foreground">
-                  Inspecting link attributes, referring URLs, anchor texts, and toxicity flags
-                </p>
-              </div>
-
-              {/* Filters */}
+              <h3 className="font-semibold">Links ({shown.length})</h3>
               <div className="flex flex-wrap items-center gap-2">
-                <div className="flex items-center gap-1.5 text-xs">
-                  <Filter className="w-3.5 h-3.5 text-muted-foreground" />
-                  <select
-                    value={filterRel}
-                    onChange={(e) => setFilterRel(e.target.value)}
-                    className="p-1 text-xs rounded border border-border bg-background"
-                  >
-                    <option value="all">All Rel Types</option>
-                    <option value="dofollow">Dofollow Only</option>
-                    <option value="nofollow">Nofollow Only</option>
-                  </select>
-                </div>
-
-                <Button
-                  size="sm"
-                  variant={filterToxicOnly ? "destructive" : "outline"}
-                  onClick={() => setFilterToxicOnly(!filterToxicOnly)}
-                  className="text-xs h-7 px-2.5 gap-1"
+                <select
+                  value={filter}
+                  onChange={(e) => setFilter(e.target.value as typeof filter)}
+                  className="p-1.5 text-sm rounded border border-[#D5DCE4] bg-white"
+                  aria-label="Filter links"
                 >
-                  <ShieldAlert className="w-3.5 h-3.5" />
-                  <span>Toxic Only ({metrics.toxicLinksCount})</span>
+                  <option value="all">All links</option>
+                  <option value="suspicious">Flagged only</option>
+                  <option value="dofollow">Follow only</option>
+                  <option value="nofollow">Nofollow only</option>
+                </select>
+                <Button variant="outline" size="sm" onClick={exportCsv} className="gap-1.5">
+                  <FileSpreadsheet className="w-4 h-4" /> Export CSV
+                </Button>
+                <Button variant="outline" size="sm" onClick={exportDisavow} disabled={!summary.suspiciousCount} className="gap-1.5">
+                  <Download className="w-4 h-4" /> Disavow draft
                 </Button>
               </div>
             </div>
-
-            <div className="border border-border/80 rounded-lg overflow-x-auto">
-              <table className="w-full text-left text-xs">
-                <thead className="bg-muted/50 border-b border-border/80 text-[11px] text-muted-foreground font-semibold">
+            <p className="text-xs text-[#4A5568]">
+              <ShieldAlert className="inline w-3.5 h-3.5 mr-1" />
+              Links are flagged only for a low-reputation domain ending or a spam word in the anchor. Google advises using a disavow file only after a
+              manual action for unnatural links.
+            </p>
+            <div className="border border-[#D5DCE4] rounded overflow-x-auto">
+              <table className="w-full text-left text-sm">
+                <thead className="bg-[#F3F5F8]">
                   <tr>
-                    <th className="p-2.5">Source Referring URL</th>
-                    <th className="p-2.5">Anchor Text</th>
-                    <th className="p-2.5 w-20">Type</th>
-                    <th className="p-2.5 w-16">DA</th>
-                    <th className="p-2.5 w-28">Status</th>
+                    <th className="p-2.5">Linking page</th>
+                    <th className="p-2.5">Anchor</th>
+                    <th className="p-2.5">Rel</th>
+                    <th className="p-2.5">Status</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-border/60">
-                  {filteredBacklinks.map((link, idx) => (
-                    <tr key={idx} className="hover:bg-muted/20 transition-colors">
-                      <td className="p-2.5 truncate max-w-xs font-mono">
-                        <a
-                          href={link.sourceUrl}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="text-teal-700 hover:underline flex items-center gap-1"
-                        >
-                          <span className="truncate">{link.sourceUrl}</span>
-                          <ExternalLink className="w-3 h-3 shrink-0 opacity-70" />
+                <tbody className="divide-y divide-[#D5DCE4]">
+                  {shown.slice(0, 500).map((l, i) => (
+                    <tr key={i}>
+                      <td className="p-2.5 max-w-xs">
+                        <a href={l.sourceUrl} target="_blank" rel="noreferrer nofollow" className="text-[#0F766E] hover:underline inline-flex items-center gap-1">
+                          <span className="truncate">{l.sourceUrl}</span>
+                          <ExternalLink className="w-3 h-3 shrink-0" />
                         </a>
                       </td>
-                      <td className="p-2.5 font-medium text-foreground truncate max-w-[200px]">
-                        &quot;{link.anchorText}&quot;
-                      </td>
-                      <td className="p-2.5 font-mono">
-                        <span
-                          className={`px-1.5 py-0.5 rounded text-[10px] font-bold uppercase ${
-                            link.rel === "dofollow"
-                              ? "bg-teal-50 text-teal-800 border border-teal-200"
-                              : "bg-slate-100 text-slate-700"
-                          }`}
-                        >
-                          {link.rel}
-                        </span>
-                      </td>
-                      <td className="p-2.5 font-mono font-bold text-foreground">{link.domainAuthority}</td>
+                      <td className="p-2.5 max-w-[200px] truncate">{l.anchorText || "—"}</td>
+                      <td className="p-2.5">{l.rel === "unknown" ? "—" : l.rel}</td>
                       <td className="p-2.5">
-                        {link.isToxic ? (
-                          <span
-                            className="inline-flex items-center gap-1 text-[10px] text-rose-700 font-semibold bg-rose-50 px-1.5 py-0.5 rounded border border-rose-200"
-                            title={link.toxicReason}
-                          >
-                            <AlertTriangle className="w-3 h-3 text-rose-600" /> Toxic Link
+                        {l.isSuspicious ? (
+                          <span className="inline-flex items-center gap-1 text-rose-700" title={l.reason}>
+                            <AlertTriangle className="w-3.5 h-3.5" /> Flagged
                           </span>
                         ) : (
-                          <span className="inline-flex items-center gap-1 text-[10px] text-emerald-700 font-semibold bg-emerald-50 px-1.5 py-0.5 rounded">
-                            <CheckCircle2 className="w-3 h-3 text-emerald-600" /> Safe Link
+                          <span className="inline-flex items-center gap-1 text-emerald-700">
+                            <CheckCircle2 className="w-3.5 h-3.5" /> OK
                           </span>
                         )}
                       </td>
@@ -801,6 +425,7 @@ export function BacklinkCheckerTool() {
                 </tbody>
               </table>
             </div>
+            {shown.length > 500 && <p className="text-xs text-[#4A5568]">Showing the first 500 rows. Export CSV to see all.</p>}
           </div>
         </div>
       )}
