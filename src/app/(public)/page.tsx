@@ -1,17 +1,9 @@
 import { prisma } from "@/lib/prisma";
 import Link from "next/link";
-import { Schibsted_Grotesk } from "next/font/google";
 import { ToolDrawer } from "@/components/home/tool-drawer";
 import type { Metadata } from "next";
 
 import { DEFAULT_TOOLS } from "@/lib/default-tools";
-
-// Homepage-only typeface (the rest of the site still uses the layout font).
-const schibsted = Schibsted_Grotesk({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  display: "swap",
-});
 
 export const metadata: Metadata = {
   title: {
@@ -121,7 +113,7 @@ export default async function HomePage() {
 
       <style>{HOME_CSS}</style>
 
-      <div className={`zq-home ${schibsted.className}`}>
+      <div className="zq-home">
         <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 pt-10 sm:pt-16 pb-16">
           <header className="max-w-[46rem] mb-8 sm:mb-10">
             <h1 className="text-[2.25rem] sm:text-[3.25rem] leading-[1.05] font-bold tracking-[-0.025em]" style={{ color: "var(--zq-ink)" }}>

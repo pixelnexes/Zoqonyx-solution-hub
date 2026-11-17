@@ -2,147 +2,102 @@
 
 import Link from "next/link";
 import { Logo } from "@/components/layout/logo";
-import { Heart, Mail, ExternalLink, Zap, Lock } from "lucide-react";
 import { useSiteSettings } from "@/components/providers/site-settings-provider";
+
+const FOCUS =
+  "rounded-[2px] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#14213D]";
+const LINK = `text-[#14213D] hover:underline underline-offset-4 ${FOCUS}`;
+
+const TOOL_LINKS = [
+  { label: "All tools", href: "/tools" },
+  { label: "Images", href: "/category/image-tools" },
+  { label: "PDF", href: "/category/pdf-documents" },
+  { label: "Developer & SEO", href: "/category/developer-seo" },
+  { label: "Text & code", href: "/category/text-code" },
+  { label: "CSS & design", href: "/category/css-design" },
+  { label: "Calculators", href: "/category/calculators" },
+];
+
+const COMPANY_LINKS = [
+  { label: "About", href: "/about" },
+  { label: "Contact", href: "/contact" },
+  { label: "Privacy policy", href: "/privacy-policy" },
+  { label: "Terms of service", href: "/terms" },
+];
 
 export function Footer() {
   const { settings } = useSiteSettings();
+  const email = settings.contact_email_primary || "hello@zoqonyx.com";
+  // The stored credit sometimes already starts with "Developed by"; strip it so it isn't shown twice.
+  const credit = (settings.footer_credit || "Newix Tech Solutions").replace(/^\s*(developed|built|made)\s+by\s+/i, "");
+  const siteName = settings.site_name || "Zoqonyx Solution Hub";
+
   return (
-    <footer className="mt-auto border-t border-slate-200 bg-slate-50/70 text-slate-700">
-      <div className="container mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 lg:gap-12">
-          {/* Brand Info */}
-          <div className="md:col-span-1 space-y-4">
+    <footer className="mt-auto border-t-2 border-[#14213D] bg-white text-[#14213D]">
+      <div className="container mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr] gap-10">
+          <div className="space-y-3 max-w-xs">
             <Logo size="md" />
-            <p className="text-sm text-muted-foreground leading-relaxed">
-              Empowering creators, developers, designers, and marketers with fast, privacy-first, 100% free digital tools.
+            <p className="text-[15px] leading-relaxed text-[#4A5568]">
+              Free tools for images, PDFs, code and text. No sign-up.
             </p>
-            <div className="flex flex-col gap-1 text-xs text-muted-foreground pt-1">
-              <span className="flex items-center gap-1.5">
-                <Lock className="w-3.5 h-3.5 text-emerald-500" /> Client-side zero data retention
-              </span>
-              <span className="flex items-center gap-1.5">
-                <Zap className="w-3.5 h-3.5 text-amber-500" /> Instant execution, zero waiting
-              </span>
-            </div>
           </div>
 
-          {/* Quick Tool Categories */}
           <div>
-            <h4 className="font-heading font-semibold text-sm text-foreground uppercase tracking-wider mb-3">
-              Tool Categories
-            </h4>
-            <ul className="space-y-2 text-sm text-muted-foreground">
-              <li>
-                <Link href="/tools" className="font-semibold text-foreground hover:text-brand-cyan transition-colors">
-                  All Tools Directory
-                </Link>
-              </li>
-              <li>
-                <Link href="/category/image-tools" className="hover:text-teal-700 transition-colors">
-                  Image & Photo Tools
-                </Link>
-              </li>
-              <li>
-                <Link href="/category/css-design" className="hover:text-teal-700 transition-colors">
-                  CSS & Design Generators
-                </Link>
-              </li>
-              <li>
-                <Link href="/category/text-code" className="hover:text-teal-700 transition-colors">
-                  Text & Code Utilities
-                </Link>
-              </li>
-              <li>
-                <Link href="/category/developer-seo" className="hover:text-teal-700 transition-colors">
-                  Developer & SEO Tools
-                </Link>
-              </li>
-              <li>
-                <Link href="/category/calculators" className="hover:text-teal-700 transition-colors">
-                  Calculators & Math
-                </Link>
-              </li>
-              <li>
-                <Link href="/category/pdf-documents" className="hover:text-teal-700 transition-colors">
-                  PDF & Documents
-                </Link>
-              </li>
-              <li>
-                <Link href="/category/ai-tools" className="hover:text-teal-700 transition-colors">
-                  AI & Smart Tools
-                </Link>
-              </li>
+            <h2 className="text-base font-bold mb-3">Tools</h2>
+            <ul className="space-y-2 text-[15px]">
+              {TOOL_LINKS.map((l) => (
+                <li key={l.href}>
+                  <Link href={l.href} className={LINK}>
+                    {l.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Platform & Resources */}
           <div>
-            <h4 className="font-heading font-semibold text-sm text-foreground uppercase tracking-wider mb-3">
-              Company & Legal
-            </h4>
-            <ul className="space-y-2 text-sm text-muted-foreground">
-              <li>
-                <Link href="/about" className="hover:text-teal-700 transition-colors">
-                  About Zoqonyx
-                </Link>
-              </li>
-              <li>
-                <Link href="/contact" className="hover:text-teal-700 transition-colors">
-                  Contact Support
-                </Link>
-              </li>
-              <li>
-                <Link href="/privacy-policy" className="hover:text-teal-700 transition-colors">
-                  Privacy Policy
-                </Link>
-              </li>
-              <li>
-                <Link href="/terms" className="hover:text-teal-700 transition-colors">
-                  Terms of Service
-                </Link>
-              </li>
+            <h2 className="text-base font-bold mb-3">Company</h2>
+            <ul className="space-y-2 text-[15px]">
+              {COMPANY_LINKS.map((l) => (
+                <li key={l.href}>
+                  <Link href={l.href} className={LINK}>
+                    {l.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Contact & Support */}
           <div>
-            <h4 className="font-heading font-semibold text-sm text-foreground uppercase tracking-wider mb-3">
-              Get in Touch
-            </h4>
-            <div className="space-y-2.5 text-sm text-slate-600">
-              <a
-                href={`mailto:${settings.contact_email_primary || "hello@zoqonyx.com"}`}
-                className="flex items-center gap-2 hover:text-teal-600 transition-colors font-medium text-slate-800"
-              >
-                <Mail className="w-4 h-4 text-teal-600" />
-                <span>{settings.contact_email_primary || "hello@zoqonyx.com"}</span>
+            <h2 className="text-base font-bold mb-3">Contact</h2>
+            <p className="text-[15px]">
+              <a href={`mailto:${email}`} className={LINK}>
+                {email}
               </a>
-              <p className="text-xs text-slate-500 pt-1 leading-relaxed">
-                Have a feature request or need a custom web tool built? Drop us a line anytime.
-              </p>
-            </div>
+            </p>
+            <p className="mt-2 text-sm leading-relaxed text-[#4A5568]">
+              Found a bug or want a tool we don&apos;t have? Email us.
+            </p>
           </div>
         </div>
 
-        {/* Bottom Bar with credit */}
-        <div className="mt-12 pt-6 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
-          <p>© {new Date().getFullYear()} {settings.site_name || "Zoqonyx Solution Hub"}. All rights reserved.</p>
-
-          <div className="flex items-center gap-1.5 font-medium">
-            <span>Developed with</span>
-            <Heart className="w-3.5 h-3.5 text-rose-500 fill-rose-500 inline" />
-            <span>by</span>
+        <div className="mt-12 pt-5 border-t border-[#D5DCE4] flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-sm text-[#4A5568]">
+          <p>
+            © {new Date().getFullYear()} {siteName}
+          </p>
+          <p>
+            Built by{" "}
             <a
               href={settings.footer_url || "https://newixtechsolutions.com/"}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-teal-700 hover:text-teal-800 hover:underline inline-flex items-center gap-0.5 font-semibold"
+              className={`font-semibold ${LINK}`}
             >
-              <span>{settings.footer_credit || "Newix Tech Solutions"}</span>
-              <ExternalLink className="w-3 h-3" />
+              {credit}
+              <span className="sr-only"> (opens in a new tab)</span>
             </a>
-          </div>
+          </p>
         </div>
       </div>
     </footer>

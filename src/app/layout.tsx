@@ -1,14 +1,16 @@
 import type { Metadata, Viewport } from "next";
-import { Poppins } from "next/font/google";
+import { Schibsted_Grotesk } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { getSiteSettings } from "@/lib/settings";
 import { SiteSettingsProvider } from "@/components/providers/site-settings-provider";
 
-const poppins = Poppins({
+// Site typeface. The CSS variable keeps its old name so tailwind.config.ts
+// (fontFamily.sans / heading) needs no change.
+const siteFont = Schibsted_Grotesk({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "500", "600", "700", "800", "900"],
   variable: "--font-poppins",
   display: "swap",
 });
@@ -94,7 +96,7 @@ export default async function RootLayout({
   const iconUrl = settings.icon_path || "/logo/zoqonyx-icon.png";
 
   return (
-    <html lang="en" className={`light ${poppins.variable} font-sans`}>
+    <html lang="en" className={`light ${siteFont.variable} font-sans`}>
       <head>
         <link rel="icon" href={iconUrl} />
         <link rel="shortcut icon" href={iconUrl} />

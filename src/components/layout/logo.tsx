@@ -55,7 +55,7 @@ export function Logo({ className, iconOnly = false, size = "md" }: LogoProps) {
     <Link
       href="/"
       className={cn(
-        "inline-flex items-center gap-2.5 transition-transform hover:scale-[1.01] group focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-teal-600 rounded-md",
+        "inline-flex items-center gap-2.5 group rounded-[2px] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#14213D]",
         className
       )}
       aria-label={siteName}
@@ -79,22 +79,21 @@ export function Logo({ className, iconOnly = false, size = "md" }: LogoProps) {
           <div className="flex items-center leading-none tracking-tight">
             {siteName.toUpperCase().includes("ZOQONYX") ? (
               <>
-                <span className={cn("font-heading font-black tracking-wider text-slate-900", dimensions.textMain)}>
+                <span className={cn("font-heading font-bold tracking-[0.04em] text-[#14213D]", dimensions.textMain)}>
                   ZOQONY
                 </span>
-                <span className={cn("font-heading font-black tracking-wider text-teal-600", dimensions.textMain)}>
+                <span className={cn("font-heading font-bold tracking-[0.04em] text-[#0F766E]", dimensions.textMain)}>
                   X
                 </span>
               </>
             ) : (
-              <span className={cn("font-heading font-black tracking-wider text-slate-900", dimensions.textMain)}>
+              <span className={cn("font-heading font-bold tracking-[0.04em] text-[#14213D]", dimensions.textMain)}>
                 {siteName}
               </span>
             )}
           </div>
-          <span className={cn("uppercase font-bold tracking-[0.2em] text-slate-400 mt-0.5", dimensions.textSub)}>
-            {tagline}
-          </span>
+          {/* Tagline kept for screen readers only; the visible uppercase tagline read as template chrome. */}
+          <span className="sr-only">{tagline}</span>
         </div>
       )}
     </Link>
