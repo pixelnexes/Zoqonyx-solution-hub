@@ -3,24 +3,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 import { getCategoryBySlug, getAllCategories } from "@/lib/categories";
-import { ToolIcon } from "@/components/common/tool-icon";
-import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import {
-  ArrowLeft,
-  ArrowRight,
-  Sparkles,
-  CheckCircle2,
-  ShieldCheck,
-  Zap,
-  HelpCircle,
-  Layers,
-  ChevronRight,
-  Clock,
-} from "lucide-react";
 import { DEFAULT_TOOLS } from "@/lib/default-tools";
-import { cn } from "@/lib/utils";
 
 export const dynamic = "force-dynamic";
 
@@ -171,7 +154,28 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
 
   const dbSlugs = new Set(liveTools.map((t) => t.slug));
   const missingFallback = fallbackFormatted.filter((t) => !dbSlugs.has(t.slug));
-  const displayedTools = [...liveTools, ...missingFallback].sort((a, b) => a.order - b.order);
+
+  // Also list every active catalog tool in this category, so the count matches
+  // the homepage and the All tools page even when the DB has fewer rows.
+  const shownSlugs = new Set([...dbSlugs, ...missingFallback.map((t) => t.slug)]);
+  const missingCatalog = DEFAULT_TOOLS.filter(
+    (t) =>
+      t.isActive &&
+      !t.isComingSoon &&
+      category.dbCategories.includes(t.category) &&
+      !shownSlugs.has(t.slug)
+  ).map((t) => ({
+    id: t.id,
+    slug: t.slug,
+    name: t.name,
+    description: t.description,
+    icon: t.icon,
+    isComingSoon: false,
+    category: t.category,
+    order: 1000 + t.order,
+  }));
+
+  const displayedTools = [...liveTools, ...missingFallback, ...missingCatalog].sort((a, b) => a.order - b.order);
 
   // JSON-LD structured data for SEO (CollectionPage + ItemList + FAQPage)
   const collectionJsonLd = {
@@ -210,7 +214,12 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
     })),
   };
 
-  const otherCategories = getAllCategories().filter((c) => c.slug !== category.slug);
+  // Only link to categories that have at least one live tool.
+  const otherCategories = getAllCategories().filter(
+    (c) =>
+      c.slug !== category.slug &&
+      DEFAULT_TOOLS.some((t) => t.isActive && !t.isComingSoon && c.dbCategories.includes(t.category))
+  );
 
   return (
     <>
@@ -223,269 +232,154 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
 
-      <div className="container mx-auto max-w-6xl px-4 py-8 sm:py-12 space-y-12">
-        {/* Breadcrumb Navigation */}
-        <nav
-          aria-label="Breadcrumb"
-          className="flex items-center gap-2 text-xs font-medium text-slate-500"
-        >
-          <Link href="/" className="hover:text-teal-700 transition-colors">
-            Home
-          </Link>
-          <ChevronRight className="w-3.5 h-3.5 opacity-60" />
-          <Link href="/#tools-catalog" className="hover:text-teal-700 transition-colors">
-            Categories
-          </Link>
-          <ChevronRight className="w-3.5 h-3.5 opacity-60" />
-          <span className="text-slate-900 font-bold">{category.name}</span>
+      <div className="bg-[#F3F5F8] text-[#14213D]">
+      <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 pt-6 pb-16 space-y-14">
+        <nav aria-label="Breadcrumb" className="text-sm text-[#4A5568]">
+          <ol className="flex flex-wrap items-center gap-x-2 gap-y-1">
+            <li>
+              <Link href="/" className={CP_LINK}>
+                Home
+              </Link>
+            </li>
+            <li aria-hidden="true">/</li>
+            <li>
+              <Link href="/tools" className={CP_LINK}>
+                All tools
+              </Link>
+            </li>
+            <li aria-hidden="true">/</li>
+            <li aria-current="page" className="text-[#14213D] font-medium">
+              {category.name}
+            </li>
+          </ol>
         </nav>
 
-        {/* Category Hero Section */}
-        <div className="relative overflow-hidden rounded-[8px] border border-border/80 bg-white p-6 sm:p-10 lg:p-12 shadow-sm">
-          <div className="relative z-10 space-y-5 max-w-3xl">
-            <div className="flex flex-wrap items-center gap-3">
-              <div className="p-3 rounded-[8px] bg-teal-500/10 text-teal-400 border border-teal-500/20">
-                <ToolIcon name={category.icon} className="w-6 h-6" />
-              </div>
-              <Badge variant="outline" className="text-xs px-3 py-1 font-semibold border-teal-500/40 text-teal-400 font-mono">
-                {category.badge}
-              </Badge>
-              <Badge variant="secondary" className="text-xs px-3 py-1 font-medium">
-                100% Free & Client-Side
-              </Badge>
-            </div>
-
-            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-black tracking-tight text-slate-900 leading-tight">
-              {category.name}
-            </h1>
-
-            <p className="text-xs sm:text-sm font-semibold text-teal-700">
-              {category.tagline}
-            </p>
-
-            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-              {category.description}
-            </p>
-
-            {/* Quick Badges */}
-            <div className="flex flex-wrap items-center gap-3 pt-2 text-[11px] font-medium text-slate-500">
-              <span className="flex items-center gap-1.5">
-                <CheckCircle2 className="w-4 h-4 text-emerald-400" /> No Account or Login Required
-              </span>
-              <span className="flex items-center gap-1.5">
-                <ShieldCheck className="w-4 h-4 text-teal-400" /> 100% Private (No Cloud Storage)
-              </span>
-              <span className="flex items-center gap-1.5">
-                <Zap className="w-4 h-4 text-amber-400" /> Instant Hardware Acceleration
-              </span>
-            </div>
-          </div>
-        </div>
+        <header className="max-w-[46rem] -mt-6">
+          <h1 className="text-[2rem] sm:text-[2.75rem] leading-[1.08] font-bold tracking-[-0.02em]">
+            {category.name}
+          </h1>
+          <p className="mt-3 text-[17px] leading-relaxed text-[#4A5568]">{category.description}</p>
+          <p className="mt-2 text-sm text-[#4A5568]">
+            {displayedTools.length} {displayedTools.length === 1 ? "tool" : "tools"}. Free to use, no sign-up.
+          </p>
+        </header>
 
         {/* Tools Catalog Section */}
-        <section className="space-y-3.5">
-          <div className="flex items-center justify-between">
-            <div>
-              <h2 className="text-xl sm:text-2xl font-heading font-bold text-slate-900">
-                Available Tools in {category.name}
-              </h2>
-              <p className="text-xs sm:text-sm text-slate-500">
-                Click any tool below to launch instantly in your web browser.
-              </p>
-            </div>
-            <span className="text-xs font-mono font-semibold px-3 py-1.5 rounded-md bg-muted/60 text-slate-500 border border-border/60">
-              {displayedTools.length} {displayedTools.length === 1 ? "Tool" : "Tools"}
-            </span>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-3.5">
-            {displayedTools.map((tool) => (
-              <Link
-                key={tool.slug}
-                href={`/tools/${tool.slug}`}
-                className="group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900 rounded-[10px] block h-full"
-              >
-                <div className="h-full flex flex-col justify-between p-3.5 rounded-[10px] bg-white border border-slate-200/90 shadow-[0_1px_3px_rgba(15,23,42,0.06),0_1px_2px_rgba(15,23,42,0.04)] hover:shadow-[0_10px_25px_-4px_rgba(15,23,42,0.08),0_4px_10px_-2px_rgba(15,23,42,0.04)] hover:border-slate-400 hover:-translate-y-0.5 transition-all duration-200">
-                  <div className="space-y-2.5">
-                    <div className="flex items-center justify-between gap-2">
-                      <div className="flex items-center gap-2.5">
-                        <div className="w-8 h-8 rounded-[7px] bg-slate-900 text-white flex items-center justify-center shrink-0 shadow-xs transition-transform group-hover:scale-105">
-                          <ToolIcon name={tool.icon} className="w-4.5 h-4.5 text-white" strokeWidth={2.5} />
-                        </div>
-                        <span className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider">
-                          {tool.category}
-                        </span>
-                      </div>
-                      {tool.isComingSoon ? (
-                        <span className="px-2 py-0.5 rounded-full text-[10.5px] font-semibold bg-amber-50 text-amber-800 border border-amber-200">
-                          Coming Soon
-                        </span>
-                      ) : null}
-                    </div>
-                    <div>
-                      <h3 className="text-[14.5px] font-bold text-slate-900 group-hover:text-teal-700 transition-colors line-clamp-1 leading-snug">
-                        {tool.name}
-                      </h3>
-                      <p className="text-[12px] text-slate-600 line-clamp-2 leading-relaxed mt-1 font-normal">
-                        {tool.description}
-                      </p>
-                    </div>
-                  </div>
-                  <div className="pt-2.5 mt-2.5 border-t border-slate-100 flex items-center justify-between text-xs">
-                    <span className="text-slate-500 text-[11px] flex items-center gap-1.5 font-medium">
-                      <span
-                        className={cn(
-                          "w-1.5 h-1.5 rounded-full shrink-0",
-                          tool.isComingSoon ? "bg-amber-400" : "bg-emerald-500"
-                        )}
-                      />
-                      <span>{tool.isComingSoon ? "In Development" : "Client-Side • Fast"}</span>
-                    </span>
-                    <span className="inline-flex items-center gap-1 text-[11.5px] font-semibold text-slate-700 group-hover:text-teal-700 group-hover:translate-x-0.5 transition-all">
-                      <span>Launch</span>
-                      <ArrowRight className="w-3.5 h-3.5" />
-                    </span>
-                  </div>
-                </div>
+        <section aria-labelledby="tools-heading">
+          <h2 id="tools-heading" className={`${CP_H2} pb-2 border-b-2 border-[#14213D]`}>
+            Tools
+          </h2>
+          {displayedTools.length === 0 ? (
+            <p className="mt-5 text-[16px] text-[#4A5568]">
+              No tools are live in this category yet.{" "}
+              <Link href="/tools" className={CP_LINK_TEAL}>
+                Browse all tools
               </Link>
-            ))}
-          </div>
+            </p>
+          ) : (
+            <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-10">
+              {displayedTools.map((tool) => (
+                <li key={tool.slug} className="border-b border-[#D5DCE4]">
+                  <Link href={`/tools/${tool.slug}`} className={`block py-3.5 hover:bg-white ${CP_FOCUS}`}>
+                    <span className="block text-[16px] font-semibold">{tool.name}</span>
+                    <span className="block mt-0.5 text-sm leading-relaxed text-[#4A5568] line-clamp-2">
+                      {tool.description}
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          )}
         </section>
 
         {/* Comprehensive SEO Content & Educational Guide */}
-        <section className="space-y-8 rounded-[8px] border border-border/80 bg-white p-6 sm:p-8 shadow-sm">
-          {/* Overview */}
-          <div className="space-y-3">
-            <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-teal-400 font-mono">
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>CATEGORY ARCHITECTURE & GUIDE</span>
-            </div>
-            <h2 className="text-2xl sm:text-3xl font-heading font-black text-slate-900">
-              About {category.name} on Zoqonyx
-            </h2>
-            <div className="text-sm text-slate-500 leading-relaxed whitespace-pre-line space-y-4">
-              {category.longContent.overview}
-            </div>
+        <section aria-labelledby="about-heading" className="max-w-[46rem]">
+          <h2 id="about-heading" className={CP_H2}>
+            About {category.name}
+          </h2>
+          <div className="mt-5 text-[16px] leading-[1.7] text-[#2D3748] whitespace-pre-line">
+            {category.longContent.overview}
           </div>
 
-          {/* Key Advantages Grid */}
-          <div className="space-y-4 pt-4 border-t border-border/60">
-            <h3 className="text-lg font-heading font-bold text-slate-900">
-              Key Advantages & Architectural Features
-            </h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {category.longContent.keyBenefits.length > 0 && (
+            <dl className="mt-8 border-t border-[#D5DCE4]">
               {category.longContent.keyBenefits.map((b, idx) => (
-                <div
-                  key={idx}
-                  className="p-4 rounded-[8px] bg-muted/20 border border-border/60 space-y-2 transition-all hover:border-teal-500/40"
-                >
-                  <h4 className="font-heading font-bold text-sm text-slate-900 flex items-center gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
-                    <span>{b.title}</span>
-                  </h4>
-                  <p className="text-xs text-slate-500 leading-relaxed pl-6">
-                    {b.desc}
-                  </p>
+                <div key={idx} className="py-4 border-b border-[#D5DCE4]">
+                  <dt className="text-[17px] font-semibold">{b.title}</dt>
+                  <dd className="mt-1 text-[15px] leading-relaxed text-[#4A5568]">{b.desc}</dd>
+                </div>
+              ))}
+            </dl>
+          )}
+
+          {category.longContent.popularWorkflows.length > 0 && (
+            <div className="mt-10 space-y-8">
+              {category.longContent.popularWorkflows.map((flow, fIdx) => (
+                <div key={fIdx}>
+                  <h3 className="text-xl font-bold">{flow.title}</h3>
+                  <ol className="mt-3 list-decimal pl-6 space-y-1.5 text-[15px] leading-relaxed text-[#2D3748]">
+                    {flow.steps.map((step, sIdx) => (
+                      <li key={sIdx}>{step}</li>
+                    ))}
+                  </ol>
                 </div>
               ))}
             </div>
-          </div>
-
-          {/* Popular Workflows */}
-          {category.longContent.popularWorkflows.length > 0 && (
-            <div className="space-y-4 pt-4 border-t border-border/60">
-              <h3 className="text-lg font-heading font-bold text-slate-900">
-                Popular Workflows & Best Practices
-              </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {category.longContent.popularWorkflows.map((flow, fIdx) => (
-                  <div
-                    key={fIdx}
-                    className="p-5 rounded-[8px] bg-white border border-border/80 space-y-2.5"
-                  >
-                    <h4 className="font-heading font-bold text-sm text-teal-400">
-                      {flow.title}
-                    </h4>
-                    <ol className="space-y-1.5 text-xs text-slate-500 list-decimal list-inside">
-                      {flow.steps.map((step, sIdx) => (
-                        <li key={sIdx} className="leading-relaxed">
-                          {step}
-                        </li>
-                      ))}
-                    </ol>
-                  </div>
-                ))}
-              </div>
-            </div>
           )}
 
-          {/* Deep-Dive Editorial Article */}
-          <div className="space-y-4 pt-4 border-t border-border/60">
-            <div className="prose prose-sm dark:prose-invert max-w-none text-slate-500 leading-relaxed space-y-3">
-              <div
-                dangerouslySetInnerHTML={{
-                  __html: category.longContent.deepDiveArticle
-                    .replace(/^### (.*$)/gim, '<h3 class="text-base font-heading font-bold text-slate-900 mt-5 mb-2">$1</h3>')
-                    .replace(/^## (.*$)/gim, '<h2 class="text-xl font-heading font-black text-slate-900 mt-6 mb-3">$1</h2>')
-                    .replace(/^\- (.*$)/gim, '<li class="list-disc ml-5 text-xs sm:text-sm my-1">$1</li>')
-                    .replace(/\*\*(.*?)\*\*/g, '<strong class="text-slate-900 font-semibold">$1</strong>')
-                    .replace(/\n\n/g, '<p class="text-xs sm:text-sm leading-relaxed my-2.5">')
-                    .replace(/\n/g, '<br />'),
-                }}
-              />
-            </div>
-          </div>
+          <div
+            className="mt-10 text-[16px] leading-[1.7] text-[#2D3748]"
+            dangerouslySetInnerHTML={{
+              __html: category.longContent.deepDiveArticle
+                .replace(/^### (.*$)/gim, '<h3 class="text-xl font-bold text-[#14213D] mt-8 mb-2">$1</h3>')
+                .replace(/^## (.*$)/gim, '<h2 class="text-2xl font-bold text-[#14213D] mt-10 mb-3">$1</h2>')
+                .replace(/^\- (.*$)/gim, '<li class="list-disc ml-6 my-1">$1</li>')
+                .replace(/\*\*(.*?)\*\*/g, '<strong class="text-[#14213D] font-semibold">$1</strong>')
+                .replace(/\n\n/g, '<p class="my-4">')
+                .replace(/\n/g, "<br />"),
+            }}
+          />
         </section>
 
-        {/* Interactive FAQ Section */}
-        <section className="space-y-6 rounded-[8px] border border-border/80 bg-white p-6 sm:p-8 shadow-sm">
-          <div className="space-y-1">
-            <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-teal-400 font-mono">
-              <HelpCircle className="w-3.5 h-3.5" />
-              <span>FREQUENTLY ASKED QUESTIONS</span>
-            </div>
-            <h2 className="text-xl sm:text-2xl font-heading font-bold text-slate-900">
-              Frequently Asked Questions
+        {category.faqs.length > 0 && (
+          <section aria-labelledby="faq-heading" className="max-w-[46rem]">
+            <h2 id="faq-heading" className={CP_H2}>
+              Questions about {category.name}
             </h2>
-            <p className="text-xs text-slate-500">
-              Common questions about {category.name} and how our tools work.
-            </p>
-          </div>
+            <div className="mt-5 border-t border-[#D5DCE4]">
+              {category.faqs.map((faq, fIdx) => (
+                <div key={fIdx} className="py-4 border-b border-[#D5DCE4]">
+                  <h3 className="text-[17px] font-semibold leading-snug">{faq.question}</h3>
+                  <p className="mt-1.5 text-[15px] leading-relaxed text-[#4A5568]">{faq.answer}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
 
-          <div className="space-y-3 divide-y divide-border/60">
-            {category.faqs.map((faq, fIdx) => (
-              <div key={fIdx} className="pt-3 first:pt-0 space-y-1.5">
-                <h3 className="font-heading font-bold text-sm text-slate-900 flex items-start gap-2">
-                  <span className="text-teal-400 font-mono text-xs">Q:</span>
-                  <span>{faq.question}</span>
-                </h3>
-                <p className="text-xs text-slate-500 leading-relaxed pl-5">
-                  {faq.answer}
-                </p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Explore Other Categories */}
-        <section className="space-y-3 pt-2">
-          <h3 className="text-xs font-mono font-bold text-slate-500 uppercase tracking-wider">
-            Explore Other Tool Categories
-          </h3>
-          <div className="flex flex-wrap items-center gap-2.5">
+        <section aria-labelledby="other-heading">
+          <h2 id="other-heading" className={`${CP_H2} pb-2 border-b-2 border-[#14213D]`}>
+            Other categories
+          </h2>
+          <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-10">
             {otherCategories.map((other) => (
-              <Link
-                key={other.slug}
-                href={`/category/${other.slug}`}
-                className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-[8px] bg-white border border-border/80 text-xs font-semibold text-slate-500 hover:border-teal-500/50 hover:text-teal-400 transition-all"
-              >
-                <ToolIcon name={other.icon} className="w-3.5 h-3.5" />
-                <span>{other.name}</span>
-              </Link>
+              <li key={other.slug} className="border-b border-[#D5DCE4]">
+                <Link href={`/category/${other.slug}`} className={`block py-3 text-[16px] font-semibold hover:bg-white ${CP_FOCUS}`}>
+                  {other.name}
+                </Link>
+              </li>
             ))}
-          </div>
+          </ul>
         </section>
+      </div>
       </div>
     </>
   );
 }
+
+// Category page styling (same tokens as the homepage and tool pages).
+const CP_FOCUS =
+  "rounded-[2px] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#14213D]";
+const CP_LINK = `hover:text-[#14213D] hover:underline underline-offset-4 ${CP_FOCUS}`;
+const CP_LINK_TEAL = `text-[#0F766E] underline underline-offset-[3px] decoration-1 hover:decoration-2 ${CP_FOCUS}`;
+const CP_H2 = "text-2xl sm:text-[1.75rem] font-bold tracking-[-0.015em] leading-tight";

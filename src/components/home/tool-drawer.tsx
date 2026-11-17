@@ -21,16 +21,23 @@ const TOOLS_PER_CATEGORY = 7;
 
 interface ToolDrawerProps {
   tools: SerializedTool[];
+  /** How many tools to list per category before "See all" (homepage: 7, /tools: all). */
+  perCategory?: number;
 }
 
-export function ToolDrawer({ tools }: ToolDrawerProps) {
+export function ToolDrawer({ tools, perCategory = TOOLS_PER_CATEGORY }: ToolDrawerProps) {
   const [query, setQuery] = React.useState("");
   const inputRef = React.useRef<HTMLInputElement>(null);
 
-  const liveTools = React.useMemo(
-    () => tools.filter((t) => t.isActive && !t.isComingSoon),
-    [tools]
-  );
+  // Active tools, one per slug (the catalog has a few duplicate entries).
+  const liveTools = React.useMemo(() => {
+    const seen = new Set<string>();
+    return tools.filter((t) => {
+      if (!t.isActive || t.isComingSoon || seen.has(t.slug)) return false;
+      seen.add(t.slug);
+      return true;
+    });
+  }, [tools]);
 
   const groups = React.useMemo(
     () =>
@@ -153,7 +160,7 @@ export function ToolDrawer({ tools }: ToolDrawerProps) {
                 </span>
               </h2>
               <ul>
-                {g.tools.slice(0, TOOLS_PER_CATEGORY).map((t) => (
+                {g.tools.slice(0, perCategory).map((t) => (
                   <li key={t.slug} className="border-b" style={{ borderColor: "var(--zq-line)" }}>
                     <Link
                       href={`/tools/${t.slug}`}
@@ -165,7 +172,7 @@ export function ToolDrawer({ tools }: ToolDrawerProps) {
                   </li>
                 ))}
               </ul>
-              {g.tools.length > TOOLS_PER_CATEGORY && (
+              {g.tools.length > perCategory && (
                 <Link
                   href={`/category/${g.slug}`}
                   className="zq-focus zq-link inline-block mt-3 text-sm font-semibold rounded-[2px]"

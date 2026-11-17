@@ -2,17 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 import { DEFAULT_TOOLS } from "@/lib/default-tools";
-import { ToolCatalog } from "@/components/home/tool-catalog";
-import {
-  ChevronRight,
-  ShieldCheck,
-  Zap,
-  Layers,
-  Lock,
-  ArrowRight,
-  CheckCircle2,
-  HelpCircle,
-} from "lucide-react";
+import { ToolDrawer } from "@/components/home/tool-drawer";
+import { ZQ_CSS } from "@/components/home/zq-styles";
 
 export const dynamic = "force-dynamic";
 
@@ -21,14 +12,14 @@ export const metadata: Metadata = {
     absolute: "Free Online Tools Directory | Zoqonyx",
   },
   description:
-    "Explore 148+ fast, privacy-first, 100% free digital tools. Merge PDFs, compress images in bulk, format code, design CSS, simulate SERPs, and run calculations client-side with zero signups.",
+    "Every free tool on Zoqonyx by category: merge PDFs, compress images, format JSON, generate CSS, preview SERP snippets and run calculators. No sign-up.",
   alternates: {
     canonical: "https://zoqonyx.com/tools",
   },
   openGraph: {
-    title: "All Free Online Tools Directory (148+ Digital Utilities) | Zoqonyx",
+    title: "All Free Online Tools | Zoqonyx",
     description:
-      "Explore 148+ fast, privacy-first, 100% free digital tools. Zero installations, zero tracking, 100% browser-based.",
+      "Every free tool on Zoqonyx by category: PDF, images, code, text, CSS and calculators. No sign-up, nothing to install.",
     url: "https://zoqonyx.com/tools",
     siteName: "Zoqonyx Solution Hub",
     images: [
@@ -177,164 +168,52 @@ export default async function ToolsPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
 
-      <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-4 sm:py-6 space-y-5">
-        {/* Breadcrumb Navigation */}
-        <nav
-          aria-label="Breadcrumb"
-          className="flex items-center gap-2 text-xs font-medium text-slate-500"
-        >
-          <Link href="/" className="hover:text-teal-700 transition-colors">
-            Home
-          </Link>
-          <ChevronRight className="w-3.5 h-3.5 opacity-60" />
-          <span className="text-slate-900 font-bold">All Tools Directory</span>
-        </nav>
+      <style>{ZQ_CSS}</style>
 
-        {/* Hero Header */}
-        <div className="relative overflow-hidden rounded-[8px] border border-slate-200 bg-white p-4 sm:p-5 shadow-xs space-y-3">
-          <div className="relative z-10 max-w-3xl space-y-2.5">
-            <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-[6px] border border-slate-200 bg-slate-50 text-slate-700 text-xs font-mono">
-              <ShieldCheck className="w-3.5 h-3.5" />
-              <span>Complete Directory • 148 Free Tools Live (167 Total Catalog)</span>
-            </div>
+      <div className="zq-home">
+      <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 pt-6 pb-16 space-y-14">
+        <div>
+          <nav aria-label="Breadcrumb" className="mb-6 text-sm" style={{ color: "var(--zq-muted)" }}>
+            <ol className="flex flex-wrap items-center gap-x-2">
+              <li>
+                <Link href="/" className="zq-focus rounded-[2px] hover:underline underline-offset-4">
+                  Home
+                </Link>
+              </li>
+              <li aria-hidden="true">/</li>
+              <li aria-current="page" className="font-medium" style={{ color: "var(--zq-ink)" }}>
+                All tools
+              </li>
+            </ol>
+          </nav>
 
-            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-black tracking-tight text-slate-900 leading-tight">
-              All Free Online Tools Directory
-            </h1>
-
-            <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
-              Browse our comprehensive directory of high-performance digital tools. Whether you need to compress photos, visually generate CSS gradients, validate complex JSON payloads, or format text, every tool runs 100% inside your web browser.
+          <header className="max-w-[46rem] mb-8">
+            <h1 className="text-[2rem] sm:text-[2.75rem] leading-[1.08] font-bold tracking-[-0.02em]">All tools</h1>
+            <p className="mt-3 text-[17px] leading-relaxed" style={{ color: "var(--zq-muted)" }}>
+              Every tool on Zoqonyx, by category. Search by name or by what you want to do.
             </p>
+          </header>
 
-            {/* Quick Guarantees */}
-            <div className="pt-2 flex flex-wrap gap-4 text-xs font-medium text-slate-600">
-              <span className="flex items-center gap-1.5">
-                <CheckCircle2 className="w-4 h-4 text-emerald-500" /> 100% Free Always
-              </span>
-              <span className="flex items-center gap-1.5">
-                <Lock className="w-4 h-4 text-teal-700" /> Zero Server Uploads
-              </span>
-              <span className="flex items-center gap-1.5">
-                <Zap className="w-4 h-4 text-amber-500" /> Zero Sign-up Required
-              </span>
-            </div>
-          </div>
+          <ToolDrawer tools={tools} perCategory={Number.POSITIVE_INFINITY} />
         </div>
 
-        {/* Live Search & Catalog Component */}
-        <section className="space-y-4">
-          <ToolCatalog initialTools={tools} />
-        </section>
-
         {/* Below-the-fold Comprehensive SEO Guide */}
-        <section className="p-4 sm:p-5 rounded-[8px] bg-white border border-slate-200 space-y-4 shadow-xs">
-          <div className="max-w-3xl space-y-3">
-            <h2 className="text-xl sm:text-2xl font-heading font-bold text-slate-900">
-              Why Browser-Native Digital Tools Are Superior
-            </h2>
-            <p className="text-sm text-slate-600 leading-relaxed">
-              Traditional online utilities frequently upload your sensitive assets—such as customer databases, confidential contract PDFs, and high-resolution creative media—to third-party cloud servers. This introduces significant privacy vulnerabilities, upload latency, and artificial rate-limiting paywalls.
-            </p>
-            <p className="text-sm text-slate-600 leading-relaxed">
-              Zoqonyx Solution Hub was built to overturn this model. By leveraging modern browser technologies including the HTML5 Canvas API, Web Workers, and WebAssembly, all data processing occurs entirely within your local device memory. Your confidential graphics and source code never leave your computer.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
-            <div className="p-4 rounded-md bg-slate-50 border border-slate-200 space-y-2 hover:border-slate-300 transition-colors">
-              <div className="p-2 rounded-md bg-teal-50 text-teal-700 border border-teal-200 w-fit">
-                <ShieldCheck className="w-4 h-4" />
+        <section aria-labelledby="faq-heading" className="max-w-[46rem]">
+          <h2 id="faq-heading" className="text-2xl sm:text-[1.75rem] font-bold tracking-[-0.015em] leading-tight">
+            Questions
+          </h2>
+          <div className="mt-5 border-t" style={{ borderColor: "var(--zq-line)" }}>
+            {TOOLS_PAGE_FAQS.map((faq, i) => (
+              <div key={i} className="py-4 border-b" style={{ borderColor: "var(--zq-line)" }}>
+                <h3 className="text-[17px] font-semibold leading-snug">{faq.q}</h3>
+                <p className="mt-1.5 text-[15px] leading-relaxed" style={{ color: "var(--zq-muted)" }}>
+                  {faq.a}
+                </p>
               </div>
-              <h3 className="font-heading font-bold text-sm text-slate-900">
-                Absolute Data Privacy
-              </h3>
-              <p className="text-xs text-slate-600 leading-relaxed">
-                Zero telemetry on your files. No cookies tracking your uploads. Your photos and source code remain your private property.
-              </p>
-            </div>
-
-            <div className="p-4 rounded-md bg-slate-50 border border-slate-200 space-y-2 hover:border-slate-300 transition-colors">
-              <div className="p-2 rounded-md bg-teal-50 text-teal-700 border border-teal-200 w-fit">
-                <Zap className="w-4 h-4" />
-              </div>
-              <h3 className="font-heading font-bold text-sm text-slate-900">
-                Zero Network Latency
-              </h3>
-              <p className="text-xs text-slate-600 leading-relaxed">
-                Processing speed is limited only by your device hardware, completely bypassing sluggish internet upload and download queues.
-              </p>
-            </div>
-
-            <div className="p-4 rounded-md bg-slate-50 border border-slate-200 space-y-2 hover:border-slate-300 transition-colors">
-              <div className="p-2 rounded-md bg-emerald-500/10 text-emerald-400 w-fit">
-                <Layers className="w-4 h-4" />
-              </div>
-              <h3 className="font-heading font-bold text-sm text-slate-900">
-                No Artificial Paywalls
-              </h3>
-              <p className="text-xs text-slate-600 leading-relaxed">
-                Export 2048px high-resolution QR codes, compress multiple megabytes of imagery, and inspect deep code diffs completely unrestricted.
-              </p>
-            </div>
-          </div>
-
-          {/* Category Hubs Quick Links */}
-          <div className="pt-6 border-t border-border/60 space-y-4">
-            <h3 className="text-lg font-heading font-bold text-foreground">
-              Explore Dedicated Category SEO Hubs
-            </h3>
-            <p className="text-xs text-muted-foreground">
-              Discover in-depth technical guides, architectural comparisons, and specialized workflows by category:
-            </p>
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
-              {[
-                { name: "Image & Photo Tools", slug: "image-tools" },
-                { name: "CSS & Design Generators", slug: "css-design" },
-                { name: "Text & Code Utilities", slug: "text-code" },
-                { name: "Developer & SEO Tools", slug: "developer-seo" },
-                { name: "Calculators & Math", slug: "calculators" },
-                { name: "PDF & Document Utilities", slug: "pdf-documents" },
-                { name: "Advanced AI Tools", slug: "ai-tools" },
-              ].map((c) => (
-                <Link
-                  key={c.slug}
-                  href={`/category/${c.slug}`}
-                  className="p-3 rounded-lg bg-card border border-border/70 hover:border-teal-500/50 hover:bg-muted/30 transition-all flex items-center justify-between group"
-                >
-                  <span className="text-xs font-semibold text-foreground group-hover:text-teal-700 transition-colors">
-                    {c.name}
-                  </span>
-                  <ArrowRight className="w-3.5 h-3.5 text-muted-foreground group-hover:text-teal-700 group-hover:translate-x-0.5 transition-all" />
-                </Link>
-              ))}
-            </div>
-          </div>
-
-          {/* FAQs Section */}
-          <div className="pt-6 border-t border-border/60 space-y-4">
-            <div className="flex items-center gap-2">
-              <HelpCircle className="w-5 h-5 text-teal-700" />
-              <h3 className="text-xl font-heading font-bold text-foreground">
-                Frequently Asked Questions
-              </h3>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {TOOLS_PAGE_FAQS.map((faq, i) => (
-                <div
-                  key={i}
-                  className="p-4 rounded-lg bg-muted/20 border border-border/60 space-y-1.5"
-                >
-                  <p className="font-semibold text-xs sm:text-sm text-foreground">
-                    {faq.q}
-                  </p>
-                  <p className="text-xs text-slate-600 leading-relaxed">
-                    {faq.a}
-                  </p>
-                </div>
-              ))}
-            </div>
+            ))}
           </div>
         </section>
+      </div>
       </div>
     </>
   );

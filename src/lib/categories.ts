@@ -298,7 +298,8 @@ export const CATEGORIES_LIST: CategoryInfo[] = [
     ],
     "name": "PDF & Document Utilities",
     "dbCategories": [
-      "PDF & Documents"
+      "PDF & Documents",
+      "PDF Documents"
     ],
     "icon": "FileText",
     "tagline": "Professional Client-Side PDF Tools: Merge, Split, Rotate & Protect with Zero Server Uploads",
