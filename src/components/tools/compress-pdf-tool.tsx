@@ -57,15 +57,12 @@ export function CompressPdfTool() {
         });
 
         const originalSize = file.size;
-        let finalBytes = compressedBytes;
-        let compressedSize = finalBytes.length;
-
-        if (compressedSize >= originalSize) {
-          const reductionRatio = level === "high" ? 0.55 : level === "medium" ? 0.72 : 0.85;
-          compressedSize = Math.round(originalSize * reductionRatio);
-        }
-
-        const percentSaved = Math.max(5, Math.round(((originalSize - compressedSize) / originalSize) * 100));
+        // Report the real result. If restructuring didn't make the file
+        // smaller, give back the original file and say 0% saved.
+        const smaller = compressedBytes.length < originalSize;
+        const finalBytes: Uint8Array = smaller ? compressedBytes : new Uint8Array(await file.arrayBuffer());
+        const compressedSize = finalBytes.length;
+        const percentSaved = Math.max(0, Math.round(((originalSize - compressedSize) / originalSize) * 100));
         const blob = new Blob([finalBytes as any], { type: "application/pdf" });
         const url = URL.createObjectURL(blob);
 
@@ -126,12 +123,15 @@ export function CompressPdfTool() {
       {files.length > 0 && (
         <div className="p-5 rounded-xl border border-border bg-card space-y-5">
           <div className="space-y-2">
-            <Label className="text-xs font-semibold">Select Compression Profile</Label>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <Label className="text-xs font-semibold">Compression mode</Label>
+            <p className="text-xs text-muted-foreground">
+              This tool rewrites the PDF structure into compact object streams. It does not re-compress images, so savings are
+              small for scanned or photo-heavy PDFs. If the file can&apos;t be made smaller, you get the original back.
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {[
-                { id: "high", title: "Extreme Compression", desc: "Smallest size, good quality" },
-                { id: "medium", title: "Recommended", desc: "Balanced quality & file size" },
-                { id: "low", title: "Low Compression", desc: "Highest visual fidelity" },
+                { id: "medium", title: "Compact + remove metadata", desc: "Smallest result; clears title, author and producer" },
+                { id: "low", title: "Compact only", desc: "Keeps the document's metadata" },
               ].map((c) => (
                 <button
                   key={c.id}

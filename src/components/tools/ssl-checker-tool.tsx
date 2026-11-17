@@ -22,6 +22,7 @@ export function SslCheckerTool() {
   const [domain, setDomain] = React.useState<string>("zoqonyx.com");
   const [data, setData] = React.useState<SslData | null>(null);
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
+  const [checkError, setCheckError] = React.useState<string | null>(null);
 
   const checkSsl = async () => {
     if (!domain.trim()) return;
@@ -30,45 +31,32 @@ export function SslCheckerTool() {
     const cleanDomain = domain.replace(/^https?:\/\//, "").replace(/\/.*$/, "").trim();
 
     try {
-      // Simulate real-time certificate validation via browser fetch HEAD request & DNS verification
-      const startTime = Date.now();
-      await fetch(`https://${cleanDomain}`, { method: "HEAD", mode: "no-cors" }).catch(() => {});
-      const latency = Date.now() - startTime;
-
-      // Calculate plausible expiry dates based on typical 90-day Let's Encrypt / Cloudflare certificate cycles
-      const now = new Date();
-      const validFrom = new Date(now.getTime() - 24 * 60 * 60 * 1000 * 25).toISOString().split("T")[0];
-      const validTo = new Date(now.getTime() + 24 * 60 * 60 * 1000 * 65).toISOString().split("T")[0];
+      // Real certificate data from our server, which opens a TLS connection to the domain.
+      const res = await fetch(`/api/ssl-check?domain=${encodeURIComponent(cleanDomain)}`);
+      const json = await res.json();
+      if (!res.ok) throw new Error(json.error || "The check failed.");
 
       const result: SslData = {
-        domain: cleanDomain,
-        isValid: true,
-        issuer: cleanDomain.includes("google") ? "Google Trust Services LLC" : "Let's Encrypt Authority X3",
-        validFrom,
-        validTo,
-        daysRemaining: 65,
-        protocol: "TLS 1.3 (Modern Secure)",
-        cipher: "AES-256-GCM / SHA384",
+        domain: json.domain,
+        isValid: Boolean(json.isTrusted) && json.daysRemaining >= 0,
+        issuer: json.issuer || "Unknown",
+        validFrom: json.validFrom,
+        validTo: json.validTo,
+        daysRemaining: Math.max(0, json.daysRemaining),
+        protocol: json.protocol || "Unknown",
+        cipher: json.cipher || "Unknown",
       };
-
+      setCheckError(json.isTrusted ? null : `Not trusted by browsers: ${json.trustError}`);
       setData(result);
       addSessionHistory({
         toolSlug: "ssl-checker",
         toolName: "SSL Checker",
         action: "Audited",
-        summary: `Checked SSL on ${cleanDomain} - Certificate Valid (65 days remaining)`,
+        summary: `Checked SSL on ${result.domain}: ${result.isValid ? `valid, ${result.daysRemaining} days left` : "not valid"}`,
       });
-    } catch {
-      setData({
-        domain: cleanDomain,
-        isValid: false,
-        issuer: "Unrecognized / Self-Signed",
-        validFrom: "N/A",
-        validTo: "N/A",
-        daysRemaining: 0,
-        protocol: "Connection Failed",
-        cipher: "None",
-      });
+    } catch (e: any) {
+      setData(null);
+      setCheckError(e?.message || "The check failed.");
     } finally {
       setIsLoading(false);
     }
@@ -100,6 +88,12 @@ export function SslCheckerTool() {
             </Button>
           </div>
         </div>
+
+        {checkError && (
+          <p role="alert" className="text-sm text-rose-700">
+            {checkError}
+          </p>
+        )}
 
         {data && (
           <div className="space-y-4 pt-3 border-t border-border">

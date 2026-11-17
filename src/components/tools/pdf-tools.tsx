@@ -2,6 +2,9 @@
 
 import * as React from "react";
 import { PDFDocument, rgb, degrees, StandardFonts } from "pdf-lib";
+// Fork of pdf-lib with real encryption/decryption (AES-256), used by Protect and Unlock.
+import { PDFDocument as SecurePDFDocument } from "@cantoo/pdf-lib";
+import { openPdf } from "@/lib/pdfjs";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -414,19 +417,24 @@ export function ProtectPdfTool() {
     setIsProcessing(true);
     try {
       const bytes = await file.arrayBuffer();
-      const pdf = await PDFDocument.load(bytes);
-      pdf.setProducer("Zoqonyx Secure Vault");
-      pdf.setSubject("Protected Document - " + password.replace(/./g, "*"));
+      const pdf = await SecurePDFDocument.load(bytes);
+      // Real AES-256 encryption: the file cannot be opened without this password.
+      pdf.encrypt({ userPassword: password, ownerPassword: password });
       const resBytes = await pdf.save();
-      downloadPdfBytes(resBytes, `zoqonyx_secured_${file.name}`);
+      downloadPdfBytes(resBytes, `protected_${file.name}`);
       addSessionHistory({
         toolSlug: "protect-pdf",
         toolName: "Protect PDF",
         action: "Secured",
-        summary: `Secured metadata on ${file.name}`,
+        summary: `Encrypted ${file.name} with a password (AES-256)`,
       });
     } catch (e: any) {
-      alert("Error securing PDF: " + e?.message);
+      const msg = String(e?.message || "");
+      alert(
+        /encrypted/i.test(msg)
+          ? "This PDF already has a password. Unlock it first, then protect it with a new password."
+          : "Could not protect this PDF: " + msg
+      );
     } finally {
       setIsProcessing(false);
     }
@@ -484,21 +492,29 @@ export function UnlockPdfTool() {
   const [isProcessing, setIsProcessing] = React.useState(false);
 
   const handleUnlock = async () => {
-    if (!file) return;
+    if (!file || !password) return;
     setIsProcessing(true);
     try {
       const bytes = await file.arrayBuffer();
-      const pdf = await PDFDocument.load(bytes, { ignoreEncryption: true });
-      const resBytes = await pdf.save();
-      downloadPdfBytes(resBytes, `zoqonyx_unlocked_${file.name}`);
+      // Decrypt with the password, then copy the pages into a new document so
+      // the saved file carries no encryption.
+      const locked = await SecurePDFDocument.load(bytes, { password });
+      const unlocked = await SecurePDFDocument.create();
+      const pages = await unlocked.copyPages(locked, locked.getPageIndices());
+      pages.forEach((p) => unlocked.addPage(p));
+      const title = locked.getTitle();
+      if (title) unlocked.setTitle(title);
+      const resBytes = await unlocked.save();
+      downloadPdfBytes(resBytes, `unlocked_${file.name}`);
       addSessionHistory({
         toolSlug: "unlock-pdf",
         toolName: "Unlock PDF",
         action: "Unlocked",
-        summary: `Unlocked & exported clean PDF`,
+        summary: `Removed the password from ${file.name}`,
       });
     } catch (e: any) {
-      alert("Error unlocking PDF: " + e?.message);
+      const msg = String(e?.message || "");
+      alert(/password incorrect/i.test(msg) ? "That password is not correct for this PDF." : "Could not unlock this PDF: " + msg);
     } finally {
       setIsProcessing(false);
     }
@@ -527,17 +543,20 @@ export function UnlockPdfTool() {
       {file && (
         <div className="p-5 rounded-xl border border-border bg-card space-y-4">
           <div className="space-y-2">
-            <Label className="text-xs font-semibold">Document Password (if known)</Label>
+            <Label className="text-xs font-semibold">PDF password</Label>
             <Input
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              placeholder="Enter password (optional)"
+              placeholder="Enter the password you use to open this PDF"
             />
+            <p className="text-xs text-muted-foreground">
+              You need the PDF&apos;s password. This tool removes a password you know; it does not crack unknown passwords.
+            </p>
           </div>
           <Button
             onClick={handleUnlock}
-            disabled={isProcessing}
+            disabled={!password || isProcessing}
             className="w-full bg-teal-600 hover:bg-teal-500 text-white gap-2"
           >
             <Unlock className="w-4 h-4" />
@@ -1028,28 +1047,43 @@ export function PdfToTextTool() {
     const f = e.target.files?.[0];
     if (f) {
       setFileName(f.name);
+      setText("Reading PDF…");
       try {
-        const bytes = await f.arrayBuffer();
-        const pdf = await PDFDocument.load(bytes);
-        const count = pdf.getPageCount();
+        // Real text extraction with pdf.js, page by page.
+        const pdf = await openPdf(f);
+        const parts: string[] = [];
+        for (let i = 1; i <= pdf.numPages; i++) {
+          const page = await pdf.getPage(i);
+          const content = await page.getTextContent();
+          let line = "";
+          const lines: string[] = [];
+          for (const item of content.items as any[]) {
+            if (typeof item.str !== "string") continue;
+            line += item.str;
+            if (item.hasEOL) {
+              lines.push(line);
+              line = "";
+            }
+          }
+          if (line) lines.push(line);
+          parts.push(`--- Page ${i} ---\n${lines.join("\n").trim()}`);
+        }
+        const result = parts.join("\n\n");
+        const hasText = parts.some((p) => p.replace(/--- Page \d+ ---/, "").trim().length > 0);
         setText(
-          `[PDF Document: ${f.name}]\n` +
-          `[Total Pages: ${count}]\n\n` +
-          `Document Info:\n` +
-          `Title: ${pdf.getTitle() || "Untitled"}\n` +
-          `Author: ${pdf.getAuthor() || "Unknown"}\n` +
-          `Creator: ${pdf.getCreator() || "Unknown"}\n` +
-          `Subject: ${pdf.getSubject() || "General Document"}\n\n` +
-          `[PDF metadata structure validated 100% in-browser]`
+          hasText
+            ? result
+            : "No selectable text was found. This PDF is probably scanned images; text in images needs OCR, which this tool does not do."
         );
         addSessionHistory({
           toolSlug: "pdf-to-text",
           toolName: "PDF to Text",
           action: "Extracted",
-          summary: `Extracted structure & text from ${f.name}`,
+          summary: `Extracted text from ${pdf.numPages} page(s) of ${f.name}`,
         });
       } catch (err: any) {
-        alert("Failed to parse PDF: " + err?.message);
+        setText("");
+        alert(err?.message || "Could not read this PDF.");
       }
     }
   };

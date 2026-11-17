@@ -285,15 +285,15 @@ export const DEFAULT_TOOLS: DefaultTool[] = [
     "id": "default-compress-pdf",
     "slug": "compress-pdf",
     "name": "Compress PDF",
-    "description": "Reduce PDF file size client-side with stream optimization and visual quality profiles.",
+    "description": "Make PDFs smaller by rewriting them into compact object streams and removing metadata, in your browser.",
     "category": "PDF Documents",
     "isActive": true,
     "isComingSoon": false,
     "icon": "Minimize2",
     "order": 18,
     "metaTitle": "Free Compress PDF | Zoqonyx Online | Zoqonyx",
-    "metaDesc": "Reduce PDF file size client-side with stream optimization and visual quality profiles. 100% free with zero registration. Processed safely in your browser.",
-    "content": "## Comprehensive Guide: Compress PDF\n\nReduce PDF file size client-side with stream optimization and visual quality profiles.\n\n### Why Use Compress PDF on Zoqonyx?\n- **Zero Remote File Uploads**: Confidential contracts, legal documents, and personal records never leave your local device. The entire document pipeline executes inside your web browser sandbox via WebAssembly.\n- **Native Vector & Typography Retention**: Our engine operates directly on underlying PDF streams, preserving embedded TrueType/OpenType fonts, vector lines, and page annotations without raster blur.\n- **No File Size or Page Limitations**: Process multi-page documents freely without hitting artificial paywalls, daily quotas, or watermarks.\n- **Instant Client-Side Speed**: Bypasses network upload delays and cloud processing queues, running with native hardware speed on your machine."
+    "metaDesc": "Make PDFs smaller by rewriting them into compact object streams and removing metadata, in your browser. 100% free with zero registration. Processed safely in your browser.",
+    "content": "## Comprehensive Guide: Compress PDF\n\nMake PDFs smaller by rewriting them into compact object streams and removing metadata, in your browser.\n\n### Why Use Compress PDF on Zoqonyx?\n- **Zero Remote File Uploads**: Confidential contracts, legal documents, and personal records never leave your local device. The entire document pipeline executes inside your web browser sandbox via WebAssembly.\n- **Native Vector & Typography Retention**: Our engine operates directly on underlying PDF streams, preserving embedded TrueType/OpenType fonts, vector lines, and page annotations without raster blur.\n- **No File Size or Page Limitations**: Process multi-page documents freely without hitting artificial paywalls, daily quotas, or watermarks.\n- **Instant Client-Side Speed**: Bypasses network upload delays and cloud processing queues, running with native hardware speed on your machine."
   },
   {
     "id": "default-pdf-to-image",

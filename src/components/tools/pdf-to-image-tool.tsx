@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { PDFDocument } from "pdf-lib";
+import { openPdf } from "@/lib/pdfjs";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Upload, Download, FileImage, CheckCircle2, Image as ImageIcon } from "lucide-react";
@@ -36,55 +36,30 @@ export function PdfToImageTool() {
     setIsProcessing(true);
 
     try {
-      const bytes = await file.arrayBuffer();
-      const pdf = await PDFDocument.load(bytes);
-      const totalPages = pdf.getPageCount();
+      // Real rendering of every page with pdf.js.
+      const pdf = await openPdf(file);
+      const totalPages = pdf.numPages;
       const extracted: ExtractedPage[] = [];
-
-      // Render each page via SVG / Canvas simulation
-      for (let i = 0; i < totalPages; i++) {
-        const page = pdf.getPage(i);
-        const { width, height } = page.getSize();
-        const renderW = width * scale;
-        const renderH = height * scale;
-
+      // scale 1 = 72 DPI, scale 2 ≈ 144 DPI
+      for (let i = 1; i <= totalPages; i++) {
+        const page = await pdf.getPage(i);
+        const viewport = page.getViewport({ scale });
         const canvas = document.createElement("canvas");
-        canvas.width = renderW;
-        canvas.height = renderH;
+        canvas.width = Math.ceil(viewport.width);
+        canvas.height = Math.ceil(viewport.height);
         const ctx = canvas.getContext("2d")!;
-
-        // Draw clean crisp page background
+        // White background so transparent pages export cleanly as JPEG.
         ctx.fillStyle = "#ffffff";
-        ctx.fillRect(0, 0, renderW, renderH);
-
-        // Render page title and header indicator
-        ctx.fillStyle = "#0f172a";
-        ctx.font = `bold ${Math.round(14 * scale)}px Inter, sans-serif`;
-        ctx.fillText(`Document: ${file.name}`, 30 * scale, 45 * scale);
-
-        ctx.fillStyle = "#64748b";
-        ctx.font = `${Math.round(10 * scale)}px Inter, sans-serif`;
-        ctx.fillText(`Page ${i + 1} of ${totalPages} • High-Resolution Render`, 30 * scale, 65 * scale);
-
-        // Thin separation rule
-        ctx.strokeStyle = "#e2e8f0";
-        ctx.lineWidth = 1 * scale;
-        ctx.beginPath();
-        ctx.moveTo(30 * scale, 75 * scale);
-        ctx.lineTo((width - 30) * scale, 75 * scale);
-        ctx.stroke();
-
-        // Watermark verification stamp
-        ctx.fillStyle = "#94a3b8";
-        ctx.font = `${Math.round(9 * scale)}px Inter, sans-serif`;
-        ctx.fillText("Rendered locally via Zoqonyx PDF Engine", 30 * scale, (height - 30) * scale);
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        await page.render({ canvas, canvasContext: ctx, viewport } as any).promise;
+        const pageNumber = i;
 
         await new Promise<void>((resolve) => {
           canvas.toBlob(
             (blob) => {
               if (blob) {
                 extracted.push({
-                  pageNumber: i + 1,
+                  pageNumber,
                   dataUrl: canvas.toDataURL(format === "jpeg" ? "image/jpeg" : "image/png"),
                   blob,
                 });
@@ -189,7 +164,7 @@ export function PdfToImageTool() {
                   onClick={() => setScale(2)}
                   className={scale === 2 ? "bg-teal-600 text-white" : ""}
                 >
-                  High-Res (150 DPI)
+                  High-Res (144 DPI)
                 </Button>
               </div>
             </div>
