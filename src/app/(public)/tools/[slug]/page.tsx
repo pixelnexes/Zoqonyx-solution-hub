@@ -3,22 +3,7 @@ import { notFound, permanentRedirect } from "next/navigation";
 import type { Metadata } from "next";
 import { ToolRenderer } from "@/components/tools/tool-renderer";
 import { ComingSoonToolView } from "@/components/tools/coming-soon-tool-view";
-import { ToolIcon } from "@/components/common/tool-icon";
-import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
-import {
-  ArrowLeft,
-  CheckCircle2,
-  ShieldCheck,
-  Zap,
-  ChevronRight,
-  HelpCircle,
-  Lightbulb,
-  Sparkles,
-  ArrowRight,
-  Lock,
-  Layers,
-} from "lucide-react";
 import { getDefaultToolBySlug, DEFAULT_TOOLS } from "@/lib/default-tools";
 import { getToolSeoContent } from "@/lib/tool-seo-content";
 
@@ -31,6 +16,7 @@ const CATEGORY_SLUG_MAP: Record<string, string> = {
   "Developer & SEO": "developer-seo",
   "Calculators": "calculators",
   "PDF & Documents": "pdf-documents",
+  "PDF Documents": "pdf-documents",
   "Advanced Image / AI": "ai-tools",
   "AI Writing & Business": "ai-tools",
   "SEO & Marketing": "developer-seo",
@@ -216,6 +202,7 @@ export default async function ToolPage({ params }: ToolPageProps) {
 
   const seo = getToolSeoContent(slug, tool.name, tool.category, tool.description);
   const catSlug = CATEGORY_SLUG_MAP[tool.category] || "developer-seo";
+  const catLabel = CATEGORY_LABELS[catSlug] || tool.category;
 
   // Popular Tools query (excluding current tool)
   const popularTools = DEFAULT_TOOLS.filter(
@@ -292,154 +279,86 @@ export default async function ToolPage({ params }: ToolPageProps) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
 
-      <div className="container mx-auto max-w-5xl px-4 py-4 sm:py-6">
-        {/* Breadcrumb Navigation */}
-        <nav
-          aria-label="Breadcrumb"
-          className="mb-3 flex items-center gap-1.5 text-xs font-medium text-slate-500"
-        >
-          <Link href="/" className="hover:text-teal-700 transition-colors">
-            Home
-          </Link>
-          <ChevronRight className="w-3.5 h-3.5 opacity-50" />
-          <Link href={`/category/${catSlug}`} className="hover:text-teal-700 transition-colors">
-            {tool.category}
-          </Link>
-          <ChevronRight className="w-3.5 h-3.5 opacity-50" />
-          <span className="text-slate-900 font-bold truncate max-w-[200px] sm:max-w-none">
-            {tool.name}
-          </span>
+      <div className="bg-[#F3F5F8] text-[#14213D]">
+      <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 pt-6 pb-16">
+        <nav aria-label="Breadcrumb" className="mb-6 text-sm text-[#4A5568]">
+          <ol className="flex flex-wrap items-center gap-x-2 gap-y-1">
+            <li>
+              <Link href="/" className={TP_LINK}>
+                Home
+              </Link>
+            </li>
+            <li aria-hidden="true">/</li>
+            <li>
+              <Link href={`/category/${catSlug}`} className={TP_LINK}>
+                {catLabel}
+              </Link>
+            </li>
+            <li aria-hidden="true">/</li>
+            <li aria-current="page" className="text-[#14213D] font-medium">
+              {tool.name}
+            </li>
+          </ol>
         </nav>
 
-        {/* Live Interactive Tool */}
-        <div className="space-y-6">
-            {/* Tool Header Banner */}
-            <div className="p-3.5 sm:p-4 rounded-[10px] bg-white border border-slate-200/90 space-y-3.5 shadow-[0_1px_3px_rgba(15,23,42,0.06),0_1px_2px_rgba(15,23,42,0.04)]">
-              <div className="flex flex-wrap items-center justify-between gap-3">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-[8px] bg-slate-900 text-white flex items-center justify-center shrink-0 shadow-xs">
-                    <ToolIcon name={tool.icon} className="w-5 h-5 text-white" strokeWidth={2.5} />
-                  </div>
-                  <div>
-                    <Link
-                      href={`/category/${catSlug}`}
-                      className="text-[10px] font-mono font-bold uppercase tracking-wider text-slate-500 hover:text-slate-900 transition-colors"
-                    >
-                      {tool.category}
-                    </Link>
-                    <h1 className="text-xl sm:text-2xl font-heading font-black text-slate-900 tracking-tight">
-                      {tool.name}
-                    </h1>
-                  </div>
-                </div>
+        <div className="space-y-14">
+          <div className="space-y-6">
+            <header className="max-w-[46rem]">
+              <h1 className="text-[2rem] sm:text-[2.75rem] leading-[1.08] font-bold tracking-[-0.02em]">
+                {tool.name}
+              </h1>
+              <p className="mt-3 text-[17px] leading-relaxed text-[#4A5568]">{tool.description}</p>
+              <p className="mt-2 text-sm text-[#4A5568]">Free to use. No sign-up.</p>
+            </header>
 
-                <div className="flex items-center gap-2">
-                  <Badge variant="success" className="gap-1.5 py-1 px-3">
-                    <CheckCircle2 className="w-3.5 h-3.5" />
-                    <span>100% Free & Live</span>
-                  </Badge>
-                </div>
-              </div>
-
-              <p className="text-sm text-slate-600 leading-relaxed max-w-3xl">
-                {tool.description}
-              </p>
-
-              <div className="flex flex-wrap gap-3 pt-2 text-[11px] text-slate-500 border-t border-slate-100">
-                <span className="flex items-center gap-1.5">
-                  <ShieldCheck className="w-4 h-4 text-emerald-500" /> Runs 100% in your browser
-                </span>
-                <span className="flex items-center gap-1.5">
-                  <Lock className="w-4 h-4 text-teal-700" /> Zero server file uploads
-                </span>
-                <span className="flex items-center gap-1.5">
-                  <Zap className="w-4 h-4 text-amber-500" /> Instant sub-millisecond execution
-                </span>
-              </div>
-            </div>
-
-            {/* Interactive Tool Workstation Canvas */}
-            <div className="p-3.5 sm:p-5 rounded-[10px] bg-white border border-slate-200/90 shadow-[0_1px_3px_rgba(15,23,42,0.06),0_1px_2px_rgba(15,23,42,0.04)]">
+            {/* The tool itself */}
+            <div className="p-4 sm:p-6 rounded-[6px] bg-white border border-[#D5DCE4]">
               <ToolRenderer slug={tool.slug} />
             </div>
+          </div>
 
-            {/* Section 1: Step-by-Step Practical Guide */}
-            <section className="p-3.5 sm:p-4 rounded-[10px] bg-white border border-slate-200/90 space-y-3.5 shadow-[0_1px_3px_rgba(15,23,42,0.06),0_1px_2px_rgba(15,23,42,0.04)]">
-              <div className="space-y-1">
-                <span className="text-[11px] font-bold uppercase tracking-wider text-teal-700 font-mono font-bold">
-                  PRACTICAL GUIDE
-                </span>
-                <h2 className="text-xl sm:text-2xl font-heading font-bold text-slate-900">
-                  {seo.workflowHeading || `How to Use ${tool.name}`}
-                </h2>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {/* How to use: a real sequence, so numbered */}
+            <section aria-labelledby="howto-heading" className="max-w-[46rem]">
+              <h2 id="howto-heading" className={TP_H2}>
+                How to use {tool.name}
+              </h2>
+              <ol className="mt-5 border-t border-[#D5DCE4]">
                 {seo.howToSteps.map((s) => (
-                  <div
-                    key={s.step}
-                    className="p-2.5 rounded-[6px] bg-slate-50 border border-slate-200 space-y-1.5 hover:border-slate-300 transition-colors"
-                  >
-                    <div className="flex items-center gap-2.5">
-                      <span className="w-6 h-6 rounded-md bg-teal-700 text-white font-mono text-xs font-bold flex items-center justify-center shrink-0">
-                        {s.step}
-                      </span>
-                      <h3 className="font-heading font-semibold text-sm text-slate-900">
-                        {s.title}
-                      </h3>
+                  <li key={s.step} className="grid grid-cols-[2rem_1fr] gap-x-3 py-4 border-b border-[#D5DCE4]">
+                    <span className="text-lg font-bold tabular-nums leading-snug">{s.step}.</span>
+                    <div>
+                      <h3 className="text-[17px] font-semibold leading-snug">{s.title}</h3>
+                      <p className="mt-1 text-[15px] leading-relaxed text-[#4A5568]">{s.instruction}</p>
                     </div>
-                    <p className="text-xs text-slate-600 leading-relaxed pl-8">
-                      {s.instruction}
-                    </p>
-                  </div>
+                  </li>
                 ))}
-              </div>
+              </ol>
             </section>
 
-            {/* Section 2: Key Capabilities & Architecture */}
-            <section className="p-3.5 sm:p-4 rounded-[10px] bg-white border border-slate-200/90 space-y-3.5 shadow-[0_1px_3px_rgba(15,23,42,0.06),0_1px_2px_rgba(15,23,42,0.04)]">
-              <div className="space-y-1">
-                <span className="text-[11px] font-bold uppercase tracking-wider text-teal-700 font-mono font-bold">
-                  ARCHITECTURE & ADVANTAGES
-                </span>
-                <h2 className="text-xl sm:text-2xl font-heading font-bold text-slate-900">
-                  Key Technical Capabilities of {tool.name}
+            {seo.keyBenefits.length > 0 && (
+              <section aria-labelledby="features-heading">
+                <h2 id="features-heading" className={TP_H2}>
+                  What {tool.name} does
                 </h2>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {seo.keyBenefits.map((b, idx) => (
-                  <div
-                    key={idx}
-                    className="p-2.5 rounded-[6px] bg-slate-50 border border-slate-200 space-y-1.5 hover:border-slate-300 transition-colors"
-                  >
-                    <div className="flex items-center gap-2 text-teal-700">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
-                      <h3 className="font-heading font-semibold text-sm text-slate-900">
-                        {b.title}
-                      </h3>
+                <dl className="mt-5 grid grid-cols-1 md:grid-cols-2 gap-x-10 border-t border-[#D5DCE4]">
+                  {seo.keyBenefits.map((b, idx) => (
+                    <div key={idx} className="py-4 border-b border-[#D5DCE4]">
+                      <dt className="text-[17px] font-semibold">{b.title}</dt>
+                      <dd className="mt-1 text-[15px] leading-relaxed text-[#4A5568]">{b.desc}</dd>
                     </div>
-                    <p className="text-xs text-slate-600 leading-relaxed">
-                      {b.desc}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </section>
+                  ))}
+                </dl>
+              </section>
+            )}
 
             {/* Section 3: In-Depth Technical Guide & Deep Dive */}
             {seo.deepDiveContent && (
-              <section className="p-3.5 sm:p-4 rounded-[10px] bg-white border border-slate-200/90 space-y-3.5 shadow-[0_1px_3px_rgba(15,23,42,0.06),0_1px_2px_rgba(15,23,42,0.04)]">
-                <div className="space-y-1">
-                  <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500 font-mono font-bold">
-                    TECHNICAL DEEP DIVE
-                  </span>
-                  <h2 className="text-xl sm:text-2xl font-heading font-bold text-slate-900">
-                    Comprehensive Technical Overview & Best Practices
-                  </h2>
-                </div>
+              <section aria-labelledby="about-heading" className="max-w-[46rem]">
+                <h2 id="about-heading" className={TP_H2}>
+                  About {tool.name}
+                </h2>
 
-                <div className="prose prose-slate max-w-none text-slate-600 space-y-4 text-xs sm:text-sm leading-relaxed">
+                <div className="mt-5 space-y-4 text-[16px] leading-[1.7] text-[#2D3748]">
                   {seo.deepDiveContent
                     .trim()
                     .split("\n\n")
@@ -448,7 +367,7 @@ export default async function ToolPage({ params }: ToolPageProps) {
                         return (
                           <h3
                             key={idx}
-                            className="text-base sm:text-lg font-heading font-bold text-foreground pt-3 text-slate-900"
+                            className="text-xl font-bold pt-4 text-[#14213D]"
                           >
                             {block.replace("### ", "")}
                           </h3>
@@ -459,30 +378,22 @@ export default async function ToolPage({ params }: ToolPageProps) {
                         return (
                           <ul key={idx} className="list-disc pl-5 space-y-1">
                             {items.map((li: string, i: number) => (
-                              <li key={i}>{li}</li>
+                              <li key={i}>{renderInlineBold(li)}</li>
                             ))}
                           </ul>
                         );
                       }
-                      return <p key={idx}>{block}</p>;
+                      return <p key={idx}>{renderInlineBold(block)}</p>;
                     })}
                 </div>
 
                 {/* Pro Tips Box */}
                 {seo.proTips && seo.proTips.length > 0 && (
-                  <div className="p-4 rounded-lg bg-teal-500/5 border border-teal-500/20 space-y-2.5 mt-4">
-                    <div className="flex items-center gap-2 text-teal-700">
-                      <Lightbulb className="w-4 h-4 shrink-0" />
-                      <h4 className="font-heading font-bold text-xs uppercase tracking-wider font-mono">
-                        Pro Engineering & Workflow Tips
-                      </h4>
-                    </div>
-                    <ul className="space-y-1.5 text-xs text-muted-foreground">
+                  <div className="mt-8 pl-4 border-l-4 border-[#F2C230]">
+                    <h3 className="text-[17px] font-semibold">Tips</h3>
+                    <ul className="mt-2 list-disc pl-5 space-y-1.5 text-[15px] leading-relaxed text-[#2D3748]">
                       {seo.proTips.map((tip, i) => (
-                        <li key={i} className="flex items-start gap-2">
-                          <span className="text-teal-700 font-bold">•</span>
-                          <span>{tip}</span>
-                        </li>
+                        <li key={i}>{tip}</li>
                       ))}
                     </ul>
                   </div>
@@ -492,26 +403,15 @@ export default async function ToolPage({ params }: ToolPageProps) {
 
             {/* Section 4: Frequently Asked Questions (FAQs) */}
             {seo.faqs && seo.faqs.length > 0 && (
-              <section className="p-3.5 sm:p-4 rounded-[8px] bg-white border border-slate-200 space-y-3 shadow-xs">
-                <div className="flex items-center gap-2">
-                  <HelpCircle className="w-5 h-5 text-teal-700" />
-                  <h2 className="text-xl sm:text-2xl font-heading font-bold text-slate-900">
-                    Frequently Asked Questions About {tool.name}
-                  </h2>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <section aria-labelledby="faq-heading" className="max-w-[46rem]">
+                <h2 id="faq-heading" className={TP_H2}>
+                  Questions about {tool.name}
+                </h2>
+                <div className="mt-5 border-t border-[#D5DCE4]">
                   {seo.faqs.map((faq, idx) => (
-                    <div
-                      key={idx}
-                      className="p-2.5 rounded-[6px] bg-slate-50 border border-slate-200 space-y-1"
-                    >
-                      <h3 className="font-semibold text-sm text-slate-900">
-                        {faq.question}
-                      </h3>
-                      <p className="text-xs text-slate-600 leading-relaxed">
-                        {faq.answer}
-                      </p>
+                    <div key={idx} className="py-4 border-b border-[#D5DCE4]">
+                      <h3 className="text-[17px] font-semibold leading-snug">{faq.question}</h3>
+                      <p className="mt-1.5 text-[15px] leading-relaxed text-[#4A5568]">{faq.answer}</p>
                     </div>
                   ))}
                 </div>
@@ -520,90 +420,86 @@ export default async function ToolPage({ params }: ToolPageProps) {
 
             {/* Section 5: Related Tools in Same Category */}
             {relatedTools.length > 0 && (
-              <section className="space-y-3 pt-2">
-                <div className="flex items-center justify-between">
-                  <h3 className="text-base font-heading font-black text-slate-900">
-                    More {tool.category} on Zoqonyx
-                  </h3>
-                  <Link
-                    href={`/category/${catSlug}`}
-                    className="text-xs font-bold text-slate-700 hover:text-slate-900 hover:underline inline-flex items-center gap-1"
-                  >
-                    <span>View Category Hub</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
+              <section aria-labelledby="related-heading">
+                <div className="flex flex-wrap items-baseline justify-between gap-3 pb-2 border-b-2 border-[#14213D]">
+                  <h2 id="related-heading" className={TP_H2}>
+                    More tools in {catLabel}
+                  </h2>
+                  <Link href={`/category/${catSlug}`} className={`text-[15px] font-semibold ${TP_LINK_TEAL}`}>
+                    See all {catLabel} tools
                   </Link>
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5">
+                <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-10">
                   {relatedTools.map((rel) => (
-                    <Link key={rel.slug} href={`/tools/${rel.slug}`} className="group">
-                      <div className="p-3.5 rounded-[10px] bg-white border border-slate-200/90 hover:border-slate-400 shadow-[0_1px_3px_rgba(15,23,42,0.06),0_1px_2px_rgba(15,23,42,0.04)] hover:shadow-[0_8px_20px_-4px_rgba(15,23,42,0.1)] hover:-translate-y-0.5 transition-all space-y-1.5 h-full flex flex-col justify-between">
-                        <div className="space-y-1">
-                          <div className="flex items-center gap-2">
-                            <div className="w-8 h-8 rounded-[7px] bg-slate-900 text-white flex items-center justify-center shrink-0 shadow-xs">
-                              <ToolIcon name={rel.icon} className="w-4 h-4 text-white" strokeWidth={2.5} />
-                            </div>
-                            <span className="font-heading font-black text-[13.5px] text-slate-900 group-hover:text-teal-700 transition-colors">
-                              {rel.name}
-                            </span>
-                          </div>
-                          <p className="text-[11.5px] text-slate-600 line-clamp-2 leading-relaxed">
-                            {rel.description}
-                          </p>
-                        </div>
-                        <div className="text-[11px] font-bold text-slate-800 group-hover:text-teal-700 flex items-center gap-1 pt-2 border-t border-slate-100">
-                          <span>Launch Tool</span>
-                          <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
-                        </div>
-                      </div>
-                    </Link>
+                    <li key={rel.slug} className="border-b border-[#D5DCE4]">
+                      <Link href={`/tools/${rel.slug}`} className={`block py-3 hover:bg-white ${TP_FOCUS}`}>
+                        <span className="block text-[15px] font-semibold">{rel.name}</span>
+                        <span className="block mt-0.5 text-sm leading-relaxed text-[#4A5568] line-clamp-2">
+                          {rel.description}
+                        </span>
+                      </Link>
+                    </li>
                   ))}
-                </div>
+                </ul>
               </section>
             )}
 
             {/* Section 6: Popular Tools Across Platform */}
             {popularTools.length > 0 && (
-              <section className="space-y-3 pt-3 border-t border-slate-200">
-                <div className="flex items-center justify-between">
-                  <h3 className="text-base font-heading font-black text-slate-900">
-                    Popular Free Tools on Zoqonyx
-                  </h3>
-                  <Link
-                    href="/tools"
-                    className="text-xs font-bold text-slate-700 hover:text-slate-900 hover:underline inline-flex items-center gap-1"
-                  >
-                    <span>Browse All 148+ Tools</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
+              <section aria-labelledby="popular-heading">
+                <div className="flex flex-wrap items-baseline justify-between gap-3 pb-2 border-b-2 border-[#14213D]">
+                  <h2 id="popular-heading" className={TP_H2}>
+                    Popular tools
+                  </h2>
+                  <Link href="/tools" className={`text-[15px] font-semibold ${TP_LINK_TEAL}`}>
+                    Browse all tools
                   </Link>
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5">
+                <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-10">
                   {popularTools.map((pop) => (
-                    <Link key={pop.slug} href={`/tools/${pop.slug}`} className="group">
-                      <div className="p-3.5 rounded-[10px] bg-white border border-slate-200/90 hover:border-slate-400 shadow-[0_1px_3px_rgba(15,23,42,0.06),0_1px_2px_rgba(15,23,42,0.04)] hover:shadow-[0_8px_20px_-4px_rgba(15,23,42,0.1)] hover:-translate-y-0.5 transition-all space-y-1.5 h-full flex flex-col justify-between">
-                        <div className="space-y-1">
-                          <div className="flex items-center gap-2">
-                            <div className="w-8 h-8 rounded-[7px] bg-slate-900 text-white flex items-center justify-center shrink-0 shadow-xs">
-                              <ToolIcon name={pop.icon} className="w-4 h-4 text-white" strokeWidth={2.5} />
-                            </div>
-                            <span className="font-heading font-black text-[13px] text-slate-900 group-hover:text-teal-700 transition-colors">
-                              {pop.name}
-                            </span>
-                          </div>
-                          <p className="text-[11px] text-slate-600 line-clamp-2 leading-relaxed">
-                            {pop.description}
-                          </p>
-                        </div>
-                        <span className="text-[9.5px] font-mono font-bold text-slate-400 uppercase tracking-wider pt-1.5 border-t border-slate-100">
-                          {pop.category}
-                        </span>
-                      </div>
-                    </Link>
+                    <li key={pop.slug} className="border-b border-[#D5DCE4]">
+                      <Link href={`/tools/${pop.slug}`} className={`block py-3 text-[15px] font-semibold hover:bg-white ${TP_FOCUS}`}>
+                        {pop.name}
+                      </Link>
+                    </li>
                   ))}
-                </div>
+                </ul>
               </section>
             )}
-          </div>
+        </div>
+      </div>
       </div>
     </>
   );
 }
+
+// Tool page styling (matches the homepage tokens: ink #14213D, line #D5DCE4, teal #0F766E).
+const TP_FOCUS =
+  "rounded-[2px] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#14213D]";
+const TP_LINK = `hover:text-[#14213D] hover:underline underline-offset-4 ${TP_FOCUS}`;
+const TP_LINK_TEAL = `text-[#0F766E] underline underline-offset-[3px] decoration-1 hover:decoration-2 ${TP_FOCUS}`;
+const TP_H2 = "text-2xl sm:text-[1.75rem] font-bold tracking-[-0.015em] leading-tight";
+
+// The SEO copy uses **bold** markers; show them as bold instead of raw asterisks.
+function renderInlineBold(text: string) {
+  return text.split(/\*\*(.+?)\*\*/g).map((part, i) =>
+    i % 2 === 1 ? (
+      <strong key={i} className="font-semibold text-[#14213D]">
+        {part}
+      </strong>
+    ) : (
+      part
+    )
+  );
+}
+
+// Display names for categories, same as the homepage and header.
+const CATEGORY_LABELS: Record<string, string> = {
+  "image-tools": "Images",
+  "pdf-documents": "PDF",
+  "developer-seo": "Developer & SEO",
+  "text-code": "Text & code",
+  "css-design": "CSS & design",
+  calculators: "Calculators",
+  "ai-tools": "AI tools",
+};
