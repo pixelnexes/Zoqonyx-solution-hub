@@ -1,3 +1,5 @@
+import { KEYWORD_ARTICLES } from "@/lib/tool-seo-keyword-articles";
+
 export interface ToolFaq {
   question: string;
   answer: string;
@@ -1911,6 +1913,9 @@ export function getToolSeoContent(
   category: string,
   description: string
 ): ToolSeoArticle {
+  if (KEYWORD_ARTICLES[slug]) {
+    return KEYWORD_ARTICLES[slug];
+  }
   if (TOP_TOOLS_SEO_ARTICLES[slug]) {
     return TOP_TOOLS_SEO_ARTICLES[slug];
   }
