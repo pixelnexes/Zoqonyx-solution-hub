@@ -50,7 +50,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   ];
 
   // 2. Category SEO Hub routes
-  const categoryRoutes: MetadataRoute.Sitemap = getAllCategories().map((cat) => ({
+  // Skip categories with no live tools: their pages are noindex.
+  const categoryRoutes: MetadataRoute.Sitemap = getAllCategories()
+    .filter((cat) =>
+      DEFAULT_TOOLS.some((t) => t.isActive && !t.isComingSoon && cat.dbCategories.includes(t.category))
+    )
+    .map((cat) => ({
     url: `${baseUrl}/category/${cat.slug}`,
     lastModified: now,
     changeFrequency: "weekly",
