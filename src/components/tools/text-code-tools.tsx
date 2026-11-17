@@ -381,6 +381,8 @@ export function MarkdownHtmlConverterTool() {
   };
 
   const htmlOutput = parseMarkdownToHtml(markdown);
+  // Preview only: demote h1 to h2 so the page keeps a single H1 (the tool title).
+  const previewHtml = htmlOutput.replace(/<(\/?)h1>/g, "<$1h2>");
 
   const copyHtml = () => {
     navigator.clipboard.writeText(htmlOutput);
@@ -411,7 +413,7 @@ export function MarkdownHtmlConverterTool() {
           <label className="text-xs font-semibold text-muted-foreground">HTML Preview</label>
           <div
             className="p-4 rounded-xl border border-border bg-card min-h-[290px] prose prose-sm dark:prose-invert max-w-none"
-            dangerouslySetInnerHTML={{ __html: htmlOutput }}
+            dangerouslySetInnerHTML={{ __html: previewHtml }}
           />
         </div>
       </div>

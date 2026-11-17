@@ -33,7 +33,7 @@ export default async function HomePage() {
 
   try {
     tools = await prisma.tool.findMany({
-      where: { isActive: true },
+      where: { isActive: true, isComingSoon: false },
       orderBy: [{ order: "asc" }, { name: "asc" }],
       select: {
         id: true,

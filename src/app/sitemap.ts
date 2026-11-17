@@ -73,7 +73,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Attempt to enrich with live DB timestamps if database is available
   try {
     const dbTools = await prisma.tool.findMany({
-      where: { isActive: true },
+      where: { isActive: true, isComingSoon: false },
       select: { slug: true, updatedAt: true },
     });
 

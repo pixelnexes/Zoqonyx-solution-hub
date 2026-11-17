@@ -1915,29 +1915,40 @@ export function getToolSeoContent(
     return TOP_TOOLS_SEO_ARTICLES[slug];
   }
 
-  // Determine tailored category profile
+  // Determine tailored category profile.
+  // Match against whole slug words (split on "-"), not substrings.
+  // Substring matching made "image" match "age" and "log" match "og".
   const s = slug.toLowerCase();
   const c = category.toLowerCase();
+  const tokens = s.split(/[-_]/).filter(Boolean);
+  const hasWord = (...words: string[]) => tokens.some((t) => words.includes(t));
+  const hasPrefix = (...prefixes: string[]) =>
+    tokens.some((t) => prefixes.some((p) => t.startsWith(p)));
 
   let profile: CategoryProfile = CATEGORY_PROFILES.developer;
 
-  if (s.includes("bmi")) {
+  if (hasWord("bmi")) {
     profile = CATEGORY_PROFILES.healthCalculator;
-  } else if (s.includes("age") || s.includes("time") || s.includes("duration") || s.includes("date") || s.includes("timestamp")) {
-    profile = CATEGORY_PROFILES.dateTimeCalculator;
-  } else if (s.includes("emi") || s.includes("interest") || s.includes("tax") || s.includes("tip") || s.includes("discount") || s.includes("invoice") || s.includes("loan")) {
-    profile = CATEGORY_PROFILES.financialCalculator;
-  } else if (c.includes("calc") || s.includes("calc") || s.includes("percentage") || s.includes("gpa") || s.includes("aspect-ratio") || s.includes("fuel")) {
-    profile = CATEGORY_PROFILES.mathCalculator;
-  } else if (c.includes("pdf") || s.includes("pdf")) {
-    profile = CATEGORY_PROFILES.pdf;
-  } else if (c.includes("image") || s.includes("image") || s.includes("photo") || s.includes("watermark") || s.includes("exif")) {
-    profile = CATEGORY_PROFILES.image;
-  } else if (c.includes("css") || c.includes("design") || s.includes("css") || s.includes("border") || s.includes("shadow") || s.includes("gradient") || s.includes("grid") || s.includes("flex")) {
-    profile = CATEGORY_PROFILES.css;
-  } else if (c.includes("text") || s.includes("case") || s.includes("word") || s.includes("char") || s.includes("text") || s.includes("speech") || s.includes("lorem")) {
+  } else if (hasWord("reading")) {
+    // "reading-time-calculator" measures text, not dates.
     profile = CATEGORY_PROFILES.text;
-  } else if (c.includes("seo") || s.includes("seo") || s.includes("meta") || s.includes("sitemap") || s.includes("robots") || s.includes("utm") || s.includes("og") || s.includes("canonical")) {
+  } else if (hasWord("age", "date", "duration") || hasPrefix("time", "timestamp")) {
+    profile = CATEGORY_PROFILES.dateTimeCalculator;
+  } else if (hasWord("emi", "interest", "tax", "tip", "discount", "invoice", "loan")) {
+    profile = CATEGORY_PROFILES.financialCalculator;
+  } else if (c.includes("calc") || hasPrefix("calc") || hasWord("percentage", "gpa", "aspect", "fuel")) {
+    profile = CATEGORY_PROFILES.mathCalculator;
+  } else if (c.includes("pdf") || hasPrefix("pdf")) {
+    profile = CATEGORY_PROFILES.pdf;
+  } else if (c.includes("image") || hasPrefix("image", "photo") || hasWord("watermark", "exif")) {
+    profile = CATEGORY_PROFILES.image;
+  } else if (c.includes("css") || c.includes("design") || hasPrefix("css", "border", "shadow", "gradient", "grid", "flex")) {
+    profile = CATEGORY_PROFILES.css;
+  } else if (c.includes("text") || hasPrefix("case", "word", "char", "text", "speech", "lorem")) {
+    profile = CATEGORY_PROFILES.text;
+  } else if (hasWord("seo", "meta", "sitemap", "robots", "utm", "og", "graph", "canonical", "serp", "schema", "keyword", "snippet")) {
+    // Category "Developer & SEO" is NOT used here: it would send every
+    // developer tool to the SEO template.
     profile = CATEGORY_PROFILES.seo;
   }
 

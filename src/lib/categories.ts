@@ -1568,8 +1568,8 @@ export const CATEGORIES_LIST: CategoryInfo[] = [
         "answer": "Yes, our watermark remover, object eraser, and speech tools are 100% free with no login required."
       },
       {
-        "question": "How can I get early access to upcoming AI tools?",
-        "answer": "Enter your email on any Coming Soon tool page to receive an early access invite when it launches."
+        "question": "Where can I find the latest AI tools?",
+        "answer": "Live AI tools are listed on this page and on the All Tools page as soon as they are available."
       }
     ],
     "fallbackTools": []

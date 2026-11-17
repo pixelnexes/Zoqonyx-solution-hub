@@ -49,11 +49,17 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
   const description = category.metaDesc;
   const url = `https://zoqonyx.com/category/${category.slug}`;
 
+  // Thin category (no live tools yet): keep it out of the index.
+  const liveCount = category.fallbackTools.filter(
+    (t) => !t.isComingSoon && DEFAULT_TOOLS.some((d) => d.slug === t.slug && d.isActive)
+  ).length;
+
   return {
     title: {
       absolute: category.metaTitle,
     },
     description,
+    ...(liveCount === 0 ? { robots: { index: false, follow: true } } : {}),
     alternates: {
       canonical: url,
     },
@@ -104,6 +110,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
     const dbResults = await prisma.tool.findMany({
       where: {
         isActive: true,
+        isComingSoon: false,
         category: {
           in: category.dbCategories,
         },
@@ -129,7 +136,14 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
   }
 
   // Merge DB tools with category fallback tools to guarantee full catalog visibility
-  const fallbackFormatted = category.fallbackTools.map((t, idx) => ({
+  // Skip Coming Soon entries and tools that are de-listed in the catalog.
+  const fallbackFormatted = category.fallbackTools
+    .filter(
+      (t) =>
+        !t.isComingSoon &&
+        DEFAULT_TOOLS.some((d) => d.slug === t.slug && d.isActive)
+    )
+    .map((t, idx) => ({
     id: `fallback-${t.slug}`,
     slug: t.slug,
     name: t.name,
