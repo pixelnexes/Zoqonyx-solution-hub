@@ -91,7 +91,7 @@ export default async function AboutPage() {
                 <x.I className="w-[18px] h-[18px]" />
               </span>
               <p className="zq-display mt-3 text-2xl font-extrabold">{x.v}</p>
-              <p className="text-sm text-[#4B557A]">{x.l}</p>
+              <p className="text-sm text-[#4F5B57]">{x.l}</p>
             </li>
           ))}
         </ul>
@@ -107,12 +107,12 @@ export default async function AboutPage() {
                 <f.I className="w-6 h-6" />
               </span>
               <h2 className="mt-4 text-xl font-bold">{f.t}</h2>
-              <p className="mt-1.5 text-[15px] leading-relaxed text-[#4B557A]">{f.d}</p>
+              <p className="mt-1.5 text-[15px] leading-relaxed text-[#4F5B57]">{f.d}</p>
             </div>
           ))}
         </div>
 
-        <div className="rounded-[22px] p-7 sm:p-9 text-white flex flex-col sm:flex-row items-center justify-between gap-5" style={{ background: "linear-gradient(135deg,#0B1026,#2A2FA8)" }}>
+        <div className="rounded-[22px] p-7 sm:p-9 text-white flex flex-col sm:flex-row items-center justify-between gap-5" style={{ background: "#16231F" }}>
           <div>
             <p className="zq-display text-2xl font-extrabold">Ready to try a tool?</p>
             <p className="mt-1 zq-on-dark-muted">Open any of the free tools. No sign-up needed.</p>

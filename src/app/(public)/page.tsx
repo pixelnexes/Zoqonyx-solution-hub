@@ -4,11 +4,10 @@ import { ToolDrawer } from "@/components/home/tool-drawer";
 import { ContactSection, TestimonialsSection } from "@/components/site/sections";
 import { Reveal } from "@/components/kit/reveal";
 import { Slider } from "@/components/kit/slider";
-import { HeroArt } from "@/components/kit/hero-art";
 import { CoverArt } from "@/components/kit/cover-art";
 import { serviceStyle, categoryStyle } from "@/components/kit/icons";
 import { readingMinutes } from "@/lib/markdown";
-import { ArrowRight, ChevronDown, Rocket, TrendingUp, Users, Sparkles } from "lucide-react";
+import { ArrowRight, ChevronDown, Rocket, TrendingUp, Users } from "lucide-react";
 import { ToolIcon } from "@/components/common/tool-icon";
 import { getPosts, getServices, getTestimonials, groupServices } from "@/lib/content";
 import type { Metadata } from "next";
@@ -209,11 +208,9 @@ export default async function HomePage() {
 
       {/* 1. Hero banner */}
       <section className="zq-hero">
-        <div aria-hidden="true" className="zq-blob zq-pulse" style={{ width: 360, height: 360, left: "-6%", top: "8%", background: "#22D3EE", opacity: 0.25 }} />
         <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 grid lg:grid-cols-[1.05fr_0.95fr] gap-10 lg:gap-6 items-center pt-14 pb-16 lg:pt-20 lg:pb-24">
           <div>
-            <p className="zq-in inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-sm font-semibold text-white/90">
-              <Sparkles className="w-4 h-4 text-[#FFB020]" aria-hidden="true" />
+            <p className="zq-in inline-flex rounded-md border border-white/25 px-3 py-1 text-sm font-semibold text-white/90">
               Software studio and free online tools
             </p>
             <h1 className="zq-in-solid zq-display mt-5 text-[2.6rem] sm:text-6xl font-extrabold leading-[1.02] text-white">
@@ -236,15 +233,14 @@ export default async function HomePage() {
             </div>
             <ul className="zq-in mt-9 flex flex-wrap gap-2.5" style={{ ["--d" as string]: "270ms" }}>
               {[
-                { name: "Mobile apps", href: "/services/app-development", c: "#818CF8" },
-                { name: "Websites", href: "/services/website-development", c: "#22D3EE" },
-                { name: "Games", href: "/services/game-development", c: "#A78BFA" },
-                { name: "AI", href: "/services/ai-nlp-development", c: "#FFB020" },
-                { name: "Marketing", href: "/services/digital-marketing", c: "#FF7A93" },
+                { name: "Mobile apps", href: "/services/app-development", c: "#7FCDB0" },
+                { name: "Websites", href: "/services/website-development", c: "#7FCDB0" },
+                { name: "Games", href: "/services/game-development", c: "#6C93AE" },
+                { name: "AI", href: "/services/ai-nlp-development", c: "#F2A81D" },
+                { name: "Marketing", href: "/services/digital-marketing", c: "#D8694F" },
               ].map((p) => (
                 <li key={p.name}>
-                  <Link href={p.href} className="inline-flex items-center gap-2 rounded-full bg-white/10 hover:bg-white/20 border border-white/15 px-3.5 py-1.5 text-sm font-semibold text-white transition-colors">
-                    <span className="h-2 w-2 rounded-full" style={{ background: p.c }} aria-hidden="true" />
+                  <Link href={p.href} className="inline-flex items-center rounded-md bg-white/10 hover:bg-white/20 border border-white/15 px-3 py-1.5 text-sm font-semibold text-white transition-colors">
                     {p.name}
                   </Link>
                 </li>
@@ -252,18 +248,17 @@ export default async function HomePage() {
             </ul>
           </div>
           <div className="zq-in" style={{ ["--d" as string]: "200ms" }}>
-            <HeroArt />
+            <img src="/photos/developer.jpg" alt="A laptop showing source code next to a cup of coffee" width={1024} height={683} fetchPriority="high" className="w-full h-[320px] lg:h-[460px] rounded-xl object-cover" />
           </div>
         </div>
       </section>
 
       {/* 2. Technologies marquee */}
-      <section aria-label="Technologies we use" className="zq-band-white border-b border-[#E1E6F2] py-6">
+      <section aria-label="Technologies we use" className="zq-band-white border-b border-[#DFE3DA] py-6">
         <div className="zq-marquee">
           <ul className="zq-marquee-track">
             {[...TECH_PILLS, ...TECH_PILLS].map((t, i) => (
               <li key={`${t}-${i}`} className="zq-pill" aria-hidden={i >= TECH_PILLS.length ? "true" : undefined}>
-                <span className="h-2 w-2 rounded-full" style={{ background: ["#5B5BF0", "#22D3EE", "#FFB020", "#FF5C7A", "#10B981", "#8B5CF6"][i % 6] }} aria-hidden="true" />
                 {t}
               </li>
             ))}
@@ -291,12 +286,11 @@ export default async function HomePage() {
               return (
                 <Reveal as="li" key={hub.slug} delay={(i % 3) * 90}>
                   <Link href={`/services/${hub.slug}`} className="zq-card group relative flex h-full flex-col p-6 overflow-hidden" style={{ borderTop: `4px solid ${accent.color}` }}>
-                    <span aria-hidden="true" className="absolute -right-8 -top-8 h-28 w-28 rounded-full opacity-10 group-hover:opacity-20 transition-opacity" style={{ background: accent.color }} />
                     <span className={`zq-chip ${accent.chip}`}>
                       <Icon className="w-6 h-6" aria-hidden="true" />
                     </span>
                     <h3 className="zq-display mt-4 text-[1.35rem] font-extrabold leading-tight">{hub.name}</h3>
-                    <p className="mt-2 text-[15px] leading-relaxed text-[#4B557A] flex-1">{hub.shortDesc}</p>
+                    <p className="mt-2 text-[15px] leading-relaxed text-[#4F5B57] flex-1">{hub.shortDesc}</p>
                     <p className="mt-4 inline-flex items-center gap-1.5 text-sm font-bold" style={{ color: accent.color }}>
                       {children.length > 0 ? `${children.length} services` : "Learn more"} <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
                     </p>
@@ -333,7 +327,7 @@ export default async function HomePage() {
                     {i + 1}
                   </span>
                   <h3 className="mt-4 text-[18px] font-bold">{p.title}</h3>
-                  <p className="mt-1.5 text-[15px] leading-relaxed text-[#4B557A]">{p.text}</p>
+                  <p className="mt-1.5 text-[15px] leading-relaxed text-[#4F5B57]">{p.text}</p>
                 </div>
               </Reveal>
             ))}
@@ -343,11 +337,16 @@ export default async function HomePage() {
 
       {/* 6. Who we work with */}
       <section aria-labelledby="audience-heading" className="zq-band-dark">
-        <div aria-hidden="true" className="zq-blob zq-pulse" style={{ width: 420, height: 420, right: -120, top: -140, background: "#8B5CF6", opacity: 0.4 }} />
         <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 zq-section">
-          <h2 id="audience-heading" className="zq-display zq-h2">
-            Who we work with
-          </h2>
+          <div className="grid gap-8 lg:grid-cols-[1fr_1.1fr] items-center">
+            <div>
+              <h2 id="audience-heading" className="zq-display zq-h2">
+                Who we work with
+              </h2>
+              <p className="mt-4 text-[17px] leading-relaxed zq-on-dark-muted max-w-md">Founders, growing companies and teams that need extra hands. We start with a call, a plain-language plan and a fixed first step.</p>
+            </div>
+            <img src="/photos/team.jpg" alt="People working around a table with notebooks and laptops" width={960} height={640} loading="lazy" className="w-full h-56 lg:h-72 rounded-xl object-cover" />
+          </div>
           <ul className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6">
             {AUDIENCES.map((a, i) => {
               const icons = [Rocket, TrendingUp, Users];
@@ -355,13 +354,13 @@ export default async function HomePage() {
               const chip = ["zq-g-sun", "zq-g-aqua", "zq-g-coral"][i];
               return (
                 <Reveal as="li" key={a.title} delay={i * 100}>
-                  <div className="h-full rounded-[18px] border border-white/15 bg-white/[0.08] p-6 backdrop-blur-sm">
+                  <div className="h-full rounded-xl border border-white/15 bg-white/[0.06] p-6">
                     <span className={`zq-chip ${chip}`}>
                       <Icon className="w-6 h-6" aria-hidden="true" />
                     </span>
                     <h3 className="mt-4 text-[20px] font-bold">{a.title}</h3>
                     <p className="mt-2 text-[16px] leading-relaxed zq-on-dark-muted">{a.text}</p>
-                    <Link href={a.link} className="mt-4 inline-flex items-center gap-1.5 font-bold text-[#FFB020] hover:underline underline-offset-4">
+                    <Link href={a.link} className="mt-4 inline-flex items-center gap-1.5 font-bold text-[#F2A81D] hover:underline underline-offset-4">
                       {a.cta} <ArrowRight className="w-4 h-4" aria-hidden="true" />
                     </Link>
                   </div>
@@ -379,7 +378,7 @@ export default async function HomePage() {
             <h2 id="featured-heading" className="zq-display zq-h2">
               Tools people use most
             </h2>
-            <Link href="/tools" className="font-bold text-[#3F3FD0] hover:underline underline-offset-4">
+            <Link href="/tools" className="font-bold text-[#0A5E44] hover:underline underline-offset-4">
               Browse all {liveCount} tools
             </Link>
           </div>
@@ -394,7 +393,7 @@ export default async function HomePage() {
                       <ToolIcon name={tool?.icon ?? null} className="w-6 h-6" strokeWidth={2} />
                     </span>
                     <h3 className="mt-4 text-[18px] font-bold">{t.name}</h3>
-                    <p className="mt-1.5 text-[15px] leading-relaxed text-[#4B557A] flex-1">{t.text}</p>
+                    <p className="mt-1.5 text-[15px] leading-relaxed text-[#4F5B57] flex-1">{t.text}</p>
                     <span className="mt-3 inline-flex items-center gap-1.5 text-sm font-bold" style={{ color: accent.color }}>
                       Open tool <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
                     </span>
@@ -414,7 +413,7 @@ export default async function HomePage() {
               <h2 id="blog-heading" className="zq-display zq-h2">
                 From the blog
               </h2>
-              <Link href="/blog" className="font-bold text-[#3F3FD0] hover:underline underline-offset-4">
+              <Link href="/blog" className="font-bold text-[#0A5E44] hover:underline underline-offset-4">
                 All posts
               </Link>
             </div>
@@ -424,11 +423,11 @@ export default async function HomePage() {
                   <Link href={`/blog/${p.slug}`} className="zq-card group flex h-full flex-col overflow-hidden">
                     <CoverArt seed={p.slug} className="w-full aspect-[16/9] object-cover transition-transform duration-500 group-hover:scale-105" />
                     <div className="flex flex-1 flex-col p-5">
-                      <p className="text-sm font-semibold text-[#3F3FD0]">
+                      <p className="text-sm font-semibold text-[#0A5E44]">
                         {p.category} · {readingMinutes(p.content)} min read
                       </p>
                       <h3 className="mt-1.5 text-[17px] font-bold leading-snug">{p.title}</h3>
-                      <p className="mt-2 text-[15px] leading-relaxed text-[#4B557A] line-clamp-3">{p.excerpt}</p>
+                      <p className="mt-2 text-[15px] leading-relaxed text-[#4F5B57] line-clamp-3">{p.excerpt}</p>
                     </div>
                   </Link>
                 </div>
@@ -449,12 +448,12 @@ export default async function HomePage() {
           </h2>
           <div className="mt-8 space-y-3">
             {FAQS.map((f) => (
-              <details key={f.q} className="zq-card group p-0 open:shadow-[0_14px_36px_-18px_rgba(11,16,38,.35)]">
+              <details key={f.q} className="zq-card group p-0 open:shadow-[0_14px_36px_-18px_rgba(16,24,26,.35)]">
                 <summary className="flex cursor-pointer list-none items-center justify-between gap-4 p-5 text-[17px] font-bold [&::-webkit-details-marker]:hidden">
                   {f.q}
-                  <ChevronDown className="w-5 h-5 shrink-0 text-[#5B5BF0] transition-transform group-open:rotate-180" aria-hidden="true" />
+                  <ChevronDown className="w-5 h-5 shrink-0 text-[#0E7C5A] transition-transform group-open:rotate-180" aria-hidden="true" />
                 </summary>
-                <p className="px-5 pb-5 text-[16px] leading-relaxed text-[#4B557A]">{f.a}</p>
+                <p className="px-5 pb-5 text-[16px] leading-relaxed text-[#4F5B57]">{f.a}</p>
               </details>
             ))}
           </div>

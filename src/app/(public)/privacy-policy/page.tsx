@@ -80,7 +80,7 @@ export default async function PrivacyPolicyPage() {
                 <x.I className="w-[18px] h-[18px]" />
               </span>
               <p className="mt-3 text-[16px] font-bold">{x.t}</p>
-              <p className="text-sm text-[#4B557A]">{x.d}</p>
+              <p className="text-sm text-[#4F5B57]">{x.d}</p>
             </li>
           ))}
         </ul>

@@ -19,7 +19,7 @@ const NAV_CATEGORIES = [
   { label: "Calculators", href: "/category/calculators" },
 ];
 
-const FOCUS = "focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-offset-2 focus-visible:outline-[#22D3EE]";
+const FOCUS = "focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-offset-2 focus-visible:outline-[#7FCDB0]";
 
 function NavLink({ href, active, children }: { href: string; active: boolean; children: React.ReactNode }) {
   return (
@@ -28,7 +28,7 @@ function NavLink({ href, active, children }: { href: string; active: boolean; ch
       aria-current={active ? "page" : undefined}
       className={cn(
         "relative py-1.5 text-[15px] font-semibold rounded-md text-white/85 hover:text-white transition-colors",
-        "after:absolute after:left-0 after:right-0 after:-bottom-0.5 after:h-[3px] after:rounded-full after:bg-gradient-to-r after:from-[#5B5BF0] after:to-[#22D3EE] after:origin-left after:transition-transform after:duration-200",
+        "after:absolute after:left-0 after:right-0 after:-bottom-0.5 after:h-[3px] after:rounded-full after:bg-gradient-to-r after:from-[#0E7C5A] after:to-[#7FCDB0] after:origin-left after:transition-transform after:duration-200",
         active ? "text-white after:scale-x-100" : "after:scale-x-0 hover:after:scale-x-100",
         FOCUS
       )}
@@ -53,7 +53,7 @@ export function Header() {
   }
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-white/10 bg-[#0B1026]/[0.92] backdrop-blur-md">
+    <header className="sticky top-0 z-40 w-full border-b border-white/10 bg-[#10181A]/[0.92] backdrop-blur-md">
       <div className="container mx-auto flex h-16 max-w-6xl items-center justify-between gap-6 px-4 sm:px-6 lg:px-8">
         <Logo size="md" onDark />
 
@@ -84,7 +84,7 @@ export function Header() {
 
             {categoriesOpen && (
               <div id="nav-categories" className="absolute top-full left-[-12px] pt-3 z-50">
-                <ul className="w-60 rounded-2xl border border-[#E1E6F2] bg-white p-2 shadow-[0_24px_50px_-16px_rgba(11,16,38,.5)]">
+                <ul className="w-60 rounded-2xl border border-[#DFE3DA] bg-white p-2 shadow-[0_24px_50px_-16px_rgba(16,24,26,.5)]">
                   {NAV_CATEGORIES.map((cat) => {
                     const { Icon, accent } = categoryStyle(cat.label);
                     return (
@@ -92,7 +92,7 @@ export function Header() {
                         <Link
                           href={cat.href}
                           aria-current={pathname === cat.href ? "page" : undefined}
-                          className={cn("flex items-center gap-3 px-2.5 py-2 rounded-xl text-[15px] font-medium text-[#0B1026] hover:bg-[#F3F5FB]", pathname === cat.href && "bg-[#F3F5FB] font-semibold", FOCUS)}
+                          className={cn("flex items-center gap-3 px-2.5 py-2 rounded-xl text-[15px] font-medium text-[#10181A] hover:bg-[#F4F5F1]", pathname === cat.href && "bg-[#F4F5F1] font-semibold", FOCUS)}
                         >
                           <span className={cn("zq-chip zq-chip-sm", accent.chip)}>
                             <Icon className="w-[18px] h-[18px]" />
@@ -141,7 +141,7 @@ export function Header() {
       </div>
 
       {mobileMenuOpen && (
-        <nav id="mobile-menu" aria-label="Main" className="md:hidden border-t border-white/10 bg-[#0B1026] px-4 pb-5 max-h-[80vh] overflow-y-auto">
+        <nav id="mobile-menu" aria-label="Main" className="md:hidden border-t border-white/10 bg-[#10181A] px-4 pb-5 max-h-[80vh] overflow-y-auto">
           <ul>
             {[{ label: "Services", href: "/services" }, { label: "Blog", href: "/blog" }, { label: "All tools", href: "/tools" }, ...NAV_CATEGORIES, { label: "About", href: "/about" }, { label: "Contact", href: "/contact" }].map((item) => (
               <li key={item.href} className="border-b border-white/10">

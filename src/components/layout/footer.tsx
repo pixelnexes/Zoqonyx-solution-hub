@@ -5,7 +5,7 @@ import { Mail, ArrowRight } from "lucide-react";
 import { Logo } from "@/components/layout/logo";
 import { useSiteSettings } from "@/components/providers/site-settings-provider";
 
-const LINK = "text-white/80 hover:text-white hover:underline underline-offset-4 rounded-sm focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-offset-2 focus-visible:outline-[#22D3EE]";
+const LINK = "text-white/80 hover:text-white hover:underline underline-offset-4 rounded-sm focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-offset-2 focus-visible:outline-[#7FCDB0]";
 
 const TOOL_LINKS = [
   { label: "All tools", href: "/tools" },
@@ -42,12 +42,12 @@ export function Footer() {
   const siteName = settings.site_name || "Zoqonyx Solution Hub";
 
   return (
-    <footer className="mt-auto text-white" style={{ background: "linear-gradient(180deg, #0B1026 0%, #070B1C 100%)" }}>
+    <footer className="mt-auto text-white" style={{ background: "#16231F" }}>
       {/* CTA banner */}
       <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 pt-14">
-        <div className="relative overflow-hidden rounded-3xl p-8 sm:p-12" style={{ background: "linear-gradient(120deg, #5B5BF0 0%, #3F3FD0 45%, #0891B2 100%)" }}>
+        <div className="relative overflow-hidden rounded-3xl p-8 sm:p-12" style={{ background: "#16231F" }}>
           <div aria-hidden="true" className="absolute -right-10 -top-16 h-64 w-64 rounded-full bg-white/15 blur-2xl" />
-          <div aria-hidden="true" className="absolute right-24 bottom-[-4rem] h-48 w-48 rounded-full bg-[#FFB020]/40 blur-3xl" />
+          <div aria-hidden="true" className="absolute right-24 bottom-[-4rem] h-48 w-48 rounded-full bg-[#F2A81D]/40 blur-3xl" />
           <div className="relative flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
             <div className="max-w-xl">
               <h2 className="zq-display text-3xl sm:text-4xl font-extrabold leading-tight">Have a project in mind?</h2>

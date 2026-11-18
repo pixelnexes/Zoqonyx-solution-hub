@@ -119,7 +119,7 @@ export default async function BlogPostPage({ params }: Props) {
         <article>
           <CoverArt seed={post.slug} className="w-full h-48 sm:h-64 rounded-2xl object-cover mb-8" />
           <div className="zq-prose text-[17px] leading-[1.75]">{renderMarkdown(post.content)}</div>
-          <p className="mt-10 pt-5 border-t border-[#E1E6F2] text-sm text-[#4B557A]">
+          <p className="mt-10 pt-5 border-t border-[#DFE3DA] text-sm text-[#4F5B57]">
             Written by {post.authorName}. Last updated {fmt(post.updatedAt)}.
           </p>
         </article>
@@ -128,10 +128,10 @@ export default async function BlogPostPage({ params }: Props) {
           <aside className="hidden lg:block">
             <nav aria-label="On this page" className="sticky top-24 text-[15px] zq-card p-5">
               <p className="font-bold mb-2">On this page</p>
-              <ul className="space-y-1.5 border-l-2 border-[#E1E6F2]">
+              <ul className="space-y-1.5 border-l-2 border-[#DFE3DA]">
                 {headings.map((h) => (
                   <li key={h.id}>
-                    <a href={`#${h.id}`} className="block pl-3 text-[#4B557A] hover:text-[#3F3FD0] hover:underline underline-offset-4">
+                    <a href={`#${h.id}`} className="block pl-3 text-[#4F5B57] hover:text-[#0A5E44] hover:underline underline-offset-4">
                       {h.text}
                     </a>
                   </li>
@@ -154,8 +154,8 @@ export default async function BlogPostPage({ params }: Props) {
                   <Link href={`/blog/${r.slug}`} className="zq-card zq-card-hover group flex h-full flex-col overflow-hidden">
                     <CoverArt seed={r.slug} className="w-full h-36 object-cover" />
                     <span className="p-5">
-                      <span className="block text-[17px] font-bold leading-snug group-hover:text-[#3F3FD0]">{r.title}</span>
-                      <span className="block mt-1.5 text-sm text-[#4B557A] line-clamp-2">{r.excerpt}</span>
+                      <span className="block text-[17px] font-bold leading-snug group-hover:text-[#0A5E44]">{r.title}</span>
+                      <span className="block mt-1.5 text-sm text-[#4F5B57] line-clamp-2">{r.excerpt}</span>
                     </span>
                   </Link>
                 </li>

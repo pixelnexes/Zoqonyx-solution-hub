@@ -72,10 +72,10 @@ export default async function BlogPage() {
             <Link href={`/blog/${first.slug}`} className="zq-card zq-card-hover group grid grid-cols-1 md:grid-cols-2 overflow-hidden">
               <CoverArt seed={first.slug} className="w-full h-56 md:h-full object-cover" />
               <div className="p-6 sm:p-9 flex flex-col justify-center">
-                <p className="text-sm font-semibold text-[#3F3FD0]">{first.category}</p>
-                <h2 className="zq-display mt-2 text-2xl sm:text-3xl font-extrabold leading-tight group-hover:text-[#3F3FD0]">{first.title}</h2>
-                <p className="mt-3 text-[16px] leading-relaxed text-[#4B557A] line-clamp-3">{first.excerpt}</p>
-                <p className="mt-4 flex items-center gap-2 text-sm text-[#4B557A]">
+                <p className="text-sm font-semibold text-[#0A5E44]">{first.category}</p>
+                <h2 className="zq-display mt-2 text-2xl sm:text-3xl font-extrabold leading-tight group-hover:text-[#0A5E44]">{first.title}</h2>
+                <p className="mt-3 text-[16px] leading-relaxed text-[#4F5B57] line-clamp-3">{first.excerpt}</p>
+                <p className="mt-4 flex items-center gap-2 text-sm text-[#4F5B57]">
                   <Clock className="w-4 h-4" aria-hidden="true" /> {readingMinutes(first.content)} min read · {fmt(first.publishedAt)}
                 </p>
               </div>
@@ -89,12 +89,12 @@ export default async function BlogPage() {
               <Link href={`/blog/${p.slug}`} className="zq-card zq-card-hover group flex h-full flex-col overflow-hidden">
                 <CoverArt seed={p.slug} className="w-full h-44 object-cover" />
                 <div className="p-5 flex flex-1 flex-col">
-                  <p className="text-sm font-semibold text-[#3F3FD0]">{p.category}</p>
-                  <h2 className="mt-1.5 text-[18px] font-bold leading-snug group-hover:text-[#3F3FD0]">{p.title}</h2>
-                  <p className="mt-2 text-[15px] leading-relaxed text-[#4B557A] line-clamp-3 flex-1">{p.excerpt}</p>
-                  <p className="mt-4 flex items-center justify-between text-sm text-[#4B557A]">
+                  <p className="text-sm font-semibold text-[#0A5E44]">{p.category}</p>
+                  <h2 className="mt-1.5 text-[18px] font-bold leading-snug group-hover:text-[#0A5E44]">{p.title}</h2>
+                  <p className="mt-2 text-[15px] leading-relaxed text-[#4F5B57] line-clamp-3 flex-1">{p.excerpt}</p>
+                  <p className="mt-4 flex items-center justify-between text-sm text-[#4F5B57]">
                     <span>{readingMinutes(p.content)} min read</span>
-                    <span className="inline-flex items-center gap-1 font-bold text-[#3F3FD0]">
+                    <span className="inline-flex items-center gap-1 font-bold text-[#0A5E44]">
                       Read <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
                     </span>
                   </p>

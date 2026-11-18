@@ -33,16 +33,16 @@ function ToolRow({ tool, detailed = false, accentColor }: { tool: SerializedTool
   return (
     <Link
       href={`/tools/${tool.slug}`}
-      className={`group flex gap-3 rounded-xl px-2.5 -mx-2.5 transition-colors hover:bg-[#F3F5FB] ${detailed ? "py-3 items-start" : "py-2 items-center"}`}
+      className={`group flex gap-3 rounded-xl px-2.5 -mx-2.5 transition-colors hover:bg-[#F4F5F1] ${detailed ? "py-3 items-start" : "py-2 items-center"}`}
     >
       <span className="shrink-0 inline-flex" style={{ color: accentColor }} aria-hidden="true">
         <ToolIcon name={tool.icon} className="w-[19px] h-[19px]" strokeWidth={2} />
       </span>
       <span className="min-w-0 flex-1">
-        <span className="block font-semibold text-[15px] text-[#0B1026] group-hover:text-[#3F3FD0]">{tool.name}</span>
-        {detailed && <span className="block text-sm mt-0.5 leading-snug line-clamp-2 text-[#4B557A]">{tool.description}</span>}
+        <span className="block font-semibold text-[15px] text-[#10181A] group-hover:text-[#0A5E44]">{tool.name}</span>
+        {detailed && <span className="block text-sm mt-0.5 leading-snug line-clamp-2 text-[#4F5B57]">{tool.description}</span>}
       </span>
-      <ArrowRight className="w-4 h-4 mt-0.5 shrink-0 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-[#5B5BF0]" aria-hidden="true" />
+      <ArrowRight className="w-4 h-4 mt-0.5 shrink-0 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-[#0E7C5A]" aria-hidden="true" />
     </Link>
   );
 }
@@ -99,7 +99,7 @@ export function ToolDrawer({ tools, perCategory = TOOLS_PER_CATEGORY, detailed =
           Search tools
         </label>
         <div className="zq-search">
-          <Search className="w-5 h-5 shrink-0 text-[#5B5BF0]" aria-hidden="true" />
+          <Search className="w-5 h-5 shrink-0 text-[#0E7C5A]" aria-hidden="true" />
           <input
             ref={inputRef}
             id="home-search"
@@ -108,7 +108,7 @@ export function ToolDrawer({ tools, perCategory = TOOLS_PER_CATEGORY, detailed =
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder={`Search ${liveTools.length} tools, for example "merge pdf" or "json"`}
-            className="flex-1 min-w-0 bg-transparent border-0 text-base sm:text-lg font-medium text-[#0B1026] placeholder:text-[#6B7599] placeholder:font-normal"
+            className="flex-1 min-w-0 bg-transparent border-0 text-base sm:text-lg font-medium text-[#10181A] placeholder:text-[#6B7873] placeholder:font-normal"
           />
           {query ? (
             <button
@@ -117,13 +117,13 @@ export function ToolDrawer({ tools, perCategory = TOOLS_PER_CATEGORY, detailed =
                 setQuery("");
                 inputRef.current?.focus();
               }}
-              className="shrink-0 inline-flex items-center gap-1 text-sm font-semibold rounded-full px-3 py-1.5 bg-[#F3F5FB] text-[#0B1026] hover:bg-[#E1E6F2]"
+              className="shrink-0 inline-flex items-center gap-1 text-sm font-semibold rounded-full px-3 py-1.5 bg-[#F4F5F1] text-[#10181A] hover:bg-[#DFE3DA]"
             >
               <X className="w-4 h-4" aria-hidden="true" />
               Clear
             </button>
           ) : (
-            <kbd className="hidden sm:inline-flex shrink-0 items-center justify-center w-8 h-8 rounded-lg text-sm font-bold border border-[#E1E6F2] bg-[#F3F5FB] text-[#4B557A]" title="Press / to search">
+            <kbd className="hidden sm:inline-flex shrink-0 items-center justify-center w-8 h-8 rounded-lg text-sm font-bold border border-[#DFE3DA] bg-[#F4F5F1] text-[#4F5B57]" title="Press / to search">
               /
             </kbd>
           )}
@@ -132,7 +132,7 @@ export function ToolDrawer({ tools, perCategory = TOOLS_PER_CATEGORY, detailed =
 
       {q ? (
         <div aria-live="polite">
-          <p className="text-sm mb-4 text-[#4B557A]">
+          <p className="text-sm mb-4 text-[#4F5B57]">
             {results.length === 0
               ? `No tool matches "${query.trim()}". Try a shorter word, like "pdf" or "image".`
               : `${results.length} ${results.length === 1 ? "tool matches" : "tools match"} "${query.trim()}"`}
@@ -149,7 +149,7 @@ export function ToolDrawer({ tools, perCategory = TOOLS_PER_CATEGORY, detailed =
                       </span>
                       <span className="min-w-0">
                         <span className="block font-bold text-[15px]">{t.name}</span>
-                        <span className="block text-sm mt-0.5 leading-snug line-clamp-2 text-[#4B557A]">{t.description}</span>
+                        <span className="block text-sm mt-0.5 leading-snug line-clamp-2 text-[#4F5B57]">{t.description}</span>
                       </span>
                     </Link>
                   </li>
@@ -164,17 +164,17 @@ export function ToolDrawer({ tools, perCategory = TOOLS_PER_CATEGORY, detailed =
             const { Icon, accent } = categoryStyle(g.label);
             return (
               <div key={g.slug} className="zq-card zq-card-hover p-5 sm:p-6 flex flex-col">
-                <div className="flex items-center gap-3 pb-4 mb-2 border-b border-[#E1E6F2]">
+                <div className="flex items-center gap-3 pb-4 mb-2 border-b border-[#DFE3DA]">
                   <span className={`zq-chip ${accent.chip}`} aria-hidden="true">
                     <Icon className="w-6 h-6" />
                   </span>
                   <div className="min-w-0 flex-1">
                     <h3 className="zq-display text-xl font-extrabold leading-tight">
-                      <Link href={`/category/${g.slug}`} className="hover:text-[#3F3FD0]">
+                      <Link href={`/category/${g.slug}`} className="hover:text-[#0A5E44]">
                         {g.label}
                       </Link>
                     </h3>
-                    <p className="text-sm text-[#4B557A]">{g.tools.length} tools</p>
+                    <p className="text-sm text-[#4F5B57]">{g.tools.length} tools</p>
                   </div>
                 </div>
                 <ul className="flex-1">

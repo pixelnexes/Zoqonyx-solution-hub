@@ -4,7 +4,7 @@ import {
   Globe,
   Code2,
   Megaphone,
-  Brain,
+  Cpu,
   Hexagon,
   Users,
   Boxes,
@@ -14,7 +14,6 @@ import {
   Type,
   Palette,
   Calculator,
-  Sparkles,
   Wrench,
   type LucideIcon,
 } from "lucide-react";
@@ -27,12 +26,12 @@ export interface Accent {
 }
 
 export const ACCENTS: Record<string, Accent> = {
-  indigo: { chip: "zq-g-indigo", color: "#5B5BF0" },
-  aqua: { chip: "zq-g-aqua", color: "#0EA5C6" },
+  indigo: { chip: "zq-g-indigo", color: "#0E7C5A" },
+  aqua: { chip: "zq-g-aqua", color: "#2F7F99" },
   sun: { chip: "zq-g-sun", color: "#F59E0B" },
-  coral: { chip: "zq-g-coral", color: "#F43F5E" },
-  violet: { chip: "zq-g-violet", color: "#8B5CF6" },
-  emerald: { chip: "zq-g-emerald", color: "#10B981" },
+  coral: { chip: "zq-g-coral", color: "#C8452D" },
+  violet: { chip: "zq-g-violet", color: "#3F6E8C" },
+  emerald: { chip: "zq-g-emerald", color: "#0E7C5A" },
   slate: { chip: "zq-g-slate", color: "#475569" },
 };
 
@@ -43,7 +42,7 @@ export const SERVICE_STYLE: Record<string, { icon: LucideIcon; accent: keyof typ
   "website-development": { icon: Globe, accent: "aqua" },
   "custom-software": { icon: Code2, accent: "emerald" },
   "digital-marketing": { icon: Megaphone, accent: "coral" },
-  "ai-nlp-development": { icon: Brain, accent: "indigo" },
+  "ai-nlp-development": { icon: Cpu, accent: "indigo" },
   "nft-development": { icon: Hexagon, accent: "sun" },
   "staff-augmentation": { icon: Users, accent: "slate" },
   "erp-crm-development": { icon: Boxes, accent: "aqua" },
@@ -76,7 +75,7 @@ const CATEGORY_STYLE: { match: RegExp; icon: LucideIcon; accent: keyof typeof AC
   { match: /text|code/i, icon: Type, accent: "emerald" },
   { match: /css|design/i, icon: Palette, accent: "violet" },
   { match: /calc/i, icon: Calculator, accent: "aqua" },
-  { match: /ai/i, icon: Sparkles, accent: "indigo" },
+  { match: /ai/i, icon: Cpu, accent: "indigo" },
 ];
 
 export function categoryStyle(name: string) {

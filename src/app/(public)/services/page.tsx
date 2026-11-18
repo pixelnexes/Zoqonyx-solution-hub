@@ -77,11 +77,11 @@ export default async function ServicesPage() {
                 </span>
                 <div>
                   <h2 id={`g-${hub.slug}`} className="zq-display text-2xl sm:text-3xl font-extrabold leading-tight">
-                    <Link href={`/services/${hub.slug}`} className="hover:text-[#3F3FD0]">
+                    <Link href={`/services/${hub.slug}`} className="hover:text-[#0A5E44]">
                       {hub.name}
                     </Link>
                   </h2>
-                  <p className="mt-1.5 text-[16px] leading-relaxed text-[#4B557A] max-w-2xl">{hub.shortDesc}</p>
+                  <p className="mt-1.5 text-[16px] leading-relaxed text-[#4F5B57] max-w-2xl">{hub.shortDesc}</p>
                 </div>
               </div>
               {children.length > 0 ? (
@@ -90,7 +90,7 @@ export default async function ServicesPage() {
                     <Reveal as="li" key={c.slug} delay={i * 70}>
                       <Link href={`/services/${c.slug}`} className="zq-card group flex h-full flex-col p-5" style={{ borderTop: `3px solid ${accent.color}` }}>
                         <span className="text-[17px] font-bold leading-snug">{c.name}</span>
-                        <span className="mt-1.5 text-sm leading-relaxed text-[#4B557A] line-clamp-3 flex-1">{c.shortDesc}</span>
+                        <span className="mt-1.5 text-sm leading-relaxed text-[#4F5B57] line-clamp-3 flex-1">{c.shortDesc}</span>
                         <span className="mt-3 inline-flex items-center gap-1 text-sm font-bold" style={{ color: accent.color }}>
                           Details <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
                         </span>

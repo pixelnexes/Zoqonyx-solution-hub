@@ -10,6 +10,14 @@ import { serviceStyle } from "@/components/kit/icons";
 
 export const revalidate = 300;
 
+const BANNER_PHOTO: Record<string, string> = {
+  "Game Development": "game",
+  "Digital Marketing": "marketing",
+  "Staff Augmentation": "team",
+  "ERP & CRM Development": "marketing",
+  "AI & NLP Development": "developer",
+};
+
 type Props = { params: Promise<{ slug: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -80,7 +88,7 @@ export default async function ServicePage({ params }: Props) {
 
       {/* Banner */}
       <section className="zq-banner">
-        <div aria-hidden="true" className="zq-blob zq-pulse" style={{ width: 340, height: 340, right: "-4%", top: "-30%", background: accent.color, opacity: 0.45 }} />
+        <img src={`/photos/${BANNER_PHOTO[service.group] || "developer"}.jpg`} alt="" width={960} height={640} className="hidden xl:block absolute right-0 top-0 h-full w-[30%] object-cover opacity-90" />
         <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
           <nav aria-label="Breadcrumb" className="text-sm text-white/75">
             <ol className="flex flex-wrap items-center gap-x-2 gap-y-1">
@@ -146,7 +154,7 @@ export default async function ServicePage({ params }: Props) {
                   <li key={c.slug}>
                     <Link href={`/services/${c.slug}`} className="zq-card group flex h-full flex-col p-5" style={{ borderTop: `3px solid ${accent.color}` }}>
                       <span className="text-[17px] font-bold">{c.name}</span>
-                      <span className="mt-1.5 text-sm leading-relaxed text-[#4B557A] line-clamp-3 flex-1">{c.shortDesc}</span>
+                      <span className="mt-1.5 text-sm leading-relaxed text-[#4F5B57] line-clamp-3 flex-1">{c.shortDesc}</span>
                       <span className="mt-3 inline-flex items-center gap-1 text-sm font-bold" style={{ color: accent.color }}>
                         Details <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
                       </span>
@@ -167,9 +175,9 @@ export default async function ServicePage({ params }: Props) {
                   <details key={i} className="zq-card group p-0">
                     <summary className="flex cursor-pointer list-none items-center justify-between gap-4 p-5 text-[17px] font-bold [&::-webkit-details-marker]:hidden">
                       {f.question}
-                      <ChevronDown className="w-5 h-5 shrink-0 text-[#5B5BF0] transition-transform group-open:rotate-180" aria-hidden="true" />
+                      <ChevronDown className="w-5 h-5 shrink-0 text-[#0E7C5A] transition-transform group-open:rotate-180" aria-hidden="true" />
                     </summary>
-                    <p className="px-5 pb-5 text-[16px] leading-relaxed text-[#4B557A]">{f.answer}</p>
+                    <p className="px-5 pb-5 text-[16px] leading-relaxed text-[#4F5B57]">{f.answer}</p>
                   </details>
                 ))}
               </div>
@@ -178,7 +186,7 @@ export default async function ServicePage({ params }: Props) {
         </div>
 
         <aside className="space-y-5 lg:sticky lg:top-24">
-          <div className="rounded-[18px] p-6 text-white" style={{ background: "linear-gradient(145deg,#0B1026,#2A2FA8)" }}>
+          <div className="rounded-[18px] p-6 text-white" style={{ background: "#16231F" }}>
             <h2 className="zq-display text-xl font-extrabold leading-tight">Talk to us about {service.name}</h2>
             <p className="mt-2 text-[15px] leading-relaxed zq-on-dark-muted">Tell us what you need and we will reply with questions and next steps.</p>
             <a href="#contact" className="zq-btn zq-btn-sun mt-5 w-full">
@@ -194,7 +202,7 @@ export default async function ServicePage({ params }: Props) {
               <ul className="mt-3 space-y-1">
                 {related.map((r) => (
                   <li key={r.slug}>
-                    <Link href={`/services/${r.slug}`} className="flex items-center justify-between gap-2 rounded-lg px-2 py-2 -mx-2 text-[15px] font-semibold hover:bg-[#F3F5FB] hover:text-[#3F3FD0]">
+                    <Link href={`/services/${r.slug}`} className="flex items-center justify-between gap-2 rounded-lg px-2 py-2 -mx-2 text-[15px] font-semibold hover:bg-[#F4F5F1] hover:text-[#0A5E44]">
                       {r.name} <ArrowRight className="w-4 h-4 shrink-0" aria-hidden="true" />
                     </Link>
                   </li>

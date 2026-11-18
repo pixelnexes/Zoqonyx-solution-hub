@@ -4,11 +4,11 @@ import * as React from "react";
 // post gets a distinct image without stock photos. Pure SVG, no external files.
 
 const PALETTES: [string, string, string][] = [
-  ["#5B5BF0", "#22D3EE", "#FFB020"],
-  ["#8B5CF6", "#FF5C7A", "#FFB020"],
-  ["#0EA5C6", "#5B5BF0", "#34D399"],
-  ["#F43F5E", "#FFB020", "#8B5CF6"],
-  ["#10B981", "#22D3EE", "#5B5BF0"],
+  ["#0E7C5A", "#7FCDB0", "#F2A81D"],
+  ["#3F6E8C", "#7FCDB0", "#F2A81D"],
+  ["#16231F", "#0E7C5A", "#F2A81D"],
+  ["#A9351F", "#D8694F", "#F2A81D"],
+  ["#0A5E44", "#3FA67A", "#F6BC4A"],
 ];
 
 function hash(s: string) {
@@ -37,14 +37,14 @@ export function CoverArt({ seed, className = "" }: { seed: string; className?: s
       <defs>
         <linearGradient id={`${id}-g`} x1="0" y1="0" x2="1" y2="1">
           <stop offset="0" stopColor={a} />
-          <stop offset="1" stopColor="#0B1026" />
+          <stop offset="1" stopColor="#10181A" />
         </linearGradient>
         <radialGradient id={`${id}-r`} cx="0.5" cy="0.5" r="0.5">
           <stop offset="0" stopColor={b} stopOpacity="0.95" />
           <stop offset="1" stopColor={b} stopOpacity="0" />
         </radialGradient>
       </defs>
-      <rect width="400" height="220" fill={`url(#${id}-g)`} />
+      <rect width="400" height="220" fill={a} />
       <circle cx={`${x1 * 4}`} cy="60" r={r1} fill={`url(#${id}-r)`} />
       <circle cx={`${x2 * 4}`} cy="190" r={r2} fill={c} opacity="0.55" />
       <g fill="#fff" opacity="0.5">
