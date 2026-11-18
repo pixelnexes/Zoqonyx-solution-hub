@@ -343,4 +343,235 @@ Start by listing the features your first release needs. If none of them require 
 
 Not sure which fits? Read about our [app development services](/services/app-development) or send us your idea and we'll suggest an approach with the reasons.`,
   },
+  {
+    slug: "backlink-checker-api",
+    title: "Backlink Checker API: How to Get Backlink Data Programmatically",
+    excerpt:
+      "Looking for a backlink checker API? Google's Search Console API doesn't include backlinks. Here are the options that do, what they cost and how to use the data.",
+    category: "SEO",
+    tags: ["backlink checker api", "seo api", "backlinks"],
+    publishedAt: "2026-11-19",
+    metaTitle: "Backlink Checker API: Options for Backlink Data",
+    metaDesc: "Need a backlink checker API? Google Search Console's API has no links data. See which providers offer backlink APIs and how to audit the results.",
+    content: `If you want backlink data inside your own dashboard, report or script, you need an API. The first thing to know is what **doesn't** work: Google's Search Console API gives you search performance data, sitemaps and URL inspection, but it does not include the Links report. You can view and export links in the Search Console website, but not fetch them through the API.
+
+## Where backlink APIs come from
+
+Backlink data comes from web crawlers that continuously visit pages and record the links they find. Building a crawler is expensive, so almost all backlink APIs are paid products from companies that run their own:
+
+- **Ahrefs**: large link index, API access on higher plans
+- **Semrush**: backlink analytics through its API, billed with API units
+- **Moz**: Link Explorer API with a free tier of limited requests
+- **Majestic**: a long-running link index with an API
+- **DataForSEO**: pay-as-you-go API that resells backlink data
+
+Check each provider's current pricing and limits before you commit, because plans change.
+
+## What to look for
+
+- **Coverage and freshness.** How many links the index holds and how often it is updated. Different providers show different numbers for the same site, so don't compare totals across tools.
+- **Fields returned.** At minimum you want the linking page, the target page, the anchor text and whether the link is follow or nofollow.
+- **Rate limits and cost per request.** Pulling a large site's full link list can use a lot of quota.
+- **Export options.** Many providers let you export CSV from the dashboard, which is cheaper if you only need data now and then.
+
+## A free route for your own site
+
+For your own website, Search Console's Links report is free. Export **Top linking sites** and the latest links as CSV and keep a dated copy each month. It is a sample rather than the full set, but it comes from Google.
+
+## Audit the data once you have it
+
+An API or export gives you rows; the useful part is what you do with them. Upload the CSV to the [Zoqonyx backlink checker](/tools/backlink-checker) to count backlinks and referring domains, see the most common anchor texts and flag links from low-reputation domains. The file is read in your browser and is not uploaded.
+
+## Building your own integration
+
+If you do build against an API:
+
+1. Store raw responses with a date, so you can compare changes over time
+2. Deduplicate by referring domain as well as by URL
+3. Respect rate limits and cache results
+4. Never expose your API key in front-end code. Call the provider from your server
+
+Need help building an SEO dashboard or data pipeline? See our [custom software development](/services/custom-software-development) services.`,
+  },
+  {
+    slug: "how-to-compress-a-pdf-for-email",
+    title: "How to Compress a PDF for Email (and When It Won't Shrink)",
+    excerpt:
+      "Email attachments often have a size limit. Here is how to make a PDF smaller, why scanned PDFs resist compression and what else you can try.",
+    category: "Tools",
+    tags: ["compress pdf", "pdf", "email attachments"],
+    publishedAt: "2026-11-19",
+    metaTitle: "How to Compress a PDF for Email: Practical Guide",
+    metaDesc: "Make a PDF small enough to email: compress it in your browser, understand why some PDFs won't shrink, and see other ways to reduce file size.",
+    content: `Most email services limit attachments to around 20 to 25 MB, and some company systems set lower limits. If your PDF is too big, there are several ways to make it smaller, and which one works depends on what is inside the file.
+
+## Why PDFs get large
+
+- **Images.** Photos and scanned pages are the biggest cause. A scanned document is just a stack of page images.
+- **Embedded fonts.** Many fonts are included in full.
+- **Extra data.** Metadata, thumbnails, form fields and editing history add weight.
+- **Many merged files.** Combining PDFs can duplicate resources.
+
+## Step 1: Try compressing in your browser
+
+The [Zoqonyx Compress PDF tool](/tools/compress-pdf) rewrites your PDF into a more compact structure and can clear metadata. Everything happens in your browser, so the file isn't uploaded.
+
+It's important to know what it does **not** do: it doesn't re-compress the images inside the PDF. That means:
+
+- Text-based PDFs (reports, contracts exported from Word) often get a little smaller
+- Image-heavy and scanned PDFs may barely change
+- If the file can't be made smaller, the tool returns the original and shows 0% saved
+
+## Step 2: Reduce the images before they go in the PDF
+
+If you create the PDF yourself, shrink the images first. Use the [Image Compressor](/tools/image-compressor) to compress JPG, PNG or WebP files, then build the PDF with [Image to PDF](/tools/image-to-pdf). A photo that is 4 MB can often be reduced a lot with little visible difference.
+
+## Step 3: Re-export with a lower quality setting
+
+If you have the original document, export it again as PDF from your word processor or design program and choose a "minimum size" or "reduced size" option. This is often the most effective method because the program can resample the images.
+
+## Step 4: Split the file
+
+If you can't make it smaller, send it in parts. The [Split PDF tool](/tools/split-pdf) can extract page ranges into separate files, and you can send them in several emails.
+
+## Step 5: Share a link instead
+
+For very large files, upload the PDF to cloud storage and send a link. The recipient downloads it directly, and there is no attachment limit to worry about.
+
+## Quick guide
+
+| Situation | Best option |
+|---|---|
+| Text-only PDF slightly over the limit | Compress PDF tool |
+| Scanned document | Re-scan at lower resolution, or share a link |
+| Photos in a PDF you created | Compress the images first |
+| Large report | Split it or share a link |
+
+Whatever you use, keep the original file and check the compressed copy before you send it.`,
+  },
+  {
+    slug: "what-is-a-crm-and-does-your-business-need-one",
+    title: "What Is a CRM and Does Your Small Business Need One?",
+    excerpt:
+      "A CRM keeps track of customers, leads and conversations in one place. Here is what it does, signs you need one and whether to buy or build.",
+    category: "Business software",
+    tags: ["crm", "sales", "business software"],
+    publishedAt: "2026-11-19",
+    metaTitle: "What Is a CRM? Does Your Small Business Need One?",
+    metaDesc: "What a CRM does, five signs your business needs one, and how to decide between an off-the-shelf CRM and a custom-built system.",
+    content: `CRM stands for customer relationship management. A CRM is software that stores information about your customers and leads, such as contact details, conversations and deals, so everyone on your team sees the same up-to-date picture.
+
+## What a CRM does
+
+- **Stores contacts and companies** with their history in one place
+- **Tracks leads and deals** through stages from first enquiry to a closed sale
+- **Sets reminders and tasks** so follow-ups don't get forgotten
+- **Records emails, calls and notes** against each customer
+- **Reports on sales** such as how many leads you get, how many convert and where deals stall
+
+## Signs you need a CRM
+
+1. **Customer details live in spreadsheets, inboxes or people's heads.** When someone leaves or is away, the information goes with them.
+2. **Leads get lost.** You are not sure who has been followed up, or when.
+3. **You can't answer simple questions** such as how many enquiries came last month or which source brings the best customers.
+4. **Several people talk to the same customer** and they repeat questions or send mixed messages.
+5. **Your sales process has steps** that you want to be done the same way each time.
+
+If you have a handful of customers and one person handling them, a spreadsheet may be enough for now.
+
+## Off-the-shelf or custom?
+
+**Off-the-shelf CRMs** such as HubSpot, Zoho or Pipedrive are quick to start and cheap at small scale. They suit most businesses whose sales process is fairly standard.
+
+**A custom CRM** makes sense when:
+
+- Your process is unusual and you would be fighting the software
+- You need it connected closely to your own systems, such as a portal, ordering system or ERP
+- Licences for several users and add-ons are adding up
+- You want the data and the logic fully under your control
+
+A common approach is to start with an existing CRM and move to a custom system only when its limits start to cost you more than building one.
+
+## How to get the most from a CRM
+
+- Keep the first set of fields small. People stop using forms that ask for too much
+- Capture leads automatically from your website form instead of typing them in
+- Agree what each pipeline stage means
+- Review the pipeline weekly in a short team meeting
+
+## Getting help
+
+We build custom CRMs and extend existing ones, with website lead capture, email integration and reporting. See our [CRM development services](/services/crm-development-services) or [send us your requirements](/services/crm-development-services#contact).`,
+  },
+  {
+    slug: "redesign-a-website-without-losing-seo",
+    title: "How to Redesign a Website Without Losing Your SEO",
+    excerpt:
+      "A redesign can wipe out years of search rankings if URLs, content and redirects aren't handled. Here is a practical checklist to protect your traffic.",
+    category: "SEO",
+    tags: ["website redesign", "seo migration", "redirects"],
+    publishedAt: "2026-11-19",
+    metaTitle: "Redesign a Website Without Losing SEO: Checklist",
+    metaDesc: "A website redesign checklist to protect your rankings: audit current pages, keep URLs, set 301 redirects, preserve content and monitor after launch.",
+    content: `Many businesses see traffic drop after a redesign, and the cause is usually not the new look. Pages were moved without redirects, content was cut, or technical settings from the old site were lost. Plan for search from the start, and a redesign can improve results instead.
+
+## Before you start
+
+### 1. Record how the site performs now
+
+- Export top pages, queries, clicks and impressions from Google Search Console
+- Export traffic and conversions from your analytics
+- Crawl the current site and save the list of URLs, titles, descriptions and headings
+
+This is your baseline. Without it you can't tell what changed.
+
+### 2. Decide which pages matter
+
+Rank pages by traffic, conversions and links. Pages that bring visitors or links need the most care. Pages with no traffic and no value can be merged or removed on purpose.
+
+## During the redesign
+
+### 3. Keep URLs where you can
+
+The simplest way to protect rankings is not to change a page's address. If the structure must change, plan every new URL deliberately.
+
+### 4. Map every old URL to a new one
+
+For each URL that changes, set a **301 (permanent) redirect** to the closest equivalent new page. Redirect to a relevant page, not just to the home page. Test the whole list before launch.
+
+### 5. Keep what ranks
+
+- Keep the main headings, useful text and key phrases of pages that perform well
+- Don't replace detailed text with a few lines and an image
+- Keep titles and meta descriptions unless you are improving them on purpose
+
+### 6. Carry over the technical basics
+
+- Canonical tags, meta robots and hreflang if you use them
+- Structured data (schema markup)
+- XML sitemap and robots.txt
+- Image alt text and clean internal links
+
+### 7. Check speed and mobile
+
+A redesign that is heavier and slower can hurt. Test Core Web Vitals on your key page types before launch.
+
+## At launch
+
+- Switch off any "noindex" setting that was used on the test version. This is a common and costly mistake
+- Submit the new sitemap in Search Console
+- Check that redirects, forms and tracking work
+- Keep the old site's files and a backup for a few weeks
+
+## After launch
+
+- Watch Search Console daily in the first weeks: coverage errors, crawl errors and drops in impressions
+- Compare traffic with your baseline each week
+- Fix broken links and redirect chains
+- Expect small fluctuations for a few weeks while search engines process the changes
+
+## Need a redesign?
+
+We plan redesigns around search from the beginning. See our [website development services](/services/website-development-services), or tell us about your site and we'll suggest what to keep, change and redirect.`,
+  },
 ];

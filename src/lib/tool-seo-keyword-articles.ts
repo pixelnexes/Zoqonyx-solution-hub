@@ -54,7 +54,7 @@ export const KEYWORD_ARTICLES: Record<string, ToolSeoArticle> = {
       {
         question: "Is there a backlink checker API?",
         answer:
-          "Zoqonyx doesn't offer an API. To automate backlink data, use the Search Console API or a paid SEO tool's API, then upload the export here to audit it.",
+          "Zoqonyx doesn't offer an API. Google's Search Console API doesn't include the Links report either, so to get backlink data programmatically you need a paid provider such as Ahrefs, Semrush, Moz or Majestic. Export or download their data as CSV and upload it here to audit it.",
       },
       {
         question: "What are referring domains?",
