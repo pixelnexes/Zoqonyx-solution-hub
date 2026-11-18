@@ -4,6 +4,9 @@ import { ToolDrawer } from "@/components/home/tool-drawer";
 import { ContactSection, TestimonialsSection } from "@/components/site/sections";
 import { ParallaxImg, ScrollProgress, CountUp } from "@/components/kit/motion";
 import { TechLogo } from "@/components/kit/tech-logo";
+import LogoLoop from "@/components/reactbits/LogoLoop";
+import LightRays from "@/components/reactbits/LightRays";
+import SpotlightCard from "@/components/reactbits/SpotlightCard";
 import { Reveal } from "@/components/kit/reveal";
 import { Slider } from "@/components/kit/slider";
 import { CoverArt } from "@/components/kit/cover-art";
@@ -263,15 +266,16 @@ export default async function HomePage() {
 
       {/* 2. Technologies marquee */}
       <section aria-label="Technologies we use" className="zq-band-white border-b border-[#DFE3DA] py-6">
-        <div className="zq-marquee">
-          <ul className="zq-marquee-track">
-            {[...TECH_PILLS, ...TECH_PILLS].map((t, i) => (
-              <li key={`${t}-${i}`} className="zq-pill" aria-hidden={i >= TECH_PILLS.length ? "true" : undefined}>
-                <TechLogo name={t} />
-              </li>
-            ))}
-          </ul>
-        </div>
+        <LogoLoop
+          logos={Array.from(new Set(TECH_PILLS)).map((t) => ({ node: <span className="zq-pill"><TechLogo name={t} /></span>, title: t }))}
+          speed={55}
+          gap={16}
+          logoHeight={44}
+          pauseOnHover
+          fadeOut
+          fadeOutColor="#FFFFFF"
+          ariaLabel="Technologies we use"
+        />
       </section>
 
       {/* 3. Services */}
@@ -407,13 +411,13 @@ export default async function HomePage() {
               { t: "Extra developers", d: "Add one or more developers to your own team for as long as the work needs them.", href: "/services/staff-augmentation", cta: "Staff augmentation", dark: false },
             ].map((m, i) => (
               <Reveal as="li" key={m.t} delay={i * 90}>
-                <div className={`flex h-full flex-col rounded-xl border p-7 ${m.dark ? "border-[#10181A] bg-[#10181A] text-white" : "border-[#DFE3DA] bg-white"}`}>
+                <SpotlightCard theme={m.dark ? "dark" : "light"} spotlightColor="#7FCDB0" className={`flex h-full flex-col p-7 ${m.dark ? "text-white" : "text-[#10181A]"}`}>
                   <h3 className="zq-display text-2xl font-extrabold">{m.t}</h3>
                   <p className={`mt-3 flex-1 text-[16px] leading-relaxed ${m.dark ? "zq-on-dark-muted" : "text-[#4F5B57]"}`}>{m.d}</p>
                   <Link href={m.href} className={`mt-6 inline-flex items-center gap-1.5 font-bold ${m.dark ? "text-[#F2A81D]" : "text-[#0A5E44]"}`}>
                     {m.cta} <ArrowRight className="w-4 h-4" aria-hidden="true" />
                   </Link>
-                </div>
+                </SpotlightCard>
               </Reveal>
             ))}
           </ul>
@@ -422,6 +426,9 @@ export default async function HomePage() {
 
       {/* 6. Who we work with */}
       <section aria-labelledby="audience-heading" className="zq-band-dark">
+        <div aria-hidden="true" className="absolute inset-0 -z-10 opacity-70">
+          <LightRays raysOrigin="top-center" raysColor="#7FCDB0" raysSpeed={0.8} lightSpread={0.9} rayLength={1.4} followMouse mouseInfluence={0.08} />
+        </div>
         <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 zq-section">
           <div className="grid gap-8 lg:grid-cols-[1fr_1.1fr] items-center">
             <div>

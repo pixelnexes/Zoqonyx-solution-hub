@@ -709,6 +709,7 @@ export function TimestampConverterTool() {
   // client HTML match (Date.now() differs between them).
   const [epoch, setEpoch] = React.useState<number>(0);
   const [humanDate, setHumanDate] = React.useState<string>("");
+  const [mounted, setMounted] = React.useState(false);
 
   const updateFromEpoch = (val: number) => {
     setEpoch(val);
@@ -717,6 +718,7 @@ export function TimestampConverterTool() {
   };
 
   React.useEffect(() => {
+    setMounted(true);
     updateFromEpoch(Math.floor(Date.now() / 1000));
   }, []);
 
@@ -760,7 +762,7 @@ export function TimestampConverterTool() {
           </div>
           <div className="p-3 rounded-lg border border-border bg-muted/30 space-y-1">
             <span className="text-[11px] font-bold text-muted-foreground uppercase">Local Browser Time</span>
-            <p className="text-xs font-mono font-medium">{new Date(epoch * 1000).toString()}</p>
+            <p className="text-xs font-mono font-medium">{mounted ? new Date(epoch * 1000).toString() : ""}</p>
           </div>
         </div>
       </div>
