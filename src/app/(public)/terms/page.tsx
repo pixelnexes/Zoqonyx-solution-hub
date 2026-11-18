@@ -1,4 +1,5 @@
 import { prisma } from "@/lib/prisma";
+import { BannerPhoto } from "@/components/kit/motion";
 import type { Metadata } from "next";
 import { CheckCircle2, Shield } from "lucide-react";
 import { MarkdownRenderer } from "@/components/common/markdown-renderer";
@@ -63,6 +64,7 @@ export default async function TermsPage() {
   return (
     <div className="zq-page">
       <section className="zq-banner">
+        <BannerPhoto src="/photos/workspace.jpg" />
         <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-14 sm:py-20">
           <p className="inline-flex rounded-full bg-white/15 px-3 py-1 text-sm font-semibold">Fair and transparent usage</p>
           <h1 className="zq-in-solid zq-display mt-4 max-w-3xl text-4xl sm:text-6xl font-extrabold leading-[1.03]">{title}</h1>

@@ -33,5 +33,68 @@
   "page": "https://www.flickr.com/photos/151415985@N06/36819065315",
   "license": "cc0",
   "bytes": 127266
+ },
+ "mobile": {
+  "title": "Park Visitor Uses Smartphone to Take a Picture of Bighorn Sheep",
+  "creator": "Joshua Tree National Park",
+  "page": "https://www.flickr.com/photos/115357548@N08/15893607020",
+  "license": "pdm",
+  "bytes": 207098
+ },
+ "workspace": {
+  "title": "minimalist-desk-workspace-laptop-plant-3072x1729",
+  "creator": "WizGeneratorImages",
+  "page": "https://www.flickr.com/photos/204859441@N03/55463487511",
+  "license": "cc0",
+  "bytes": 69868
+ },
+ "support": {
+  "title": "Thunderbird 9 with signal mirror",
+  "creator": "signal mirror",
+  "page": "https://www.flickr.com/photos/53832127@N04/26760836765",
+  "license": "cc0",
+  "bytes": 202515
+ },
+ "planning": {
+  "title": "Post-it Mario",
+  "creator": "We Like Sharing",
+  "page": "https://www.flickr.com/photos/192018235@N04/55260368123",
+  "license": "cc0",
+  "bytes": 128005
+ },
+ "code2": {
+  "title": "Coding Programming",
+  "creator": "Startup Stock Photos",
+  "page": "https://stocksnap.io/photo/coding-programming-SCC00WCQ3I",
+  "license": "cc0",
+  "bytes": 65108
+ },
+ "coworking": {
+  "title": "startup-594091",
+  "creator": "ChristopherA",
+  "page": "https://www.flickr.com/photos/32641495@N00/33286674502",
+  "license": "cc0",
+  "bytes": 101704
+ },
+ "phone-app": {
+  "title": "iPhone Home Screen",
+  "creator": "freestocks.org",
+  "page": "https://www.flickr.com/photos/135396164@N05/23724266304",
+  "license": "cc0",
+  "bytes": 135552
+ },
+ "keyboard": {
+  "title": "Keyboard",
+  "creator": "\u20a1\u0491\u01d8\u0219\u03ef\u03b3 \u018a\u1d8f \u2c69\u1d85\u1e4f\u2c73\u0564",
+  "page": "https://www.flickr.com/photos/148598741@N02/52399676125",
+  "license": "cc0",
+  "bytes": 181481
+ },
+ "city": {
+  "title": "New York City skyline night",
+  "creator": null,
+  "page": "https://www.rawpixel.com/image/5919276/image-background-aesthetic-design",
+  "license": "cc0",
+  "bytes": 286238
  }
 }

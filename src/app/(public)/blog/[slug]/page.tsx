@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { BannerPhoto } from "@/components/kit/motion";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getPost, getPosts, getServices } from "@/lib/content";
@@ -86,6 +87,7 @@ export default async function BlogPostPage({ params }: Props) {
       ))}
 
       <section className="zq-banner">
+        <BannerPhoto src="/photos/keyboard.jpg" />
         <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
           <nav aria-label="Breadcrumb" className="text-sm text-white/75">
             <ol className="flex flex-wrap items-center gap-x-2 gap-y-1">

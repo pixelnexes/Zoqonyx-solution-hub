@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { BannerPhoto } from "@/components/kit/motion";
 import Link from "next/link";
 import { ChevronDown } from "lucide-react";
 import { prisma } from "@/lib/prisma";
@@ -170,6 +171,7 @@ export default async function ToolsPage() {
 
       <div className="zq-page">
         <section className="zq-banner">
+        <BannerPhoto src="/photos/code2.jpg" />
           <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-14 sm:py-20">
             <nav aria-label="Breadcrumb" className="text-sm text-white/75">
               <ol className="flex flex-wrap items-center gap-x-2">

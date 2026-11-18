@@ -2,6 +2,7 @@ import { prisma } from "@/lib/prisma";
 import Link from "next/link";
 import { ToolDrawer } from "@/components/home/tool-drawer";
 import { ContactSection, TestimonialsSection } from "@/components/site/sections";
+import { ParallaxImg, ScrollProgress, CountUp } from "@/components/kit/motion";
 import { Reveal } from "@/components/kit/reveal";
 import { Slider } from "@/components/kit/slider";
 import { CoverArt } from "@/components/kit/cover-art";
@@ -202,6 +203,7 @@ export default async function HomePage() {
 
   return (
     <div className="zq-page">
+      <ScrollProgress />
       {jsonLd.map((d, i) => (
         <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(d) }} />
       ))}
@@ -302,6 +304,25 @@ export default async function HomePage() {
         </div>
       </section>
 
+      {/* 3b. Numbers */}
+      <section aria-label="Zoqonyx in numbers" className="bg-[#10181A] text-white">
+        <ul className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 grid grid-cols-2 md:grid-cols-4 gap-y-8 py-10">
+          {[
+            { n: liveCount, s: "", l: "free online tools" },
+            { n: services.length, s: "", l: "services you can hire" },
+            { n: posts.length, s: "", l: "guides on the blog" },
+            { n: groups.length, s: "", l: "service areas" },
+          ].map((x) => (
+            <li key={x.l} className="px-2 md:border-l md:border-white/15 md:pl-8 first:border-0 first:pl-2">
+              <p className="zq-display text-4xl sm:text-5xl font-extrabold text-[#F2A81D]">
+                <CountUp to={x.n} suffix={x.s} />
+              </p>
+              <p className="mt-1 text-[15px] zq-on-dark-muted">{x.l}</p>
+            </li>
+          ))}
+        </ul>
+      </section>
+
       {/* 4. Free tools */}
       <section id="tools" aria-labelledby="tools-heading" className="zq-band-tint zq-section scroll-mt-20">
         <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
@@ -310,6 +331,32 @@ export default async function HomePage() {
           </h2>
           <p className="mt-3 mb-8 zq-lead max-w-2xl">Open a tool and use it. No sign-up and no account. Most tools run in your browser, so the files you add stay on your device.</p>
           <ToolDrawer tools={tools} />
+        </div>
+      </section>
+
+      {/* 4b. Why Zoqonyx */}
+      <section aria-labelledby="why-heading" className="zq-section">
+        <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 grid gap-10 lg:grid-cols-2 items-center">
+          <Reveal>
+            <ParallaxImg src="/photos/workspace.jpg" alt="A tidy desk with a laptop and a plant" className="h-72 lg:h-[26rem] rounded-xl" />
+          </Reveal>
+          <div>
+            <h2 id="why-heading" className="zq-display zq-h2">
+              One team for the build, the launch and the search traffic
+            </h2>
+            <ul className="mt-6 space-y-4">
+              {[
+                ["We plan before we build", "A short written plan with scope, steps and a fixed first stage, so you know what happens next."],
+                ["You see progress every week", "Working builds you can click through, not status reports."],
+                ["You own the result", "Code, designs and accounts are yours from the first payment."],
+              ].map(([t, d]) => (
+                <li key={t} className="border-l-4 border-[#0E7C5A] pl-4">
+                  <p className="text-[18px] font-bold">{t}</p>
+                  <p className="mt-1 text-[15px] leading-relaxed text-[#4F5B57]">{d}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </section>
 
@@ -368,6 +415,28 @@ export default async function HomePage() {
               );
             })}
           </ul>
+        </div>
+      </section>
+
+      {/* 6b. Apps band with parallax photo */}
+      <section aria-labelledby="apps-heading" className="relative isolate overflow-hidden text-white">
+        <div aria-hidden="true" className="absolute inset-0 -z-10">
+          <ParallaxImg src="/photos/city.jpg" className="h-full w-full" speed={0.2} />
+          <div className="absolute inset-0 bg-[#10181A]/75" />
+        </div>
+        <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 zq-section grid gap-10 lg:grid-cols-[1.1fr_0.9fr] items-center">
+          <div>
+            <h2 id="apps-heading" className="zq-display zq-h2">
+              Have an app or website idea? Let us scope it.
+            </h2>
+            <p className="mt-4 text-[17px] leading-relaxed zq-on-dark-muted max-w-xl">Tell us what you want to build. We reply with questions, a rough plan and the first step.</p>
+            <a href="#contact" className="zq-btn zq-btn-sun mt-7">
+              Get a quote <ArrowRight className="w-4 h-4" aria-hidden="true" />
+            </a>
+          </div>
+          <Reveal>
+            <img src="/photos/phone-app.jpg" alt="A phone showing an app home screen" width={960} height={640} loading="lazy" className="h-64 w-full rounded-xl object-cover" />
+          </Reveal>
         </div>
       </section>
 

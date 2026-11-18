@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import { BannerPhoto } from "@/components/kit/motion";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, ChevronDown } from "lucide-react";
@@ -239,6 +240,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
 
       <div className="zq-page">
         <section className="zq-banner">
+        <BannerPhoto src="/photos/code2.jpg" />
           <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
             <nav aria-label="Breadcrumb" className="text-sm text-white/75">
               <ol className="flex flex-wrap items-center gap-x-2 gap-y-1">

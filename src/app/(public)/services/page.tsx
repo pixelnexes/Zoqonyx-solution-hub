@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { BannerPhoto } from "@/components/kit/motion";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { getServices, getTestimonials, groupServices } from "@/lib/content";
@@ -42,6 +43,7 @@ export default async function ServicesPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
       <section className="zq-banner">
+        <BannerPhoto src="/photos/coworking.jpg" />
         <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-14 sm:py-20">
           <nav aria-label="Breadcrumb" className="text-sm text-white/75">
             <ol className="flex flex-wrap items-center gap-x-2">

@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import { BannerPhoto } from "@/components/kit/motion";
 import { Send, CheckCircle2, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -53,6 +54,7 @@ export default function ContactPage() {
   return (
     <div className="zq-page">
       <section className="zq-banner">
+        <BannerPhoto src="/photos/handshake.jpg" />
         <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-14 sm:py-20">
           <h1 className="zq-in-solid zq-display text-4xl sm:text-6xl font-extrabold leading-[1.03]">Contact Zoqonyx</h1>
           <p className="zq-in mt-4 max-w-2xl text-[18px] leading-relaxed zq-on-dark-muted">
