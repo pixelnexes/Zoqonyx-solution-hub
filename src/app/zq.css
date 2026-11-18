@@ -119,6 +119,10 @@ a.zq-card:hover, .zq-card-hover:hover {
 .zq-marquee-track { display: flex; width: max-content; gap: 1rem; animation: zq-marquee 38s linear infinite; }
 .zq-marquee:hover .zq-marquee-track { animation-play-state: paused; }
 @keyframes zq-marquee { to { transform: translateX(-50%); } }
+.zq-duo { position: relative; display: block; overflow: hidden; }
+.zq-duo img { filter: grayscale(1) contrast(1.05); }
+.zq-duo-tint { position: absolute; inset: 0; mix-blend-mode: multiply; opacity: .78; }
+.zq-pill svg { flex-shrink: 0; }
 .zq-pill { display: inline-flex; align-items: center; gap: .5rem; padding: .6rem 1.1rem; border-radius: 999px; background: #fff; border: 1px solid var(--zq-line); font-weight: 600; font-size: 15px; white-space: nowrap; }
 
 /* ---------- Motion ---------- */
@@ -147,3 +151,6 @@ a.zq-card:hover, .zq-card-hover:hover {
 
 /* ---------- Dark-mode safe text helpers ---------- */
 .zq-on-dark-muted { color: rgba(232,240,236,.82); }
+
+/* Light hero (reference: pale tint, centered headline, product screenshots) */
+.zq-hero-light { background: #E6F1EA; border-bottom: 1px solid #CFE0D6; overflow: hidden; }

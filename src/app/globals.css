@@ -13,7 +13,7 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222 47% 11%;
 
-    --primary: 221.2 83.2% 53.3%; /* #2563EB - Primary Blue */
+    --primary: 158 79% 27%; /* #0E7C5A forest green */
     --primary-foreground: 0 0% 100%;
 
     --secondary: 210 40% 96.1%; /* #F1F5F9 - Subtle secondary surface */
@@ -22,7 +22,7 @@
     --muted: 210 40% 96.1%; /* #F1F5F9 */
     --muted-foreground: 215 16% 47%; /* #64748B - Secondary text with high readability */
 
-    --accent: 173 80% 36%; /* #0D9488 - Teal Accent */
+    --accent: 158 79% 27%; /* green */
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
@@ -30,7 +30,7 @@
 
     --border: 214.3 31.8% 91.4%; /* #E2E8F0 - Subtle clean borders */
     --input: 214.3 31.8% 91.4%;
-    --ring: 221.2 83.2% 53.3%; /* Focus ring matches primary blue */
+    --ring: 158 79% 27%;
 
     --radius: 0.5rem; /* 8px precision rounding */
   }
@@ -41,20 +41,20 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground antialiased selection:bg-blue-500/20 selection:text-blue-900;
+    @apply bg-background text-foreground antialiased selection:bg-emerald-600/20 selection:text-emerald-950;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   }
 }
 
 /* Professional Accent Gradients - Restrained & Clean */
 .brand-gradient-text {
-  background: linear-gradient(135deg, #111827 0%, #2563EB 50%, #0D9488 100%);
+  background: linear-gradient(135deg, #10181A, #10181A);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .brand-gradient-bg {
-  background: linear-gradient(135deg, #2563EB 0%, #0D9488 100%);
+  background: #0E7C5A;
 }
 
 .brand-gradient-border {
@@ -66,7 +66,7 @@
   inset: -1px;
   border-radius: inherit;
   padding: 1px;
-  background: linear-gradient(135deg, #2563EB 0%, #0D9488 100%);
+  background: #0E7C5A;
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;

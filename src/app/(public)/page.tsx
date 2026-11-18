@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ToolDrawer } from "@/components/home/tool-drawer";
 import { ContactSection, TestimonialsSection } from "@/components/site/sections";
 import { ParallaxImg, ScrollProgress, CountUp } from "@/components/kit/motion";
+import { TechLogo } from "@/components/kit/tech-logo";
 import { Reveal } from "@/components/kit/reveal";
 import { Slider } from "@/components/kit/slider";
 import { CoverArt } from "@/components/kit/cover-art";
@@ -61,6 +62,18 @@ const AUDIENCES = [
     cta: "Staff augmentation",
   },
 ];
+
+const SERVICE_PHOTO: Record<string, string> = {
+  "game-development": "game",
+  "app-development": "phone-app",
+  "website-development": "code2",
+  "custom-software": "developer",
+  "digital-marketing": "marketing",
+  "ai-nlp-development": "keyboard",
+  "nft-development": "city",
+  "staff-augmentation": "team",
+  "erp-crm-development": "workspace",
+};
 
 const TECH = [
   { area: "Front end", items: "React, Next.js, TypeScript, Tailwind CSS" },
@@ -208,49 +221,42 @@ export default async function HomePage() {
         <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(d) }} />
       ))}
 
-      {/* 1. Hero banner */}
-      <section className="zq-hero">
-        <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 grid lg:grid-cols-[1.05fr_0.95fr] gap-10 lg:gap-6 items-center pt-14 pb-16 lg:pt-20 lg:pb-24">
-          <div>
-            <p className="zq-in inline-flex rounded-md border border-white/25 px-3 py-1 text-sm font-semibold text-white/90">
-              Software studio and free online tools
-            </p>
-            <h1 className="zq-in-solid zq-display mt-5 text-[2.6rem] sm:text-6xl font-extrabold leading-[1.02] text-white">
-              Apps, websites and software built for your business.
-            </h1>
-            <p className="zq-in mt-5 max-w-[34rem] text-[18px] leading-relaxed zq-on-dark-muted" style={{ ["--d" as string]: "90ms" }}>
-              Zoqonyx designs and develops mobile apps, websites, games and custom software, helps people find you with digital marketing, and runs {liveCount}{" "}
-              free online tools for PDFs, images, code and text.
-            </p>
-            <div className="zq-in mt-8 flex flex-wrap gap-3" style={{ ["--d" as string]: "180ms" }}>
-              <a href="#contact" className="zq-btn zq-btn-sun">
-                Get a quote <ArrowRight className="w-4 h-4" aria-hidden="true" />
-              </a>
-              <Link href="/services" className="zq-btn zq-btn-ghost">
-                See our services
-              </Link>
-              <a href="#tools" className="zq-btn !px-3 text-white/90 underline underline-offset-4">
-                Use the free tools
-              </a>
-            </div>
-            <ul className="zq-in mt-9 flex flex-wrap gap-2.5" style={{ ["--d" as string]: "270ms" }}>
-              {[
-                { name: "Mobile apps", href: "/services/app-development", c: "#7FCDB0" },
-                { name: "Websites", href: "/services/website-development", c: "#7FCDB0" },
-                { name: "Games", href: "/services/game-development", c: "#6C93AE" },
-                { name: "AI", href: "/services/ai-nlp-development", c: "#F2A81D" },
-                { name: "Marketing", href: "/services/digital-marketing", c: "#D8694F" },
-              ].map((p) => (
-                <li key={p.name}>
-                  <Link href={p.href} className="inline-flex items-center rounded-md bg-white/10 hover:bg-white/20 border border-white/15 px-3 py-1.5 text-sm font-semibold text-white transition-colors">
-                    {p.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+      {/* 1. Hero */}
+      <section className="zq-hero-light">
+        <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 pt-14 sm:pt-20 text-center">
+          <p className="zq-in inline-flex rounded-md border border-[#10181A]/20 bg-white/70 px-3 py-1 text-sm font-semibold">Software studio and free online tools</p>
+          <h1 className="zq-in-solid zq-display mx-auto mt-5 max-w-4xl text-[2.5rem] sm:text-6xl lg:text-[3.75rem] font-extrabold leading-[1.03] text-[#10181A]">
+            Apps, websites and software built for your business.
+          </h1>
+          <p className="zq-in mx-auto mt-5 max-w-2xl text-[18px] leading-relaxed text-[#4F5B57]" style={{ ["--d" as string]: "90ms" }}>
+            Zoqonyx designs and develops mobile apps, websites, games and custom software, helps people find you with digital marketing, and runs {liveCount} free online tools.
+          </p>
+          <div className="zq-in mt-8 flex flex-wrap justify-center gap-3" style={{ ["--d" as string]: "180ms" }}>
+            <a href="#contact" className="zq-btn zq-btn-indigo">
+              Get a quote <ArrowRight className="w-4 h-4" aria-hidden="true" />
+            </a>
+            <Link href="/services" className="zq-btn zq-btn-outline">
+              See our services
+            </Link>
           </div>
-          <div className="zq-in" style={{ ["--d" as string]: "200ms" }}>
-            <img src="/photos/developer.jpg" alt="A laptop showing source code next to a cup of coffee" width={1024} height={683} fetchPriority="high" className="w-full h-[320px] lg:h-[460px] rounded-xl object-cover" />
+          <p className="mt-4 text-sm text-[#4F5B57]">
+            Or <a href="#tools" className="font-semibold text-[#0A5E44] underline underline-offset-4">use the free tools</a>. No sign-up.
+          </p>
+
+          {/* Real screenshots of our own tools */}
+          <div className="zq-in relative mx-auto mt-12 max-w-5xl pb-0" style={{ ["--d" as string]: "260ms" }}>
+            <div className="overflow-hidden rounded-t-2xl border border-b-0 border-[#10181A]/15 bg-white shadow-[0_30px_80px_-30px_rgba(16,24,26,.45)]">
+              <div className="flex items-center gap-2 border-b border-[#DFE3DA] px-4 py-2.5 text-left text-sm text-[#4F5B57]">
+                <span className="rounded-md bg-[#F4F5F1] px-3 py-1 font-mono text-[13px]">zoqonyx.com/tools/json-formatter</span>
+              </div>
+              <img src="/shots/json.png" alt="The JSON formatter tool showing formatted output" width={1088} height={515} fetchPriority="high" className="w-full" />
+            </div>
+            <div className="zq-float absolute -left-4 bottom-8 hidden w-64 overflow-hidden rounded-xl border border-[#10181A]/15 bg-white shadow-[0_24px_60px_-24px_rgba(16,24,26,.5)] lg:block" style={{ ["--r" as string]: "-3deg" }}>
+              <img src="/shots/compress.png" alt="The image compressor tool" width={1088} height={384} loading="lazy" className="w-full" />
+            </div>
+            <div className="zq-float absolute -right-4 top-16 hidden w-56 overflow-hidden rounded-xl border border-[#10181A]/15 bg-white shadow-[0_24px_60px_-24px_rgba(16,24,26,.5)] lg:block" style={{ ["--r" as string]: "3deg", ["--d" as string]: "-2s" }}>
+              <img src="/shots/qr.png" alt="The QR code generator tool" width={1088} height={640} loading="lazy" className="w-full" />
+            </div>
           </div>
         </div>
       </section>
@@ -261,7 +267,7 @@ export default async function HomePage() {
           <ul className="zq-marquee-track">
             {[...TECH_PILLS, ...TECH_PILLS].map((t, i) => (
               <li key={`${t}-${i}`} className="zq-pill" aria-hidden={i >= TECH_PILLS.length ? "true" : undefined}>
-                {t}
+                <TechLogo name={t} />
               </li>
             ))}
           </ul>
@@ -287,8 +293,13 @@ export default async function HomePage() {
               const { Icon, accent } = serviceStyle(hub.slug);
               return (
                 <Reveal as="li" key={hub.slug} delay={(i % 3) * 90}>
-                  <Link href={`/services/${hub.slug}`} className="zq-card group relative flex h-full flex-col p-6 overflow-hidden" style={{ borderTop: `4px solid ${accent.color}` }}>
-                    <span className={`zq-chip ${accent.chip}`}>
+                  <Link href={`/services/${hub.slug}`} className="zq-card group relative flex h-full flex-col overflow-hidden">
+                    <span className="zq-duo block h-40 w-full">
+                      <img src={`/photos/${SERVICE_PHOTO[hub.slug] || "developer"}.jpg`} alt="" width={640} height={427} loading="lazy" className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                      <span className="zq-duo-tint" style={{ background: accent.color }} />
+                    </span>
+                    <div className="flex flex-1 flex-col p-6 -mt-10 relative">
+                    <span className={`zq-chip ${accent.chip} ring-4 ring-white`}>
                       <Icon className="w-6 h-6" aria-hidden="true" />
                     </span>
                     <h3 className="zq-display mt-4 text-[1.35rem] font-extrabold leading-tight">{hub.name}</h3>
@@ -296,6 +307,7 @@ export default async function HomePage() {
                     <p className="mt-4 inline-flex items-center gap-1.5 text-sm font-bold" style={{ color: accent.color }}>
                       {children.length > 0 ? `${children.length} services` : "Learn more"} <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
                     </p>
+                    </div>
                   </Link>
                 </Reveal>
               );
@@ -379,6 +391,32 @@ export default async function HomePage() {
               </Reveal>
             ))}
           </ol>
+        </div>
+      </section>
+
+      {/* 5b. Engagement models */}
+      <section aria-labelledby="models-heading" className="zq-band-tint zq-section">
+        <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <h2 id="models-heading" className="zq-display zq-h2 max-w-2xl">
+            Three ways to work with us
+          </h2>
+          <ul className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              { t: "Fixed-scope project", d: "A clear scope, timeline and price for an app, website or tool. Best when you know what you want built.", href: "/services", cta: "See services", dark: false },
+              { t: "Dedicated team", d: "A small team that works only on your product month after month, with weekly demos.", href: "/services/custom-software", cta: "Custom software", dark: true },
+              { t: "Extra developers", d: "Add one or more developers to your own team for as long as the work needs them.", href: "/services/staff-augmentation", cta: "Staff augmentation", dark: false },
+            ].map((m, i) => (
+              <Reveal as="li" key={m.t} delay={i * 90}>
+                <div className={`flex h-full flex-col rounded-xl border p-7 ${m.dark ? "border-[#10181A] bg-[#10181A] text-white" : "border-[#DFE3DA] bg-white"}`}>
+                  <h3 className="zq-display text-2xl font-extrabold">{m.t}</h3>
+                  <p className={`mt-3 flex-1 text-[16px] leading-relaxed ${m.dark ? "zq-on-dark-muted" : "text-[#4F5B57]"}`}>{m.d}</p>
+                  <Link href={m.href} className={`mt-6 inline-flex items-center gap-1.5 font-bold ${m.dark ? "text-[#F2A81D]" : "text-[#0A5E44]"}`}>
+                    {m.cta} <ArrowRight className="w-4 h-4" aria-hidden="true" />
+                  </Link>
+                </div>
+              </Reveal>
+            ))}
+          </ul>
         </div>
       </section>
 
