@@ -10,9 +10,11 @@ interface LogoProps {
   className?: string;
   iconOnly?: boolean;
   size?: "sm" | "md" | "lg";
+  /** Use light lettering on a dark background. */
+  onDark?: boolean;
 }
 
-export function Logo({ className, iconOnly = false, size = "md" }: LogoProps) {
+export function Logo({ className, iconOnly = false, size = "md", onDark = false }: LogoProps) {
   const { settings } = useSiteSettings();
 
   const dimensions = {
@@ -79,15 +81,15 @@ export function Logo({ className, iconOnly = false, size = "md" }: LogoProps) {
           <div className="flex items-center leading-none tracking-tight">
             {siteName.toUpperCase().includes("ZOQONYX") ? (
               <>
-                <span className={cn("font-heading font-bold tracking-[0.04em] text-[#14213D]", dimensions.textMain)}>
+                <span className={cn("font-heading font-bold tracking-[0.04em] text-[#14213D]", onDark && "text-white", dimensions.textMain)}>
                   ZOQONY
                 </span>
-                <span className={cn("font-heading font-bold tracking-[0.04em] text-[#0F766E]", dimensions.textMain)}>
+                <span className={cn("font-heading font-bold tracking-[0.04em] text-[#0F766E]", onDark && "text-[#22D3EE]", dimensions.textMain)}>
                   X
                 </span>
               </>
             ) : (
-              <span className={cn("font-heading font-bold tracking-[0.04em] text-[#14213D]", dimensions.textMain)}>
+              <span className={cn("font-heading font-bold tracking-[0.04em] text-[#14213D]", onDark && "text-white", dimensions.textMain)}>
                 {siteName}
               </span>
             )}

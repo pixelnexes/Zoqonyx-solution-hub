@@ -60,83 +60,65 @@ export default async function AboutPage() {
   const content = dbPage?.content || DEFAULT_ABOUT_CONTENT;
   const title = dbPage?.title || "About Zoqonyx Solution Hub";
 
+  const stats = [
+    { v: "148+", l: "Live free tools", g: "zq-g-indigo", I: Cpu },
+    { v: "0 bytes", l: "Uploaded to the cloud", g: "zq-g-aqua", I: Globe },
+    { v: "100%", l: "Free, no login", g: "zq-g-emerald", I: ShieldCheck },
+    { v: "0 ms", l: "Upload waiting", g: "zq-g-sun", I: Zap },
+  ];
+  const features = [
+    { I: Lock, g: "zq-g-violet", t: "Privacy by design", d: "Files stay on your device. Suitable for confidential contracts, financial records and GDPR-sensitive work." },
+    { I: Zap, g: "zq-g-coral", t: "Fast bulk processing", d: "Process up to 100 photos or documents (1 GB combined) at once, with clear progress indicators." },
+  ];
+
   return (
-    <div className="container mx-auto max-w-4xl px-4 py-12 sm:py-16">
-      {/* Header Badge & Title */}
-      <div className="space-y-4 mb-10 text-center sm:text-left">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md border border-teal-500/20 bg-teal-500/10 text-xs font-mono text-teal-400">
-          <span className="w-1.5 h-1.5 rounded-full bg-teal-400" />
-          <span>Engineered by Newix Tech Solutions</span>
+    <div className="zq-page">
+      <section className="zq-banner">
+        <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-14 sm:py-20">
+          <p className="inline-flex rounded-full bg-white/15 px-3 py-1 text-sm font-semibold">Built by Newix Tech Solutions</p>
+          <h1 className="zq-in-solid zq-display mt-4 max-w-3xl text-4xl sm:text-6xl font-extrabold leading-[1.03]">{title}</h1>
+          <p className="zq-in mt-4 max-w-2xl text-[18px] leading-relaxed zq-on-dark-muted">
+            A suite of free utilities for developers, designers, creators and teams that run in your browser, with no remote data collection.
+          </p>
+        </div>
+      </section>
+
+      <div className="container mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 zq-section space-y-10">
+        <ul className="grid grid-cols-2 lg:grid-cols-4 gap-4 -mt-16 relative">
+          {stats.map((x) => (
+            <li key={x.l} className="zq-card p-5">
+              <span className={`zq-chip zq-chip-sm ${x.g}`} aria-hidden="true">
+                <x.I className="w-[18px] h-[18px]" />
+              </span>
+              <p className="zq-display mt-3 text-2xl font-extrabold">{x.v}</p>
+              <p className="text-sm text-[#4B557A]">{x.l}</p>
+            </li>
+          ))}
+        </ul>
+
+        <div className="zq-card p-6 sm:p-10">
+          <MarkdownRenderer content={content} />
         </div>
 
-        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-black tracking-tight text-foreground">
-          {title}
-        </h1>
-
-        <p className="text-base text-muted-foreground leading-relaxed max-w-2xl">
-          A modern suite of 148+ professional digital utilities engineered for developers, designers, creators, and teams—running entirely client-side with zero remote data collection.
-        </p>
-      </div>
-
-      {/* Metrics Row */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-10">
-        <div className="p-4 rounded-xl border border-border bg-card/70 space-y-1">
-          <p className="text-2xl font-black font-mono text-foreground">148+</p>
-          <p className="text-xs text-muted-foreground font-medium">Live Free Tools</p>
-        </div>
-        <div className="p-4 rounded-xl border border-border bg-card/70 space-y-1">
-          <p className="text-2xl font-black font-mono text-teal-400">0 Bytes</p>
-          <p className="text-xs text-muted-foreground font-medium">Uploaded to Cloud</p>
-        </div>
-        <div className="p-4 rounded-xl border border-border bg-card/70 space-y-1">
-          <p className="text-2xl font-black font-mono text-foreground">100%</p>
-          <p className="text-xs text-muted-foreground font-medium">Free & No Login</p>
-        </div>
-        <div className="p-4 rounded-xl border border-border bg-card/70 space-y-1">
-          <p className="text-2xl font-black font-mono text-teal-400">0ms</p>
-          <p className="text-xs text-muted-foreground font-medium">Upload Waiting</p>
-        </div>
-      </div>
-
-      {/* Content Container */}
-      <div className="rounded-xl border border-border/80 bg-card/90 p-6 sm:p-10 shadow-xs space-y-8">
-        <MarkdownRenderer content={content} />
-
-        {/* Feature Highlights Grid */}
-        <div className="pt-8 border-t border-border/60 grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div className="p-4 rounded-lg bg-muted/20 border border-border/60 space-y-2">
-            <div className="flex items-center gap-2 text-teal-400 font-semibold text-sm">
-              <Lock className="w-4 h-4" />
-              <span>Strict Privacy By Design</span>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {features.map((f) => (
+            <div key={f.t} className="zq-card p-6">
+              <span className={`zq-chip ${f.g}`} aria-hidden="true">
+                <f.I className="w-6 h-6" />
+              </span>
+              <h2 className="mt-4 text-xl font-bold">{f.t}</h2>
+              <p className="mt-1.5 text-[15px] leading-relaxed text-[#4B557A]">{f.d}</p>
             </div>
-            <p className="text-xs text-muted-foreground leading-relaxed">
-              Files remain on your local machine. Ideal for HIPAA, GDPR, financial records, and confidential contracts.
-            </p>
-          </div>
-
-          <div className="p-4 rounded-lg bg-muted/20 border border-border/60 space-y-2">
-            <div className="flex items-center gap-2 text-teal-400 font-semibold text-sm">
-              <Zap className="w-4 h-4" />
-              <span>Non-Blocking Bulk Batching</span>
-            </div>
-            <p className="text-xs text-muted-foreground leading-relaxed">
-              Batch process up to 100 photos or documents (up to 1 GB combined capacity) simultaneously with responsive progress indicators.
-            </p>
-          </div>
+          ))}
         </div>
 
-        {/* CTA */}
-        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 p-5 rounded-lg bg-teal-500/5 border border-teal-500/20">
+        <div className="rounded-[22px] p-7 sm:p-9 text-white flex flex-col sm:flex-row items-center justify-between gap-5" style={{ background: "linear-gradient(135deg,#0B1026,#2A2FA8)" }}>
           <div>
-            <p className="text-sm font-bold text-foreground">Ready to streamline your workflow?</p>
-            <p className="text-xs text-muted-foreground">Access all 148 free tools instantly with no sign-up.</p>
+            <p className="zq-display text-2xl font-extrabold">Ready to try a tool?</p>
+            <p className="mt-1 zq-on-dark-muted">Open any of the free tools. No sign-up needed.</p>
           </div>
-          <Link
-            href="/tools"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-teal-600 hover:bg-teal-500 text-white text-xs font-semibold shadow-xs transition-colors shrink-0"
-          >
-            <span>Explore All 148 Tools</span>
-            <ArrowRight className="w-3.5 h-3.5" />
+          <Link href="/tools" className="zq-btn zq-btn-sun shrink-0">
+            Explore all tools <ArrowRight className="w-4 h-4" aria-hidden="true" />
           </Link>
         </div>
       </div>

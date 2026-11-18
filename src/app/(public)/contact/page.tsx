@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { Send, CheckCircle2, AlertCircle, Sparkles } from "lucide-react";
+import { Send, CheckCircle2, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -51,23 +51,18 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="container mx-auto max-w-3xl px-4 py-16 sm:py-24">
-      {/* Header */}
-      <div className="text-center max-w-xl mx-auto space-y-3 mb-10">
-        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-brand-cyan/10 text-brand-cyan border border-brand-cyan/20">
-          <Sparkles className="w-3.5 h-3.5" />
-          <span>Get In Touch</span>
+    <div className="zq-page">
+      <section className="zq-banner">
+        <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-14 sm:py-20">
+          <h1 className="zq-in-solid zq-display text-4xl sm:text-6xl font-extrabold leading-[1.03]">Contact Zoqonyx</h1>
+          <p className="zq-in mt-4 max-w-2xl text-[18px] leading-relaxed zq-on-dark-muted">
+            Need a specific tool, have feedback, or want to report an issue? Send us a message and we will reply by email.
+          </p>
         </div>
-        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-black tracking-tight text-foreground">
-          Contact <span className="brand-gradient-text">Zoqonyx</span>
-        </h1>
-        <p className="text-muted-foreground text-sm sm:text-base leading-relaxed">
-          Need a specific digital utility, have feature feedback, or want to report an issue? Send us your message below.
-        </p>
-      </div>
-
+      </section>
+      <div className="container mx-auto max-w-3xl px-4 zq-section">
       {/* Form Container */}
-      <div className="relative rounded-xl border border-border/80 bg-card p-6 sm:p-10 shadow-sm">
+      <div className="relative zq-card p-6 sm:p-10 -mt-20">
 
         {status === "success" ? (
           <div className="py-12 text-center space-y-4 animate-in fade-in zoom-in duration-300">
@@ -99,7 +94,7 @@ export default function ContactPage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {/* Name Field */}
               <div className="space-y-1.5">
-                <label className="text-xs font-semibold text-foreground uppercase tracking-wider">
+                <label className="text-xs font-semibold text-foreground">
                   Full Name <span className="text-brand-cyan">*</span>
                 </label>
                 <Input
@@ -114,7 +109,7 @@ export default function ContactPage() {
 
               {/* Email Field */}
               <div className="space-y-1.5">
-                <label className="text-xs font-semibold text-foreground uppercase tracking-wider">
+                <label className="text-xs font-semibold text-foreground">
                   Email Address <span className="text-brand-cyan">*</span>
                 </label>
                 <Input
@@ -132,7 +127,7 @@ export default function ContactPage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {/* Phone Number Field */}
               <div className="space-y-1.5">
-                <label className="text-xs font-semibold text-foreground uppercase tracking-wider">
+                <label className="text-xs font-semibold text-foreground">
                   Phone Number
                 </label>
                 <Input
@@ -147,7 +142,7 @@ export default function ContactPage() {
 
               {/* Subject Field */}
               <div className="space-y-1.5">
-                <label className="text-xs font-semibold text-foreground uppercase tracking-wider">
+                <label className="text-xs font-semibold text-foreground">
                   Subject
                 </label>
                 <Input
@@ -162,7 +157,7 @@ export default function ContactPage() {
 
             {/* Message Field */}
             <div className="space-y-1.5">
-              <label className="text-xs font-semibold text-foreground uppercase tracking-wider">
+              <label className="text-xs font-semibold text-foreground">
                 Message <span className="text-brand-cyan">*</span>
               </label>
               <Textarea
@@ -197,6 +192,7 @@ export default function ContactPage() {
             </Button>
           </form>
         )}
+      </div>
       </div>
     </div>
   );

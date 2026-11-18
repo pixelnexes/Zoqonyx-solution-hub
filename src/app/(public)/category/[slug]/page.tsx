@@ -1,6 +1,9 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import Link from "next/link";
+import { ArrowRight, ChevronDown } from "lucide-react";
+import { ToolIcon } from "@/components/common/tool-icon";
+import { categoryStyle } from "@/components/kit/icons";
 import { prisma } from "@/lib/prisma";
 import { getCategoryBySlug, getAllCategories } from "@/lib/categories";
 import { DEFAULT_TOOLS } from "@/lib/default-tools";
@@ -221,6 +224,8 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
       DEFAULT_TOOLS.some((t) => t.isActive && !t.isComingSoon && c.dbCategories.includes(t.category))
   );
 
+  const { Icon: CatIcon, accent: catAccent } = categoryStyle(category.name);
+
   return (
     <>
       <script
@@ -232,154 +237,162 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
 
-      <div className="bg-[#F3F5F8] text-[#14213D]">
-      <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 pt-6 pb-16 space-y-14">
-        <nav aria-label="Breadcrumb" className="text-sm text-[#4A5568]">
-          <ol className="flex flex-wrap items-center gap-x-2 gap-y-1">
-            <li>
-              <Link href="/" className={CP_LINK}>
-                Home
-              </Link>
-            </li>
-            <li aria-hidden="true">/</li>
-            <li>
-              <Link href="/tools" className={CP_LINK}>
-                All tools
-              </Link>
-            </li>
-            <li aria-hidden="true">/</li>
-            <li aria-current="page" className="text-[#14213D] font-medium">
-              {category.name}
-            </li>
-          </ol>
-        </nav>
-
-        <header className="max-w-[46rem] -mt-6">
-          <h1 className="text-[2rem] sm:text-[2.75rem] leading-[1.08] font-bold tracking-[-0.02em]">
-            {category.name}
-          </h1>
-          <p className="mt-3 text-[17px] leading-relaxed text-[#4A5568]">{category.description}</p>
-          <p className="mt-2 text-sm text-[#4A5568]">
-            {displayedTools.length} {displayedTools.length === 1 ? "tool" : "tools"}. Free to use, no sign-up.
-          </p>
-        </header>
-
-        {/* Tools Catalog Section */}
-        <section aria-labelledby="tools-heading">
-          <h2 id="tools-heading" className={`${CP_H2} pb-2 border-b-2 border-[#14213D]`}>
-            Tools
-          </h2>
-          {displayedTools.length === 0 ? (
-            <p className="mt-5 text-[16px] text-[#4A5568]">
-              No tools are live in this category yet.{" "}
-              <Link href="/tools" className={CP_LINK_TEAL}>
-                Browse all tools
-              </Link>
-            </p>
-          ) : (
-            <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-10">
-              {displayedTools.map((tool) => (
-                <li key={tool.slug} className="border-b border-[#D5DCE4]">
-                  <Link href={`/tools/${tool.slug}`} className={`block py-3.5 hover:bg-white ${CP_FOCUS}`}>
-                    <span className="block text-[16px] font-semibold">{tool.name}</span>
-                    <span className="block mt-0.5 text-sm leading-relaxed text-[#4A5568] line-clamp-2">
-                      {tool.description}
-                    </span>
+      <div className="zq-page">
+        <section className="zq-banner">
+          <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+            <nav aria-label="Breadcrumb" className="text-sm text-white/75">
+              <ol className="flex flex-wrap items-center gap-x-2 gap-y-1">
+                <li>
+                  <Link href="/" className="hover:underline underline-offset-4">
+                    Home
                   </Link>
                 </li>
-              ))}
-            </ul>
-          )}
-        </section>
-
-        {/* Comprehensive SEO Content & Educational Guide */}
-        <section aria-labelledby="about-heading" className="max-w-[46rem]">
-          <h2 id="about-heading" className={CP_H2}>
-            About {category.name}
-          </h2>
-          <div className="mt-5 text-[16px] leading-[1.7] text-[#2D3748] whitespace-pre-line">
-            {category.longContent.overview}
+                <li aria-hidden="true">/</li>
+                <li>
+                  <Link href="/tools" className="hover:underline underline-offset-4">
+                    All tools
+                  </Link>
+                </li>
+                <li aria-hidden="true">/</li>
+                <li aria-current="page" className="font-semibold text-white">
+                  {category.name}
+                </li>
+              </ol>
+            </nav>
+            <div className="mt-6 flex flex-col sm:flex-row sm:items-start gap-5">
+              <span className={`zq-chip ${catAccent.chip} !w-16 !h-16 !rounded-2xl zq-float`}>
+                <CatIcon className="w-8 h-8" aria-hidden="true" />
+              </span>
+              <div className="max-w-3xl">
+                <h1 className="zq-in-solid zq-display text-4xl sm:text-5xl font-extrabold leading-[1.05]">{category.name}</h1>
+                <p className="zq-in mt-4 text-[18px] leading-relaxed zq-on-dark-muted">{category.description}</p>
+                <p className="mt-3 text-sm text-white/80">
+                  {displayedTools.length} {displayedTools.length === 1 ? "tool" : "tools"}. Free to use, no sign-up.
+                </p>
+              </div>
+            </div>
           </div>
-
-          {category.longContent.keyBenefits.length > 0 && (
-            <dl className="mt-8 border-t border-[#D5DCE4]">
-              {category.longContent.keyBenefits.map((b, idx) => (
-                <div key={idx} className="py-4 border-b border-[#D5DCE4]">
-                  <dt className="text-[17px] font-semibold">{b.title}</dt>
-                  <dd className="mt-1 text-[15px] leading-relaxed text-[#4A5568]">{b.desc}</dd>
-                </div>
-              ))}
-            </dl>
-          )}
-
-          {category.longContent.popularWorkflows.length > 0 && (
-            <div className="mt-10 space-y-8">
-              {category.longContent.popularWorkflows.map((flow, fIdx) => (
-                <div key={fIdx}>
-                  <h3 className="text-xl font-bold">{flow.title}</h3>
-                  <ol className="mt-3 list-decimal pl-6 space-y-1.5 text-[15px] leading-relaxed text-[#2D3748]">
-                    {flow.steps.map((step, sIdx) => (
-                      <li key={sIdx}>{step}</li>
-                    ))}
-                  </ol>
-                </div>
-              ))}
-            </div>
-          )}
-
-          <div
-            className="mt-10 text-[16px] leading-[1.7] text-[#2D3748]"
-            dangerouslySetInnerHTML={{
-              __html: category.longContent.deepDiveArticle
-                .replace(/^### (.*$)/gim, '<h3 class="text-xl font-bold text-[#14213D] mt-8 mb-2">$1</h3>')
-                .replace(/^## (.*$)/gim, '<h2 class="text-2xl font-bold text-[#14213D] mt-10 mb-3">$1</h2>')
-                .replace(/^\- (.*$)/gim, '<li class="list-disc ml-6 my-1">$1</li>')
-                .replace(/\*\*(.*?)\*\*/g, '<strong class="text-[#14213D] font-semibold">$1</strong>')
-                .replace(/\n\n/g, '<p class="my-4">')
-                .replace(/\n/g, "<br />"),
-            }}
-          />
         </section>
 
-        {category.faqs.length > 0 && (
-          <section aria-labelledby="faq-heading" className="max-w-[46rem]">
-            <h2 id="faq-heading" className={CP_H2}>
-              Questions about {category.name}
+        <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 zq-section space-y-16">
+          <section aria-labelledby="tools-heading">
+            <h2 id="tools-heading" className="zq-display zq-h2">
+              Tools
             </h2>
-            <div className="mt-5 border-t border-[#D5DCE4]">
-              {category.faqs.map((faq, fIdx) => (
-                <div key={fIdx} className="py-4 border-b border-[#D5DCE4]">
-                  <h3 className="text-[17px] font-semibold leading-snug">{faq.question}</h3>
-                  <p className="mt-1.5 text-[15px] leading-relaxed text-[#4A5568]">{faq.answer}</p>
-                </div>
-              ))}
-            </div>
-          </section>
-        )}
-
-        <section aria-labelledby="other-heading">
-          <h2 id="other-heading" className={`${CP_H2} pb-2 border-b-2 border-[#14213D]`}>
-            Other categories
-          </h2>
-          <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-10">
-            {otherCategories.map((other) => (
-              <li key={other.slug} className="border-b border-[#D5DCE4]">
-                <Link href={`/category/${other.slug}`} className={`block py-3 text-[16px] font-semibold hover:bg-white ${CP_FOCUS}`}>
-                  {other.name}
+            {displayedTools.length === 0 ? (
+              <p className="mt-5 text-[16px] text-[#4B557A]">
+                No tools are live in this category yet.{" "}
+                <Link href="/tools" className="font-bold text-[#3F3FD0] underline underline-offset-4">
+                  Browse all tools
                 </Link>
-              </li>
-            ))}
-          </ul>
-        </section>
-      </div>
+              </p>
+            ) : (
+              <ul className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {displayedTools.map((tool) => (
+                  <li key={tool.slug}>
+                    <Link href={`/tools/${tool.slug}`} className="zq-card zq-card-hover group flex h-full items-start gap-3 p-4">
+                      <span className={`zq-chip zq-chip-sm ${catAccent.chip}`} aria-hidden="true">
+                        <ToolIcon name={tool.icon} className="w-[18px] h-[18px]" strokeWidth={2} />
+                      </span>
+                      <span className="min-w-0">
+                        <span className="block text-[16px] font-bold group-hover:text-[#3F3FD0]">{tool.name}</span>
+                        <span className="block mt-0.5 text-sm leading-relaxed text-[#4B557A] line-clamp-2">{tool.description}</span>
+                      </span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </section>
+
+          <section aria-labelledby="about-heading" className="max-w-3xl">
+            <h2 id="about-heading" className="zq-display zq-h2">
+              About {category.name}
+            </h2>
+            <div className="mt-5 text-[16px] leading-[1.75] text-[#2D3748] whitespace-pre-line">{category.longContent.overview}</div>
+
+            {category.longContent.keyBenefits.length > 0 && (
+              <dl className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {category.longContent.keyBenefits.map((b, idx) => (
+                  <div key={idx} className="zq-card p-5" style={{ borderTop: `3px solid ${catAccent.color}` }}>
+                    <dt className="text-[17px] font-bold">{b.title}</dt>
+                    <dd className="mt-1 text-[15px] leading-relaxed text-[#4B557A]">{b.desc}</dd>
+                  </div>
+                ))}
+              </dl>
+            )}
+
+            {category.longContent.popularWorkflows.length > 0 && (
+              <div className="mt-10 space-y-8">
+                {category.longContent.popularWorkflows.map((flow, fIdx) => (
+                  <div key={fIdx}>
+                    <h3 className="text-xl font-bold">{flow.title}</h3>
+                    <ol className="mt-3 list-decimal pl-6 space-y-1.5 text-[15px] leading-relaxed text-[#2D3748]">
+                      {flow.steps.map((step, sIdx) => (
+                        <li key={sIdx}>{step}</li>
+                      ))}
+                    </ol>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            <div
+              className="mt-10 text-[16px] leading-[1.75] text-[#2D3748]"
+              dangerouslySetInnerHTML={{
+                __html: category.longContent.deepDiveArticle
+                  .replace(/^### (.*$)/gim, '<h3 class="text-xl font-bold text-[#0B1026] mt-8 mb-2">$1</h3>')
+                  .replace(/^## (.*$)/gim, '<h2 class="text-2xl font-bold text-[#0B1026] mt-10 mb-3">$1</h2>')
+                  .replace(/^\- (.*$)/gim, '<li class="list-disc ml-6 my-1">$1</li>')
+                  .replace(/\*\*(.*?)\*\*/g, '<strong class="text-[#0B1026] font-semibold">$1</strong>')
+                  .replace(/\n\n/g, '<p class="my-4">')
+                  .replace(/\n/g, "<br />"),
+              }}
+            />
+          </section>
+
+          {category.faqs.length > 0 && (
+            <section aria-labelledby="faq-heading" className="max-w-3xl">
+              <h2 id="faq-heading" className="zq-display zq-h2">
+                Questions about {category.name}
+              </h2>
+              <div className="mt-6 space-y-3">
+                {category.faqs.map((faq, fIdx) => (
+                  <details key={fIdx} className="zq-card group p-0">
+                    <summary className="flex cursor-pointer list-none items-center justify-between gap-4 p-5 text-[17px] font-bold [&::-webkit-details-marker]:hidden">
+                      {faq.question}
+                      <ChevronDown className="w-5 h-5 shrink-0 text-[#5B5BF0] transition-transform group-open:rotate-180" aria-hidden="true" />
+                    </summary>
+                    <p className="px-5 pb-5 text-[16px] leading-relaxed text-[#4B557A]">{faq.answer}</p>
+                  </details>
+                ))}
+              </div>
+            </section>
+          )}
+
+          <section aria-labelledby="other-heading">
+            <h2 id="other-heading" className="zq-display zq-h2">
+              Other categories
+            </h2>
+            <ul className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {otherCategories.map((other) => {
+                const o = categoryStyle(other.name);
+                return (
+                  <li key={other.slug}>
+                    <Link href={`/category/${other.slug}`} className="zq-card zq-card-hover flex items-center gap-3 p-4 text-[16px] font-bold">
+                      <span className={`zq-chip zq-chip-sm ${o.accent.chip}`} aria-hidden="true">
+                        <o.Icon className="w-[18px] h-[18px]" />
+                      </span>
+                      {other.name}
+                      <ArrowRight className="ml-auto w-4 h-4 text-[#5B5BF0]" aria-hidden="true" />
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+          </section>
+        </div>
       </div>
     </>
   );
 }
-
-// Category page styling (same tokens as the homepage and tool pages).
-const CP_FOCUS =
-  "rounded-[2px] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#14213D]";
-const CP_LINK = `hover:text-[#14213D] hover:underline underline-offset-4 ${CP_FOCUS}`;
-const CP_LINK_TEAL = `text-[#0F766E] underline underline-offset-[3px] decoration-1 hover:decoration-2 ${CP_FOCUS}`;
-const CP_H2 = "text-2xl sm:text-[1.75rem] font-bold tracking-[-0.015em] leading-tight";

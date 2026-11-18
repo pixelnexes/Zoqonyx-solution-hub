@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { ArrowRight, Clock } from "lucide-react";
 import { getPosts } from "@/lib/content";
 import { readingMinutes } from "@/lib/markdown";
+import { CoverArt } from "@/components/kit/cover-art";
+import { Reveal } from "@/components/kit/reveal";
 
 export const revalidate = 300;
 
@@ -23,6 +26,7 @@ function fmt(d: Date) {
 
 export default async function BlogPage() {
   const posts = await getPosts();
+  const [first, ...rest] = posts;
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Blog",
@@ -37,42 +41,66 @@ export default async function BlogPage() {
   };
 
   return (
-    <div className="bg-[#F3F5F8] text-[#14213D]">
+    <div className="zq-page">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 pt-6 pb-16">
-        <nav aria-label="Breadcrumb" className="mb-6 text-sm text-[#4A5568]">
-          <ol className="flex flex-wrap items-center gap-x-2">
-            <li>
-              <Link href="/" className="hover:underline underline-offset-4">
-                Home
-              </Link>
-            </li>
-            <li aria-hidden="true">/</li>
-            <li aria-current="page" className="font-medium text-[#14213D]">
-              Blog
-            </li>
-          </ol>
-        </nav>
-        <header className="max-w-[46rem] mb-10">
-          <h1 className="text-[2rem] sm:text-[2.75rem] leading-[1.08] font-bold tracking-[-0.02em]">Blog</h1>
-          <p className="mt-3 text-[17px] leading-relaxed text-[#4A5568]">
+
+      <section className="zq-banner">
+        <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-14 sm:py-20">
+          <nav aria-label="Breadcrumb" className="text-sm text-white/75">
+            <ol className="flex flex-wrap items-center gap-x-2">
+              <li>
+                <Link href="/" className="hover:underline underline-offset-4">
+                  Home
+                </Link>
+              </li>
+              <li aria-hidden="true">/</li>
+              <li aria-current="page" className="font-semibold text-white">
+                Blog
+              </li>
+            </ol>
+          </nav>
+          <h1 className="zq-in-solid zq-display mt-5 text-4xl sm:text-6xl font-extrabold leading-[1.03]">Blog</h1>
+          <p className="zq-in mt-4 max-w-2xl text-[18px] leading-relaxed zq-on-dark-muted">
             Guides on SEO, websites, mobile apps and the everyday tools on Zoqonyx, written to answer real questions.
           </p>
-        </header>
+        </div>
+      </section>
 
-        <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-12">
-          {posts.map((p) => (
-            <li key={p.slug} className="border-t border-[#D5DCE4] py-6">
-              <p className="text-sm text-[#4A5568]">
-                {p.category} · {fmt(p.publishedAt)} · {readingMinutes(p.content)} min read
-              </p>
-              <h2 className="mt-1.5 text-[1.375rem] font-bold leading-snug tracking-[-0.01em]">
-                <Link href={`/blog/${p.slug}`} className="hover:underline underline-offset-4">
-                  {p.title}
-                </Link>
-              </h2>
-              <p className="mt-2 text-[15px] leading-relaxed text-[#4A5568]">{p.excerpt}</p>
-            </li>
+      <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 zq-section space-y-10">
+        {first && (
+          <Reveal>
+            <Link href={`/blog/${first.slug}`} className="zq-card zq-card-hover group grid grid-cols-1 md:grid-cols-2 overflow-hidden">
+              <CoverArt seed={first.slug} className="w-full h-56 md:h-full object-cover" />
+              <div className="p-6 sm:p-9 flex flex-col justify-center">
+                <p className="text-sm font-semibold text-[#3F3FD0]">{first.category}</p>
+                <h2 className="zq-display mt-2 text-2xl sm:text-3xl font-extrabold leading-tight group-hover:text-[#3F3FD0]">{first.title}</h2>
+                <p className="mt-3 text-[16px] leading-relaxed text-[#4B557A] line-clamp-3">{first.excerpt}</p>
+                <p className="mt-4 flex items-center gap-2 text-sm text-[#4B557A]">
+                  <Clock className="w-4 h-4" aria-hidden="true" /> {readingMinutes(first.content)} min read · {fmt(first.publishedAt)}
+                </p>
+              </div>
+            </Link>
+          </Reveal>
+        )}
+
+        <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {rest.map((p, i) => (
+            <Reveal as="li" key={p.slug} delay={(i % 3) * 80}>
+              <Link href={`/blog/${p.slug}`} className="zq-card zq-card-hover group flex h-full flex-col overflow-hidden">
+                <CoverArt seed={p.slug} className="w-full h-44 object-cover" />
+                <div className="p-5 flex flex-1 flex-col">
+                  <p className="text-sm font-semibold text-[#3F3FD0]">{p.category}</p>
+                  <h2 className="mt-1.5 text-[18px] font-bold leading-snug group-hover:text-[#3F3FD0]">{p.title}</h2>
+                  <p className="mt-2 text-[15px] leading-relaxed text-[#4B557A] line-clamp-3 flex-1">{p.excerpt}</p>
+                  <p className="mt-4 flex items-center justify-between text-sm text-[#4B557A]">
+                    <span>{readingMinutes(p.content)} min read</span>
+                    <span className="inline-flex items-center gap-1 font-bold text-[#3F3FD0]">
+                      Read <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
+                    </span>
+                  </p>
+                </div>
+              </Link>
+            </Reveal>
           ))}
         </ul>
       </div>

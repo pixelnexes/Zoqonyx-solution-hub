@@ -1,6 +1,6 @@
 import { prisma } from "@/lib/prisma";
 import type { Metadata } from "next";
-import { CheckCircle2, Shield, FileText } from "lucide-react";
+import { CheckCircle2, Shield } from "lucide-react";
 import { MarkdownRenderer } from "@/components/common/markdown-renderer";
 
 export const dynamic = "force-dynamic";
@@ -61,22 +61,18 @@ export default async function TermsPage() {
   const title = dbPage?.title || "Terms of Service";
 
   return (
-    <div className="container mx-auto max-w-4xl px-4 py-12 sm:py-16">
-      <div className="space-y-4 mb-10">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md border border-teal-500/20 bg-teal-500/10 text-xs font-mono text-teal-400">
-          <FileText className="w-3.5 h-3.5" />
-          <span>Fair & Transparent Usage Guidelines</span>
+    <div className="zq-page">
+      <section className="zq-banner">
+        <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-14 sm:py-20">
+          <p className="inline-flex rounded-full bg-white/15 px-3 py-1 text-sm font-semibold">Fair and transparent usage</p>
+          <h1 className="zq-in-solid zq-display mt-4 max-w-3xl text-4xl sm:text-6xl font-extrabold leading-[1.03]">{title}</h1>
+          <p className="zq-in mt-4 max-w-2xl text-[18px] leading-relaxed zq-on-dark-muted">Clear terms that allow personal and commercial use of everything you create with the tools.</p>
         </div>
-        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-black tracking-tight text-foreground">
-          {title}
-        </h1>
-        <p className="text-sm sm:text-base text-muted-foreground leading-relaxed max-w-2xl">
-          Clear, developer-friendly terms granting 100% unrestricted personal and commercial use of all generated output.
-        </p>
-      </div>
-
-      <div className="rounded-xl border border-border/80 bg-card/90 p-6 sm:p-10 shadow-xs">
-        <MarkdownRenderer content={content} />
+      </section>
+      <div className="container mx-auto max-w-4xl px-4 sm:px-6 zq-section space-y-8">
+        <div className="zq-card p-6 sm:p-10">
+          <MarkdownRenderer content={content} />
+        </div>
       </div>
     </div>
   );

@@ -1,7 +1,8 @@
 import type { Metadata, Viewport } from "next";
-import { Schibsted_Grotesk } from "next/font/google";
+import { Schibsted_Grotesk, Bricolage_Grotesque } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
+import "./zq.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { getSiteSettings } from "@/lib/settings";
 import { SiteSettingsProvider } from "@/components/providers/site-settings-provider";
@@ -12,6 +13,14 @@ const siteFont = Schibsted_Grotesk({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700", "800", "900"],
   variable: "--font-poppins",
+  display: "swap",
+});
+
+// Display face for headlines (body keeps Schibsted Grotesk).
+const displayFont = Bricolage_Grotesque({
+  subsets: ["latin"],
+  weight: ["600", "700", "800"],
+  variable: "--font-display",
   display: "swap",
 });
 
@@ -97,7 +106,7 @@ export default async function RootLayout({
 
   return (
     // next-themes sets the theme class and color-scheme on <html> before React hydrates.
-    <html lang="en" className={`light ${siteFont.variable} font-sans`} suppressHydrationWarning>
+    <html lang="en" className={`light ${siteFont.variable} ${displayFont.variable} font-sans`} suppressHydrationWarning>
       <head>
         <link rel="icon" href={iconUrl} />
         <link rel="shortcut icon" href={iconUrl} />

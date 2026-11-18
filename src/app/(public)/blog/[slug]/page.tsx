@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { getPost, getPosts, getServices } from "@/lib/content";
 import { extractHeadings, readingMinutes, renderMarkdown } from "@/lib/markdown";
 import { ContactSection } from "@/components/site/sections";
+import { CoverArt } from "@/components/kit/cover-art";
 
 export const revalidate = 300;
 
@@ -79,84 +80,92 @@ export default async function BlogPostPage({ params }: Props) {
   ];
 
   return (
-    <div className="bg-[#F3F5F8] text-[#14213D]">
+    <div className="zq-page">
       {jsonLd.map((d, i) => (
         <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(d) }} />
       ))}
-      <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 pt-6 pb-16 space-y-16">
-        <nav aria-label="Breadcrumb" className="text-sm text-[#4A5568]">
-          <ol className="flex flex-wrap items-center gap-x-2 gap-y-1">
-            <li>
-              <Link href="/" className="hover:underline underline-offset-4">
-                Home
-              </Link>
-            </li>
-            <li aria-hidden="true">/</li>
-            <li>
-              <Link href="/blog" className="hover:underline underline-offset-4">
-                Blog
-              </Link>
-            </li>
-            <li aria-hidden="true">/</li>
-            <li aria-current="page" className="font-medium text-[#14213D] truncate max-w-[16rem] sm:max-w-none">
-              {post.title}
-            </li>
-          </ol>
-        </nav>
 
-        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,46rem)_1fr] gap-12 -mt-8">
-          <article>
-            <header>
-              <p className="text-sm text-[#4A5568]">
-                {post.category} · {fmt(post.publishedAt)} · {readingMinutes(post.content)} min read
-              </p>
-              <h1 className="mt-2 text-[2rem] sm:text-[2.5rem] leading-[1.1] font-bold tracking-[-0.02em]">{post.title}</h1>
-              <p className="mt-4 text-[18px] leading-relaxed text-[#4A5568]">{post.excerpt}</p>
-            </header>
-            <div className="mt-8 text-[17px] leading-[1.75] text-[#2D3748]">{renderMarkdown(post.content)}</div>
-            <p className="mt-10 pt-5 border-t border-[#D5DCE4] text-sm text-[#4A5568]">
-              Written by {post.authorName}. Last updated {fmt(post.updatedAt)}.
-            </p>
-          </article>
-
-          {headings.length >= 3 && (
-            <aside className="hidden lg:block">
-              <nav aria-label="On this page" className="sticky top-24 text-[15px]">
-                <p className="font-semibold mb-2">On this page</p>
-                <ul className="space-y-1.5 border-l border-[#D5DCE4]">
-                  {headings.map((h) => (
-                    <li key={h.id}>
-                      <a href={`#${h.id}`} className="block pl-3 text-[#4A5568] hover:text-[#14213D] hover:underline underline-offset-4">
-                        {h.text}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </nav>
-            </aside>
-          )}
+      <section className="zq-banner">
+        <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+          <nav aria-label="Breadcrumb" className="text-sm text-white/75">
+            <ol className="flex flex-wrap items-center gap-x-2 gap-y-1">
+              <li>
+                <Link href="/" className="hover:underline underline-offset-4">
+                  Home
+                </Link>
+              </li>
+              <li aria-hidden="true">/</li>
+              <li>
+                <Link href="/blog" className="hover:underline underline-offset-4">
+                  Blog
+                </Link>
+              </li>
+              <li aria-hidden="true">/</li>
+              <li aria-current="page" className="font-semibold text-white truncate max-w-[14rem] sm:max-w-md">
+                {post.title}
+              </li>
+            </ol>
+          </nav>
+          <p className="mt-6 inline-flex rounded-full bg-white/15 px-3 py-1 text-sm font-semibold">{post.category}</p>
+          <h1 className="zq-in-solid zq-display mt-3 max-w-3xl text-3xl sm:text-5xl font-extrabold leading-[1.08]">{post.title}</h1>
+          <p className="zq-in mt-4 max-w-2xl text-[18px] leading-relaxed zq-on-dark-muted">{post.excerpt}</p>
+          <p className="mt-5 text-sm text-white/80">
+            {fmt(post.publishedAt)} · {readingMinutes(post.content)} min read · {post.authorName}
+          </p>
         </div>
+      </section>
 
-        {related.length > 0 && (
-          <section aria-labelledby="more-heading">
-            <h2 id="more-heading" className="pb-2 border-b-2 border-[#14213D] text-2xl font-bold tracking-[-0.015em]">
+      <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 zq-section grid grid-cols-1 lg:grid-cols-[minmax(0,46rem)_1fr] gap-12">
+        <article>
+          <CoverArt seed={post.slug} className="w-full h-48 sm:h-64 rounded-2xl object-cover mb-8" />
+          <div className="zq-prose text-[17px] leading-[1.75]">{renderMarkdown(post.content)}</div>
+          <p className="mt-10 pt-5 border-t border-[#E1E6F2] text-sm text-[#4B557A]">
+            Written by {post.authorName}. Last updated {fmt(post.updatedAt)}.
+          </p>
+        </article>
+
+        {headings.length >= 3 && (
+          <aside className="hidden lg:block">
+            <nav aria-label="On this page" className="sticky top-24 text-[15px] zq-card p-5">
+              <p className="font-bold mb-2">On this page</p>
+              <ul className="space-y-1.5 border-l-2 border-[#E1E6F2]">
+                {headings.map((h) => (
+                  <li key={h.id}>
+                    <a href={`#${h.id}`} className="block pl-3 text-[#4B557A] hover:text-[#3F3FD0] hover:underline underline-offset-4">
+                      {h.text}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          </aside>
+        )}
+      </div>
+
+      {related.length > 0 && (
+        <section aria-labelledby="more-heading" className="zq-band-tint zq-section">
+          <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+            <h2 id="more-heading" className="zq-display zq-h2">
               More from the blog
             </h2>
-            <ul className="grid grid-cols-1 md:grid-cols-3 gap-x-10">
+            <ul className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
               {related.map((r) => (
-                <li key={r.slug} className="border-b border-[#D5DCE4]">
-                  <Link href={`/blog/${r.slug}`} className="block py-3.5 hover:bg-white">
-                    <span className="block text-[16px] font-semibold leading-snug">{r.title}</span>
-                    <span className="block mt-1 text-sm text-[#4A5568] line-clamp-2">{r.excerpt}</span>
+                <li key={r.slug}>
+                  <Link href={`/blog/${r.slug}`} className="zq-card zq-card-hover group flex h-full flex-col overflow-hidden">
+                    <CoverArt seed={r.slug} className="w-full h-36 object-cover" />
+                    <span className="p-5">
+                      <span className="block text-[17px] font-bold leading-snug group-hover:text-[#3F3FD0]">{r.title}</span>
+                      <span className="block mt-1.5 text-sm text-[#4B557A] line-clamp-2">{r.excerpt}</span>
+                    </span>
                   </Link>
                 </li>
               ))}
             </ul>
-          </section>
-        )}
+          </div>
+        </section>
+      )}
 
-        <ContactSection services={options} heading="Need help with this?" intro="Tell us what you are working on and we will reply with suggestions and next steps." />
-      </div>
+      <ContactSection services={options} heading="Need help with this?" intro="Tell us what you are working on and we will reply with suggestions and next steps." />
     </div>
   );
 }

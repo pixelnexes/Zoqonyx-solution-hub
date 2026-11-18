@@ -1,8 +1,15 @@
 import { prisma } from "@/lib/prisma";
 import Link from "next/link";
 import { ToolDrawer } from "@/components/home/tool-drawer";
-import { ZQ_CSS } from "@/components/home/zq-styles";
 import { ContactSection, TestimonialsSection } from "@/components/site/sections";
+import { Reveal } from "@/components/kit/reveal";
+import { Slider } from "@/components/kit/slider";
+import { HeroArt } from "@/components/kit/hero-art";
+import { CoverArt } from "@/components/kit/cover-art";
+import { serviceStyle, categoryStyle } from "@/components/kit/icons";
+import { readingMinutes } from "@/lib/markdown";
+import { ArrowRight, ChevronDown, Rocket, TrendingUp, Users, Sparkles } from "lucide-react";
+import { ToolIcon } from "@/components/common/tool-icon";
 import { getPosts, getServices, getTestimonials, groupServices } from "@/lib/content";
 import type { Metadata } from "next";
 
@@ -191,215 +198,271 @@ export default async function HomePage() {
     },
   ];
 
-  const h2 = "text-2xl sm:text-[1.75rem] font-bold tracking-[-0.015em] leading-tight";
+
+  const TECH_PILLS = TECH.flatMap((t) => t.items.split(", "));
 
   return (
-    <>
+    <div className="zq-page">
       {jsonLd.map((d, i) => (
         <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(d) }} />
       ))}
 
-      <style>{ZQ_CSS}</style>
-
-      <div className="zq-home">
-        <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 pt-10 sm:pt-16 pb-20 space-y-20 sm:space-y-24">
-          {/* 1. Hero */}
-          <header className="max-w-[48rem]">
-            <h1 className="zq-reveal-solid text-[2.25rem] sm:text-[3.25rem] leading-[1.05] font-bold tracking-[-0.025em]" style={{ color: "var(--zq-ink)" }}>
+      {/* 1. Hero banner */}
+      <section className="zq-hero">
+        <div aria-hidden="true" className="zq-blob zq-pulse" style={{ width: 360, height: 360, left: "-6%", top: "8%", background: "#22D3EE", opacity: 0.25 }} />
+        <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 grid lg:grid-cols-[1.05fr_0.95fr] gap-10 lg:gap-6 items-center pt-14 pb-16 lg:pt-20 lg:pb-24">
+          <div>
+            <p className="zq-in inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-sm font-semibold text-white/90">
+              <Sparkles className="w-4 h-4 text-[#FFB020]" aria-hidden="true" />
+              Software studio and free online tools
+            </p>
+            <h1 className="zq-in-solid zq-display mt-5 text-[2.6rem] sm:text-6xl font-extrabold leading-[1.02] text-white">
               Apps, websites and software built for your business.
             </h1>
-            <p
-              className="zq-reveal mt-4 text-[17px] sm:text-lg leading-relaxed max-w-[40rem]"
-              style={{ color: "var(--zq-muted)", ["--zq-delay" as string]: "70ms" }}
-            >
-              Zoqonyx designs and develops mobile apps, websites, games and custom software, helps people find you with digital marketing, and runs{" "}
-              {liveCount} free online tools for PDFs, images, code and text.
+            <p className="zq-in mt-5 max-w-[34rem] text-[18px] leading-relaxed zq-on-dark-muted" style={{ ["--d" as string]: "90ms" }}>
+              Zoqonyx designs and develops mobile apps, websites, games and custom software, helps people find you with digital marketing, and runs {liveCount}{" "}
+              free online tools for PDFs, images, code and text.
             </p>
-            <div className="zq-reveal mt-7 flex flex-wrap gap-3" style={{ ["--zq-delay" as string]: "140ms" }}>
-              <a
-                href="#contact"
-                className="zq-focus inline-flex items-center h-12 px-7 rounded-md text-[16px] font-semibold text-white"
-                style={{ background: "var(--zq-ink)" }}
-              >
-                Get a quote
+            <div className="zq-in mt-8 flex flex-wrap gap-3" style={{ ["--d" as string]: "180ms" }}>
+              <a href="#contact" className="zq-btn zq-btn-sun">
+                Get a quote <ArrowRight className="w-4 h-4" aria-hidden="true" />
               </a>
-              <Link
-                href="/services"
-                className="zq-focus inline-flex items-center h-12 px-7 rounded-md text-[16px] font-semibold border"
-                style={{ borderColor: "var(--zq-ink)", color: "var(--zq-ink)" }}
-              >
+              <Link href="/services" className="zq-btn zq-btn-ghost">
                 See our services
               </Link>
-              <a href="#tools" className="zq-focus zq-link inline-flex items-center h-12 px-2 text-[16px] font-semibold">
+              <a href="#tools" className="zq-btn !px-3 text-white/90 underline underline-offset-4">
                 Use the free tools
               </a>
             </div>
-          </header>
+            <ul className="zq-in mt-9 flex flex-wrap gap-2.5" style={{ ["--d" as string]: "270ms" }}>
+              {[
+                { name: "Mobile apps", href: "/services/app-development", c: "#818CF8" },
+                { name: "Websites", href: "/services/website-development", c: "#22D3EE" },
+                { name: "Games", href: "/services/game-development", c: "#A78BFA" },
+                { name: "AI", href: "/services/ai-nlp-development", c: "#FFB020" },
+                { name: "Marketing", href: "/services/digital-marketing", c: "#FF7A93" },
+              ].map((p) => (
+                <li key={p.name}>
+                  <Link href={p.href} className="inline-flex items-center gap-2 rounded-full bg-white/10 hover:bg-white/20 border border-white/15 px-3.5 py-1.5 text-sm font-semibold text-white transition-colors">
+                    <span className="h-2 w-2 rounded-full" style={{ background: p.c }} aria-hidden="true" />
+                    {p.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="zq-in" style={{ ["--d" as string]: "200ms" }}>
+            <HeroArt />
+          </div>
+        </div>
+      </section>
 
-          {/* 2. Services */}
-          <section aria-labelledby="services-heading">
-            <div className="flex flex-wrap items-baseline justify-between gap-3 pb-2 border-b-2" style={{ borderColor: "var(--zq-ink)" }}>
-              <h2 id="services-heading" className={h2}>
+      {/* 2. Technologies marquee */}
+      <section aria-label="Technologies we use" className="zq-band-white border-b border-[#E1E6F2] py-6">
+        <div className="zq-marquee">
+          <ul className="zq-marquee-track">
+            {[...TECH_PILLS, ...TECH_PILLS].map((t, i) => (
+              <li key={`${t}-${i}`} className="zq-pill" aria-hidden={i >= TECH_PILLS.length ? "true" : undefined}>
+                <span className="h-2 w-2 rounded-full" style={{ background: ["#5B5BF0", "#22D3EE", "#FFB020", "#FF5C7A", "#10B981", "#8B5CF6"][i % 6] }} aria-hidden="true" />
+                {t}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* 3. Services */}
+      <section aria-labelledby="services-heading" className="zq-section">
+        <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-wrap items-end justify-between gap-4">
+            <div>
+              <h2 id="services-heading" className="zq-display zq-h2">
                 What we build
               </h2>
-              <Link href="/services" className="zq-focus zq-link text-[15px] font-semibold rounded-[2px]">
-                All services
-              </Link>
+              <p className="mt-3 zq-lead max-w-xl">Pick a service to see what we deliver and how we work.</p>
             </div>
-            <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-10">
-              {groups.map(({ hub }) => (
-                <li key={hub.slug} className="border-b py-4" style={{ borderColor: "var(--zq-line)" }}>
-                  <Link href={`/services/${hub.slug}`} className="zq-focus zq-row block rounded-[2px]">
-                    <span className="block text-[17px] font-semibold">{hub.name}</span>
-                    <span className="block mt-1 text-[15px] leading-relaxed" style={{ color: "var(--zq-muted)" }}>
-                      {hub.shortDesc}
+            <Link href="/services" className="zq-btn zq-btn-outline !h-11">
+              All services <ArrowRight className="w-4 h-4" aria-hidden="true" />
+            </Link>
+          </div>
+          <ul className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {groups.map(({ hub, children }, i) => {
+              const { Icon, accent } = serviceStyle(hub.slug);
+              return (
+                <Reveal as="li" key={hub.slug} delay={(i % 3) * 90}>
+                  <Link href={`/services/${hub.slug}`} className="zq-card group relative flex h-full flex-col p-6 overflow-hidden" style={{ borderTop: `4px solid ${accent.color}` }}>
+                    <span aria-hidden="true" className="absolute -right-8 -top-8 h-28 w-28 rounded-full opacity-10 group-hover:opacity-20 transition-opacity" style={{ background: accent.color }} />
+                    <span className={`zq-chip ${accent.chip}`}>
+                      <Icon className="w-6 h-6" aria-hidden="true" />
                     </span>
+                    <h3 className="zq-display mt-4 text-[1.35rem] font-extrabold leading-tight">{hub.name}</h3>
+                    <p className="mt-2 text-[15px] leading-relaxed text-[#4B557A] flex-1">{hub.shortDesc}</p>
+                    <p className="mt-4 inline-flex items-center gap-1.5 text-sm font-bold" style={{ color: accent.color }}>
+                      {children.length > 0 ? `${children.length} services` : "Learn more"} <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
+                    </p>
                   </Link>
-                </li>
-              ))}
-            </ul>
-          </section>
-
-          {/* 3. Free tools */}
-          <section id="tools" aria-labelledby="tools-heading" className="scroll-mt-24">
-            <h2 id="tools-heading" className={`${h2} mb-2`}>
-              Free online tools
-            </h2>
-            <p className="mb-6 max-w-[40rem] text-[16px] leading-relaxed" style={{ color: "var(--zq-muted)" }}>
-              Open a tool and use it. No sign-up and no account. Most tools run in your browser, so the files you add stay on your device.
-            </p>
-            <ToolDrawer tools={tools} />
-          </section>
-
-          {/* 4. How we work */}
-          <section aria-labelledby="process-heading">
-            <h2 id="process-heading" className={`${h2} pb-2 border-b-2`} style={{ borderColor: "var(--zq-ink)" }}>
-              How we work
-            </h2>
-            <ol className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-10">
-              {PROCESS.map((p, i) => (
-                <li key={p.title} className="border-b py-5" style={{ borderColor: "var(--zq-line)" }}>
-                  <p className="text-[1.375rem] font-bold tabular-nums">{i + 1}.</p>
-                  <h3 className="mt-1 text-[17px] font-semibold">{p.title}</h3>
-                  <p className="mt-1.5 text-[15px] leading-relaxed" style={{ color: "var(--zq-muted)" }}>
-                    {p.text}
-                  </p>
-                </li>
-              ))}
-            </ol>
-          </section>
-
-          {/* 5. Who we help */}
-          <section aria-labelledby="audience-heading">
-            <h2 id="audience-heading" className={`${h2} pb-2 border-b-2`} style={{ borderColor: "var(--zq-ink)" }}>
-              Who we work with
-            </h2>
-            <ul className="grid grid-cols-1 md:grid-cols-3 gap-x-10">
-              {AUDIENCES.map((a) => (
-                <li key={a.title} className="border-b py-5" style={{ borderColor: "var(--zq-line)" }}>
-                  <h3 className="text-[17px] font-semibold">{a.title}</h3>
-                  <p className="mt-1.5 text-[15px] leading-relaxed" style={{ color: "var(--zq-muted)" }}>
-                    {a.text}
-                  </p>
-                  <Link href={a.link} className="zq-focus zq-link mt-2 inline-block text-[15px] font-semibold rounded-[2px]">
-                    {a.cta}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </section>
-
-          {/* 6. Technologies */}
-          <section aria-labelledby="tech-heading">
-            <h2 id="tech-heading" className={`${h2} pb-2 border-b-2`} style={{ borderColor: "var(--zq-ink)" }}>
-              Technologies we use
-            </h2>
-            <dl className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10">
-              {TECH.map((t) => (
-                <div key={t.area} className="border-b py-4" style={{ borderColor: "var(--zq-line)" }}>
-                  <dt className="text-[16px] font-semibold">{t.area}</dt>
-                  <dd className="mt-1 text-[15px]" style={{ color: "var(--zq-muted)" }}>
-                    {t.items}
-                  </dd>
-                </div>
-              ))}
-            </dl>
-          </section>
-
-          {/* 7. Popular tools */}
-          <section aria-labelledby="featured-heading">
-            <div className="flex flex-wrap items-baseline justify-between gap-3 pb-2 border-b-2" style={{ borderColor: "var(--zq-ink)" }}>
-              <h2 id="featured-heading" className={h2}>
-                Tools people use most
-              </h2>
-              <Link href="/tools" className="zq-focus zq-link text-[15px] font-semibold rounded-[2px]">
-                Browse all {liveCount} tools
-              </Link>
-            </div>
-            <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10">
-              {FEATURED_TOOLS.map((t) => (
-                <li key={t.slug} className="border-b" style={{ borderColor: "var(--zq-line)" }}>
-                  <Link href={`/tools/${t.slug}`} className="zq-focus zq-row block py-4 rounded-[2px]">
-                    <span className="block text-[16px] font-semibold">{t.name}</span>
-                    <span className="block mt-1 text-[15px] leading-relaxed" style={{ color: "var(--zq-muted)" }}>
-                      {t.text}
-                    </span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </section>
-
-          {/* 8. Blog */}
-          {posts.length > 0 && (
-            <section aria-labelledby="blog-heading">
-              <div className="flex flex-wrap items-baseline justify-between gap-3 pb-2 border-b-2" style={{ borderColor: "var(--zq-ink)" }}>
-                <h2 id="blog-heading" className={h2}>
-                  From the blog
-                </h2>
-                <Link href="/blog" className="zq-focus zq-link text-[15px] font-semibold rounded-[2px]">
-                  All posts
-                </Link>
-              </div>
-              <ul className="grid grid-cols-1 md:grid-cols-3 gap-x-10">
-                {posts.slice(0, 3).map((p) => (
-                  <li key={p.slug} className="border-b" style={{ borderColor: "var(--zq-line)" }}>
-                    <Link href={`/blog/${p.slug}`} className="zq-focus zq-row block py-4 rounded-[2px]">
-                      <span className="block text-[16px] font-semibold leading-snug">{p.title}</span>
-                      <span className="block mt-1.5 text-[15px] leading-relaxed line-clamp-3" style={{ color: "var(--zq-muted)" }}>
-                        {p.excerpt}
-                      </span>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </section>
-          )}
-
-          {/* Testimonials: shown only when real ones are published in the admin */}
-          <TestimonialsSection items={testimonials} />
-
-          {/* 9. FAQ */}
-          <section aria-labelledby="faq-heading" className="max-w-[46rem]">
-            <h2 id="faq-heading" className={h2}>
-              Common questions
-            </h2>
-            <div className="mt-5 border-t" style={{ borderColor: "var(--zq-line)" }}>
-              {FAQS.map((f) => (
-                <div key={f.q} className="py-4 border-b" style={{ borderColor: "var(--zq-line)" }}>
-                  <h3 className="text-[17px] font-semibold leading-snug">{f.q}</h3>
-                  <p className="mt-1.5 text-[15px] leading-relaxed" style={{ color: "var(--zq-muted)" }}>
-                    {f.a}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </section>
-
-          {/* 10. Contact */}
-          <ContactSection services={options} />
+                </Reveal>
+              );
+            })}
+          </ul>
         </div>
-      </div>
-    </>
+      </section>
+
+      {/* 4. Free tools */}
+      <section id="tools" aria-labelledby="tools-heading" className="zq-band-tint zq-section scroll-mt-20">
+        <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <h2 id="tools-heading" className="zq-display zq-h2">
+            Free online tools
+          </h2>
+          <p className="mt-3 mb-8 zq-lead max-w-2xl">Open a tool and use it. No sign-up and no account. Most tools run in your browser, so the files you add stay on your device.</p>
+          <ToolDrawer tools={tools} />
+        </div>
+      </section>
+
+      {/* 5. How we work */}
+      <section aria-labelledby="process-heading" className="zq-section">
+        <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <h2 id="process-heading" className="zq-display zq-h2">
+            How we work
+          </h2>
+          <ol className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {PROCESS.map((p, i) => (
+              <Reveal as="li" key={p.title} delay={i * 90}>
+                <div className="zq-card h-full p-6 relative">
+                  <span className="zq-chip zq-g-indigo zq-display text-xl font-extrabold" aria-hidden="true">
+                    {i + 1}
+                  </span>
+                  <h3 className="mt-4 text-[18px] font-bold">{p.title}</h3>
+                  <p className="mt-1.5 text-[15px] leading-relaxed text-[#4B557A]">{p.text}</p>
+                </div>
+              </Reveal>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      {/* 6. Who we work with */}
+      <section aria-labelledby="audience-heading" className="zq-band-dark">
+        <div aria-hidden="true" className="zq-blob zq-pulse" style={{ width: 420, height: 420, right: -120, top: -140, background: "#8B5CF6", opacity: 0.4 }} />
+        <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 zq-section">
+          <h2 id="audience-heading" className="zq-display zq-h2">
+            Who we work with
+          </h2>
+          <ul className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6">
+            {AUDIENCES.map((a, i) => {
+              const icons = [Rocket, TrendingUp, Users];
+              const Icon = icons[i];
+              const chip = ["zq-g-sun", "zq-g-aqua", "zq-g-coral"][i];
+              return (
+                <Reveal as="li" key={a.title} delay={i * 100}>
+                  <div className="h-full rounded-[18px] border border-white/15 bg-white/[0.08] p-6 backdrop-blur-sm">
+                    <span className={`zq-chip ${chip}`}>
+                      <Icon className="w-6 h-6" aria-hidden="true" />
+                    </span>
+                    <h3 className="mt-4 text-[20px] font-bold">{a.title}</h3>
+                    <p className="mt-2 text-[16px] leading-relaxed zq-on-dark-muted">{a.text}</p>
+                    <Link href={a.link} className="mt-4 inline-flex items-center gap-1.5 font-bold text-[#FFB020] hover:underline underline-offset-4">
+                      {a.cta} <ArrowRight className="w-4 h-4" aria-hidden="true" />
+                    </Link>
+                  </div>
+                </Reveal>
+              );
+            })}
+          </ul>
+        </div>
+      </section>
+
+      {/* 7. Popular tools slider */}
+      <section aria-labelledby="featured-heading" className="zq-section">
+        <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-wrap items-end justify-between gap-4 mb-2">
+            <h2 id="featured-heading" className="zq-display zq-h2">
+              Tools people use most
+            </h2>
+            <Link href="/tools" className="font-bold text-[#3F3FD0] hover:underline underline-offset-4">
+              Browse all {liveCount} tools
+            </Link>
+          </div>
+          <Slider label="popular tools">
+            {FEATURED_TOOLS.map((t) => {
+              const tool = tools.find((x) => x.slug === t.slug);
+              const { accent } = categoryStyle(tool?.category || "");
+              return (
+                <div key={t.slug} className="zq-slide">
+                  <Link href={`/tools/${t.slug}`} className="zq-card group flex h-full flex-col p-6" style={{ minHeight: 210 }}>
+                    <span className={`zq-chip ${accent.chip}`} aria-hidden="true">
+                      <ToolIcon name={tool?.icon ?? null} className="w-6 h-6" strokeWidth={2} />
+                    </span>
+                    <h3 className="mt-4 text-[18px] font-bold">{t.name}</h3>
+                    <p className="mt-1.5 text-[15px] leading-relaxed text-[#4B557A] flex-1">{t.text}</p>
+                    <span className="mt-3 inline-flex items-center gap-1.5 text-sm font-bold" style={{ color: accent.color }}>
+                      Open tool <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
+                    </span>
+                  </Link>
+                </div>
+              );
+            })}
+          </Slider>
+        </div>
+      </section>
+
+      {/* 8. Blog slider */}
+      {posts.length > 0 && (
+        <section aria-labelledby="blog-heading" className="zq-band-tint zq-section">
+          <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+            <div className="flex flex-wrap items-end justify-between gap-4 mb-2">
+              <h2 id="blog-heading" className="zq-display zq-h2">
+                From the blog
+              </h2>
+              <Link href="/blog" className="font-bold text-[#3F3FD0] hover:underline underline-offset-4">
+                All posts
+              </Link>
+            </div>
+            <Slider label="blog posts">
+              {posts.slice(0, 8).map((p) => (
+                <div key={p.slug} className="zq-slide">
+                  <Link href={`/blog/${p.slug}`} className="zq-card group flex h-full flex-col overflow-hidden">
+                    <CoverArt seed={p.slug} className="w-full aspect-[16/9] object-cover transition-transform duration-500 group-hover:scale-105" />
+                    <div className="flex flex-1 flex-col p-5">
+                      <p className="text-sm font-semibold text-[#3F3FD0]">
+                        {p.category} · {readingMinutes(p.content)} min read
+                      </p>
+                      <h3 className="mt-1.5 text-[17px] font-bold leading-snug">{p.title}</h3>
+                      <p className="mt-2 text-[15px] leading-relaxed text-[#4B557A] line-clamp-3">{p.excerpt}</p>
+                    </div>
+                  </Link>
+                </div>
+              ))}
+            </Slider>
+          </div>
+        </section>
+      )}
+
+      {/* Testimonials: shown only when real ones are published in the admin */}
+      <TestimonialsSection items={testimonials} />
+
+      {/* 9. FAQ */}
+      <section aria-labelledby="faq-heading" className="zq-section">
+        <div className="container mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+          <h2 id="faq-heading" className="zq-display zq-h2 text-center">
+            Common questions
+          </h2>
+          <div className="mt-8 space-y-3">
+            {FAQS.map((f) => (
+              <details key={f.q} className="zq-card group p-0 open:shadow-[0_14px_36px_-18px_rgba(11,16,38,.35)]">
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 p-5 text-[17px] font-bold [&::-webkit-details-marker]:hidden">
+                  {f.q}
+                  <ChevronDown className="w-5 h-5 shrink-0 text-[#5B5BF0] transition-transform group-open:rotate-180" aria-hidden="true" />
+                </summary>
+                <p className="px-5 pb-5 text-[16px] leading-relaxed text-[#4B557A]">{f.a}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 10. Contact */}
+      <ContactSection services={options} />
+    </div>
   );
 }

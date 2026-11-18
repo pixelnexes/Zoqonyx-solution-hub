@@ -4,9 +4,10 @@ import * as React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Logo } from "@/components/layout/logo";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X, ChevronDown, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { SessionHistoryModal } from "@/components/common/session-history-modal";
+import { categoryStyle } from "@/components/kit/icons";
 
 // Same names and order as the homepage drawer.
 const NAV_CATEGORIES = [
@@ -18,31 +19,18 @@ const NAV_CATEGORIES = [
   { label: "Calculators", href: "/category/calculators" },
 ];
 
-const INK = "text-[#14213D]";
-const FOCUS =
-  "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#14213D]";
+const FOCUS = "focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-offset-2 focus-visible:outline-[#22D3EE]";
 
-function NavLink({
-  href,
-  active,
-  children,
-  onClick,
-}: {
-  href: string;
-  active: boolean;
-  children: React.ReactNode;
-  onClick?: () => void;
-}) {
+function NavLink({ href, active, children }: { href: string; active: boolean; children: React.ReactNode }) {
   return (
     <Link
       href={href}
-      onClick={onClick}
       aria-current={active ? "page" : undefined}
       className={cn(
-        "py-1 text-[15px] font-medium rounded-[2px] border-b-2 transition-colors",
-        INK,
-        FOCUS,
-        active ? "border-[#14213D]" : "border-transparent hover:border-[#D5DCE4]"
+        "relative py-1.5 text-[15px] font-semibold rounded-md text-white/85 hover:text-white transition-colors",
+        "after:absolute after:left-0 after:right-0 after:-bottom-0.5 after:h-[3px] after:rounded-full after:bg-gradient-to-r after:from-[#5B5BF0] after:to-[#22D3EE] after:origin-left after:transition-transform after:duration-200",
+        active ? "text-white after:scale-x-100" : "after:scale-x-0 hover:after:scale-x-100",
+        FOCUS
       )}
     >
       {children}
@@ -55,23 +43,20 @@ export function Header() {
   const [categoriesOpen, setCategoriesOpen] = React.useState(false);
   const pathname = usePathname();
 
-  // Close menus when the route changes.
   React.useEffect(() => {
     setMobileMenuOpen(false);
     setCategoriesOpen(false);
   }, [pathname]);
 
-  // Don't show public header on /admin paths
   if (pathname.startsWith("/admin")) {
     return null;
   }
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-[#D5DCE4] bg-white">
+    <header className="sticky top-0 z-40 w-full border-b border-white/10 bg-[#0B1026]/[0.92] backdrop-blur-md">
       <div className="container mx-auto flex h-16 max-w-6xl items-center justify-between gap-6 px-4 sm:px-6 lg:px-8">
-        <Logo size="md" />
+        <Logo size="md" onDark />
 
-        {/* Desktop nav */}
         <nav aria-label="Main" className="hidden md:flex items-center gap-7">
           <NavLink href="/services" active={pathname.startsWith("/services")}>
             Services
@@ -80,11 +65,7 @@ export function Header() {
             Tools
           </NavLink>
 
-          <div
-            className="relative"
-            onMouseEnter={() => setCategoriesOpen(true)}
-            onMouseLeave={() => setCategoriesOpen(false)}
-          >
+          <div className="relative" onMouseEnter={() => setCategoriesOpen(true)} onMouseLeave={() => setCategoriesOpen(false)}>
             <button
               type="button"
               aria-expanded={categoriesOpen}
@@ -92,38 +73,35 @@ export function Header() {
               onClick={() => setCategoriesOpen((v) => !v)}
               onKeyDown={(e) => e.key === "Escape" && setCategoriesOpen(false)}
               className={cn(
-                "inline-flex items-center gap-1 py-1 text-[15px] font-medium rounded-[2px] border-b-2",
-                INK,
-                FOCUS,
-                pathname.startsWith("/category") ? "border-[#14213D]" : "border-transparent hover:border-[#D5DCE4]"
+                "inline-flex items-center gap-1 py-1.5 text-[15px] font-semibold rounded-md text-white/85 hover:text-white",
+                pathname.startsWith("/category") && "text-white",
+                FOCUS
               )}
             >
               Categories
-              <ChevronDown
-                aria-hidden="true"
-                className={cn("w-4 h-4 transition-transform motion-reduce:transition-none", categoriesOpen && "rotate-180")}
-              />
+              <ChevronDown aria-hidden="true" className={cn("w-4 h-4 transition-transform motion-reduce:transition-none", categoriesOpen && "rotate-180")} />
             </button>
 
             {categoriesOpen && (
-              <div id="nav-categories" className="absolute top-full left-[-12px] pt-2 z-50">
-                <ul className="w-56 border border-[#D5DCE4] bg-white rounded-[6px] py-1.5 shadow-[0_8px_24px_-8px_rgba(20,33,61,0.25)]">
-                  {NAV_CATEGORIES.map((cat) => (
-                    <li key={cat.href}>
-                      <Link
-                        href={cat.href}
-                        aria-current={pathname === cat.href ? "page" : undefined}
-                        className={cn(
-                          "block px-3.5 py-2 text-[15px] hover:bg-[#F3F5F8]",
-                          INK,
-                          FOCUS,
-                          pathname === cat.href && "font-semibold"
-                        )}
-                      >
-                        {cat.label}
-                      </Link>
-                    </li>
-                  ))}
+              <div id="nav-categories" className="absolute top-full left-[-12px] pt-3 z-50">
+                <ul className="w-60 rounded-2xl border border-[#E1E6F2] bg-white p-2 shadow-[0_24px_50px_-16px_rgba(11,16,38,.5)]">
+                  {NAV_CATEGORIES.map((cat) => {
+                    const { Icon, accent } = categoryStyle(cat.label);
+                    return (
+                      <li key={cat.href}>
+                        <Link
+                          href={cat.href}
+                          aria-current={pathname === cat.href ? "page" : undefined}
+                          className={cn("flex items-center gap-3 px-2.5 py-2 rounded-xl text-[15px] font-medium text-[#0B1026] hover:bg-[#F3F5FB]", pathname === cat.href && "bg-[#F3F5FB] font-semibold", FOCUS)}
+                        >
+                          <span className={cn("zq-chip zq-chip-sm", accent.chip)}>
+                            <Icon className="w-[18px] h-[18px]" />
+                          </span>
+                          {cat.label}
+                        </Link>
+                      </li>
+                    );
+                  })}
                 </ul>
               </div>
             )}
@@ -140,11 +118,13 @@ export function Header() {
           </NavLink>
         </nav>
 
-        <div className="hidden md:flex items-center">
+        <div className="hidden md:flex items-center gap-3">
           <SessionHistoryModal />
+          <Link href="/#contact" className="zq-btn zq-btn-sun !h-10 !px-5 !text-[15px]">
+            Get a quote <ArrowRight className="w-4 h-4" aria-hidden="true" />
+          </Link>
         </div>
 
-        {/* Mobile */}
         <div className="flex md:hidden items-center gap-1">
           <SessionHistoryModal />
           <button
@@ -153,30 +133,27 @@ export function Header() {
             aria-expanded={mobileMenuOpen}
             aria-controls="mobile-menu"
             aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
-            className={cn("w-11 h-11 inline-flex items-center justify-center rounded-[4px] hover:bg-[#F3F5F8]", INK, FOCUS)}
+            className={cn("w-11 h-11 inline-flex items-center justify-center rounded-lg text-white hover:bg-white/10", FOCUS)}
           >
-            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
       </div>
 
       {mobileMenuOpen && (
-        <nav id="mobile-menu" aria-label="Main" className="md:hidden border-t border-[#D5DCE4] bg-white px-4 pb-4">
+        <nav id="mobile-menu" aria-label="Main" className="md:hidden border-t border-white/10 bg-[#0B1026] px-4 pb-5 max-h-[80vh] overflow-y-auto">
           <ul>
-            {[{ label: "Services", href: "/services" }, { label: "Blog", href: "/blog" }, { label: "All tools", href: "/tools" }, ...NAV_CATEGORIES, { label: "About", href: "/about" }, { label: "Contact", href: "/contact" }].map(
-              (item) => (
-                <li key={item.href} className="border-b border-[#D5DCE4]">
-                  <Link
-                    href={item.href}
-                    aria-current={pathname === item.href ? "page" : undefined}
-                    className={cn("block py-3 text-base", INK, FOCUS, pathname === item.href ? "font-semibold" : "font-medium")}
-                  >
-                    {item.label}
-                  </Link>
-                </li>
-              )
-            )}
+            {[{ label: "Services", href: "/services" }, { label: "Blog", href: "/blog" }, { label: "All tools", href: "/tools" }, ...NAV_CATEGORIES, { label: "About", href: "/about" }, { label: "Contact", href: "/contact" }].map((item) => (
+              <li key={item.href} className="border-b border-white/10">
+                <Link href={item.href} aria-current={pathname === item.href ? "page" : undefined} className={cn("block py-3 text-base text-white/90", pathname === item.href ? "font-bold text-white" : "font-medium", FOCUS)}>
+                  {item.label}
+                </Link>
+              </li>
+            ))}
           </ul>
+          <Link href="/#contact" className="zq-btn zq-btn-sun mt-4 w-full">
+            Get a quote
+          </Link>
         </nav>
       )}
     </header>

@@ -1,6 +1,6 @@
 import { prisma } from "@/lib/prisma";
 import type { Metadata } from "next";
-import { ShieldCheck, Lock, EyeOff, ServerOff } from "lucide-react";
+import { Lock, EyeOff, ServerOff } from "lucide-react";
 import { MarkdownRenderer } from "@/components/common/markdown-renderer";
 
 export const dynamic = "force-dynamic";
@@ -60,40 +60,33 @@ export default async function PrivacyPolicyPage() {
   const title = dbPage?.title || "Privacy Policy & Zero Data Retention Guarantee";
 
   return (
-    <div className="container mx-auto max-w-4xl px-4 py-12 sm:py-16">
-      <div className="space-y-4 mb-10">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md border border-teal-500/20 bg-teal-500/10 text-xs font-mono text-teal-400">
-          <ShieldCheck className="w-3.5 h-3.5" />
-          <span>Client-Side Data Protection Standards</span>
+    <div className="zq-page">
+      <section className="zq-banner">
+        <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-14 sm:py-20">
+          <p className="inline-flex rounded-full bg-white/15 px-3 py-1 text-sm font-semibold">Client-side data protection</p>
+          <h1 className="zq-in-solid zq-display mt-4 max-w-3xl text-4xl sm:text-6xl font-extrabold leading-[1.03]">{title}</h1>
+          <p className="zq-in mt-4 max-w-2xl text-[18px] leading-relaxed zq-on-dark-muted">Everything you process on Zoqonyx stays in your browser. No cloud storage, no tracking and no data sales.</p>
         </div>
-        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-black tracking-tight text-foreground">
-          {title}
-        </h1>
-        <p className="text-sm sm:text-base text-muted-foreground leading-relaxed max-w-2xl">
-          Everything you process on Zoqonyx remains strictly within your browser sandbox. Zero cloud storage, zero tracking, and zero data monetization.
-        </p>
-      </div>
-
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-10">
-        <div className="p-4 rounded-xl border border-border bg-card/70 space-y-1">
-          <ServerOff className="w-5 h-5 text-teal-400 mb-1" />
-          <p className="text-sm font-bold text-foreground">Zero Cloud Storage</p>
-          <p className="text-xs text-muted-foreground">Files never touch remote servers</p>
+      </section>
+      <div className="container mx-auto max-w-4xl px-4 sm:px-6 zq-section space-y-8">
+        <ul className="grid grid-cols-1 sm:grid-cols-3 gap-4 -mt-16 relative">
+          {[
+            { I: ServerOff, g: "zq-g-indigo", t: "No cloud storage", d: "Files never touch remote servers" },
+            { I: EyeOff, g: "zq-g-violet", t: "No tracking", d: "No cross-site cookies or telemetry" },
+            { I: Lock, g: "zq-g-emerald", t: "Volatile memory", d: "Wiped when you close the tab" },
+          ].map((x) => (
+            <li key={x.t} className="zq-card p-5">
+              <span className={`zq-chip zq-chip-sm ${x.g}`} aria-hidden="true">
+                <x.I className="w-[18px] h-[18px]" />
+              </span>
+              <p className="mt-3 text-[16px] font-bold">{x.t}</p>
+              <p className="text-sm text-[#4B557A]">{x.d}</p>
+            </li>
+          ))}
+        </ul>
+        <div className="zq-card p-6 sm:p-10">
+          <MarkdownRenderer content={content} />
         </div>
-        <div className="p-4 rounded-xl border border-border bg-card/70 space-y-1">
-          <EyeOff className="w-5 h-5 text-teal-400 mb-1" />
-          <p className="text-sm font-bold text-foreground">Zero Data Tracking</p>
-          <p className="text-xs text-muted-foreground">No cross-site cookies or telemetry</p>
-        </div>
-        <div className="p-4 rounded-xl border border-border bg-card/70 space-y-1">
-          <Lock className="w-5 h-5 text-teal-400 mb-1" />
-          <p className="text-sm font-bold text-foreground">Volatile Memory</p>
-          <p className="text-xs text-muted-foreground">Wiped instantly on tab close</p>
-        </div>
-      </div>
-
-      <div className="rounded-xl border border-border/80 bg-card/90 p-6 sm:p-10 shadow-xs">
-        <MarkdownRenderer content={content} />
       </div>
     </div>
   );

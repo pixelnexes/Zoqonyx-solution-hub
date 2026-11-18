@@ -2,12 +2,13 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { Search, X } from "lucide-react";
+import { Search, X, ArrowRight } from "lucide-react";
 import type { SerializedTool } from "@/components/home/tool-catalog";
 import { ToolIcon } from "@/components/common/tool-icon";
+import { categoryStyle } from "@/components/kit/icons";
 
-// Homepage only. Lists tools as a labeled drawer: one column per category,
-// tool names in full, and a search that replaces the drawer with results.
+// Tool directory used on the homepage and /tools: a search pill, then one
+// colored card per category. Searching replaces the cards with matching tools.
 
 const CATEGORY_ORDER: { names: string[]; label: string; slug: string }[] = [
   { names: ["Image Tools"], label: "Images", slug: "image-tools" },
@@ -24,32 +25,24 @@ interface ToolDrawerProps {
   tools: SerializedTool[];
   /** How many tools to list per category before "See all" (homepage: 7, /tools: all). */
   perCategory?: number;
-  /** Show an icon and a one-line description under each tool name. */
+  /** Show a one-line description under each tool name. */
   detailed?: boolean;
 }
 
-function ToolRow({ tool, detailed = false }: { tool: SerializedTool; detailed?: boolean }) {
+function ToolRow({ tool, detailed = false, accentColor }: { tool: SerializedTool; detailed?: boolean; accentColor: string }) {
   return (
     <Link
       href={`/tools/${tool.slug}`}
-      className={`zq-focus zq-row flex gap-3 rounded-[2px] ${detailed ? "py-3 items-start" : "py-2.5 items-center"}`}
-      style={{ color: "var(--zq-ink)" }}
+      className={`group flex gap-3 rounded-xl px-2.5 -mx-2.5 transition-colors hover:bg-[#F3F5FB] ${detailed ? "py-3 items-start" : "py-2 items-center"}`}
     >
-      <span
-        aria-hidden="true"
-        className={`zq-row-icon shrink-0 inline-flex ${detailed ? "mt-0.5" : ""}`}
-        style={{ color: "var(--zq-muted)" }}
-      >
-        <ToolIcon name={tool.icon} className="w-[18px] h-[18px]" strokeWidth={1.75} />
+      <span className="shrink-0 inline-flex" style={{ color: accentColor }} aria-hidden="true">
+        <ToolIcon name={tool.icon} className="w-[19px] h-[19px]" strokeWidth={2} />
       </span>
-      <span className="min-w-0">
-        <span className={`block ${detailed ? "font-semibold text-[15px]" : "font-medium text-[15px]"}`}>{tool.name}</span>
-        {detailed && (
-          <span className="block text-sm mt-0.5 leading-snug line-clamp-2" style={{ color: "var(--zq-muted)" }}>
-            {tool.description}
-          </span>
-        )}
+      <span className="min-w-0 flex-1">
+        <span className="block font-semibold text-[15px] text-[#0B1026] group-hover:text-[#3F3FD0]">{tool.name}</span>
+        {detailed && <span className="block text-sm mt-0.5 leading-snug line-clamp-2 text-[#4B557A]">{tool.description}</span>}
       </span>
+      <ArrowRight className="w-4 h-4 mt-0.5 shrink-0 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-[#5B5BF0]" aria-hidden="true" />
     </Link>
   );
 }
@@ -81,10 +74,7 @@ export function ToolDrawer({ tools, perCategory = TOOLS_PER_CATEGORY, detailed =
   const results = React.useMemo(() => {
     if (!q) return [];
     return liveTools.filter(
-      (t) =>
-        t.name.toLowerCase().includes(q) ||
-        t.description.toLowerCase().includes(q) ||
-        t.slug.includes(q.replace(/\s+/g, "-"))
+      (t) => t.name.toLowerCase().includes(q) || t.description.toLowerCase().includes(q) || t.slug.includes(q.replace(/\s+/g, "-"))
     );
   }, [liveTools, q]);
 
@@ -92,8 +82,7 @@ export function ToolDrawer({ tools, perCategory = TOOLS_PER_CATEGORY, detailed =
   React.useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       const target = e.target as HTMLElement | null;
-      const typing =
-        target && (target.tagName === "INPUT" || target.tagName === "TEXTAREA" || target.isContentEditable);
+      const typing = target && (target.tagName === "INPUT" || target.tagName === "TEXTAREA" || target.isContentEditable);
       if (e.key === "/" && !typing) {
         e.preventDefault();
         inputRef.current?.focus();
@@ -105,13 +94,12 @@ export function ToolDrawer({ tools, perCategory = TOOLS_PER_CATEGORY, detailed =
 
   return (
     <section aria-label="All tools" className="space-y-10">
-      {/* Search strip: the one bold element on the page */}
-      <div className="zq-reveal" style={{ ["--zq-delay" as string]: "140ms" }}>
+      <div>
         <label htmlFor="home-search" className="sr-only">
           Search tools
         </label>
-        <div className="zq-strip flex items-center gap-3 rounded-[6px] px-4 sm:px-5 h-14 sm:h-16">
-          <Search className="w-5 h-5 shrink-0" style={{ color: "var(--zq-ink)" }} aria-hidden="true" />
+        <div className="zq-search">
+          <Search className="w-5 h-5 shrink-0 text-[#5B5BF0]" aria-hidden="true" />
           <input
             ref={inputRef}
             id="home-search"
@@ -120,8 +108,7 @@ export function ToolDrawer({ tools, perCategory = TOOLS_PER_CATEGORY, detailed =
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder={`Search ${liveTools.length} tools, for example "merge pdf" or "json"`}
-            className="flex-1 min-w-0 bg-transparent border-0 outline-none text-base sm:text-lg font-medium placeholder:font-normal"
-            style={{ color: "var(--zq-ink)" }}
+            className="flex-1 min-w-0 bg-transparent border-0 text-base sm:text-lg font-medium text-[#0B1026] placeholder:text-[#6B7599] placeholder:font-normal"
           />
           {query ? (
             <button
@@ -130,18 +117,13 @@ export function ToolDrawer({ tools, perCategory = TOOLS_PER_CATEGORY, detailed =
                 setQuery("");
                 inputRef.current?.focus();
               }}
-              className="zq-focus shrink-0 inline-flex items-center gap-1 text-sm font-semibold rounded-[4px] px-2 py-1"
-              style={{ color: "var(--zq-ink)" }}
+              className="shrink-0 inline-flex items-center gap-1 text-sm font-semibold rounded-full px-3 py-1.5 bg-[#F3F5FB] text-[#0B1026] hover:bg-[#E1E6F2]"
             >
               <X className="w-4 h-4" aria-hidden="true" />
               Clear
             </button>
           ) : (
-            <kbd
-              className="hidden sm:inline-flex shrink-0 items-center justify-center w-7 h-7 rounded-[4px] text-sm font-semibold border"
-              style={{ color: "var(--zq-ink)", borderColor: "rgba(20,33,61,0.35)" }}
-              title="Press / to search"
-            >
+            <kbd className="hidden sm:inline-flex shrink-0 items-center justify-center w-8 h-8 rounded-lg text-sm font-bold border border-[#E1E6F2] bg-[#F3F5FB] text-[#4B557A]" title="Press / to search">
               /
             </kbd>
           )}
@@ -150,58 +132,66 @@ export function ToolDrawer({ tools, perCategory = TOOLS_PER_CATEGORY, detailed =
 
       {q ? (
         <div aria-live="polite">
-          <p className="text-sm mb-4" style={{ color: "var(--zq-muted)" }}>
+          <p className="text-sm mb-4 text-[#4B557A]">
             {results.length === 0
               ? `No tool matches "${query.trim()}". Try a shorter word, like "pdf" or "image".`
               : `${results.length} ${results.length === 1 ? "tool matches" : "tools match"} "${query.trim()}"`}
           </p>
           {results.length > 0 && (
-            <ul
-              key={q}
-              className="zq-fade grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 border-t"
-              style={{ borderColor: "var(--zq-line)" }}
-            >
-              {results.map((t) => (
-                <li key={t.slug} className="border-b" style={{ borderColor: "var(--zq-line)" }}>
-                  <ToolRow tool={t} detailed />
-                </li>
-              ))}
+            <ul key={q} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {results.map((t) => {
+                const { accent } = categoryStyle(t.category);
+                return (
+                  <li key={t.slug}>
+                    <Link href={`/tools/${t.slug}`} className="zq-card flex items-start gap-3 p-4 h-full" style={{ animation: "zq-rise .35s var(--zq-ease) both" }}>
+                      <span className={`zq-chip zq-chip-sm ${accent.chip}`} aria-hidden="true">
+                        <ToolIcon name={t.icon} className="w-[18px] h-[18px]" strokeWidth={2} />
+                      </span>
+                      <span className="min-w-0">
+                        <span className="block font-bold text-[15px]">{t.name}</span>
+                        <span className="block text-sm mt-0.5 leading-snug line-clamp-2 text-[#4B557A]">{t.description}</span>
+                      </span>
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
           )}
         </div>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-12">
-          {groups.map((g, gi) => (
-            <div key={g.slug} className="zq-reveal" style={{ ["--zq-delay" as string]: `${240 + gi * 70}ms` }}>
-              <h2 className="flex items-baseline justify-between gap-3 pb-2 border-b-2" style={{ borderColor: "var(--zq-ink)" }}>
-                <Link
-                  href={`/category/${g.slug}`}
-                  className="zq-focus text-xl font-bold tracking-[-0.01em] rounded-[2px]"
-                  style={{ color: "var(--zq-ink)" }}
-                >
-                  {g.label}
-                </Link>
-                <span className="text-sm tabular-nums" style={{ color: "var(--zq-muted)" }}>
-                  {g.tools.length} tools
-                </span>
-              </h2>
-              <ul>
-                {g.tools.slice(0, perCategory).map((t) => (
-                  <li key={t.slug} className="border-b" style={{ borderColor: "var(--zq-line)" }}>
-                    <ToolRow tool={t} detailed={detailed} />
-                  </li>
-                ))}
-              </ul>
-              {g.tools.length > perCategory && (
-                <Link
-                  href={`/category/${g.slug}`}
-                  className="zq-focus zq-link inline-block mt-3 text-sm font-semibold rounded-[2px]"
-                >
-                  See all {g.tools.length} tools in {g.label}
-                </Link>
-              )}
-            </div>
-          ))}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {groups.map((g) => {
+            const { Icon, accent } = categoryStyle(g.label);
+            return (
+              <div key={g.slug} className="zq-card zq-card-hover p-5 sm:p-6 flex flex-col">
+                <div className="flex items-center gap-3 pb-4 mb-2 border-b border-[#E1E6F2]">
+                  <span className={`zq-chip ${accent.chip}`} aria-hidden="true">
+                    <Icon className="w-6 h-6" />
+                  </span>
+                  <div className="min-w-0 flex-1">
+                    <h3 className="zq-display text-xl font-extrabold leading-tight">
+                      <Link href={`/category/${g.slug}`} className="hover:text-[#3F3FD0]">
+                        {g.label}
+                      </Link>
+                    </h3>
+                    <p className="text-sm text-[#4B557A]">{g.tools.length} tools</p>
+                  </div>
+                </div>
+                <ul className="flex-1">
+                  {g.tools.slice(0, perCategory).map((t) => (
+                    <li key={t.slug}>
+                      <ToolRow tool={t} detailed={detailed} accentColor={accent.color} />
+                    </li>
+                  ))}
+                </ul>
+                {g.tools.length > perCategory && (
+                  <Link href={`/category/${g.slug}`} className="mt-3 inline-flex items-center gap-1.5 text-sm font-bold" style={{ color: accent.color }}>
+                    See all {g.tools.length} tools <ArrowRight className="w-4 h-4" aria-hidden="true" />
+                  </Link>
+                )}
+              </div>
+            );
+          })}
         </div>
       )}
     </section>

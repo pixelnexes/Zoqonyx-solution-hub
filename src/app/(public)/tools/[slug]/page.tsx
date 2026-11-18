@@ -4,6 +4,9 @@ import type { Metadata } from "next";
 import { ToolRenderer } from "@/components/tools/tool-renderer";
 import { ComingSoonToolView } from "@/components/tools/coming-soon-tool-view";
 import Link from "next/link";
+import { ArrowRight, ChevronDown, Lightbulb } from "lucide-react";
+import { ToolIcon } from "@/components/common/tool-icon";
+import { categoryStyle } from "@/components/kit/icons";
 import { getDefaultToolBySlug, DEFAULT_TOOLS } from "@/lib/default-tools";
 import { getToolSeoContent } from "@/lib/tool-seo-content";
 
@@ -204,6 +207,8 @@ export default async function ToolPage({ params }: ToolPageProps) {
   const catSlug = CATEGORY_SLUG_MAP[tool.category] || "developer-seo";
   const catLabel = CATEGORY_LABELS[catSlug] || tool.category;
 
+  const { accent: toolAccent } = categoryStyle(catLabel);
+
   // Popular Tools query (excluding current tool)
   const popularTools = DEFAULT_TOOLS.filter(
     (t) => POPULAR_TOOL_SLUGS.includes(t.slug) && t.slug !== tool.slug
@@ -279,195 +284,200 @@ export default async function ToolPage({ params }: ToolPageProps) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
 
-      <div className="bg-[#F3F5F8] text-[#14213D]">
-      <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 pt-6 pb-16">
-        <nav aria-label="Breadcrumb" className="mb-6 text-sm text-[#4A5568]">
-          <ol className="flex flex-wrap items-center gap-x-2 gap-y-1">
-            <li>
-              <Link href="/" className={TP_LINK}>
-                Home
-              </Link>
-            </li>
-            <li aria-hidden="true">/</li>
-            <li>
-              <Link href={`/category/${catSlug}`} className={TP_LINK}>
-                {catLabel}
-              </Link>
-            </li>
-            <li aria-hidden="true">/</li>
-            <li aria-current="page" className="text-[#14213D] font-medium">
-              {tool.name}
-            </li>
-          </ol>
-        </nav>
-
-        <div className="space-y-14">
-          <div className="space-y-6">
-            <header className="max-w-[46rem]">
-              <h1 className="text-[2rem] sm:text-[2.75rem] leading-[1.08] font-bold tracking-[-0.02em]">
-                {tool.name}
-              </h1>
-              <p className="mt-3 text-[17px] leading-relaxed text-[#4A5568]">{tool.description}</p>
-              <p className="mt-2 text-sm text-[#4A5568]">Free to use. No sign-up.</p>
-            </header>
-
-            {/* The tool itself */}
-            <div className="p-4 sm:p-6 rounded-[6px] bg-white border border-[#D5DCE4]">
-              <ToolRenderer slug={tool.slug} />
+      <div className="zq-page">
+        <section className="zq-banner">
+          <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
+            <nav aria-label="Breadcrumb" className="text-sm text-white/75">
+              <ol className="flex flex-wrap items-center gap-x-2 gap-y-1">
+                <li>
+                  <Link href="/" className="hover:underline underline-offset-4">
+                    Home
+                  </Link>
+                </li>
+                <li aria-hidden="true">/</li>
+                <li>
+                  <Link href={`/category/${catSlug}`} className="hover:underline underline-offset-4">
+                    {catLabel}
+                  </Link>
+                </li>
+                <li aria-hidden="true">/</li>
+                <li aria-current="page" className="font-semibold text-white">
+                  {tool.name}
+                </li>
+              </ol>
+            </nav>
+            <div className="mt-5 flex flex-col sm:flex-row sm:items-start gap-5">
+              <span className={`zq-chip ${toolAccent.chip} !w-16 !h-16 !rounded-2xl zq-float`} aria-hidden="true">
+                <ToolIcon name={tool.icon} className="w-8 h-8" strokeWidth={2} />
+              </span>
+              <div className="max-w-3xl">
+                <h1 className="zq-in-solid zq-display text-3xl sm:text-5xl font-extrabold leading-[1.06]">{tool.name}</h1>
+                <p className="zq-in mt-3 text-[18px] leading-relaxed zq-on-dark-muted">{tool.description}</p>
+                <p className="mt-3 inline-flex rounded-full bg-white/15 px-3 py-1 text-sm font-semibold">Free to use. No sign-up.</p>
+              </div>
             </div>
           </div>
+        </section>
 
-            {/* How to use: a real sequence, so numbered */}
-            <section aria-labelledby="howto-heading" className="max-w-[46rem]">
-              <h2 id="howto-heading" className={TP_H2}>
-                How to use {tool.name}
+        <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-10 space-y-16">
+          {/* The tool itself */}
+          <div className="p-4 sm:p-6 rounded-[18px] bg-white border border-[#E1E6F2] shadow-[0_20px_50px_-28px_rgba(30,40,120,.35)] -mt-16 sm:-mt-20 relative">
+            <ToolRenderer slug={tool.slug} />
+          </div>
+
+          {/* How to use: a real sequence, so numbered */}
+          <section aria-labelledby="howto-heading">
+            <h2 id="howto-heading" className="zq-display zq-h2">
+              How to use {tool.name}
+            </h2>
+            <ol className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
+              {seo.howToSteps.map((s) => (
+                <li key={s.step} className="zq-card p-5">
+                  <span className={`zq-chip zq-chip-sm ${toolAccent.chip} font-extrabold`} aria-hidden="true">
+                    {s.step}
+                  </span>
+                  <h3 className="mt-3 text-[17px] font-bold leading-snug">{s.title}</h3>
+                  <p className="mt-1.5 text-[15px] leading-relaxed text-[#4B557A]">{s.instruction}</p>
+                </li>
+              ))}
+            </ol>
+          </section>
+
+          {seo.keyBenefits.length > 0 && (
+            <section aria-labelledby="features-heading">
+              <h2 id="features-heading" className="zq-display zq-h2">
+                What {tool.name} does
               </h2>
-              <ol className="mt-5 border-t border-[#D5DCE4]">
-                {seo.howToSteps.map((s) => (
-                  <li key={s.step} className="grid grid-cols-[2rem_1fr] gap-x-3 py-4 border-b border-[#D5DCE4]">
-                    <span className="text-lg font-bold tabular-nums leading-snug">{s.step}.</span>
-                    <div>
-                      <h3 className="text-[17px] font-semibold leading-snug">{s.title}</h3>
-                      <p className="mt-1 text-[15px] leading-relaxed text-[#4A5568]">{s.instruction}</p>
-                    </div>
+              <dl className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+                {seo.keyBenefits.map((b, idx) => (
+                  <div key={idx} className="zq-card p-5" style={{ borderTop: `3px solid ${toolAccent.color}` }}>
+                    <dt className="text-[17px] font-bold">{b.title}</dt>
+                    <dd className="mt-1 text-[15px] leading-relaxed text-[#4B557A]">{b.desc}</dd>
+                  </div>
+                ))}
+              </dl>
+            </section>
+          )}
+
+          {seo.deepDiveContent && (
+            <section aria-labelledby="about-heading" className="max-w-3xl">
+              <h2 id="about-heading" className="zq-display zq-h2">
+                About {tool.name}
+              </h2>
+
+              <div className="mt-5 space-y-4 text-[16px] leading-[1.75] text-[#2D3748]">
+                {seo.deepDiveContent
+                  .trim()
+                  .split("\n\n")
+                  .map((block: string, idx: number) => {
+                    if (block.startsWith("### ")) {
+                      return (
+                        <h3 key={idx} className="text-xl font-bold pt-4 text-[#0B1026]">
+                          {block.replace("### ", "")}
+                        </h3>
+                      );
+                    }
+                    if (block.startsWith("- ")) {
+                      const items = block.split("\n").map((i: string) => i.replace(/^- /, ""));
+                      return (
+                        <ul key={idx} className="list-disc pl-5 space-y-1">
+                          {items.map((li: string, i: number) => (
+                            <li key={i}>{renderInlineBold(li)}</li>
+                          ))}
+                        </ul>
+                      );
+                    }
+                    return <p key={idx}>{renderInlineBold(block)}</p>;
+                  })}
+              </div>
+
+              {seo.proTips && seo.proTips.length > 0 && (
+                <div className="mt-8 rounded-2xl p-5 bg-[#FFF7E0] border border-[#FFE29A]">
+                  <h3 className="flex items-center gap-2 text-[17px] font-bold">
+                    <Lightbulb className="w-5 h-5 text-[#B7791F]" aria-hidden="true" /> Tips
+                  </h3>
+                  <ul className="mt-2 list-disc pl-5 space-y-1.5 text-[15px] leading-relaxed text-[#2D3748]">
+                    {seo.proTips.map((tip, i) => (
+                      <li key={i}>{tip}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </section>
+          )}
+
+          {seo.faqs && seo.faqs.length > 0 && (
+            <section aria-labelledby="faq-heading" className="max-w-3xl">
+              <h2 id="faq-heading" className="zq-display zq-h2">
+                Questions about {tool.name}
+              </h2>
+              <div className="mt-6 space-y-3">
+                {seo.faqs.map((faq, idx) => (
+                  <details key={idx} className="zq-card group p-0">
+                    <summary className="flex cursor-pointer list-none items-center justify-between gap-4 p-5 text-[17px] font-bold [&::-webkit-details-marker]:hidden">
+                      {faq.question}
+                      <ChevronDown className="w-5 h-5 shrink-0 text-[#5B5BF0] transition-transform group-open:rotate-180" aria-hidden="true" />
+                    </summary>
+                    <p className="px-5 pb-5 text-[16px] leading-relaxed text-[#4B557A]">{faq.answer}</p>
+                  </details>
+                ))}
+              </div>
+            </section>
+          )}
+
+          {relatedTools.length > 0 && (
+            <section aria-labelledby="related-heading">
+              <div className="flex flex-wrap items-baseline justify-between gap-3">
+                <h2 id="related-heading" className="zq-display zq-h2">
+                  More tools in {catLabel}
+                </h2>
+                <Link href={`/category/${catSlug}`} className="inline-flex items-center gap-1 text-[15px] font-bold text-[#3F3FD0]">
+                  See all {catLabel} tools <ArrowRight className="w-4 h-4" aria-hidden="true" />
+                </Link>
+              </div>
+              <ul className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {relatedTools.map((rel) => (
+                  <li key={rel.slug}>
+                    <Link href={`/tools/${rel.slug}`} className="zq-card zq-card-hover group flex h-full items-start gap-3 p-4">
+                      <span className={`zq-chip zq-chip-sm ${toolAccent.chip}`} aria-hidden="true">
+                        <ToolIcon name={rel.icon} className="w-[18px] h-[18px]" strokeWidth={2} />
+                      </span>
+                      <span className="min-w-0">
+                        <span className="block text-[15px] font-bold group-hover:text-[#3F3FD0]">{rel.name}</span>
+                        <span className="block mt-0.5 text-sm leading-relaxed text-[#4B557A] line-clamp-2">{rel.description}</span>
+                      </span>
+                    </Link>
                   </li>
                 ))}
-              </ol>
+              </ul>
             </section>
+          )}
 
-            {seo.keyBenefits.length > 0 && (
-              <section aria-labelledby="features-heading">
-                <h2 id="features-heading" className={TP_H2}>
-                  What {tool.name} does
+          {popularTools.length > 0 && (
+            <section aria-labelledby="popular-heading">
+              <div className="flex flex-wrap items-baseline justify-between gap-3">
+                <h2 id="popular-heading" className="zq-display zq-h2">
+                  Popular tools
                 </h2>
-                <dl className="mt-5 grid grid-cols-1 md:grid-cols-2 gap-x-10 border-t border-[#D5DCE4]">
-                  {seo.keyBenefits.map((b, idx) => (
-                    <div key={idx} className="py-4 border-b border-[#D5DCE4]">
-                      <dt className="text-[17px] font-semibold">{b.title}</dt>
-                      <dd className="mt-1 text-[15px] leading-relaxed text-[#4A5568]">{b.desc}</dd>
-                    </div>
-                  ))}
-                </dl>
-              </section>
-            )}
-
-            {/* Section 3: In-Depth Technical Guide & Deep Dive */}
-            {seo.deepDiveContent && (
-              <section aria-labelledby="about-heading" className="max-w-[46rem]">
-                <h2 id="about-heading" className={TP_H2}>
-                  About {tool.name}
-                </h2>
-
-                <div className="mt-5 space-y-4 text-[16px] leading-[1.7] text-[#2D3748]">
-                  {seo.deepDiveContent
-                    .trim()
-                    .split("\n\n")
-                    .map((block: string, idx: number) => {
-                      if (block.startsWith("### ")) {
-                        return (
-                          <h3
-                            key={idx}
-                            className="text-xl font-bold pt-4 text-[#14213D]"
-                          >
-                            {block.replace("### ", "")}
-                          </h3>
-                        );
-                      }
-                      if (block.startsWith("- ")) {
-                        const items = block.split("\n").map((i: string) => i.replace(/^- /, ""));
-                        return (
-                          <ul key={idx} className="list-disc pl-5 space-y-1">
-                            {items.map((li: string, i: number) => (
-                              <li key={i}>{renderInlineBold(li)}</li>
-                            ))}
-                          </ul>
-                        );
-                      }
-                      return <p key={idx}>{renderInlineBold(block)}</p>;
-                    })}
-                </div>
-
-                {/* Pro Tips Box */}
-                {seo.proTips && seo.proTips.length > 0 && (
-                  <div className="mt-8 pl-4 border-l-4 border-[#F2C230]">
-                    <h3 className="text-[17px] font-semibold">Tips</h3>
-                    <ul className="mt-2 list-disc pl-5 space-y-1.5 text-[15px] leading-relaxed text-[#2D3748]">
-                      {seo.proTips.map((tip, i) => (
-                        <li key={i}>{tip}</li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-              </section>
-            )}
-
-            {/* Section 4: Frequently Asked Questions (FAQs) */}
-            {seo.faqs && seo.faqs.length > 0 && (
-              <section aria-labelledby="faq-heading" className="max-w-[46rem]">
-                <h2 id="faq-heading" className={TP_H2}>
-                  Questions about {tool.name}
-                </h2>
-                <div className="mt-5 border-t border-[#D5DCE4]">
-                  {seo.faqs.map((faq, idx) => (
-                    <div key={idx} className="py-4 border-b border-[#D5DCE4]">
-                      <h3 className="text-[17px] font-semibold leading-snug">{faq.question}</h3>
-                      <p className="mt-1.5 text-[15px] leading-relaxed text-[#4A5568]">{faq.answer}</p>
-                    </div>
-                  ))}
-                </div>
-              </section>
-            )}
-
-            {/* Section 5: Related Tools in Same Category */}
-            {relatedTools.length > 0 && (
-              <section aria-labelledby="related-heading">
-                <div className="flex flex-wrap items-baseline justify-between gap-3 pb-2 border-b-2 border-[#14213D]">
-                  <h2 id="related-heading" className={TP_H2}>
-                    More tools in {catLabel}
-                  </h2>
-                  <Link href={`/category/${catSlug}`} className={`text-[15px] font-semibold ${TP_LINK_TEAL}`}>
-                    See all {catLabel} tools
-                  </Link>
-                </div>
-                <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-10">
-                  {relatedTools.map((rel) => (
-                    <li key={rel.slug} className="border-b border-[#D5DCE4]">
-                      <Link href={`/tools/${rel.slug}`} className={`block py-3 hover:bg-white ${TP_FOCUS}`}>
-                        <span className="block text-[15px] font-semibold">{rel.name}</span>
-                        <span className="block mt-0.5 text-sm leading-relaxed text-[#4A5568] line-clamp-2">
-                          {rel.description}
-                        </span>
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </section>
-            )}
-
-            {/* Section 6: Popular Tools Across Platform */}
-            {popularTools.length > 0 && (
-              <section aria-labelledby="popular-heading">
-                <div className="flex flex-wrap items-baseline justify-between gap-3 pb-2 border-b-2 border-[#14213D]">
-                  <h2 id="popular-heading" className={TP_H2}>
-                    Popular tools
-                  </h2>
-                  <Link href="/tools" className={`text-[15px] font-semibold ${TP_LINK_TEAL}`}>
-                    Browse all tools
-                  </Link>
-                </div>
-                <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-10">
-                  {popularTools.map((pop) => (
-                    <li key={pop.slug} className="border-b border-[#D5DCE4]">
-                      <Link href={`/tools/${pop.slug}`} className={`block py-3 text-[15px] font-semibold hover:bg-white ${TP_FOCUS}`}>
-                        {pop.name}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </section>
-            )}
+                <Link href="/tools" className="inline-flex items-center gap-1 text-[15px] font-bold text-[#3F3FD0]">
+                  Browse all tools <ArrowRight className="w-4 h-4" aria-hidden="true" />
+                </Link>
+              </div>
+              <ul className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                {popularTools.map((pop) => (
+                  <li key={pop.slug}>
+                    <Link href={`/tools/${pop.slug}`} className="zq-card zq-card-hover flex h-full items-center gap-3 p-4 text-[15px] font-bold">
+                      <span className="zq-chip zq-chip-sm zq-g-indigo" aria-hidden="true">
+                        <ToolIcon name={pop.icon} className="w-[18px] h-[18px]" strokeWidth={2} />
+                      </span>
+                      {pop.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
         </div>
-      </div>
       </div>
     </>
   );
@@ -484,7 +494,7 @@ const TP_H2 = "text-2xl sm:text-[1.75rem] font-bold tracking-[-0.015em] leading-
 function renderInlineBold(text: string) {
   return text.split(/\*\*(.+?)\*\*/g).map((part, i) =>
     i % 2 === 1 ? (
-      <strong key={i} className="font-semibold text-[#14213D]">
+      <strong key={i} className="font-semibold text-[#0B1026]">
         {part}
       </strong>
     ) : (

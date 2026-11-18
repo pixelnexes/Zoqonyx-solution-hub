@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { ChevronDown } from "lucide-react";
 import { prisma } from "@/lib/prisma";
 import { DEFAULT_TOOLS } from "@/lib/default-tools";
 import { ToolDrawer } from "@/components/home/tool-drawer";
-import { ZQ_CSS } from "@/components/home/zq-styles";
 
 export const dynamic = "force-dynamic";
 
@@ -168,52 +168,49 @@ export default async function ToolsPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
 
-      <style>{ZQ_CSS}</style>
-
-      <div className="zq-home">
-      <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 pt-6 pb-16 space-y-14">
-        <div>
-          <nav aria-label="Breadcrumb" className="mb-6 text-sm" style={{ color: "var(--zq-muted)" }}>
-            <ol className="flex flex-wrap items-center gap-x-2">
-              <li>
-                <Link href="/" className="zq-focus rounded-[2px] hover:underline underline-offset-4">
-                  Home
-                </Link>
-              </li>
-              <li aria-hidden="true">/</li>
-              <li aria-current="page" className="font-medium" style={{ color: "var(--zq-ink)" }}>
-                All tools
-              </li>
-            </ol>
-          </nav>
-
-          <header className="max-w-[46rem] mb-8">
-            <h1 className="text-[2rem] sm:text-[2.75rem] leading-[1.08] font-bold tracking-[-0.02em]">All tools</h1>
-            <p className="mt-3 text-[17px] leading-relaxed" style={{ color: "var(--zq-muted)" }}>
-              Every tool on Zoqonyx, by category. Search by name or by what you want to do.
+      <div className="zq-page">
+        <section className="zq-banner">
+          <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-14 sm:py-20">
+            <nav aria-label="Breadcrumb" className="text-sm text-white/75">
+              <ol className="flex flex-wrap items-center gap-x-2">
+                <li>
+                  <Link href="/" className="hover:underline underline-offset-4">
+                    Home
+                  </Link>
+                </li>
+                <li aria-hidden="true">/</li>
+                <li aria-current="page" className="font-semibold text-white">
+                  All tools
+                </li>
+              </ol>
+            </nav>
+            <h1 className="zq-in-solid zq-display mt-5 text-4xl sm:text-6xl font-extrabold leading-[1.03]">All free tools</h1>
+            <p className="zq-in mt-4 max-w-2xl text-[18px] leading-relaxed zq-on-dark-muted">
+              Every tool on Zoqonyx, by category. Search by name or by what you want to do. No sign-up needed.
             </p>
-          </header>
-
-          <ToolDrawer tools={tools} perCategory={Number.POSITIVE_INFINITY} detailed />
-        </div>
-
-        {/* Below-the-fold Comprehensive SEO Guide */}
-        <section aria-labelledby="faq-heading" className="max-w-[46rem]">
-          <h2 id="faq-heading" className="text-2xl sm:text-[1.75rem] font-bold tracking-[-0.015em] leading-tight">
-            Questions
-          </h2>
-          <div className="mt-5 border-t" style={{ borderColor: "var(--zq-line)" }}>
-            {TOOLS_PAGE_FAQS.map((faq, i) => (
-              <div key={i} className="py-4 border-b" style={{ borderColor: "var(--zq-line)" }}>
-                <h3 className="text-[17px] font-semibold leading-snug">{faq.q}</h3>
-                <p className="mt-1.5 text-[15px] leading-relaxed" style={{ color: "var(--zq-muted)" }}>
-                  {faq.a}
-                </p>
-              </div>
-            ))}
           </div>
         </section>
-      </div>
+
+        <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 zq-section space-y-16">
+          <ToolDrawer tools={tools} perCategory={Number.POSITIVE_INFINITY} detailed />
+
+          <section aria-labelledby="faq-heading" className="max-w-3xl">
+            <h2 id="faq-heading" className="zq-display zq-h2">
+              Questions
+            </h2>
+            <div className="mt-6 space-y-3">
+              {TOOLS_PAGE_FAQS.map((faq, i) => (
+                <details key={i} className="zq-card group p-0">
+                  <summary className="flex cursor-pointer list-none items-center justify-between gap-4 p-5 text-[17px] font-bold [&::-webkit-details-marker]:hidden">
+                    {faq.q}
+                    <ChevronDown className="w-5 h-5 shrink-0 text-[#5B5BF0] transition-transform group-open:rotate-180" aria-hidden="true" />
+                  </summary>
+                  <p className="px-5 pb-5 text-[16px] leading-relaxed text-[#4B557A]">{faq.a}</p>
+                </details>
+              ))}
+            </div>
+          </section>
+        </div>
       </div>
     </>
   );
