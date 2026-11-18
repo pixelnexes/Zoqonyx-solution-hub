@@ -18,7 +18,7 @@ export function MarkdownRenderer({ content, className }: MarkdownRendererProps) 
   const rawBlocks = normalized.split(/\n{2,}/);
 
   return (
-    <div className={cn("space-y-5 text-sm leading-relaxed text-muted-foreground", className)}>
+    <div className={cn("space-y-5 text-[16px] leading-[1.75] text-[#2B3633]", className)}>
       {rawBlocks.map((block, blockIdx) => {
         const trimmed = block.trim();
         if (!trimmed) return null;
@@ -28,7 +28,7 @@ export function MarkdownRenderer({ content, className }: MarkdownRendererProps) 
           return (
             <h2
               key={blockIdx}
-              className="text-2xl sm:text-3xl font-heading font-bold text-foreground tracking-tight pt-4 pb-1 border-b border-border/60"
+              className="text-2xl sm:text-3xl font-heading font-bold text-[#10181A] tracking-tight pt-4 pb-1 border-b border-border/60"
             >
               {renderInline(trimmed.replace(/^#\s+/, ""))}
             </h2>
@@ -40,7 +40,7 @@ export function MarkdownRenderer({ content, className }: MarkdownRendererProps) 
           return (
             <h2
               key={blockIdx}
-              className="text-xl sm:text-2xl font-heading font-bold text-foreground tracking-tight pt-3 pb-1"
+              className="text-xl sm:text-2xl font-heading font-bold text-[#10181A] tracking-tight pt-3 pb-1"
             >
               {renderInline(trimmed.replace(/^##\s+/, ""))}
             </h2>
@@ -52,7 +52,7 @@ export function MarkdownRenderer({ content, className }: MarkdownRendererProps) 
           return (
             <h3
               key={blockIdx}
-              className="text-base sm:text-lg font-heading font-semibold text-foreground pt-2 text-teal-400"
+              className="text-xl font-heading font-semibold text-[#10181A] pt-2 text-[#0A5E44]"
             >
               {renderInline(trimmed.replace(/^###\s+/, ""))}
             </h3>
@@ -64,7 +64,7 @@ export function MarkdownRenderer({ content, className }: MarkdownRendererProps) 
           return (
             <h4
               key={blockIdx}
-              className="text-sm sm:text-base font-heading font-semibold text-foreground pt-1"
+              className="text-[17px] font-heading font-semibold text-[#10181A] pt-1"
             >
               {renderInline(trimmed.replace(/^####\s+/, ""))}
             </h4>
@@ -80,7 +80,7 @@ export function MarkdownRenderer({ content, className }: MarkdownRendererProps) 
           return (
             <blockquote
               key={blockIdx}
-              className="border-l-2 border-teal-500/70 pl-4 py-1 italic text-muted-foreground/90 bg-muted/20 rounded-r-md text-xs sm:text-sm"
+              className="border-l-2 border-teal-500/70 pl-4 py-1 italic text-muted-foreground/90 bg-muted/20 rounded-r-md text-[16px]"
             >
               {renderInline(quoteLines)}
             </blockquote>
@@ -93,8 +93,8 @@ export function MarkdownRenderer({ content, className }: MarkdownRendererProps) 
           return (
             <ul key={blockIdx} className="space-y-1.5 list-none pl-1">
               {items.map((item, itemIdx) => (
-                <li key={itemIdx} className="flex items-start gap-2.5 text-xs sm:text-sm">
-                  <span className="w-1.5 h-1.5 rounded-full bg-teal-400 mt-2 shrink-0" />
+                <li key={itemIdx} className="flex items-start gap-2.5 text-[16px]">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#0E7C5A] mt-2 shrink-0" />
                   <span>{renderInline(item)}</span>
                 </li>
               ))}
@@ -108,8 +108,8 @@ export function MarkdownRenderer({ content, className }: MarkdownRendererProps) 
           return (
             <ol key={blockIdx} className="space-y-2 list-none pl-1">
               {items.map((item, itemIdx) => (
-                <li key={itemIdx} className="flex items-start gap-2.5 text-xs sm:text-sm">
-                  <span className="flex items-center justify-center w-5 h-5 rounded bg-teal-500/10 text-teal-400 border border-teal-500/20 text-[11px] font-mono font-semibold shrink-0">
+                <li key={itemIdx} className="flex items-start gap-2.5 text-[16px]">
+                  <span className="flex items-center justify-center w-5 h-5 rounded bg-teal-500/10 text-[#0A5E44] border border-teal-500/20 text-[12px] font-mono font-semibold shrink-0">
                     {itemIdx + 1}
                   </span>
                   <span className="pt-0.5">{renderInline(item)}</span>
@@ -122,7 +122,7 @@ export function MarkdownRenderer({ content, className }: MarkdownRendererProps) 
         // Standard Paragraph with multi-line breaks
         const lines = trimmed.split("\n");
         return (
-          <p key={blockIdx} className="text-xs sm:text-sm leading-relaxed">
+          <p key={blockIdx} className="text-[16px] leading-relaxed">
             {lines.map((line, lineIdx) => (
               <React.Fragment key={lineIdx}>
                 {renderInline(line)}
@@ -144,7 +144,7 @@ function renderInline(text: string): React.ReactNode {
   return boldParts.map((part, i) => {
     if (part.startsWith("**") && part.endsWith("**")) {
       return (
-        <strong key={i} className="font-semibold text-foreground">
+        <strong key={i} className="font-semibold text-[#10181A]">
           {part.slice(2, -2)}
         </strong>
       );
@@ -157,7 +157,7 @@ function renderInline(text: string): React.ReactNode {
         return (
           <code
             key={`${i}-${j}`}
-            className="px-1.5 py-0.5 rounded bg-muted/60 text-teal-400 font-mono text-[11px] border border-border"
+            className="px-1.5 py-0.5 rounded bg-muted/60 text-[#0A5E44] font-mono text-[11px] border border-border"
           >
             {sub.slice(1, -1)}
           </code>
