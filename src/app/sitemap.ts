@@ -2,6 +2,7 @@ import { MetadataRoute } from "next";
 import { prisma } from "@/lib/prisma";
 import { getAllCategories } from "@/lib/categories";
 import { DEFAULT_TOOLS, TOOL_ALIASES } from "@/lib/default-tools";
+import { getPosts, getServices } from "@/lib/content";
 
 export const revalidate = 3600; // Cache and revalidate sitemap every hour
 
@@ -102,5 +103,26 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.9,
   }));
 
-  return [...staticRoutes, ...categoryRoutes, ...toolRoutes];
+  // 4. Services and blog
+  const [services, posts] = await Promise.all([getServices(), getPosts()]);
+  const serviceRoutes: MetadataRoute.Sitemap = [
+    { url: `${baseUrl}/services`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
+    ...services.map((s) => ({
+      url: `${baseUrl}/services/${s.slug}`,
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: s.isHub ? 0.85 : 0.8,
+    })),
+  ];
+  const blogRoutes: MetadataRoute.Sitemap = [
+    { url: `${baseUrl}/blog`, lastModified: posts[0]?.updatedAt ?? now, changeFrequency: "weekly", priority: 0.8 },
+    ...posts.map((p) => ({
+      url: `${baseUrl}/blog/${p.slug}`,
+      lastModified: p.updatedAt,
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    })),
+  ];
+
+  return [...staticRoutes, ...categoryRoutes, ...serviceRoutes, ...blogRoutes, ...toolRoutes];
 }

@@ -73,8 +73,11 @@ export function Header() {
 
         {/* Desktop nav */}
         <nav aria-label="Main" className="hidden md:flex items-center gap-7">
+          <NavLink href="/services" active={pathname.startsWith("/services")}>
+            Services
+          </NavLink>
           <NavLink href="/tools" active={pathname === "/tools"}>
-            All tools
+            Tools
           </NavLink>
 
           <div
@@ -126,6 +129,9 @@ export function Header() {
             )}
           </div>
 
+          <NavLink href="/blog" active={pathname.startsWith("/blog")}>
+            Blog
+          </NavLink>
           <NavLink href="/about" active={pathname === "/about"}>
             About
           </NavLink>
@@ -157,7 +163,7 @@ export function Header() {
       {mobileMenuOpen && (
         <nav id="mobile-menu" aria-label="Main" className="md:hidden border-t border-[#D5DCE4] bg-white px-4 pb-4">
           <ul>
-            {[{ label: "All tools", href: "/tools" }, ...NAV_CATEGORIES, { label: "About", href: "/about" }, { label: "Contact", href: "/contact" }].map(
+            {[{ label: "Services", href: "/services" }, { label: "Blog", href: "/blog" }, { label: "All tools", href: "/tools" }, ...NAV_CATEGORIES, { label: "About", href: "/about" }, { label: "Contact", href: "/contact" }].map(
               (item) => (
                 <li key={item.href} className="border-b border-[#D5DCE4]">
                   <Link

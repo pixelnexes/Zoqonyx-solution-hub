@@ -11,6 +11,10 @@ import {
   Palette,
   FileText,
   Mail,
+  Newspaper,
+  Briefcase,
+  MessageSquareQuote,
+  Inbox,
   Settings,
   LogOut,
   ExternalLink,
@@ -24,7 +28,11 @@ const NAV_ITEMS = [
   { label: "Tools Manager", href: "/admin/tools", icon: Wrench },
   { label: "Appearance", href: "/admin/appearance", icon: Palette },
   { label: "Pages Manager", href: "/admin/pages", icon: FileText },
-  { label: "Messages & Leads", href: "/admin/messages", icon: Mail },
+  { label: "Leads", href: "/admin/leads", icon: Inbox },
+  { label: "Blog", href: "/admin/blog", icon: Newspaper },
+  { label: "Services", href: "/admin/services", icon: Briefcase },
+  { label: "Testimonials", href: "/admin/testimonials", icon: MessageSquareQuote },
+  { label: "Contact messages", href: "/admin/messages", icon: Mail },
   { label: "Settings", href: "/admin/settings", icon: Settings },
 ];
 

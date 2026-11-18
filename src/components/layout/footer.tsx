@@ -18,6 +18,16 @@ const TOOL_LINKS = [
   { label: "Calculators", href: "/category/calculators" },
 ];
 
+const SERVICE_LINKS = [
+  { label: "All services", href: "/services" },
+  { label: "App development", href: "/services/app-development" },
+  { label: "Website development", href: "/services/website-development" },
+  { label: "Game development", href: "/services/game-development" },
+  { label: "Digital marketing", href: "/services/digital-marketing" },
+  { label: "AI & NLP", href: "/services/ai-nlp-development" },
+  { label: "Blog", href: "/blog" },
+];
+
 const COMPANY_LINKS = [
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
@@ -35,11 +45,11 @@ export function Footer() {
   return (
     <footer className="mt-auto border-t-2 border-[#14213D] bg-white text-[#14213D]">
       <div className="container mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr] gap-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1fr_1fr_1fr] gap-10">
           <div className="space-y-3 max-w-xs">
             <Logo size="md" />
             <p className="text-[15px] leading-relaxed text-[#4A5568]">
-              Free tools for images, PDFs, code and text. No sign-up.
+              Software, apps and digital marketing services, and free online tools for images, PDFs, code and text.
             </p>
           </div>
 
@@ -47,6 +57,19 @@ export function Footer() {
             <h2 className="text-base font-bold mb-3">Tools</h2>
             <ul className="space-y-2 text-[15px]">
               {TOOL_LINKS.map((l) => (
+                <li key={l.href}>
+                  <Link href={l.href} className={LINK}>
+                    {l.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h2 className="text-base font-bold mb-3">Services</h2>
+            <ul className="space-y-2 text-[15px]">
+              {SERVICE_LINKS.map((l) => (
                 <li key={l.href}>
                   <Link href={l.href} className={LINK}>
                     {l.label}

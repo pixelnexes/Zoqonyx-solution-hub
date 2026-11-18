@@ -63,3 +63,71 @@ model NotificationSubscriber {
 
   @@unique([email, toolSlug])
 }
+
+// ---- Content: blog, services, testimonials, leads ----
+// Defaults for services and blog posts also live in code (src/lib/services-data.ts,
+// src/lib/blog-seed.ts). A row here with the same slug overrides the default.
+
+model BlogPost {
+  id          String    @id @default(cuid())
+  slug        String    @unique
+  title       String
+  excerpt     String    @db.Text
+  content     String    @db.LongText // Markdown
+  category    String    @default("General")
+  tags        String    @default("") // comma separated
+  coverImage  String?
+  authorName  String    @default("Zoqonyx Team")
+  metaTitle   String?
+  metaDesc    String?
+  status      String    @default("draft") // draft | published
+  publishedAt DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model Service {
+  id         String   @id @default(cuid())
+  slug       String   @unique
+  name       String
+  groupName  String   @default("")
+  shortDesc  String   @db.Text
+  content    String   @db.LongText // Markdown body
+  faqs       String   @db.Text @default("") // JSON: [{question, answer}]
+  metaTitle  String?
+  metaDesc   String?
+  isActive   Boolean  @default(true)
+  order      Int      @default(0)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model Testimonial {
+  id          String   @id @default(cuid())
+  name        String
+  role        String   @default("")
+  company     String   @default("")
+  quote       String   @db.Text
+  rating      Int      @default(5)
+  serviceSlug String   @default("")
+  isPublished Boolean  @default(false)
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Lead {
+  id         String   @id @default(cuid())
+  name       String
+  email      String
+  phone      String   @default("")
+  company    String   @default("")
+  service    String   @default("")
+  budget     String   @default("")
+  message    String   @db.Text
+  sourcePage String   @default("")
+  status     String   @default("new") // new | contacted | won | lost
+  notes      String   @db.Text @default("")
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}

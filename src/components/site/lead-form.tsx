@@ -1,0 +1,132 @@
+"use client";
+
+import * as React from "react";
+import { usePathname } from "next/navigation";
+import { Button } from "@/components/ui/button";
+
+export interface ServiceOption {
+  slug: string;
+  name: string;
+}
+
+const BUDGETS = ["Not sure yet", "Under $2,000", "$2,000 – $10,000", "$10,000 – $50,000", "$50,000+"];
+
+const field =
+  "w-full rounded-md border border-[#D5DCE4] bg-white px-3 py-2.5 text-[15px] text-[#14213D] placeholder:text-[#6B7280] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-[#14213D]";
+
+export function LeadForm({ services, defaultService = "" }: { services: ServiceOption[]; defaultService?: string }) {
+  const pathname = usePathname();
+  const [status, setStatus] = React.useState<"idle" | "sending" | "done" | "error">("idle");
+  const [error, setError] = React.useState("");
+
+  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const data = Object.fromEntries(new FormData(form).entries());
+    setStatus("sending");
+    setError("");
+    try {
+      const res = await fetch("/api/leads", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...data, sourcePage: pathname }),
+      });
+      const json = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(json.error || "Something went wrong. Please try again.");
+      setStatus("done");
+      form.reset();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Something went wrong. Please try again.");
+      setStatus("error");
+    }
+  }
+
+  if (status === "done") {
+    return (
+      <div role="status" className="p-6 rounded-md bg-white border border-[#D5DCE4]">
+        <h3 className="text-xl font-bold text-[#14213D]">Thank you, we have your message.</h3>
+        <p className="mt-2 text-[15px] text-[#4A5568]">We will read it and reply to the email address you gave us.</p>
+      </div>
+    );
+  }
+
+  return (
+    <form onSubmit={onSubmit} className="space-y-4" noValidate>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label htmlFor="lf-name" className="block text-sm font-semibold mb-1">
+            Name
+          </label>
+          <input id="lf-name" name="name" required autoComplete="name" className={field} />
+        </div>
+        <div>
+          <label htmlFor="lf-email" className="block text-sm font-semibold mb-1">
+            Email
+          </label>
+          <input id="lf-email" name="email" type="email" required autoComplete="email" className={field} />
+        </div>
+        <div>
+          <label htmlFor="lf-phone" className="block text-sm font-semibold mb-1">
+            Phone or WhatsApp <span className="font-normal text-[#4A5568]">(optional)</span>
+          </label>
+          <input id="lf-phone" name="phone" type="tel" autoComplete="tel" className={field} />
+        </div>
+        <div>
+          <label htmlFor="lf-company" className="block text-sm font-semibold mb-1">
+            Company <span className="font-normal text-[#4A5568]">(optional)</span>
+          </label>
+          <input id="lf-company" name="company" autoComplete="organization" className={field} />
+        </div>
+        <div>
+          <label htmlFor="lf-service" className="block text-sm font-semibold mb-1">
+            What do you need?
+          </label>
+          <select id="lf-service" name="service" defaultValue={defaultService} className={field}>
+            <option value="">Choose a service</option>
+            {services.map((s) => (
+              <option key={s.slug} value={s.name}>
+                {s.name}
+              </option>
+            ))}
+            <option value="Something else">Something else</option>
+          </select>
+        </div>
+        <div>
+          <label htmlFor="lf-budget" className="block text-sm font-semibold mb-1">
+            Budget <span className="font-normal text-[#4A5568]">(optional)</span>
+          </label>
+          <select id="lf-budget" name="budget" defaultValue="" className={field}>
+            <option value="">Choose a range</option>
+            {BUDGETS.map((b) => (
+              <option key={b} value={b}>
+                {b}
+              </option>
+            ))}
+          </select>
+        </div>
+      </div>
+      <div>
+        <label htmlFor="lf-message" className="block text-sm font-semibold mb-1">
+          Tell us about your project
+        </label>
+        <textarea id="lf-message" name="message" required rows={5} minLength={10} className={field} />
+      </div>
+      {/* Honeypot: hidden from people, visible to simple bots. */}
+      <div aria-hidden="true" style={{ position: "absolute", left: "-9999px", height: 0, overflow: "hidden" }}>
+        <label htmlFor="lf-website">Leave this field empty</label>
+        <input id="lf-website" name="website" tabIndex={-1} autoComplete="off" />
+      </div>
+      <div className="flex flex-wrap items-center gap-4">
+        <Button type="submit" disabled={status === "sending"} className="h-11 px-6 text-[15px] bg-[#14213D] hover:bg-[#0F1A31] text-white">
+          {status === "sending" ? "Sending…" : "Send message"}
+        </Button>
+        <p className="text-sm text-[#4A5568]">Or email us at hello@zoqonyx.com</p>
+      </div>
+      {status === "error" && (
+        <p role="alert" className="text-sm text-rose-700">
+          {error}
+        </p>
+      )}
+    </form>
+  );
+}
