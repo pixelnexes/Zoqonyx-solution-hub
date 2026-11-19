@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import { BannerPhoto } from "@/components/kit/motion";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Check } from "lucide-react";
 import { getServices, getTestimonials, groupServices } from "@/lib/content";
 import { ContactSection, TestimonialsSection } from "@/components/site/sections";
 import { Reveal } from "@/components/kit/reveal";
 import { serviceStyle } from "@/components/kit/icons";
+import { CtaBand, PageHero, WorkSteps, groupPhoto } from "@/components/kit/page-kit";
 
 export const revalidate = 300;
 
@@ -42,77 +42,67 @@ export default async function ServicesPage() {
     <div className="zq-page">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
-      <section className="zq-banner">
-        <BannerPhoto src="/photos/coworking.jpg" />
-        <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-14 sm:py-20">
-          <nav aria-label="Breadcrumb" className="text-sm text-white/75">
-            <ol className="flex flex-wrap items-center gap-x-2">
-              <li>
-                <Link href="/" className="hover:underline underline-offset-4">
-                  Home
-                </Link>
-              </li>
-              <li aria-hidden="true">/</li>
-              <li aria-current="page" className="font-semibold text-white">
-                Services
-              </li>
-            </ol>
-          </nav>
-          <h1 className="zq-in-solid zq-display mt-5 text-4xl sm:text-6xl font-extrabold leading-[1.03]">Services</h1>
-          <p className="zq-in mt-4 max-w-2xl text-[18px] leading-relaxed zq-on-dark-muted">
-            We design and build games, apps, websites and business software, and help you get found with digital marketing. Choose a service to see what we deliver and how we work.
-          </p>
-          <a href="#contact" className="zq-btn zq-btn-sun mt-7">
-            Tell us about your project <ArrowRight className="w-4 h-4" aria-hidden="true" />
-          </a>
-        </div>
-      </section>
+      <PageHero
+        crumbs={[{ label: "Home", href: "/" }, { label: "Services" }]}
+        title="Software, apps and growth for your business"
+        intro="We design and build games, apps, websites and business software, and help you get found with digital marketing."
+        actions={
+          <>
+            <a href="#contact" className="zq-btn zq-btn-indigo">
+              Tell us about your project <ArrowRight className="w-4 h-4" aria-hidden="true" />
+            </a>
+            <a href="#all-services" className="zq-btn zq-btn-outline">
+              Browse services
+            </a>
+          </>
+        }
+        photos={["/photos/phone-app.jpg", "/photos/coworking.jpg", "/photos/marketing.jpg"]}
+      />
 
-      <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 zq-section space-y-16">
-        {groups.map(({ hub, children }) => {
+      <div id="all-services" className="scroll-mt-20">
+        {groups.map(({ hub, children }, i) => {
           const { Icon, accent } = serviceStyle(hub.slug);
+          const flip = i % 2 === 1;
           return (
-            <section key={hub.slug} aria-labelledby={`g-${hub.slug}`}>
-              <div className="flex items-start gap-4">
-                <span className={`zq-chip ${accent.chip}`}>
-                  <Icon className="w-6 h-6" aria-hidden="true" />
-                </span>
+            <section key={hub.slug} aria-labelledby={`g-${hub.slug}`} className={i % 2 === 0 ? "bg-white" : "bg-[#F4F5F1]"}>
+              <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 zq-section grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+                <Reveal className={flip ? "lg:order-2" : ""}>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={groupPhoto(hub.group)} alt="" width={960} height={640} loading="lazy" className="h-72 w-full rounded-xl object-cover shadow-[0_24px_60px_-34px_rgba(16,24,26,.5)] sm:h-96" />
+                </Reveal>
                 <div>
-                  <h2 id={`g-${hub.slug}`} className="zq-display text-2xl sm:text-3xl font-extrabold leading-tight">
-                    <Link href={`/services/${hub.slug}`} className="hover:text-[#0A5E44]">
-                      {hub.name}
-                    </Link>
+                  <span className={`zq-chip ${accent.chip}`}>
+                    <Icon className="w-6 h-6" aria-hidden="true" />
+                  </span>
+                  <h2 id={`g-${hub.slug}`} className="zq-display mt-4 text-3xl sm:text-4xl font-extrabold leading-tight">
+                    {hub.name}
                   </h2>
-                  <p className="mt-1.5 text-[16px] leading-relaxed text-[#4F5B57] max-w-2xl">{hub.shortDesc}</p>
+                  <p className="mt-3 text-[17px] leading-relaxed text-[#4F5B57]">{hub.shortDesc}</p>
+                  {children.length > 0 && (
+                    <ul className="mt-6 space-y-3">
+                      {children.map((c) => (
+                        <li key={c.slug} className="flex items-start gap-3">
+                          <Check className="mt-0.5 h-5 w-5 shrink-0" style={{ color: accent.color }} aria-hidden="true" />
+                          <Link href={`/services/${c.slug}`} className="text-[16px] font-semibold hover:text-[#0A5E44] hover:underline underline-offset-4">
+                            {c.name}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                  <Link href={`/services/${hub.slug}`} className="zq-btn zq-btn-outline mt-7 !h-11">
+                    Explore {hub.name.toLowerCase()} <ArrowRight className="w-4 h-4" aria-hidden="true" />
+                  </Link>
                 </div>
               </div>
-              {children.length > 0 ? (
-                <ul className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                  {children.map((c, i) => (
-                    <Reveal as="li" key={c.slug} delay={i * 70}>
-                      <Link href={`/services/${c.slug}`} className="zq-card group flex h-full flex-col p-5" style={{ borderTop: `3px solid ${accent.color}` }}>
-                        <span className="text-[17px] font-bold leading-snug">{c.name}</span>
-                        <span className="mt-1.5 text-sm leading-relaxed text-[#4F5B57] line-clamp-3 flex-1">{c.shortDesc}</span>
-                        <span className="mt-3 inline-flex items-center gap-1 text-sm font-bold" style={{ color: accent.color }}>
-                          Details <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
-                        </span>
-                      </Link>
-                    </Reveal>
-                  ))}
-                </ul>
-              ) : (
-                <p className="mt-5">
-                  <Link href={`/services/${hub.slug}`} className="zq-btn zq-btn-outline !h-11">
-                    See details <ArrowRight className="w-4 h-4" aria-hidden="true" />
-                  </Link>
-                </p>
-              )}
             </section>
           );
         })}
       </div>
 
+      <WorkSteps />
       <TestimonialsSection items={testimonials} />
+      <CtaBand heading="Ready to start your project?" text="Send us a few lines about what you want to build. We reply with questions and a first step." />
       <ContactSection services={options} />
     </div>
   );

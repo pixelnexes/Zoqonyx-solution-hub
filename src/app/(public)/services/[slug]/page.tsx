@@ -1,22 +1,33 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowRight, ChevronDown, Mail } from "lucide-react";
+import { ArrowRight, Check, Mail } from "lucide-react";
 import { getService, getServices, getTestimonials } from "@/lib/content";
 import { renderMarkdown } from "@/lib/markdown";
 import { ContactSection, TestimonialsSection } from "@/components/site/sections";
-import { Reveal } from "@/components/kit/reveal";
 import { serviceStyle } from "@/components/kit/icons";
+import { CtaBand, FaqBlock, PageHero, WorkSteps, groupPhoto } from "@/components/kit/page-kit";
+import { TechLogo } from "@/components/kit/tech-logo";
+import LogoLoop from "@/components/reactbits/LogoLoop";
 
 export const revalidate = 300;
 
-const BANNER_PHOTO: Record<string, string> = {
-  "Game Development": "game",
-  "Digital Marketing": "marketing",
-  "Staff Augmentation": "team",
-  "ERP & CRM Development": "marketing",
-  "AI & NLP Development": "developer",
+const GROUP_TECH: Record<string, string[]> = {
+  "Game Development": ["Unity", "Unreal Engine", "Godot", "Solidity", "Python"],
+  "App Development": ["Kotlin", "Swift", "Flutter", "React Native", "Node.js"],
+  "Website Development": ["React", "Next.js", "TypeScript", "Tailwind CSS", "Node.js", "Laravel"],
+  "Custom Software": ["Python", "PostgreSQL", "Docker", "Node.js", "Laravel"],
+  "AI & NLP Development": ["Python", "spaCy", "Docker", "PostgreSQL"],
+  "NFT Development": ["Solidity", "React", "Node.js"],
+  "Staff Augmentation": ["React", "Node.js", "Python", "Kotlin", "Swift", "Laravel"],
+  "ERP & CRM Development": ["PostgreSQL", "MySQL", "Laravel", "Docker", "Node.js"],
 };
+
+const PROMISES = [
+  { t: "A clear scope", d: "You get a written plan with stages and a fixed first step before any work starts." },
+  { t: "Weekly progress", d: "Working builds you can open and comment on, not status reports." },
+  { t: "You own it", d: "Code, designs and accounts belong to you from the first payment." },
+];
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -47,6 +58,8 @@ export default async function ServicePage({ params }: Props) {
   const related = service.related.map((r) => all.find((s) => s.slug === r)).filter(Boolean) as typeof all;
   const options = all.filter((s) => !s.isHub || s.slug === "nft-development").map((s) => ({ slug: s.slug, name: s.name }));
   const { Icon, accent } = serviceStyle(service.group || service.slug);
+  const tech = GROUP_TECH[service.group] || [];
+  const mainPhoto = groupPhoto(service.group);
 
   const url = `https://zoqonyx.com/services/${service.slug}`;
   const jsonLd = [
@@ -80,115 +93,75 @@ export default async function ServicePage({ params }: Props) {
       : []),
   ];
 
+  const crumbs = [
+    { label: "Home", href: "/" },
+    { label: "Services", href: "/services" },
+    ...(hub && hub.slug !== service.slug ? [{ label: hub.name, href: `/services/${hub.slug}` }] : []),
+    { label: service.name },
+  ];
+
   return (
     <div className="zq-page">
       {jsonLd.map((d, i) => (
         <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(d) }} />
       ))}
 
-      {/* Banner */}
-      <section className="zq-banner">
-        <img src={`/photos/${BANNER_PHOTO[service.group] || "developer"}.jpg`} alt="" width={960} height={640} className="hidden xl:block absolute right-0 top-0 h-full w-[30%] object-cover opacity-90" />
-        <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
-          <nav aria-label="Breadcrumb" className="text-sm text-white/75">
-            <ol className="flex flex-wrap items-center gap-x-2 gap-y-1">
-              <li>
-                <Link href="/" className="hover:underline underline-offset-4">
-                  Home
-                </Link>
-              </li>
-              <li aria-hidden="true">/</li>
-              <li>
-                <Link href="/services" className="hover:underline underline-offset-4">
-                  Services
-                </Link>
-              </li>
-              {hub && hub.slug !== service.slug && (
-                <>
-                  <li aria-hidden="true">/</li>
-                  <li>
-                    <Link href={`/services/${hub.slug}`} className="hover:underline underline-offset-4">
-                      {hub.name}
-                    </Link>
-                  </li>
-                </>
-              )}
-              <li aria-hidden="true">/</li>
-              <li aria-current="page" className="font-semibold text-white">
-                {service.name}
-              </li>
-            </ol>
-          </nav>
-          <div className="mt-6 flex flex-col sm:flex-row sm:items-start gap-5">
-            <span className={`zq-chip ${accent.chip} !w-16 !h-16 !rounded-2xl zq-float`}>
-              <Icon className="w-8 h-8" aria-hidden="true" />
-            </span>
-            <div className="max-w-3xl">
-              <h1 className="zq-in-solid zq-display text-4xl sm:text-5xl font-extrabold leading-[1.05]">{service.name}</h1>
-              <p className="zq-in mt-4 text-[18px] leading-relaxed zq-on-dark-muted">{service.shortDesc}</p>
-              <div className="zq-in mt-7 flex flex-wrap gap-3" style={{ ["--d" as string]: "120ms" }}>
-                <a href="#contact" className="zq-btn zq-btn-sun">
-                  Get a quote <ArrowRight className="w-4 h-4" aria-hidden="true" />
-                </a>
-                <Link href="/services" className="zq-btn zq-btn-ghost">
-                  All services
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        crumbs={crumbs}
+        title={service.name}
+        intro={service.shortDesc}
+        actions={
+          <>
+            <a href="#contact" className="zq-btn zq-btn-indigo">
+              Get a quote <ArrowRight className="w-4 h-4" aria-hidden="true" />
+            </a>
+            <Link href="/services" className="zq-btn zq-btn-outline">
+              All services
+            </Link>
+          </>
+        }
+        photos={["/photos/workspace.jpg", mainPhoto, "/photos/team.jpg"]}
+      />
 
-      {/* Body */}
-      <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 zq-section grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_320px] gap-10 items-start">
-        <div className="space-y-12 min-w-0">
-          <article className="zq-card p-6 sm:p-9 zq-prose">{renderMarkdown(service.content)}</article>
+      {tech.length > 0 && (
+        <section aria-label="Technologies" className="zq-band-white border-b border-[#DFE3DA] py-6">
+          <LogoLoop
+            logos={tech.map((t) => ({ node: <span className="zq-pill"><TechLogo name={t} /></span>, title: t }))}
+            speed={45}
+            gap={16}
+            logoHeight={44}
+            pauseOnHover
+            fadeOut
+            fadeOutColor="#FFFFFF"
+            ariaLabel={`Technologies for ${service.name}`}
+          />
+        </section>
+      )}
 
-          {children.length > 0 && (
-            <section aria-labelledby="children-heading">
-              <h2 id="children-heading" className="zq-display text-2xl sm:text-3xl font-extrabold">
-                {service.name} services
-              </h2>
-              <ul className="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {children.map((c) => (
-                  <li key={c.slug}>
-                    <Link href={`/services/${c.slug}`} className="zq-card group flex h-full flex-col p-5" style={{ borderTop: `3px solid ${accent.color}` }}>
-                      <span className="text-[17px] font-bold">{c.name}</span>
-                      <span className="mt-1.5 text-sm leading-relaxed text-[#4F5B57] line-clamp-3 flex-1">{c.shortDesc}</span>
-                      <span className="mt-3 inline-flex items-center gap-1 text-sm font-bold" style={{ color: accent.color }}>
-                        Details <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
-                      </span>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </section>
-          )}
+      <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 zq-section grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,1fr)_330px] items-start">
+        <article className="min-w-0">
+          <div className="zq-prose text-[17px] leading-[1.75]">{renderMarkdown(service.content)}</div>
 
-          {service.faqs.length > 0 && (
-            <section aria-labelledby="faq-heading">
-              <h2 id="faq-heading" className="zq-display text-2xl sm:text-3xl font-extrabold">
-                Questions about {service.name}
-              </h2>
-              <div className="mt-5 space-y-3">
-                {service.faqs.map((f, i) => (
-                  <details key={i} className="zq-card group p-0">
-                    <summary className="flex cursor-pointer list-none items-center justify-between gap-4 p-5 text-[17px] font-bold [&::-webkit-details-marker]:hidden">
-                      {f.question}
-                      <ChevronDown className="w-5 h-5 shrink-0 text-[#0E7C5A] transition-transform group-open:rotate-180" aria-hidden="true" />
-                    </summary>
-                    <p className="px-5 pb-5 text-[16px] leading-relaxed text-[#4F5B57]">{f.answer}</p>
-                  </details>
-                ))}
-              </div>
-            </section>
-          )}
-        </div>
+          <ul className="mt-12 grid gap-4 sm:grid-cols-3">
+            {PROMISES.map((p) => (
+              <li key={p.t} className="rounded-xl border border-[#DFE3DA] bg-white p-5">
+                <span className={`zq-chip zq-chip-sm ${accent.chip}`}>
+                  <Check className="w-[18px] h-[18px]" aria-hidden="true" />
+                </span>
+                <h3 className="mt-3 text-[17px] font-bold">{p.t}</h3>
+                <p className="mt-1.5 text-[15px] leading-relaxed text-[#4F5B57]">{p.d}</p>
+              </li>
+            ))}
+          </ul>
+        </article>
 
         <aside className="space-y-5 lg:sticky lg:top-24">
-          <div className="rounded-[18px] p-6 text-white" style={{ background: "#16231F" }}>
-            <h2 className="zq-display text-xl font-extrabold leading-tight">Talk to us about {service.name}</h2>
-            <p className="mt-2 text-[15px] leading-relaxed zq-on-dark-muted">Tell us what you need and we will reply with questions and next steps.</p>
+          <div className="rounded-xl bg-[#10181A] p-6 text-white">
+            <span className={`zq-chip ${accent.chip}`}>
+              <Icon className="w-6 h-6" aria-hidden="true" />
+            </span>
+            <h2 className="zq-display mt-4 text-xl font-extrabold leading-tight">Talk to us about {service.name}</h2>
+            <p className="mt-2 text-[15px] leading-relaxed zq-on-dark-muted">Tell us what you need and we reply with questions and next steps.</p>
             <a href="#contact" className="zq-btn zq-btn-sun mt-5 w-full">
               Get a quote
             </a>
@@ -196,14 +169,14 @@ export default async function ServicePage({ params }: Props) {
               <Mail className="w-4 h-4" aria-hidden="true" /> hello@zoqonyx.com
             </a>
           </div>
-          {related.length > 0 && (
+          {children.length > 0 && (
             <div className="zq-card p-5">
-              <h2 className="text-base font-bold">Related services</h2>
+              <h2 className="text-base font-bold">In this area</h2>
               <ul className="mt-3 space-y-1">
-                {related.map((r) => (
-                  <li key={r.slug}>
-                    <Link href={`/services/${r.slug}`} className="flex items-center justify-between gap-2 rounded-lg px-2 py-2 -mx-2 text-[15px] font-semibold hover:bg-[#F4F5F1] hover:text-[#0A5E44]">
-                      {r.name} <ArrowRight className="w-4 h-4 shrink-0" aria-hidden="true" />
+                {children.map((c) => (
+                  <li key={c.slug}>
+                    <Link href={`/services/${c.slug}`} className="flex items-center justify-between gap-2 rounded-lg px-2 py-2 -mx-2 text-[15px] font-semibold hover:bg-[#F4F5F1] hover:text-[#0A5E44]">
+                      {c.name} <ArrowRight className="w-4 h-4 shrink-0" aria-hidden="true" />
                     </Link>
                   </li>
                 ))}
@@ -213,14 +186,43 @@ export default async function ServicePage({ params }: Props) {
         </aside>
       </div>
 
+      <WorkSteps />
+      <FaqBlock heading={`Questions about ${service.name}`} items={service.faqs} />
+
+      {related.length > 0 && (
+        <section aria-labelledby="related-heading" className="zq-band-tint zq-section">
+          <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+            <h2 id="related-heading" className="zq-display zq-h2">
+              Related services
+            </h2>
+            <ul className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {related.map((r) => (
+                <li key={r.slug}>
+                  <Link href={`/services/${r.slug}`} className="zq-card zq-card-hover group flex h-full flex-col overflow-hidden">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={groupPhoto(r.group)} alt="" width={640} height={427} loading="lazy" className="h-40 w-full object-cover" />
+                    <span className="flex flex-1 flex-col p-5">
+                      <span className="text-[18px] font-bold group-hover:text-[#0A5E44]">{r.name}</span>
+                      <span className="mt-1.5 flex-1 text-[15px] leading-relaxed text-[#4F5B57] line-clamp-3">{r.shortDesc}</span>
+                      <span className="mt-3 inline-flex items-center gap-1 text-sm font-bold text-[#0A5E44]">
+                        Details <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
+                      </span>
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+      )}
+
       <TestimonialsSection items={testimonials} />
-      <Reveal>
-        <ContactSection
-          services={options}
-          defaultService={service.isHub && service.slug !== "nft-development" ? "" : service.name}
-          heading={`Talk to us about ${service.name}`}
-        />
-      </Reveal>
+      <CtaBand heading={`Start your ${service.name.toLowerCase()} project`} text="Share your idea, budget range and timeline. We reply with questions and a first step." photo={mainPhoto} />
+      <ContactSection
+        services={options}
+        defaultService={service.isHub && service.slug !== "nft-development" ? "" : service.name}
+        heading={`Talk to us about ${service.name}`}
+      />
     </div>
   );
 }

@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { BannerPhoto } from "@/components/kit/motion";
+import { PageHero } from "@/components/kit/page-kit";
 import { Send, CheckCircle2, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -53,18 +53,10 @@ export default function ContactPage() {
 
   return (
     <div className="zq-page">
-      <section className="zq-banner">
-        <BannerPhoto src="/photos/handshake.jpg" />
-        <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-14 sm:py-20">
-          <h1 className="zq-in-solid zq-display text-4xl sm:text-6xl font-extrabold leading-[1.03]">Contact Zoqonyx</h1>
-          <p className="zq-in mt-4 max-w-2xl text-[18px] leading-relaxed zq-on-dark-muted">
-            Need a specific tool, have feedback, or want to report an issue? Send us a message and we will reply by email.
-          </p>
-        </div>
-      </section>
+      <PageHero crumbs={[{ label: "Home", href: "/" }, { label: "Contact" }]} title="Contact Zoqonyx" intro="Need a specific tool, have feedback, or want to report an issue? Send us a message and we will reply by email." />
       <div className="container mx-auto max-w-3xl px-4 zq-section">
       {/* Form Container */}
-      <div className="relative zq-card p-6 sm:p-10 -mt-20">
+      <div className="relative zq-card p-6 sm:p-10 -mt-6">
 
         {status === "success" ? (
           <div className="py-12 text-center space-y-4 animate-in fade-in zoom-in duration-300">

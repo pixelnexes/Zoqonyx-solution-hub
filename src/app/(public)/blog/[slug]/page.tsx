@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
-import { BannerPhoto } from "@/components/kit/motion";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getPost, getPosts, getServices } from "@/lib/content";
 import { extractHeadings, readingMinutes, renderMarkdown } from "@/lib/markdown";
 import { ContactSection } from "@/components/site/sections";
-import { CoverArt } from "@/components/kit/cover-art";
+import { photoFor } from "@/components/kit/page-kit";
 
 export const revalidate = 300;
 
@@ -86,11 +85,10 @@ export default async function BlogPostPage({ params }: Props) {
         <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(d) }} />
       ))}
 
-      <section className="zq-banner">
-        <BannerPhoto src="/photos/keyboard.jpg" />
-        <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
-          <nav aria-label="Breadcrumb" className="text-sm text-white/75">
-            <ol className="flex flex-wrap items-center gap-x-2 gap-y-1">
+      <section className="zq-hero-light">
+        <div className="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 pt-8 sm:pt-10 pb-12 text-center">
+          <nav aria-label="Breadcrumb" className="text-sm text-[#4F5B57]">
+            <ol className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1">
               <li>
                 <Link href="/" className="hover:underline underline-offset-4">
                   Home
@@ -103,45 +101,55 @@ export default async function BlogPostPage({ params }: Props) {
                 </Link>
               </li>
               <li aria-hidden="true">/</li>
-              <li aria-current="page" className="font-semibold text-white truncate max-w-[14rem] sm:max-w-md">
+              <li aria-current="page" className="max-w-[14rem] truncate font-semibold text-[#10181A] sm:max-w-md">
                 {post.title}
               </li>
             </ol>
           </nav>
-          <p className="mt-6 inline-flex rounded-full bg-white/15 px-3 py-1 text-sm font-semibold">{post.category}</p>
-          <h1 className="zq-in-solid zq-display mt-3 max-w-3xl text-3xl sm:text-5xl font-extrabold leading-[1.08]">{post.title}</h1>
-          <p className="zq-in mt-4 max-w-2xl text-[18px] leading-relaxed zq-on-dark-muted">{post.excerpt}</p>
-          <p className="mt-5 text-sm text-white/80">
-            {fmt(post.publishedAt)} · {readingMinutes(post.content)} min read · {post.authorName}
+          <p className="mt-6 inline-flex rounded-md bg-[#0E7C5A] px-3 py-1 text-sm font-semibold text-white">{post.category}</p>
+          <h1 className="zq-in-solid zq-display mt-4 text-3xl sm:text-5xl font-extrabold leading-[1.08] text-[#10181A]">{post.title}</h1>
+          <p className="zq-in mx-auto mt-4 max-w-2xl text-[18px] leading-relaxed text-[#4F5B57]">{post.excerpt}</p>
+          <p className="mt-5 text-sm text-[#4F5B57]">
+            By {post.authorName} · {fmt(post.publishedAt)} · {readingMinutes(post.content)} min read
           </p>
         </div>
       </section>
 
-      <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 zq-section grid grid-cols-1 lg:grid-cols-[minmax(0,46rem)_1fr] gap-12">
-        <article>
-          <CoverArt seed={post.slug} className="w-full h-48 sm:h-64 rounded-2xl object-cover mb-8" />
-          <div className="zq-prose text-[17px] leading-[1.75]">{renderMarkdown(post.content)}</div>
-          <p className="mt-10 pt-5 border-t border-[#DFE3DA] text-sm text-[#4F5B57]">
+      <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 pb-16 grid grid-cols-1 gap-12 lg:grid-cols-[minmax(0,46rem)_1fr]">
+        <article className="-mt-2">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={photoFor(post.slug)} alt="" width={960} height={640} fetchPriority="high" className="h-56 w-full rounded-xl object-cover shadow-[0_24px_60px_-34px_rgba(16,24,26,.5)] sm:h-80" />
+          <div className="zq-prose mt-8 text-[17px] leading-[1.75]">{renderMarkdown(post.content)}</div>
+          <p className="mt-10 border-t border-[#DFE3DA] pt-5 text-sm text-[#4F5B57]">
             Written by {post.authorName}. Last updated {fmt(post.updatedAt)}.
           </p>
         </article>
 
-        {headings.length >= 3 && (
-          <aside className="hidden lg:block">
-            <nav aria-label="On this page" className="sticky top-24 text-[15px] zq-card p-5">
-              <p className="font-bold mb-2">On this page</p>
-              <ul className="space-y-1.5 border-l-2 border-[#DFE3DA]">
-                {headings.map((h) => (
-                  <li key={h.id}>
-                    <a href={`#${h.id}`} className="block pl-3 text-[#4F5B57] hover:text-[#0A5E44] hover:underline underline-offset-4">
-                      {h.text}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-          </aside>
-        )}
+        <aside className="hidden lg:block pt-2">
+          <div className="sticky top-24 space-y-5">
+            {headings.length >= 3 && (
+              <nav aria-label="On this page" className="zq-card p-5 text-[15px]">
+                <p className="mb-2 font-bold">On this page</p>
+                <ul className="space-y-1.5 border-l-2 border-[#DFE3DA]">
+                  {headings.map((h) => (
+                    <li key={h.id}>
+                      <a href={`#${h.id}`} className="block pl-3 text-[#4F5B57] hover:text-[#0A5E44] hover:underline underline-offset-4">
+                        {h.text}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+            )}
+            <div className="rounded-xl bg-[#10181A] p-5 text-white">
+              <p className="zq-display text-lg font-extrabold leading-snug">Need help with this?</p>
+              <p className="mt-2 text-[15px] zq-on-dark-muted">Tell us what you are working on and we reply with next steps.</p>
+              <a href="#contact" className="zq-btn zq-btn-sun mt-4 w-full">
+                Get a quote
+              </a>
+            </div>
+          </div>
+        </aside>
       </div>
 
       {related.length > 0 && (
@@ -150,14 +158,15 @@ export default async function BlogPostPage({ params }: Props) {
             <h2 id="more-heading" className="zq-display zq-h2">
               More from the blog
             </h2>
-            <ul className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+            <ul className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-3">
               {related.map((r) => (
                 <li key={r.slug}>
                   <Link href={`/blog/${r.slug}`} className="zq-card zq-card-hover group flex h-full flex-col overflow-hidden">
-                    <CoverArt seed={r.slug} className="w-full h-36 object-cover" />
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={photoFor(r.slug)} alt="" width={640} height={427} loading="lazy" className="h-40 w-full object-cover" />
                     <span className="p-5">
                       <span className="block text-[17px] font-bold leading-snug group-hover:text-[#0A5E44]">{r.title}</span>
-                      <span className="block mt-1.5 text-sm text-[#4F5B57] line-clamp-2">{r.excerpt}</span>
+                      <span className="mt-1.5 block text-sm text-[#4F5B57] line-clamp-2">{r.excerpt}</span>
                     </span>
                   </Link>
                 </li>

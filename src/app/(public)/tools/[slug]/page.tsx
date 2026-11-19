@@ -285,9 +285,9 @@ export default async function ToolPage({ params }: ToolPageProps) {
       />
 
       <div className="zq-page">
-        <section className="zq-banner">
+        <section className="zq-hero-light">
           <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
-            <nav aria-label="Breadcrumb" className="text-sm text-white/75">
+            <nav aria-label="Breadcrumb" className="text-sm text-[#4F5B57]">
               <ol className="flex flex-wrap items-center gap-x-2 gap-y-1">
                 <li>
                   <Link href="/" className="hover:underline underline-offset-4">
@@ -301,7 +301,7 @@ export default async function ToolPage({ params }: ToolPageProps) {
                   </Link>
                 </li>
                 <li aria-hidden="true">/</li>
-                <li aria-current="page" className="font-semibold text-white">
+                <li aria-current="page" className="font-semibold text-[#10181A]">
                   {tool.name}
                 </li>
               </ol>
@@ -311,9 +311,9 @@ export default async function ToolPage({ params }: ToolPageProps) {
                 <ToolIcon name={tool.icon} className="w-8 h-8" strokeWidth={2} />
               </span>
               <div className="max-w-3xl">
-                <h1 className="zq-in-solid zq-display text-3xl sm:text-5xl font-extrabold leading-[1.06]">{tool.name}</h1>
-                <p className="zq-in mt-3 text-[18px] leading-relaxed zq-on-dark-muted">{tool.description}</p>
-                <p className="mt-3 inline-flex rounded-full bg-white/15 px-3 py-1 text-sm font-semibold">Free to use. No sign-up.</p>
+                <h1 className="zq-in-solid zq-display text-3xl sm:text-5xl font-extrabold leading-[1.06] text-[#10181A]">{tool.name}</h1>
+                <p className="zq-in mt-3 text-[18px] leading-relaxed text-[#4F5B57]">{tool.description}</p>
+                <p className="mt-3 inline-flex rounded-full border border-[#10181A]/15 bg-white/80 px-3 py-1 text-sm font-semibold">Free to use. No sign-up.</p>
               </div>
             </div>
           </div>
@@ -321,7 +321,7 @@ export default async function ToolPage({ params }: ToolPageProps) {
 
         <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-10 space-y-16">
           {/* The tool itself */}
-          <div className="p-4 sm:p-6 rounded-[18px] bg-white border border-[#DFE3DA] shadow-[0_20px_50px_-28px_rgba(30,40,120,.35)] -mt-16 sm:-mt-20 relative">
+          <div className="p-4 sm:p-6 rounded-[18px] bg-white border border-[#DFE3DA] shadow-[0_20px_50px_-28px_rgba(30,40,120,.35)] -mt-6 relative">
             <ToolRenderer slug={tool.slug} />
           </div>
 

@@ -1,5 +1,5 @@
 import { prisma } from "@/lib/prisma";
-import { BannerPhoto } from "@/components/kit/motion";
+import { PageHero } from "@/components/kit/page-kit";
 import type { Metadata } from "next";
 import { ShieldCheck, Zap, Lock, Cpu, Globe, ArrowRight } from "lucide-react";
 import Link from "next/link";
@@ -74,19 +74,10 @@ export default async function AboutPage() {
 
   return (
     <div className="zq-page">
-      <section className="zq-banner">
-        <BannerPhoto src="/photos/team.jpg" />
-        <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-14 sm:py-20">
-          <p className="inline-flex rounded-full bg-white/15 px-3 py-1 text-sm font-semibold">Built by Newix Tech Solutions</p>
-          <h1 className="zq-in-solid zq-display mt-4 max-w-3xl text-4xl sm:text-6xl font-extrabold leading-[1.03]">{title}</h1>
-          <p className="zq-in mt-4 max-w-2xl text-[18px] leading-relaxed zq-on-dark-muted">
-            A suite of free utilities for developers, designers, creators and teams that run in your browser, with no remote data collection.
-          </p>
-        </div>
-      </section>
+      <PageHero crumbs={[{ label: "Home", href: "/" }, { label: "About" }]} title={title} intro="A suite of free utilities for developers, designers, creators and teams that run in your browser, with no remote data collection." badge="Built by Newix Tech Solutions" photos={["/photos/workspace.jpg", "/photos/team.jpg", "/photos/coworking.jpg"]} />
 
       <div className="container mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 zq-section space-y-10">
-        <ul className="grid grid-cols-2 lg:grid-cols-4 gap-4 -mt-16 relative">
+        <ul className="grid grid-cols-2 lg:grid-cols-4 gap-4 -mt-6 relative">
           {stats.map((x) => (
             <li key={x.l} className="zq-card p-5">
               <span className={`zq-chip zq-chip-sm ${x.g}`} aria-hidden="true">

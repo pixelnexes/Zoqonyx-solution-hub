@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { BannerPhoto } from "@/components/kit/motion";
+import { PageHero } from "@/components/kit/page-kit";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, ChevronDown } from "lucide-react";
@@ -239,42 +239,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
       />
 
       <div className="zq-page">
-        <section className="zq-banner">
-        <BannerPhoto src="/photos/code2.jpg" />
-          <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
-            <nav aria-label="Breadcrumb" className="text-sm text-white/75">
-              <ol className="flex flex-wrap items-center gap-x-2 gap-y-1">
-                <li>
-                  <Link href="/" className="hover:underline underline-offset-4">
-                    Home
-                  </Link>
-                </li>
-                <li aria-hidden="true">/</li>
-                <li>
-                  <Link href="/tools" className="hover:underline underline-offset-4">
-                    All tools
-                  </Link>
-                </li>
-                <li aria-hidden="true">/</li>
-                <li aria-current="page" className="font-semibold text-white">
-                  {category.name}
-                </li>
-              </ol>
-            </nav>
-            <div className="mt-6 flex flex-col sm:flex-row sm:items-start gap-5">
-              <span className={`zq-chip ${catAccent.chip} !w-16 !h-16 !rounded-2xl zq-float`}>
-                <CatIcon className="w-8 h-8" aria-hidden="true" />
-              </span>
-              <div className="max-w-3xl">
-                <h1 className="zq-in-solid zq-display text-4xl sm:text-5xl font-extrabold leading-[1.05]">{category.name}</h1>
-                <p className="zq-in mt-4 text-[18px] leading-relaxed zq-on-dark-muted">{category.description}</p>
-                <p className="mt-3 text-sm text-white/80">
-                  {displayedTools.length} {displayedTools.length === 1 ? "tool" : "tools"}. Free to use, no sign-up.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
+        <PageHero crumbs={[{ label: "Home", href: "/" }, { label: "All tools", href: "/tools" }, { label: category.name }]} title={category.name} intro={category.description} />
 
         <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 zq-section space-y-16">
           <section aria-labelledby="tools-heading">

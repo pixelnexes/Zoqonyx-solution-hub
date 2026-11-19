@@ -1,5 +1,5 @@
 import { prisma } from "@/lib/prisma";
-import { BannerPhoto } from "@/components/kit/motion";
+import { PageHero } from "@/components/kit/page-kit";
 import type { Metadata } from "next";
 import { CheckCircle2, Shield } from "lucide-react";
 import { MarkdownRenderer } from "@/components/common/markdown-renderer";
@@ -63,14 +63,7 @@ export default async function TermsPage() {
 
   return (
     <div className="zq-page">
-      <section className="zq-banner">
-        <BannerPhoto src="/photos/workspace.jpg" />
-        <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-14 sm:py-20">
-          <p className="inline-flex rounded-full bg-white/15 px-3 py-1 text-sm font-semibold">Fair and transparent usage</p>
-          <h1 className="zq-in-solid zq-display mt-4 max-w-3xl text-4xl sm:text-6xl font-extrabold leading-[1.03]">{title}</h1>
-          <p className="zq-in mt-4 max-w-2xl text-[18px] leading-relaxed zq-on-dark-muted">Clear terms that allow personal and commercial use of everything you create with the tools.</p>
-        </div>
-      </section>
+      <PageHero crumbs={[{ label: "Home", href: "/" }, { label: "Terms" }]} title={title} intro="Clear terms that allow personal and commercial use of everything you create with the tools." />
       <div className="container mx-auto max-w-4xl px-4 sm:px-6 zq-section space-y-8">
         <div className="zq-card p-6 sm:p-10">
           <MarkdownRenderer content={content} />

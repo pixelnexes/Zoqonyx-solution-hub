@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { BannerPhoto } from "@/components/kit/motion";
+import { PageHero } from "@/components/kit/page-kit";
 import Link from "next/link";
 import { ChevronDown } from "lucide-react";
 import { prisma } from "@/lib/prisma";
@@ -170,28 +170,7 @@ export default async function ToolsPage() {
       />
 
       <div className="zq-page">
-        <section className="zq-banner">
-        <BannerPhoto src="/photos/code2.jpg" />
-          <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-14 sm:py-20">
-            <nav aria-label="Breadcrumb" className="text-sm text-white/75">
-              <ol className="flex flex-wrap items-center gap-x-2">
-                <li>
-                  <Link href="/" className="hover:underline underline-offset-4">
-                    Home
-                  </Link>
-                </li>
-                <li aria-hidden="true">/</li>
-                <li aria-current="page" className="font-semibold text-white">
-                  All tools
-                </li>
-              </ol>
-            </nav>
-            <h1 className="zq-in-solid zq-display mt-5 text-4xl sm:text-6xl font-extrabold leading-[1.03]">All free tools</h1>
-            <p className="zq-in mt-4 max-w-2xl text-[18px] leading-relaxed zq-on-dark-muted">
-              Every tool on Zoqonyx, by category. Search by name or by what you want to do. No sign-up needed.
-            </p>
-          </div>
-        </section>
+        <PageHero crumbs={[{ label: "Home", href: "/" }, { label: "All tools" }]} title="All free tools" intro="Every tool on Zoqonyx, by category. Search by name or by what you want to do. No sign-up needed." photos={["/photos/code2.jpg", "/photos/developer.jpg", "/photos/keyboard.jpg"]} />
 
         <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 zq-section space-y-16">
           <ToolDrawer tools={tools} perCategory={Number.POSITIVE_INFINITY} detailed />
