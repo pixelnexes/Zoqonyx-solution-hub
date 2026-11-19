@@ -57,7 +57,7 @@ export default async function ServicesPage() {
             </a>
           </>
         }
-        image="/photos/u-collab.jpg"
+        image="/photos/u-collab.webp"
       />
 
       <div id="all-services" className="scroll-mt-20">

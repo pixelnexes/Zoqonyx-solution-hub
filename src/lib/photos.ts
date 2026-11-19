@@ -29,11 +29,11 @@ export const PHOTOS: Record<string, string> = {
 };
 
 export function photoSrc(key: string) {
-  return `/photos/${key}.jpg`;
+  return `/photos/${key}.webp`;
 }
 
 export function photoAlt(keyOrSrc: string) {
-  const key = keyOrSrc.replace(/^\/photos\//, "").replace(/\.jpg$/, "");
+  const key = keyOrSrc.replace(/^\/photos\//, "").replace(/\.(jpg|webp)$/, "");
   return PHOTOS[key] || "Zoqonyx team at work";
 }
 

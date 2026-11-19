@@ -170,7 +170,7 @@ export default async function ToolsPage() {
       />
 
       <div className="zq-page">
-        <PageHero crumbs={[{ label: "Home", href: "/" }, { label: "All tools" }]} title="All free tools" intro="Every tool on Zoqonyx, by category. Search by name or by what you want to do. No sign-up needed." image="/photos/u-dev.jpg" />
+        <PageHero crumbs={[{ label: "Home", href: "/" }, { label: "All tools" }]} title="All free tools" intro="Every tool on Zoqonyx, by category. Search by name or by what you want to do. No sign-up needed." image="/photos/u-dev.webp" />
 
         <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 zq-section space-y-16">
           <ToolDrawer tools={tools} perCategory={Number.POSITIVE_INFINITY} detailed />

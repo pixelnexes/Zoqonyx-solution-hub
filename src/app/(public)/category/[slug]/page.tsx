@@ -239,7 +239,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
       />
 
       <div className="zq-page">
-        <PageHero crumbs={[{ label: "Home", href: "/" }, { label: "All tools", href: "/tools" }, { label: category.name }]} title={category.name} intro={category.description} image="/photos/u-laptop.jpg" />
+        <PageHero crumbs={[{ label: "Home", href: "/" }, { label: "All tools", href: "/tools" }, { label: category.name }]} title={category.name} intro={category.description} image="/photos/u-laptop.webp" />
 
         <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 zq-section space-y-16">
           <section aria-labelledby="tools-heading">

@@ -3,34 +3,6 @@ import Link from "next/link";
 import { ArrowRight, ChevronDown } from "lucide-react";
 import { photoAlt } from "@/lib/photos";
 
-/* Real CC0 photographs in /public/photos. Picked by a stable hash so a page always shows the same picture. */
-export const PHOTO_KEYS = ["developer", "team", "marketing", "handshake", "game", "workspace", "city", "code2", "coworking", "keyboard", "phone-app"] as const;
-
-export function photoFor(seed: string, offset = 0) {
-  let h = 2166136261;
-  for (let i = 0; i < seed.length; i++) {
-    h ^= seed.charCodeAt(i);
-    h = Math.imul(h, 16777619);
-  }
-  return `/photos/${PHOTO_KEYS[(Math.abs(h) + offset) % PHOTO_KEYS.length]}.jpg`;
-}
-
-export const GROUP_PHOTO: Record<string, string> = {
-  "Game Development": "game",
-  "App Development": "phone-app",
-  "Website Development": "code2",
-  "Custom Software": "developer",
-  "Digital Marketing": "marketing",
-  "AI & NLP Development": "keyboard",
-  "NFT Development": "city",
-  "Staff Augmentation": "team",
-  "ERP & CRM Development": "workspace",
-};
-
-export function groupPhoto(group: string) {
-  return `/photos/${GROUP_PHOTO[group] || "developer"}.jpg`;
-}
-
 export type Crumb = { label: string; href?: string };
 
 /** Light hero for inner pages: breadcrumb, headline, intro and actions on the left, a real photo on the right. */

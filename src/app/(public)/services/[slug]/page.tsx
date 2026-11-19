@@ -114,7 +114,7 @@ export default async function ServicePage({ params }: Props) {
             </Link>
           </>
         }
-        image={`/photos/${groupPhotoKey(service.group)}.jpg`}
+        image={`/photos/${groupPhotoKey(service.group)}.webp`}
       />
 
       {tech.length > 0 && (

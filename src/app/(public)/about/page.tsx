@@ -1,4 +1,5 @@
 import { prisma } from "@/lib/prisma";
+import { photoAlt } from "@/lib/photos";
 import { PageHero } from "@/components/kit/page-kit";
 import type { Metadata } from "next";
 import { ShieldCheck, Zap, Lock, Cpu, Globe, ArrowRight } from "lucide-react";
@@ -74,7 +75,7 @@ export default async function AboutPage() {
 
   return (
     <div className="zq-page">
-      <PageHero crumbs={[{ label: "Home", href: "/" }, { label: "About" }]} title={title} intro="A suite of free utilities for developers, designers, creators and teams that run in your browser, with no remote data collection." badge="Built by Newix Tech Solutions" image="/photos/u-office2.jpg" />
+      <PageHero crumbs={[{ label: "Home", href: "/" }, { label: "About" }]} title={title} intro="A suite of free utilities for developers, designers, creators and teams that run in your browser, with no remote data collection." badge="Built by Newix Tech Solutions" image="/photos/u-office2.webp" />
 
       <div className="container mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 zq-section space-y-10">
         <ul className="grid grid-cols-2 lg:grid-cols-4 gap-4 -mt-6 relative">
@@ -92,7 +93,7 @@ export default async function AboutPage() {
         <div className="grid gap-4 sm:grid-cols-3">
           {["u-team", "u-dev", "u-server"].map((n) => (
             // eslint-disable-next-line @next/next/no-img-element
-            <img key={n} src={`/photos/${n}.jpg`} alt="" width={1200} height={800} loading="lazy" className="h-48 w-full rounded-xl object-cover" />
+            <img key={n} src={`/photos/${n}.webp`} alt={photoAlt(n)} width={1200} height={800} loading="lazy" className="h-48 w-full rounded-xl object-cover" />
           ))}
         </div>
 

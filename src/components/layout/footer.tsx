@@ -47,7 +47,7 @@ export function Footer() {
       <div className="container relative z-10 mx-auto -mb-16 max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#7C3AED] to-[#4C1D95] p-8 text-white shadow-[0_30px_70px_-30px_rgba(27,19,64,.55)] sm:p-12">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/photos/u-team.jpg" alt="" width={1200} height={800} loading="lazy" className="absolute inset-y-0 right-0 hidden h-full w-1/3 object-cover opacity-30 mix-blend-luminosity lg:block" />
+          <img src="/photos/u-team.webp" alt="" width={1200} height={800} loading="lazy" className="absolute inset-y-0 right-0 hidden h-full w-1/3 object-cover opacity-30 mix-blend-luminosity lg:block" />
           <div className="relative flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between lg:pr-[28%]">
             <div className="max-w-xl">
               <h2 className="zq-display text-3xl font-extrabold leading-tight sm:text-4xl">Have a project in mind?</h2>

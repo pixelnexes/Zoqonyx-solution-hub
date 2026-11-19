@@ -225,6 +225,7 @@ export default async function HomePage() {
         <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(d) }} />
       ))}
 
+      <link rel="preload" as="image" href="/photos/u-team.webp" type="image/webp" fetchPriority="high" />
       {/* 1. Hero */}
       <section className="zq-hero-light">
         <div className="container mx-auto grid max-w-6xl items-center gap-8 px-4 py-10 sm:px-6 sm:py-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-12 lg:px-8 lg:py-16">
@@ -249,7 +250,7 @@ export default async function HomePage() {
             </p>
           </div>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/photos/u-team.jpg" alt="Developers working on laptops around a wooden table" width={1200} height={800} fetchPriority="high" className="zq-in h-64 w-full rounded-xl object-cover shadow-[0_24px_60px_-34px_rgba(76,29,149,.5)] sm:h-80 lg:h-[26rem]" style={{ ["--d" as string]: "200ms" }} />
+          <img src="/photos/u-team.webp" alt="Developers working on laptops around a wooden table" width={1200} height={800} fetchPriority="high" className="zq-in h-64 w-full rounded-xl object-cover shadow-[0_24px_60px_-34px_rgba(76,29,149,.5)] sm:h-80 lg:h-[26rem]" style={{ ["--d" as string]: "200ms" }} />
         </div>
       </section>
 
@@ -341,7 +342,7 @@ export default async function HomePage() {
       <section aria-labelledby="why-heading" className="zq-section">
         <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 grid gap-10 lg:grid-cols-2 items-center">
           <Reveal>
-            <TechScene photo="/photos/u-dev.jpg" techs={["Next.js", "TypeScript", "Tailwind CSS", "Cloudflare", "Docker"]} className="h-72 w-full lg:h-[26rem]" />
+            <TechScene photo="/photos/u-dev.webp" techs={["Next.js", "TypeScript", "Tailwind CSS", "Cloudflare", "Docker"]} className="h-72 w-full lg:h-[26rem]" />
           </Reveal>
           <div>
             <h2 id="why-heading" className="zq-display zq-h2">
@@ -424,7 +425,7 @@ export default async function HomePage() {
               </h2>
               <p className="mt-4 text-[17px] leading-relaxed zq-on-dark-muted max-w-md">Founders, growing companies and teams that need extra hands. We start with a call, a plain-language plan and a fixed first step.</p>
             </div>
-            <TechScene photo="/photos/u-team.jpg" techs={["React", "Node.js", "Python", "Docker", "PostgreSQL"]} className="h-56 w-full lg:h-72" />
+            <TechScene photo="/photos/u-team.webp" techs={["React", "Node.js", "Python", "Docker", "PostgreSQL"]} className="h-56 w-full lg:h-72" />
           </div>
           <ul className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6">
             {AUDIENCES.map((a, i) => {
@@ -454,7 +455,7 @@ export default async function HomePage() {
       <section aria-labelledby="apps-heading" className="relative isolate overflow-hidden text-white">
         <div aria-hidden="true" className="absolute inset-0 -z-10">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/photos/u-server.jpg" alt="" width={1200} height={800} loading="lazy" className="absolute inset-0 h-full w-full object-cover" />
+          <img src="/photos/u-server.webp" alt="" width={1200} height={800} loading="lazy" className="absolute inset-0 h-full w-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-br from-[#1B1340]/90 via-[#2D1B69]/80 to-[#5B21B6]/70" />
         </div>
         <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 zq-section grid gap-10 lg:grid-cols-[1.1fr_0.9fr] items-center">
@@ -468,7 +469,7 @@ export default async function HomePage() {
             </a>
           </div>
           <Reveal>
-            <TechScene photo="/photos/u-app.jpg" techs={["Kotlin", "Swift", "Flutter", "React Native"]} className="h-64 w-full" />
+            <TechScene photo="/photos/u-app.webp" techs={["Kotlin", "Swift", "Flutter", "React Native"]} className="h-64 w-full" />
           </Reveal>
         </div>
       </section>
