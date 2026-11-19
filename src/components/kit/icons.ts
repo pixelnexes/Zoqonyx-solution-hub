@@ -26,12 +26,12 @@ export interface Accent {
 }
 
 export const ACCENTS: Record<string, Accent> = {
-  indigo: { chip: "zq-g-indigo", color: "#0E9F6E" },
-  aqua: { chip: "zq-g-aqua", color: "#2F7F99" },
-  sun: { chip: "zq-g-sun", color: "#F59E0B" },
-  coral: { chip: "zq-g-coral", color: "#C8452D" },
-  violet: { chip: "zq-g-violet", color: "#2F6FB0" },
-  emerald: { chip: "zq-g-emerald", color: "#0E9F6E" },
+  indigo: { chip: "zq-g-indigo", color: "#7C3AED" },
+  aqua: { chip: "zq-g-aqua", color: "#0891B2" },
+  sun: { chip: "zq-g-sun", color: "#D97706" },
+  coral: { chip: "zq-g-coral", color: "#E11D48" },
+  violet: { chip: "zq-g-violet", color: "#7C3AED" },
+  emerald: { chip: "zq-g-emerald", color: "#059669" },
   slate: { chip: "zq-g-slate", color: "#475569" },
 };
 

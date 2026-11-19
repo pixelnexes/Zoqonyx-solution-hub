@@ -19,7 +19,7 @@ const NAV_CATEGORIES = [
   { label: "Calculators", href: "/category/calculators" },
 ];
 
-const FOCUS = "focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-offset-2 focus-visible:outline-[#0E9F6E]";
+const FOCUS = "focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-offset-2 focus-visible:outline-[#7C3AED]";
 
 function NavLink({ href, active, children }: { href: string; active: boolean; children: React.ReactNode }) {
   return (
@@ -27,9 +27,9 @@ function NavLink({ href, active, children }: { href: string; active: boolean; ch
       href={href}
       aria-current={active ? "page" : undefined}
       className={cn(
-        "relative py-1.5 text-[15px] font-semibold rounded-md text-[#0B1F3A]/80 hover:text-[#0B1F3A] transition-colors",
-        "after:absolute after:left-0 after:right-0 after:-bottom-0.5 after:h-[3px] after:rounded-full after:bg-[#0E9F6E] after:origin-left after:transition-transform after:duration-200",
-        active ? "text-[#0B1F3A] after:scale-x-100" : "after:scale-x-0 hover:after:scale-x-100",
+        "relative py-1.5 text-[15px] font-semibold rounded-md text-[#1B1340]/80 hover:text-[#1B1340] transition-colors",
+        "after:absolute after:left-0 after:right-0 after:-bottom-0.5 after:h-[3px] after:rounded-full after:bg-[#7C3AED] after:origin-left after:transition-transform after:duration-200",
+        active ? "text-[#1B1340] after:scale-x-100" : "after:scale-x-0 hover:after:scale-x-100",
         FOCUS
       )}
     >
@@ -53,7 +53,7 @@ export function Header() {
   }
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-[#E2E8F0] bg-white/[0.95] backdrop-blur-md">
+    <header className="sticky top-0 z-40 w-full border-b border-[#E7E1F6] bg-white/[0.95] backdrop-blur-md">
       <div className="container mx-auto flex h-16 max-w-6xl items-center justify-between gap-6 px-4 sm:px-6 lg:px-8">
         <Logo size="md" />
 
@@ -73,8 +73,8 @@ export function Header() {
               onClick={() => setCategoriesOpen((v) => !v)}
               onKeyDown={(e) => e.key === "Escape" && setCategoriesOpen(false)}
               className={cn(
-                "inline-flex items-center gap-1 py-1.5 text-[15px] font-semibold rounded-md text-[#0B1F3A]/80 hover:text-[#0B1F3A]",
-                pathname.startsWith("/category") && "text-[#0B1F3A]",
+                "inline-flex items-center gap-1 py-1.5 text-[15px] font-semibold rounded-md text-[#1B1340]/80 hover:text-[#1B1340]",
+                pathname.startsWith("/category") && "text-[#1B1340]",
                 FOCUS
               )}
             >
@@ -84,7 +84,7 @@ export function Header() {
 
             {categoriesOpen && (
               <div id="nav-categories" className="absolute top-full left-[-12px] pt-3 z-50">
-                <ul className="w-60 rounded-2xl border border-[#E2E8F0] bg-white p-2 shadow-[0_24px_50px_-16px_rgba(11,31,58,.5)]">
+                <ul className="w-60 rounded-2xl border border-[#E7E1F6] bg-white p-2 shadow-[0_24px_50px_-16px_rgba(27,19,64,.5)]">
                   {NAV_CATEGORIES.map((cat) => {
                     const { Icon, accent } = categoryStyle(cat.label);
                     return (
@@ -92,7 +92,7 @@ export function Header() {
                         <Link
                           href={cat.href}
                           aria-current={pathname === cat.href ? "page" : undefined}
-                          className={cn("flex items-center gap-3 px-2.5 py-2 rounded-xl text-[15px] font-medium text-[#0B1F3A] hover:bg-[#F5F8FB]", pathname === cat.href && "bg-[#F5F8FB] font-semibold", FOCUS)}
+                          className={cn("flex items-center gap-3 px-2.5 py-2 rounded-xl text-[15px] font-medium text-[#1B1340] hover:bg-[#FAF8FF]", pathname === cat.href && "bg-[#FAF8FF] font-semibold", FOCUS)}
                         >
                           <span className={cn("zq-chip zq-chip-sm", accent.chip)}>
                             <Icon className="w-[18px] h-[18px]" />
@@ -133,7 +133,7 @@ export function Header() {
             aria-expanded={mobileMenuOpen}
             aria-controls="mobile-menu"
             aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
-            className={cn("w-11 h-11 inline-flex items-center justify-center rounded-lg text-[#0B1F3A] hover:bg-[#EDF3FA]", FOCUS)}
+            className={cn("w-11 h-11 inline-flex items-center justify-center rounded-lg text-[#1B1340] hover:bg-[#F3EEFF]", FOCUS)}
           >
             {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
@@ -141,11 +141,11 @@ export function Header() {
       </div>
 
       {mobileMenuOpen && (
-        <nav id="mobile-menu" aria-label="Main" className="md:hidden border-t border-[#E2E8F0] bg-white px-4 pb-5 max-h-[80vh] overflow-y-auto">
+        <nav id="mobile-menu" aria-label="Main" className="md:hidden border-t border-[#E7E1F6] bg-white px-4 pb-5 max-h-[80vh] overflow-y-auto">
           <ul>
             {[{ label: "Services", href: "/services" }, { label: "Blog", href: "/blog" }, { label: "All tools", href: "/tools" }, ...NAV_CATEGORIES, { label: "About", href: "/about" }, { label: "Contact", href: "/contact" }].map((item) => (
-              <li key={item.href} className="border-b border-[#E2E8F0]">
-                <Link href={item.href} aria-current={pathname === item.href ? "page" : undefined} className={cn("block py-3 text-base text-[#0B1F3A]/90", pathname === item.href ? "font-bold text-[#0B1F3A]" : "font-medium", FOCUS)}>
+              <li key={item.href} className="border-b border-[#E7E1F6]">
+                <Link href={item.href} aria-current={pathname === item.href ? "page" : undefined} className={cn("block py-3 text-base text-[#1B1340]/90", pathname === item.href ? "font-bold text-[#1B1340]" : "font-medium", FOCUS)}>
                   {item.label}
                 </Link>
               </li>

@@ -13,7 +13,7 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222 47% 11%;
 
-    --primary: 158 84% 33%; /* #0E9F6E */
+    --primary: 262 83% 58%; /* #7C3AED */
     --primary-foreground: 0 0% 100%;
 
     --secondary: 210 40% 96.1%; /* #F1F5F9 - Subtle secondary surface */
@@ -22,7 +22,7 @@
     --muted: 210 40% 96.1%; /* #F1F5F9 */
     --muted-foreground: 215 16% 47%; /* #64748B - Secondary text with high readability */
 
-    --accent: 158 84% 33%;
+    --accent: 262 83% 58%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
@@ -30,7 +30,7 @@
 
     --border: 214.3 31.8% 91.4%; /* #E2E8F0 - Subtle clean borders */
     --input: 214.3 31.8% 91.4%;
-    --ring: 158 84% 33%;
+    --ring: 262 83% 58%;
 
     --radius: 0.5rem; /* 8px precision rounding */
   }
@@ -41,7 +41,7 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground antialiased selection:bg-emerald-600/20 selection:text-emerald-950;
+    @apply bg-background text-foreground antialiased selection:bg-violet-500/20 selection:text-violet-950;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   }
 }
@@ -54,7 +54,7 @@
 }
 
 .brand-gradient-bg {
-  background: #0E9F6E;
+  background: #7C3AED;
 }
 
 .brand-gradient-border {
@@ -66,7 +66,7 @@
   inset: -1px;
   border-radius: inherit;
   padding: 1px;
-  background: #0E9F6E;
+  background: #7C3AED;
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;

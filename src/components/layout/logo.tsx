@@ -30,7 +30,7 @@ export function Logo({ className, iconOnly = false, size = "md", onDark = false 
   const tagline = settings.site_tagline || "Solution Hub";
 
   // If user chose full image logo and not iconOnly:
-  if (!iconOnly && settings.logo_type === "image" && lightLogoSrc) {
+  if (false) {
     return (
       <Link
         href="/"
@@ -57,7 +57,7 @@ export function Logo({ className, iconOnly = false, size = "md", onDark = false 
     <Link
       href="/"
       className={cn(
-        "inline-flex items-center gap-2.5 group rounded-[2px] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0E9F6E]",
+        "inline-flex items-center gap-2.5 group rounded-[2px] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#7C3AED]",
         className
       )}
       aria-label={siteName}
@@ -65,7 +65,7 @@ export function Logo({ className, iconOnly = false, size = "md", onDark = false 
       {/* Brand Icon */}
       <div className="relative flex items-center justify-center shrink-0">
         <Image
-          src={iconSrc}
+          src="/logo/zoqonyx-mark.svg"
           alt="Zoqonyx Icon"
           width={dimensions.iconW}
           height={dimensions.iconH}
@@ -81,15 +81,15 @@ export function Logo({ className, iconOnly = false, size = "md", onDark = false 
           <div className="flex items-center leading-none tracking-tight">
             {siteName.toUpperCase().includes("ZOQONYX") ? (
               <>
-                <span className={cn("font-heading font-bold tracking-[0.04em] text-[#0B1F3A]", onDark && "text-white", dimensions.textMain)}>
+                <span className={cn("font-heading font-bold tracking-[0.04em] text-[#1B1340]", onDark && "text-white", dimensions.textMain)}>
                   ZOQONY
                 </span>
-                <span className={cn("font-heading font-bold tracking-[0.04em] text-[#0E9F6E]", onDark && "text-[#4ADE9F]", dimensions.textMain)}>
+                <span className={cn("font-heading font-bold tracking-[0.04em] text-[#7C3AED]", onDark && "text-[#C4B5FD]", dimensions.textMain)}>
                   X
                 </span>
               </>
             ) : (
-              <span className={cn("font-heading font-bold tracking-[0.04em] text-[#0B1F3A]", onDark && "text-white", dimensions.textMain)}>
+              <span className={cn("font-heading font-bold tracking-[0.04em] text-[#1B1340]", onDark && "text-white", dimensions.textMain)}>
                 {siteName}
               </span>
             )}

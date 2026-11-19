@@ -4,6 +4,7 @@ import { ToolDrawer } from "@/components/home/tool-drawer";
 import { ContactSection, TestimonialsSection } from "@/components/site/sections";
 import { ParallaxImg, ScrollProgress, CountUp } from "@/components/kit/motion";
 import { TechLogo } from "@/components/kit/tech-logo";
+import { OrbRing } from "@/components/kit/tech-art";
 import LogoLoop from "@/components/reactbits/LogoLoop";
 import LightRays from "@/components/reactbits/LightRays";
 import SpotlightCard from "@/components/reactbits/SpotlightCard";
@@ -226,12 +227,14 @@ export default async function HomePage() {
 
       {/* 1. Hero */}
       <section className="zq-hero-light">
+        <OrbRing className="pointer-events-none absolute -left-24 top-24 -z-10 hidden w-[360px] opacity-70 lg:block" />
+        <OrbRing className="pointer-events-none absolute -right-28 -top-6 -z-10 hidden w-[420px] opacity-80 lg:block" />
         <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 pt-14 sm:pt-20 text-center">
-          <p className="zq-in inline-flex rounded-md border border-[#0B1F3A]/20 bg-white/70 px-3 py-1 text-sm font-semibold">Software studio and free online tools</p>
-          <h1 className="zq-in-solid zq-display mx-auto mt-5 max-w-4xl text-[2.5rem] sm:text-6xl lg:text-[3.75rem] font-extrabold leading-[1.03] text-[#0B1F3A]">
+          <p className="zq-in inline-flex rounded-md border border-[#1B1340]/20 bg-white/70 px-3 py-1 text-sm font-semibold">Software studio and free online tools</p>
+          <h1 className="zq-in-solid zq-display mx-auto mt-5 max-w-4xl text-[2.5rem] sm:text-6xl lg:text-[3.75rem] font-extrabold leading-[1.03] text-[#1B1340]">
             Apps, websites and software built for your business.
           </h1>
-          <p className="zq-in mx-auto mt-5 max-w-2xl text-[18px] leading-relaxed text-[#51607A]" style={{ ["--d" as string]: "90ms" }}>
+          <p className="zq-in mx-auto mt-5 max-w-2xl text-[18px] leading-relaxed text-[#5C5878]" style={{ ["--d" as string]: "90ms" }}>
             Zoqonyx designs and develops mobile apps, websites, games and custom software, helps people find you with digital marketing, and runs {liveCount} free online tools.
           </p>
           <div className="zq-in mt-8 flex flex-wrap justify-center gap-3" style={{ ["--d" as string]: "180ms" }}>
@@ -242,22 +245,22 @@ export default async function HomePage() {
               See our services
             </Link>
           </div>
-          <p className="mt-4 text-sm text-[#51607A]">
-            Or <a href="#tools" className="font-semibold text-[#067A57] underline underline-offset-4">use the free tools</a>. No sign-up.
+          <p className="mt-4 text-sm text-[#5C5878]">
+            Or <a href="#tools" className="font-semibold text-[#5B21B6] underline underline-offset-4">use the free tools</a>. No sign-up.
           </p>
 
           {/* Real screenshots of our own tools */}
           <div className="zq-in relative mx-auto mt-12 max-w-5xl pb-0" style={{ ["--d" as string]: "260ms" }}>
-            <div className="overflow-hidden rounded-t-2xl border border-b-0 border-[#0B1F3A]/15 bg-white shadow-[0_30px_80px_-30px_rgba(11,31,58,.45)]">
-              <div className="flex items-center gap-2 border-b border-[#E2E8F0] px-4 py-2.5 text-left text-sm text-[#51607A]">
-                <span className="rounded-md bg-[#F5F8FB] px-3 py-1 font-mono text-[13px]">zoqonyx.com/tools/json-formatter</span>
+            <div className="overflow-hidden rounded-t-2xl border border-b-0 border-[#1B1340]/15 bg-white shadow-[0_30px_80px_-30px_rgba(27,19,64,.45)]">
+              <div className="flex items-center gap-2 border-b border-[#E7E1F6] px-4 py-2.5 text-left text-sm text-[#5C5878]">
+                <span className="rounded-md bg-[#FAF8FF] px-3 py-1 font-mono text-[13px]">zoqonyx.com/tools/json-formatter</span>
               </div>
               <img src="/shots/json.png" alt="The JSON formatter tool showing formatted output" width={1088} height={515} fetchPriority="high" className="w-full" />
             </div>
-            <div className="zq-float absolute -left-4 bottom-8 hidden w-64 overflow-hidden rounded-xl border border-[#0B1F3A]/15 bg-white shadow-[0_24px_60px_-24px_rgba(11,31,58,.5)] lg:block" style={{ ["--r" as string]: "-3deg" }}>
+            <div className="zq-float absolute -left-4 bottom-8 hidden w-64 overflow-hidden rounded-xl border border-[#1B1340]/15 bg-white shadow-[0_24px_60px_-24px_rgba(27,19,64,.5)] lg:block" style={{ ["--r" as string]: "-3deg" }}>
               <img src="/shots/compress.png" alt="The image compressor tool" width={1088} height={384} loading="lazy" className="w-full" />
             </div>
-            <div className="zq-float absolute -right-4 top-16 hidden w-56 overflow-hidden rounded-xl border border-[#0B1F3A]/15 bg-white shadow-[0_24px_60px_-24px_rgba(11,31,58,.5)] lg:block" style={{ ["--r" as string]: "3deg", ["--d" as string]: "-2s" }}>
+            <div className="zq-float absolute -right-4 top-16 hidden w-56 overflow-hidden rounded-xl border border-[#1B1340]/15 bg-white shadow-[0_24px_60px_-24px_rgba(27,19,64,.5)] lg:block" style={{ ["--r" as string]: "3deg", ["--d" as string]: "-2s" }}>
               <img src="/shots/qr.png" alt="The QR code generator tool" width={1088} height={640} loading="lazy" className="w-full" />
             </div>
           </div>
@@ -265,7 +268,7 @@ export default async function HomePage() {
       </section>
 
       {/* 2. Technologies marquee */}
-      <section aria-label="Technologies we use" className="zq-band-white border-b border-[#E2E8F0] py-6">
+      <section aria-label="Technologies we use" className="zq-band-white border-b border-[#E7E1F6] py-6">
         <LogoLoop
           logos={Array.from(new Set(TECH_PILLS)).map((t) => ({ node: <span className="zq-pill"><TechLogo name={t} /></span>, title: t }))}
           speed={55}
@@ -307,7 +310,7 @@ export default async function HomePage() {
                       <Icon className="w-6 h-6" aria-hidden="true" />
                     </span>
                     <h3 className="zq-display mt-4 text-[1.35rem] font-extrabold leading-tight">{hub.name}</h3>
-                    <p className="mt-2 text-[15px] leading-relaxed text-[#51607A] flex-1">{hub.shortDesc}</p>
+                    <p className="mt-2 text-[15px] leading-relaxed text-[#5C5878] flex-1">{hub.shortDesc}</p>
                     <p className="mt-4 inline-flex items-center gap-1.5 text-sm font-bold" style={{ color: accent.color }}>
                       {children.length > 0 ? `${children.length} services` : "Learn more"} <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
                     </p>
@@ -321,7 +324,7 @@ export default async function HomePage() {
       </section>
 
       {/* 3b. Numbers */}
-      <section aria-label="Zoqonyx in numbers" className="bg-[#0B1F3A] text-white">
+      <section aria-label="Zoqonyx in numbers" className="bg-[#1B1340] text-white">
         <ul className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 grid grid-cols-2 md:grid-cols-4 gap-y-8 py-10">
           {[
             { n: liveCount, s: "", l: "free online tools" },
@@ -366,9 +369,9 @@ export default async function HomePage() {
                 ["You see progress every week", "Working builds you can click through, not status reports."],
                 ["You own the result", "Code, designs and accounts are yours from the first payment."],
               ].map(([t, d]) => (
-                <li key={t} className="border-l-4 border-[#0E9F6E] pl-4">
+                <li key={t} className="border-l-4 border-[#7C3AED] pl-4">
                   <p className="text-[18px] font-bold">{t}</p>
-                  <p className="mt-1 text-[15px] leading-relaxed text-[#51607A]">{d}</p>
+                  <p className="mt-1 text-[15px] leading-relaxed text-[#5C5878]">{d}</p>
                 </li>
               ))}
             </ul>
@@ -390,7 +393,7 @@ export default async function HomePage() {
                     {i + 1}
                   </span>
                   <h3 className="mt-4 text-[18px] font-bold">{p.title}</h3>
-                  <p className="mt-1.5 text-[15px] leading-relaxed text-[#51607A]">{p.text}</p>
+                  <p className="mt-1.5 text-[15px] leading-relaxed text-[#5C5878]">{p.text}</p>
                 </div>
               </Reveal>
             ))}
@@ -411,10 +414,10 @@ export default async function HomePage() {
               { t: "Extra developers", d: "Add one or more developers to your own team for as long as the work needs them.", href: "/services/staff-augmentation", cta: "Staff augmentation", dark: false },
             ].map((m, i) => (
               <Reveal as="li" key={m.t} delay={i * 90}>
-                <SpotlightCard theme={m.dark ? "dark" : "light"} spotlightColor="#4ADE9F" className={`flex h-full flex-col p-7 ${m.dark ? "text-white" : "text-[#0B1F3A]"}`}>
+                <SpotlightCard theme={m.dark ? "dark" : "light"} spotlightColor="#C4B5FD" className={`flex h-full flex-col p-7 ${m.dark ? "text-white" : "text-[#1B1340]"}`}>
                   <h3 className="zq-display text-2xl font-extrabold">{m.t}</h3>
-                  <p className={`mt-3 flex-1 text-[16px] leading-relaxed ${m.dark ? "zq-on-dark-muted" : "text-[#51607A]"}`}>{m.d}</p>
-                  <Link href={m.href} className={`mt-6 inline-flex items-center gap-1.5 font-bold ${m.dark ? "text-[#F2A81D]" : "text-[#067A57]"}`}>
+                  <p className={`mt-3 flex-1 text-[16px] leading-relaxed ${m.dark ? "zq-on-dark-muted" : "text-[#5C5878]"}`}>{m.d}</p>
+                  <Link href={m.href} className={`mt-6 inline-flex items-center gap-1.5 font-bold ${m.dark ? "text-[#F2A81D]" : "text-[#5B21B6]"}`}>
                     {m.cta} <ArrowRight className="w-4 h-4" aria-hidden="true" />
                   </Link>
                 </SpotlightCard>
@@ -427,7 +430,7 @@ export default async function HomePage() {
       {/* 6. Who we work with */}
       <section aria-labelledby="audience-heading" className="zq-band-dark">
         <div aria-hidden="true" className="absolute inset-0 -z-10 opacity-70">
-          <LightRays raysOrigin="top-center" raysColor="#4ADE9F" raysSpeed={0.8} lightSpread={0.9} rayLength={1.4} followMouse mouseInfluence={0.08} />
+          <LightRays raysOrigin="top-center" raysColor="#C4B5FD" raysSpeed={0.8} lightSpread={0.9} rayLength={1.4} followMouse mouseInfluence={0.08} />
         </div>
         <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 zq-section">
           <div className="grid gap-8 lg:grid-cols-[1fr_1.1fr] items-center">
@@ -467,7 +470,7 @@ export default async function HomePage() {
       <section aria-labelledby="apps-heading" className="relative isolate overflow-hidden text-white">
         <div aria-hidden="true" className="absolute inset-0 -z-10">
           <ParallaxImg src="/photos/city.jpg" className="h-full w-full" speed={0.2} />
-          <div className="absolute inset-0 bg-[#0B1F3A]/75" />
+          <div className="absolute inset-0 bg-[#1B1340]/75" />
         </div>
         <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 zq-section grid gap-10 lg:grid-cols-[1.1fr_0.9fr] items-center">
           <div>
@@ -492,7 +495,7 @@ export default async function HomePage() {
             <h2 id="featured-heading" className="zq-display zq-h2">
               Tools people use most
             </h2>
-            <Link href="/tools" className="font-bold text-[#067A57] hover:underline underline-offset-4">
+            <Link href="/tools" className="font-bold text-[#5B21B6] hover:underline underline-offset-4">
               Browse all {liveCount} tools
             </Link>
           </div>
@@ -507,7 +510,7 @@ export default async function HomePage() {
                       <ToolIcon name={tool?.icon ?? null} className="w-6 h-6" strokeWidth={2} />
                     </span>
                     <h3 className="mt-4 text-[18px] font-bold">{t.name}</h3>
-                    <p className="mt-1.5 text-[15px] leading-relaxed text-[#51607A] flex-1">{t.text}</p>
+                    <p className="mt-1.5 text-[15px] leading-relaxed text-[#5C5878] flex-1">{t.text}</p>
                     <span className="mt-3 inline-flex items-center gap-1.5 text-sm font-bold" style={{ color: accent.color }}>
                       Open tool <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
                     </span>
@@ -527,7 +530,7 @@ export default async function HomePage() {
               <h2 id="blog-heading" className="zq-display zq-h2">
                 From the blog
               </h2>
-              <Link href="/blog" className="font-bold text-[#067A57] hover:underline underline-offset-4">
+              <Link href="/blog" className="font-bold text-[#5B21B6] hover:underline underline-offset-4">
                 All posts
               </Link>
             </div>
@@ -537,11 +540,11 @@ export default async function HomePage() {
                   <Link href={`/blog/${p.slug}`} className="zq-card group flex h-full flex-col overflow-hidden">
                     <CoverArt seed={p.slug} className="w-full aspect-[16/9] object-cover transition-transform duration-500 group-hover:scale-105" />
                     <div className="flex flex-1 flex-col p-5">
-                      <p className="text-sm font-semibold text-[#067A57]">
+                      <p className="text-sm font-semibold text-[#5B21B6]">
                         {p.category} · {readingMinutes(p.content)} min read
                       </p>
                       <h3 className="mt-1.5 text-[17px] font-bold leading-snug">{p.title}</h3>
-                      <p className="mt-2 text-[15px] leading-relaxed text-[#51607A] line-clamp-3">{p.excerpt}</p>
+                      <p className="mt-2 text-[15px] leading-relaxed text-[#5C5878] line-clamp-3">{p.excerpt}</p>
                     </div>
                   </Link>
                 </div>
@@ -562,12 +565,12 @@ export default async function HomePage() {
           </h2>
           <div className="mt-8 space-y-3">
             {FAQS.map((f) => (
-              <details key={f.q} className="zq-card group p-0 open:shadow-[0_14px_36px_-18px_rgba(11,31,58,.35)]">
+              <details key={f.q} className="zq-card group p-0 open:shadow-[0_14px_36px_-18px_rgba(27,19,64,.35)]">
                 <summary className="flex cursor-pointer list-none items-center justify-between gap-4 p-5 text-[17px] font-bold [&::-webkit-details-marker]:hidden">
                   {f.q}
-                  <ChevronDown className="w-5 h-5 shrink-0 text-[#0E9F6E] transition-transform group-open:rotate-180" aria-hidden="true" />
+                  <ChevronDown className="w-5 h-5 shrink-0 text-[#7C3AED] transition-transform group-open:rotate-180" aria-hidden="true" />
                 </summary>
-                <p className="px-5 pb-5 text-[16px] leading-relaxed text-[#51607A]">{f.a}</p>
+                <p className="px-5 pb-5 text-[16px] leading-relaxed text-[#5C5878]">{f.a}</p>
               </details>
             ))}
           </div>

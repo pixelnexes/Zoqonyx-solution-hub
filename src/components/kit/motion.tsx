@@ -50,7 +50,7 @@ export function BannerPhoto({ src }: { src: string }) {
   return (
     <div aria-hidden="true" className="absolute inset-0 -z-10">
       <ParallaxImg src={src} className="h-full w-full" speed={0.18} />
-      <div className="absolute inset-0 bg-[#0B1F3A]/80" />
+      <div className="absolute inset-0 bg-[#1B1340]/80" />
     </div>
   );
 }

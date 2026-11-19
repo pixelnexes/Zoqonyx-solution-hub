@@ -5,7 +5,7 @@ import { Mail, ArrowRight } from "lucide-react";
 import { Logo } from "@/components/layout/logo";
 import { useSiteSettings } from "@/components/providers/site-settings-provider";
 
-const LINK = "text-white/75 hover:text-[#4ADE9F] hover:underline underline-offset-4 rounded-sm focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-offset-2 focus-visible:outline-[#4ADE9F]";
+const LINK = "text-white/75 hover:text-[#C4B5FD] hover:underline underline-offset-4 rounded-sm focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-offset-2 focus-visible:outline-[#C4B5FD]";
 
 const TOOL_LINKS = [
   { label: "All tools", href: "/tools" },
@@ -42,22 +42,22 @@ export function Footer() {
   const siteName = settings.site_name || "Zoqonyx Solution Hub";
 
   return (
-    <footer className="mt-auto bg-[#F5F8FB] pt-16 text-white">
+    <footer className="mt-auto bg-[#FAF8FF] pt-16 text-white">
       {/* CTA card sits on the light page and overlaps into the dark footer */}
       <div className="container relative z-10 mx-auto -mb-16 max-w-6xl px-4 sm:px-6 lg:px-8">
-        <div className="relative overflow-hidden rounded-2xl bg-[#3DDC97] p-8 text-[#0B1F3A] shadow-[0_30px_70px_-30px_rgba(11,31,58,.55)] sm:p-12">
+        <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#7C3AED] to-[#4C1D95] p-8 text-white shadow-[0_30px_70px_-30px_rgba(27,19,64,.55)] sm:p-12">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/photos/handshake.jpg" alt="" width={960} height={640} loading="lazy" className="absolute inset-y-0 right-0 hidden h-full w-1/3 object-cover opacity-25 mix-blend-multiply lg:block" />
+          <img src="/photos/handshake.jpg" alt="" width={960} height={640} loading="lazy" className="absolute inset-y-0 right-0 hidden h-full w-1/3 object-cover opacity-25 mix-blend-luminosity lg:block" />
           <div className="relative flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between lg:pr-[28%]">
             <div className="max-w-xl">
               <h2 className="zq-display text-3xl font-extrabold leading-tight sm:text-4xl">Have a project in mind?</h2>
-              <p className="mt-3 text-[17px] leading-relaxed text-[#0B1F3A]/80">Tell us what you want to build. We will reply with questions and next steps.</p>
+              <p className="mt-3 text-[17px] leading-relaxed text-white/85">Tell us what you want to build. We will reply with questions and next steps.</p>
             </div>
             <div className="flex flex-wrap gap-3">
-              <Link href="/#contact" className="zq-btn !bg-[#0B1F3A] !text-white hover:!bg-[#12305A]">
+              <Link href="/#contact" className="zq-btn !bg-white !text-[#5B21B6] hover:!bg-[#F3EEFF]">
                 Get a quote <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Link>
-              <a href={`mailto:${email}`} className="zq-btn border-2 border-[#0B1F3A] text-[#0B1F3A] hover:bg-white/40">
+              <a href={`mailto:${email}`} className="zq-btn border-2 border-white/70 text-white hover:bg-white/10">
                 <Mail className="h-4 w-4" aria-hidden="true" /> {email}
               </a>
             </div>
@@ -65,7 +65,7 @@ export function Footer() {
         </div>
       </div>
 
-      <div className="bg-[#0B1F3A] pt-24">
+      <div className="bg-[#1B1340] pt-24">
         <div className="container mx-auto max-w-6xl px-4 pb-10 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1fr_1fr_1fr]">
             <div className="max-w-xs space-y-4">

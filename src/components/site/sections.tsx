@@ -27,7 +27,7 @@ export function ContactSection({
             <img src="/photos/handshake.jpg" alt="Two people shaking hands" width={960} height={640} loading="lazy" className="mt-6 h-40 w-full max-w-md rounded-xl object-cover" />
             <ul className="mt-7 space-y-4 text-[16px]">
               <li className="flex items-center gap-3">
-                <span className="zq-chip zq-chip-sm zq-g-sun text-[#0B1F3A]">
+                <span className="zq-chip zq-chip-sm zq-g-sun text-[#1B1340]">
                   <Mail className="w-[18px] h-[18px]" aria-hidden="true" />
                 </span>
                 <a href="mailto:hello@zoqonyx.com" className="font-semibold underline underline-offset-4 hover:text-[#F2A81D]">
@@ -42,7 +42,7 @@ export function ContactSection({
               </li>
             </ul>
           </div>
-          <div className="rounded-3xl bg-white text-[#0B1F3A] p-5 sm:p-8 shadow-[0_30px_70px_-24px_rgba(0,0,0,.65)]">
+          <div className="rounded-3xl bg-white text-[#1B1340] p-5 sm:p-8 shadow-[0_30px_70px_-24px_rgba(0,0,0,.65)]">
             <LeadForm services={services} defaultService={defaultService} />
           </div>
         </div>
@@ -71,7 +71,7 @@ export function TestimonialsSection({ items, heading = "What clients say" }: { i
               <blockquote className="mt-3 text-[16px] leading-relaxed flex-1">“{t.quote}”</blockquote>
               <figcaption className="mt-4 text-sm">
                 <span className="font-bold">{t.name}</span>
-                {(t.role || t.company) && <span className="text-[#51607A]"> — {[t.role, t.company].filter(Boolean).join(", ")}</span>}
+                {(t.role || t.company) && <span className="text-[#5C5878]"> — {[t.role, t.company].filter(Boolean).join(", ")}</span>}
               </figcaption>
             </figure>
           ))}

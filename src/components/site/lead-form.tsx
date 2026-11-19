@@ -12,7 +12,7 @@ export interface ServiceOption {
 const BUDGETS = ["Not sure yet", "Under $2,000", "$2,000 – $10,000", "$10,000 – $50,000", "$50,000+"];
 
 const field =
-  "w-full rounded-xl border border-[#E2E8F0] bg-[#F8FAFD] px-3.5 py-2.5 text-[15px] text-[#0B1F3A] placeholder:text-[#6B7A94] transition-colors hover:border-[#BCC8DA] focus:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-[#0E9F6E]";
+  "w-full rounded-xl border border-[#E7E1F6] bg-[#FAF8FF] px-3.5 py-2.5 text-[15px] text-[#1B1340] placeholder:text-[#7B7699] transition-colors hover:border-[#CFC7E8] focus:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-[#7C3AED]";
 
 export function LeadForm({ services, defaultService = "" }: { services: ServiceOption[]; defaultService?: string }) {
   const pathname = usePathname();
@@ -43,9 +43,9 @@ export function LeadForm({ services, defaultService = "" }: { services: ServiceO
 
   if (status === "done") {
     return (
-      <div role="status" className="p-6 rounded-2xl bg-[#EAF7F0] border border-[#BFE9D4]">
-        <h3 className="text-xl font-bold text-[#0B1F3A]">Thank you, we have your message.</h3>
-        <p className="mt-2 text-[15px] text-[#51607A]">We will read it and reply to the email address you gave us.</p>
+      <div role="status" className="p-6 rounded-2xl bg-[#F1EBFF] border border-[#DDD0FA]">
+        <h3 className="text-xl font-bold text-[#1B1340]">Thank you, we have your message.</h3>
+        <p className="mt-2 text-[15px] text-[#5C5878]">We will read it and reply to the email address you gave us.</p>
       </div>
     );
   }
@@ -67,13 +67,13 @@ export function LeadForm({ services, defaultService = "" }: { services: ServiceO
         </div>
         <div>
           <label htmlFor="lf-phone" className="block text-sm font-semibold mb-1">
-            Phone or WhatsApp <span className="font-normal text-[#51607A]">(optional)</span>
+            Phone or WhatsApp <span className="font-normal text-[#5C5878]">(optional)</span>
           </label>
           <input id="lf-phone" name="phone" type="tel" autoComplete="tel" className={field} />
         </div>
         <div>
           <label htmlFor="lf-company" className="block text-sm font-semibold mb-1">
-            Company <span className="font-normal text-[#51607A]">(optional)</span>
+            Company <span className="font-normal text-[#5C5878]">(optional)</span>
           </label>
           <input id="lf-company" name="company" autoComplete="organization" className={field} />
         </div>
@@ -93,7 +93,7 @@ export function LeadForm({ services, defaultService = "" }: { services: ServiceO
         </div>
         <div>
           <label htmlFor="lf-budget" className="block text-sm font-semibold mb-1">
-            Budget <span className="font-normal text-[#51607A]">(optional)</span>
+            Budget <span className="font-normal text-[#5C5878]">(optional)</span>
           </label>
           <select id="lf-budget" name="budget" defaultValue="" className={field}>
             <option value="">Choose a range</option>
@@ -120,7 +120,7 @@ export function LeadForm({ services, defaultService = "" }: { services: ServiceO
         <Button type="submit" disabled={status === "sending"} className="zq-btn zq-btn-indigo h-12 px-7 text-[15px]">
           {status === "sending" ? "Sending…" : "Send message"}
         </Button>
-        <p className="text-sm text-[#51607A]">Or email us at hello@zoqonyx.com</p>
+        <p className="text-sm text-[#5C5878]">Or email us at hello@zoqonyx.com</p>
       </div>
       {status === "error" && (
         <p role="alert" className="text-sm text-rose-700">

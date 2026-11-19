@@ -124,7 +124,7 @@ export default async function ServicePage({ params }: Props) {
       />
 
       {tech.length > 0 && (
-        <section aria-label="Technologies" className="zq-band-white border-b border-[#E2E8F0] py-6">
+        <section aria-label="Technologies" className="zq-band-white border-b border-[#E7E1F6] py-6">
           <LogoLoop
             logos={tech.map((t) => ({ node: <span className="zq-pill"><TechLogo name={t} /></span>, title: t }))}
             speed={45}
@@ -144,19 +144,19 @@ export default async function ServicePage({ params }: Props) {
 
           <ul className="mt-12 grid gap-4 sm:grid-cols-3">
             {PROMISES.map((p) => (
-              <li key={p.t} className="rounded-xl border border-[#E2E8F0] bg-white p-5">
+              <li key={p.t} className="rounded-xl border border-[#E7E1F6] bg-white p-5">
                 <span className={`zq-chip zq-chip-sm ${accent.chip}`}>
                   <Check className="w-[18px] h-[18px]" aria-hidden="true" />
                 </span>
                 <h3 className="mt-3 text-[17px] font-bold">{p.t}</h3>
-                <p className="mt-1.5 text-[15px] leading-relaxed text-[#51607A]">{p.d}</p>
+                <p className="mt-1.5 text-[15px] leading-relaxed text-[#5C5878]">{p.d}</p>
               </li>
             ))}
           </ul>
         </article>
 
         <aside className="space-y-5 lg:sticky lg:top-24">
-          <div className="rounded-xl bg-[#0B1F3A] p-6 text-white">
+          <div className="rounded-xl bg-[#1B1340] p-6 text-white">
             <span className={`zq-chip ${accent.chip}`}>
               <Icon className="w-6 h-6" aria-hidden="true" />
             </span>
@@ -175,7 +175,7 @@ export default async function ServicePage({ params }: Props) {
               <ul className="mt-3 space-y-1">
                 {children.map((c) => (
                   <li key={c.slug}>
-                    <Link href={`/services/${c.slug}`} className="flex items-center justify-between gap-2 rounded-lg px-2 py-2 -mx-2 text-[15px] font-semibold hover:bg-[#F5F8FB] hover:text-[#067A57]">
+                    <Link href={`/services/${c.slug}`} className="flex items-center justify-between gap-2 rounded-lg px-2 py-2 -mx-2 text-[15px] font-semibold hover:bg-[#FAF8FF] hover:text-[#5B21B6]">
                       {c.name} <ArrowRight className="w-4 h-4 shrink-0" aria-hidden="true" />
                     </Link>
                   </li>
@@ -202,9 +202,9 @@ export default async function ServicePage({ params }: Props) {
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img src={groupPhoto(r.group)} alt="" width={640} height={427} loading="lazy" className="h-40 w-full object-cover" />
                     <span className="flex flex-1 flex-col p-5">
-                      <span className="text-[18px] font-bold group-hover:text-[#067A57]">{r.name}</span>
-                      <span className="mt-1.5 flex-1 text-[15px] leading-relaxed text-[#51607A] line-clamp-3">{r.shortDesc}</span>
-                      <span className="mt-3 inline-flex items-center gap-1 text-sm font-bold text-[#067A57]">
+                      <span className="text-[18px] font-bold group-hover:text-[#5B21B6]">{r.name}</span>
+                      <span className="mt-1.5 flex-1 text-[15px] leading-relaxed text-[#5C5878] line-clamp-3">{r.shortDesc}</span>
+                      <span className="mt-3 inline-flex items-center gap-1 text-sm font-bold text-[#5B21B6]">
                         Details <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
                       </span>
                     </span>

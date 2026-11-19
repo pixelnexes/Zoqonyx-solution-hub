@@ -184,9 +184,9 @@ export default async function ToolsPage() {
                 <details key={i} className="zq-card group p-0">
                   <summary className="flex cursor-pointer list-none items-center justify-between gap-4 p-5 text-[17px] font-bold [&::-webkit-details-marker]:hidden">
                     {faq.q}
-                    <ChevronDown className="w-5 h-5 shrink-0 text-[#0E9F6E] transition-transform group-open:rotate-180" aria-hidden="true" />
+                    <ChevronDown className="w-5 h-5 shrink-0 text-[#7C3AED] transition-transform group-open:rotate-180" aria-hidden="true" />
                   </summary>
-                  <p className="px-5 pb-5 text-[16px] leading-relaxed text-[#51607A]">{faq.a}</p>
+                  <p className="px-5 pb-5 text-[16px] leading-relaxed text-[#5C5878]">{faq.a}</p>
                 </details>
               ))}
             </div>

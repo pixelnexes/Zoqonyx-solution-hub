@@ -55,8 +55,8 @@ export const metadata: Metadata = {
   creator: "Zawwar Ahmed",
   publisher: "Newix Tech Solutions",
   icons: {
-    icon: "/icons/icon.png",
-    shortcut: "/icons/icon.png",
+    icon: "/logo/zoqonyx-mark.svg",
+    shortcut: "/logo/zoqonyx-mark.svg",
     apple: "/icons/icon.png",
   },
   openGraph: {
@@ -102,7 +102,7 @@ export default async function RootLayout({
 }) {
   const gaId = process.env.NEXT_PUBLIC_GA_ID || "G-PX8V01HHCK";
   const settings = await getSiteSettings();
-  const iconUrl = settings.icon_path || "/logo/zoqonyx-icon.png";
+  const iconUrl = "/logo/zoqonyx-mark.svg";
 
   return (
     // next-themes sets the theme class and color-scheme on <html> before React hydrates.

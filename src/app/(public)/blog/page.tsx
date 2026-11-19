@@ -57,10 +57,10 @@ export default async function BlogPage() {
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={photoFor(first.slug)} alt="" width={960} height={640} className="h-60 w-full object-cover md:h-full" />
               <div className="flex flex-col justify-center p-6 sm:p-10">
-                <span className="w-fit rounded-md bg-[#0E9F6E] px-2.5 py-1 text-sm font-semibold text-white">{first.category}</span>
-                <h2 className="zq-display mt-4 text-2xl sm:text-3xl font-extrabold leading-tight group-hover:text-[#067A57]">{first.title}</h2>
-                <p className="mt-3 text-[16px] leading-relaxed text-[#51607A] line-clamp-3">{first.excerpt}</p>
-                <p className="mt-5 flex items-center gap-2 text-sm text-[#51607A]">
+                <span className="w-fit rounded-md bg-[#7C3AED] px-2.5 py-1 text-sm font-semibold text-white">{first.category}</span>
+                <h2 className="zq-display mt-4 text-2xl sm:text-3xl font-extrabold leading-tight group-hover:text-[#5B21B6]">{first.title}</h2>
+                <p className="mt-3 text-[16px] leading-relaxed text-[#5C5878] line-clamp-3">{first.excerpt}</p>
+                <p className="mt-5 flex items-center gap-2 text-sm text-[#5C5878]">
                   <Clock className="h-4 w-4" aria-hidden="true" /> {readingMinutes(first.content)} min read
                   <span aria-hidden="true">·</span> {fmt(first.publishedAt)}
                 </p>
@@ -77,16 +77,16 @@ export default async function BlogPage() {
                 <span className="relative block">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src={photoFor(p.slug)} alt="" width={640} height={427} loading="lazy" className="h-48 w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]" />
-                  <span className="absolute left-3 top-3 rounded-md bg-white px-2.5 py-1 text-sm font-semibold text-[#0B1F3A] shadow-sm">{p.category}</span>
+                  <span className="absolute left-3 top-3 rounded-md bg-white px-2.5 py-1 text-sm font-semibold text-[#1B1340] shadow-sm">{p.category}</span>
                 </span>
                 <span className="flex flex-1 flex-col p-5">
-                  <span className="text-[18px] font-bold leading-snug group-hover:text-[#067A57]">{p.title}</span>
-                  <span className="mt-2 flex-1 text-[15px] leading-relaxed text-[#51607A] line-clamp-3">{p.excerpt}</span>
-                  <span className="mt-4 flex items-center justify-between text-sm text-[#51607A]">
+                  <span className="text-[18px] font-bold leading-snug group-hover:text-[#5B21B6]">{p.title}</span>
+                  <span className="mt-2 flex-1 text-[15px] leading-relaxed text-[#5C5878] line-clamp-3">{p.excerpt}</span>
+                  <span className="mt-4 flex items-center justify-between text-sm text-[#5C5878]">
                     <span>
                       {readingMinutes(p.content)} min read · {fmt(p.publishedAt)}
                     </span>
-                    <ArrowRight className="h-4 w-4 text-[#067A57] transition-transform group-hover:translate-x-1" aria-hidden="true" />
+                    <ArrowRight className="h-4 w-4 text-[#5B21B6] transition-transform group-hover:translate-x-1" aria-hidden="true" />
                   </span>
                 </span>
               </Link>
