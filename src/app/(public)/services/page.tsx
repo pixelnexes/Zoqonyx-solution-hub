@@ -5,7 +5,8 @@ import { getServices, getTestimonials, groupServices } from "@/lib/content";
 import { ContactSection, TestimonialsSection } from "@/components/site/sections";
 import { Reveal } from "@/components/kit/reveal";
 import { serviceStyle } from "@/components/kit/icons";
-import { CtaBand, PageHero, WorkSteps, groupPhoto } from "@/components/kit/page-kit";
+import { CtaBand, PageHero, WorkSteps } from "@/components/kit/page-kit";
+import { GROUP_TECH, TechScene } from "@/components/kit/tech-scene";
 
 export const revalidate = 300;
 
@@ -67,8 +68,7 @@ export default async function ServicesPage() {
             <section key={hub.slug} aria-labelledby={`g-${hub.slug}`} className={i % 2 === 0 ? "bg-white" : "bg-[#FAF8FF]"}>
               <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 zq-section grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
                 <Reveal className={flip ? "lg:order-2" : ""}>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={groupPhoto(hub.group)} alt="" width={960} height={640} loading="lazy" className="h-72 w-full rounded-xl object-cover shadow-[0_24px_60px_-34px_rgba(27,19,64,.5)] sm:h-96" />
+                  <TechScene techs={GROUP_TECH[hub.group] || ["React", "Node.js", "Python"]} className="h-72 sm:h-96 shadow-[0_24px_60px_-34px_rgba(76,29,149,.55)]" />
                 </Reveal>
                 <div>
                   <span className={`zq-chip ${accent.chip}`}>

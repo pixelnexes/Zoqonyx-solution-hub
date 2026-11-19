@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { getPost, getPosts, getServices } from "@/lib/content";
 import { extractHeadings, readingMinutes, renderMarkdown } from "@/lib/markdown";
 import { ContactSection } from "@/components/site/sections";
-import { photoFor } from "@/components/kit/page-kit";
+import { BlogCover } from "@/components/kit/tech-scene";
 
 export const revalidate = 300;
 
@@ -117,8 +117,7 @@ export default async function BlogPostPage({ params }: Props) {
 
       <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 pb-16 grid grid-cols-1 gap-12 lg:grid-cols-[minmax(0,46rem)_1fr]">
         <article className="-mt-2">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={photoFor(post.slug)} alt="" width={960} height={640} fetchPriority="high" className="h-56 w-full rounded-xl object-cover shadow-[0_24px_60px_-34px_rgba(27,19,64,.5)] sm:h-80" />
+          <BlogCover seed={post.slug} category={post.category} className="h-56 w-full rounded-xl shadow-[0_24px_60px_-34px_rgba(76,29,149,.55)] sm:h-80" />
           <div className="zq-prose mt-8 text-[17px] leading-[1.75]">{renderMarkdown(post.content)}</div>
           <p className="mt-10 border-t border-[#E7E1F6] pt-5 text-sm text-[#5C5878]">
             Written by {post.authorName}. Last updated {fmt(post.updatedAt)}.
@@ -162,8 +161,7 @@ export default async function BlogPostPage({ params }: Props) {
               {related.map((r) => (
                 <li key={r.slug}>
                   <Link href={`/blog/${r.slug}`} className="zq-card zq-card-hover group flex h-full flex-col overflow-hidden">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={photoFor(r.slug)} alt="" width={640} height={427} loading="lazy" className="h-40 w-full object-cover" />
+                    <BlogCover seed={r.slug} category={r.category} className="h-40 w-full" />
                     <span className="p-5">
                       <span className="block text-[17px] font-bold leading-snug group-hover:text-[#5B21B6]">{r.title}</span>
                       <span className="mt-1.5 block text-sm text-[#5C5878] line-clamp-2">{r.excerpt}</span>

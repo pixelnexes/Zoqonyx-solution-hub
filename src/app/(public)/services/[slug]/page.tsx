@@ -6,22 +6,12 @@ import { getService, getServices, getTestimonials } from "@/lib/content";
 import { renderMarkdown } from "@/lib/markdown";
 import { ContactSection, TestimonialsSection } from "@/components/site/sections";
 import { serviceStyle } from "@/components/kit/icons";
-import { CtaBand, FaqBlock, PageHero, WorkSteps, groupPhoto } from "@/components/kit/page-kit";
+import { CtaBand, FaqBlock, PageHero, WorkSteps } from "@/components/kit/page-kit";
+import { GROUP_TECH, TechScene } from "@/components/kit/tech-scene";
 import { TechLogo } from "@/components/kit/tech-logo";
 import LogoLoop from "@/components/reactbits/LogoLoop";
 
 export const revalidate = 300;
-
-const GROUP_TECH: Record<string, string[]> = {
-  "Game Development": ["Unity", "Unreal Engine", "Godot", "Solidity", "Python"],
-  "App Development": ["Kotlin", "Swift", "Flutter", "React Native", "Node.js"],
-  "Website Development": ["React", "Next.js", "TypeScript", "Tailwind CSS", "Node.js", "Laravel"],
-  "Custom Software": ["Python", "PostgreSQL", "Docker", "Node.js", "Laravel"],
-  "AI & NLP Development": ["Python", "spaCy", "Docker", "PostgreSQL"],
-  "NFT Development": ["Solidity", "React", "Node.js"],
-  "Staff Augmentation": ["React", "Node.js", "Python", "Kotlin", "Swift", "Laravel"],
-  "ERP & CRM Development": ["PostgreSQL", "MySQL", "Laravel", "Docker", "Node.js"],
-};
 
 const PROMISES = [
   { t: "A clear scope", d: "You get a written plan with stages and a fixed first step before any work starts." },
@@ -59,8 +49,7 @@ export default async function ServicePage({ params }: Props) {
   const options = all.filter((s) => !s.isHub || s.slug === "nft-development").map((s) => ({ slug: s.slug, name: s.name }));
   const { Icon, accent } = serviceStyle(service.group || service.slug);
   const tech = GROUP_TECH[service.group] || [];
-  const mainPhoto = groupPhoto(service.group);
-
+  
   const url = `https://zoqonyx.com/services/${service.slug}`;
   const jsonLd = [
     {
@@ -120,7 +109,7 @@ export default async function ServicePage({ params }: Props) {
             </Link>
           </>
         }
-        photos={["/photos/workspace.jpg", mainPhoto, "/photos/team.jpg"]}
+        photos={["", "", ""]}
       />
 
       {tech.length > 0 && (
@@ -199,8 +188,7 @@ export default async function ServicePage({ params }: Props) {
               {related.map((r) => (
                 <li key={r.slug}>
                   <Link href={`/services/${r.slug}`} className="zq-card zq-card-hover group flex h-full flex-col overflow-hidden">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={groupPhoto(r.group)} alt="" width={640} height={427} loading="lazy" className="h-40 w-full object-cover" />
+                    <TechScene techs={GROUP_TECH[r.group] || ["React", "Node.js"]} className="h-40 w-full !rounded-none" />
                     <span className="flex flex-1 flex-col p-5">
                       <span className="text-[18px] font-bold group-hover:text-[#5B21B6]">{r.name}</span>
                       <span className="mt-1.5 flex-1 text-[15px] leading-relaxed text-[#5C5878] line-clamp-3">{r.shortDesc}</span>
@@ -217,7 +205,7 @@ export default async function ServicePage({ params }: Props) {
       )}
 
       <TestimonialsSection items={testimonials} />
-      <CtaBand heading={`Start your ${service.name.toLowerCase()} project`} text="Share your idea, budget range and timeline. We reply with questions and a first step." photo={mainPhoto} />
+      <CtaBand heading={`Start your ${service.name.toLowerCase()} project`} text="Share your idea, budget range and timeline. We reply with questions and a first step." />
       <ContactSection
         services={options}
         defaultService={service.isHub && service.slug !== "nft-development" ? "" : service.name}

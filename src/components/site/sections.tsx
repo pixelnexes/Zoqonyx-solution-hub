@@ -24,7 +24,6 @@ export function ContactSection({
               {heading}
             </h2>
             <p className="mt-4 text-[17px] leading-relaxed text-white/85 max-w-md">{intro}</p>
-            <img src="/photos/handshake.jpg" alt="Two people shaking hands" width={960} height={640} loading="lazy" className="mt-6 h-40 w-full max-w-md rounded-xl object-cover" />
             <ul className="mt-7 space-y-4 text-[16px]">
               <li className="flex items-center gap-3">
                 <span className="zq-chip zq-chip-sm zq-g-sun text-[#1B1340]">

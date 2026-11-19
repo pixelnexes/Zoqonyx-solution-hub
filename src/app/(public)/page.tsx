@@ -4,6 +4,7 @@ import { ToolDrawer } from "@/components/home/tool-drawer";
 import { ContactSection, TestimonialsSection } from "@/components/site/sections";
 import { ParallaxImg, ScrollProgress, CountUp } from "@/components/kit/motion";
 import { TechLogo } from "@/components/kit/tech-logo";
+import { GROUP_TECH, TechScene } from "@/components/kit/tech-scene";
 import { OrbRing } from "@/components/kit/tech-art";
 import LogoLoop from "@/components/reactbits/LogoLoop";
 import LightRays from "@/components/reactbits/LightRays";
@@ -301,10 +302,7 @@ export default async function HomePage() {
               return (
                 <Reveal as="li" key={hub.slug} delay={(i % 3) * 90}>
                   <Link href={`/services/${hub.slug}`} className="zq-card group relative flex h-full flex-col overflow-hidden">
-                    <span className="zq-duo block h-40 w-full">
-                      <img src={`/photos/${SERVICE_PHOTO[hub.slug] || "developer"}.jpg`} alt="" width={640} height={427} loading="lazy" className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
-                      <span className="zq-duo-tint" style={{ background: accent.color }} />
-                    </span>
+                    <TechScene techs={GROUP_TECH[hub.group] || ["React", "Node.js"]} className="h-40 w-full !rounded-none" />
                     <div className="flex flex-1 flex-col p-6 -mt-10 relative">
                     <span className={`zq-chip ${accent.chip} ring-4 ring-white`}>
                       <Icon className="w-6 h-6" aria-hidden="true" />
@@ -357,7 +355,7 @@ export default async function HomePage() {
       <section aria-labelledby="why-heading" className="zq-section">
         <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 grid gap-10 lg:grid-cols-2 items-center">
           <Reveal>
-            <ParallaxImg src="/photos/workspace.jpg" alt="A tidy desk with a laptop and a plant" className="h-72 lg:h-[26rem] rounded-xl" />
+            <TechScene techs={["Next.js", "TypeScript", "Tailwind CSS", "Cloudflare", "Docker"]} className="h-72 w-full lg:h-[26rem]" />
           </Reveal>
           <div>
             <h2 id="why-heading" className="zq-display zq-h2">
@@ -440,7 +438,7 @@ export default async function HomePage() {
               </h2>
               <p className="mt-4 text-[17px] leading-relaxed zq-on-dark-muted max-w-md">Founders, growing companies and teams that need extra hands. We start with a call, a plain-language plan and a fixed first step.</p>
             </div>
-            <img src="/photos/team.jpg" alt="People working around a table with notebooks and laptops" width={960} height={640} loading="lazy" className="w-full h-56 lg:h-72 rounded-xl object-cover" />
+            <TechScene techs={["React", "Node.js", "Python", "Docker", "PostgreSQL"]} className="h-56 w-full lg:h-72" />
           </div>
           <ul className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6">
             {AUDIENCES.map((a, i) => {
@@ -469,8 +467,8 @@ export default async function HomePage() {
       {/* 6b. Apps band with parallax photo */}
       <section aria-labelledby="apps-heading" className="relative isolate overflow-hidden text-white">
         <div aria-hidden="true" className="absolute inset-0 -z-10">
-          <ParallaxImg src="/photos/city.jpg" className="h-full w-full" speed={0.2} />
-          <div className="absolute inset-0 bg-[#1B1340]/75" />
+          <div className="absolute inset-0 bg-gradient-to-br from-[#1B1340] via-[#2D1B69] to-[#5B21B6]" />
+          <OrbRing className="absolute -right-20 -top-16 w-[420px] opacity-60" />
         </div>
         <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 zq-section grid gap-10 lg:grid-cols-[1.1fr_0.9fr] items-center">
           <div>
@@ -483,7 +481,7 @@ export default async function HomePage() {
             </a>
           </div>
           <Reveal>
-            <img src="/photos/phone-app.jpg" alt="A phone showing an app home screen" width={960} height={640} loading="lazy" className="h-64 w-full rounded-xl object-cover" />
+            <TechScene techs={["Kotlin", "Swift", "Flutter", "React Native"]} className="h-64 w-full" />
           </Reveal>
         </div>
       </section>
