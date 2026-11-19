@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Schibsted_Grotesk, Bricolage_Grotesque } from "next/font/google";
+import localFont from "next/font/local";
 import Script from "next/script";
 import "./globals.css";
 import "./zq.css";
@@ -7,21 +7,21 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { getSiteSettings } from "@/lib/settings";
 import { SiteSettingsProvider } from "@/components/providers/site-settings-provider";
 
-// Site typeface. The CSS variable keeps its old name so tailwind.config.ts
-// (fontFamily.sans / heading) needs no change.
-const siteFont = Schibsted_Grotesk({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800", "900"],
+// Fonts are bundled with the site (src/app/fonts) so builds never depend on Google's servers.
+// The CSS variable keeps its old name so tailwind.config.ts (fontFamily.sans / heading) needs no change.
+const siteFont = localFont({
+  src: [{ path: "./fonts/schibsted-grotesk.woff2", weight: "400 900", style: "normal" }],
   variable: "--font-poppins",
   display: "swap",
+  fallback: ["system-ui", "Segoe UI", "Arial", "sans-serif"],
 });
 
 // Display face for headlines (body keeps Schibsted Grotesk).
-const displayFont = Bricolage_Grotesque({
-  subsets: ["latin"],
-  weight: ["600", "700", "800"],
+const displayFont = localFont({
+  src: [{ path: "./fonts/bricolage-grotesque.woff2", weight: "600 800", style: "normal" }],
   variable: "--font-display",
   display: "swap",
+  fallback: ["system-ui", "Segoe UI", "Arial", "sans-serif"],
 });
 
 export const viewport: Viewport = {
