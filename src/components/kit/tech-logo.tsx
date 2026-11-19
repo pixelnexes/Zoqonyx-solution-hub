@@ -35,7 +35,7 @@ export function TechLogo({ name }: { name: string }) {
   const dark = parseInt(icon.hex, 16) < 0x202020;
   return (
     <>
-      <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill={dark ? "#10181A" : `#${icon.hex}`}>
+      <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill={dark ? "#0B1F3A" : `#${icon.hex}`}>
         <path d={icon.path} />
       </svg>
       <span>{name}</span>

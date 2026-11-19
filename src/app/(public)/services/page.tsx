@@ -64,11 +64,11 @@ export default async function ServicesPage() {
           const { Icon, accent } = serviceStyle(hub.slug);
           const flip = i % 2 === 1;
           return (
-            <section key={hub.slug} aria-labelledby={`g-${hub.slug}`} className={i % 2 === 0 ? "bg-white" : "bg-[#F4F5F1]"}>
+            <section key={hub.slug} aria-labelledby={`g-${hub.slug}`} className={i % 2 === 0 ? "bg-white" : "bg-[#F5F8FB]"}>
               <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 zq-section grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
                 <Reveal className={flip ? "lg:order-2" : ""}>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={groupPhoto(hub.group)} alt="" width={960} height={640} loading="lazy" className="h-72 w-full rounded-xl object-cover shadow-[0_24px_60px_-34px_rgba(16,24,26,.5)] sm:h-96" />
+                  <img src={groupPhoto(hub.group)} alt="" width={960} height={640} loading="lazy" className="h-72 w-full rounded-xl object-cover shadow-[0_24px_60px_-34px_rgba(11,31,58,.5)] sm:h-96" />
                 </Reveal>
                 <div>
                   <span className={`zq-chip ${accent.chip}`}>
@@ -77,13 +77,13 @@ export default async function ServicesPage() {
                   <h2 id={`g-${hub.slug}`} className="zq-display mt-4 text-3xl sm:text-4xl font-extrabold leading-tight">
                     {hub.name}
                   </h2>
-                  <p className="mt-3 text-[17px] leading-relaxed text-[#4F5B57]">{hub.shortDesc}</p>
+                  <p className="mt-3 text-[17px] leading-relaxed text-[#51607A]">{hub.shortDesc}</p>
                   {children.length > 0 && (
                     <ul className="mt-6 space-y-3">
                       {children.map((c) => (
                         <li key={c.slug} className="flex items-start gap-3">
                           <Check className="mt-0.5 h-5 w-5 shrink-0" style={{ color: accent.color }} aria-hidden="true" />
-                          <Link href={`/services/${c.slug}`} className="text-[16px] font-semibold hover:text-[#0A5E44] hover:underline underline-offset-4">
+                          <Link href={`/services/${c.slug}`} className="text-[16px] font-semibold hover:text-[#067A57] hover:underline underline-offset-4">
                             {c.name}
                           </Link>
                         </li>

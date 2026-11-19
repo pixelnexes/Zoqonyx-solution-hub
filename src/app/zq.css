@@ -1,19 +1,19 @@
 /* Zoqonyx design system: flat ink, forest green, saffron. No gradients. */
 :root {
-  --zq-night: #10181A;
-  --zq-night-2: #16231F;
-  --zq-indigo: #0E7C5A;
-  --zq-indigo-deep: #0A5E44;
-  --zq-aqua: #7FCDB0;
-  --zq-sun: #F2A81D;
+  --zq-night: #0B1F3A;
+  --zq-night-2: #0B1F3A;
+  --zq-indigo: #0E9F6E;
+  --zq-indigo-deep: #067A57;
+  --zq-aqua: #4ADE9F;
+  --zq-sun: #3DDC97;
   --zq-coral: #C8452D;
-  --zq-violet: #3F6E8C;
-  --zq-emerald: #0E7C5A;
-  --zq-mist: #F4F5F1;
+  --zq-violet: #2F6FB0;
+  --zq-emerald: #0E9F6E;
+  --zq-mist: #F5F8FB;
   --zq-card: #FFFFFF;
-  --zq-line: #DFE3DA;
-  --zq-text: #10181A;
-  --zq-muted: #4F5B57;
+  --zq-line: #E2E8F0;
+  --zq-text: #0B1F3A;
+  --zq-muted: #51607A;
   --zq-radius: 12px;
   --zq-ease: cubic-bezier(.2,.7,.2,1);
 }
@@ -59,10 +59,10 @@
 }
 .zq-btn:hover { transform: translateY(-2px); }
 .zq-btn:active { transform: translateY(0); }
-.zq-btn-sun { background: var(--zq-sun); color: var(--zq-night);  }
+.zq-btn-sun { background: #3DDC97; color: #0B1F3A; }
 
-.zq-btn-indigo { background: var(--zq-indigo); color: #fff;  }
-.zq-btn-indigo:hover { background: var(--zq-indigo-deep); }
+.zq-btn-indigo { background: #3DDC97; color: #0B1F3A; }
+.zq-btn-sun:hover, .zq-btn-indigo:hover { background: #28C985; }
 .zq-btn-ghost { color: #fff; border: 1.5px solid rgba(255,255,255,.4); background: rgba(255,255,255,.06); }
 .zq-btn-ghost:hover { background: rgba(255,255,255,.14); }
 .zq-btn-outline { color: var(--zq-night); border: 1.5px solid var(--zq-night); background: transparent; }
@@ -78,21 +78,21 @@
 }
 a.zq-card:hover, .zq-card-hover:hover {
   transform: translateY(-4px); border-color: transparent;
-  box-shadow: 0 18px 40px -16px rgba(16,24,26,.28), 0 0 0 1px rgba(14,124,90,.35);
+  box-shadow: 0 18px 40px -16px rgba(11,31,58,.28), 0 0 0 1px rgba(14,159,110,.35);
 }
 .zq-chip { display: inline-flex; align-items: center; justify-content: center; width: 46px; height: 46px; border-radius: 8px; color: #fff; flex-shrink: 0; }
 .zq-chip-sm { width: 36px; height: 36px; border-radius: 7px; }
-.zq-g-indigo { background: #0A5E44; }
+.zq-g-indigo { background: #067A57; }
 .zq-g-aqua { background: #1F6A82; }
 .zq-g-sun { background: #D98A08; }
 .zq-g-coral { background: #A9351F; }
 .zq-g-violet { background: #2F5A77; }
-.zq-g-emerald { background: #0A5E44; }
+.zq-g-emerald { background: #067A57; }
 .zq-g-slate { background: #334155; }
 
 /* ---------- Sections ---------- */
 .zq-band-white { background: #fff; }
-.zq-band-tint { background: #EAEEE6; }
+.zq-band-tint { background: #EDF3FA; }
 .zq-band-dark { position: relative; isolation: isolate; overflow: hidden; color: #fff; background: var(--zq-night); }
 .zq-band-dark .zq-blob { display: none; }
 .zq-section { padding-block: clamp(3.5rem, 7vw, 6rem); }
@@ -102,10 +102,10 @@ a.zq-card:hover, .zq-card-hover:hover {
 /* ---------- Search strip ---------- */
 .zq-search {
   display: flex; align-items: center; gap: .75rem; height: 62px; padding: 0 1.25rem; border-radius: 999px;
-  background: #fff; border: 2px solid var(--zq-line); box-shadow: 0 10px 30px -14px rgba(16,24,26,.35);
+  background: #fff; border: 2px solid var(--zq-line); box-shadow: 0 10px 30px -14px rgba(11,31,58,.35);
   transition: border-color .18s, box-shadow .18s;
 }
-.zq-search:focus-within { border-color: var(--zq-indigo); box-shadow: 0 0 0 4px rgba(14,124,90,.2), 0 10px 30px -14px rgba(16,24,26,.35); }
+.zq-search:focus-within { border-color: var(--zq-indigo); box-shadow: 0 0 0 4px rgba(14,159,110,.2), 0 10px 30px -14px rgba(11,31,58,.35); }
 .zq-search input { outline: none !important; }
 
 /* ---------- Slider ---------- */
@@ -139,7 +139,7 @@ a.zq-card:hover, .zq-card-hover:hover {
 .zq-reveal.is-visible { opacity: 1; transform: none; }
 .zq-gradient-text { color: var(--zq-sun); }
 
-.zq-prose { font-size: 17px; line-height: 1.75; color: #2B3633; }
+.zq-prose { font-size: 17px; line-height: 1.75; color: #25344D; }
 .zq-prose a { color: var(--zq-indigo-deep); text-decoration: underline; text-underline-offset: 3px; }
 
 @media (prefers-reduced-motion: reduce) {
@@ -153,4 +153,4 @@ a.zq-card:hover, .zq-card-hover:hover {
 .zq-on-dark-muted { color: rgba(232,240,236,.82); }
 
 /* Light hero (reference: pale tint, centered headline, product screenshots) */
-.zq-hero-light { background: #E6F1EA; border-bottom: 1px solid #CFE0D6; overflow: hidden; }
+.zq-hero-light { background: #E6F6EE; border-bottom: 1px solid #CDEBDD; overflow: hidden; }

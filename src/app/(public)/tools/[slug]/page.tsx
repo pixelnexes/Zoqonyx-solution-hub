@@ -287,7 +287,7 @@ export default async function ToolPage({ params }: ToolPageProps) {
       <div className="zq-page">
         <section className="zq-hero-light">
           <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
-            <nav aria-label="Breadcrumb" className="text-sm text-[#4F5B57]">
+            <nav aria-label="Breadcrumb" className="text-sm text-[#51607A]">
               <ol className="flex flex-wrap items-center gap-x-2 gap-y-1">
                 <li>
                   <Link href="/" className="hover:underline underline-offset-4">
@@ -301,7 +301,7 @@ export default async function ToolPage({ params }: ToolPageProps) {
                   </Link>
                 </li>
                 <li aria-hidden="true">/</li>
-                <li aria-current="page" className="font-semibold text-[#10181A]">
+                <li aria-current="page" className="font-semibold text-[#0B1F3A]">
                   {tool.name}
                 </li>
               </ol>
@@ -311,9 +311,9 @@ export default async function ToolPage({ params }: ToolPageProps) {
                 <ToolIcon name={tool.icon} className="w-8 h-8" strokeWidth={2} />
               </span>
               <div className="max-w-3xl">
-                <h1 className="zq-in-solid zq-display text-3xl sm:text-5xl font-extrabold leading-[1.06] text-[#10181A]">{tool.name}</h1>
-                <p className="zq-in mt-3 text-[18px] leading-relaxed text-[#4F5B57]">{tool.description}</p>
-                <p className="mt-3 inline-flex rounded-full border border-[#10181A]/15 bg-white/80 px-3 py-1 text-sm font-semibold">Free to use. No sign-up.</p>
+                <h1 className="zq-in-solid zq-display text-3xl sm:text-5xl font-extrabold leading-[1.06] text-[#0B1F3A]">{tool.name}</h1>
+                <p className="zq-in mt-3 text-[18px] leading-relaxed text-[#51607A]">{tool.description}</p>
+                <p className="mt-3 inline-flex rounded-full border border-[#0B1F3A]/15 bg-white/80 px-3 py-1 text-sm font-semibold">Free to use. No sign-up.</p>
               </div>
             </div>
           </div>
@@ -321,7 +321,7 @@ export default async function ToolPage({ params }: ToolPageProps) {
 
         <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-10 space-y-16">
           {/* The tool itself */}
-          <div className="p-4 sm:p-6 rounded-[18px] bg-white border border-[#DFE3DA] shadow-[0_20px_50px_-28px_rgba(30,40,120,.35)] -mt-6 relative">
+          <div className="p-4 sm:p-6 rounded-[18px] bg-white border border-[#E2E8F0] shadow-[0_20px_50px_-28px_rgba(30,40,120,.35)] -mt-6 relative">
             <ToolRenderer slug={tool.slug} />
           </div>
 
@@ -337,7 +337,7 @@ export default async function ToolPage({ params }: ToolPageProps) {
                     {s.step}
                   </span>
                   <h3 className="mt-3 text-[17px] font-bold leading-snug">{s.title}</h3>
-                  <p className="mt-1.5 text-[15px] leading-relaxed text-[#4F5B57]">{s.instruction}</p>
+                  <p className="mt-1.5 text-[15px] leading-relaxed text-[#51607A]">{s.instruction}</p>
                 </li>
               ))}
             </ol>
@@ -352,7 +352,7 @@ export default async function ToolPage({ params }: ToolPageProps) {
                 {seo.keyBenefits.map((b, idx) => (
                   <div key={idx} className="zq-card p-5" style={{ borderTop: `3px solid ${toolAccent.color}` }}>
                     <dt className="text-[17px] font-bold">{b.title}</dt>
-                    <dd className="mt-1 text-[15px] leading-relaxed text-[#4F5B57]">{b.desc}</dd>
+                    <dd className="mt-1 text-[15px] leading-relaxed text-[#51607A]">{b.desc}</dd>
                   </div>
                 ))}
               </dl>
@@ -365,14 +365,14 @@ export default async function ToolPage({ params }: ToolPageProps) {
                 About {tool.name}
               </h2>
 
-              <div className="mt-5 space-y-4 text-[16px] leading-[1.75] text-[#2B3633]">
+              <div className="mt-5 space-y-4 text-[16px] leading-[1.75] text-[#25344D]">
                 {seo.deepDiveContent
                   .trim()
                   .split("\n\n")
                   .map((block: string, idx: number) => {
                     if (block.startsWith("### ")) {
                       return (
-                        <h3 key={idx} className="text-xl font-bold pt-4 text-[#10181A]">
+                        <h3 key={idx} className="text-xl font-bold pt-4 text-[#0B1F3A]">
                           {block.replace("### ", "")}
                         </h3>
                       );
@@ -396,7 +396,7 @@ export default async function ToolPage({ params }: ToolPageProps) {
                   <h3 className="flex items-center gap-2 text-[17px] font-bold">
                     <Lightbulb className="w-5 h-5 text-[#B7791F]" aria-hidden="true" /> Tips
                   </h3>
-                  <ul className="mt-2 list-disc pl-5 space-y-1.5 text-[15px] leading-relaxed text-[#2B3633]">
+                  <ul className="mt-2 list-disc pl-5 space-y-1.5 text-[15px] leading-relaxed text-[#25344D]">
                     {seo.proTips.map((tip, i) => (
                       <li key={i}>{tip}</li>
                     ))}
@@ -416,9 +416,9 @@ export default async function ToolPage({ params }: ToolPageProps) {
                   <details key={idx} className="zq-card group p-0">
                     <summary className="flex cursor-pointer list-none items-center justify-between gap-4 p-5 text-[17px] font-bold [&::-webkit-details-marker]:hidden">
                       {faq.question}
-                      <ChevronDown className="w-5 h-5 shrink-0 text-[#0E7C5A] transition-transform group-open:rotate-180" aria-hidden="true" />
+                      <ChevronDown className="w-5 h-5 shrink-0 text-[#0E9F6E] transition-transform group-open:rotate-180" aria-hidden="true" />
                     </summary>
-                    <p className="px-5 pb-5 text-[16px] leading-relaxed text-[#4F5B57]">{faq.answer}</p>
+                    <p className="px-5 pb-5 text-[16px] leading-relaxed text-[#51607A]">{faq.answer}</p>
                   </details>
                 ))}
               </div>
@@ -431,7 +431,7 @@ export default async function ToolPage({ params }: ToolPageProps) {
                 <h2 id="related-heading" className="zq-display zq-h2">
                   More tools in {catLabel}
                 </h2>
-                <Link href={`/category/${catSlug}`} className="inline-flex items-center gap-1 text-[15px] font-bold text-[#0A5E44]">
+                <Link href={`/category/${catSlug}`} className="inline-flex items-center gap-1 text-[15px] font-bold text-[#067A57]">
                   See all {catLabel} tools <ArrowRight className="w-4 h-4" aria-hidden="true" />
                 </Link>
               </div>
@@ -443,8 +443,8 @@ export default async function ToolPage({ params }: ToolPageProps) {
                         <ToolIcon name={rel.icon} className="w-[18px] h-[18px]" strokeWidth={2} />
                       </span>
                       <span className="min-w-0">
-                        <span className="block text-[15px] font-bold group-hover:text-[#0A5E44]">{rel.name}</span>
-                        <span className="block mt-0.5 text-sm leading-relaxed text-[#4F5B57] line-clamp-2">{rel.description}</span>
+                        <span className="block text-[15px] font-bold group-hover:text-[#067A57]">{rel.name}</span>
+                        <span className="block mt-0.5 text-sm leading-relaxed text-[#51607A] line-clamp-2">{rel.description}</span>
                       </span>
                     </Link>
                   </li>
@@ -459,7 +459,7 @@ export default async function ToolPage({ params }: ToolPageProps) {
                 <h2 id="popular-heading" className="zq-display zq-h2">
                   Popular tools
                 </h2>
-                <Link href="/tools" className="inline-flex items-center gap-1 text-[15px] font-bold text-[#0A5E44]">
+                <Link href="/tools" className="inline-flex items-center gap-1 text-[15px] font-bold text-[#067A57]">
                   Browse all tools <ArrowRight className="w-4 h-4" aria-hidden="true" />
                 </Link>
               </div>
@@ -483,18 +483,18 @@ export default async function ToolPage({ params }: ToolPageProps) {
   );
 }
 
-// Tool page styling (matches the homepage tokens: ink #10181A, line #DFE3DA, teal #0E7C5A).
+// Tool page styling (matches the homepage tokens: ink #0B1F3A, line #E2E8F0, teal #0E9F6E).
 const TP_FOCUS =
-  "rounded-[2px] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#10181A]";
-const TP_LINK = `hover:text-[#10181A] hover:underline underline-offset-4 ${TP_FOCUS}`;
-const TP_LINK_TEAL = `text-[#0E7C5A] underline underline-offset-[3px] decoration-1 hover:decoration-2 ${TP_FOCUS}`;
+  "rounded-[2px] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0B1F3A]";
+const TP_LINK = `hover:text-[#0B1F3A] hover:underline underline-offset-4 ${TP_FOCUS}`;
+const TP_LINK_TEAL = `text-[#0E9F6E] underline underline-offset-[3px] decoration-1 hover:decoration-2 ${TP_FOCUS}`;
 const TP_H2 = "text-2xl sm:text-[1.75rem] font-bold tracking-[-0.015em] leading-tight";
 
 // The SEO copy uses **bold** markers; show them as bold instead of raw asterisks.
 function renderInlineBold(text: string) {
   return text.split(/\*\*(.+?)\*\*/g).map((part, i) =>
     i % 2 === 1 ? (
-      <strong key={i} className="font-semibold text-[#10181A]">
+      <strong key={i} className="font-semibold text-[#0B1F3A]">
         {part}
       </strong>
     ) : (
