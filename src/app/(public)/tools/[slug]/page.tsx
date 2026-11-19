@@ -10,7 +10,12 @@ import { categoryStyle } from "@/components/kit/icons";
 import { getDefaultToolBySlug, DEFAULT_TOOLS } from "@/lib/default-tools";
 import { getToolSeoContent } from "@/lib/tool-seo-content";
 
-export const dynamic = "force-dynamic";
+// Tool pages are built once and refreshed hourly, so a visit costs no database or render work.
+export const revalidate = 3600;
+
+export async function generateStaticParams() {
+  return DEFAULT_TOOLS.filter((t) => t.isActive !== false && !t.isComingSoon).map((t) => ({ slug: t.slug }));
+}
 
 const CATEGORY_SLUG_MAP: Record<string, string> = {
   "Image Tools": "image-tools",
@@ -145,14 +150,7 @@ export default async function ToolPage({ params }: ToolPageProps) {
     });
 
     if (tool) {
-      // Increment usageCount in background
-      prisma.tool
-        .update({
-          where: { id: tool.id },
-          data: { usageCount: { increment: 1 } },
-        })
-        .catch((e) => console.error("Error updating usage count:", e));
-
+      // The per-view usageCount write was removed: the page is now static and refreshed hourly.
       relatedTools = await prisma.tool.findMany({
         where: {
           isActive: true,

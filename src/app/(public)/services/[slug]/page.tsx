@@ -22,6 +22,14 @@ const PROMISES = [
 
 type Props = { params: Promise<{ slug: string }> };
 
+export async function generateStaticParams() {
+  try {
+    return (await getServices()).map((s) => ({ slug: s.slug }));
+  } catch {
+    return [];
+  }
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const s = await getService(slug);

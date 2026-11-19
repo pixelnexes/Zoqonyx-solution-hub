@@ -11,6 +11,14 @@ export const revalidate = 300;
 
 type Props = { params: Promise<{ slug: string }> };
 
+export async function generateStaticParams() {
+  try {
+    return (await getPosts()).map((p) => ({ slug: p.slug }));
+  } catch {
+    return [];
+  }
+}
+
 function fmt(d: Date) {
   return d.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric", timeZone: "UTC" });
 }
