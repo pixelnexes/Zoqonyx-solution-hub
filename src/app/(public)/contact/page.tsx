@@ -53,7 +53,7 @@ export default function ContactPage() {
 
   return (
     <div className="zq-page">
-      <PageHero crumbs={[{ label: "Home", href: "/" }, { label: "Contact" }]} title="Contact Zoqonyx" intro="Need a specific tool, have feedback, or want to report an issue? Send us a message and we will reply by email." />
+      <PageHero crumbs={[{ label: "Home", href: "/" }, { label: "Contact" }]} title="Contact Zoqonyx" intro="Need a specific tool, have feedback, or want to report an issue? Send us a message and we will reply by email." image="/photos/u-support.jpg" />
       <div className="container mx-auto max-w-3xl px-4 zq-section">
       {/* Form Container */}
       <div className="relative zq-card p-6 sm:p-10 -mt-6">

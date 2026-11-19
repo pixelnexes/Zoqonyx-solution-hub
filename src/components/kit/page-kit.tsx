@@ -1,7 +1,7 @@
 import * as React from "react";
 import Link from "next/link";
 import { ArrowRight, ChevronDown } from "lucide-react";
-import { OrbRing, TechCluster } from "@/components/kit/tech-art";
+import { photoAlt } from "@/lib/photos";
 
 /* Real CC0 photographs in /public/photos. Picked by a stable hash so a page always shows the same picture. */
 export const PHOTO_KEYS = ["developer", "team", "marketing", "handshake", "game", "workspace", "city", "code2", "coworking", "keyboard", "phone-app"] as const;
@@ -33,62 +33,61 @@ export function groupPhoto(group: string) {
 
 export type Crumb = { label: string; href?: string };
 
-/** Centered light hero used by inner pages: breadcrumb, headline, intro, actions and an optional photo row. */
+/** Light hero for inner pages: breadcrumb, headline, intro and actions on the left, a real photo on the right. */
 export function PageHero({
   crumbs,
   title,
   intro,
   actions,
-  photos,
+  image,
   badge,
 }: {
   crumbs: Crumb[];
   title: string;
   intro?: string;
   actions?: React.ReactNode;
-  photos?: [string, string, string];
+  image?: string;
   badge?: string;
+  photos?: unknown;
 }) {
   return (
     <section className="zq-hero-light">
-      <OrbRing className="pointer-events-none absolute -right-20 -top-10 -z-10 hidden w-[380px] opacity-70 lg:block" />
-      <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 pt-8 sm:pt-10 text-center">
-        <nav aria-label="Breadcrumb" className="text-sm text-[#5C5878]">
-          <ol className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1">
-            {crumbs.map((c, i) => (
-              <React.Fragment key={c.label + i}>
-                {i > 0 && <li aria-hidden="true">/</li>}
-                <li {...(i === crumbs.length - 1 ? { "aria-current": "page" as const } : {})} className={i === crumbs.length - 1 ? "font-semibold text-[#1B1340]" : undefined}>
-                  {c.href ? (
-                    <Link href={c.href} className="hover:underline underline-offset-4">
-                      {c.label}
-                    </Link>
-                  ) : (
-                    c.label
-                  )}
-                </li>
-              </React.Fragment>
-            ))}
-          </ol>
-        </nav>
-        {badge && <p className="mt-6 inline-flex rounded-md border border-[#1B1340]/20 bg-white/70 px-3 py-1 text-sm font-semibold">{badge}</p>}
-        <h1 className="zq-in-solid zq-display mx-auto mt-5 max-w-4xl text-4xl sm:text-5xl lg:text-[3.5rem] font-extrabold leading-[1.05] text-[#1B1340]">{title}</h1>
-        {intro && (
-          <p className="zq-in mx-auto mt-5 max-w-2xl text-[18px] leading-relaxed text-[#5C5878]" style={{ ["--d" as string]: "90ms" }}>
-            {intro}
-          </p>
-        )}
-        {actions && (
-          <div className="zq-in mt-8 flex flex-wrap justify-center gap-3" style={{ ["--d" as string]: "160ms" }}>
-            {actions}
-          </div>
-        )}
-        {photos ? (
-          <div className="zq-in pb-14" style={{ ["--d" as string]: "240ms" }}>
-            <TechCluster />
-          </div>
-        ) : (
-          <div className="pb-12 sm:pb-14" />
+      <div className={`container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-8 sm:py-12 ${image ? "grid items-center gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:gap-12" : ""}`}>
+        <div className={image ? "" : "max-w-3xl"}>
+          <nav aria-label="Breadcrumb" className="text-sm text-[#5C5878]">
+            <ol className="flex flex-wrap items-center gap-x-2 gap-y-1">
+              {crumbs.map((c, i) => (
+                <React.Fragment key={c.label + i}>
+                  {i > 0 && <li aria-hidden="true">/</li>}
+                  <li {...(i === crumbs.length - 1 ? { "aria-current": "page" as const } : {})} className={i === crumbs.length - 1 ? "font-semibold text-[#1B1340]" : undefined}>
+                    {c.href ? (
+                      <Link href={c.href} className="hover:underline underline-offset-4">
+                        {c.label}
+                      </Link>
+                    ) : (
+                      c.label
+                    )}
+                  </li>
+                </React.Fragment>
+              ))}
+            </ol>
+          </nav>
+          {badge && <p className="mt-5 inline-flex rounded-md border border-[#1B1340]/20 bg-white/70 px-3 py-1 text-sm font-semibold">{badge}</p>}
+          <h1 className="zq-in-solid zq-display mt-4 text-4xl font-extrabold leading-[1.06] text-[#1B1340] sm:text-5xl">{title}</h1>
+          {intro && (
+            <p className="zq-in zq-lead-answer mt-4 max-w-xl text-[18px] leading-relaxed text-[#5C5878]" style={{ ["--d" as string]: "90ms" }}>
+              {intro}
+            </p>
+          )}
+          {actions && (
+            <div className="zq-in mt-6 flex flex-wrap gap-3" style={{ ["--d" as string]: "160ms" }}>
+              {actions}
+            </div>
+          )}
+        </div>
+        {image && (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={image} alt={photoAlt(image)} width={1200} height={800} fetchPriority="high" className="h-60 w-full rounded-xl object-cover shadow-[0_24px_60px_-34px_rgba(76,29,149,.5)] sm:h-72 lg:h-80" />
         )}
       </div>
     </section>
@@ -101,8 +100,6 @@ export function CtaBand({ heading, text, href = "#contact", cta = "Get a quote",
     <section className="zq-section">
       <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="relative isolate overflow-hidden rounded-2xl bg-gradient-to-br from-[#7C3AED] to-[#4C1D95] text-white">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/photos/u-office.jpg" alt="" width={1200} height={800} loading="lazy" className="absolute inset-y-0 right-0 -z-10 hidden h-full w-1/2 object-cover opacity-35 mix-blend-luminosity md:block" />
           <div className="max-w-xl px-7 py-12 sm:px-12 sm:py-16">
             <h2 className="zq-display text-3xl sm:text-4xl font-extrabold leading-tight">{heading}</h2>
             <p className="mt-4 text-[17px] leading-relaxed text-white/90">{text}</p>

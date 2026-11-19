@@ -95,7 +95,7 @@ a.zq-card:hover, .zq-card-hover:hover {
 .zq-band-tint { background: #F3EEFF; }
 .zq-band-dark { position: relative; isolation: isolate; overflow: hidden; color: #fff; background: linear-gradient(135deg, #1B1340 0%, #3B1D8F 100%); }
 .zq-band-dark .zq-blob { display: none; }
-.zq-section { padding-block: clamp(3.5rem, 7vw, 6rem); }
+.zq-section { padding-block: clamp(2.5rem, 5vw, 4.25rem); }
 .zq-h2 { font-size: clamp(1.75rem, 3.2vw, 2.5rem); line-height: 1.1; font-weight: 800; }
 .zq-lead { font-size: clamp(1.0625rem, 1.5vw, 1.25rem); line-height: 1.6; color: var(--zq-muted); }
 

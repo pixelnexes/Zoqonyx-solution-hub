@@ -5,6 +5,7 @@ import { getPost, getPosts, getServices } from "@/lib/content";
 import { extractHeadings, readingMinutes, renderMarkdown } from "@/lib/markdown";
 import { ContactSection } from "@/components/site/sections";
 import { BlogCover } from "@/components/kit/tech-scene";
+import { blogPhotoKey } from "@/lib/photos";
 
 export const revalidate = 300;
 
@@ -32,9 +33,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       type: "article",
       publishedTime: p.publishedAt.toISOString(),
       modifiedTime: p.updatedAt.toISOString(),
-      ...(p.coverImage ? { images: [p.coverImage] } : {}),
+      images: [p.coverImage || `https://zoqonyx.com/photos/${blogPhotoKey(p.slug, p.category)}.jpg`],
     },
-    twitter: { card: p.coverImage ? "summary_large_image" : "summary", title, description },
+    twitter: { card: "summary_large_image", title, description },
   };
 }
 
@@ -66,7 +67,10 @@ export default async function BlogPostPage({ params }: Props) {
         name: "Zoqonyx",
         logo: { "@type": "ImageObject", url: "https://zoqonyx.com/logo/zoqonyx-icon.png" },
       },
-      ...(post.coverImage ? { image: post.coverImage } : {}),
+      image: post.coverImage || `https://zoqonyx.com/photos/${blogPhotoKey(post.slug, post.category)}.jpg`,
+      articleSection: post.category,
+      inLanguage: "en",
+      speakable: { "@type": "SpeakableSpecification", cssSelector: ["h1", ".zq-lead-answer"] },
     },
     {
       "@context": "https://schema.org",
@@ -108,7 +112,7 @@ export default async function BlogPostPage({ params }: Props) {
           </nav>
           <p className="mt-6 inline-flex rounded-md bg-[#7C3AED] px-3 py-1 text-sm font-semibold text-white">{post.category}</p>
           <h1 className="zq-in-solid zq-display mt-4 text-3xl sm:text-5xl font-extrabold leading-[1.08] text-[#1B1340]">{post.title}</h1>
-          <p className="zq-in mx-auto mt-4 max-w-2xl text-[18px] leading-relaxed text-[#5C5878]">{post.excerpt}</p>
+          <p className="zq-in zq-lead-answer mx-auto mt-4 max-w-2xl text-[18px] leading-relaxed text-[#5C5878]">{post.excerpt}</p>
           <p className="mt-5 text-sm text-[#5C5878]">
             By {post.authorName} · {fmt(post.publishedAt)} · {readingMinutes(post.content)} min read
           </p>

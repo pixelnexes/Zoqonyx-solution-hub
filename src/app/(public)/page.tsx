@@ -4,14 +4,12 @@ import { ToolDrawer } from "@/components/home/tool-drawer";
 import { ContactSection, TestimonialsSection } from "@/components/site/sections";
 import { ParallaxImg, ScrollProgress, CountUp } from "@/components/kit/motion";
 import { TechLogo } from "@/components/kit/tech-logo";
-import { GROUP_TECH, TechScene } from "@/components/kit/tech-scene";
-import { OrbRing } from "@/components/kit/tech-art";
+import { BlogCover, TechRow, TechScene } from "@/components/kit/tech-scene";
 import LogoLoop from "@/components/reactbits/LogoLoop";
 import LightRays from "@/components/reactbits/LightRays";
 import SpotlightCard from "@/components/reactbits/SpotlightCard";
 import { Reveal } from "@/components/kit/reveal";
 import { Slider } from "@/components/kit/slider";
-import { CoverArt } from "@/components/kit/cover-art";
 import { serviceStyle, categoryStyle } from "@/components/kit/icons";
 import { readingMinutes } from "@/lib/markdown";
 import { ArrowRight, ChevronDown, Rocket, TrendingUp, Users } from "lucide-react";
@@ -228,43 +226,29 @@ export default async function HomePage() {
 
       {/* 1. Hero */}
       <section className="zq-hero-light">
-        <OrbRing className="pointer-events-none absolute -left-24 top-24 -z-10 hidden w-[360px] opacity-70 lg:block" />
-        <OrbRing className="pointer-events-none absolute -right-28 -top-6 -z-10 hidden w-[420px] opacity-80 lg:block" />
-        <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 pt-14 sm:pt-20 text-center">
-          <p className="zq-in inline-flex rounded-md border border-[#1B1340]/20 bg-white/70 px-3 py-1 text-sm font-semibold">Software studio and free online tools</p>
-          <h1 className="zq-in-solid zq-display mx-auto mt-5 max-w-4xl text-[2.5rem] sm:text-6xl lg:text-[3.75rem] font-extrabold leading-[1.03] text-[#1B1340]">
-            Apps, websites and software built for your business.
-          </h1>
-          <p className="zq-in mx-auto mt-5 max-w-2xl text-[18px] leading-relaxed text-[#5C5878]" style={{ ["--d" as string]: "90ms" }}>
-            Zoqonyx designs and develops mobile apps, websites, games and custom software, helps people find you with digital marketing, and runs {liveCount} free online tools.
-          </p>
-          <div className="zq-in mt-8 flex flex-wrap justify-center gap-3" style={{ ["--d" as string]: "180ms" }}>
-            <a href="#contact" className="zq-btn zq-btn-indigo">
-              Get a quote <ArrowRight className="w-4 h-4" aria-hidden="true" />
-            </a>
-            <Link href="/services" className="zq-btn zq-btn-outline">
-              See our services
-            </Link>
+        <div className="container mx-auto grid max-w-6xl items-center gap-8 px-4 py-10 sm:px-6 sm:py-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-12 lg:px-8 lg:py-16">
+          <div>
+            <p className="zq-in inline-flex rounded-md border border-[#1B1340]/20 bg-white/70 px-3 py-1 text-sm font-semibold">Software studio and free online tools</p>
+            <h1 className="zq-in-solid zq-display mt-5 text-[2.5rem] font-extrabold leading-[1.04] text-[#1B1340] sm:text-6xl">
+              Apps, websites and software built for your business.
+            </h1>
+            <p className="zq-in mt-5 max-w-xl text-[18px] leading-relaxed text-[#5C5878]" style={{ ["--d" as string]: "90ms" }}>
+              Zoqonyx designs and develops mobile apps, websites, games and custom software, helps people find you with digital marketing, and runs {liveCount} free online tools.
+            </p>
+            <div className="zq-in mt-7 flex flex-wrap gap-3" style={{ ["--d" as string]: "180ms" }}>
+              <a href="#contact" className="zq-btn zq-btn-indigo">
+                Get a quote <ArrowRight className="w-4 h-4" aria-hidden="true" />
+              </a>
+              <Link href="/services" className="zq-btn zq-btn-outline">
+                See our services
+              </Link>
+            </div>
+            <p className="mt-4 text-sm text-[#5C5878]">
+              Or <a href="#tools" className="font-semibold text-[#5B21B6] underline underline-offset-4">use the free tools</a>. No sign-up.
+            </p>
           </div>
-          <p className="mt-4 text-sm text-[#5C5878]">
-            Or <a href="#tools" className="font-semibold text-[#5B21B6] underline underline-offset-4">use the free tools</a>. No sign-up.
-          </p>
-
-          {/* Real screenshots of our own tools */}
-          <div className="zq-in relative mx-auto mt-12 max-w-5xl pb-0" style={{ ["--d" as string]: "260ms" }}>
-            <div className="overflow-hidden rounded-t-2xl border border-b-0 border-[#1B1340]/15 bg-white shadow-[0_30px_80px_-30px_rgba(27,19,64,.45)]">
-              <div className="flex items-center gap-2 border-b border-[#E7E1F6] px-4 py-2.5 text-left text-sm text-[#5C5878]">
-                <span className="rounded-md bg-[#FAF8FF] px-3 py-1 font-mono text-[13px]">zoqonyx.com/tools/json-formatter</span>
-              </div>
-              <img src="/shots/json.png" alt="The JSON formatter tool showing formatted output" width={1088} height={515} fetchPriority="high" className="w-full" />
-            </div>
-            <div className="zq-float absolute -left-4 bottom-8 hidden w-64 overflow-hidden rounded-xl border border-[#1B1340]/15 bg-white shadow-[0_24px_60px_-24px_rgba(27,19,64,.5)] lg:block" style={{ ["--r" as string]: "-3deg" }}>
-              <img src="/shots/compress.png" alt="The image compressor tool" width={1088} height={384} loading="lazy" className="h-40 w-full object-cover object-top" />
-            </div>
-            <div className="zq-float absolute -right-4 top-16 hidden w-56 overflow-hidden rounded-xl border border-[#1B1340]/15 bg-white shadow-[0_24px_60px_-24px_rgba(27,19,64,.5)] lg:block" style={{ ["--r" as string]: "3deg", ["--d" as string]: "-2s" }}>
-              <img src="/shots/qr.png" alt="The QR code generator tool" width={1088} height={640} loading="lazy" className="h-40 w-full object-cover object-top" />
-            </div>
-          </div>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/photos/u-team.jpg" alt="Developers working on laptops around a wooden table" width={1200} height={800} fetchPriority="high" className="zq-in h-64 w-full rounded-xl object-cover shadow-[0_24px_60px_-34px_rgba(76,29,149,.5)] sm:h-80 lg:h-[26rem]" style={{ ["--d" as string]: "200ms" }} />
         </div>
       </section>
 
@@ -308,7 +292,8 @@ export default async function HomePage() {
                       <Icon className="w-6 h-6" aria-hidden="true" />
                     </span>
                     <h3 className="zq-display mt-4 text-[1.35rem] font-extrabold leading-tight">{hub.name}</h3>
-                    <p className="mt-2 text-[15px] leading-relaxed text-[#5C5878] flex-1">{hub.shortDesc}</p>
+                    <p className="mt-2 text-[15px] leading-relaxed text-[#5C5878]">{hub.shortDesc}</p>
+                    <div className="mt-3 flex-1"><TechRow group={hub.group} /></div>
                     <p className="mt-4 inline-flex items-center gap-1.5 text-sm font-bold" style={{ color: accent.color }}>
                       {children.length > 0 ? `${children.length} services` : "Learn more"} <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
                     </p>
@@ -537,7 +522,7 @@ export default async function HomePage() {
               {posts.slice(0, 8).map((p) => (
                 <div key={p.slug} className="zq-slide">
                   <Link href={`/blog/${p.slug}`} className="zq-card group flex h-full flex-col overflow-hidden">
-                    <CoverArt seed={p.slug} className="w-full aspect-[16/9] object-cover transition-transform duration-500 group-hover:scale-105" />
+                    <BlogCover seed={p.slug} category={p.category} className="aspect-[16/9] w-full transition-transform duration-500 group-hover:scale-105" />
                     <div className="flex flex-1 flex-col p-5">
                       <p className="text-sm font-semibold text-[#5B21B6]">
                         {p.category} · {readingMinutes(p.content)} min read

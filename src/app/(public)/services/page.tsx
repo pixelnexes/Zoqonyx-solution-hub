@@ -57,7 +57,7 @@ export default async function ServicesPage() {
             </a>
           </>
         }
-        photos={["/photos/phone-app.jpg", "/photos/coworking.jpg", "/photos/marketing.jpg"]}
+        image="/photos/u-collab.jpg"
       />
 
       <div id="all-services" className="scroll-mt-20">

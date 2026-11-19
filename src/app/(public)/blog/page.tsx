@@ -49,6 +49,7 @@ export default async function BlogPage() {
         crumbs={[{ label: "Home", href: "/" }, { label: "Blog" }]}
         title="Guides on SEO, websites, apps and tools"
         intro="Plain-language answers to the questions people ask us before they build, fix or promote something online."
+        image="/photos/u-board.jpg"
       />
 
       <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 zq-section">

@@ -42,7 +42,7 @@ export function Footer() {
   const siteName = settings.site_name || "Zoqonyx Solution Hub";
 
   return (
-    <footer className="mt-auto bg-[#FAF8FF] pt-16 text-white">
+    <footer className="mt-auto bg-[#FAF8FF] pt-10 text-white">
       {/* CTA card sits on the light page and overlaps into the dark footer */}
       <div className="container relative z-10 mx-auto -mb-16 max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#7C3AED] to-[#4C1D95] p-8 text-white shadow-[0_30px_70px_-30px_rgba(27,19,64,.55)] sm:p-12">
@@ -65,7 +65,7 @@ export function Footer() {
         </div>
       </div>
 
-      <div className="bg-[#1B1340] pt-24">
+      <div className="bg-[#1B1340] pt-20">
         <div className="container mx-auto max-w-6xl px-4 pb-10 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1fr_1fr_1fr]">
             <div className="max-w-xs space-y-4">

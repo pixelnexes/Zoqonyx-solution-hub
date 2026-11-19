@@ -7,7 +7,7 @@ export function TechLogo({ name, mono = false }: { name: string; mono?: boolean 
   return (
     <>
       <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill={mono ? "#fff" : dark ? "#1B1340" : `#${icon.hex}`}>
-        <path d={icon.path} />
+        <path d={icon.path} fillRule="evenodd" clipRule="evenodd" />
       </svg>
       <span>{name}</span>
     </>

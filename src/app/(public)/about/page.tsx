@@ -74,7 +74,7 @@ export default async function AboutPage() {
 
   return (
     <div className="zq-page">
-      <PageHero crumbs={[{ label: "Home", href: "/" }, { label: "About" }]} title={title} intro="A suite of free utilities for developers, designers, creators and teams that run in your browser, with no remote data collection." badge="Built by Newix Tech Solutions" photos={["/photos/workspace.jpg", "/photos/team.jpg", "/photos/coworking.jpg"]} />
+      <PageHero crumbs={[{ label: "Home", href: "/" }, { label: "About" }]} title={title} intro="A suite of free utilities for developers, designers, creators and teams that run in your browser, with no remote data collection." badge="Built by Newix Tech Solutions" image="/photos/u-office2.jpg" />
 
       <div className="container mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 zq-section space-y-10">
         <ul className="grid grid-cols-2 lg:grid-cols-4 gap-4 -mt-6 relative">

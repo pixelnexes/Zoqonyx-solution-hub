@@ -9,6 +9,7 @@ import { serviceStyle } from "@/components/kit/icons";
 import { CtaBand, FaqBlock, PageHero, WorkSteps } from "@/components/kit/page-kit";
 import { GROUP_TECH, TechScene } from "@/components/kit/tech-scene";
 import { TechLogo } from "@/components/kit/tech-logo";
+import { groupPhotoKey } from "@/lib/photos";
 import LogoLoop from "@/components/reactbits/LogoLoop";
 
 export const revalidate = 300;
@@ -32,8 +33,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: { absolute: title },
     description,
     alternates: { canonical: url },
-    openGraph: { title, description, url, type: "website" },
-    twitter: { card: "summary", title, description },
+    openGraph: { title, description, url, type: "website", images: [`https://zoqonyx.com/photos/${groupPhotoKey(s.group)}.jpg`] },
+    twitter: { card: "summary_large_image", title, description },
   };
 }
 
@@ -59,6 +60,9 @@ export default async function ServicePage({ params }: Props) {
       description: service.shortDesc,
       url,
       serviceType: service.group || service.name,
+      image: `https://zoqonyx.com/photos/${groupPhotoKey(service.group)}.jpg`,
+      areaServed: "Worldwide",
+      speakable: { "@type": "SpeakableSpecification", cssSelector: ["h1", ".zq-lead-answer"] },
       provider: { "@type": "Organization", name: "Zoqonyx", url: "https://zoqonyx.com", email: "hello@zoqonyx.com" },
     },
     {
@@ -109,7 +113,7 @@ export default async function ServicePage({ params }: Props) {
             </Link>
           </>
         }
-        photos={["", "", ""]}
+        image={`/photos/${groupPhotoKey(service.group)}.jpg`}
       />
 
       {tech.length > 0 && (
