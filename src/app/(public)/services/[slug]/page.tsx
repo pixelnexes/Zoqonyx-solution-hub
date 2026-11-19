@@ -8,7 +8,7 @@ import { ContactSection, TestimonialsSection } from "@/components/site/sections"
 import { serviceStyle } from "@/components/kit/icons";
 import { CtaBand, FaqBlock, PageHero, WorkSteps } from "@/components/kit/page-kit";
 import { GROUP_TECH, TechScene } from "@/components/kit/tech-scene";
-import { TechLogo } from "@/components/kit/tech-logo";
+import { TechLogo, TechSprite } from "@/components/kit/tech-logo";
 import { groupPhotoKey } from "@/lib/photos";
 import LogoLoop from "@/components/reactbits/LogoLoop";
 
@@ -95,6 +95,7 @@ export default async function ServicePage({ params }: Props) {
 
   return (
     <div className="zq-page">
+      <TechSprite />
       {jsonLd.map((d, i) => (
         <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(d) }} />
       ))}

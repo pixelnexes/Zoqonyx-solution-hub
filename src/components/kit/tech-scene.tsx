@@ -40,7 +40,7 @@ export function TechRow({ group }: { group: string }) {
   if (!list) return null;
   return (
     <ul className="flex flex-wrap gap-x-4 gap-y-1.5 text-[13px] font-semibold text-[#5C5878]" aria-label="Technologies">
-      {list.slice(0, 4).map((t) => (
+      {list.slice(0, 3).map((t) => (
         <li key={t} className="inline-flex items-center gap-1.5">
           <TechLogo name={t} />
         </li>

@@ -3,7 +3,7 @@ import Link from "next/link";
 import { ToolDrawer } from "@/components/home/tool-drawer";
 import { ContactSection, TestimonialsSection } from "@/components/site/sections";
 import { ParallaxImg, ScrollProgress, CountUp } from "@/components/kit/motion";
-import { TechLogo } from "@/components/kit/tech-logo";
+import { TechLogo, TechSprite } from "@/components/kit/tech-logo";
 import { BlogCover, TechRow, TechScene } from "@/components/kit/tech-scene";
 import LogoLoop from "@/components/reactbits/LogoLoop";
 import LightRays from "@/components/reactbits/LightRays";
@@ -219,6 +219,7 @@ export default async function HomePage() {
 
   return (
     <div className="zq-page">
+      <TechSprite />
       <ScrollProgress />
       {jsonLd.map((d, i) => (
         <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(d) }} />
@@ -332,7 +333,7 @@ export default async function HomePage() {
             Free online tools
           </h2>
           <p className="mt-3 mb-8 zq-lead max-w-2xl">Open a tool and use it. No sign-up and no account. Most tools run in your browser, so the files you add stay on your device.</p>
-          <ToolDrawer tools={tools} />
+          <ToolDrawer tools={tools.map((t) => ({ ...t, description: "" }))} />
         </div>
       </section>
 
