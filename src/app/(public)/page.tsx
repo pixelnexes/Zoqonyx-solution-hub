@@ -38,7 +38,7 @@ export const metadata: Metadata = {
   },
 };
 
-export const dynamic = "force-dynamic";
+export const revalidate = 300;
 
 const PROCESS = [
   { title: "Talk", text: "Tell us what you want to build or fix. We ask questions about your users, goals and limits." },

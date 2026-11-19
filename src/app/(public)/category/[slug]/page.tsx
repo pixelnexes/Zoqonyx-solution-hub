@@ -9,7 +9,7 @@ import { prisma } from "@/lib/prisma";
 import { getCategoryBySlug, getAllCategories } from "@/lib/categories";
 import { DEFAULT_TOOLS } from "@/lib/default-tools";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 300;
 
 interface CategoryPageProps {
   params: Promise<{ slug: string }>;

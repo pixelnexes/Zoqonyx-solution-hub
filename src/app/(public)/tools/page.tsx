@@ -6,7 +6,7 @@ import { prisma } from "@/lib/prisma";
 import { DEFAULT_TOOLS } from "@/lib/default-tools";
 import { ToolDrawer } from "@/components/home/tool-drawer";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 300;
 
 export const metadata: Metadata = {
   title: {

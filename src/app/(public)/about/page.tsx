@@ -5,7 +5,7 @@ import { ShieldCheck, Zap, Lock, Cpu, Globe, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { MarkdownRenderer } from "@/components/common/markdown-renderer";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 300;
 
 export const metadata: Metadata = {
   title: {

@@ -5,6 +5,15 @@ const nextConfig: NextConfig = {
   images: {
     unoptimized: true,
   },
+  // Photos, screenshots and logos never change under the same name, so let the CDN and browsers keep them.
+  async headers() {
+    const immutable = [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }];
+    return [
+      { source: "/photos/:path*", headers: immutable },
+      { source: "/shots/:path*", headers: immutable },
+      { source: "/logo/:path*", headers: immutable },
+    ];
+  },
   async redirects() {
     return [
       // Send every www request to the apex domain (duplicate-content fix)
