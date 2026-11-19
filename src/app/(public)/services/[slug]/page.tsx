@@ -188,7 +188,7 @@ export default async function ServicePage({ params }: Props) {
               {related.map((r) => (
                 <li key={r.slug}>
                   <Link href={`/services/${r.slug}`} className="zq-card zq-card-hover group flex h-full flex-col overflow-hidden">
-                    <TechScene techs={GROUP_TECH[r.group] || ["React", "Node.js"]} className="h-40 w-full !rounded-none" />
+                    <TechScene group={r.group} className="h-40 w-full !rounded-none" />
                     <span className="flex flex-1 flex-col p-5">
                       <span className="text-[18px] font-bold group-hover:text-[#5B21B6]">{r.name}</span>
                       <span className="mt-1.5 flex-1 text-[15px] leading-relaxed text-[#5C5878] line-clamp-3">{r.shortDesc}</span>

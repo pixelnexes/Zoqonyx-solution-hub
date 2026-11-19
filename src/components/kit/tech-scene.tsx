@@ -4,6 +4,19 @@ import { TechLogo } from "@/components/kit/tech-logo";
 
 /* Code-drawn "tech scene" images: dark violet board, grid, glow, and glass tiles carrying real technology logos. */
 
+export const GROUP_IMG: Record<string, string> = {
+  "Game Development": "u-game",
+  "App Development": "u-phone",
+  "Website Development": "u-web",
+  "Custom Software": "u-dev",
+  "Digital Marketing": "u-analytics",
+  "AI & NLP Development": "u-ai",
+  "NFT Development": "u-network",
+  "Staff Augmentation": "u-team",
+  "ERP & CRM Development": "u-laptop",
+};
+const BLOG_IMGS = ["u-dev", "u-office", "u-analytics", "u-laptop", "u-server", "u-network", "u-app", "u-web", "u-aichip", "u-team"];
+
 export const GROUP_TECH: Record<string, string[]> = {
   "Game Development": ["Unity", "Unreal Engine", "Godot", "Solidity"],
   "App Development": ["Kotlin", "Swift", "Flutter", "React Native"],
@@ -27,11 +40,20 @@ const SLOTS: { x: number; y: number; r: number }[] = [
 const BOARD = "relative isolate overflow-hidden bg-gradient-to-br from-[#1B1340] via-[#2D1B69] to-[#5B21B6]";
 const GRID = { backgroundImage: "linear-gradient(rgba(255,255,255,.07) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.07) 1px, transparent 1px)", backgroundSize: "28px 28px" };
 
-export function TechScene({ techs, className = "", label }: { techs: string[]; className?: string; label?: string }) {
-  const items = techs.slice(0, 5);
+export function TechScene({ techs, group, photo, className = "", label }: { techs?: string[]; group?: string; photo?: string; className?: string; label?: string }) {
+  const list = techs || (group ? GROUP_TECH[group] : undefined) || ["React", "Node.js", "Python"];
+  const img = photo || (group && GROUP_IMG[group] ? `/photos/${GROUP_IMG[group]}.jpg` : undefined);
+  const items = list.slice(0, 5);
   return (
     <div className={`${BOARD} rounded-xl ${className}`} role="img" aria-label={label || `Technologies: ${items.join(", ")}`}>
-      <div aria-hidden="true" className="absolute inset-0 -z-10 opacity-80" style={GRID} />
+      {img && (
+        <>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={img} alt="" width={1200} height={800} loading="lazy" className="absolute inset-0 -z-20 h-full w-full object-cover" />
+          <div aria-hidden="true" className="absolute inset-0 -z-[15] bg-gradient-to-br from-[#1B1340]/85 via-[#2D1B69]/60 to-[#7C3AED]/40" />
+        </>
+      )}
+      <div aria-hidden="true" className="absolute inset-0 -z-10 opacity-60" style={GRID} />
       <div aria-hidden="true" className="absolute -left-10 -top-16 -z-10 h-64 w-64 rounded-full bg-[#8B5CF6]/50 blur-3xl" />
       <div aria-hidden="true" className="absolute -bottom-20 -right-10 -z-10 h-64 w-64 rounded-full bg-[#F472B6]/40 blur-3xl" />
       <svg aria-hidden="true" viewBox="0 0 100 100" preserveAspectRatio="none" className="absolute inset-0 -z-10 h-full w-full">
@@ -77,11 +99,15 @@ export function BlogCover({ seed, category = "", className = "" }: { seed: strin
   const Icon = (CAT_ICON.find(([re]) => re.test(category)) || [null, Code2])[1];
   const pts = Array.from({ length: 5 }, (_, i) => ({ x: 12 + i * 19 + ((h >> (i * 3)) % 8), y: 22 + ((h >> (i * 2 + 1)) % 46) }));
   const hue = h % 3;
+  const photo = `/photos/${BLOG_IMGS[h % BLOG_IMGS.length]}.jpg`;
   const from = ["#1B1340", "#1E1B4B", "#2E1065"][hue];
   const to = ["#6D28D9", "#4F46E5", "#A21CAF"][hue];
   return (
     <div className={`relative isolate overflow-hidden ${className}`} style={{ background: `linear-gradient(135deg, ${from}, ${to})` }} role="img" aria-label={`${category} article`}>
-      <div aria-hidden="true" className="absolute inset-0 -z-10 opacity-80" style={GRID} />
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src={photo} alt="" width={1200} height={800} loading="lazy" className="absolute inset-0 -z-20 h-full w-full object-cover" />
+      <div aria-hidden="true" className="absolute inset-0 -z-[15]" style={{ background: `linear-gradient(135deg, ${from}E6, ${to}8C)` }} />
+      <div aria-hidden="true" className="absolute inset-0 -z-10 opacity-50" style={GRID} />
       <svg aria-hidden="true" viewBox="0 0 100 60" preserveAspectRatio="none" className="absolute inset-0 -z-10 h-full w-full">
         <polyline points={pts.map((p) => `${p.x},${p.y}`).join(" ")} fill="none" stroke="#C4B5FD" strokeOpacity=".55" strokeWidth=".7" vectorEffect="non-scaling-stroke" />
         {pts.map((p, i) => (

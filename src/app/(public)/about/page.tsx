@@ -89,6 +89,13 @@ export default async function AboutPage() {
           ))}
         </ul>
 
+        <div className="grid gap-4 sm:grid-cols-3">
+          {["u-team", "u-dev", "u-server"].map((n) => (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img key={n} src={`/photos/${n}.jpg`} alt="" width={1200} height={800} loading="lazy" className="h-48 w-full rounded-xl object-cover" />
+          ))}
+        </div>
+
         <div className="zq-card p-6 sm:p-10">
           <MarkdownRenderer content={content} />
         </div>

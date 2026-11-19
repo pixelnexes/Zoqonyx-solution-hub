@@ -101,7 +101,8 @@ export function CtaBand({ heading, text, href = "#contact", cta = "Get a quote",
     <section className="zq-section">
       <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="relative isolate overflow-hidden rounded-2xl bg-gradient-to-br from-[#7C3AED] to-[#4C1D95] text-white">
-          <OrbRing className="absolute -right-16 -top-10 -z-10 hidden w-[380px] opacity-60 md:block" />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/photos/u-office.jpg" alt="" width={1200} height={800} loading="lazy" className="absolute inset-y-0 right-0 -z-10 hidden h-full w-1/2 object-cover opacity-35 mix-blend-luminosity md:block" />
           <div className="max-w-xl px-7 py-12 sm:px-12 sm:py-16">
             <h2 className="zq-display text-3xl sm:text-4xl font-extrabold leading-tight">{heading}</h2>
             <p className="mt-4 text-[17px] leading-relaxed text-white/90">{text}</p>

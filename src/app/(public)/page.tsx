@@ -259,10 +259,10 @@ export default async function HomePage() {
               <img src="/shots/json.png" alt="The JSON formatter tool showing formatted output" width={1088} height={515} fetchPriority="high" className="w-full" />
             </div>
             <div className="zq-float absolute -left-4 bottom-8 hidden w-64 overflow-hidden rounded-xl border border-[#1B1340]/15 bg-white shadow-[0_24px_60px_-24px_rgba(27,19,64,.5)] lg:block" style={{ ["--r" as string]: "-3deg" }}>
-              <img src="/shots/compress.png" alt="The image compressor tool" width={1088} height={384} loading="lazy" className="w-full" />
+              <img src="/shots/compress.png" alt="The image compressor tool" width={1088} height={384} loading="lazy" className="h-40 w-full object-cover object-top" />
             </div>
             <div className="zq-float absolute -right-4 top-16 hidden w-56 overflow-hidden rounded-xl border border-[#1B1340]/15 bg-white shadow-[0_24px_60px_-24px_rgba(27,19,64,.5)] lg:block" style={{ ["--r" as string]: "3deg", ["--d" as string]: "-2s" }}>
-              <img src="/shots/qr.png" alt="The QR code generator tool" width={1088} height={640} loading="lazy" className="w-full" />
+              <img src="/shots/qr.png" alt="The QR code generator tool" width={1088} height={640} loading="lazy" className="h-40 w-full object-cover object-top" />
             </div>
           </div>
         </div>
@@ -302,7 +302,7 @@ export default async function HomePage() {
               return (
                 <Reveal as="li" key={hub.slug} delay={(i % 3) * 90}>
                   <Link href={`/services/${hub.slug}`} className="zq-card group relative flex h-full flex-col overflow-hidden">
-                    <TechScene techs={GROUP_TECH[hub.group] || ["React", "Node.js"]} className="h-40 w-full !rounded-none" />
+                    <TechScene group={hub.group} className="h-40 w-full !rounded-none" />
                     <div className="flex flex-1 flex-col p-6 -mt-10 relative">
                     <span className={`zq-chip ${accent.chip} ring-4 ring-white`}>
                       <Icon className="w-6 h-6" aria-hidden="true" />
@@ -355,7 +355,7 @@ export default async function HomePage() {
       <section aria-labelledby="why-heading" className="zq-section">
         <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 grid gap-10 lg:grid-cols-2 items-center">
           <Reveal>
-            <TechScene techs={["Next.js", "TypeScript", "Tailwind CSS", "Cloudflare", "Docker"]} className="h-72 w-full lg:h-[26rem]" />
+            <TechScene photo="/photos/u-dev.jpg" techs={["Next.js", "TypeScript", "Tailwind CSS", "Cloudflare", "Docker"]} className="h-72 w-full lg:h-[26rem]" />
           </Reveal>
           <div>
             <h2 id="why-heading" className="zq-display zq-h2">
@@ -438,7 +438,7 @@ export default async function HomePage() {
               </h2>
               <p className="mt-4 text-[17px] leading-relaxed zq-on-dark-muted max-w-md">Founders, growing companies and teams that need extra hands. We start with a call, a plain-language plan and a fixed first step.</p>
             </div>
-            <TechScene techs={["React", "Node.js", "Python", "Docker", "PostgreSQL"]} className="h-56 w-full lg:h-72" />
+            <TechScene photo="/photos/u-team.jpg" techs={["React", "Node.js", "Python", "Docker", "PostgreSQL"]} className="h-56 w-full lg:h-72" />
           </div>
           <ul className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6">
             {AUDIENCES.map((a, i) => {
@@ -467,8 +467,9 @@ export default async function HomePage() {
       {/* 6b. Apps band with parallax photo */}
       <section aria-labelledby="apps-heading" className="relative isolate overflow-hidden text-white">
         <div aria-hidden="true" className="absolute inset-0 -z-10">
-          <div className="absolute inset-0 bg-gradient-to-br from-[#1B1340] via-[#2D1B69] to-[#5B21B6]" />
-          <OrbRing className="absolute -right-20 -top-16 w-[420px] opacity-60" />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/photos/u-server.jpg" alt="" width={1200} height={800} loading="lazy" className="absolute inset-0 h-full w-full object-cover" />
+          <div className="absolute inset-0 bg-gradient-to-br from-[#1B1340]/90 via-[#2D1B69]/80 to-[#5B21B6]/70" />
         </div>
         <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 zq-section grid gap-10 lg:grid-cols-[1.1fr_0.9fr] items-center">
           <div>
@@ -481,7 +482,7 @@ export default async function HomePage() {
             </a>
           </div>
           <Reveal>
-            <TechScene techs={["Kotlin", "Swift", "Flutter", "React Native"]} className="h-64 w-full" />
+            <TechScene photo="/photos/u-app.jpg" techs={["Kotlin", "Swift", "Flutter", "React Native"]} className="h-64 w-full" />
           </Reveal>
         </div>
       </section>
