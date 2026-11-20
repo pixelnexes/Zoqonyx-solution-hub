@@ -10,7 +10,7 @@ function tooMany(ip: string): boolean {
   const recent = (hits.get(ip) || []).filter((t) => now - t < 60 * 60 * 1000);
   recent.push(now);
   hits.set(ip, recent);
-  return recent.length > 3;
+  return recent.length > 6;
 }
 const clip = (v: unknown, max: number) => String(v ?? "").trim().slice(0, max);
 
