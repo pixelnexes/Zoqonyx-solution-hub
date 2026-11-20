@@ -92,7 +92,14 @@ export async function getPosts(): Promise<Post[]> {
   } catch {
     // Database unavailable: built-in posts only.
   }
-  return Array.from(map.values()).sort((a, b) => b.publishedAt.getTime() - a.publishedAt.getTime());
+  // Scheduled posts stay hidden until their publish date; links to hidden posts become plain text.
+  const now = Date.now();
+  const live = Array.from(map.values()).filter((p) => p.publishedAt.getTime() <= now);
+  const slugs = new Set(live.map((p) => p.slug));
+  for (const p of live) {
+    p.content = p.content.replace(/\[([^\]]+)\]\(\/blog\/([a-z0-9-]+)\)/g, (m, text, slug) => (slugs.has(slug) ? m : text));
+  }
+  return live.sort((a, b) => b.publishedAt.getTime() - a.publishedAt.getTime());
 }
 
 export async function getPost(slug: string): Promise<Post | null> {
