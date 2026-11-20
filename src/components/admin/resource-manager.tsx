@@ -71,8 +71,10 @@ export function ResourceManager({ def }: { def: ResourceDef }) {
     setSaving(true);
     setNotice(null);
     try {
-      const res = await fetch(isNew ? `/api/admin/content/${def.key}` : `/api/admin/content/${def.key}/${editing.id}`, {
-        method: isNew ? "POST" : "PUT",
+      const fromSeed = String(editing.id).startsWith("seed:");
+      const create = isNew || fromSeed;
+      const res = await fetch(create ? `/api/admin/content/${def.key}` : `/api/admin/content/${def.key}/${editing.id}`, {
+        method: create ? "POST" : "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(editing),
       });
@@ -158,6 +160,7 @@ export function ResourceManager({ def }: { def: ResourceDef }) {
           <ArrowLeft className="w-4 h-4" /> Back to {def.title.toLowerCase()}
         </button>
         <h1 className="text-2xl font-bold">{isNew ? `New ${def.singular}` : `Edit ${def.singular}`}</h1>
+        {String(editing.id).startsWith("seed:") && <p className="text-sm text-muted-foreground">Built-in {def.singular}. Saving creates an editable copy that replaces it on the website.</p>}
         {def.fields.map((f) => (
           <div key={f.key}>{renderField(f)}</div>
         ))}
@@ -166,7 +169,7 @@ export function ResourceManager({ def }: { def: ResourceDef }) {
             <Save className="w-4 h-4" /> {saving ? "Saving…" : "Save"}
           </Button>
           {!isNew && (
-            <Button variant="outline" onClick={remove} className="gap-1.5 text-rose-700">
+            <Button variant="outline" onClick={remove} disabled={String(editing.id).startsWith("seed:")} className="gap-1.5 text-rose-700">
               <Trash2 className="w-4 h-4" /> Delete
             </Button>
           )}
