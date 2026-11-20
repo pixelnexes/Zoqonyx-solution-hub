@@ -5,6 +5,7 @@ import { ReviewForm } from "@/components/site/review-form";
 export const metadata: Metadata = {
   title: { absolute: "Write a Review | Zoqonyx" },
   description: "Worked with Zoqonyx or used our free tools? Share a short review. Reviews are checked before they appear on the site.",
+  robots: { index: false, follow: true },
   alternates: { canonical: "https://zoqonyx.com/review" },
 };
 

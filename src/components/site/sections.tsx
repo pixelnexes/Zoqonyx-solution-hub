@@ -37,7 +37,7 @@ export function ContactSection({
                 <span className="zq-chip zq-chip-sm zq-g-aqua">
                   <MessageSquareQuote className="w-[18px] h-[18px]" aria-hidden="true" />
                 </span>
-                Tell us about your idea and we will reply with questions.
+                Tell us about your idea and we will reply with questions. We work remotely with clients in the USA, Europe, the Gulf and Asia.
               </li>
             </ul>
           </div>

@@ -1,5 +1,4 @@
-import Link from "next/link";
-import { ArrowRight, Star } from "lucide-react";
+import { Star } from "lucide-react";
 import type { TestimonialItem } from "@/lib/content";
 
 function Card({ t }: { t: TestimonialItem }) {
@@ -41,6 +40,7 @@ function Row({ items, reverse }: { items: TestimonialItem[]; reverse?: boolean }
 /** Two-row review marquee (opposite directions, edge fade, pauses on hover). Posting reviews lives on /review. */
 export function TestimonialsSection({ items, heading = "Client reviews" }: { items: TestimonialItem[]; heading?: string }) {
   const list = items.slice(0, 20);
+  if (list.length === 0) return null; // only real, approved reviews are shown
   const avg = list.length ? list.reduce((a, t) => a + Math.max(1, Math.min(5, t.rating)), 0) / list.length : 0;
   const half = Math.ceil(list.length / 2);
   const a = list.slice(0, half);
@@ -55,11 +55,11 @@ export function TestimonialsSection({ items, heading = "Client reviews" }: { ite
               {heading}
             </h2>
             <p className="mt-2 max-w-xl text-[16px] text-[#5C5878]">
-              {list.length ? "Feedback from people we have worked with." : "No reviews yet. Worked with us? Be the first to share how it went."}
+              Feedback from people we have worked with.
             </p>
           </div>
           <div className="flex flex-wrap items-center gap-3">
-            {list.length > 0 && (
+            {(
               <div className="flex items-center gap-2 rounded-xl border border-[#E7E1F6] bg-white px-4 py-2.5">
                 <span className="zq-display text-2xl font-extrabold text-[#1B1340]">{avg.toFixed(1)}</span>
                 <Star className="h-5 w-5 fill-[#F2A81D] text-[#F2A81D]" aria-hidden="true" />
@@ -68,9 +68,6 @@ export function TestimonialsSection({ items, heading = "Client reviews" }: { ite
                 </span>
               </div>
             )}
-            <Link href="/review" className="zq-btn zq-btn-indigo h-11 px-5 text-[15px]">
-              Write a review <ArrowRight className="h-4 w-4" aria-hidden="true" />
-            </Link>
           </div>
         </div>
       </div>

@@ -79,7 +79,7 @@ export function LeadForm({ services, defaultService = "" }: { services: ServiceO
           <label htmlFor="lf-phone" className="block text-sm font-semibold mb-1">
             Phone or WhatsApp
           </label>
-          <input id="lf-phone" name="phone" type="tel" required minLength={7} inputMode="tel" placeholder="+92 300 1234567" autoComplete="tel" className={field} />
+          <input id="lf-phone" name="phone" type="tel" required minLength={7} inputMode="tel" placeholder="+1 555 123 4567 (with country code)" autoComplete="tel" className={field} />
         </div>
         <div>
           <label htmlFor="lf-company" className="block text-sm font-semibold mb-1">

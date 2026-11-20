@@ -127,7 +127,7 @@ export default function ContactPage() {
                 <Input
                   required
                   type="tel"
-                  placeholder="+1 (555) 000-0000"
+                  placeholder="+1 555 123 4567 (with country code)"
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                   disabled={status === "loading"}

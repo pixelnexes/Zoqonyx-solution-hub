@@ -204,6 +204,7 @@ export default async function HomePage() {
       url: "https://zoqonyx.com",
       logo: "https://zoqonyx.com/logo/zoqonyx-icon.png",
       email: "hello@zoqonyx.com",
+      areaServed: ["United States", "Europe", "Gulf region", "Asia"],
       description: "Software, app and website development, digital marketing and free online tools.",
     },
     {
