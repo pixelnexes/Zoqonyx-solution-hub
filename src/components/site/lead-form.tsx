@@ -23,6 +23,16 @@ export function LeadForm({ services, defaultService = "" }: { services: ServiceO
     e.preventDefault();
     const form = e.currentTarget;
     const data = Object.fromEntries(new FormData(form).entries());
+    const problems: string[] = [];
+    if (!String(data.name || "").trim()) problems.push("your name");
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(String(data.email || "").trim())) problems.push("a valid email");
+    if (String(data.phone || "").replace(/\D/g, "").length < 7) problems.push("a phone or WhatsApp number");
+    if (String(data.message || "").trim().length < 10) problems.push("a message of at least 10 characters");
+    if (problems.length) {
+      setError("Please add " + problems.join(", ") + ".");
+      setStatus("error");
+      return;
+    }
     setStatus("sending");
     setError("");
     try {
@@ -67,9 +77,9 @@ export function LeadForm({ services, defaultService = "" }: { services: ServiceO
         </div>
         <div>
           <label htmlFor="lf-phone" className="block text-sm font-semibold mb-1">
-            Phone or WhatsApp <span className="font-normal text-[#5C5878]">(optional)</span>
+            Phone or WhatsApp
           </label>
-          <input id="lf-phone" name="phone" type="tel" autoComplete="tel" className={field} />
+          <input id="lf-phone" name="phone" type="tel" required minLength={7} inputMode="tel" placeholder="+92 300 1234567" autoComplete="tel" className={field} />
         </div>
         <div>
           <label htmlFor="lf-company" className="block text-sm font-semibold mb-1">

@@ -36,8 +36,14 @@ export async function POST(req: Request) {
   const name = clip(body.name, 120);
   const email = clip(body.email, 190);
   const message = clip(body.message, 4000);
-  if (!name || !EMAIL_RE.test(email) || message.length < 10) {
-    return NextResponse.json({ error: "Please enter your name, a valid email and a short message." }, { status: 400 });
+  const phone = clip(body.phone, 60);
+  const problems: string[] = [];
+  if (!name) problems.push("your name");
+  if (!EMAIL_RE.test(email)) problems.push("a valid email");
+  if (phone.replace(/\D/g, "").length < 7) problems.push("a phone or WhatsApp number");
+  if (message.length < 10) problems.push("a message of at least 10 characters");
+  if (problems.length) {
+    return NextResponse.json({ error: "Please add " + problems.join(", ") + "." }, { status: 400 });
   }
 
   try {
@@ -46,7 +52,7 @@ export async function POST(req: Request) {
       data: {
         name,
         email,
-        phone: clip(body.phone, 60),
+        phone,
         company: clip(body.company, 120),
         service: clip(body.service, 120),
         budget: clip(body.budget, 60),

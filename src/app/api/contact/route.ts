@@ -6,11 +6,18 @@ export async function POST(req: Request) {
     const body = await req.json();
     const { name, email, phone, subject, message } = body;
 
+    const digits = String(phone ?? "").replace(/\D/g, "");
     if (!name || !email || !message) {
-      return NextResponse.json(
-        { error: "Name, email, and message are required." },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: "Name, email, and message are required." }, { status: 400 });
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(String(email).trim())) {
+      return NextResponse.json({ error: "Please enter a valid email address." }, { status: 400 });
+    }
+    if (digits.length < 7) {
+      return NextResponse.json({ error: "Please enter a phone or WhatsApp number." }, { status: 400 });
+    }
+    if (String(message).trim().length < 10) {
+      return NextResponse.json({ error: "Please write a message of at least 10 characters." }, { status: 400 });
     }
 
     // Combine subject and phone cleanly with the message body

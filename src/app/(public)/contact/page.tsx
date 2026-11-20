@@ -18,8 +18,8 @@ export default function ContactPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!name || !email || !message) {
-      setErrorMessage("Please fill in your name, email, and message.");
+    if (!name.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email.trim()) || phone.replace(/\D/g, "").length < 7 || message.trim().length < 10) {
+      setErrorMessage("Please fill in your name, a valid email, a phone or WhatsApp number and a message of at least 10 characters.");
       setStatus("error");
       return;
     }
@@ -122,9 +122,10 @@ export default function ContactPage() {
               {/* Phone Number Field */}
               <div className="space-y-1.5">
                 <label className="text-xs font-semibold text-foreground">
-                  Phone Number
+                  Phone or WhatsApp <span className="text-brand-cyan">*</span>
                 </label>
                 <Input
+                  required
                   type="tel"
                   placeholder="+1 (555) 000-0000"
                   value={phone}
