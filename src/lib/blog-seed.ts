@@ -575,3 +575,6 @@ A redesign that is heavier and slower can hurt. Test Core Web Vitals on your key
 We plan redesigns around search from the beginning. See our [website development services](/services/website-development-services), or tell us about your site and we'll suggest what to keep, change and redirect.`,
   },
 ];
+
+import { BLOG_SEEDS_2027 } from "./blog-seed-2027";
+BLOG_SEEDS.push(...BLOG_SEEDS_2027);
