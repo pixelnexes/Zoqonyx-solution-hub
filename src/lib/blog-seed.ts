@@ -26,6 +26,8 @@ export const BLOG_SEEDS: BlogSeed[] = [
     metaDesc: "Check backlinks for free with Google Search Console: where to find the Links report, how to export it and how to spot spammy links.",
     content: `A backlink is a link from another website to yours. Search engines use links as one signal of whether a page is worth showing, so it helps to know who links to you. You can check your backlinks for free with Google Search Console, and no paid tool is needed to get started.
 
+![Person pointing at a MacBook screen](/photos/u-mac.webp)
+
 ## What you need
 
 - A website verified in [Google Search Console](https://search.google.com/search-console) (it's free)
@@ -42,6 +44,8 @@ Under external links you can see:
 - **Top linked pages**: which of your pages have the most links
 - **Top linking sites**: the websites that link to you most
 - **Top linking text**: the anchor text used in the links
+
+![Three colleagues reviewing work on a MacBook](/photos/u-review.webp)
 
 ## Step 2: Export your links
 
@@ -88,6 +92,8 @@ Backlinks take time. Check your report once a month, and look for slow, steady g
 
 Some tools do the work inside your browser instead. The files are read by your device and the merged file is created locally, so nothing is sent anywhere.
 
+![Team meeting around a table in an open office](/photos/u-office.webp)
+
 ## Merge PDFs in your browser
 
 1. Open the [Zoqonyx Merge PDF tool](/tools/merge-pdf)
@@ -101,6 +107,8 @@ Some tools do the work inside your browser instead. The files are read by your d
 - **Check page sizes.** Mixing A4 and Letter pages is fine, but the merged file keeps each page's own size
 - **Check the page count** of the result against the sum of your files
 - **Unlock first.** A password-protected PDF has to be unlocked before it can be merged, and you need to know its password
+
+![Two software developers at their desks in a bright office](/photos/u-dev.webp)
 
 ## What about large files?
 
@@ -126,6 +134,8 @@ Open your browser's developer tools, go to the Network tab and merge a file. If 
     metaDesc: "Make a PDF small enough to email: compress it in your browser, understand why some PDFs won't shrink, and see other ways to reduce file size.",
     content: `Most email services limit attachments to around 20 to 25 MB, and some company systems set lower limits. If your PDF is too big, there are several ways to make it smaller, and which one works depends on what is inside the file.
 
+![Laptop on a glass desk in a workspace](/photos/u-laptop.webp)
+
 ## Why PDFs get large
 
 - **Images.** Photos and scanned pages are the biggest cause. A scanned document is just a stack of page images.
@@ -142,6 +152,8 @@ It's important to know what it does **not** do: it doesn't re-compress the image
 - Text-based PDFs (reports, contracts exported from Word) often get a little smaller
 - Image-heavy and scanned PDFs may barely change
 - If the file can't be made smaller, the tool returns the original and shows 0% saved
+
+![Three colleagues in a modern office meeting](/photos/u-office2.webp)
 
 ## Step 2: Reduce the images before they go in the PDF
 

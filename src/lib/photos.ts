@@ -72,8 +72,25 @@ function hash(s: string) {
   return Math.abs(h);
 }
 
+const COVER_OVERRIDE: Record<string, string> = {
+  "earn-money-with-ai-tool-website": "u-laptop",
+  "best-business-to-start-in-2027": "u-meeting",
+  "ai-business-ideas-for-2027": "u-aichip",
+  "how-much-does-it-cost-to-build-an-ai-app": "u-ai",
+  "get-leads-with-a-free-tools-website": "u-analytics",
+  "seo-in-2027-ai-search-geo-aeo": "u-mac",
+  "mobile-app-ideas-for-2027": "u-phone",
+  "web3-game-and-nft-business-in-2027": "u-network",
+  "ai-in-crm-and-erp-software": "u-office2",
+  "hire-dedicated-developers-or-agency": "u-team",
+  "how-to-check-backlinks-for-free": "u-analytics",
+  "how-to-merge-pdf-files-without-uploading-them": "u-laptop",
+  "how-to-compress-a-pdf-for-email": "u-dev",
+};
+
 /** Picks a photo related to the post's category; the slug keeps the choice stable. */
 export function blogPhotoKey(slug: string, category = "") {
+  if (COVER_OVERRIDE[slug]) return COVER_OVERRIDE[slug];
   const set = (BLOG_SETS.find(([re]) => re.test(category)) || [null, ["u-dev", "u-office2", "u-board", "u-collab", "u-review", "u-group"]])[1];
   return set[hash(slug) % set.length];
 }

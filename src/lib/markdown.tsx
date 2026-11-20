@@ -96,6 +96,18 @@ export function renderMarkdown(md: string): React.ReactNode {
       continue;
     }
 
+    const img = line.trim().match(/^!\[([^\]]*)\]\((\/[^)\s]+)\)$/);
+    if (img) {
+      nodes.push(
+        <figure key={k++} className="my-7">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={img[2]} alt={img[1]} width={1200} height={800} loading="lazy" className="h-auto w-full rounded-xl object-cover" />
+        </figure>
+      );
+      i++;
+      continue;
+    }
+
     if (/^---+$/.test(line.trim())) {
       nodes.push(<hr key={k++} className="my-8 border-[#D5DCE4]" />);
       i++;
@@ -201,7 +213,8 @@ export function renderMarkdown(md: string): React.ReactNode {
       !/^>\s?/.test(lines[i]) &&
       !/^\|/.test(lines[i].trim()) &&
       !/^```/.test(lines[i].trim()) &&
-      !/^---+$/.test(lines[i].trim())
+      !/^---+$/.test(lines[i].trim()) &&
+      !/^!\[[^\]]*\]\(\//.test(lines[i].trim())
     ) {
       buf.push(lines[i++].trim());
     }

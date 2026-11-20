@@ -9,10 +9,12 @@ export const BLOG_SEEDS_2027: BlogSeed[] = [
     excerpt: "Seven business models that look realistic for 2027: AI tool sites, niche SaaS, app studios, e-commerce, and more. What each needs and where it can go wrong.",
     category: "Business ideas",
     tags: ["business ideas 2027", "startup", "ai business", "saas"],
-    publishedAt: "2026-11-22",
+    publishedAt: "2026-11-20",
     metaTitle: "Best Business Ideas to Start in 2027 | Zoqonyx",
     metaDesc: "Seven realistic business ideas for 2027 with low startup cost: AI tool websites, niche SaaS, apps, e-commerce and more, with the risks of each.",
     content: `Nobody can promise which business will win in 2027. What we can do is look at where demand is already growing and where the cost of starting has dropped. Software, AI tools and online services fit both. Below are seven ideas, what each one needs, and the honest risks.
+
+![Man writing a plan on a whiteboard](/photos/u-board.webp)
 
 ## 1. An AI tool website
 
@@ -21,6 +23,8 @@ A site that does one useful job with AI: rewrite a product description, summariz
 ## 2. A niche SaaS product
 
 Small software that solves one painful task for one type of business: appointment reminders for clinics, inventory sheets for small shops, invoices for freelancers. Recurring subscriptions give predictable income. The risk is slow growth at the start, so talk to ten potential customers before you write code.
+
+![Laptop on a glass desk in a workspace](/photos/u-laptop.webp)
 
 ## 3. A mobile app for a local or niche need
 
@@ -59,10 +63,12 @@ We build websites, apps, AI features and custom software. Look at our [custom so
     excerpt: "A practical look at how AI tool websites make money, what it costs to build one, and the mistakes that stop most of them from earning anything.",
     category: "AI",
     tags: ["earn with ai", "ai tool website", "ai business", "monetization"],
-    publishedAt: "2026-11-21",
+    publishedAt: "2026-11-20",
     metaTitle: "Earn Money With AI: Build an AI Tool Website (2027)",
     metaDesc: "How AI tool websites earn money: subscriptions, credits, ads and leads. What they cost to build, how to pick a niche and what usually goes wrong.",
     content: `Many people want to earn with AI. Using ChatGPT yourself is not a business. A business is a product other people pay for, and one common form is an AI tool website: a page where a visitor enters something, an AI does a job, and the visitor gets a useful result. Here is how that works in practice. We can't promise income, and most new sites earn little at first, but the model is sound if you do it carefully.
+
+![Circuit-board drawing of a brain representing artificial intelligence](/photos/u-ai.webp)
 
 ## How AI tool websites make money
 
@@ -75,6 +81,8 @@ We build websites, apps, AI features and custom software. Look at our [custom so
 ## Pick a narrow job
 
 "AI writer" is crowded. "Product descriptions for Amazon listings in the right character limits" is specific. A narrow job lets you write better prompts, rank for exact searches and charge for real value. Ask: who has this problem every week, and what do they do now?
+
+![Laptop screen showing website analytics graphs](/photos/u-analytics.webp)
 
 ## What you need to build one
 
@@ -106,10 +114,12 @@ We build [AI-driven web apps](/services/ai-driven-web-app-development) and [NLP 
     excerpt: "Eight AI-powered business ideas a small team can build in 2027, with the kind of customer each one serves and what to validate first.",
     category: "AI",
     tags: ["ai business ideas", "2027", "ai startup", "automation"],
-    publishedAt: "2026-11-23",
+    publishedAt: "2026-11-20",
     metaTitle: "AI Business Ideas for 2027 (Small Team Friendly)",
     metaDesc: "Eight AI business ideas for 2027 a small team can build: support bots, document tools, AI for CRM, content tools and more, with what to validate first.",
     content: `AI has made some products much cheaper to build. A small team can now ship what used to need a research department. Here are eight ideas, each tied to a clear customer. None is guaranteed to work, so validate before you build.
+
+![People collaborating in a sunlit office](/photos/u-collab.webp)
 
 ## 1. Customer support assistant for a specific industry
 
@@ -118,6 +128,8 @@ A chat assistant trained on one company's help articles and policies. Clinics, s
 ## 2. Document reader and summarizer
 
 Contracts, invoices, reports and resumes arrive as PDFs. A tool that extracts the key fields and summarizes the rest saves hours. Our [PDF tools](/tools) show how many people need basic PDF work already.
+
+![Customer support agents wearing headsets](/photos/u-support.webp)
 
 ## 3. AI features inside existing software
 
@@ -159,10 +171,12 @@ Our team works on [AI and NLP development](/services/ai-nlp-development) and [cu
     excerpt: "What drives the price of an AI app: scope, data, model usage, integrations and support. A way to estimate your own budget without made-up numbers.",
     category: "AI",
     tags: ["ai app cost", "chatbot cost", "ai development", "budget"],
-    publishedAt: "2026-11-24",
+    publishedAt: "2026-11-20",
     metaTitle: "AI App and Chatbot Development Cost: What Drives It",
     metaDesc: "What decides the cost of building an AI app or chatbot: scope, data, model usage, integrations and support. Plan your budget with these factors.",
     content: `The honest answer is that it depends, and any agency that quotes a price before understanding your idea is guessing. What you can do is understand what moves the price, so your budget makes sense. Here are the factors, in the order they usually matter.
+
+![Three colleagues reviewing work on a MacBook](/photos/u-review.webp)
 
 ## 1. Scope: one feature or a whole product
 
@@ -171,6 +185,8 @@ A single feature, such as a chatbot answering from your FAQ, is much smaller tha
 ## 2. Your data
 
 AI works on information. If your documents are clean and in one place, setup is quick. If they are scattered, outdated or scanned images, expect extra work to prepare them.
+
+![Man writing a plan on a whiteboard](/photos/u-board.webp)
 
 ## 3. Model usage cost
 
@@ -209,10 +225,12 @@ We offer [AI and NLP development](/services/ai-nlp-development) and [AI web apps
     excerpt: "Web3 and NFT markets changed after the 2021 hype. What still works, what to avoid and how to test an idea cheaply before you spend a large budget.",
     category: "Web3",
     tags: ["web3 game", "nft", "blockchain", "game development"],
-    publishedAt: "2026-11-28",
+    publishedAt: "2026-11-20",
     metaTitle: "Web3 Games and NFT Business in 2027: Know the Risks",
     metaDesc: "Thinking of a Web3 game or NFT project in 2027? What changed since the hype, what still works, the risks and how to test your idea cheaply.",
     content: `Web3 and NFT projects had a huge wave of attention in 2021 and a sharp drop afterward. The technology did not disappear, but the market now rewards real products over promises. If you are thinking of building one, here is a calm look at what to consider.
+
+![Gamer playing a video game with headphones at a monitor](/photos/u-game.webp)
 
 ## What changed
 
@@ -224,6 +242,8 @@ Buyers became careful. Projects built only around price speculation lost interes
 - **Ticketing and memberships** with proof of ownership
 - **Brand and community collectibles** for an existing audience
 - **Digital certificates** that anyone can verify
+
+![Man writing a plan on a whiteboard](/photos/u-board.webp)
 
 ## Where to be careful
 
@@ -253,10 +273,12 @@ We build [Web3 games](/services/web3-game-development) and [NFT platforms](/serv
     excerpt: "Ten mobile app ideas for 2027 across health, learning, local services and business tools, plus how to test one before building the full app.",
     category: "Apps",
     tags: ["mobile app ideas", "app development", "2027", "startup"],
-    publishedAt: "2026-11-27",
+    publishedAt: "2026-11-20",
     metaTitle: "Mobile App Ideas Worth Building in 2027",
     metaDesc: "Ten mobile app ideas for 2027, from local services to AI helpers and business tools, with advice on testing an idea before building the full app.",
     content: `Most app ideas fail because nobody wanted them, not because the code was bad. The ideas below solve everyday problems. Pick one you understand, then test it before you build the full product.
+
+![Mobile app interface on a phone next to a laptop](/photos/u-app.webp)
 
 ## Ten ideas
 
@@ -277,6 +299,8 @@ We build [Web3 games](/services/web3-game-development) and [NFT platforms](/serv
 - Build a clickable prototype and watch people use it.
 - Launch a small version with one core feature.
 
+![Hand-drawn website wireframe on paper](/photos/u-wireframe.webp)
+
 ## Native or cross-platform?
 
 If you need to reach iPhone and Android users on a limited budget, a cross-platform app is often the sensible start. Our guide on [native vs cross-platform development](/blog/native-vs-cross-platform-app-development) explains the trade-offs.
@@ -295,10 +319,12 @@ We build [mobile apps](/services/mobile-app-development), [iOS apps](/services/i
     excerpt: "Free online tools bring steady search traffic. Here is how to turn that traffic into customers without tricks, and what a tools site needs to rank.",
     category: "Marketing",
     tags: ["free tools", "lead generation", "seo", "content marketing"],
-    publishedAt: "2026-11-25",
+    publishedAt: "2026-11-20",
     metaTitle: "Get Leads With a Free Tools Website: A Practical Guide",
     metaDesc: "How free online tools bring search traffic and leads: choosing tools, ranking them, adding calls to action and measuring results. A practical guide.",
     content: `A free tools website gives people something useful with no sign-up, such as compressing an image or formatting JSON. Because many people search for these tasks every day, tools can bring steady traffic. With the right setup, some of that traffic becomes leads. This is the model behind Zoqonyx.
+
+![Laptop on a glass desk in a workspace](/photos/u-laptop.webp)
 
 ## Why tools attract visitors
 
@@ -310,6 +336,8 @@ Search queries like "merge pdf" or "compress image" have a clear intent: the vis
 - **Helpful guides.** Blog posts that explain the task, then point to the tool and a service.
 - **Soft calls to action.** A short, relevant offer beside the result, not a pop-up in the way.
 - **Email option.** A simple, optional signup for updates or checklists.
+
+![People collaborating in a sunlit office](/photos/u-collab.webp)
 
 ## What a tools site needs
 
@@ -337,10 +365,12 @@ We build tool platforms and [custom web apps](/services/website-development-serv
     excerpt: "Search now includes AI summaries and chat answers. What SEO, AEO and GEO mean, and the steps that help your pages appear in both.",
     category: "SEO",
     tags: ["seo 2027", "geo", "aeo", "ai search", "ai overviews"],
-    publishedAt: "2026-11-26",
+    publishedAt: "2026-11-20",
     metaTitle: "SEO in 2027: Google, AI Answers, GEO and AEO Explained",
     metaDesc: "SEO in 2027 covers Google rankings and AI answers. Learn what SEO, AEO and GEO mean and the practical steps that help your pages get found and cited.",
     content: `People still use Google, but many also ask AI assistants and read AI summaries at the top of results. A site that wants visitors in 2027 should be easy for both search engines and AI systems to understand. Three terms help here.
+
+![Laptop screen showing website analytics graphs](/photos/u-analytics.webp)
 
 ## SEO, AEO and GEO
 
@@ -362,6 +392,8 @@ They overlap a lot. Good pages do well in all three.
 8. **Be fast and mobile friendly.**
 9. **Earn links** from relevant sites. [Check your backlinks](/blog/how-to-check-backlinks-for-free) regularly.
 
+![Three colleagues reviewing work on a MacBook](/photos/u-review.webp)
+
 ## What not to do
 
 Do not mass-produce thin pages or keyword-stuff. Search engines and AI systems both favor content that is useful and original, and nobody can guarantee a citation.
@@ -380,10 +412,12 @@ Our [digital marketing services](/services/digital-marketing-services) include t
     excerpt: "AI features in CRM and ERP: smart search, auto-filled records, forecasts and chat assistants. What is useful now and what is still hype.",
     category: "Business software",
     tags: ["ai crm", "ai erp", "business software", "automation"],
-    publishedAt: "2026-11-29",
+    publishedAt: "2026-11-20",
     metaTitle: "AI in CRM and ERP Software: What Is Useful in 2027",
     metaDesc: "AI features in CRM and ERP: search in plain language, auto-filled records, forecasts and assistants. See what helps small businesses and what is hype.",
     content: `CRM and ERP systems store a company's customers, orders, stock and money. AI makes it easier to get value from all that data. Here is what is useful now and what to treat with caution.
+
+![Customer support agents wearing headsets](/photos/u-support.webp)
 
 ## Useful today
 
@@ -399,6 +433,8 @@ Our [digital marketing services](/services/digital-marketing-services) include t
 - Fully automatic decisions about money or customers
 - Forecasts from very little data
 - Assistants that can see data they should not share
+
+![Glowing AI chip on a circuit board](/photos/u-aichip.webp)
 
 ## What you need first
 
@@ -425,10 +461,12 @@ You do not always need to replace your software. We can add AI features to an ex
     excerpt: "Freelancer, in-house hire, dedicated developers or a full agency: what each option costs in time and control, and which fits your project.",
     category: "Hiring",
     tags: ["hire developers", "staff augmentation", "agency", "outsourcing"],
-    publishedAt: "2026-11-30",
+    publishedAt: "2026-11-20",
     metaTitle: "Hire Dedicated Developers or an Agency? A 2027 Guide",
     metaDesc: "Compare freelancers, in-house hires, dedicated developers and agencies. Learn what each option means for control, speed and cost, and how to choose.",
     content: `When you need software built, you have four main choices. None is best for everyone. Pick based on how clear your plan is, how long the work lasts and how much management time you have.
+
+![Three men with laptops during a team stand-up](/photos/u-standup.webp)
 
 ## 1. Freelancer
 
@@ -437,6 +475,8 @@ Good for a small, clear task, such as a landing page or a bug fix. It is flexibl
 ## 2. In-house hire
 
 Good when software is the core of your business and work is steady for years. It gives you the most control, but hiring takes time and salaries are a fixed cost.
+
+![Team meeting around a table in an open office](/photos/u-office.webp)
 
 ## 3. Dedicated developers (staff augmentation)
 
