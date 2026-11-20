@@ -1,3 +1,4 @@
+import { SplashLoader } from "@/components/kit/z-loader";
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import Script from "next/script";
@@ -135,6 +136,7 @@ export default async function RootLayout({
         )}
       </head>
       <body className="min-h-screen bg-background font-sans antialiased text-foreground flex flex-col">
+        <SplashLoader />
         <ThemeProvider
           attribute="class"
           defaultTheme="light"
