@@ -76,7 +76,7 @@ export function ScrollProgress() {
   }, []);
   return (
     <div aria-hidden="true" className="fixed left-0 top-0 z-50 h-[3px] w-full pointer-events-none">
-      <div ref={bar} className="h-full w-full origin-left bg-[#F2A81D]" style={{ transform: "scaleX(0)" }} />
+      <div ref={bar} className="h-full w-full origin-left bg-[#6D28D9]" style={{ transform: "scaleX(0)" }} />
     </div>
   );
 }
