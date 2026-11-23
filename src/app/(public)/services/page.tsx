@@ -20,6 +20,7 @@ export const metadata: Metadata = {
     description: "Game, app, website and custom software development, digital marketing, AI, NFT, staff augmentation and ERP/CRM.",
     url: "https://zoqonyx.com/services",
     type: "website",
+    images: [{ url: "https://zoqonyx.com/logo/zoqonyx-og.png", width: 1200, height: 630, alt: "Zoqonyx: software studio and free online tools" }],
   },
 };
 

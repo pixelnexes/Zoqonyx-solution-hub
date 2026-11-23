@@ -26,7 +26,7 @@ function fmt(d: Date) {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const p = await getPost(slug);
-  if (!p) return { title: "Post not found | Zoqonyx" };
+  if (!p) return { title: { absolute: "Post not found | Zoqonyx" }, robots: { index: false } };
   const title = p.metaTitle || `${p.title} | Zoqonyx`;
   const description = p.metaDesc || p.excerpt.slice(0, 155);
   const url = `https://zoqonyx.com/blog/${p.slug}`;

@@ -18,6 +18,7 @@ export const metadata: Metadata = {
     description: "Practical guides on SEO, websites, mobile apps and everyday online tools.",
     url: "https://zoqonyx.com/blog",
     type: "website",
+    images: [{ url: "https://zoqonyx.com/logo/zoqonyx-og.png", width: 1200, height: 630, alt: "Zoqonyx: software studio and free online tools" }],
   },
 };
 

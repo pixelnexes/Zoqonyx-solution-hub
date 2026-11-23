@@ -31,6 +31,7 @@ export const metadata: Metadata = {
     description: "App, website and custom software development, digital marketing and AI services, plus free online tools.",
     url: "https://zoqonyx.com",
     type: "website",
+    images: [{ url: "https://zoqonyx.com/logo/zoqonyx-og.png", width: 1200, height: 630, alt: "Zoqonyx: software studio and free online tools" }],
   },
 };
 
