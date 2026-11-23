@@ -103,9 +103,9 @@ export function SslCheckerTool() {
                   {data.isValid ? <ShieldCheck className="w-6 h-6" /> : <ShieldAlert className="w-6 h-6" />}
                 </div>
                 <div>
-                  <h4 className="font-bold text-base text-foreground flex items-center gap-2">
+                  <h4 className="font-semibold text-base text-foreground flex items-center gap-2">
                     {data.domain}
-                    <span className={`px-2 py-0.5 rounded text-[10px] font-bold ${data.isValid ? "bg-teal-500/10 text-teal-400" : "bg-destructive/10 text-destructive"}`}>
+                    <span className={`px-2 py-0.5 rounded text-[10px] font-semibold ${data.isValid ? "bg-teal-500/10 text-teal-400" : "bg-destructive/10 text-destructive"}`}>
                       {data.isValid ? "Valid & Secure" : "Warning"}
                     </span>
                   </h4>
@@ -118,7 +118,7 @@ export function SslCheckerTool() {
               {data.isValid && (
                 <div className="text-right shrink-0">
                   <span className="text-2xl font-semibold text-teal-400">{data.daysRemaining}</span>
-                  <p className="text-[10px] text-muted-foreground uppercase font-bold">Days Remaining</p>
+                  <p className="text-[10px] text-muted-foreground uppercase font-semibold">Days Remaining</p>
                 </div>
               )}
             </div>
@@ -133,7 +133,7 @@ export function SslCheckerTool() {
                 { label: "Strict Transport Security (HSTS)", val: "Enabled" },
               ].map((item) => (
                 <div key={item.label} className="p-3 rounded-lg border border-border bg-card">
-                  <span className="text-[10px] font-bold text-muted-foreground uppercase">{item.label}</span>
+                  <span className="text-[10px] font-semibold text-muted-foreground uppercase">{item.label}</span>
                   <p className="text-xs font-semibold text-foreground mt-0.5">{item.val}</p>
                 </div>
               ))}

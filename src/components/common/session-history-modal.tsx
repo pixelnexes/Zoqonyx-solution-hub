@@ -43,7 +43,7 @@ export function SessionHistoryModal() {
         <History className="w-3.5 h-3.5 text-[#7C3AED]" />
         <span className="hidden sm:inline">Session History</span>
         {history.length > 0 && (
-          <span className="ml-1 px-1.5 py-0.2 rounded-full text-[10px] font-bold bg-teal-500/15 text-teal-400 border border-teal-500/20">
+          <span className="ml-1 px-1.5 py-0.2 rounded-full text-[10px] font-semibold bg-teal-500/15 text-teal-400 border border-teal-500/20">
             {history.length}
           </span>
         )}

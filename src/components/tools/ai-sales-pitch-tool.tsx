@@ -289,7 +289,7 @@ ${pitch.followUp.day14Breakup}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         {/* Left Form: Inputs */}
         <div className="lg:col-span-5 space-y-4 bg-white dark:bg-slate-800 p-5 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm">
-          <h2 className="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
+          <h2 className="text-base font-semibold text-slate-900 dark:text-white flex items-center gap-2">
             <Sliders className="w-4 h-4 text-emerald-500" /> Deal Parameters
           </h2>
 
@@ -392,7 +392,7 @@ ${pitch.followUp.day14Breakup}
           <button
             onClick={handleGenerate}
             disabled={!product.trim() || !painPoint.trim() || isGenerating}
-            className="w-full py-3 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 disabled:opacity-50 text-white rounded-xl font-bold text-sm shadow-md transition flex items-center justify-center gap-2"
+            className="w-full py-3 bg-[#6D28D9] hover:bg-[#5B21B6] disabled:opacity-50 text-white rounded-xl font-semibold text-sm shadow-md transition flex items-center justify-center gap-2"
           >
             {isGenerating ? (
               <>
@@ -413,7 +413,7 @@ ${pitch.followUp.day14Breakup}
               <div className="w-14 h-14 bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 rounded-2xl flex items-center justify-center mb-3">
                 <Briefcase className="w-7 h-7" />
               </div>
-              <h3 className="text-base font-bold text-slate-800 dark:text-slate-200">
+              <h3 className="text-base font-semibold text-slate-800 dark:text-slate-200">
                 Ready to Generate Pitch Materials
               </h3>
               <p className="text-xs text-slate-500 dark:text-slate-400 max-w-sm mt-1">
@@ -493,7 +493,7 @@ ${pitch.followUp.day14Breakup}
                 {activeTab === "email" && (
                   <div className="space-y-4">
                     <div className="space-y-2">
-                      <span className="text-[10px] font-bold uppercase text-emerald-600 dark:text-emerald-400">
+                      <span className="text-[10px] font-semibold uppercase text-emerald-600 dark:text-emerald-400">
                         High-Open Subject Line Options
                       </span>
                       <div className="space-y-1.5">
@@ -520,7 +520,7 @@ ${pitch.followUp.day14Breakup}
 
                     <div>
                       <div className="flex items-center justify-between mb-1">
-                        <span className="text-[10px] font-bold uppercase text-slate-500 dark:text-slate-400">
+                        <span className="text-[10px] font-semibold uppercase text-slate-500 dark:text-slate-400">
                           Email Body
                         </span>
                         <button
@@ -549,7 +549,7 @@ ${pitch.followUp.day14Breakup}
                 {activeTab === "elevator" && (
                   <div className="space-y-4">
                     <div className="flex items-center justify-between">
-                      <span className="text-[10px] font-bold uppercase text-emerald-600 dark:text-emerald-400">
+                      <span className="text-[10px] font-semibold uppercase text-emerald-600 dark:text-emerald-400">
                         30-Second Verbal Elevator Pitch
                       </span>
                       <button
@@ -580,7 +580,7 @@ ${pitch.followUp.day14Breakup}
                 {activeTab === "linkedin" && (
                   <div className="space-y-4">
                     <div className="flex items-center justify-between">
-                      <span className="text-[10px] font-bold uppercase text-emerald-600 dark:text-emerald-400">
+                      <span className="text-[10px] font-semibold uppercase text-emerald-600 dark:text-emerald-400">
                         LinkedIn InMail / Direct Message (Under 100 Words)
                       </span>
                       <button
@@ -608,7 +608,7 @@ ${pitch.followUp.day14Breakup}
                 {activeTab === "call" && (
                   <div className="space-y-4">
                     <div>
-                      <span className="text-[10px] font-bold uppercase text-emerald-600 dark:text-emerald-400">
+                      <span className="text-[10px] font-semibold uppercase text-emerald-600 dark:text-emerald-400">
                         1. Pattern-Interrupt Opener
                       </span>
                       <p className="mt-1 p-3 bg-slate-50 dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-700 text-xs text-slate-800 dark:text-slate-200 font-medium">
@@ -617,7 +617,7 @@ ${pitch.followUp.day14Breakup}
                     </div>
 
                     <div>
-                      <span className="text-[10px] font-bold uppercase text-emerald-600 dark:text-emerald-400">
+                      <span className="text-[10px] font-semibold uppercase text-emerald-600 dark:text-emerald-400">
                         2. The Problem Hook & Value Bridge
                       </span>
                       <p className="mt-1 p-3 bg-slate-50 dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-700 text-xs text-slate-800 dark:text-slate-200">
@@ -626,7 +626,7 @@ ${pitch.followUp.day14Breakup}
                     </div>
 
                     <div>
-                      <span className="text-[10px] font-bold uppercase text-emerald-600 dark:text-emerald-400">
+                      <span className="text-[10px] font-semibold uppercase text-emerald-600 dark:text-emerald-400">
                         3. Qualification Question
                       </span>
                       <p className="mt-1 p-3 bg-slate-50 dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-700 text-xs text-slate-800 dark:text-slate-200 italic">
@@ -635,7 +635,7 @@ ${pitch.followUp.day14Breakup}
                     </div>
 
                     <div className="space-y-2 pt-2 border-t border-slate-200 dark:border-slate-700">
-                      <span className="text-[10px] font-bold uppercase text-amber-600 dark:text-amber-400 flex items-center gap-1">
+                      <span className="text-[10px] font-semibold uppercase text-amber-600 dark:text-amber-400 flex items-center gap-1">
                         <ShieldAlert className="w-3.5 h-3.5" /> Objection Handling Matrix
                       </span>
                       {pitch.coldCallScript.objections.map((obj, i) => (
@@ -643,7 +643,7 @@ ${pitch.followUp.day14Breakup}
                           key={i}
                           className="p-3 bg-amber-50/40 dark:bg-amber-950/20 border border-amber-200/50 dark:border-amber-800/40 rounded-xl space-y-1"
                         >
-                          <div className="text-xs font-bold text-amber-900 dark:text-amber-300">
+                          <div className="text-xs font-semibold text-amber-900 dark:text-amber-300">
                             Prospect: {obj.trigger}
                           </div>
                           <div className="text-xs text-slate-700 dark:text-slate-300">
@@ -660,7 +660,7 @@ ${pitch.followUp.day14Breakup}
                   <div className="space-y-4">
                     <div className="space-y-1">
                       <div className="flex items-center justify-between">
-                        <span className="text-[10px] font-bold uppercase text-blue-600 dark:text-blue-400">
+                        <span className="text-[10px] font-semibold uppercase text-blue-600 dark:text-blue-400">
                           Touch 2: Day 3 Gentle Nudge
                         </span>
                         <button
@@ -677,7 +677,7 @@ ${pitch.followUp.day14Breakup}
 
                     <div className="space-y-1">
                       <div className="flex items-center justify-between">
-                        <span className="text-[10px] font-bold uppercase text-indigo-600 dark:text-indigo-400">
+                        <span className="text-[10px] font-semibold uppercase text-indigo-600 dark:text-indigo-400">
                           Touch 3: Day 7 Value Add (Case Study / Proof)
                         </span>
                         <button
@@ -694,7 +694,7 @@ ${pitch.followUp.day14Breakup}
 
                     <div className="space-y-1">
                       <div className="flex items-center justify-between">
-                        <span className="text-[10px] font-bold uppercase text-rose-600 dark:text-rose-400">
+                        <span className="text-[10px] font-semibold uppercase text-rose-600 dark:text-rose-400">
                           Touch 4: Day 14 Permission to Close File (Breakup)
                         </span>
                         <button

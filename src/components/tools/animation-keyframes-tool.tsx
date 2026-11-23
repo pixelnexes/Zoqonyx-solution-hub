@@ -66,7 +66,7 @@ export function AnimationKeyframesTool() {
         {/* Live Preview Box */}
         <div className="h-56 rounded-xl border border-border bg-muted/20 flex items-center justify-center relative overflow-hidden">
           <div
-            className="w-20 h-20 rounded-xl bg-teal-500 text-white flex items-center justify-center font-bold text-xs shadow-lg"
+            className="w-20 h-20 rounded-xl bg-teal-500 text-white flex items-center justify-center font-semibold text-xs shadow-lg"
             style={{
               animation: `${preset} ${duration}s ${timing} ${infinite ? "infinite" : "1"}`,
             }}

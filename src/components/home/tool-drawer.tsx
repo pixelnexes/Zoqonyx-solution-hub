@@ -42,7 +42,7 @@ function ToolRow({ tool, detailed = false, accentColor }: { tool: SerializedTool
         <span className="block font-semibold text-[15px] text-[#15171C] group-hover:text-[#5B21B6]">{tool.name}</span>
         {detailed && <span className="block text-sm mt-0.5 leading-snug line-clamp-2 text-[#5B6270]">{tool.description}</span>}
       </span>
-      <ArrowRight className="w-4 h-4 mt-0.5 shrink-0 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-[#7C3AED]" aria-hidden="true" />
+      <ArrowRight className="w-4 h-4 mt-0.5 shrink-0 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-colors text-[#7C3AED]" aria-hidden="true" />
     </Link>
   );
 }
@@ -123,7 +123,7 @@ export function ToolDrawer({ tools, perCategory = TOOLS_PER_CATEGORY, detailed =
               Clear
             </button>
           ) : (
-            <kbd className="hidden sm:inline-flex shrink-0 items-center justify-center w-8 h-8 rounded-lg text-sm font-bold border border-[#E4E7EC] bg-[#F7F8FA] text-[#5B6270]" title="Press / to search">
+            <kbd className="hidden sm:inline-flex shrink-0 items-center justify-center w-8 h-8 rounded-lg text-sm font-semibold border border-[#E4E7EC] bg-[#F7F8FA] text-[#5B6270]" title="Press / to search">
               /
             </kbd>
           )}
@@ -148,7 +148,7 @@ export function ToolDrawer({ tools, perCategory = TOOLS_PER_CATEGORY, detailed =
                         <ToolIcon name={t.icon} className="w-[18px] h-[18px]" strokeWidth={2} />
                       </span>
                       <span className="min-w-0">
-                        <span className="block font-bold text-[15px]">{t.name}</span>
+                        <span className="block font-semibold text-[15px]">{t.name}</span>
                         <span className="block text-sm mt-0.5 leading-snug line-clamp-2 text-[#5B6270]">{t.description}</span>
                       </span>
                     </Link>
@@ -185,7 +185,7 @@ export function ToolDrawer({ tools, perCategory = TOOLS_PER_CATEGORY, detailed =
                   ))}
                 </ul>
                 {g.tools.length > perCategory && (
-                  <Link href={`/category/${g.slug}`} className="mt-3 inline-flex items-center gap-1.5 text-sm font-bold" style={{ color: accent.color }}>
+                  <Link href={`/category/${g.slug}`} className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold" style={{ color: accent.color }}>
                     See all {g.tools.length} tools <ArrowRight className="w-4 h-4" aria-hidden="true" />
                   </Link>
                 )}

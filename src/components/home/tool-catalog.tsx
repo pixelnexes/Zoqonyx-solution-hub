@@ -107,7 +107,7 @@ export function ToolCatalog({ initialTools }: ToolCatalogProps) {
       {!searchQuery && selectedCategory === "All" && (
         <div className="bg-white p-3 rounded-[10px] border border-slate-200/90 shadow-[0_1px_3px_rgba(15,23,42,0.04)] space-y-2">
           <div className="flex items-center justify-between px-0.5">
-            <span className="text-[11px] font-bold uppercase text-slate-500 font-mono">
+            <span className="text-[11px] font-semibold uppercase text-slate-500 font-mono">
               Quick Launch • Most Used Utilities
             </span>
             <span className="text-[11px] text-slate-500 font-medium">Instant Browser Launch</span>
@@ -117,7 +117,7 @@ export function ToolCatalog({ initialTools }: ToolCatalogProps) {
               <Link
                 key={sc.slug}
                 href={`/tools/${sc.slug}`}
-                className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-[6px] bg-slate-50 hover:bg-teal-50/60 border border-slate-200/80 hover:border-teal-300 transition-all text-xs font-semibold text-slate-800 hover:text-teal-800 truncate group"
+                className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-[6px] bg-slate-50 hover:bg-teal-50/60 border border-slate-200/80 hover:border-teal-300 transition-colors text-xs font-semibold text-slate-800 hover:text-teal-800 truncate group"
               >
                 <ToolIcon name={sc.icon} className="w-3.5 h-3.5 text-slate-600 group-hover:text-teal-700 shrink-0 transition-colors" strokeWidth={2.2} />
                 <span className="truncate">{sc.label}</span>
@@ -136,7 +136,7 @@ export function ToolCatalog({ initialTools }: ToolCatalogProps) {
             placeholder="Search 148+ utilities (e.g. compress image, format json, merge pdf, jwt, regex, emi)..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="pl-9.5 pr-24 h-10 bg-slate-50/80 text-slate-900 placeholder:text-slate-500 text-xs sm:text-sm font-medium rounded-[8px] border-slate-200 focus-visible:ring-2 focus-visible:ring-teal-600 focus-visible:border-transparent transition-all"
+            className="pl-9.5 pr-24 h-10 bg-slate-50/80 text-slate-900 placeholder:text-slate-500 text-xs sm:text-sm font-medium rounded-[8px] border-slate-200 focus-visible:ring-2 focus-visible:ring-teal-600 focus-visible:border-transparent transition-colors"
           />
           <div className="absolute right-2.5 top-1/2 -translate-y-1/2 flex items-center gap-2">
             {searchQuery && (
@@ -147,14 +147,14 @@ export function ToolCatalog({ initialTools }: ToolCatalogProps) {
                 Clear
               </button>
             )}
-            <span className="text-[11px] font-mono font-bold text-slate-700 bg-slate-100 px-2.5 py-1 rounded-[6px] border border-slate-200/80 hidden sm:inline-block">
+            <span className="text-[11px] font-mono font-semibold text-slate-700 bg-slate-100 px-2.5 py-1 rounded-[6px] border border-slate-200/80 hidden sm:inline-block">
               {filteredTools.length} of {initialTools.length}
             </span>
           </div>
         </div>
 
         {/* Mobile counter badge */}
-        <div className="shrink-0 text-[11px] font-mono font-bold text-slate-800 bg-slate-100 px-2.5 py-1.5 rounded-[6px] border border-slate-200 sm:hidden">
+        <div className="shrink-0 text-[11px] font-mono font-semibold text-slate-800 bg-slate-100 px-2.5 py-1.5 rounded-[6px] border border-slate-200 sm:hidden">
           {filteredTools.length}
         </div>
       </div>
@@ -169,7 +169,7 @@ export function ToolCatalog({ initialTools }: ToolCatalogProps) {
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
                 className={cn(
-                  "whitespace-nowrap px-3 py-1.5 rounded-[7px] text-xs transition-all border shrink-0 font-semibold",
+                  "whitespace-nowrap px-3 py-1.5 rounded-[7px] text-xs transition-colors border shrink-0 font-semibold",
                   isSelected
                     ? "bg-slate-900 text-white border-slate-900 shadow-xs"
                     : "bg-white hover:bg-slate-50 text-slate-700 hover:text-slate-900 border-slate-200 shadow-[0_1px_2px_rgba(0,0,0,0.04)]"
@@ -185,14 +185,14 @@ export function ToolCatalog({ initialTools }: ToolCatalogProps) {
       {/* Tools Grid - Substantial, Tactile, Crafted Cards */}
       {filteredTools.length === 0 ? (
         <div className="text-center py-12 px-4 rounded-[10px] border border-dashed border-slate-300 bg-white">
-          <p className="text-sm font-bold text-slate-900">No tools found matching &quot;{searchQuery}&quot;</p>
+          <p className="text-sm font-semibold text-slate-900">No tools found matching &quot;{searchQuery}&quot;</p>
           <p className="text-xs text-slate-500 mt-1">Try other keywords or reset your category filter.</p>
           <button
             onClick={() => {
               setSearchQuery("");
               setSelectedCategory("All");
             }}
-            className="mt-3 px-3.5 py-1.5 text-xs font-bold text-slate-900 bg-slate-100 hover:bg-slate-200 rounded-[6px] border border-slate-300 transition-colors"
+            className="mt-3 px-3.5 py-1.5 text-xs font-semibold text-slate-900 bg-slate-100 hover:bg-slate-200 rounded-[6px] border border-slate-300 transition-colors"
           >
             Reset Filters
           </button>
@@ -209,7 +209,7 @@ export function ToolCatalog({ initialTools }: ToolCatalogProps) {
                 href={`/tools/${tool.slug}`}
                 className="group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900 rounded-[10px] block h-full"
               >
-                <div className="h-full flex flex-col justify-between p-3.5 rounded-[10px] bg-white border border-slate-200/90 shadow-[0_1px_3px_rgba(15,23,42,0.06),0_1px_2px_rgba(15,23,42,0.04)] hover:shadow-[0_10px_25px_-4px_rgba(15,23,42,0.08),0_4px_10px_-2px_rgba(15,23,42,0.04)] hover:border-slate-400 transition-all duration-200">
+                <div className="h-full flex flex-col justify-between p-3.5 rounded-[10px] bg-white border border-slate-200/90 shadow-[0_1px_3px_rgba(15,23,42,0.06),0_1px_2px_rgba(15,23,42,0.04)] hover:shadow-[0_10px_25px_-4px_rgba(15,23,42,0.08),0_4px_10px_-2px_rgba(15,23,42,0.04)] hover:border-slate-400 transition-colors duration-200">
                   <div className="space-y-2.5">
                     {/* Header: Solid Category Icon + Category / Badge */}
                     <div className="flex items-center justify-between gap-2">
@@ -236,7 +236,7 @@ export function ToolCatalog({ initialTools }: ToolCatalogProps) {
 
                     {/* Tool Name & Description */}
                     <div>
-                      <h3 className="text-[14.5px] font-bold text-slate-900 group-hover:text-teal-700 transition-colors line-clamp-1 leading-snug">
+                      <h3 className="text-[14.5px] font-semibold text-slate-900 group-hover:text-teal-700 transition-colors line-clamp-1 leading-snug">
                         {tool.name}
                       </h3>
                       <p className="text-[12px] text-slate-600 line-clamp-2 leading-relaxed mt-1 font-normal">
@@ -257,7 +257,7 @@ export function ToolCatalog({ initialTools }: ToolCatalogProps) {
                       <span>{tool.isComingSoon ? "In Development" : "Client-Side • Fast"}</span>
                     </span>
 
-                    <span className="inline-flex items-center gap-1 text-[11.5px] font-semibold text-slate-700 group-hover:text-teal-700 group-hover:translate-x-0.5 transition-all">
+                    <span className="inline-flex items-center gap-1 text-[11.5px] font-semibold text-slate-700 group-hover:text-teal-700 group-hover:translate-x-0.5 transition-colors">
                       <span>Launch</span>
                       <ArrowRight className="w-3.5 h-3.5" />
                     </span>

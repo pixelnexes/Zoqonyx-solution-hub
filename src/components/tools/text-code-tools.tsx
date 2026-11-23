@@ -556,7 +556,7 @@ export function PasswordGeneratorTool() {
   return (
     <div className="space-y-6">
       <div className="p-6 rounded-2xl bg-card border border-border/80 flex flex-wrap items-center justify-between gap-4">
-        <span className="font-mono text-xl sm:text-2xl font-bold text-brand-cyan select-all break-all">
+        <span className="font-mono text-xl sm:text-2xl font-semibold text-brand-cyan select-all break-all">
           {password}
         </span>
         <div className="flex items-center gap-2">
@@ -730,7 +730,7 @@ export function HashGeneratorTool() {
         {Object.entries(hashes).map(([algo, hash]) => (
           <div key={algo} className="p-4 rounded-xl bg-card border border-border/80 space-y-1.5">
             <div className="flex items-center justify-between">
-              <span className="text-xs font-bold text-brand-cyan">{algo}</span>
+              <span className="text-xs font-semibold text-brand-cyan">{algo}</span>
               <button
                 onClick={() => copyHash(hash, algo)}
                 className="text-xs text-muted-foreground hover:text-foreground font-semibold flex items-center gap-1"
@@ -1051,7 +1051,7 @@ export function DiffCheckerTool() {
       {/* Comparison Display */}
       <div className="p-5 rounded-2xl bg-card border border-border/80 space-y-4">
         <div className="flex flex-wrap items-center justify-between gap-2">
-          <h4 className="text-xs font-bold text-muted-foreground uppercase">
+          <h4 className="text-xs font-semibold text-muted-foreground uppercase">
             {viewMode === "split" ? "Side-by-Side Line Comparison" : "Unified Difference View"}
           </h4>
 
@@ -1119,7 +1119,7 @@ export function DiffCheckerTool() {
                     <span className="text-[10px] text-muted-foreground/50 w-6 text-right select-none">
                       {idx + 1}
                     </span>
-                    <span className="text-muted-foreground/40 font-bold select-none"> </span>
+                    <span className="text-muted-foreground/40 font-semibold select-none"> </span>
                     <span className="break-all">{origLine}</span>
                   </div>
                 );
@@ -1132,7 +1132,7 @@ export function DiffCheckerTool() {
                       <span className="text-[10px] text-rose-500/50 w-6 text-right select-none">
                         {idx + 1}
                       </span>
-                      <span className="font-bold select-none">-</span>
+                      <span className="font-semibold select-none">-</span>
                       <span className="break-all">{origLine}</span>
                     </div>
                   )}
@@ -1141,7 +1141,7 @@ export function DiffCheckerTool() {
                       <span className="text-[10px] text-emerald-500/50 w-6 text-right select-none">
                         {idx + 1}
                       </span>
-                      <span className="font-bold select-none">+</span>
+                      <span className="font-semibold select-none">+</span>
                       <span className="break-all">{modLine}</span>
                     </div>
                   )}

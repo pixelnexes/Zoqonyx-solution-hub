@@ -355,7 +355,7 @@ export function MarkdownTableGeneratorTool() {
           <table className="w-full text-xs">
             <tbody>
               {tableData.map((row, r) => (
-                <tr key={r} className={r === 0 ? "bg-muted/50 font-bold border-b border-border" : "border-b border-border/50"}>
+                <tr key={r} className={r === 0 ? "bg-muted/50 font-semibold border-b border-border" : "border-b border-border/50"}>
                   {row.map((cell, c) => (
                     <td key={c} className="p-1 border-r border-border/40">
                       <input

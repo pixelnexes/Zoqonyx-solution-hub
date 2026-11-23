@@ -424,9 +424,9 @@ export function QrCodeGeneratorProTool() {
             <button
               key={item.id}
               onClick={() => setContentType(item.id as ContentType)}
-              className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all duration-200 ${
+              className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-colors duration-200 ${
                 isActive
-                  ? "bg-card text-brand-cyan shadow-sm border border-border/80 font-bold"
+                  ? "bg-card text-brand-cyan shadow-sm border border-border/80 font-semibold"
                   : "text-muted-foreground hover:text-foreground hover:bg-card/40"
               }`}
             >
@@ -442,7 +442,7 @@ export function QrCodeGeneratorProTool() {
         <div className="lg:col-span-7 space-y-6">
           {/* Dynamic Content Inputs */}
           <div className="p-5 rounded-2xl bg-card border border-border/80 space-y-4 shadow-sm">
-            <h3 className="font-heading font-bold text-sm text-foreground flex items-center gap-2">
+            <h3 className="font-heading font-semibold text-sm text-foreground flex items-center gap-2">
               <Sparkles className="w-4 h-4 text-brand-cyan" />
               <span>QR Code Information</span>
             </h3>
@@ -602,7 +602,7 @@ export function QrCodeGeneratorProTool() {
 
           {/* Color & Gradient Styling */}
           <div className="p-5 rounded-2xl bg-card border border-border/80 space-y-4 shadow-sm">
-            <h3 className="font-heading font-bold text-sm text-foreground flex items-center justify-between">
+            <h3 className="font-heading font-semibold text-sm text-foreground flex items-center justify-between">
               <span className="flex items-center gap-2">
                 <Palette className="w-4 h-4 text-brand-purple" />
                 <span>Colors &amp; Gradients</span>
@@ -610,7 +610,7 @@ export function QrCodeGeneratorProTool() {
               <div className="flex items-center gap-2 bg-muted/60 p-1 rounded-lg text-xs font-semibold">
                 <button
                   onClick={() => setColorMode("single")}
-                  className={`px-2.5 py-1 rounded-md transition-all ${
+                  className={`px-2.5 py-1 rounded-md transition-colors ${
                     colorMode === "single" ? "bg-card shadow-sm text-foreground" : "text-muted-foreground"
                   }`}
                 >
@@ -618,7 +618,7 @@ export function QrCodeGeneratorProTool() {
                 </button>
                 <button
                   onClick={() => setColorMode("gradient")}
-                  className={`px-2.5 py-1 rounded-md transition-all ${
+                  className={`px-2.5 py-1 rounded-md transition-colors ${
                     colorMode === "gradient" ? "bg-card shadow-sm text-brand-cyan" : "text-muted-foreground"
                   }`}
                 >
@@ -639,7 +639,7 @@ export function QrCodeGeneratorProTool() {
                   <p className="text-xs font-semibold text-muted-foreground">
                     {colorMode === "gradient" ? "Start Color" : "Pattern Color"}
                   </p>
-                  <p className="font-mono text-xs font-bold uppercase">{fgColor1}</p>
+                  <p className="font-mono text-xs font-semibold uppercase">{fgColor1}</p>
                 </div>
               </div>
 
@@ -653,7 +653,7 @@ export function QrCodeGeneratorProTool() {
                   />
                   <div>
                     <p className="text-xs font-semibold text-muted-foreground">End Color</p>
-                    <p className="font-mono text-xs font-bold uppercase">{fgColor2}</p>
+                    <p className="font-mono text-xs font-semibold uppercase">{fgColor2}</p>
                   </div>
                 </div>
               )}
@@ -668,7 +668,7 @@ export function QrCodeGeneratorProTool() {
                 />
                 <div>
                   <p className="text-xs font-semibold text-muted-foreground">Background</p>
-                  <p className="font-mono text-xs font-bold uppercase">
+                  <p className="font-mono text-xs font-semibold uppercase">
                     {isTransparentBg ? "Transparent" : bgColor}
                   </p>
                 </div>
@@ -705,7 +705,7 @@ export function QrCodeGeneratorProTool() {
 
           {/* Eye Design & Logo Embed */}
           <div className="p-5 rounded-2xl bg-card border border-border/80 space-y-4 shadow-sm">
-            <h3 className="font-heading font-bold text-sm text-foreground flex items-center gap-2">
+            <h3 className="font-heading font-semibold text-sm text-foreground flex items-center gap-2">
               <Sliders className="w-4 h-4 text-brand-accent" />
               <span>Corner Eyes &amp; Logo Branding</span>
             </h3>
@@ -722,7 +722,7 @@ export function QrCodeGeneratorProTool() {
                   <button
                     key={s.id}
                     onClick={() => setEyeShape(s.id as EyeShape)}
-                    className={`py-2 px-3 rounded-xl border text-xs font-semibold transition-all ${
+                    className={`py-2 px-3 rounded-xl border text-xs font-semibold transition-colors ${
                       eyeShape === s.id
                         ? "border-brand-cyan bg-brand-cyan/10 text-brand-cyan"
                         : "border-border/80 hover:bg-muted text-muted-foreground"
@@ -851,7 +851,7 @@ export function QrCodeGeneratorProTool() {
                 <Button
                   variant="gradient"
                   onClick={() => downloadPng(1024)}
-                  className="gap-2 w-full font-bold shadow-md shadow-brand-cyan/20"
+                  className="gap-2 w-full font-semibold shadow-md "
                 >
                   <Download className="w-4 h-4" />
                   <span>Download PNG</span>

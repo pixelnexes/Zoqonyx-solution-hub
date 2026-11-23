@@ -310,22 +310,22 @@ export function BacklinkCheckerTool() {
           <dl className="grid grid-cols-2 sm:grid-cols-4 gap-3">
             <div className="p-3.5 rounded-md border border-[#D5DCE4] bg-white">
               <dt className="text-sm text-[#4A5568]">Backlinks</dt>
-              <dd className="text-2xl font-bold">{summary.totalLinks.toLocaleString()}</dd>
+              <dd className="text-2xl font-semibold">{summary.totalLinks.toLocaleString()}</dd>
             </div>
             <div className="p-3.5 rounded-md border border-[#D5DCE4] bg-white">
               <dt className="text-sm text-[#4A5568]">Referring domains</dt>
-              <dd className="text-2xl font-bold">{summary.referringDomains.toLocaleString()}</dd>
+              <dd className="text-2xl font-semibold">{summary.referringDomains.toLocaleString()}</dd>
             </div>
             <div className="p-3.5 rounded-md border border-[#D5DCE4] bg-white">
               <dt className="text-sm text-[#4A5568]">Follow / nofollow</dt>
-              <dd className="text-2xl font-bold">
+              <dd className="text-2xl font-semibold">
                 {summary.hasRel ? `${summary.followCount} / ${summary.nofollowCount}` : "—"}
               </dd>
               {!summary.hasRel && <p className="text-xs text-[#4A5568]">Not in your file</p>}
             </div>
             <div className="p-3.5 rounded-md border border-[#D5DCE4] bg-white">
               <dt className="text-sm text-[#4A5568]">Flagged links</dt>
-              <dd className={`text-2xl font-bold ${summary.suspiciousCount ? "text-rose-700" : ""}`}>{summary.suspiciousCount}</dd>
+              <dd className={`text-2xl font-semibold ${summary.suspiciousCount ? "text-rose-700" : ""}`}>{summary.suspiciousCount}</dd>
             </div>
           </dl>
 

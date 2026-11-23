@@ -449,7 +449,7 @@ export function SchemaMarkupGeneratorTool() {
               key={type}
               type="button"
               onClick={() => setSchemaType(type)}
-              className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
+              className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors ${
                 schemaType === type
                   ? "bg-teal-600 text-white shadow-xs"
                   : "text-muted-foreground hover:text-foreground hover:bg-card"
@@ -465,7 +465,7 @@ export function SchemaMarkupGeneratorTool() {
         {/* Editor Form Column */}
         <div className="lg:col-span-6 p-4 sm:p-5 rounded-2xl bg-card border border-border space-y-4 shadow-xs">
           <div className="flex items-center justify-between pb-2 border-b border-border/80">
-            <span className="text-xs font-bold uppercase text-teal-700 font-mono">
+            <span className="text-xs font-semibold uppercase text-teal-700 font-mono">
               Configure {schemaType}
             </span>
             <span className="text-[11px] text-muted-foreground">Google Search Central Compliant</span>
@@ -478,7 +478,7 @@ export function SchemaMarkupGeneratorTool() {
                 {faqs.map((faq, idx) => (
                   <div key={idx} className="p-3 rounded-xl bg-muted/30 border border-border space-y-2">
                     <div className="flex items-center justify-between">
-                      <Label className="text-[11px] font-bold text-slate-700">Question {idx + 1}</Label>
+                      <Label className="text-[11px] font-semibold text-slate-700">Question {idx + 1}</Label>
                       {faqs.length > 1 && (
                         <button
                           type="button"
@@ -729,7 +729,7 @@ export function SchemaMarkupGeneratorTool() {
                 {howTo.steps.map((st, idx) => (
                   <div key={idx} className="p-2.5 rounded-lg bg-muted/30 border border-border space-y-1.5 text-xs">
                     <div className="flex justify-between items-center">
-                      <span className="font-bold text-[11px] text-teal-700">Step {idx + 1}</span>
+                      <span className="font-semibold text-[11px] text-teal-700">Step {idx + 1}</span>
                       {howTo.steps.length > 1 && (
                         <button type="button" onClick={() => removeHowToStep(idx)} className="text-muted-foreground hover:text-rose-600">
                           <Trash2 className="w-3.5 h-3.5" />
@@ -837,7 +837,7 @@ export function SchemaMarkupGeneratorTool() {
               <div className="space-y-2">
                 {breadcrumbs.map((b, idx) => (
                   <div key={idx} className="flex gap-2 items-center">
-                    <span className="w-5 text-center font-mono font-bold text-teal-700">{idx + 1}</span>
+                    <span className="w-5 text-center font-mono font-semibold text-teal-700">{idx + 1}</span>
                     <Input
                       value={b.name}
                       onChange={(e) => {
@@ -896,7 +896,7 @@ export function SchemaMarkupGeneratorTool() {
         {/* Output Code Column */}
         <div className="lg:col-span-6 p-4 sm:p-5 rounded-2xl bg-card border border-border space-y-4 shadow-xs">
           <div className="flex flex-wrap items-center justify-between gap-2 pb-2 border-b border-border/80">
-            <span className="text-xs font-bold text-foreground flex items-center gap-1.5 font-mono">
+            <span className="text-xs font-semibold text-foreground flex items-center gap-1.5 font-mono">
               <Code className="w-4 h-4 text-teal-600" />
               JSON-LD Code Snippet
             </span>

@@ -124,7 +124,7 @@ export function BulkImageCompressorTool() {
           <div className="flex items-center justify-between">
             <span className="text-xs font-semibold">{files.length} Photo(s) Selected</span>
             <div className="flex items-center gap-2">
-              <span className="text-xs font-bold text-teal-400">Quality: {quality}%</span>
+              <span className="text-xs font-semibold text-teal-400">Quality: {quality}%</span>
             </div>
           </div>
 
@@ -134,11 +134,11 @@ export function BulkImageCompressorTool() {
             <div className="space-y-1.5 pt-2">
               <div className="flex justify-between text-xs font-medium">
                 <span>Progress ({progress.current}/{progress.total})</span>
-                <span className="text-teal-400 font-bold">{progress.percent}%</span>
+                <span className="text-teal-400 font-semibold">{progress.percent}%</span>
               </div>
               <div className="w-full h-2 rounded-full bg-muted overflow-hidden">
                 <div
-                  className="h-full bg-teal-500 transition-all duration-200"
+                  className="h-full bg-teal-500 transition-colors duration-200"
                   style={{ width: `${progress.percent}%` }}
                 />
               </div>
@@ -258,7 +258,7 @@ export function BulkImageResizerTool() {
         <div className="p-5 rounded-xl border border-border bg-card space-y-4">
           <div className="flex items-center justify-between">
             <span className="text-xs font-semibold">{files.length} Photo(s) Queued</span>
-            <span className="text-xs font-bold text-teal-400">Scale: {scale}%</span>
+            <span className="text-xs font-semibold text-teal-400">Scale: {scale}%</span>
           </div>
           <Slider value={[scale]} min={10} max={200} step={5} onValueChange={(v) => setScale(v[0])} />
 
@@ -266,11 +266,11 @@ export function BulkImageResizerTool() {
             <div className="space-y-1.5 pt-2">
               <div className="flex justify-between text-xs font-medium">
                 <span>Progress ({progress.current}/{progress.total})</span>
-                <span className="text-teal-400 font-bold">{progress.percent}%</span>
+                <span className="text-teal-400 font-semibold">{progress.percent}%</span>
               </div>
               <div className="w-full h-2 rounded-full bg-muted overflow-hidden">
                 <div
-                  className="h-full bg-teal-500 transition-all duration-200"
+                  className="h-full bg-teal-500 transition-colors duration-200"
                   style={{ width: `${progress.percent}%` }}
                 />
               </div>
@@ -404,7 +404,7 @@ export function FaviconGeneratorTool() {
                 {icons.map((ic) => (
                   <div key={ic.size} className="p-3 rounded-xl border border-border text-center space-y-2 bg-muted/20">
                     <img src={ic.url} alt={`icon-${ic.size}`} className="mx-auto w-8 h-8 object-contain" />
-                    <p className="text-xs font-mono font-bold">{ic.size}x{ic.size}</p>
+                    <p className="text-xs font-mono font-semibold">{ic.size}x{ic.size}</p>
                   </div>
                 ))}
               </div>

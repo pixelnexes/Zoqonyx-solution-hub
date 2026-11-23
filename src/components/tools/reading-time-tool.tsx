@@ -51,20 +51,20 @@ export function ReadingTimeTool() {
           <div className="p-4 rounded-xl border border-border bg-muted/20 space-y-3">
             <div className="flex items-center gap-2 text-teal-400">
               <BookOpen className="w-5 h-5" />
-              <h4 className="font-bold text-sm text-foreground">Silent Reading Time</h4>
+              <h4 className="font-semibold text-sm text-foreground">Silent Reading Time</h4>
             </div>
             <div className="grid grid-cols-3 gap-2">
               <div className="p-2.5 rounded-lg border border-border bg-card text-center">
                 <span className="text-[10px] text-muted-foreground block">Slow (180 wpm)</span>
-                <span className="text-sm font-bold text-foreground mt-0.5 block">{slowReadMin} min</span>
+                <span className="text-sm font-semibold text-foreground mt-0.5 block">{slowReadMin} min</span>
               </div>
               <div className="p-2.5 rounded-lg border border-teal-500/40 bg-teal-500/5 text-center">
-                <span className="text-[10px] text-teal-400 font-bold block">Average (230 wpm)</span>
+                <span className="text-[10px] text-teal-400 font-semibold block">Average (230 wpm)</span>
                 <span className="text-sm font-semibold text-teal-400 mt-0.5 block">{avgReadMin} min</span>
               </div>
               <div className="p-2.5 rounded-lg border border-border bg-card text-center">
                 <span className="text-[10px] text-muted-foreground block">Fast (300 wpm)</span>
-                <span className="text-sm font-bold text-foreground mt-0.5 block">{fastReadMin} min</span>
+                <span className="text-sm font-semibold text-foreground mt-0.5 block">{fastReadMin} min</span>
               </div>
             </div>
           </div>
@@ -73,20 +73,20 @@ export function ReadingTimeTool() {
           <div className="p-4 rounded-xl border border-border bg-muted/20 space-y-3">
             <div className="flex items-center gap-2 text-teal-400">
               <Mic className="w-5 h-5" />
-              <h4 className="font-bold text-sm text-foreground">Speaking / Presentation Time</h4>
+              <h4 className="font-semibold text-sm text-foreground">Speaking / Presentation Time</h4>
             </div>
             <div className="grid grid-cols-3 gap-2">
               <div className="p-2.5 rounded-lg border border-border bg-card text-center">
                 <span className="text-[10px] text-muted-foreground block">Slow (130 wpm)</span>
-                <span className="text-sm font-bold text-foreground mt-0.5 block">{slowSpeechMin} min</span>
+                <span className="text-sm font-semibold text-foreground mt-0.5 block">{slowSpeechMin} min</span>
               </div>
               <div className="p-2.5 rounded-lg border border-teal-500/40 bg-teal-500/5 text-center">
-                <span className="text-[10px] text-teal-400 font-bold block">Speech (150 wpm)</span>
+                <span className="text-[10px] text-teal-400 font-semibold block">Speech (150 wpm)</span>
                 <span className="text-sm font-semibold text-teal-400 mt-0.5 block">{avgSpeechMin} min</span>
               </div>
               <div className="p-2.5 rounded-lg border border-border bg-card text-center">
                 <span className="text-[10px] text-muted-foreground block">Fast (180 wpm)</span>
-                <span className="text-sm font-bold text-foreground mt-0.5 block">{fastSpeechMin} min</span>
+                <span className="text-sm font-semibold text-foreground mt-0.5 block">{fastSpeechMin} min</span>
               </div>
             </div>
           </div>
@@ -95,19 +95,19 @@ export function ReadingTimeTool() {
         {/* Structural Metrics */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2 border-t border-border">
           <div className="p-3 rounded-lg border border-border bg-muted/10 text-center">
-            <span className="text-[10px] font-bold text-muted-foreground uppercase">Words</span>
+            <span className="text-[10px] font-semibold text-muted-foreground uppercase">Words</span>
             <span className="text-xl font-semibold text-foreground block mt-0.5">{words}</span>
           </div>
           <div className="p-3 rounded-lg border border-border bg-muted/10 text-center">
-            <span className="text-[10px] font-bold text-muted-foreground uppercase">Sentences</span>
+            <span className="text-[10px] font-semibold text-muted-foreground uppercase">Sentences</span>
             <span className="text-xl font-semibold text-foreground block mt-0.5">{sentences}</span>
           </div>
           <div className="p-3 rounded-lg border border-border bg-muted/10 text-center">
-            <span className="text-[10px] font-bold text-muted-foreground uppercase">Paragraphs</span>
+            <span className="text-[10px] font-semibold text-muted-foreground uppercase">Paragraphs</span>
             <span className="text-xl font-semibold text-foreground block mt-0.5">{paragraphs}</span>
           </div>
           <div className="p-3 rounded-lg border border-border bg-muted/10 text-center">
-            <span className="text-[10px] font-bold text-muted-foreground uppercase">Avg Words / Sentence</span>
+            <span className="text-[10px] font-semibold text-muted-foreground uppercase">Avg Words / Sentence</span>
             <span className="text-xl font-semibold text-foreground block mt-0.5">
               {sentences > 0 ? (words / sentences).toFixed(1) : words}
             </span>

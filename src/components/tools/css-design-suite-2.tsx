@@ -63,7 +63,7 @@ text-shadow: ${textShadowCss};`;
               <Input
                 value={text}
                 onChange={(e) => setText(e.target.value)}
-                className="font-bold text-sm"
+                className="font-semibold text-sm"
               />
             </div>
 
@@ -240,11 +240,11 @@ export function FlowchartMakerTool() {
           <React.Fragment key={node.id}>
             <div className="relative group">
               <div
-                className={`px-6 py-3 font-semibold text-xs text-center shadow-xs transition-all ${
+                className={`px-6 py-3 font-semibold text-xs text-center shadow-xs transition-colors ${
                   node.type === "start" || node.type === "end"
                     ? "rounded-full bg-emerald-600 text-white border-2 border-emerald-700"
                     : node.type === "decision"
-                    ? "rounded-md bg-amber-500 text-slate-950 font-bold border-2 border-amber-600 transform rotate-0"
+                    ? "rounded-md bg-amber-500 text-slate-950 font-semibold border-2 border-amber-600 transform rotate-0"
                     : "rounded-lg bg-white text-slate-900 border-2 border-slate-300"
                 }`}
               >
@@ -316,7 +316,7 @@ export function MindMapMakerTool() {
           <Input
             value={rootTopic}
             onChange={(e) => setRootTopic(e.target.value)}
-            className="font-bold text-xs"
+            className="font-semibold text-xs"
           />
         </div>
 
@@ -340,7 +340,7 @@ export function MindMapMakerTool() {
       <div className="p-8 rounded-xl border border-border bg-slate-50/70 overflow-x-auto min-h-[320px] flex items-center justify-center">
         <div className="flex items-center gap-8">
           {/* Root Central Node */}
-          <div className="px-5 py-3 rounded-xl bg-slate-900 text-white font-bold text-sm shadow-md border-2 border-slate-700">
+          <div className="px-5 py-3 rounded-xl bg-slate-900 text-white font-semibold text-sm shadow-md border-2 border-slate-700">
             {rootTopic}
           </div>
 

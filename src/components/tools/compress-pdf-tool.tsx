@@ -138,13 +138,13 @@ export function CompressPdfTool() {
                   type="button"
                   onClick={() => setLevel(c.id as any)}
                   disabled={isProcessing}
-                  className={`p-3 rounded-lg border text-left transition-all ${
+                  className={`p-3 rounded-lg border text-left transition-colors ${
                     level === c.id
                       ? "border-teal-500 bg-teal-500/10 text-foreground"
                       : "border-border hover:border-muted-foreground/50 text-muted-foreground"
                   }`}
                 >
-                  <p className="text-xs font-bold text-foreground">{c.title}</p>
+                  <p className="text-xs font-semibold text-foreground">{c.title}</p>
                   <p className="text-[11px] text-muted-foreground mt-0.5">{c.desc}</p>
                 </button>
               ))}
@@ -155,11 +155,11 @@ export function CompressPdfTool() {
             <div className="space-y-1.5 pt-2">
               <div className="flex justify-between text-xs font-medium">
                 <span>Compressing PDF files...</span>
-                <span className="text-teal-400 font-bold">{progressPercent}%</span>
+                <span className="text-teal-400 font-semibold">{progressPercent}%</span>
               </div>
               <div className="w-full h-2 rounded-full bg-muted overflow-hidden">
                 <div
-                  className="h-full bg-teal-500 transition-all duration-200"
+                  className="h-full bg-teal-500 transition-colors duration-200"
                   style={{ width: `${progressPercent}%` }}
                 />
               </div>

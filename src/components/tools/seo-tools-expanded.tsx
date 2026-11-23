@@ -271,7 +271,7 @@ export function KeywordDensityCheckerTool() {
                   <tr key={i} className="border-b border-border/40">
                     <td className="p-2 font-medium">{item.word}</td>
                     <td className="p-2 text-center text-muted-foreground">{item.count}x</td>
-                    <td className="p-2 text-right font-mono font-bold text-teal-400">{item.percent}%</td>
+                    <td className="p-2 text-right font-mono font-semibold text-teal-400">{item.percent}%</td>
                   </tr>
                 ))}
               </tbody>
@@ -552,7 +552,7 @@ export function SerpSnippetPreviewTool() {
           <div className="space-y-1.5">
             <div className="flex justify-between">
               <Label className="text-xs font-semibold">Page Title ({title.length}/60 chars)</Label>
-              <span className={`text-[10px] ${title.length > 60 ? "text-amber-400 font-bold" : "text-muted-foreground"}`}>
+              <span className={`text-[10px] ${title.length > 60 ? "text-amber-400 font-semibold" : "text-muted-foreground"}`}>
                 {title.length > 60 ? "May be truncated by Google" : "Optimal"}
               </span>
             </div>
@@ -567,7 +567,7 @@ export function SerpSnippetPreviewTool() {
           <div className="space-y-1.5">
             <div className="flex justify-between">
               <Label className="text-xs font-semibold">Meta Description ({desc.length}/160 chars)</Label>
-              <span className={`text-[10px] ${desc.length > 160 ? "text-amber-400 font-bold" : "text-muted-foreground"}`}>
+              <span className={`text-[10px] ${desc.length > 160 ? "text-amber-400 font-semibold" : "text-muted-foreground"}`}>
                 {desc.length > 160 ? "Exceeds 160 char snippet limit" : "Optimal"}
               </span>
             </div>

@@ -28,7 +28,7 @@ export function MarkdownRenderer({ content, className }: MarkdownRendererProps) 
           return (
             <h2
               key={blockIdx}
-              className="text-2xl sm:text-3xl font-heading font-bold text-[#15171C] tracking-tight pt-4 pb-1 border-b border-border/60"
+              className="text-2xl sm:text-3xl font-heading font-semibold text-[#15171C] tracking-tight pt-4 pb-1 border-b border-border/60"
             >
               {renderInline(trimmed.replace(/^#\s+/, ""))}
             </h2>
@@ -40,7 +40,7 @@ export function MarkdownRenderer({ content, className }: MarkdownRendererProps) 
           return (
             <h2
               key={blockIdx}
-              className="text-xl sm:text-2xl font-heading font-bold text-[#15171C] tracking-tight pt-3 pb-1"
+              className="text-xl sm:text-2xl font-heading font-semibold text-[#15171C] tracking-tight pt-3 pb-1"
             >
               {renderInline(trimmed.replace(/^##\s+/, ""))}
             </h2>

@@ -423,7 +423,7 @@ export function NumberToWordsTool() {
             type="number"
             value={number}
             onChange={(e) => setNumber(Number(e.target.value) || 0)}
-            className="font-mono text-base font-bold"
+            className="font-mono text-base font-semibold"
           />
         </div>
 
@@ -556,7 +556,7 @@ export function InvoiceGeneratorTool() {
                 onChange={(e) => updateItem(idx, "rate", Number(e.target.value) || 0)}
                 className="w-24 text-xs font-mono"
               />
-              <span className="w-20 text-right text-xs font-mono font-bold">
+              <span className="w-20 text-right text-xs font-mono font-semibold">
                 ${it.qty * it.rate}
               </span>
               <Button
@@ -584,7 +584,7 @@ export function InvoiceGeneratorTool() {
               <span className="text-muted-foreground">Tax (10%):</span>
               <span className="font-mono">${tax.toFixed(2)}</span>
             </div>
-            <div className="flex justify-between pt-1 border-t border-border font-bold text-sm">
+            <div className="flex justify-between pt-1 border-t border-border font-semibold text-sm">
               <span>Total Due:</span>
               <span className="text-teal-400 font-mono">${total.toFixed(2)}</span>
             </div>

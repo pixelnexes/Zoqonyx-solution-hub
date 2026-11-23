@@ -97,7 +97,7 @@ export function SipInvestmentCalculatorTool() {
             <div className="space-y-1.5">
               <div className="flex justify-between items-center text-xs">
                 <Label htmlFor="sip-amount" className="font-medium text-foreground">Monthly Investment ($)</Label>
-                <span className="font-mono font-bold text-teal-600">${monthlyInvestment.toLocaleString()}</span>
+                <span className="font-mono font-semibold text-teal-600">${monthlyInvestment.toLocaleString()}</span>
               </div>
               <Input
                 id="sip-amount"
@@ -123,7 +123,7 @@ export function SipInvestmentCalculatorTool() {
             <div className="space-y-1.5">
               <div className="flex justify-between items-center text-xs">
                 <Label htmlFor="sip-rate" className="font-medium text-foreground">Expected Annual Return (%)</Label>
-                <span className="font-mono font-bold text-teal-600">{expectedReturnRate}%</span>
+                <span className="font-mono font-semibold text-teal-600">{expectedReturnRate}%</span>
               </div>
               <Input
                 id="sip-rate"
@@ -149,7 +149,7 @@ export function SipInvestmentCalculatorTool() {
             <div className="space-y-1.5">
               <div className="flex justify-between items-center text-xs">
                 <Label htmlFor="sip-years" className="font-medium text-foreground">Investment Tenure (Years)</Label>
-                <span className="font-mono font-bold text-teal-600">{tenureYears} Years</span>
+                <span className="font-mono font-semibold text-teal-600">{tenureYears} Years</span>
               </div>
               <Input
                 id="sip-years"
@@ -187,7 +187,7 @@ export function SipInvestmentCalculatorTool() {
         <div className="lg:col-span-7 space-y-4">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
             <div className="p-4 rounded-xl border border-border bg-card space-y-1">
-              <span className="text-[11px] font-mono uppercase font-bold text-slate-500">Total Invested</span>
+              <span className="text-[11px] font-mono uppercase font-semibold text-slate-500">Total Invested</span>
               <p className="text-xl sm:text-2xl font-semibold text-slate-900 font-mono">
                 ${results.investedAmount.toLocaleString()}
               </p>
@@ -195,7 +195,7 @@ export function SipInvestmentCalculatorTool() {
             </div>
 
             <div className="p-4 rounded-xl border border-emerald-200 bg-emerald-50/50 space-y-1">
-              <span className="text-[11px] font-mono uppercase font-bold text-emerald-700">Estimated Gains</span>
+              <span className="text-[11px] font-mono uppercase font-semibold text-emerald-700">Estimated Gains</span>
               <p className="text-xl sm:text-2xl font-semibold text-emerald-700 font-mono">
                 +${results.estimatedWealthGain.toLocaleString()}
               </p>
@@ -203,7 +203,7 @@ export function SipInvestmentCalculatorTool() {
             </div>
 
             <div className="p-4 rounded-xl border border-teal-200 bg-teal-50/60 space-y-1">
-              <span className="text-[11px] font-mono uppercase font-bold text-teal-800">Total Maturity Value</span>
+              <span className="text-[11px] font-mono uppercase font-semibold text-teal-800">Total Maturity Value</span>
               <p className="text-xl sm:text-2xl font-semibold text-teal-900 font-mono">
                 ${results.maturityValue.toLocaleString()}
               </p>
@@ -224,7 +224,7 @@ export function SipInvestmentCalculatorTool() {
             </div>
             <div className="h-3 w-full bg-slate-200 rounded-full overflow-hidden flex">
               <div
-                className="bg-slate-700 h-full transition-all duration-300"
+                className="bg-slate-700 h-full transition-colors duration-300"
                 style={{
                   width: `${
                     results.maturityValue > 0
@@ -235,7 +235,7 @@ export function SipInvestmentCalculatorTool() {
                 title="Invested Capital"
               />
               <div
-                className="bg-emerald-500 h-full transition-all duration-300"
+                className="bg-emerald-500 h-full transition-colors duration-300"
                 style={{
                   width: `${
                     results.maturityValue > 0
@@ -279,7 +279,7 @@ export function SipInvestmentCalculatorTool() {
                       <td className="py-2 px-3 font-semibold text-slate-900">Year {row.year}</td>
                       <td className="py-2 px-3 text-slate-600">${row.invested.toLocaleString()}</td>
                       <td className="py-2 px-3 text-emerald-600">+${row.wealthGain.toLocaleString()}</td>
-                      <td className="py-2 px-3 font-bold text-slate-900">${row.value.toLocaleString()}</td>
+                      <td className="py-2 px-3 font-semibold text-slate-900">${row.value.toLocaleString()}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -399,7 +399,7 @@ export function MortgageRefinanceCalculatorTool() {
 
             <div className="p-3 rounded-lg bg-slate-50 border text-xs space-y-1">
               <span className="text-slate-500">Current Monthly Payment:</span>
-              <p className="text-lg font-bold text-slate-900 font-mono">${results.curMonthly.toLocaleString()}/mo</p>
+              <p className="text-lg font-semibold text-slate-900 font-mono">${results.curMonthly.toLocaleString()}/mo</p>
               <span className="text-slate-400 text-[10px]">Total remaining interest: ${results.totalCurInterest.toLocaleString()}</span>
             </div>
           </div>
@@ -448,7 +448,7 @@ export function MortgageRefinanceCalculatorTool() {
 
             <div className="p-3 rounded-lg bg-teal-50 border border-teal-200 text-xs space-y-1">
               <span className="text-teal-700">New Monthly Payment:</span>
-              <p className="text-lg font-bold text-teal-900 font-mono">${results.newMonthly.toLocaleString()}/mo</p>
+              <p className="text-lg font-semibold text-teal-900 font-mono">${results.newMonthly.toLocaleString()}/mo</p>
               <span className="text-teal-600 text-[10px]">Total new interest: ${results.totalNewInterest.toLocaleString()}</span>
             </div>
           </div>
@@ -606,7 +606,7 @@ export function RetirementCorpusCalculatorTool() {
 
         <div className="lg:col-span-7 space-y-4">
           <div className="p-5 rounded-xl border border-teal-200 bg-teal-50/50 space-y-2">
-            <span className="text-xs uppercase font-mono font-bold text-teal-800">Target Retirement Nest Egg</span>
+            <span className="text-xs uppercase font-mono font-semibold text-teal-800">Target Retirement Nest Egg</span>
             <p className="text-3xl sm:text-4xl font-semibold text-slate-900 font-mono">
               ${results.corpusRequired.toLocaleString()}
             </p>
@@ -617,7 +617,7 @@ export function RetirementCorpusCalculatorTool() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div className="p-4 rounded-xl border border-border bg-card space-y-1">
-              <span className="text-[11px] font-mono uppercase font-bold text-slate-500">Expense At Retirement</span>
+              <span className="text-[11px] font-mono uppercase font-semibold text-slate-500">Expense At Retirement</span>
               <p className="text-xl font-semibold text-slate-900 font-mono">
                 ${results.monthlyAtRetire.toLocaleString()}/mo
               </p>
@@ -625,7 +625,7 @@ export function RetirementCorpusCalculatorTool() {
             </div>
 
             <div className="p-4 rounded-xl border border-border bg-card space-y-1">
-              <span className="text-[11px] font-mono uppercase font-bold text-slate-500">Retirement Span</span>
+              <span className="text-[11px] font-mono uppercase font-semibold text-slate-500">Retirement Span</span>
               <p className="text-xl font-semibold text-slate-900 font-mono">
                 {results.yearsInRetire} Years
               </p>
@@ -742,13 +742,13 @@ export function FreelanceHourlyRateCalculatorTool() {
         <div className="lg:col-span-7 space-y-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
             <div className="p-4 rounded-xl border border-teal-200 bg-teal-50/60 space-y-1">
-              <span className="text-xs font-mono font-bold uppercase text-teal-800">Minimum Hourly Rate</span>
+              <span className="text-xs font-mono font-semibold uppercase text-teal-800">Minimum Hourly Rate</span>
               <p className="text-3xl font-semibold text-teal-950 font-mono">${results.hourlyRate}/hr</p>
               <p className="text-[11px] text-teal-700">Based on {results.totalBillableHours} billable hours/yr</p>
             </div>
 
             <div className="p-4 rounded-xl border border-border bg-card space-y-1">
-              <span className="text-xs font-mono font-bold uppercase text-slate-500">Standard Day Rate</span>
+              <span className="text-xs font-mono font-semibold uppercase text-slate-500">Standard Day Rate</span>
               <p className="text-3xl font-semibold text-slate-900 font-mono">${results.dayRate}/day</p>
               <p className="text-[11px] text-slate-500">Equivalent to 8 billable hours</p>
             </div>
@@ -759,15 +759,15 @@ export function FreelanceHourlyRateCalculatorTool() {
             <div className="space-y-1.5 font-mono text-[11.5px]">
               <div className="flex justify-between py-1 border-b">
                 <span className="text-slate-500">Gross Annual Revenue Needed:</span>
-                <span className="font-bold text-slate-900">${results.grossNeeded.toLocaleString()}</span>
+                <span className="font-semibold text-slate-900">${results.grossNeeded.toLocaleString()}</span>
               </div>
               <div className="flex justify-between py-1 border-b">
                 <span className="text-slate-500">Target Monthly Invoicing:</span>
-                <span className="font-bold text-slate-900">${results.monthlyBilling.toLocaleString()}/mo</span>
+                <span className="font-semibold text-slate-900">${results.monthlyBilling.toLocaleString()}/mo</span>
               </div>
               <div className="flex justify-between py-1">
                 <span className="text-slate-500">Working Weeks Per Year:</span>
-                <span className="font-bold text-slate-900">{results.workingWeeks} Weeks</span>
+                <span className="font-semibold text-slate-900">{results.workingWeeks} Weeks</span>
               </div>
             </div>
           </div>
@@ -846,17 +846,17 @@ export function CryptoPortfolioTrackerTool() {
     <div className="space-y-6">
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5">
         <div className="p-4 rounded-xl border border-border bg-card space-y-1">
-          <span className="text-[11px] font-mono uppercase font-bold text-slate-500">Total Invested</span>
+          <span className="text-[11px] font-mono uppercase font-semibold text-slate-500">Total Invested</span>
           <p className="text-2xl font-semibold text-slate-900 font-mono">${summary.totalInvested.toLocaleString()}</p>
         </div>
 
         <div className="p-4 rounded-xl border border-border bg-card space-y-1">
-          <span className="text-[11px] font-mono uppercase font-bold text-slate-500">Current Value</span>
+          <span className="text-[11px] font-mono uppercase font-semibold text-slate-500">Current Value</span>
           <p className="text-2xl font-semibold text-teal-900 font-mono">${summary.totalCurrentValue.toLocaleString()}</p>
         </div>
 
         <div className="p-4 rounded-xl border border-border bg-card space-y-1">
-          <span className="text-[11px] font-mono uppercase font-bold text-slate-500">Unrealized P&L</span>
+          <span className="text-[11px] font-mono uppercase font-semibold text-slate-500">Unrealized P&L</span>
           <p className={`text-2xl font-semibold font-mono ${summary.totalProfit >= 0 ? "text-emerald-600" : "text-rose-600"}`}>
             {summary.totalProfit >= 0 ? `+$${summary.totalProfit.toLocaleString()}` : `-$${Math.abs(summary.totalProfit).toLocaleString()}`}{" "}
             <span className="text-xs font-normal">({summary.percentReturn}%)</span>
@@ -932,13 +932,13 @@ export function CryptoPortfolioTrackerTool() {
 
                 return (
                   <tr key={h.id} className="hover:bg-slate-50/80 transition-colors">
-                    <td className="py-2.5 px-3 font-bold text-slate-900">{h.symbol}</td>
+                    <td className="py-2.5 px-3 font-semibold text-slate-900">{h.symbol}</td>
                     <td className="py-2.5 px-3 text-slate-700">{h.amount}</td>
                     <td className="py-2.5 px-3 text-slate-600">${h.buyPrice.toLocaleString()}</td>
                     <td className="py-2.5 px-3 text-slate-900 font-semibold">${h.currentPrice.toLocaleString()}</td>
-                    <td className="py-2.5 px-3 font-bold text-teal-900">${Math.round(val).toLocaleString()}</td>
+                    <td className="py-2.5 px-3 font-semibold text-teal-900">${Math.round(val).toLocaleString()}</td>
                     <td className="py-2.5 px-3 text-slate-600">{alloc.toFixed(1)}%</td>
-                    <td className={`py-2.5 px-3 font-bold ${pnl >= 0 ? "text-emerald-600" : "text-rose-600"}`}>
+                    <td className={`py-2.5 px-3 font-semibold ${pnl >= 0 ? "text-emerald-600" : "text-rose-600"}`}>
                       {pnl >= 0 ? `+$${Math.round(pnl).toLocaleString()}` : `-$${Math.round(Math.abs(pnl)).toLocaleString()}`}
                     </td>
                     <td className="py-2.5 px-3 text-right">

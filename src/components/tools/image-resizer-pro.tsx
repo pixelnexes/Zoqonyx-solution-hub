@@ -227,11 +227,11 @@ export function ImageResizerProTool() {
     <div className="space-y-8">
       {!imageSrc ? (
         <div className="space-y-6">
-          <label className="flex flex-col items-center justify-center p-14 border-2 border-dashed border-border/80 hover:border-brand-cyan/70 rounded-3xl cursor-pointer bg-card/60 hover:bg-card transition-all group shadow-sm">
+          <label className="flex flex-col items-center justify-center p-14 border-2 border-dashed border-border/80 hover:border-brand-cyan/70 rounded-3xl cursor-pointer bg-card/60 hover:bg-card transition-colors group shadow-sm">
             <div className="p-4 rounded-2xl bg-brand-cyan/10 text-brand-cyan mb-4 transition-transform">
               <Upload className="w-8 h-8" />
             </div>
-            <span className="font-heading font-bold text-lg text-foreground">Upload Image to Resize</span>
+            <span className="font-heading font-semibold text-lg text-foreground">Upload Image to Resize</span>
             <span className="text-xs text-muted-foreground mt-1 text-center max-w-sm">
               Drag &amp; drop or click to upload. Scale visually with mouse handles or enter exact pixel dimensions.
             </span>
@@ -240,7 +240,7 @@ export function ImageResizerProTool() {
 
           {/* Social Presets Showcase */}
           <div className="p-6 rounded-2xl bg-card border border-border/80 space-y-3">
-            <h4 className="text-xs font-bold text-muted-foreground uppercase">
+            <h4 className="text-xs font-semibold text-muted-foreground uppercase">
               Supported 1-Click Social Media Presets
             </h4>
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
@@ -263,7 +263,7 @@ export function ImageResizerProTool() {
             {/* Dimensions Control */}
             <div className="p-5 rounded-2xl bg-card border border-border/80 space-y-4 shadow-sm">
               <div className="flex items-center justify-between">
-                <h3 className="font-heading font-bold text-sm text-foreground flex items-center gap-2">
+                <h3 className="font-heading font-semibold text-sm text-foreground flex items-center gap-2">
                   <Sliders className="w-4 h-4 text-brand-cyan" />
                   <span>Custom Dimensions</span>
                 </h3>
@@ -280,7 +280,7 @@ export function ImageResizerProTool() {
                       type="number"
                       value={targetWidth || ""}
                       onChange={(e) => handleWidthChange(Number(e.target.value))}
-                      className="font-mono text-sm font-bold pr-8"
+                      className="font-mono text-sm font-semibold pr-8"
                     />
                     <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-muted-foreground">px</span>
                   </div>
@@ -293,7 +293,7 @@ export function ImageResizerProTool() {
                       type="number"
                       value={targetHeight || ""}
                       onChange={(e) => handleHeightChange(Number(e.target.value))}
-                      className="font-mono text-sm font-bold pr-8"
+                      className="font-mono text-sm font-semibold pr-8"
                     />
                     <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-muted-foreground">px</span>
                   </div>
@@ -305,7 +305,7 @@ export function ImageResizerProTool() {
                 <button
                   type="button"
                   onClick={() => setLockAspect(!lockAspect)}
-                  className={`flex items-center gap-2 text-xs font-semibold px-3 py-1.5 rounded-lg border transition-all ${
+                  className={`flex items-center gap-2 text-xs font-semibold px-3 py-1.5 rounded-lg border transition-colors ${
                     lockAspect
                       ? "border-brand-cyan/60 bg-brand-cyan/10 text-brand-cyan"
                       : "border-border/80 text-muted-foreground hover:bg-muted"
@@ -333,7 +333,7 @@ export function ImageResizerProTool() {
               <div className="space-y-2 pt-3 border-t border-border/60">
                 <div className="flex items-center justify-between text-xs font-semibold">
                   <span className="text-muted-foreground">Percentage Scaling</span>
-                  <span className="font-mono text-brand-cyan font-bold">{scalePercent}%</span>
+                  <span className="font-mono text-brand-cyan font-semibold">{scalePercent}%</span>
                 </div>
                 <input
                   type="range"
@@ -350,7 +350,7 @@ export function ImageResizerProTool() {
                       key={pct}
                       type="button"
                       onClick={() => handlePercentChange(pct)}
-                      className={`text-xs px-2.5 py-1 rounded-md border font-semibold transition-all ${
+                      className={`text-xs px-2.5 py-1 rounded-md border font-semibold transition-colors ${
                         scalePercent === pct
                           ? "bg-brand-cyan text-brand-navy border-transparent"
                           : "border-border/80 text-muted-foreground hover:bg-muted"
@@ -365,7 +365,7 @@ export function ImageResizerProTool() {
 
             {/* Social Media 1-Click Presets */}
             <div className="p-5 rounded-2xl bg-card border border-border/80 space-y-3 shadow-sm">
-              <h3 className="font-heading font-bold text-sm text-foreground flex items-center gap-2">
+              <h3 className="font-heading font-semibold text-sm text-foreground flex items-center gap-2">
                 <Share2 className="w-4 h-4 text-brand-purple" />
                 <span>Social Media 1-Click Presets</span>
               </h3>
@@ -380,14 +380,14 @@ export function ImageResizerProTool() {
                     <button
                       key={p.name}
                       onClick={() => applySocialPreset(p)}
-                      className={`p-2.5 rounded-xl border text-left flex flex-col justify-between transition-all ${
+                      className={`p-2.5 rounded-xl border text-left flex flex-col justify-between transition-colors ${
                         isCurrent
                           ? "border-brand-cyan bg-brand-cyan/10"
                           : "border-border/80 hover:bg-muted/70"
                       }`}
                     >
                       <span className="font-semibold text-xs text-foreground line-clamp-1">{p.name}</span>
-                      <span className="font-mono text-[11px] text-brand-cyan font-bold mt-1">
+                      <span className="font-mono text-[11px] text-brand-cyan font-semibold mt-1">
                         {p.width} × {p.height}
                       </span>
                     </button>
@@ -398,7 +398,7 @@ export function ImageResizerProTool() {
 
             {/* Export Settings */}
             <div className="p-5 rounded-2xl bg-card border border-border/80 space-y-4 shadow-sm">
-              <h3 className="font-heading font-bold text-sm text-foreground">Export Format</h3>
+              <h3 className="font-heading font-semibold text-sm text-foreground">Export Format</h3>
               <div className="grid grid-cols-3 gap-3">
                 {[
                   { id: "png", label: "PNG (Lossless)" },
@@ -408,7 +408,7 @@ export function ImageResizerProTool() {
                   <button
                     key={f.id}
                     onClick={() => setExportFormat(f.id as "png" | "jpeg" | "webp")}
-                    className={`py-2 px-3 rounded-xl border text-xs font-semibold transition-all ${
+                    className={`py-2 px-3 rounded-xl border text-xs font-semibold transition-colors ${
                       exportFormat === f.id
                         ? "border-brand-cyan bg-brand-cyan/10 text-brand-cyan"
                         : "border-border/80 hover:bg-muted text-muted-foreground"
@@ -431,7 +431,7 @@ export function ImageResizerProTool() {
                     download={`${fileName}-${targetWidth}x${targetHeight}.${exportFormat}`}
                     className="w-full"
                   >
-                    <Button variant="gradient" className="gap-2 w-full font-bold shadow-md shadow-brand-cyan/20">
+                    <Button variant="gradient" className="gap-2 w-full font-semibold shadow-md ">
                       <Download className="w-4 h-4" />
                       <span>Download ({targetWidth} × {targetHeight} px)</span>
                     </Button>
@@ -449,7 +449,7 @@ export function ImageResizerProTool() {
                   <Maximize2 className="w-4 h-4 text-brand-cyan" />
                   <span>Interactive Mouse Drag Viewport</span>
                 </span>
-                <span className="text-brand-cyan font-mono font-bold">
+                <span className="text-brand-cyan font-mono font-semibold">
                   {targetWidth} × {targetHeight} px
                 </span>
               </div>
@@ -461,7 +461,7 @@ export function ImageResizerProTool() {
               >
                 {/* Visual Bounding Box with Drag Handles */}
                 <div
-                  className="relative group border-2 border-brand-cyan/80 rounded-lg shadow-2xl transition-all"
+                  className="relative group border-2 border-brand-cyan/80 rounded-lg shadow-2xl transition-colors"
                   style={{
                     maxWidth: "100%",
                     maxHeight: "100%",

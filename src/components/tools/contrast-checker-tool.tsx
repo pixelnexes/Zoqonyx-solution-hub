@@ -105,7 +105,7 @@ export function ContrastCheckerTool() {
           </p>
           <div className="pt-2">
             <span
-              className="inline-block px-4 py-2 rounded-lg text-xs font-bold shadow-sm"
+              className="inline-block px-4 py-2 rounded-lg text-xs font-semibold shadow-sm"
               style={{ backgroundColor: fg, color: bg }}
             >
               Interactive Component
@@ -116,7 +116,7 @@ export function ContrastCheckerTool() {
         {/* Ratio & Criteria Scoreboard */}
         <div className="p-5 rounded-xl border border-border bg-muted/20 flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="text-center md:text-left">
-            <span className="text-[11px] font-bold text-muted-foreground uppercase">Contrast Ratio</span>
+            <span className="text-[11px] font-semibold text-muted-foreground uppercase">Contrast Ratio</span>
             <div className="flex items-baseline gap-2 justify-center md:justify-start">
               <span className="text-4xl font-semibold text-teal-400">{score}</span>
               <span className="text-lg text-muted-foreground font-semibold">: 1</span>
@@ -125,32 +125,32 @@ export function ContrastCheckerTool() {
 
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 w-full md:w-auto">
             <div className="p-3 rounded-lg border border-border bg-card text-center">
-              <span className="text-[10px] text-muted-foreground block font-bold">AA Normal Text</span>
-              <div className="mt-1 flex items-center justify-center gap-1 font-bold text-xs">
+              <span className="text-[10px] text-muted-foreground block font-semibold">AA Normal Text</span>
+              <div className="mt-1 flex items-center justify-center gap-1 font-semibold text-xs">
                 {aaNormal ? <Check className="w-4 h-4 text-emerald-400" /> : <X className="w-4 h-4 text-rose-400" />}
                 <span className={aaNormal ? "text-emerald-400" : "text-rose-400"}>{aaNormal ? "Pass" : "Fail"}</span>
               </div>
             </div>
 
             <div className="p-3 rounded-lg border border-border bg-card text-center">
-              <span className="text-[10px] text-muted-foreground block font-bold">AA Large (18pt+)</span>
-              <div className="mt-1 flex items-center justify-center gap-1 font-bold text-xs">
+              <span className="text-[10px] text-muted-foreground block font-semibold">AA Large (18pt+)</span>
+              <div className="mt-1 flex items-center justify-center gap-1 font-semibold text-xs">
                 {aaLarge ? <Check className="w-4 h-4 text-emerald-400" /> : <X className="w-4 h-4 text-rose-400" />}
                 <span className={aaLarge ? "text-emerald-400" : "text-rose-400"}>{aaLarge ? "Pass" : "Fail"}</span>
               </div>
             </div>
 
             <div className="p-3 rounded-lg border border-border bg-card text-center">
-              <span className="text-[10px] text-muted-foreground block font-bold">AAA Normal Text</span>
-              <div className="mt-1 flex items-center justify-center gap-1 font-bold text-xs">
+              <span className="text-[10px] text-muted-foreground block font-semibold">AAA Normal Text</span>
+              <div className="mt-1 flex items-center justify-center gap-1 font-semibold text-xs">
                 {aaaNormal ? <Check className="w-4 h-4 text-emerald-400" /> : <X className="w-4 h-4 text-rose-400" />}
                 <span className={aaaNormal ? "text-emerald-400" : "text-rose-400"}>{aaaNormal ? "Pass" : "Fail"}</span>
               </div>
             </div>
 
             <div className="p-3 rounded-lg border border-border bg-card text-center">
-              <span className="text-[10px] text-muted-foreground block font-bold">AAA Large (18pt+)</span>
-              <div className="mt-1 flex items-center justify-center gap-1 font-bold text-xs">
+              <span className="text-[10px] text-muted-foreground block font-semibold">AAA Large (18pt+)</span>
+              <div className="mt-1 flex items-center justify-center gap-1 font-semibold text-xs">
                 {aaaLarge ? <Check className="w-4 h-4 text-emerald-400" /> : <X className="w-4 h-4 text-rose-400" />}
                 <span className={aaaLarge ? "text-emerald-400" : "text-rose-400"}>{aaaLarge ? "Pass" : "Fail"}</span>
               </div>

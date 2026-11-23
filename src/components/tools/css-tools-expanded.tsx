@@ -54,7 +54,7 @@ export function NeumorphismGeneratorTool() {
               backgroundColor: bgColor,
               boxShadow: boxShadow,
             }}
-            className="flex items-center justify-center text-xs font-semibold text-foreground/60 transition-all duration-150"
+            className="flex items-center justify-center text-xs font-semibold text-foreground/60 transition-colors duration-150"
           >
             Neumorphic Shape
           </div>
@@ -142,7 +142,7 @@ export function ClipPathGeneratorTool() {
         <div className="flex items-center justify-center p-12 rounded-2xl bg-muted/30 border border-border min-h-[260px]">
           <div
             style={{ clipPath: clipPathValue }}
-            className="w-48 h-48 bg-gradient-to-tr from-teal-500 to-emerald-400 transition-all duration-300 shadow-2xl flex items-center justify-center text-slate-900 font-bold"
+            className="w-48 h-48 bg-gradient-to-tr from-teal-500 to-emerald-400 transition-colors duration-300 shadow-2xl flex items-center justify-center text-slate-900 font-semibold"
           >
             Shape
           </div>
@@ -203,7 +203,7 @@ export function TextShadowGeneratorTool() {
         <div className="flex items-center justify-center p-12 rounded-2xl bg-slate-950 border border-border min-h-[200px]">
           <span
             style={{ textShadow }}
-            className="text-5xl sm:text-6xl font-semibold text-white transition-all"
+            className="text-5xl sm:text-6xl font-semibold text-white transition-colors"
           >
             {text}
           </span>
@@ -285,7 +285,7 @@ export function ColorPaletteGeneratorTool() {
               onClick={() => navigator.clipboard.writeText(col)}
               title="Click to copy HEX"
             >
-              <span className="text-xs font-mono font-bold px-2 py-1 rounded bg-black/60 text-white w-fit backdrop-blur-sm">
+              <span className="text-xs font-mono font-semibold px-2 py-1 rounded bg-black/60 text-white w-fit backdrop-blur-sm">
                 {col}
               </span>
             </div>
@@ -383,7 +383,7 @@ export function AspectRatioCalculatorTool() {
 
         <div className="p-3 rounded-lg border border-border bg-muted/30 flex items-center justify-between text-xs">
           <span>CSS Declaration:</span>
-          <code className="text-teal-400 font-mono font-bold">aspect-ratio: {ratio.replace(":", " / ")};</code>
+          <code className="text-teal-400 font-mono font-semibold">aspect-ratio: {ratio.replace(":", " / ")};</code>
         </div>
       </div>
     </div>

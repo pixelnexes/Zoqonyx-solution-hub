@@ -199,11 +199,11 @@ export function ImageFormatConverterTool() {
             <div className="space-y-1.5 pt-2">
               <div className="flex justify-between text-xs font-medium">
                 <span>Progress ({progress.current}/{progress.total})</span>
-                <span className="text-teal-400 font-bold">{progress.percent}%</span>
+                <span className="text-teal-400 font-semibold">{progress.percent}%</span>
               </div>
               <div className="w-full h-2 rounded-full bg-muted overflow-hidden">
                 <div
-                  className="h-full bg-teal-500 transition-all duration-200"
+                  className="h-full bg-teal-500 transition-colors duration-200"
                   style={{ width: `${progress.percent}%` }}
                 />
               </div>
@@ -435,11 +435,11 @@ export function ColorPickerTool() {
   return (
     <div className="space-y-8">
       {!imageSrc ? (
-        <label className="flex flex-col items-center justify-center p-14 border-2 border-dashed border-border/80 hover:border-brand-cyan/70 rounded-3xl cursor-pointer bg-card/60 hover:bg-card transition-all group shadow-sm">
+        <label className="flex flex-col items-center justify-center p-14 border-2 border-dashed border-border/80 hover:border-brand-cyan/70 rounded-3xl cursor-pointer bg-card/60 hover:bg-card transition-colors group shadow-sm">
           <div className="p-4 rounded-2xl bg-brand-cyan/10 text-brand-cyan mb-4 transition-transform">
             <Upload className="w-8 h-8" />
           </div>
-          <span className="font-heading font-bold text-lg text-foreground">Upload Image for Eyedropper</span>
+          <span className="font-heading font-semibold text-lg text-foreground">Upload Image for Eyedropper</span>
           <span className="text-xs text-muted-foreground mt-1 text-center max-w-sm">
             Hover to use the 10x magnifying loupe, click to inspect exact HEX/RGB/HSL, or select from auto-extracted palettes.
           </span>
@@ -479,7 +479,7 @@ export function ColorPickerTool() {
                     className="flex items-center justify-between p-2.5 rounded-xl bg-muted/40 border border-border/60 text-xs"
                   >
                     <span className="font-semibold text-muted-foreground w-12">{item.label}</span>
-                    <span className="font-mono font-bold text-foreground text-xs flex-1 px-2 select-all">
+                    <span className="font-mono font-semibold text-foreground text-xs flex-1 px-2 select-all">
                       {item.val}
                     </span>
                     <button
@@ -506,7 +506,7 @@ export function ColorPickerTool() {
             {/* Auto-Extracted Palette */}
             {palette.length > 0 && (
               <div className="p-5 rounded-3xl bg-card border border-border/80 space-y-3 shadow-sm">
-                <h3 className="font-heading font-bold text-sm text-foreground flex items-center justify-between">
+                <h3 className="font-heading font-semibold text-sm text-foreground flex items-center justify-between">
                   <span>Auto-Extracted Palette</span>
                   <span className="text-xs text-muted-foreground">Click to select</span>
                 </h3>
@@ -516,13 +516,13 @@ export function ColorPickerTool() {
                     <button
                       key={idx}
                       onClick={() => updateColorValues(color)}
-                      className="group p-1.5 rounded-xl border border-border/80 hover:border-brand-cyan/70 transition-all text-center flex flex-col items-center gap-1.5"
+                      className="group p-1.5 rounded-xl border border-border/80 hover:border-brand-cyan/70 transition-colors text-center flex flex-col items-center gap-1.5"
                     >
                       <div
                         className="w-full h-9 rounded-lg border border-black/10 shadow-sm"
                         style={{ backgroundColor: color }}
                       />
-                      <span className="font-mono text-[10px] font-bold text-muted-foreground group-hover:text-foreground uppercase">
+                      <span className="font-mono text-[10px] font-semibold text-muted-foreground group-hover:text-foreground uppercase">
                         {color}
                       </span>
                     </button>
@@ -632,7 +632,7 @@ export function ImageRotatorTool() {
   return (
     <div className="space-y-6">
       {!imageSrc ? (
-        <label className="flex flex-col items-center justify-center p-12 border-2 border-dashed border-border/80 hover:border-brand-cyan/70 rounded-2xl cursor-pointer bg-card/60 transition-all group">
+        <label className="flex flex-col items-center justify-center p-12 border-2 border-dashed border-border/80 hover:border-brand-cyan/70 rounded-2xl cursor-pointer bg-card/60 transition-colors group">
           <Upload className="w-10 h-10 text-brand-cyan mb-3 transition-transform" />
           <span className="font-heading font-semibold text-base text-foreground">Upload Image to Rotate or Flip</span>
           <span className="text-xs text-muted-foreground mt-1">90°, 180°, 270° rotation and horizontal/vertical mirroring</span>
@@ -723,7 +723,7 @@ export function ImageToBase64Tool() {
 
   return (
     <div className="space-y-6">
-      <label className="flex flex-col items-center justify-center p-8 border-2 border-dashed border-border/80 hover:border-brand-cyan/70 rounded-2xl cursor-pointer bg-card/60 transition-all group">
+      <label className="flex flex-col items-center justify-center p-8 border-2 border-dashed border-border/80 hover:border-brand-cyan/70 rounded-2xl cursor-pointer bg-card/60 transition-colors group">
         <Upload className="w-8 h-8 text-brand-cyan mb-2 transition-transform" />
         <span className="font-heading font-semibold text-sm text-foreground">
           {fileName ? `Loaded: ${fileName}` : "Upload image to get Base64 string"}

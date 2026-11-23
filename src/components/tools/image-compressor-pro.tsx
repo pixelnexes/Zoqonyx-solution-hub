@@ -292,7 +292,7 @@ export function ImageCompressorProTool() {
         <div className="flex items-center gap-1.5">
           <button
             onClick={() => setActiveTab("single")}
-            className={`px-4 py-1.5 rounded-lg text-xs font-semibold transition-all ${
+            className={`px-4 py-1.5 rounded-lg text-xs font-semibold transition-colors ${
               activeTab === "single"
                 ? "bg-teal-600 text-white shadow-xs"
                 : "text-muted-foreground hover:text-foreground"
@@ -302,7 +302,7 @@ export function ImageCompressorProTool() {
           </button>
           <button
             onClick={() => setActiveTab("batch")}
-            className={`px-4 py-1.5 rounded-lg text-xs font-semibold transition-all flex items-center gap-1.5 ${
+            className={`px-4 py-1.5 rounded-lg text-xs font-semibold transition-colors flex items-center gap-1.5 ${
               activeTab === "batch"
                 ? "bg-teal-600 text-white shadow-xs"
                 : "text-muted-foreground hover:text-foreground"
@@ -321,11 +321,11 @@ export function ImageCompressorProTool() {
 
       {activeTab === "single" ? (
         !imageSrc ? (
-          <label className="flex flex-col items-center justify-center p-12 sm:p-16 border-2 border-dashed border-border/80 hover:border-teal-500/70 rounded-2xl cursor-pointer bg-card/60 hover:bg-card transition-all group shadow-xs">
+          <label className="flex flex-col items-center justify-center p-12 sm:p-16 border-2 border-dashed border-border/80 hover:border-teal-500/70 rounded-2xl cursor-pointer bg-card/60 hover:bg-card transition-colors group shadow-xs">
             <div className="p-4 rounded-xl bg-teal-500/10 text-teal-400 mb-3 transition-transform">
               <Upload className="w-7 h-7" />
             </div>
-            <span className="font-heading font-bold text-base sm:text-lg text-foreground">
+            <span className="font-heading font-semibold text-base sm:text-lg text-foreground">
               Upload Image to Compress
             </span>
             <span className="text-xs text-muted-foreground mt-1 text-center max-w-sm">
@@ -343,7 +343,7 @@ export function ImageCompressorProTool() {
                   <span className="text-foreground font-mono uppercase text-[11px]">
                     Compression Metrics
                   </span>
-                  <span className="text-emerald-400 font-bold bg-emerald-500/10 border border-emerald-500/20 px-2 py-0.5 rounded font-mono">
+                  <span className="text-emerald-400 font-semibold bg-emerald-500/10 border border-emerald-500/20 px-2 py-0.5 rounded font-mono">
                     {singleSavings}% Saved
                   </span>
                 </div>
@@ -351,11 +351,11 @@ export function ImageCompressorProTool() {
                 <div className="grid grid-cols-2 gap-2.5 pt-1">
                   <div className="p-2.5 rounded-lg bg-muted/40 border border-border/60">
                     <p className="text-[10px] font-mono text-muted-foreground uppercase">Original</p>
-                    <p className="font-mono text-sm font-bold text-foreground mt-0.5">{formatBytes(originalSize)}</p>
+                    <p className="font-mono text-sm font-semibold text-foreground mt-0.5">{formatBytes(originalSize)}</p>
                   </div>
                   <div className="p-2.5 rounded-lg bg-teal-500/10 border border-teal-500/20">
                     <p className="text-[10px] font-mono text-teal-400 uppercase">Compressed</p>
-                    <p className="font-mono text-sm font-bold text-teal-400 mt-0.5">{formatBytes(compressedSize)}</p>
+                    <p className="font-mono text-sm font-semibold text-teal-400 mt-0.5">{formatBytes(compressedSize)}</p>
                   </div>
                 </div>
               </div>
@@ -395,7 +395,7 @@ export function ImageCompressorProTool() {
                   <div className="space-y-3">
                     <div className="flex items-center justify-between text-xs">
                       <span className="text-muted-foreground">Quality Level</span>
-                      <span className="font-mono text-teal-400 font-bold">{quality}%</span>
+                      <span className="font-mono text-teal-400 font-semibold">{quality}%</span>
                     </div>
 
                     <input
@@ -418,9 +418,9 @@ export function ImageCompressorProTool() {
                         <button
                           key={preset.label}
                           onClick={() => setQuality(preset.q)}
-                          className={`py-1 rounded border text-[11px] font-mono transition-all ${
+                          className={`py-1 rounded border text-[11px] font-mono transition-colors ${
                             quality === preset.q
-                              ? "border-teal-500 bg-teal-500/10 text-teal-400 font-bold"
+                              ? "border-teal-500 bg-teal-500/10 text-teal-400 font-semibold"
                               : "border-border hover:bg-muted text-muted-foreground"
                           }`}
                         >
@@ -433,7 +433,7 @@ export function ImageCompressorProTool() {
                   <div className="space-y-3">
                     <div className="flex items-center justify-between text-xs">
                       <span className="text-muted-foreground">Target File Size</span>
-                      <span className="font-mono text-teal-400 font-bold">{targetKb} KB</span>
+                      <span className="font-mono text-teal-400 font-semibold">{targetKb} KB</span>
                     </div>
 
                     <div className="grid grid-cols-4 gap-1.5">
@@ -441,9 +441,9 @@ export function ImageCompressorProTool() {
                         <button
                           key={kb}
                           onClick={() => setTargetKb(kb)}
-                          className={`py-1 rounded border text-[11px] font-mono transition-all ${
+                          className={`py-1 rounded border text-[11px] font-mono transition-colors ${
                             targetKb === kb
-                              ? "border-teal-500 bg-teal-500/10 text-teal-400 font-bold"
+                              ? "border-teal-500 bg-teal-500/10 text-teal-400 font-semibold"
                               : "border-border hover:bg-muted text-muted-foreground"
                           }`}
                         >
@@ -479,7 +479,7 @@ export function ImageCompressorProTool() {
                         onClick={() => setFormat(fmt)}
                         className={`px-2 py-0.5 rounded uppercase ${
                           format === fmt
-                            ? "bg-teal-600 text-white font-bold"
+                            ? "bg-teal-600 text-white font-semibold"
                             : "bg-muted/40 text-muted-foreground hover:text-foreground"
                         }`}
                       >
@@ -593,7 +593,7 @@ export function ImageCompressorProTool() {
                   </div>
                   <div className="w-48 sm:w-64 h-1.5 rounded-full bg-muted overflow-hidden">
                     <div
-                      className="h-full bg-teal-500 transition-all duration-300"
+                      className="h-full bg-teal-500 transition-colors duration-300"
                       style={{ width: `${batchProgress}%` }}
                     />
                   </div>
@@ -650,7 +650,7 @@ export function ImageCompressorProTool() {
                         <span>{formatBytes(item.originalSize)}</span>
                         <span>→</span>
                         {item.compressedSize > 0 ? (
-                          <span className="text-teal-400 font-bold">
+                          <span className="text-teal-400 font-semibold">
                             {formatBytes(item.compressedSize)} (-{item.savings}%)
                           </span>
                         ) : (

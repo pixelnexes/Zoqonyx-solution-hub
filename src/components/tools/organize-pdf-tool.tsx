@@ -167,7 +167,7 @@ export function OrganizePdfTool() {
                 key={p.id}
                 className="p-3 rounded-lg border border-border bg-muted/30 flex flex-col items-center gap-2 relative group"
               >
-                <span className="text-[11px] font-bold text-muted-foreground">
+                <span className="text-[11px] font-semibold text-muted-foreground">
                   Page {idx + 1}
                   <span className="text-[10px] text-muted-foreground/60 ml-1">(Orig #{p.originalIndex + 1})</span>
                 </span>
@@ -176,9 +176,9 @@ export function OrganizePdfTool() {
                   className="w-24 h-32 rounded border border-border bg-card flex flex-col items-center justify-center p-2 shadow-sm transition-transform"
                   style={{ transform: `rotate(${p.rotation}deg)` }}
                 >
-                  <span className="text-xs font-mono font-bold text-foreground">📄 #{p.originalIndex + 1}</span>
+                  <span className="text-xs font-mono font-semibold text-foreground">📄 #{p.originalIndex + 1}</span>
                   {p.rotation > 0 && (
-                    <span className="text-[9px] text-teal-400 font-bold mt-1">+{p.rotation}°</span>
+                    <span className="text-[9px] text-teal-400 font-semibold mt-1">+{p.rotation}°</span>
                   )}
                 </div>
 

@@ -136,7 +136,7 @@ export function ComingSoonToolView({ tool, relatedTools }: ComingSoonToolViewPro
             {tool.content.split("\n\n").map((block, idx) => {
               if (block.startsWith("## ")) {
                 return (
-                  <h2 key={idx} className="text-xl font-heading font-bold text-slate-900 pt-3 border-b border-slate-100 pb-2">
+                  <h2 key={idx} className="text-xl font-heading font-semibold text-slate-900 pt-3 border-b border-slate-100 pb-2">
                     {block.replace("## ", "")}
                   </h2>
                 );
@@ -168,7 +168,7 @@ export function ComingSoonToolView({ tool, relatedTools }: ComingSoonToolViewPro
       {relatedTools.length > 0 && (
         <div className="space-y-4 pt-2">
           <div className="flex items-center justify-between">
-            <h3 className="text-lg font-heading font-bold text-slate-900">
+            <h3 className="text-lg font-heading font-semibold text-slate-900">
               Try These Active Free Tools Today
             </h3>
             <Link href="/tools" className="text-xs font-semibold text-teal-700 hover:underline inline-flex items-center gap-1">
@@ -180,7 +180,7 @@ export function ComingSoonToolView({ tool, relatedTools }: ComingSoonToolViewPro
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5">
             {relatedTools.map((rel) => (
               <Link key={rel.slug} href={`/tools/${rel.slug}`} className="group">
-                <div className="p-4 rounded-lg bg-white border border-slate-200 hover:border-teal-500 hover:shadow-[0_4px_16px_rgba(13,148,136,0.1)] transition-all space-y-2">
+                <div className="p-4 rounded-lg bg-white border border-slate-200 hover:border-teal-500 hover:shadow-[0_4px_16px_rgba(13,148,136,0.1)] transition-colors space-y-2">
                   <div className="flex items-center gap-2.5">
                     <div className="p-2 rounded-md bg-teal-50 text-teal-700 border border-teal-200">
                       <ToolIcon name={rel.icon} className="w-4 h-4" />

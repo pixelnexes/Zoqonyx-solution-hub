@@ -103,7 +103,7 @@ export function VoiceRecorderEditorTool() {
         </div>
 
         <div className="space-y-1">
-          <h3 className="text-base font-bold text-slate-900">Voice Recorder & Audio Capture</h3>
+          <h3 className="text-base font-semibold text-slate-900">Voice Recorder & Audio Capture</h3>
           <p className="text-xs text-slate-600">
             Record crystal-clear voice notes, podcasts, and audio clips client-side. Zero cloud transmission.
           </p>
@@ -155,7 +155,7 @@ export function VoiceRecorderEditorTool() {
         {/* Playback & Export */}
         {audioBlobUrl && (
           <div className="pt-6 border-t space-y-4 text-left">
-            <span className="text-xs font-mono font-bold uppercase text-slate-700">Audio Preview</span>
+            <span className="text-xs font-mono font-semibold uppercase text-slate-700">Audio Preview</span>
             <audio src={audioBlobUrl} controls className="w-full" />
             <div className="flex justify-end">
               <a
@@ -285,7 +285,7 @@ export function AudioConverterMp3Tool() {
             <select
               value={outputFormat}
               onChange={(e) => setOutputFormat(e.target.value)}
-              className="w-full h-9 rounded-md border border-input bg-background px-3 py-1 text-xs font-mono font-bold"
+              className="w-full h-9 rounded-md border border-input bg-background px-3 py-1 text-xs font-mono font-semibold"
             >
               <option value="wav">WAV (Lossless 16-bit PCM)</option>
               <option value="webm">WebM (Opus Audio)</option>
@@ -305,7 +305,7 @@ export function AudioConverterMp3Tool() {
 
         {convertedUrl && (
           <div className="p-4 rounded-xl border border-emerald-200 bg-emerald-50/70 space-y-3">
-            <span className="text-xs font-bold text-emerald-950">Audio Transcoded Successfully!</span>
+            <span className="text-xs font-semibold text-emerald-950">Audio Transcoded Successfully!</span>
             <audio src={convertedUrl} controls className="w-full" />
             <div className="flex justify-end">
               <a
@@ -437,7 +437,7 @@ export function VideoToGifAdvancedTool() {
 
           {gifResultUrl && (
             <div className="p-4 rounded-xl border border-emerald-200 bg-emerald-50/70 space-y-3 text-center">
-              <span className="text-xs font-bold text-emerald-950">Frame Rendered Successfully!</span>
+              <span className="text-xs font-semibold text-emerald-950">Frame Rendered Successfully!</span>
               <img src={gifResultUrl} alt="GIF Preview" className="mx-auto rounded border shadow-xs max-h-48" />
               <div className="flex justify-center">
                 <a

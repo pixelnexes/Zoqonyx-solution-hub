@@ -125,7 +125,7 @@ export function MergePdfTool() {
                 className="flex items-center justify-between p-3 rounded-xl bg-muted/30 border border-border text-sm"
               >
                 <div className="flex items-center gap-2.5 truncate">
-                  <span className="w-5 h-5 rounded bg-teal-500/10 text-teal-400 font-mono text-xs font-bold flex items-center justify-center shrink-0">
+                  <span className="w-5 h-5 rounded bg-teal-500/10 text-teal-400 font-mono text-xs font-semibold flex items-center justify-center shrink-0">
                     {idx + 1}
                   </span>
                   <FileText className="w-4 h-4 text-teal-400 shrink-0" />
@@ -172,11 +172,11 @@ export function MergePdfTool() {
             <div className="space-y-1.5 pt-2">
               <div className="flex justify-between text-xs font-medium">
                 <span>Merging documents...</span>
-                <span className="text-teal-400 font-bold">{progressPercent}%</span>
+                <span className="text-teal-400 font-semibold">{progressPercent}%</span>
               </div>
               <div className="w-full h-2 rounded-full bg-muted overflow-hidden">
                 <div
-                  className="h-full bg-teal-500 transition-all duration-200"
+                  className="h-full bg-teal-500 transition-colors duration-200"
                   style={{ width: `${progressPercent}%` }}
                 />
               </div>
@@ -744,7 +744,7 @@ export function PdfPageCounterTool() {
             </div>
             <div className="text-right">
               <span className="text-2xl font-semibold text-teal-400">{totalPages}</span>
-              <p className="text-[10px] text-muted-foreground uppercase font-bold">Total Pages</p>
+              <p className="text-[10px] text-muted-foreground uppercase font-semibold">Total Pages</p>
             </div>
           </div>
 
@@ -757,7 +757,7 @@ export function PdfPageCounterTool() {
                 <span className="font-medium truncate">{f.name}</span>
                 <div className="flex items-center gap-3 shrink-0">
                   <span className="text-muted-foreground">{f.size}</span>
-                  <span className="px-2 py-0.5 rounded bg-teal-500/10 text-teal-400 font-bold">
+                  <span className="px-2 py-0.5 rounded bg-teal-500/10 text-teal-400 font-semibold">
                     {f.pages} pages
                   </span>
                 </div>
@@ -1012,11 +1012,11 @@ export function ImageToPdfTool() {
             <div className="space-y-1.5 pt-2">
               <div className="flex justify-between text-xs font-medium">
                 <span>Generating PDF pages...</span>
-                <span className="text-teal-400 font-bold">{progressPercent}%</span>
+                <span className="text-teal-400 font-semibold">{progressPercent}%</span>
               </div>
               <div className="w-full h-2 rounded-full bg-muted overflow-hidden">
                 <div
-                  className="h-full bg-teal-500 transition-all duration-200"
+                  className="h-full bg-teal-500 transition-colors duration-200"
                   style={{ width: `${progressPercent}%` }}
                 />
               </div>

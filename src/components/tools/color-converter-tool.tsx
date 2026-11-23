@@ -142,7 +142,7 @@ export function ColorConverterTool() {
               className="p-3 rounded-lg border border-border bg-muted/30 flex items-center justify-between"
             >
               <div>
-                <span className="text-[10px] font-bold text-muted-foreground uppercase">{v.label}</span>
+                <span className="text-[10px] font-semibold text-muted-foreground uppercase">{v.label}</span>
                 <p className="font-mono text-xs font-semibold text-foreground">{v.val}</p>
               </div>
               <Button

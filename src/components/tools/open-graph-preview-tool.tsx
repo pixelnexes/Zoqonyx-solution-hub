@@ -165,10 +165,10 @@ export const metadata: Metadata = {
       <div className="p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-brand-cyan/10 via-brand-purple/10 to-transparent border border-brand-cyan/20 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div className="space-y-1">
           <div className="flex items-center gap-2">
-            <span className="px-2 py-0.5 text-[10px] font-bold rounded uppercase bg-brand-cyan/20 text-brand-cyan">
+            <span className="px-2 py-0.5 text-[10px] font-semibold rounded uppercase bg-brand-cyan/20 text-brand-cyan">
               Live Simulator
             </span>
-            <h2 className="text-sm sm:text-base font-heading font-bold text-foreground">
+            <h2 className="text-sm sm:text-base font-heading font-semibold text-foreground">
               Social Card & SERP Open Graph Inspector
             </h2>
           </div>
@@ -211,7 +211,7 @@ export const metadata: Metadata = {
         {/* Left: Input Form & Meta Controls (5 Cols) */}
         <div className="lg:col-span-5 space-y-5 p-5 sm:p-6 rounded-2xl bg-card border border-border/80 shadow-sm">
           <div className="flex items-center justify-between pb-3 border-b border-border/60">
-            <h3 className="font-heading font-bold text-sm text-foreground flex items-center gap-2">
+            <h3 className="font-heading font-semibold text-sm text-foreground flex items-center gap-2">
               <Code2 className="w-4 h-4 text-brand-cyan" />
               <span>Metadata Configuration</span>
             </h3>
@@ -225,9 +225,9 @@ export const metadata: Metadata = {
               <span
                 className={`text-[11px] font-mono ${
                   titleLen > 60
-                    ? "text-amber-500 font-bold"
+                    ? "text-amber-500 font-semibold"
                     : isTitleGood
-                    ? "text-emerald-500 font-bold"
+                    ? "text-emerald-500 font-semibold"
                     : "text-muted-foreground"
                 }`}
               >
@@ -249,9 +249,9 @@ export const metadata: Metadata = {
               <span
                 className={`text-[11px] font-mono ${
                   descLen > 160
-                    ? "text-amber-500 font-bold"
+                    ? "text-amber-500 font-semibold"
                     : isDescGood
-                    ? "text-emerald-500 font-bold"
+                    ? "text-emerald-500 font-semibold"
                     : "text-muted-foreground"
                 }`}
               >
@@ -361,7 +361,7 @@ export const metadata: Metadata = {
               <button
                 key={platform.id}
                 onClick={() => setActivePlatform(platform.id as PreviewPlatform)}
-                className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all whitespace-nowrap ${
+                className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors whitespace-nowrap ${
                   activePlatform === platform.id
                     ? "bg-background text-foreground shadow-sm border border-border"
                     : "text-muted-foreground hover:text-foreground"
@@ -379,11 +379,11 @@ export const metadata: Metadata = {
               <div className="max-w-md mx-auto w-full rounded-2xl border border-border/80 bg-background/90 p-4 space-y-3 shadow-lg">
                 {/* User Header */}
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-brand-cyan to-brand-purple flex items-center justify-center text-white font-bold text-xs">
+                  <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-brand-cyan to-brand-purple flex items-center justify-center text-white font-semibold text-xs">
                     ZX
                   </div>
                   <div className="leading-tight">
-                    <p className="text-xs font-bold text-foreground flex items-center gap-1">
+                    <p className="text-xs font-semibold text-foreground flex items-center gap-1">
                       Zoqonyx <span className="text-blue-400">✓</span>
                     </p>
                     <p className="text-[11px] text-muted-foreground">{twitterHandle} · 1m</p>
@@ -438,11 +438,11 @@ export const metadata: Metadata = {
             {activePlatform === "facebook" && (
               <div className="max-w-md mx-auto w-full rounded-2xl border border-border/80 bg-background/90 p-4 space-y-3 shadow-lg">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold text-xs">
+                  <div className="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white font-semibold text-xs">
                     f
                   </div>
                   <div>
-                    <p className="text-xs font-bold text-foreground">{siteName}</p>
+                    <p className="text-xs font-semibold text-foreground">{siteName}</p>
                     <p className="text-[11px] text-muted-foreground">Sponsored · Just now · 🌐</p>
                   </div>
                 </div>
@@ -466,7 +466,7 @@ export const metadata: Metadata = {
                     <p className="text-[10px] uppercase font-semibold text-muted-foreground">
                       {domain}
                     </p>
-                    <p className="text-xs font-bold text-foreground line-clamp-1">{title}</p>
+                    <p className="text-xs font-semibold text-foreground line-clamp-1">{title}</p>
                     <p className="text-[11px] text-muted-foreground line-clamp-1">{desc}</p>
                   </div>
                 </div>
@@ -477,11 +477,11 @@ export const metadata: Metadata = {
             {activePlatform === "linkedin" && (
               <div className="max-w-md mx-auto w-full rounded-2xl border border-border/80 bg-background/90 p-4 space-y-3 shadow-lg">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-lg bg-[#0077B5] flex items-center justify-center text-white font-bold text-xs">
+                  <div className="w-10 h-10 rounded-lg bg-[#0077B5] flex items-center justify-center text-white font-semibold text-xs">
                     in
                   </div>
                   <div>
-                    <p className="text-xs font-bold text-foreground">{siteName}</p>
+                    <p className="text-xs font-semibold text-foreground">{siteName}</p>
                     <p className="text-[10px] text-muted-foreground">1,250 followers · Promoted</p>
                   </div>
                 </div>
@@ -499,7 +499,7 @@ export const metadata: Metadata = {
                     />
                   </div>
                   <div className="p-3 bg-card space-y-1 border-t border-border/60">
-                    <p className="text-xs font-bold text-foreground line-clamp-1">{title}</p>
+                    <p className="text-xs font-semibold text-foreground line-clamp-1">{title}</p>
                     <p className="text-[10px] text-muted-foreground flex items-center gap-1 font-mono">
                       <span>{domain}</span>
                       <span>· 1 min read</span>
@@ -513,7 +513,7 @@ export const metadata: Metadata = {
             {activePlatform === "google" && (
               <div className="max-w-lg mx-auto w-full rounded-2xl border border-border/80 bg-background/95 p-5 space-y-3 shadow-lg">
                 <div className="flex items-center gap-2">
-                  <div className="w-6 h-6 rounded-full bg-muted flex items-center justify-center text-[10px] font-bold text-foreground">
+                  <div className="w-6 h-6 rounded-full bg-muted flex items-center justify-center text-[10px] font-semibold text-foreground">
                     🌐
                   </div>
                   <div className="text-xs leading-none">
@@ -545,7 +545,7 @@ export const metadata: Metadata = {
                     />
                   </div>
                   <div className="space-y-0.5">
-                    <p className="text-xs font-bold text-foreground line-clamp-1">{title}</p>
+                    <p className="text-xs font-semibold text-foreground line-clamp-1">{title}</p>
                     <p className="text-[10px] text-muted-foreground line-clamp-2">{desc}</p>
                     <p className="text-[10px] text-emerald-500 font-mono pt-1">{domain}</p>
                   </div>
@@ -564,7 +564,7 @@ export const metadata: Metadata = {
 
                 <div className="border-l-4 border-brand-cyan bg-[#292b2f] rounded-r-lg p-3 space-y-2">
                   <p className="text-[11px] text-zinc-400 font-medium">{siteName}</p>
-                  <a href={url} className="text-xs font-bold text-brand-cyan hover:underline block line-clamp-1">
+                  <a href={url} className="text-xs font-semibold text-brand-cyan hover:underline block line-clamp-1">
                     {title}
                   </a>
                   <p className="text-[11px] text-zinc-300 line-clamp-2">{desc}</p>

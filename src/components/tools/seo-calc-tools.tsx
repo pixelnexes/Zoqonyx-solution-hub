@@ -271,7 +271,7 @@ export function PercentageCalculatorTool() {
     <div className="space-y-6">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="p-6 rounded-2xl bg-card border border-border/80 space-y-4">
-          <h4 className="font-heading font-bold text-sm text-foreground">
+          <h4 className="font-heading font-semibold text-sm text-foreground">
             What is <span className="text-brand-cyan">{valA}%</span> of{" "}
             <span className="text-brand-purple">{valB}</span>?
           </h4>
@@ -294,7 +294,7 @@ export function PercentageCalculatorTool() {
         </div>
 
         <div className="p-6 rounded-2xl bg-card border border-border/80 space-y-4">
-          <h4 className="font-heading font-bold text-sm text-foreground">
+          <h4 className="font-heading font-semibold text-sm text-foreground">
             {valA} is what percentage of {valB}?
           </h4>
           <p className="text-2xl font-heading font-semibold text-brand-purple">Result: {result2}%</p>
@@ -350,7 +350,7 @@ export function BmiCalculatorTool() {
       <div className="p-8 rounded-2xl bg-card border border-border/80 text-center space-y-2">
         <p className="text-xs font-semibold text-muted-foreground uppercase">Your Body Mass Index (BMI)</p>
         <p className="text-5xl font-heading font-semibold brand-gradient-text">{bmi}</p>
-        <p className={`text-sm font-bold ${catColor}`}>{category}</p>
+        <p className={`text-sm font-semibold ${catColor}`}>{category}</p>
       </div>
     </div>
   );

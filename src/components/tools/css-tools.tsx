@@ -26,7 +26,7 @@ export function BorderRadiusGeneratorTool() {
       {/* Visual Canvas Box */}
       <div className="p-12 rounded-2xl bg-card border border-border/80 flex items-center justify-center min-h-[340px]">
         <div
-          className="w-56 h-56 brand-gradient-bg shadow-2xl transition-all duration-300 flex items-center justify-center text-white font-heading font-bold text-sm"
+          className="w-56 h-56 brand-gradient-bg shadow-2xl transition-colors duration-300 flex items-center justify-center text-white font-heading font-semibold text-sm"
           style={{ borderRadius: radiusValue }}
         >
           Zoqonyx Shape
@@ -158,7 +158,7 @@ export function BoxShadowGeneratorTool() {
       {/* Shadow Preview Canvas */}
       <div className="p-16 rounded-3xl bg-muted/20 border border-border/80 flex items-center justify-center min-h-[340px] relative overflow-hidden">
         <div
-          className="w-52 h-52 rounded-2xl bg-card border border-border/80 flex flex-col items-center justify-center font-heading font-bold text-sm text-foreground transition-all duration-300 p-4 text-center gap-1 shadow-sm"
+          className="w-52 h-52 rounded-2xl bg-card border border-border/80 flex flex-col items-center justify-center font-heading font-semibold text-sm text-foreground transition-colors duration-300 p-4 text-center gap-1 shadow-sm"
           style={{ boxShadow: shadowString }}
         >
           <span className="text-brand-cyan">Shadow Preview</span>
@@ -187,7 +187,7 @@ export function BoxShadowGeneratorTool() {
                 setInset(p.inset);
                 setEnableLayer2(p.l2);
               }}
-              className="px-3 py-1.5 rounded-xl text-xs font-semibold bg-card border border-border/70 hover:border-brand-cyan/60 hover:text-brand-cyan transition-all"
+              className="px-3 py-1.5 rounded-xl text-xs font-semibold bg-card border border-border/70 hover:border-brand-cyan/60 hover:text-brand-cyan transition-colors"
             >
               {p.name}
             </button>
@@ -376,10 +376,10 @@ export function CssGradientGeneratorTool() {
     <div className="space-y-8">
       {/* Visual Canvas Display */}
       <div
-        className="h-72 rounded-3xl shadow-xl transition-all duration-300 flex items-center justify-center relative overflow-hidden group"
+        className="h-72 rounded-3xl shadow-xl transition-colors duration-300 flex items-center justify-center relative overflow-hidden group"
         style={{ background: gradientString }}
       >
-        <div className="px-5 py-2.5 rounded-2xl bg-black/40 backdrop-blur-md text-white font-heading font-bold text-sm shadow-md flex items-center gap-2">
+        <div className="px-5 py-2.5 rounded-2xl bg-black/40 backdrop-blur-md text-white font-heading font-semibold text-sm shadow-md flex items-center gap-2">
           <Sparkles className="w-4 h-4 text-cyan-300" />
           <span>Interactive Gradient Studio</span>
         </div>
@@ -411,7 +411,7 @@ export function CssGradientGeneratorTool() {
                 setAngle(gp.angle);
                 setType(gp.type);
               }}
-              className="p-2 rounded-xl bg-card border border-border/80 hover:border-brand-cyan/60 flex items-center gap-2 transition-all text-left"
+              className="p-2 rounded-xl bg-card border border-border/80 hover:border-brand-cyan/60 flex items-center gap-2 transition-colors text-left"
             >
               <div
                 className="w-5 h-5 rounded-lg shrink-0 shadow-sm"
@@ -511,7 +511,7 @@ export function CssGradientGeneratorTool() {
             />
             <div>
               <p className="text-xs font-semibold text-muted-foreground">Color 1 (Start)</p>
-              <p className="font-mono text-sm font-bold uppercase">{color1}</p>
+              <p className="font-mono text-sm font-semibold uppercase">{color1}</p>
             </div>
           </div>
 
@@ -526,7 +526,7 @@ export function CssGradientGeneratorTool() {
               <p className="text-xs font-semibold text-muted-foreground">
                 {use3Colors ? "Color 2 (Middle)" : "Color 2 (End)"}
               </p>
-              <p className="font-mono text-sm font-bold uppercase">{color2}</p>
+              <p className="font-mono text-sm font-semibold uppercase">{color2}</p>
             </div>
           </div>
 
@@ -540,7 +540,7 @@ export function CssGradientGeneratorTool() {
               />
               <div>
                 <p className="text-xs font-semibold text-muted-foreground">Color 3 (End)</p>
-                <p className="font-mono text-sm font-bold uppercase">{color3}</p>
+                <p className="font-mono text-sm font-semibold uppercase">{color3}</p>
               </div>
             </div>
           )}
@@ -599,7 +599,7 @@ transition: all 0.2s ease;`;
             backgroundColor: bg,
             color: textColor,
           }}
-          className="font-semibold shadow-md hover:opacity-90 active:scale-95 transition-all"
+          className="font-semibold shadow-md hover:opacity-90 active:scale-95 transition-colors"
         >
           {text}
         </button>
@@ -720,7 +720,7 @@ gap: ${gap}px;`;
     <div className="space-y-8">
       {/* Playground Canvas */}
       <div
-        className="p-6 rounded-2xl bg-card border border-border/80 min-h-[300px] flex transition-all duration-200"
+        className="p-6 rounded-2xl bg-card border border-border/80 min-h-[300px] flex transition-colors duration-200"
         style={{
           flexDirection: direction,
           justifyContent: justify,
@@ -865,7 +865,7 @@ border-radius: 16px;`;
         >
           <div className="flex items-center gap-2">
             <Sparkles className="w-5 h-5 text-cyan-200" />
-            <h4 className="font-heading font-bold text-lg">Frosted Glass</h4>
+            <h4 className="font-heading font-semibold text-lg">Frosted Glass</h4>
           </div>
           <p className="text-xs text-white/90 leading-relaxed">
             Modern UI glassmorphic card with dynamic backdrop-filter blur and subtle borders.
@@ -957,7 +957,7 @@ gap: ${gap}px;`;
     <div className="space-y-8">
       {/* Visual Grid Canvas */}
       <div
-        className="p-6 rounded-2xl bg-card border border-border/80 min-h-[320px] transition-all"
+        className="p-6 rounded-2xl bg-card border border-border/80 min-h-[320px] transition-colors"
         style={{
           display: "grid",
           gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))`,
@@ -968,7 +968,7 @@ gap: ${gap}px;`;
         {Array.from({ length: totalCells }).map((_, idx) => (
           <div
             key={idx}
-            className="rounded-xl border border-brand-cyan/30 bg-gradient-to-br from-brand-cyan/10 to-brand-purple/10 flex items-center justify-center p-4 font-mono font-bold text-sm text-foreground shadow-sm transition-transform"
+            className="rounded-xl border border-brand-cyan/30 bg-gradient-to-br from-brand-cyan/10 to-brand-purple/10 flex items-center justify-center p-4 font-mono font-semibold text-sm text-foreground shadow-sm transition-transform"
           >
             Cell {idx + 1}
           </div>

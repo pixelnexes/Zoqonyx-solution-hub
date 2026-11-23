@@ -167,7 +167,7 @@ export function PasswordGeneratorTool() {
           <div className="flex items-center gap-1.5 p-1 rounded-lg bg-muted/40 border border-border">
             <button
               onClick={() => setMode("password")}
-              className={`px-3 py-1.5 rounded-md text-xs font-semibold transition-all ${
+              className={`px-3 py-1.5 rounded-md text-xs font-semibold transition-colors ${
                 mode === "password" ? "bg-teal-600 text-white shadow-xs" : "text-muted-foreground hover:text-foreground"
               }`}
             >
@@ -175,7 +175,7 @@ export function PasswordGeneratorTool() {
             </button>
             <button
               onClick={() => setMode("passphrase")}
-              className={`px-3 py-1.5 rounded-md text-xs font-semibold transition-all ${
+              className={`px-3 py-1.5 rounded-md text-xs font-semibold transition-colors ${
                 mode === "passphrase" ? "bg-teal-600 text-white shadow-xs" : "text-muted-foreground hover:text-foreground"
               }`}
             >
@@ -186,7 +186,7 @@ export function PasswordGeneratorTool() {
           {/* Entropy Metric */}
           <div className="flex items-center gap-2 text-xs font-mono">
             <span className="text-muted-foreground">Strength:</span>
-            <span className={`font-bold ${strength.color}`}>{strength.label}</span>
+            <span className={`font-semibold ${strength.color}`}>{strength.label}</span>
             <span className="text-muted-foreground/60">({entropy} bits)</span>
           </div>
         </div>
@@ -219,7 +219,7 @@ export function PasswordGeneratorTool() {
         {/* Strength Meter Bar */}
         <div className="w-full h-1.5 rounded-full bg-muted overflow-hidden">
           <div
-            className={`h-full transition-all duration-300 ${strength.bg}`}
+            className={`h-full transition-colors duration-300 ${strength.bg}`}
             style={{ width: `${Math.min(100, Math.max(15, (entropy / 96) * 100))}%` }}
           />
         </div>
@@ -229,7 +229,7 @@ export function PasswordGeneratorTool() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {/* Generator Settings */}
         <div className="p-5 rounded-xl border border-border/80 bg-card/90 space-y-4 shadow-xs">
-          <h3 className="text-xs font-mono font-bold uppercase text-muted-foreground flex items-center gap-1.5">
+          <h3 className="text-xs font-mono font-semibold uppercase text-muted-foreground flex items-center gap-1.5">
             <Sliders className="w-3.5 h-3.5 text-teal-400" />
             <span>{mode === "password" ? "Password Settings" : "Passphrase Settings"}</span>
           </h3>
@@ -240,7 +240,7 @@ export function PasswordGeneratorTool() {
               <div className="space-y-2">
                 <div className="flex justify-between text-xs font-semibold">
                   <span>Password Length</span>
-                  <span className="font-mono text-teal-400 font-bold">{length} characters</span>
+                  <span className="font-mono text-teal-400 font-semibold">{length} characters</span>
                 </div>
                 <input
                   type="range"
@@ -308,7 +308,7 @@ export function PasswordGeneratorTool() {
               <div className="space-y-2">
                 <div className="flex justify-between text-xs font-semibold">
                   <span>Number of Words</span>
-                  <span className="font-mono text-teal-400 font-bold">{wordCount} words</span>
+                  <span className="font-mono text-teal-400 font-semibold">{wordCount} words</span>
                 </div>
                 <input
                   type="range"
@@ -365,7 +365,7 @@ export function PasswordGeneratorTool() {
         {/* Bulk Generation & Export */}
         <div className="p-5 rounded-xl border border-border/80 bg-card/90 space-y-4 shadow-xs flex flex-col justify-between">
           <div className="space-y-4">
-            <h3 className="text-xs font-mono font-bold uppercase text-muted-foreground flex items-center gap-1.5">
+            <h3 className="text-xs font-mono font-semibold uppercase text-muted-foreground flex items-center gap-1.5">
               <Layers className="w-3.5 h-3.5 text-teal-400" />
               <span>Bulk Generation & Export</span>
             </h3>
@@ -373,7 +373,7 @@ export function PasswordGeneratorTool() {
             <div className="space-y-2">
               <div className="flex justify-between text-xs font-semibold">
                 <span>Generate Multiple Passwords</span>
-                <span className="font-mono text-teal-400 font-bold">{bulkCount} {bulkCount === 1 ? "password" : "passwords"}</span>
+                <span className="font-mono text-teal-400 font-semibold">{bulkCount} {bulkCount === 1 ? "password" : "passwords"}</span>
               </div>
               <input
                 type="range"

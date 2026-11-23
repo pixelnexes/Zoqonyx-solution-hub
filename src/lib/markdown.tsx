@@ -83,11 +83,11 @@ export function renderMarkdown(md: string): React.ReactNode {
       const id = slugifyHeading(text);
       nodes.push(
         level === 2 ? (
-          <h2 key={k++} id={id} className="text-2xl font-bold tracking-[-0.015em] mt-10 mb-3 scroll-mt-24">
+          <h2 key={k++} id={id} className="text-2xl font-semibold tracking-[-0.015em] mt-10 mb-3 scroll-mt-24">
             {inline(text, `h${k}`)}
           </h2>
         ) : (
-          <h3 key={k++} id={id} className="text-xl font-bold mt-7 mb-2 scroll-mt-24">
+          <h3 key={k++} id={id} className="text-xl font-semibold mt-7 mb-2 scroll-mt-24">
             {inline(text, `h${k}`)}
           </h3>
         )

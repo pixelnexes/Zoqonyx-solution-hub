@@ -308,7 +308,7 @@ export function BackgroundRemoverTool() {
                 <button
                   key={img.id}
                   onClick={() => setActiveIdx(idx)}
-                  className={`relative aspect-square rounded-md overflow-hidden border-2 transition-all p-1 ${
+                  className={`relative aspect-square rounded-md overflow-hidden border-2 transition-colors p-1 ${
                     activeIdx === idx ? "border-teal-500 ring-2 ring-teal-500/20" : "border-border hover:border-muted-foreground"
                   }`}
                 >

@@ -189,7 +189,7 @@ export function StandardFileUploader({
           }
         }}
         aria-label="File upload dropzone"
-        className={`relative flex flex-col items-center justify-center p-8 sm:p-10 border-2 border-dashed rounded-2xl cursor-pointer transition-all duration-200 select-none ${
+        className={`relative flex flex-col items-center justify-center p-8 sm:p-10 border-2 border-dashed rounded-2xl cursor-pointer transition-colors duration-200 select-none ${
           disabled
             ? "border-slate-200 bg-slate-50 opacity-60 cursor-not-allowed"
             : isDragging
@@ -307,7 +307,7 @@ export function StandardFileUploader({
           {/* Capacity Progress Bar */}
           <div className="w-full bg-slate-200 rounded-full h-2 overflow-hidden">
             <div
-              className={`h-full transition-all duration-300 ${
+              className={`h-full transition-colors duration-300 ${
                 capacityPercent > 90
                   ? "bg-rose-500"
                   : capacityPercent > 70
@@ -328,7 +328,7 @@ export function StandardFileUploader({
                   className="flex items-center justify-between p-2 rounded-lg bg-white border border-slate-200/80 text-xs hover:border-slate-300 transition-colors"
                 >
                   <div className="flex items-center gap-2.5 min-w-0 pr-2">
-                    <span className="w-6 h-6 rounded bg-slate-100 text-slate-700 font-mono text-[10px] font-bold flex items-center justify-center shrink-0">
+                    <span className="w-6 h-6 rounded bg-slate-100 text-slate-700 font-mono text-[10px] font-semibold flex items-center justify-center shrink-0">
                       {idx + 1}
                     </span>
                     <div className="truncate">

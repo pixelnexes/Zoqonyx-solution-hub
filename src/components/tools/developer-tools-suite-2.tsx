@@ -243,7 +243,7 @@ CMD ["nginx", "-g", "daemon off;"]`;
 
         <div className="lg:col-span-7 space-y-3">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-mono font-bold uppercase text-slate-500">Generated Dockerfile</span>
+            <span className="text-xs font-mono font-semibold uppercase text-slate-500">Generated Dockerfile</span>
             <div className="flex items-center gap-2">
               <Button
                 type="button"
@@ -397,7 +397,7 @@ spec:
               ) : (
                 <AlertCircle className="w-5 h-5 text-rose-600 shrink-0" />
               )}
-              <h4 className="text-sm font-bold text-slate-900">
+              <h4 className="text-sm font-semibold text-slate-900">
                 {validation.isValid ? "Valid Manifest Structure" : "Syntax / Schema Issues Detected"}
               </h4>
             </div>
@@ -410,7 +410,7 @@ spec:
 
           {validation.errors.length > 0 && (
             <div className="p-4 rounded-xl border border-rose-200 bg-card space-y-2">
-              <span className="text-xs font-mono font-bold uppercase text-rose-600">Errors to Resolve</span>
+              <span className="text-xs font-mono font-semibold uppercase text-rose-600">Errors to Resolve</span>
               <ul className="text-xs text-rose-800 space-y-1 list-disc pl-4 font-mono">
                 {validation.errors.map((err, idx) => (
                   <li key={idx}>{err}</li>
@@ -421,7 +421,7 @@ spec:
 
           {validation.warnings.length > 0 && (
             <div className="p-4 rounded-xl border border-amber-200 bg-amber-50/40 space-y-2">
-              <span className="text-xs font-mono font-bold uppercase text-amber-700">Recommended Improvements</span>
+              <span className="text-xs font-mono font-semibold uppercase text-amber-700">Recommended Improvements</span>
               <ul className="text-xs text-amber-800 space-y-1 list-disc pl-4">
                 {validation.warnings.map((warn, idx) => (
                   <li key={idx}>{warn}</li>
@@ -618,7 +618,7 @@ export function ApiMockServerTool() {
               <select
                 value={activeEndpoint.method}
                 onChange={(e) => updateActive("method", e.target.value)}
-                className="w-full h-9 rounded-md border border-input bg-background px-3 py-1 text-xs font-mono font-bold"
+                className="w-full h-9 rounded-md border border-input bg-background px-3 py-1 text-xs font-mono font-semibold"
               >
                 <option value="GET">GET</option>
                 <option value="POST">POST</option>
@@ -690,11 +690,11 @@ export function ApiMockServerTool() {
         </div>
 
         <div className="lg:col-span-6 space-y-3">
-          <span className="text-xs font-mono font-bold uppercase text-slate-500">Live Client Simulator Output</span>
+          <span className="text-xs font-mono font-semibold uppercase text-slate-500">Live Client Simulator Output</span>
           {testResponse ? (
             <div className="p-4 rounded-xl border border-slate-800 bg-slate-950 text-slate-100 font-mono text-xs space-y-2">
               <div className="flex justify-between items-center pb-2 border-b border-slate-800">
-                <span className="text-emerald-400 font-bold">{activeEndpoint.statusCode} OK</span>
+                <span className="text-emerald-400 font-semibold">{activeEndpoint.statusCode} OK</span>
                 <span className="text-slate-400">{activeEndpoint.delayMs}ms</span>
               </div>
               <pre className="overflow-x-auto max-h-72 leading-relaxed">{testResponse}</pre>
@@ -751,7 +751,7 @@ export function GraphqlQueryBuilderTool() {
               <select
                 value={operationType}
                 onChange={(e) => setOperationType(e.target.value)}
-                className="w-full h-9 rounded-md border border-input bg-background px-3 py-1 text-xs font-mono font-bold"
+                className="w-full h-9 rounded-md border border-input bg-background px-3 py-1 text-xs font-mono font-semibold"
               >
                 <option value="query">query (Read)</option>
                 <option value="mutation">mutation (Write)</option>
@@ -791,7 +791,7 @@ export function GraphqlQueryBuilderTool() {
 
         <div className="lg:col-span-7 space-y-3">
           <div className="flex justify-between items-center">
-            <span className="text-xs font-mono font-bold uppercase text-slate-500">Constructed GraphQL Query</span>
+            <span className="text-xs font-mono font-semibold uppercase text-slate-500">Constructed GraphQL Query</span>
             <Button
               type="button"
               onClick={() => {
@@ -887,7 +887,7 @@ export function ScreenRecorderTool() {
         </div>
 
         <div className="space-y-1">
-          <h3 className="text-base font-bold text-slate-900">Browser Screen Recorder</h3>
+          <h3 className="text-base font-semibold text-slate-900">Browser Screen Recorder</h3>
           <p className="text-xs text-slate-600">
             Record full monitor displays, single windows, or browser tabs with high visual fidelity. Zero cloud uploads.
           </p>
@@ -908,7 +908,7 @@ export function ScreenRecorderTool() {
 
         {isRecording ? (
           <div className="space-y-3">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-50 border border-rose-200 text-rose-700 font-mono text-sm font-bold animate-pulse">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-50 border border-rose-200 text-rose-700 font-mono text-sm font-semibold animate-pulse">
               <span className="w-2.5 h-2.5 rounded-full bg-rose-600 inline-block" />
               <span>RECORDING: {formatSeconds(recordingDuration)}</span>
             </div>
@@ -936,7 +936,7 @@ export function ScreenRecorderTool() {
 
         {recordedBlobUrl && (
           <div className="pt-4 border-t space-y-3 text-left">
-            <span className="text-xs font-mono font-bold uppercase text-slate-600">Recording Preview</span>
+            <span className="text-xs font-mono font-semibold uppercase text-slate-600">Recording Preview</span>
             <video src={recordedBlobUrl} controls className="w-full rounded-lg border bg-black max-h-64" />
             <div className="flex justify-end">
               <a
@@ -1065,7 +1065,7 @@ export function ApiTesterTool() {
           <select
             value={method}
             onChange={(e) => setMethod(e.target.value)}
-            className="h-10 px-3 rounded-md border border-input bg-background font-mono font-bold text-xs"
+            className="h-10 px-3 rounded-md border border-input bg-background font-mono font-semibold text-xs"
           >
             <option value="GET">GET</option>
             <option value="POST">POST</option>
@@ -1109,7 +1109,7 @@ export function ApiTesterTool() {
       {responseStatus !== null && (
         <div className="p-4 rounded-xl border border-slate-800 bg-slate-950 text-slate-100 font-mono text-xs space-y-3">
           <div className="flex justify-between items-center pb-2 border-b border-slate-800">
-            <span className={`font-bold ${responseStatus >= 200 && responseStatus < 300 ? "text-emerald-400" : "text-rose-400"}`}>
+            <span className={`font-semibold ${responseStatus >= 200 && responseStatus < 300 ? "text-emerald-400" : "text-rose-400"}`}>
               STATUS: {responseStatus > 0 ? responseStatus : "ERR_CORS / FAILED"}
             </span>
             <span className="text-slate-400">{responseTime}ms</span>
@@ -1183,7 +1183,7 @@ export function DnsLookupTool() {
             <select
               value={recordType}
               onChange={(e) => setRecordType(e.target.value)}
-              className="w-full h-10 px-3 rounded-md border border-input bg-background font-mono font-bold text-xs"
+              className="w-full h-10 px-3 rounded-md border border-input bg-background font-mono font-semibold text-xs"
             >
               <option value="A">A (IPv4)</option>
               <option value="AAAA">AAAA (IPv6)</option>
@@ -1218,7 +1218,7 @@ export function DnsLookupTool() {
       {records !== null && (
         <div className="p-4 rounded-xl border border-border bg-card space-y-3">
           <div className="flex justify-between items-center">
-            <h4 className="text-xs font-mono font-bold uppercase text-slate-700">
+            <h4 className="text-xs font-mono font-semibold uppercase text-slate-700">
               {recordType} Records for {domain} ({records.length} Found)
             </h4>
             <span className="text-[11px] text-slate-500 font-mono">Google DoH Verified</span>
@@ -1241,7 +1241,7 @@ export function DnsLookupTool() {
                     <tr key={idx} className="hover:bg-slate-50/80 transition-colors">
                       <td className="py-2.5 px-3 text-slate-700">{r.name}</td>
                       <td className="py-2.5 px-3 text-slate-500">{r.TTL}s</td>
-                      <td className="py-2.5 px-3 font-bold text-slate-900 break-all">{r.data}</td>
+                      <td className="py-2.5 px-3 font-semibold text-slate-900 break-all">{r.data}</td>
                     </tr>
                   ))}
                 </tbody>

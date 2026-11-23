@@ -336,7 +336,7 @@ ${formatVariantText(v)}`
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         {/* Left Form: Inputs */}
         <div className="lg:col-span-5 space-y-4 bg-white dark:bg-slate-800 p-5 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm">
-          <h2 className="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
+          <h2 className="text-base font-semibold text-slate-900 dark:text-white flex items-center gap-2">
             <Sliders className="w-4 h-4 text-blue-500" /> Product Parameters
           </h2>
 
@@ -431,7 +431,7 @@ ${formatVariantText(v)}`
           <button
             onClick={handleGenerate}
             disabled={!productName.trim() || isGenerating}
-            className="w-full py-3 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 disabled:opacity-50 text-white rounded-xl font-bold text-sm shadow-md transition flex items-center justify-center gap-2"
+            className="w-full py-3 bg-[#6D28D9] hover:bg-[#5B21B6] disabled:opacity-50 text-white rounded-xl font-semibold text-sm shadow-md transition flex items-center justify-center gap-2"
           >
             {isGenerating ? (
               <>
@@ -452,7 +452,7 @@ ${formatVariantText(v)}`
               <div className="w-14 h-14 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-2xl flex items-center justify-center mb-3">
                 <ShoppingBag className="w-7 h-7" />
               </div>
-              <h3 className="text-base font-bold text-slate-800 dark:text-slate-200">
+              <h3 className="text-base font-semibold text-slate-800 dark:text-slate-200">
                 No Descriptions Generated Yet
               </h3>
               <p className="text-xs text-slate-500 dark:text-slate-400 max-w-sm mt-1">
@@ -513,17 +513,17 @@ ${formatVariantText(v)}`
                 <div className="p-6 space-y-5 text-left">
                   {/* Headline */}
                   <div>
-                    <span className="text-[10px] font-bold uppercase text-blue-600 dark:text-blue-400">
+                    <span className="text-[10px] font-semibold uppercase text-blue-600 dark:text-blue-400">
                       Product Headline
                     </span>
-                    <h3 className="text-xl font-bold text-slate-900 dark:text-white mt-1">
+                    <h3 className="text-xl font-semibold text-slate-900 dark:text-white mt-1">
                       {variants[activeTab].headline}
                     </h3>
                   </div>
 
                   {/* Body Copy */}
                   <div>
-                    <span className="text-[10px] font-bold uppercase text-slate-500 dark:text-slate-400">
+                    <span className="text-[10px] font-semibold uppercase text-slate-500 dark:text-slate-400">
                       Primary Description Copy
                     </span>
                     <p className="text-sm leading-relaxed text-slate-700 dark:text-slate-300 mt-1 whitespace-pre-line">
@@ -534,7 +534,7 @@ ${formatVariantText(v)}`
                   {/* Bullets */}
                   {variants[activeTab].bullets && variants[activeTab].bullets.length > 0 && (
                     <div>
-                      <span className="text-[10px] font-bold uppercase text-slate-500 dark:text-slate-400">
+                      <span className="text-[10px] font-semibold uppercase text-slate-500 dark:text-slate-400">
                         Feature & Benefit Bullets
                       </span>
                       <ul className="mt-2 space-y-1.5">
@@ -553,7 +553,7 @@ ${formatVariantText(v)}`
                   {/* Call to Action */}
                   {variants[activeTab].cta && (
                     <div className="p-3 bg-amber-500/10 border border-amber-500/20 rounded-xl">
-                      <span className="text-[10px] font-bold uppercase text-amber-700 dark:text-amber-400">
+                      <span className="text-[10px] font-semibold uppercase text-amber-700 dark:text-amber-400">
                         Conversion Call-To-Action (CTA)
                       </span>
                       <p className="text-xs font-semibold text-amber-900 dark:text-amber-300 mt-0.5">
@@ -565,7 +565,7 @@ ${formatVariantText(v)}`
                   {/* SEO Metadata if present */}
                   {variants[activeTab].metaTitle && (
                     <div className="p-3.5 bg-slate-50 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-700 rounded-xl space-y-2">
-                      <span className="text-[10px] font-bold uppercase text-indigo-600 dark:text-indigo-400 flex items-center gap-1">
+                      <span className="text-[10px] font-semibold uppercase text-indigo-600 dark:text-indigo-400 flex items-center gap-1">
                         <Search className="w-3 h-3" /> Search Engine Snippet Preview
                       </span>
                       <div>
