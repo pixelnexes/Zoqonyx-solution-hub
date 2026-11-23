@@ -117,6 +117,10 @@ export function Footer() {
               </a>
             </p>
           </div>
+          <a href="https://nicklaunches.com/products/zoqonyx/" target="_blank" rel="noopener" className="mt-4 inline-block">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="https://nicklaunches.com/badges/featured-dark.png" alt="Zoqonyx on Nick Launches" width={244} height={56} loading="lazy" />
+          </a>
         </div>
       </div>
     </footer>
