@@ -63,7 +63,7 @@ export default function ContactPage() {
             <div className="w-14 h-14 rounded-2xl bg-emerald-500/10 text-emerald-500 border border-emerald-500/20 flex items-center justify-center mx-auto shadow-inner">
               <CheckCircle2 className="w-7 h-7" />
             </div>
-            <h2 className="text-2xl font-heading font-semibold text-foreground">Message Successfully Sent!</h2>
+            <h2 className="text-2xl font-heading font-semibold text-foreground">Message sent</h2>
             <p className="text-sm text-muted-foreground max-w-md mx-auto leading-relaxed">
               Thank you for contacting Zoqonyx Solution Hub. Our technical team has received your message and will review it promptly.
             </p>
@@ -89,7 +89,7 @@ export default function ContactPage() {
               {/* Name Field */}
               <div className="space-y-1.5">
                 <label className="text-xs font-semibold text-foreground">
-                  Full Name <span className="text-brand-cyan">*</span>
+                  Full Name <span className="text-[#6D28D9]">*</span>
                 </label>
                 <Input
                   required
@@ -104,7 +104,7 @@ export default function ContactPage() {
               {/* Email Field */}
               <div className="space-y-1.5">
                 <label className="text-xs font-semibold text-foreground">
-                  Email Address <span className="text-brand-cyan">*</span>
+                  Email Address <span className="text-[#6D28D9]">*</span>
                 </label>
                 <Input
                   required
@@ -122,7 +122,7 @@ export default function ContactPage() {
               {/* Phone Number Field */}
               <div className="space-y-1.5">
                 <label className="text-xs font-semibold text-foreground">
-                  Phone or WhatsApp <span className="text-brand-cyan">*</span>
+                  Phone or WhatsApp <span className="text-[#6D28D9]">*</span>
                 </label>
                 <Input
                   required
@@ -153,7 +153,7 @@ export default function ContactPage() {
             {/* Message Field */}
             <div className="space-y-1.5">
               <label className="text-xs font-semibold text-foreground">
-                Message <span className="text-brand-cyan">*</span>
+                Message <span className="text-[#6D28D9]">*</span>
               </label>
               <Textarea
                 required
@@ -169,8 +169,8 @@ export default function ContactPage() {
             {/* Submit Button */}
             <Button
               type="submit"
-              variant="gradient"
-              className="w-full h-12 text-base font-semibold rounded-xl gap-2 shadow-lg shadow-brand-cyan/20 hover:shadow-brand-cyan/30 transition-all duration-300"
+              
+              className="w-full h-12 text-base font-semibold rounded-xl gap-2 "
               disabled={status === "loading"}
             >
               {status === "loading" ? (

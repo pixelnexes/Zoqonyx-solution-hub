@@ -64,9 +64,9 @@ export default async function AboutPage() {
 
   const stats = [
     { v: "146", l: "Live free tools", g: "zq-g-indigo", I: Cpu },
-    { v: "0 bytes", l: "Uploaded to the cloud", g: "zq-g-aqua", I: Globe },
-    { v: "100%", l: "Free, no login", g: "zq-g-emerald", I: ShieldCheck },
-    { v: "0 ms", l: "Upload waiting", g: "zq-g-sun", I: Zap },
+    { v: "Browser", l: "Where most tools process your files", g: "zq-g-aqua", I: Globe },
+    { v: "Free", l: "No login and no paid tier", g: "zq-g-emerald", I: ShieldCheck },
+    { v: "No wait", l: "No upload queue for browser tools", g: "zq-g-sun", I: Zap },
   ];
   const features = [
     { I: Lock, g: "zq-g-violet", t: "Privacy by design", d: "Files stay on your device. Suitable for confidential contracts, financial records and GDPR-sensitive work." },

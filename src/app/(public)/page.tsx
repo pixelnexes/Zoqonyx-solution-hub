@@ -1,6 +1,7 @@
 import { prisma } from "@/lib/prisma";
 import Link from "next/link";
 import { ToolDrawer } from "@/components/home/tool-drawer";
+import { ToolMoment } from "@/components/home/tool-moment";
 import { ContactSection, TestimonialsSection } from "@/components/site/sections";
 import { ParallaxImg, ScrollProgress, CountUp } from "@/components/kit/motion";
 import { TechLogo, TechSprite } from "@/components/kit/tech-logo";
@@ -334,6 +335,7 @@ export default async function HomePage() {
             Free online tools
           </h2>
           <p className="mt-3 mb-8 zq-lead max-w-2xl">Open a tool and use it. No sign-up and no account. Most tools run in your browser, so the files you add stay on your device.</p>
+          <ToolMoment />
           <ToolDrawer tools={tools.map((t) => ({ ...t, description: "" }))} />
         </div>
       </section>
