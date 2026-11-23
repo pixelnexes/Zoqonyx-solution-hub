@@ -229,7 +229,7 @@ export function PasswordGeneratorTool() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {/* Generator Settings */}
         <div className="p-5 rounded-xl border border-border/80 bg-card/90 space-y-4 shadow-xs">
-          <h3 className="text-xs font-mono font-semibold uppercase text-muted-foreground flex items-center gap-1.5">
+          <h3 className="text-xs font-mono font-semibold text-muted-foreground flex items-center gap-1.5">
             <Sliders className="w-3.5 h-3.5 text-teal-400" />
             <span>{mode === "password" ? "Password Settings" : "Passphrase Settings"}</span>
           </h3>
@@ -365,7 +365,7 @@ export function PasswordGeneratorTool() {
         {/* Bulk Generation & Export */}
         <div className="p-5 rounded-xl border border-border/80 bg-card/90 space-y-4 shadow-xs flex flex-col justify-between">
           <div className="space-y-4">
-            <h3 className="text-xs font-mono font-semibold uppercase text-muted-foreground flex items-center gap-1.5">
+            <h3 className="text-xs font-mono font-semibold text-muted-foreground flex items-center gap-1.5">
               <Layers className="w-3.5 h-3.5 text-teal-400" />
               <span>Bulk Generation & Export</span>
             </h3>

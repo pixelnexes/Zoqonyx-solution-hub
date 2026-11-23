@@ -178,7 +178,7 @@ export function PlaceholderImageTool() {
 
         {/* Live Preview Container */}
         <div className="space-y-2">
-          <span className="text-xs font-semibold text-muted-foreground uppercase">Live Preview</span>
+          <span className="text-xs font-semibold text-muted-foreground ">Live Preview</span>
           <div className="p-4 rounded-xl border border-border bg-muted/20 flex items-center justify-center min-h-60 overflow-hidden">
             <div
               className="rounded-lg border border-border shadow-md flex items-center justify-center font-semibold p-4 text-center transition-colors"

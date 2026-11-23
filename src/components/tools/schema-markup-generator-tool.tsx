@@ -465,7 +465,7 @@ export function SchemaMarkupGeneratorTool() {
         {/* Editor Form Column */}
         <div className="lg:col-span-6 p-4 sm:p-5 rounded-2xl bg-card border border-border space-y-4 shadow-xs">
           <div className="flex items-center justify-between pb-2 border-b border-border/80">
-            <span className="text-xs font-semibold uppercase text-teal-700 font-mono">
+            <span className="text-xs font-semibold text-teal-700 font-mono">
               Configure {schemaType}
             </span>
             <span className="text-[11px] text-muted-foreground">Google Search Central Compliant</span>

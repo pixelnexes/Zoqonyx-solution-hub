@@ -187,7 +187,7 @@ export function SipInvestmentCalculatorTool() {
         <div className="lg:col-span-7 space-y-4">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
             <div className="p-4 rounded-xl border border-border bg-card space-y-1">
-              <span className="text-[11px] font-mono uppercase font-semibold text-slate-500">Total Invested</span>
+              <span className="text-[11px] font-mono font-semibold text-slate-500">Total Invested</span>
               <p className="text-xl sm:text-2xl font-semibold text-slate-900 font-mono">
                 ${results.investedAmount.toLocaleString()}
               </p>
@@ -195,7 +195,7 @@ export function SipInvestmentCalculatorTool() {
             </div>
 
             <div className="p-4 rounded-xl border border-emerald-200 bg-emerald-50/50 space-y-1">
-              <span className="text-[11px] font-mono uppercase font-semibold text-emerald-700">Estimated Gains</span>
+              <span className="text-[11px] font-mono font-semibold text-emerald-700">Estimated Gains</span>
               <p className="text-xl sm:text-2xl font-semibold text-emerald-700 font-mono">
                 +${results.estimatedWealthGain.toLocaleString()}
               </p>
@@ -203,7 +203,7 @@ export function SipInvestmentCalculatorTool() {
             </div>
 
             <div className="p-4 rounded-xl border border-teal-200 bg-teal-50/60 space-y-1">
-              <span className="text-[11px] font-mono uppercase font-semibold text-teal-800">Total Maturity Value</span>
+              <span className="text-[11px] font-mono font-semibold text-teal-800">Total Maturity Value</span>
               <p className="text-xl sm:text-2xl font-semibold text-teal-900 font-mono">
                 ${results.maturityValue.toLocaleString()}
               </p>
@@ -260,12 +260,12 @@ export function SipInvestmentCalculatorTool() {
 
           {/* Year-by-year table */}
           <div className="p-4 rounded-xl border border-border bg-card space-y-3">
-            <h4 className="text-xs font-semibold text-foreground uppercase font-mono">
+            <h4 className="text-xs font-semibold text-foreground font-mono">
               Year-by-Year Growth Projection
             </h4>
             <div className="overflow-x-auto max-h-56">
               <table className="w-full text-xs text-left">
-                <thead className="bg-slate-50 text-slate-700 uppercase font-mono text-[10.5px] border-b">
+                <thead className="bg-slate-50 text-slate-700 font-mono text-[10.5px] border-b">
                   <tr>
                     <th className="py-2 px-3">Year</th>
                     <th className="py-2 px-3">Total Invested</th>
@@ -458,7 +458,7 @@ export function MortgageRefinanceCalculatorTool() {
       {/* Comparison Summary Banner */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5">
         <div className="p-4 rounded-xl border border-border bg-card space-y-1">
-          <span className="text-xs font-semibold text-slate-500 uppercase font-mono">Monthly Cash Flow</span>
+          <span className="text-xs font-semibold text-slate-500 font-mono">Monthly Cash Flow</span>
           <p className={`text-2xl font-semibold font-mono ${results.monthlySavings >= 0 ? "text-emerald-600" : "text-rose-600"}`}>
             {results.monthlySavings >= 0 ? `+$${results.monthlySavings.toLocaleString()}` : `-$${Math.abs(results.monthlySavings).toLocaleString()}`}
           </p>
@@ -468,7 +468,7 @@ export function MortgageRefinanceCalculatorTool() {
         </div>
 
         <div className="p-4 rounded-xl border border-border bg-card space-y-1">
-          <span className="text-xs font-semibold text-slate-500 uppercase font-mono">Break-Even Period</span>
+          <span className="text-xs font-semibold text-slate-500 font-mono">Break-Even Period</span>
           <p className="text-2xl font-semibold text-slate-900 font-mono">
             {results.monthlySavings > 0 ? `${results.breakEvenMonths} Months` : "N/A"}
           </p>
@@ -476,7 +476,7 @@ export function MortgageRefinanceCalculatorTool() {
         </div>
 
         <div className="p-4 rounded-xl border border-border bg-card space-y-1">
-          <span className="text-xs font-semibold text-slate-500 uppercase font-mono">Lifetime Net Savings</span>
+          <span className="text-xs font-semibold text-slate-500 font-mono">Lifetime Net Savings</span>
           <p className={`text-2xl font-semibold font-mono ${results.netSavings >= 0 ? "text-teal-600" : "text-rose-600"}`}>
             {results.netSavings >= 0 ? `+$${results.netSavings.toLocaleString()}` : `-$${Math.abs(results.netSavings).toLocaleString()}`}
           </p>
@@ -606,7 +606,7 @@ export function RetirementCorpusCalculatorTool() {
 
         <div className="lg:col-span-7 space-y-4">
           <div className="p-5 rounded-xl border border-teal-200 bg-teal-50/50 space-y-2">
-            <span className="text-xs uppercase font-mono font-semibold text-teal-800">Target Retirement Nest Egg</span>
+            <span className="text-xs font-mono font-semibold text-teal-800">Target Retirement Nest Egg</span>
             <p className="text-3xl sm:text-4xl font-semibold text-slate-900 font-mono">
               ${results.corpusRequired.toLocaleString()}
             </p>
@@ -617,7 +617,7 @@ export function RetirementCorpusCalculatorTool() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div className="p-4 rounded-xl border border-border bg-card space-y-1">
-              <span className="text-[11px] font-mono uppercase font-semibold text-slate-500">Expense At Retirement</span>
+              <span className="text-[11px] font-mono font-semibold text-slate-500">Expense At Retirement</span>
               <p className="text-xl font-semibold text-slate-900 font-mono">
                 ${results.monthlyAtRetire.toLocaleString()}/mo
               </p>
@@ -625,7 +625,7 @@ export function RetirementCorpusCalculatorTool() {
             </div>
 
             <div className="p-4 rounded-xl border border-border bg-card space-y-1">
-              <span className="text-[11px] font-mono uppercase font-semibold text-slate-500">Retirement Span</span>
+              <span className="text-[11px] font-mono font-semibold text-slate-500">Retirement Span</span>
               <p className="text-xl font-semibold text-slate-900 font-mono">
                 {results.yearsInRetire} Years
               </p>
@@ -742,13 +742,13 @@ export function FreelanceHourlyRateCalculatorTool() {
         <div className="lg:col-span-7 space-y-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
             <div className="p-4 rounded-xl border border-teal-200 bg-teal-50/60 space-y-1">
-              <span className="text-xs font-mono font-semibold uppercase text-teal-800">Minimum Hourly Rate</span>
+              <span className="text-xs font-mono font-semibold text-teal-800">Minimum Hourly Rate</span>
               <p className="text-3xl font-semibold text-teal-950 font-mono">${results.hourlyRate}/hr</p>
               <p className="text-[11px] text-teal-700">Based on {results.totalBillableHours} billable hours/yr</p>
             </div>
 
             <div className="p-4 rounded-xl border border-border bg-card space-y-1">
-              <span className="text-xs font-mono font-semibold uppercase text-slate-500">Standard Day Rate</span>
+              <span className="text-xs font-mono font-semibold text-slate-500">Standard Day Rate</span>
               <p className="text-3xl font-semibold text-slate-900 font-mono">${results.dayRate}/day</p>
               <p className="text-[11px] text-slate-500">Equivalent to 8 billable hours</p>
             </div>
@@ -846,17 +846,17 @@ export function CryptoPortfolioTrackerTool() {
     <div className="space-y-6">
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5">
         <div className="p-4 rounded-xl border border-border bg-card space-y-1">
-          <span className="text-[11px] font-mono uppercase font-semibold text-slate-500">Total Invested</span>
+          <span className="text-[11px] font-mono font-semibold text-slate-500">Total Invested</span>
           <p className="text-2xl font-semibold text-slate-900 font-mono">${summary.totalInvested.toLocaleString()}</p>
         </div>
 
         <div className="p-4 rounded-xl border border-border bg-card space-y-1">
-          <span className="text-[11px] font-mono uppercase font-semibold text-slate-500">Current Value</span>
+          <span className="text-[11px] font-mono font-semibold text-slate-500">Current Value</span>
           <p className="text-2xl font-semibold text-teal-900 font-mono">${summary.totalCurrentValue.toLocaleString()}</p>
         </div>
 
         <div className="p-4 rounded-xl border border-border bg-card space-y-1">
-          <span className="text-[11px] font-mono uppercase font-semibold text-slate-500">Unrealized P&L</span>
+          <span className="text-[11px] font-mono font-semibold text-slate-500">Unrealized P&L</span>
           <p className={`text-2xl font-semibold font-mono ${summary.totalProfit >= 0 ? "text-emerald-600" : "text-rose-600"}`}>
             {summary.totalProfit >= 0 ? `+$${summary.totalProfit.toLocaleString()}` : `-$${Math.abs(summary.totalProfit).toLocaleString()}`}{" "}
             <span className="text-xs font-normal">({summary.percentReturn}%)</span>
@@ -866,7 +866,7 @@ export function CryptoPortfolioTrackerTool() {
 
       {/* Add Holding Form */}
       <div className="p-4 rounded-xl border border-border bg-card space-y-3">
-        <h4 className="text-xs font-semibold text-foreground uppercase font-mono">
+        <h4 className="text-xs font-semibold text-foreground font-mono">
           Add Crypto Asset Holding
         </h4>
         <div className="grid grid-cols-2 sm:grid-cols-5 gap-2">
@@ -911,7 +911,7 @@ export function CryptoPortfolioTrackerTool() {
       <div className="p-4 rounded-xl border border-border bg-card space-y-3">
         <div className="overflow-x-auto">
           <table className="w-full text-xs text-left">
-            <thead className="bg-slate-50 text-slate-700 uppercase font-mono text-[10.5px] border-b">
+            <thead className="bg-slate-50 text-slate-700 font-mono text-[10.5px] border-b">
               <tr>
                 <th className="py-2.5 px-3">Asset</th>
                 <th className="py-2.5 px-3">Holdings</th>

@@ -155,7 +155,7 @@ export function VoiceRecorderEditorTool() {
         {/* Playback & Export */}
         {audioBlobUrl && (
           <div className="pt-6 border-t space-y-4 text-left">
-            <span className="text-xs font-mono font-semibold uppercase text-slate-700">Audio Preview</span>
+            <span className="text-xs font-mono font-semibold text-slate-700">Audio Preview</span>
             <audio src={audioBlobUrl} controls className="w-full" />
             <div className="flex justify-end">
               <a

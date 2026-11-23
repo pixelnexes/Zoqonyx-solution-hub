@@ -120,7 +120,7 @@ export function IpLookupTool() {
           <div className="space-y-4 pt-2 border-t border-border">
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 pb-3 border-b border-border">
               <div>
-                <span className="text-[10px] font-semibold text-muted-foreground uppercase">Inspected IP Address</span>
+                <span className="text-[10px] font-semibold text-muted-foreground ">Inspected IP Address</span>
                 <p className="text-2xl font-semibold text-teal-400 font-mono">{data.ip}</p>
               </div>
               <Button variant="outline" size="sm" onClick={handleCopy} className="gap-1.5 text-xs">
@@ -139,7 +139,7 @@ export function IpLookupTool() {
                 { label: "Coordinates (Lat/Lng)", value: data.loc || "Protected" },
               ].map((item) => (
                 <div key={item.label} className="p-3 rounded-lg border border-border bg-muted/20">
-                  <span className="text-[10px] font-semibold text-muted-foreground uppercase">{item.label}</span>
+                  <span className="text-[10px] font-semibold text-muted-foreground ">{item.label}</span>
                   <p className="text-xs font-semibold text-foreground mt-0.5 truncate">{item.value}</p>
                 </div>
               ))}

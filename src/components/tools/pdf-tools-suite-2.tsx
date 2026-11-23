@@ -364,7 +364,7 @@ export function AdvancedPdfEditorTool() {
 
       {formFields.length > 0 && (
         <div className="p-5 rounded-xl border border-border bg-card space-y-4 shadow-xs">
-          <h4 className="text-xs font-mono font-semibold uppercase text-slate-700">Form Fields to Fill</h4>
+          <h4 className="text-xs font-mono font-semibold text-slate-700">Form Fields to Fill</h4>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {formFields.map((field) => (
               <div key={field.name} className="space-y-1 text-xs">

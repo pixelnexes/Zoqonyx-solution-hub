@@ -107,7 +107,7 @@ export function ToolCatalog({ initialTools }: ToolCatalogProps) {
       {!searchQuery && selectedCategory === "All" && (
         <div className="bg-white p-3 rounded-[10px] border border-slate-200/90 shadow-[0_1px_3px_rgba(15,23,42,0.04)] space-y-2">
           <div className="flex items-center justify-between px-0.5">
-            <span className="text-[11px] font-semibold uppercase text-slate-500 font-mono">
+            <span className="text-[11px] font-semibold text-slate-500 font-mono">
               Quick Launch • Most Used Utilities
             </span>
             <span className="text-[11px] text-slate-500 font-medium">Instant Browser Launch</span>
@@ -222,7 +222,7 @@ export function ToolCatalog({ initialTools }: ToolCatalogProps) {
                         >
                           <ToolIcon name={tool.icon} className="w-4.5 h-4.5 text-white" strokeWidth={2.5} />
                         </div>
-                        <span className="text-[11px] font-semibold text-slate-500 uppercase">
+                        <span className="text-[11px] font-semibold text-slate-500 ">
                           {tool.category}
                         </span>
                       </div>

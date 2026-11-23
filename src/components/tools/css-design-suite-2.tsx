@@ -203,7 +203,7 @@ export function FlowchartMakerTool() {
   return (
     <div className="space-y-6">
       <div className="p-4 rounded-xl border border-border bg-card space-y-3">
-        <h4 className="text-xs font-semibold uppercase font-mono text-slate-700">
+        <h4 className="text-xs font-semibold font-mono text-slate-700">
           Add Flowchart Step / Node
         </h4>
         <div className="flex flex-col sm:flex-row gap-2">

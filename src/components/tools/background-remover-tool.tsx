@@ -256,7 +256,7 @@ export function BackgroundRemoverTool() {
             <div className="space-y-3">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-1.5">
-                  <span className="text-xs font-semibold text-muted-foreground uppercase">Original</span>
+                  <span className="text-xs font-semibold text-muted-foreground ">Original</span>
                   <div className="h-64 rounded-lg border border-border flex items-center justify-center p-2 bg-muted/20 overflow-hidden">
                     <img
                       src={processedImages[activeIdx].originalUrl}
@@ -267,7 +267,7 @@ export function BackgroundRemoverTool() {
                 </div>
 
                 <div className="space-y-1.5">
-                  <span className="text-xs font-semibold text-teal-400 uppercase">Transparent Output</span>
+                  <span className="text-xs font-semibold text-teal-400 ">Transparent Output</span>
                   <div
                     className="h-64 rounded-lg border border-border flex items-center justify-center p-2 overflow-hidden"
                     style={{

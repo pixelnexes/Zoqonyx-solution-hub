@@ -379,7 +379,7 @@ export function WatermarkObjectRemoverTool({ mode = "watermark" }: WatermarkRemo
       <div className="p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-brand-cyan/10 via-brand-purple/10 to-transparent border border-brand-cyan/20 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div className="space-y-1">
           <div className="flex items-center gap-2">
-            <span className="px-2 py-0.5 text-[10px] font-semibold rounded uppercase bg-brand-cyan/20 text-brand-cyan">
+            <span className="px-2 py-0.5 text-[10px] font-semibold rounded bg-brand-cyan/20 text-brand-cyan">
               AI Brush Inpainter
             </span>
             <h2 className="text-sm sm:text-base font-heading font-semibold text-foreground">

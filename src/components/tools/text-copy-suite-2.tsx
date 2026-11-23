@@ -122,7 +122,7 @@ export function AiResumeBuilderTool() {
         {/* Live ATS Preview */}
         <div className="lg:col-span-7 space-y-3">
           <div className="flex justify-between items-center">
-            <span className="text-xs font-mono font-semibold uppercase text-slate-500">Live ATS Resume Layout</span>
+            <span className="text-xs font-mono font-semibold text-slate-500">Live ATS Resume Layout</span>
             <Button
               type="button"
               onClick={printResume}
@@ -149,7 +149,7 @@ export function AiResumeBuilderTool() {
 
             {/* Summary */}
             <div className="space-y-1">
-              <h3 className="text-xs font-semibold uppercase text-slate-900 border-b pb-0.5">
+              <h3 className="text-xs font-semibold text-slate-900 border-b pb-0.5">
                 Professional Summary
               </h3>
               <p className="text-slate-700 leading-normal">{summary}</p>
@@ -157,7 +157,7 @@ export function AiResumeBuilderTool() {
 
             {/* Experience */}
             <div className="space-y-2">
-              <h3 className="text-xs font-semibold uppercase text-slate-900 border-b pb-0.5">
+              <h3 className="text-xs font-semibold text-slate-900 border-b pb-0.5">
                 Work Experience
               </h3>
               <div className="space-y-3 whitespace-pre-line text-slate-700">
@@ -167,7 +167,7 @@ export function AiResumeBuilderTool() {
 
             {/* Education */}
             <div className="space-y-1">
-              <h3 className="text-xs font-semibold uppercase text-slate-900 border-b pb-0.5">
+              <h3 className="text-xs font-semibold text-slate-900 border-b pb-0.5">
                 Education
               </h3>
               <p className="text-slate-700">{education}</p>
@@ -175,7 +175,7 @@ export function AiResumeBuilderTool() {
 
             {/* Skills */}
             <div className="space-y-1">
-              <h3 className="text-xs font-semibold uppercase text-slate-900 border-b pb-0.5">
+              <h3 className="text-xs font-semibold text-slate-900 border-b pb-0.5">
                 Core Competencies & Technical Skills
               </h3>
               <p className="text-slate-700">{skills}</p>
@@ -315,7 +315,7 @@ ${senderName}`,
 
         <div className="lg:col-span-7 space-y-3">
           <div className="flex justify-between items-center">
-            <span className="text-xs font-mono font-semibold uppercase text-slate-500">Drafted Email</span>
+            <span className="text-xs font-mono font-semibold text-slate-500">Drafted Email</span>
             <Button
               type="button"
               onClick={() => {
@@ -396,17 +396,17 @@ export function GrammarCheckerAdvancedTool() {
     <div className="space-y-6">
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
         <div className="p-3.5 rounded-xl border border-border bg-card space-y-1">
-          <span className="text-[11px] font-mono uppercase font-semibold text-slate-500">Word Count</span>
+          <span className="text-[11px] font-mono font-semibold text-slate-500">Word Count</span>
           <p className="text-2xl font-semibold text-slate-900 font-mono">{analysis.wordCount}</p>
         </div>
 
         <div className="p-3.5 rounded-xl border border-border bg-card space-y-1">
-          <span className="text-[11px] font-mono uppercase font-semibold text-slate-500">Avg Sentence Length</span>
+          <span className="text-[11px] font-mono font-semibold text-slate-500">Avg Sentence Length</span>
           <p className="text-2xl font-semibold text-slate-900 font-mono">{analysis.avgWordsPerSentence} Words</p>
         </div>
 
         <div className="p-3.5 rounded-xl border border-border bg-card space-y-1">
-          <span className="text-[11px] font-mono uppercase font-semibold text-slate-500">Flagged Suggestions</span>
+          <span className="text-[11px] font-mono font-semibold text-slate-500">Flagged Suggestions</span>
           <p className={`text-2xl font-semibold font-mono ${analysis.issues.length === 0 ? "text-emerald-600" : "text-amber-600"}`}>
             {analysis.issues.length}
           </p>
@@ -426,7 +426,7 @@ export function GrammarCheckerAdvancedTool() {
         </div>
 
         <div className="lg:col-span-5 space-y-3">
-          <span className="text-xs font-mono font-semibold uppercase text-slate-500">Editorial Feedback</span>
+          <span className="text-xs font-mono font-semibold text-slate-500">Editorial Feedback</span>
           {analysis.issues.length === 0 ? (
             <div className="p-5 rounded-xl border border-emerald-200 bg-emerald-50/70 text-xs text-emerald-800 space-y-1">
               <p className="font-semibold text-emerald-950">Clean Writing Style</p>
@@ -544,7 +544,7 @@ export function AiArticleWriterTool() {
 
         <div className="lg:col-span-7 space-y-3">
           <div className="flex justify-between items-center">
-            <span className="text-xs font-mono font-semibold uppercase text-slate-500">Structured Article Outline</span>
+            <span className="text-xs font-mono font-semibold text-slate-500">Structured Article Outline</span>
             <Button
               type="button"
               onClick={() => {

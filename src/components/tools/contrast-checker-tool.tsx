@@ -116,7 +116,7 @@ export function ContrastCheckerTool() {
         {/* Ratio & Criteria Scoreboard */}
         <div className="p-5 rounded-xl border border-border bg-muted/20 flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="text-center md:text-left">
-            <span className="text-[11px] font-semibold text-muted-foreground uppercase">Contrast Ratio</span>
+            <span className="text-[11px] font-semibold text-muted-foreground ">Contrast Ratio</span>
             <div className="flex items-baseline gap-2 justify-center md:justify-start">
               <span className="text-4xl font-semibold text-teal-400">{score}</span>
               <span className="text-lg text-muted-foreground font-semibold">: 1</span>

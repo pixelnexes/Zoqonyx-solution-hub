@@ -111,7 +111,7 @@ export function ImageFormatConverterTool() {
     <div className="space-y-6">
       {/* Quick Search Intent Presets */}
       <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200/90 space-y-2">
-        <span className="text-[11px] font-semibold text-slate-500 uppercase font-mono">
+        <span className="text-[11px] font-semibold text-slate-500 font-mono">
           Popular Conversion Tasks
         </span>
         <div className="flex flex-wrap gap-1.5">
@@ -213,7 +213,7 @@ export function ImageFormatConverterTool() {
           {/* Results Grid / List */}
           {convertedResults.length > 0 && (
             <div className="space-y-2 pt-2 border-t border-border/60">
-              <span className="text-xs font-semibold text-muted-foreground uppercase">
+              <span className="text-xs font-semibold text-muted-foreground ">
                 Converted Results ({convertedResults.length})
               </span>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 max-h-60 overflow-y-auto pr-1">
@@ -457,7 +457,7 @@ export function ColorPickerTool() {
                   style={{ backgroundColor: pickedColor }}
                 />
                 <div className="space-y-0.5">
-                  <span className="text-[11px] font-semibold text-muted-foreground uppercase">
+                  <span className="text-[11px] font-semibold text-muted-foreground ">
                     Inspected Color
                   </span>
                   <p className="text-2xl font-heading font-semibold text-foreground font-mono">
@@ -522,7 +522,7 @@ export function ColorPickerTool() {
                         className="w-full h-9 rounded-lg border border-black/10 shadow-sm"
                         style={{ backgroundColor: color }}
                       />
-                      <span className="font-mono text-[10px] font-semibold text-muted-foreground group-hover:text-foreground uppercase">
+                      <span className="font-mono text-[10px] font-semibold text-muted-foreground group-hover:text-foreground ">
                         {color}
                       </span>
                     </button>

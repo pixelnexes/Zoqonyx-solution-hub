@@ -340,7 +340,7 @@ export function ImageCompressorProTool() {
               {/* Savings Metrics */}
               <div className="p-4 rounded-xl bg-card border border-border shadow-xs space-y-3">
                 <div className="flex items-center justify-between text-xs font-semibold">
-                  <span className="text-foreground font-mono uppercase text-[11px]">
+                  <span className="text-foreground font-mono text-[11px]">
                     Compression Metrics
                   </span>
                   <span className="text-emerald-400 font-semibold bg-emerald-500/10 border border-emerald-500/20 px-2 py-0.5 rounded font-mono">
@@ -350,11 +350,11 @@ export function ImageCompressorProTool() {
 
                 <div className="grid grid-cols-2 gap-2.5 pt-1">
                   <div className="p-2.5 rounded-lg bg-muted/40 border border-border/60">
-                    <p className="text-[10px] font-mono text-muted-foreground uppercase">Original</p>
+                    <p className="text-[10px] font-mono text-muted-foreground ">Original</p>
                     <p className="font-mono text-sm font-semibold text-foreground mt-0.5">{formatBytes(originalSize)}</p>
                   </div>
                   <div className="p-2.5 rounded-lg bg-teal-500/10 border border-teal-500/20">
-                    <p className="text-[10px] font-mono text-teal-400 uppercase">Compressed</p>
+                    <p className="text-[10px] font-mono text-teal-400 ">Compressed</p>
                     <p className="font-mono text-sm font-semibold text-teal-400 mt-0.5">{formatBytes(compressedSize)}</p>
                   </div>
                 </div>
@@ -477,7 +477,7 @@ export function ImageCompressorProTool() {
                       <button
                         key={fmt}
                         onClick={() => setFormat(fmt)}
-                        className={`px-2 py-0.5 rounded uppercase ${
+                        className={`px-2 py-0.5 rounded ${
                           format === fmt
                             ? "bg-teal-600 text-white font-semibold"
                             : "bg-muted/40 text-muted-foreground hover:text-foreground"

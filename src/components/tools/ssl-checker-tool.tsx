@@ -118,7 +118,7 @@ export function SslCheckerTool() {
               {data.isValid && (
                 <div className="text-right shrink-0">
                   <span className="text-2xl font-semibold text-teal-400">{data.daysRemaining}</span>
-                  <p className="text-[10px] text-muted-foreground uppercase font-semibold">Days Remaining</p>
+                  <p className="text-[10px] text-muted-foreground font-semibold">Days Remaining</p>
                 </div>
               )}
             </div>
@@ -133,7 +133,7 @@ export function SslCheckerTool() {
                 { label: "Strict Transport Security (HSTS)", val: "Enabled" },
               ].map((item) => (
                 <div key={item.label} className="p-3 rounded-lg border border-border bg-card">
-                  <span className="text-[10px] font-semibold text-muted-foreground uppercase">{item.label}</span>
+                  <span className="text-[10px] font-semibold text-muted-foreground ">{item.label}</span>
                   <p className="text-xs font-semibold text-foreground mt-0.5">{item.val}</p>
                 </div>
               ))}

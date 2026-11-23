@@ -95,19 +95,19 @@ export function ReadingTimeTool() {
         {/* Structural Metrics */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2 border-t border-border">
           <div className="p-3 rounded-lg border border-border bg-muted/10 text-center">
-            <span className="text-[10px] font-semibold text-muted-foreground uppercase">Words</span>
+            <span className="text-[10px] font-semibold text-muted-foreground ">Words</span>
             <span className="text-xl font-semibold text-foreground block mt-0.5">{words}</span>
           </div>
           <div className="p-3 rounded-lg border border-border bg-muted/10 text-center">
-            <span className="text-[10px] font-semibold text-muted-foreground uppercase">Sentences</span>
+            <span className="text-[10px] font-semibold text-muted-foreground ">Sentences</span>
             <span className="text-xl font-semibold text-foreground block mt-0.5">{sentences}</span>
           </div>
           <div className="p-3 rounded-lg border border-border bg-muted/10 text-center">
-            <span className="text-[10px] font-semibold text-muted-foreground uppercase">Paragraphs</span>
+            <span className="text-[10px] font-semibold text-muted-foreground ">Paragraphs</span>
             <span className="text-xl font-semibold text-foreground block mt-0.5">{paragraphs}</span>
           </div>
           <div className="p-3 rounded-lg border border-border bg-muted/10 text-center">
-            <span className="text-[10px] font-semibold text-muted-foreground uppercase">Avg Words / Sentence</span>
+            <span className="text-[10px] font-semibold text-muted-foreground ">Avg Words / Sentence</span>
             <span className="text-xl font-semibold text-foreground block mt-0.5">
               {sentences > 0 ? (words / sentences).toFixed(1) : words}
             </span>

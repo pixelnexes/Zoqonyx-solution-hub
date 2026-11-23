@@ -757,11 +757,11 @@ export function TimestampConverterTool() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
           <div className="p-3 rounded-lg border border-border bg-muted/30 space-y-1">
-            <span className="text-[11px] font-semibold text-muted-foreground uppercase">UTC Time</span>
+            <span className="text-[11px] font-semibold text-muted-foreground ">UTC Time</span>
             <p className="text-xs font-mono font-medium">{new Date(epoch * 1000).toUTCString()}</p>
           </div>
           <div className="p-3 rounded-lg border border-border bg-muted/30 space-y-1">
-            <span className="text-[11px] font-semibold text-muted-foreground uppercase">Local Browser Time</span>
+            <span className="text-[11px] font-semibold text-muted-foreground ">Local Browser Time</span>
             <p className="text-xs font-mono font-medium">{mounted ? new Date(epoch * 1000).toString() : ""}</p>
           </div>
         </div>
@@ -957,7 +957,7 @@ export function CronExpressionGeneratorTool() {
         </div>
 
         <div className="p-4 rounded-xl border border-teal-500/20 bg-teal-500/10 space-y-1">
-          <span className="text-[11px] font-semibold uppercase text-teal-400">Schedule Plain English Meaning</span>
+          <span className="text-[11px] font-semibold text-teal-400">Schedule Plain English Meaning</span>
           <p className="text-sm font-semibold text-foreground">{explanation}</p>
         </div>
 

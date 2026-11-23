@@ -243,7 +243,7 @@ CMD ["nginx", "-g", "daemon off;"]`;
 
         <div className="lg:col-span-7 space-y-3">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-mono font-semibold uppercase text-slate-500">Generated Dockerfile</span>
+            <span className="text-xs font-mono font-semibold text-slate-500">Generated Dockerfile</span>
             <div className="flex items-center gap-2">
               <Button
                 type="button"
@@ -410,7 +410,7 @@ spec:
 
           {validation.errors.length > 0 && (
             <div className="p-4 rounded-xl border border-rose-200 bg-card space-y-2">
-              <span className="text-xs font-mono font-semibold uppercase text-rose-600">Errors to Resolve</span>
+              <span className="text-xs font-mono font-semibold text-rose-600">Errors to Resolve</span>
               <ul className="text-xs text-rose-800 space-y-1 list-disc pl-4 font-mono">
                 {validation.errors.map((err, idx) => (
                   <li key={idx}>{err}</li>
@@ -421,7 +421,7 @@ spec:
 
           {validation.warnings.length > 0 && (
             <div className="p-4 rounded-xl border border-amber-200 bg-amber-50/40 space-y-2">
-              <span className="text-xs font-mono font-semibold uppercase text-amber-700">Recommended Improvements</span>
+              <span className="text-xs font-mono font-semibold text-amber-700">Recommended Improvements</span>
               <ul className="text-xs text-amber-800 space-y-1 list-disc pl-4">
                 {validation.warnings.map((warn, idx) => (
                   <li key={idx}>{warn}</li>
@@ -690,7 +690,7 @@ export function ApiMockServerTool() {
         </div>
 
         <div className="lg:col-span-6 space-y-3">
-          <span className="text-xs font-mono font-semibold uppercase text-slate-500">Live Client Simulator Output</span>
+          <span className="text-xs font-mono font-semibold text-slate-500">Live Client Simulator Output</span>
           {testResponse ? (
             <div className="p-4 rounded-xl border border-slate-800 bg-slate-950 text-slate-100 font-mono text-xs space-y-2">
               <div className="flex justify-between items-center pb-2 border-b border-slate-800">
@@ -791,7 +791,7 @@ export function GraphqlQueryBuilderTool() {
 
         <div className="lg:col-span-7 space-y-3">
           <div className="flex justify-between items-center">
-            <span className="text-xs font-mono font-semibold uppercase text-slate-500">Constructed GraphQL Query</span>
+            <span className="text-xs font-mono font-semibold text-slate-500">Constructed GraphQL Query</span>
             <Button
               type="button"
               onClick={() => {
@@ -936,7 +936,7 @@ export function ScreenRecorderTool() {
 
         {recordedBlobUrl && (
           <div className="pt-4 border-t space-y-3 text-left">
-            <span className="text-xs font-mono font-semibold uppercase text-slate-600">Recording Preview</span>
+            <span className="text-xs font-mono font-semibold text-slate-600">Recording Preview</span>
             <video src={recordedBlobUrl} controls className="w-full rounded-lg border bg-black max-h-64" />
             <div className="flex justify-end">
               <a
@@ -1218,7 +1218,7 @@ export function DnsLookupTool() {
       {records !== null && (
         <div className="p-4 rounded-xl border border-border bg-card space-y-3">
           <div className="flex justify-between items-center">
-            <h4 className="text-xs font-mono font-semibold uppercase text-slate-700">
+            <h4 className="text-xs font-mono font-semibold text-slate-700">
               {recordType} Records for {domain} ({records.length} Found)
             </h4>
             <span className="text-[11px] text-slate-500 font-mono">Google DoH Verified</span>
@@ -1229,7 +1229,7 @@ export function DnsLookupTool() {
           ) : (
             <div className="overflow-x-auto">
               <table className="w-full text-xs text-left">
-                <thead className="bg-slate-50 text-slate-700 uppercase font-mono text-[10.5px] border-b">
+                <thead className="bg-slate-50 text-slate-700 font-mono text-[10.5px] border-b">
                   <tr>
                     <th className="py-2.5 px-3">Host / Name</th>
                     <th className="py-2.5 px-3">TTL</th>

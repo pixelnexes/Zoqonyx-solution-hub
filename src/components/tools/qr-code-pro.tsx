@@ -639,7 +639,7 @@ export function QrCodeGeneratorProTool() {
                   <p className="text-xs font-semibold text-muted-foreground">
                     {colorMode === "gradient" ? "Start Color" : "Pattern Color"}
                   </p>
-                  <p className="font-mono text-xs font-semibold uppercase">{fgColor1}</p>
+                  <p className="font-mono text-xs font-semibold ">{fgColor1}</p>
                 </div>
               </div>
 
@@ -653,7 +653,7 @@ export function QrCodeGeneratorProTool() {
                   />
                   <div>
                     <p className="text-xs font-semibold text-muted-foreground">End Color</p>
-                    <p className="font-mono text-xs font-semibold uppercase">{fgColor2}</p>
+                    <p className="font-mono text-xs font-semibold ">{fgColor2}</p>
                   </div>
                 </div>
               )}
@@ -668,7 +668,7 @@ export function QrCodeGeneratorProTool() {
                 />
                 <div>
                   <p className="text-xs font-semibold text-muted-foreground">Background</p>
-                  <p className="font-mono text-xs font-semibold uppercase">
+                  <p className="font-mono text-xs font-semibold ">
                     {isTransparentBg ? "Transparent" : bgColor}
                   </p>
                 </div>

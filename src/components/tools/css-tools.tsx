@@ -170,7 +170,7 @@ export function BoxShadowGeneratorTool() {
 
       {/* Preset Quick Badges */}
       <div className="space-y-2">
-        <label className="text-xs font-semibold text-muted-foreground uppercase">
+        <label className="text-xs font-semibold text-muted-foreground ">
           Curated Elevation Presets
         </label>
         <div className="flex flex-wrap items-center gap-2">
@@ -280,7 +280,7 @@ export function BoxShadowGeneratorTool() {
               onChange={(e) => setColor(e.target.value)}
               className="w-9 h-9 rounded-lg border-0 cursor-pointer"
             />
-            <span className="text-xs font-semibold uppercase font-mono">{color}</span>
+            <span className="text-xs font-semibold font-mono">{color}</span>
           </div>
           <label className="flex items-center gap-1.5 text-xs font-semibold cursor-pointer">
             <input
@@ -396,7 +396,7 @@ export function CssGradientGeneratorTool() {
 
       {/* 12 Curated Presets Bar */}
       <div className="space-y-2">
-        <label className="text-xs font-semibold text-muted-foreground uppercase">
+        <label className="text-xs font-semibold text-muted-foreground ">
           Designer Gradient Presets
         </label>
         <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-2">
@@ -511,7 +511,7 @@ export function CssGradientGeneratorTool() {
             />
             <div>
               <p className="text-xs font-semibold text-muted-foreground">Color 1 (Start)</p>
-              <p className="font-mono text-sm font-semibold uppercase">{color1}</p>
+              <p className="font-mono text-sm font-semibold ">{color1}</p>
             </div>
           </div>
 
@@ -526,7 +526,7 @@ export function CssGradientGeneratorTool() {
               <p className="text-xs font-semibold text-muted-foreground">
                 {use3Colors ? "Color 2 (Middle)" : "Color 2 (End)"}
               </p>
-              <p className="font-mono text-sm font-semibold uppercase">{color2}</p>
+              <p className="font-mono text-sm font-semibold ">{color2}</p>
             </div>
           </div>
 
@@ -540,7 +540,7 @@ export function CssGradientGeneratorTool() {
               />
               <div>
                 <p className="text-xs font-semibold text-muted-foreground">Color 3 (End)</p>
-                <p className="font-mono text-sm font-semibold uppercase">{color3}</p>
+                <p className="font-mono text-sm font-semibold ">{color3}</p>
               </div>
             </div>
           )}

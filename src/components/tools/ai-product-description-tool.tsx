@@ -290,7 +290,7 @@ ${formatVariantText(v)}`
     <div className="w-full max-w-5xl mx-auto space-y-8">
       {/* Header */}
       <div className="text-center space-y-2">
-        <div className="inline-flex items-center gap-2 px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-xs font-semibold uppercase border border-blue-200">
+        <div className="inline-flex items-center gap-2 px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-xs font-semibold border border-blue-200">
           <Sparkles className="w-3.5 h-3.5 text-blue-600" /> Client-Side Copywriting Studio
         </div>
         <h2 className="text-2xl sm:text-3xl font-semibold text-slate-900 tracking-tight">
@@ -513,7 +513,7 @@ ${formatVariantText(v)}`
                 <div className="p-6 space-y-5 text-left">
                   {/* Headline */}
                   <div>
-                    <span className="text-[10px] font-semibold uppercase text-blue-600 dark:text-blue-400">
+                    <span className="text-[10px] font-semibold text-blue-600 dark:text-blue-400">
                       Product Headline
                     </span>
                     <h3 className="text-xl font-semibold text-slate-900 dark:text-white mt-1">
@@ -523,7 +523,7 @@ ${formatVariantText(v)}`
 
                   {/* Body Copy */}
                   <div>
-                    <span className="text-[10px] font-semibold uppercase text-slate-500 dark:text-slate-400">
+                    <span className="text-[10px] font-semibold text-slate-500 dark:text-slate-400">
                       Primary Description Copy
                     </span>
                     <p className="text-sm leading-relaxed text-slate-700 dark:text-slate-300 mt-1 whitespace-pre-line">
@@ -534,7 +534,7 @@ ${formatVariantText(v)}`
                   {/* Bullets */}
                   {variants[activeTab].bullets && variants[activeTab].bullets.length > 0 && (
                     <div>
-                      <span className="text-[10px] font-semibold uppercase text-slate-500 dark:text-slate-400">
+                      <span className="text-[10px] font-semibold text-slate-500 dark:text-slate-400">
                         Feature & Benefit Bullets
                       </span>
                       <ul className="mt-2 space-y-1.5">
@@ -553,7 +553,7 @@ ${formatVariantText(v)}`
                   {/* Call to Action */}
                   {variants[activeTab].cta && (
                     <div className="p-3 bg-amber-500/10 border border-amber-500/20 rounded-xl">
-                      <span className="text-[10px] font-semibold uppercase text-amber-700 dark:text-amber-400">
+                      <span className="text-[10px] font-semibold text-amber-700 dark:text-amber-400">
                         Conversion Call-To-Action (CTA)
                       </span>
                       <p className="text-xs font-semibold text-amber-900 dark:text-amber-300 mt-0.5">
@@ -565,7 +565,7 @@ ${formatVariantText(v)}`
                   {/* SEO Metadata if present */}
                   {variants[activeTab].metaTitle && (
                     <div className="p-3.5 bg-slate-50 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-700 rounded-xl space-y-2">
-                      <span className="text-[10px] font-semibold uppercase text-indigo-600 dark:text-indigo-400 flex items-center gap-1">
+                      <span className="text-[10px] font-semibold text-indigo-600 dark:text-indigo-400 flex items-center gap-1">
                         <Search className="w-3 h-3" /> Search Engine Snippet Preview
                       </span>
                       <div>

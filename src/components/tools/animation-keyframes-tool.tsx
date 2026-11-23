@@ -137,7 +137,7 @@ export function AnimationKeyframesTool() {
         {/* Code Output */}
         <div className="space-y-2 pt-2 border-t border-border">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold text-muted-foreground uppercase">Generated CSS Output</span>
+            <span className="text-xs font-semibold text-muted-foreground ">Generated CSS Output</span>
             <Button variant="outline" size="sm" onClick={handleCopy} className="gap-1.5 text-xs">
               {copied ? <CheckCircle2 className="w-3.5 h-3.5 text-teal-400" /> : <Copy className="w-3.5 h-3.5" />}
               <span>{copied ? "Copied" : "Copy CSS"}</span>

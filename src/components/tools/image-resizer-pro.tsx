@@ -240,7 +240,7 @@ export function ImageResizerProTool() {
 
           {/* Social Presets Showcase */}
           <div className="p-6 rounded-2xl bg-card border border-border/80 space-y-3">
-            <h4 className="text-xs font-semibold text-muted-foreground uppercase">
+            <h4 className="text-xs font-semibold text-muted-foreground ">
               Supported 1-Click Social Media Presets
             </h4>
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">

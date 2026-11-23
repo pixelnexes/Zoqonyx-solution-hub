@@ -165,7 +165,7 @@ export const metadata: Metadata = {
       <div className="p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-brand-cyan/10 via-brand-purple/10 to-transparent border border-brand-cyan/20 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div className="space-y-1">
           <div className="flex items-center gap-2">
-            <span className="px-2 py-0.5 text-[10px] font-semibold rounded uppercase bg-brand-cyan/20 text-brand-cyan">
+            <span className="px-2 py-0.5 text-[10px] font-semibold rounded bg-brand-cyan/20 text-brand-cyan">
               Live Simulator
             </span>
             <h2 className="text-sm sm:text-base font-heading font-semibold text-foreground">
@@ -463,7 +463,7 @@ export const metadata: Metadata = {
                     />
                   </div>
                   <div className="p-3 bg-muted/20 space-y-0.5 border-t border-border/60">
-                    <p className="text-[10px] uppercase font-semibold text-muted-foreground">
+                    <p className="text-[10px] font-semibold text-muted-foreground">
                       {domain}
                     </p>
                     <p className="text-xs font-semibold text-foreground line-clamp-1">{title}</p>
