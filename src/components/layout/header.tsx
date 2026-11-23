@@ -57,7 +57,7 @@ export function Header() {
       <div className="container mx-auto flex h-16 max-w-6xl items-center justify-between gap-6 px-4 sm:px-6 lg:px-8">
         <Logo size="md" />
 
-        <nav aria-label="Main" className="hidden md:flex items-center gap-7">
+        <nav aria-label="Main" className="hidden lg:flex items-center gap-7">
           <NavLink href="/services" active={pathname.startsWith("/services")}>
             Services
           </NavLink>
@@ -118,14 +118,14 @@ export function Header() {
           </NavLink>
         </nav>
 
-        <div className="hidden md:flex items-center gap-3">
+        <div className="hidden lg:flex items-center gap-3">
           <SessionHistoryModal />
           <Link href="/#contact" className="zq-btn zq-btn-sun !h-10 !px-5 !text-[15px]">
             Get a quote <ArrowRight className="w-4 h-4" aria-hidden="true" />
           </Link>
         </div>
 
-        <div className="flex md:hidden items-center gap-1">
+        <div className="flex lg:hidden items-center gap-1">
           <SessionHistoryModal />
           <button
             type="button"
@@ -141,7 +141,7 @@ export function Header() {
       </div>
 
       {mobileMenuOpen && (
-        <nav id="mobile-menu" aria-label="Main" className="md:hidden border-t border-[#E4E7EC] bg-white px-4 pb-5 max-h-[80vh] overflow-y-auto">
+        <nav id="mobile-menu" aria-label="Main" className="lg:hidden border-t border-[#E4E7EC] bg-white px-4 pb-5 max-h-[80vh] overflow-y-auto">
           <ul>
             {[{ label: "Services", href: "/services" }, { label: "Blog", href: "/blog" }, { label: "All tools", href: "/tools" }, ...NAV_CATEGORIES, { label: "About", href: "/about" }, { label: "Contact", href: "/contact" }].map((item) => (
               <li key={item.href} className="border-b border-[#E4E7EC]">
