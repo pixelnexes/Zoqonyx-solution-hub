@@ -11,10 +11,44 @@ export const metadata: Metadata = {
   },
 };
 
+const contactLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ContactPage",
+      "@id": "https://zoqonyx.com/contact#page",
+      url: "https://zoqonyx.com/contact",
+      name: "Contact Zoqonyx",
+      about: { "@id": "https://zoqonyx.com/#organization" },
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://zoqonyx.com/#organization",
+      name: "Zoqonyx",
+      url: "https://zoqonyx.com",
+      logo: "https://zoqonyx.com/logo/zoqonyx-logo-512.png",
+      email: "hello@zoqonyx.com",
+      areaServed: ["United States", "Europe", "Gulf region", "Asia"],
+    },
+    {
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: "https://zoqonyx.com" },
+        { "@type": "ListItem", position: 2, name: "Contact", item: "https://zoqonyx.com/contact" },
+      ],
+    },
+  ],
+};
+
 export default function ContactLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  return <>{children}</>;
+  return (
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(contactLd) }} />
+      {children}
+    </>
+  );
 }

@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     absolute: "About Zoqonyx Solution Hub | Free Online Tools",
   },
   description:
-    "Learn about Zoqonyx Solution Hub, developed by Newix Tech Solutions. Our mission is to provide 148+ fast, privacy-first, zero-upload digital utilities with no subscriptions.",
+    "Learn about Zoqonyx Solution Hub, developed by Newix Tech Solutions. Our mission is to provide 146 fast, privacy-first, zero-upload digital utilities with no subscriptions.",
   alternates: {
     canonical: "https://zoqonyx.com/about",
   },
@@ -63,7 +63,7 @@ export default async function AboutPage() {
   const title = dbPage?.title || "About Zoqonyx Solution Hub";
 
   const stats = [
-    { v: "148+", l: "Live free tools", g: "zq-g-indigo", I: Cpu },
+    { v: "146", l: "Live free tools", g: "zq-g-indigo", I: Cpu },
     { v: "0 bytes", l: "Uploaded to the cloud", g: "zq-g-aqua", I: Globe },
     { v: "100%", l: "Free, no login", g: "zq-g-emerald", I: ShieldCheck },
     { v: "0 ms", l: "Upload waiting", g: "zq-g-sun", I: Zap },
@@ -73,8 +73,38 @@ export default async function AboutPage() {
     { I: Zap, g: "zq-g-coral", t: "Fast bulk processing", d: "Process up to 100 photos or documents (1 GB combined) at once, with clear progress indicators." },
   ];
 
+  const aboutLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "AboutPage",
+        "@id": "https://zoqonyx.com/about#page",
+        url: "https://zoqonyx.com/about",
+        name: "About Zoqonyx",
+        about: { "@id": "https://zoqonyx.com/#organization" },
+      },
+      {
+      "@type": "Organization",
+      "@id": "https://zoqonyx.com/#organization",
+      name: "Zoqonyx",
+      url: "https://zoqonyx.com",
+      logo: "https://zoqonyx.com/logo/zoqonyx-logo-512.png",
+      email: "hello@zoqonyx.com",
+      areaServed: ["United States", "Europe", "Gulf region", "Asia"],
+    },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: "https://zoqonyx.com" },
+          { "@type": "ListItem", position: 2, name: "About", item: "https://zoqonyx.com/about" },
+        ],
+      },
+    ],
+  };
+
   return (
     <div className="zq-page">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutLd) }} />
       <PageHero crumbs={[{ label: "Home", href: "/" }, { label: "About" }]} title={title} intro="A suite of free utilities for developers, designers, creators and teams that run in your browser, with no remote data collection." badge="Built by Newix Tech Solutions" image="/photos/u-office2.webp" />
 
       <div className="container mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 zq-section space-y-10">

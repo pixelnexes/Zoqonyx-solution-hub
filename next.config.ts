@@ -8,7 +8,16 @@ const nextConfig: NextConfig = {
   // Photos, screenshots and logos never change under the same name, so let the CDN and browsers keep them.
   async headers() {
     const immutable = [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }];
+    const security = [
+      { key: "X-Content-Type-Options", value: "nosniff" },
+      { key: "X-Frame-Options", value: "SAMEORIGIN" },
+      { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+      { key: "Strict-Transport-Security", value: "max-age=31536000; includeSubDomains" },
+      // Some tools use the camera, microphone or screen on purpose, so those stay allowed for this site only.
+      { key: "Permissions-Policy", value: "camera=(self), microphone=(self), display-capture=(self), geolocation=(), payment=()" },
+    ];
     return [
+      { source: "/:path*", headers: security },
       { source: "/photos/:path*", headers: immutable },
       { source: "/shots/:path*", headers: immutable },
       { source: "/logo/:path*", headers: immutable },
