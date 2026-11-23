@@ -169,3 +169,6 @@ a.zq-card:hover, .zq-card-hover:hover { border-color: #CBD0D8; background: #FCFC
   .zq-zl-z { animation: none; stroke-dashoffset: 0; }
   .zq-splash { animation-duration: .3s; }
 }
+
+/* Placeholder behind photos while they load */
+img[src^="/photos/"] { background-color: #E9ECF0; }
