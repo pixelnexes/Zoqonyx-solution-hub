@@ -73,7 +73,7 @@ export function CtaBand({ heading, text, href = "#contact", cta = "Get a quote",
       <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="relative isolate overflow-hidden rounded-2xl bg-[#15171C] text-white">
           <div className="max-w-xl px-7 py-12 sm:px-12 sm:py-16">
-            <h2 className="zq-display text-3xl sm:text-4xl font-semibold leading-tight">{heading}</h2>
+            <h2 className="zq-display zq-h2">{heading}</h2>
             <p className="mt-4 text-[17px] leading-relaxed text-white/90">{text}</p>
             <a href={href} className="zq-btn zq-btn-sun mt-7">
               {cta} <ArrowRight className="w-4 h-4" aria-hidden="true" />

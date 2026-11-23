@@ -20,7 +20,7 @@ export function ContactSection({
       <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 zq-section">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.35fr] gap-10 lg:gap-14 items-start">
           <div>
-            <h2 id="contact-heading" className="zq-display text-3xl sm:text-4xl font-semibold leading-tight">
+            <h2 id="contact-heading" className="zq-display zq-h2">
               {heading}
             </h2>
             <p className="mt-4 text-[17px] leading-relaxed text-white/85 max-w-md">{intro}</p>

@@ -4,7 +4,7 @@ import { ArrowRight, FileImage } from "lucide-react";
 /** A real-looking tool result: what the image compressor shows after a run. The figures are an example, and the card says so. */
 export function ToolMoment() {
   return (
-    <div className="mb-10 grid items-center gap-8 rounded-2xl border border-[#E4E7EC] bg-white p-6 sm:p-8 lg:grid-cols-[0.9fr_1.1fr]">
+    <div className="mb-10 grid items-center gap-8 rounded-xl border border-[#E4E7EC] bg-white p-6 sm:p-8 lg:grid-cols-[0.9fr_1.1fr]">
       <div>
         <h3 className="zq-display text-2xl font-semibold text-[#15171C] sm:text-3xl">Compress an image without leaving the page</h3>
         <p className="mt-3 max-w-md text-[16px] leading-relaxed text-[#5B6270]">

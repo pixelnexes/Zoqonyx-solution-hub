@@ -50,7 +50,7 @@ export function Footer() {
           <img src="/photos/u-team.webp" alt="" width={1200} height={800} loading="lazy" className="absolute inset-y-0 right-0 hidden h-full w-1/3 object-cover opacity-30 mix-blend-luminosity lg:block" />
           <div className="relative flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between lg:pr-[28%]">
             <div className="max-w-xl">
-              <h2 className="zq-display text-3xl font-semibold leading-tight sm:text-4xl">Have a project in mind?</h2>
+              <h2 className="zq-display zq-h2">Have a project in mind?</h2>
               <p className="mt-3 text-[17px] leading-relaxed text-white/85">Tell us what you want to build. We will reply with questions and next steps.</p>
             </div>
             <div className="flex flex-wrap gap-3">

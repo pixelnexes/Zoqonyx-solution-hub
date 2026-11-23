@@ -309,7 +309,7 @@ export default async function ToolPage({ params }: ToolPageProps) {
                 <ToolIcon name={tool.icon} className="w-8 h-8" strokeWidth={2} />
               </span>
               <div className="max-w-3xl">
-                <h1 className="zq-in-solid zq-display text-3xl sm:text-5xl font-semibold leading-[1.06] text-[#15171C]">{tool.name}</h1>
+                <h1 className="zq-in-solid zq-display text-4xl sm:text-5xl font-semibold leading-[1.06] text-[#15171C]">{tool.name}</h1>
                 <p className="zq-in mt-3 text-[18px] leading-relaxed text-[#5B6270]">{tool.description}</p>
                 <p className="mt-3 inline-flex rounded-full border border-[#15171C]/15 bg-white/80 px-3 py-1 text-sm font-semibold">Free to use. No sign-up.</p>
               </div>

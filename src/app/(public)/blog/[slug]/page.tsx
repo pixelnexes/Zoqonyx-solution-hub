@@ -119,7 +119,7 @@ export default async function BlogPostPage({ params }: Props) {
             </ol>
           </nav>
           <p className="mt-6 inline-flex rounded-md bg-[#15171C] px-3 py-1 text-sm font-semibold text-white">{post.category}</p>
-          <h1 className="zq-in-solid zq-display mt-4 text-3xl sm:text-5xl font-semibold leading-[1.08] text-[#15171C]">{post.title}</h1>
+          <h1 className="zq-in-solid zq-display mt-4 text-4xl sm:text-5xl font-semibold leading-[1.06] text-[#15171C]">{post.title}</h1>
           <p className="zq-in zq-lead-answer mx-auto mt-4 max-w-2xl text-[18px] leading-relaxed text-[#5B6270]">{post.excerpt}</p>
           <p className="mt-5 text-sm text-[#5B6270]">
             By {post.authorName} · {fmt(post.publishedAt)} · {readingMinutes(post.content)} min read
