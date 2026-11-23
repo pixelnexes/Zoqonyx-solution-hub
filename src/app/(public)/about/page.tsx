@@ -84,8 +84,8 @@ export default async function AboutPage() {
               <span className={`zq-chip zq-chip-sm ${x.g}`} aria-hidden="true">
                 <x.I className="w-[18px] h-[18px]" />
               </span>
-              <p className="zq-display mt-3 text-2xl font-extrabold">{x.v}</p>
-              <p className="text-sm text-[#5C5878]">{x.l}</p>
+              <p className="zq-display mt-3 text-2xl font-semibold">{x.v}</p>
+              <p className="text-sm text-[#5B6270]">{x.l}</p>
             </li>
           ))}
         </ul>
@@ -107,15 +107,15 @@ export default async function AboutPage() {
               <span className={`zq-chip ${f.g}`} aria-hidden="true">
                 <f.I className="w-6 h-6" />
               </span>
-              <h2 className="mt-4 text-xl font-bold">{f.t}</h2>
-              <p className="mt-1.5 text-[15px] leading-relaxed text-[#5C5878]">{f.d}</p>
+              <h2 className="mt-4 text-xl font-semibold">{f.t}</h2>
+              <p className="mt-1.5 text-[15px] leading-relaxed text-[#5B6270]">{f.d}</p>
             </div>
           ))}
         </div>
 
-        <div className="rounded-[22px] p-7 sm:p-9 text-white flex flex-col sm:flex-row items-center justify-between gap-5" style={{ background: "#1B1340" }}>
+        <div className="rounded-[22px] p-7 sm:p-9 text-white flex flex-col sm:flex-row items-center justify-between gap-5" style={{ background: "#15171C" }}>
           <div>
-            <p className="zq-display text-2xl font-extrabold">Ready to try a tool?</p>
+            <p className="zq-display text-2xl font-semibold">Ready to try a tool?</p>
             <p className="mt-1 zq-on-dark-muted">Open any of the free tools. No sign-up needed.</p>
           </div>
           <Link href="/tools" className="zq-btn zq-btn-sun shrink-0">

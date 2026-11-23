@@ -181,15 +181,15 @@ export function UnitConverterTool() {
 
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <div className="p-5 rounded-xl bg-card border border-border/80 text-center space-y-1">
-          <p className="text-3xl font-heading font-black text-brand-cyan">{rem} rem</p>
+          <p className="text-3xl font-heading font-semibold text-brand-cyan">{rem} rem</p>
           <p className="text-xs text-muted-foreground uppercase font-semibold">REM Value</p>
         </div>
         <div className="p-5 rounded-xl bg-card border border-border/80 text-center space-y-1">
-          <p className="text-3xl font-heading font-black text-brand-purple">{percentage}%</p>
+          <p className="text-3xl font-heading font-semibold text-brand-purple">{percentage}%</p>
           <p className="text-xs text-muted-foreground uppercase font-semibold">Percentage</p>
         </div>
         <div className="p-5 rounded-xl bg-card border border-border/80 text-center space-y-1">
-          <p className="text-3xl font-heading font-black text-foreground">{pt} pt</p>
+          <p className="text-3xl font-heading font-semibold text-foreground">{pt} pt</p>
           <p className="text-xs text-muted-foreground uppercase font-semibold">Points</p>
         </div>
       </div>
@@ -242,15 +242,15 @@ export function AgeCalculatorTool() {
       {age && (
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <div className="p-6 rounded-2xl bg-card border border-border/80 text-center space-y-1">
-            <p className="text-4xl font-heading font-black brand-gradient-text">{age.years}</p>
+            <p className="text-4xl font-heading font-semibold brand-gradient-text">{age.years}</p>
             <p className="text-xs text-muted-foreground uppercase font-semibold">Years Old</p>
           </div>
           <div className="p-6 rounded-2xl bg-card border border-border/80 text-center space-y-1">
-            <p className="text-4xl font-heading font-black text-foreground">{age.months}</p>
+            <p className="text-4xl font-heading font-semibold text-foreground">{age.months}</p>
             <p className="text-xs text-muted-foreground uppercase font-semibold">Months</p>
           </div>
           <div className="p-6 rounded-2xl bg-card border border-border/80 text-center space-y-1">
-            <p className="text-4xl font-heading font-black text-foreground">{age.days}</p>
+            <p className="text-4xl font-heading font-semibold text-foreground">{age.days}</p>
             <p className="text-xs text-muted-foreground uppercase font-semibold">Days</p>
           </div>
         </div>
@@ -290,14 +290,14 @@ export function PercentageCalculatorTool() {
               className="w-28"
             />
           </div>
-          <p className="text-2xl font-heading font-black text-brand-cyan">Result: {result1}</p>
+          <p className="text-2xl font-heading font-semibold text-brand-cyan">Result: {result1}</p>
         </div>
 
         <div className="p-6 rounded-2xl bg-card border border-border/80 space-y-4">
           <h4 className="font-heading font-bold text-sm text-foreground">
             {valA} is what percentage of {valB}?
           </h4>
-          <p className="text-2xl font-heading font-black text-brand-purple">Result: {result2}%</p>
+          <p className="text-2xl font-heading font-semibold text-brand-purple">Result: {result2}%</p>
         </div>
       </div>
     </div>
@@ -349,7 +349,7 @@ export function BmiCalculatorTool() {
 
       <div className="p-8 rounded-2xl bg-card border border-border/80 text-center space-y-2">
         <p className="text-xs font-semibold text-muted-foreground uppercase">Your Body Mass Index (BMI)</p>
-        <p className="text-5xl font-heading font-black brand-gradient-text">{bmi}</p>
+        <p className="text-5xl font-heading font-semibold brand-gradient-text">{bmi}</p>
         <p className={`text-sm font-bold ${catColor}`}>{category}</p>
       </div>
     </div>

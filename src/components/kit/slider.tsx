@@ -34,7 +34,7 @@ export function Slider({ children, label }: { children: React.ReactNode; label: 
   };
 
   const btn =
-    "w-11 h-11 rounded-full bg-white border border-[#E7E1F6] shadow-md flex items-center justify-center text-[#1B1340] hover:bg-[#7C3AED] hover:text-white hover:border-[#7C3AED] disabled:opacity-40 disabled:pointer-events-none transition-colors";
+    "w-11 h-11 rounded-full bg-white border border-[#E4E7EC] shadow-md flex items-center justify-center text-[#15171C] hover:bg-[#7C3AED] hover:text-white hover:border-[#7C3AED] disabled:opacity-40 disabled:pointer-events-none transition-colors";
 
   return (
     <div className="relative">

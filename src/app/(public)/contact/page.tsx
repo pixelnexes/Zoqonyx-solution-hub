@@ -63,7 +63,7 @@ export default function ContactPage() {
             <div className="w-14 h-14 rounded-2xl bg-emerald-500/10 text-emerald-500 border border-emerald-500/20 flex items-center justify-center mx-auto shadow-inner">
               <CheckCircle2 className="w-7 h-7" />
             </div>
-            <h2 className="text-2xl font-heading font-bold text-foreground">Message Successfully Sent!</h2>
+            <h2 className="text-2xl font-heading font-semibold text-foreground">Message Successfully Sent!</h2>
             <p className="text-sm text-muted-foreground max-w-md mx-auto leading-relaxed">
               Thank you for contacting Zoqonyx Solution Hub. Our technical team has received your message and will review it promptly.
             </p>

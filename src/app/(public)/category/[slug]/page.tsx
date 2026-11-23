@@ -247,9 +247,9 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
               Tools
             </h2>
             {displayedTools.length === 0 ? (
-              <p className="mt-5 text-[16px] text-[#5C5878]">
+              <p className="mt-5 text-[16px] text-[#5B6270]">
                 No tools are live in this category yet.{" "}
-                <Link href="/tools" className="font-bold text-[#5B21B6] underline underline-offset-4">
+                <Link href="/tools" className="font-semibold text-[#5B21B6] underline underline-offset-4">
                   Browse all tools
                 </Link>
               </p>
@@ -262,8 +262,8 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
                         <ToolIcon name={tool.icon} className="w-[18px] h-[18px]" strokeWidth={2} />
                       </span>
                       <span className="min-w-0">
-                        <span className="block text-[16px] font-bold group-hover:text-[#5B21B6]">{tool.name}</span>
-                        <span className="block mt-0.5 text-sm leading-relaxed text-[#5C5878] line-clamp-2">{tool.description}</span>
+                        <span className="block text-[16px] font-semibold group-hover:text-[#5B21B6]">{tool.name}</span>
+                        <span className="block mt-0.5 text-sm leading-relaxed text-[#5B6270] line-clamp-2">{tool.description}</span>
                       </span>
                     </Link>
                   </li>
@@ -276,14 +276,14 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
             <h2 id="about-heading" className="zq-display zq-h2">
               About {category.name}
             </h2>
-            <div className="mt-5 text-[16px] leading-[1.75] text-[#2F2A4D] whitespace-pre-line">{category.longContent.overview}</div>
+            <div className="mt-5 text-[16px] leading-[1.75] text-[#2B2F38] whitespace-pre-line">{category.longContent.overview}</div>
 
             {category.longContent.keyBenefits.length > 0 && (
               <dl className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {category.longContent.keyBenefits.map((b, idx) => (
                   <div key={idx} className="zq-card p-5" style={{ borderTop: `3px solid ${catAccent.color}` }}>
-                    <dt className="text-[17px] font-bold">{b.title}</dt>
-                    <dd className="mt-1 text-[15px] leading-relaxed text-[#5C5878]">{b.desc}</dd>
+                    <dt className="text-[17px] font-semibold">{b.title}</dt>
+                    <dd className="mt-1 text-[15px] leading-relaxed text-[#5B6270]">{b.desc}</dd>
                   </div>
                 ))}
               </dl>
@@ -293,8 +293,8 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
               <div className="mt-10 space-y-8">
                 {category.longContent.popularWorkflows.map((flow, fIdx) => (
                   <div key={fIdx}>
-                    <h3 className="text-xl font-bold">{flow.title}</h3>
-                    <ol className="mt-3 list-decimal pl-6 space-y-1.5 text-[15px] leading-relaxed text-[#2F2A4D]">
+                    <h3 className="text-xl font-semibold">{flow.title}</h3>
+                    <ol className="mt-3 list-decimal pl-6 space-y-1.5 text-[15px] leading-relaxed text-[#2B2F38]">
                       {flow.steps.map((step, sIdx) => (
                         <li key={sIdx}>{step}</li>
                       ))}
@@ -305,13 +305,13 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
             )}
 
             <div
-              className="mt-10 text-[16px] leading-[1.75] text-[#2F2A4D]"
+              className="mt-10 text-[16px] leading-[1.75] text-[#2B2F38]"
               dangerouslySetInnerHTML={{
                 __html: category.longContent.deepDiveArticle
-                  .replace(/^### (.*$)/gim, '<h3 class="text-xl font-bold text-[#1B1340] mt-8 mb-2">$1</h3>')
-                  .replace(/^## (.*$)/gim, '<h2 class="text-2xl font-bold text-[#1B1340] mt-10 mb-3">$1</h2>')
+                  .replace(/^### (.*$)/gim, '<h3 class="text-xl font-semibold text-[#15171C] mt-8 mb-2">$1</h3>')
+                  .replace(/^## (.*$)/gim, '<h2 class="text-2xl font-semibold text-[#15171C] mt-10 mb-3">$1</h2>')
                   .replace(/^\- (.*$)/gim, '<li class="list-disc ml-6 my-1">$1</li>')
-                  .replace(/\*\*(.*?)\*\*/g, '<strong class="text-[#1B1340] font-semibold">$1</strong>')
+                  .replace(/\*\*(.*?)\*\*/g, '<strong class="text-[#15171C] font-semibold">$1</strong>')
                   .replace(/\n\n/g, '<p class="my-4">')
                   .replace(/\n/g, "<br />"),
               }}
@@ -326,11 +326,11 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
               <div className="mt-6 space-y-3">
                 {category.faqs.map((faq, fIdx) => (
                   <details key={fIdx} className="zq-card group p-0">
-                    <summary className="flex cursor-pointer list-none items-center justify-between gap-4 p-5 text-[17px] font-bold [&::-webkit-details-marker]:hidden">
+                    <summary className="flex cursor-pointer list-none items-center justify-between gap-4 p-5 text-[17px] font-semibold [&::-webkit-details-marker]:hidden">
                       {faq.question}
                       <ChevronDown className="w-5 h-5 shrink-0 text-[#7C3AED] transition-transform group-open:rotate-180" aria-hidden="true" />
                     </summary>
-                    <p className="px-5 pb-5 text-[16px] leading-relaxed text-[#5C5878]">{faq.answer}</p>
+                    <p className="px-5 pb-5 text-[16px] leading-relaxed text-[#5B6270]">{faq.answer}</p>
                   </details>
                 ))}
               </div>
@@ -346,7 +346,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
                 const o = categoryStyle(other.name);
                 return (
                   <li key={other.slug}>
-                    <Link href={`/category/${other.slug}`} className="zq-card zq-card-hover flex items-center gap-3 p-4 text-[16px] font-bold">
+                    <Link href={`/category/${other.slug}`} className="zq-card zq-card-hover flex items-center gap-3 p-4 text-[16px] font-semibold">
                       <span className={`zq-chip zq-chip-sm ${o.accent.chip}`} aria-hidden="true">
                         <o.Icon className="w-[18px] h-[18px]" />
                       </span>

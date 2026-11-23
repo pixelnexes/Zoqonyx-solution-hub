@@ -189,7 +189,7 @@ export function CompressPdfTool() {
 
           {results.length > 0 && (
             <div className="space-y-2 pt-2 border-t border-border/60">
-              <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+              <span className="text-xs font-semibold text-muted-foreground uppercase">
                 Compressed Results ({results.length})
               </span>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 max-h-60 overflow-y-auto pr-1">

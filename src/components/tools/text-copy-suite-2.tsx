@@ -149,7 +149,7 @@ export function AiResumeBuilderTool() {
 
             {/* Summary */}
             <div className="space-y-1">
-              <h3 className="text-xs font-bold uppercase tracking-wider text-slate-900 border-b pb-0.5">
+              <h3 className="text-xs font-bold uppercase text-slate-900 border-b pb-0.5">
                 Professional Summary
               </h3>
               <p className="text-slate-700 leading-normal">{summary}</p>
@@ -157,7 +157,7 @@ export function AiResumeBuilderTool() {
 
             {/* Experience */}
             <div className="space-y-2">
-              <h3 className="text-xs font-bold uppercase tracking-wider text-slate-900 border-b pb-0.5">
+              <h3 className="text-xs font-bold uppercase text-slate-900 border-b pb-0.5">
                 Work Experience
               </h3>
               <div className="space-y-3 whitespace-pre-line text-slate-700">
@@ -167,7 +167,7 @@ export function AiResumeBuilderTool() {
 
             {/* Education */}
             <div className="space-y-1">
-              <h3 className="text-xs font-bold uppercase tracking-wider text-slate-900 border-b pb-0.5">
+              <h3 className="text-xs font-bold uppercase text-slate-900 border-b pb-0.5">
                 Education
               </h3>
               <p className="text-slate-700">{education}</p>
@@ -175,7 +175,7 @@ export function AiResumeBuilderTool() {
 
             {/* Skills */}
             <div className="space-y-1">
-              <h3 className="text-xs font-bold uppercase tracking-wider text-slate-900 border-b pb-0.5">
+              <h3 className="text-xs font-bold uppercase text-slate-900 border-b pb-0.5">
                 Core Competencies & Technical Skills
               </h3>
               <p className="text-slate-700">{skills}</p>
@@ -397,17 +397,17 @@ export function GrammarCheckerAdvancedTool() {
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
         <div className="p-3.5 rounded-xl border border-border bg-card space-y-1">
           <span className="text-[11px] font-mono uppercase font-bold text-slate-500">Word Count</span>
-          <p className="text-2xl font-black text-slate-900 font-mono">{analysis.wordCount}</p>
+          <p className="text-2xl font-semibold text-slate-900 font-mono">{analysis.wordCount}</p>
         </div>
 
         <div className="p-3.5 rounded-xl border border-border bg-card space-y-1">
           <span className="text-[11px] font-mono uppercase font-bold text-slate-500">Avg Sentence Length</span>
-          <p className="text-2xl font-black text-slate-900 font-mono">{analysis.avgWordsPerSentence} Words</p>
+          <p className="text-2xl font-semibold text-slate-900 font-mono">{analysis.avgWordsPerSentence} Words</p>
         </div>
 
         <div className="p-3.5 rounded-xl border border-border bg-card space-y-1">
           <span className="text-[11px] font-mono uppercase font-bold text-slate-500">Flagged Suggestions</span>
-          <p className={`text-2xl font-black font-mono ${analysis.issues.length === 0 ? "text-emerald-600" : "text-amber-600"}`}>
+          <p className={`text-2xl font-semibold font-mono ${analysis.issues.length === 0 ? "text-emerald-600" : "text-amber-600"}`}>
             {analysis.issues.length}
           </p>
         </div>

@@ -26,7 +26,7 @@ export function BorderRadiusGeneratorTool() {
       {/* Visual Canvas Box */}
       <div className="p-12 rounded-2xl bg-card border border-border/80 flex items-center justify-center min-h-[340px]">
         <div
-          className="w-56 h-56 brand-gradient-bg shadow-2xl transition-all duration-300 flex items-center justify-center text-white font-heading font-bold text-sm tracking-wide"
+          className="w-56 h-56 brand-gradient-bg shadow-2xl transition-all duration-300 flex items-center justify-center text-white font-heading font-bold text-sm"
           style={{ borderRadius: radiusValue }}
         >
           Zoqonyx Shape
@@ -170,7 +170,7 @@ export function BoxShadowGeneratorTool() {
 
       {/* Preset Quick Badges */}
       <div className="space-y-2">
-        <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+        <label className="text-xs font-semibold text-muted-foreground uppercase">
           Curated Elevation Presets
         </label>
         <div className="flex flex-wrap items-center gap-2">
@@ -379,7 +379,7 @@ export function CssGradientGeneratorTool() {
         className="h-72 rounded-3xl shadow-xl transition-all duration-300 flex items-center justify-center relative overflow-hidden group"
         style={{ background: gradientString }}
       >
-        <div className="px-5 py-2.5 rounded-2xl bg-black/40 backdrop-blur-md text-white font-heading font-bold text-sm tracking-wide shadow-md flex items-center gap-2">
+        <div className="px-5 py-2.5 rounded-2xl bg-black/40 backdrop-blur-md text-white font-heading font-bold text-sm shadow-md flex items-center gap-2">
           <Sparkles className="w-4 h-4 text-cyan-300" />
           <span>Interactive Gradient Studio</span>
         </div>
@@ -396,7 +396,7 @@ export function CssGradientGeneratorTool() {
 
       {/* 12 Curated Presets Bar */}
       <div className="space-y-2">
-        <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+        <label className="text-xs font-semibold text-muted-foreground uppercase">
           Designer Gradient Presets
         </label>
         <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-2">
@@ -731,7 +731,7 @@ gap: ${gap}px;`;
         {items.map((it) => (
           <div
             key={it}
-            className="w-16 h-16 rounded-xl brand-gradient-bg text-white font-heading font-black text-lg flex items-center justify-center shadow-md animate-in fade-in zoom-in duration-150"
+            className="w-16 h-16 rounded-xl brand-gradient-bg text-white font-heading font-semibold text-lg flex items-center justify-center shadow-md animate-in fade-in zoom-in duration-150"
           >
             {it}
           </div>
@@ -968,7 +968,7 @@ gap: ${gap}px;`;
         {Array.from({ length: totalCells }).map((_, idx) => (
           <div
             key={idx}
-            className="rounded-xl border border-brand-cyan/30 bg-gradient-to-br from-brand-cyan/10 to-brand-purple/10 flex items-center justify-center p-4 font-mono font-bold text-sm text-foreground shadow-sm transition-transform hover:scale-105"
+            className="rounded-xl border border-brand-cyan/30 bg-gradient-to-br from-brand-cyan/10 to-brand-purple/10 flex items-center justify-center p-4 font-mono font-bold text-sm text-foreground shadow-sm transition-transform"
           >
             Cell {idx + 1}
           </div>

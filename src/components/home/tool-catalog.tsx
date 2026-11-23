@@ -107,7 +107,7 @@ export function ToolCatalog({ initialTools }: ToolCatalogProps) {
       {!searchQuery && selectedCategory === "All" && (
         <div className="bg-white p-3 rounded-[10px] border border-slate-200/90 shadow-[0_1px_3px_rgba(15,23,42,0.04)] space-y-2">
           <div className="flex items-center justify-between px-0.5">
-            <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500 font-mono">
+            <span className="text-[11px] font-bold uppercase text-slate-500 font-mono">
               Quick Launch • Most Used Utilities
             </span>
             <span className="text-[11px] text-slate-500 font-medium">Instant Browser Launch</span>
@@ -209,20 +209,20 @@ export function ToolCatalog({ initialTools }: ToolCatalogProps) {
                 href={`/tools/${tool.slug}`}
                 className="group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900 rounded-[10px] block h-full"
               >
-                <div className="h-full flex flex-col justify-between p-3.5 rounded-[10px] bg-white border border-slate-200/90 shadow-[0_1px_3px_rgba(15,23,42,0.06),0_1px_2px_rgba(15,23,42,0.04)] hover:shadow-[0_10px_25px_-4px_rgba(15,23,42,0.08),0_4px_10px_-2px_rgba(15,23,42,0.04)] hover:border-slate-400 hover:-translate-y-0.5 transition-all duration-200">
+                <div className="h-full flex flex-col justify-between p-3.5 rounded-[10px] bg-white border border-slate-200/90 shadow-[0_1px_3px_rgba(15,23,42,0.06),0_1px_2px_rgba(15,23,42,0.04)] hover:shadow-[0_10px_25px_-4px_rgba(15,23,42,0.08),0_4px_10px_-2px_rgba(15,23,42,0.04)] hover:border-slate-400 transition-all duration-200">
                   <div className="space-y-2.5">
                     {/* Header: Solid Category Icon + Category / Badge */}
                     <div className="flex items-center justify-between gap-2">
                       <div className="flex items-center gap-2.5">
                         <div
                           className={cn(
-                            "w-8 h-8 rounded-[7px] flex items-center justify-center shrink-0 shadow-xs transition-transform group-hover:scale-105",
+                            "w-8 h-8 rounded-[7px] flex items-center justify-center shrink-0 shadow-xs transition-transform",
                             style.iconBg
                           )}
                         >
                           <ToolIcon name={tool.icon} className="w-4.5 h-4.5 text-white" strokeWidth={2.5} />
                         </div>
-                        <span className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider">
+                        <span className="text-[11px] font-semibold text-slate-500 uppercase">
                           {tool.category}
                         </span>
                       </div>

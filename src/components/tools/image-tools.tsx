@@ -111,7 +111,7 @@ export function ImageFormatConverterTool() {
     <div className="space-y-6">
       {/* Quick Search Intent Presets */}
       <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200/90 space-y-2">
-        <span className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider font-mono">
+        <span className="text-[11px] font-semibold text-slate-500 uppercase font-mono">
           Popular Conversion Tasks
         </span>
         <div className="flex flex-wrap gap-1.5">
@@ -213,7 +213,7 @@ export function ImageFormatConverterTool() {
           {/* Results Grid / List */}
           {convertedResults.length > 0 && (
             <div className="space-y-2 pt-2 border-t border-border/60">
-              <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+              <span className="text-xs font-semibold text-muted-foreground uppercase">
                 Converted Results ({convertedResults.length})
               </span>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 max-h-60 overflow-y-auto pr-1">
@@ -436,7 +436,7 @@ export function ColorPickerTool() {
     <div className="space-y-8">
       {!imageSrc ? (
         <label className="flex flex-col items-center justify-center p-14 border-2 border-dashed border-border/80 hover:border-brand-cyan/70 rounded-3xl cursor-pointer bg-card/60 hover:bg-card transition-all group shadow-sm">
-          <div className="p-4 rounded-2xl bg-brand-cyan/10 text-brand-cyan mb-4 group-hover:scale-110 transition-transform">
+          <div className="p-4 rounded-2xl bg-brand-cyan/10 text-brand-cyan mb-4 transition-transform">
             <Upload className="w-8 h-8" />
           </div>
           <span className="font-heading font-bold text-lg text-foreground">Upload Image for Eyedropper</span>
@@ -457,10 +457,10 @@ export function ColorPickerTool() {
                   style={{ backgroundColor: pickedColor }}
                 />
                 <div className="space-y-0.5">
-                  <span className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">
+                  <span className="text-[11px] font-semibold text-muted-foreground uppercase">
                     Inspected Color
                   </span>
-                  <p className="text-2xl font-heading font-black tracking-wider text-foreground font-mono">
+                  <p className="text-2xl font-heading font-semibold text-foreground font-mono">
                     {pickedColor}
                   </p>
                 </div>
@@ -516,7 +516,7 @@ export function ColorPickerTool() {
                     <button
                       key={idx}
                       onClick={() => updateColorValues(color)}
-                      className="group p-1.5 rounded-xl border border-border/80 hover:border-brand-cyan/70 hover:scale-105 transition-all text-center flex flex-col items-center gap-1.5"
+                      className="group p-1.5 rounded-xl border border-border/80 hover:border-brand-cyan/70 transition-all text-center flex flex-col items-center gap-1.5"
                     >
                       <div
                         className="w-full h-9 rounded-lg border border-black/10 shadow-sm"
@@ -633,7 +633,7 @@ export function ImageRotatorTool() {
     <div className="space-y-6">
       {!imageSrc ? (
         <label className="flex flex-col items-center justify-center p-12 border-2 border-dashed border-border/80 hover:border-brand-cyan/70 rounded-2xl cursor-pointer bg-card/60 transition-all group">
-          <Upload className="w-10 h-10 text-brand-cyan mb-3 group-hover:scale-110 transition-transform" />
+          <Upload className="w-10 h-10 text-brand-cyan mb-3 transition-transform" />
           <span className="font-heading font-semibold text-base text-foreground">Upload Image to Rotate or Flip</span>
           <span className="text-xs text-muted-foreground mt-1">90°, 180°, 270° rotation and horizontal/vertical mirroring</span>
           <input type="file" accept="image/*" onChange={handleUpload} className="hidden" />
@@ -724,7 +724,7 @@ export function ImageToBase64Tool() {
   return (
     <div className="space-y-6">
       <label className="flex flex-col items-center justify-center p-8 border-2 border-dashed border-border/80 hover:border-brand-cyan/70 rounded-2xl cursor-pointer bg-card/60 transition-all group">
-        <Upload className="w-8 h-8 text-brand-cyan mb-2 group-hover:scale-110 transition-transform" />
+        <Upload className="w-8 h-8 text-brand-cyan mb-2 transition-transform" />
         <span className="font-heading font-semibold text-sm text-foreground">
           {fileName ? `Loaded: ${fileName}` : "Upload image to get Base64 string"}
         </span>

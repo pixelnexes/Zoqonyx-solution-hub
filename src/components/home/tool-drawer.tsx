@@ -33,14 +33,14 @@ function ToolRow({ tool, detailed = false, accentColor }: { tool: SerializedTool
   return (
     <Link
       href={`/tools/${tool.slug}`}
-      className={`group flex gap-3 rounded-xl px-2.5 -mx-2.5 transition-colors hover:bg-[#FAF8FF] ${detailed ? "py-3 items-start" : "py-2 items-center"}`}
+      className={`group flex gap-3 rounded-xl px-2.5 -mx-2.5 transition-colors hover:bg-[#F7F8FA] ${detailed ? "py-3 items-start" : "py-2 items-center"}`}
     >
       <span className="shrink-0 inline-flex" style={{ color: accentColor }} aria-hidden="true">
         <ToolIcon name={tool.icon} className="w-[19px] h-[19px]" strokeWidth={2} />
       </span>
       <span className="min-w-0 flex-1">
-        <span className="block font-semibold text-[15px] text-[#1B1340] group-hover:text-[#5B21B6]">{tool.name}</span>
-        {detailed && <span className="block text-sm mt-0.5 leading-snug line-clamp-2 text-[#5C5878]">{tool.description}</span>}
+        <span className="block font-semibold text-[15px] text-[#15171C] group-hover:text-[#5B21B6]">{tool.name}</span>
+        {detailed && <span className="block text-sm mt-0.5 leading-snug line-clamp-2 text-[#5B6270]">{tool.description}</span>}
       </span>
       <ArrowRight className="w-4 h-4 mt-0.5 shrink-0 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-[#7C3AED]" aria-hidden="true" />
     </Link>
@@ -108,7 +108,7 @@ export function ToolDrawer({ tools, perCategory = TOOLS_PER_CATEGORY, detailed =
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder={`Search ${liveTools.length} tools, for example "merge pdf" or "json"`}
-            className="flex-1 min-w-0 bg-transparent border-0 text-base sm:text-lg font-medium text-[#1B1340] placeholder:text-[#7B7699] placeholder:font-normal"
+            className="flex-1 min-w-0 bg-transparent border-0 text-base sm:text-lg font-medium text-[#15171C] placeholder:text-[#6B7280] placeholder:font-normal"
           />
           {query ? (
             <button
@@ -117,13 +117,13 @@ export function ToolDrawer({ tools, perCategory = TOOLS_PER_CATEGORY, detailed =
                 setQuery("");
                 inputRef.current?.focus();
               }}
-              className="shrink-0 inline-flex items-center gap-1 text-sm font-semibold rounded-full px-3 py-1.5 bg-[#FAF8FF] text-[#1B1340] hover:bg-[#E7E1F6]"
+              className="shrink-0 inline-flex items-center gap-1 text-sm font-semibold rounded-full px-3 py-1.5 bg-[#F7F8FA] text-[#15171C] hover:bg-[#E4E7EC]"
             >
               <X className="w-4 h-4" aria-hidden="true" />
               Clear
             </button>
           ) : (
-            <kbd className="hidden sm:inline-flex shrink-0 items-center justify-center w-8 h-8 rounded-lg text-sm font-bold border border-[#E7E1F6] bg-[#FAF8FF] text-[#5C5878]" title="Press / to search">
+            <kbd className="hidden sm:inline-flex shrink-0 items-center justify-center w-8 h-8 rounded-lg text-sm font-bold border border-[#E4E7EC] bg-[#F7F8FA] text-[#5B6270]" title="Press / to search">
               /
             </kbd>
           )}
@@ -132,7 +132,7 @@ export function ToolDrawer({ tools, perCategory = TOOLS_PER_CATEGORY, detailed =
 
       {q ? (
         <div aria-live="polite">
-          <p className="text-sm mb-4 text-[#5C5878]">
+          <p className="text-sm mb-4 text-[#5B6270]">
             {results.length === 0
               ? `No tool matches "${query.trim()}". Try a shorter word, like "pdf" or "image".`
               : `${results.length} ${results.length === 1 ? "tool matches" : "tools match"} "${query.trim()}"`}
@@ -149,7 +149,7 @@ export function ToolDrawer({ tools, perCategory = TOOLS_PER_CATEGORY, detailed =
                       </span>
                       <span className="min-w-0">
                         <span className="block font-bold text-[15px]">{t.name}</span>
-                        <span className="block text-sm mt-0.5 leading-snug line-clamp-2 text-[#5C5878]">{t.description}</span>
+                        <span className="block text-sm mt-0.5 leading-snug line-clamp-2 text-[#5B6270]">{t.description}</span>
                       </span>
                     </Link>
                   </li>
@@ -164,17 +164,17 @@ export function ToolDrawer({ tools, perCategory = TOOLS_PER_CATEGORY, detailed =
             const { Icon, accent } = categoryStyle(g.label);
             return (
               <div key={g.slug} className="zq-card zq-card-hover p-5 sm:p-6 flex flex-col">
-                <div className="flex items-center gap-3 pb-4 mb-2 border-b border-[#E7E1F6]">
+                <div className="flex items-center gap-3 pb-4 mb-2 border-b border-[#E4E7EC]">
                   <span className={`zq-chip ${accent.chip}`} aria-hidden="true">
                     <Icon className="w-6 h-6" />
                   </span>
                   <div className="min-w-0 flex-1">
-                    <h3 className="zq-display text-xl font-extrabold leading-tight">
+                    <h3 className="zq-display text-xl font-semibold leading-tight">
                       <Link href={`/category/${g.slug}`} className="hover:text-[#5B21B6]">
                         {g.label}
                       </Link>
                     </h3>
-                    <p className="text-sm text-[#5C5878]">{g.tools.length} tools</p>
+                    <p className="text-sm text-[#5B6270]">{g.tools.length} tools</p>
                   </div>
                 </div>
                 <ul className="flex-1">

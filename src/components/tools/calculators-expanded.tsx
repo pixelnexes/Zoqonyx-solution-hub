@@ -82,7 +82,7 @@ export function LoanEmiCalculatorTool() {
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-3">
           <div className="p-4 rounded-xl border border-teal-500/20 bg-teal-500/10 text-center">
-            <span className="text-2xl font-black text-teal-400">
+            <span className="text-2xl font-semibold text-teal-400">
               ${results.emi.toLocaleString()}
             </span>
             <p className="text-[11px] text-muted-foreground uppercase font-semibold mt-0.5">
@@ -90,7 +90,7 @@ export function LoanEmiCalculatorTool() {
             </p>
           </div>
           <div className="p-4 rounded-xl border border-border bg-muted/20 text-center">
-            <span className="text-2xl font-black text-foreground">
+            <span className="text-2xl font-semibold text-foreground">
               ${results.totalInterest.toLocaleString()}
             </span>
             <p className="text-[11px] text-muted-foreground uppercase font-semibold mt-0.5">
@@ -98,7 +98,7 @@ export function LoanEmiCalculatorTool() {
             </p>
           </div>
           <div className="p-4 rounded-xl border border-border bg-muted/20 text-center">
-            <span className="text-2xl font-black text-foreground">
+            <span className="text-2xl font-semibold text-foreground">
               ${results.totalPayment.toLocaleString()}
             </span>
             <p className="text-[11px] text-muted-foreground uppercase font-semibold mt-0.5">
@@ -164,7 +164,7 @@ export function TipCalculatorTool() {
 
         <div className="grid grid-cols-2 gap-3 pt-2">
           <div className="p-4 rounded-xl border border-teal-500/20 bg-teal-500/10 text-center">
-            <span className="text-2xl font-black text-teal-400">
+            <span className="text-2xl font-semibold text-teal-400">
               ${perPersonTotal.toFixed(2)}
             </span>
             <p className="text-[11px] text-muted-foreground uppercase font-semibold mt-0.5">
@@ -172,7 +172,7 @@ export function TipCalculatorTool() {
             </p>
           </div>
           <div className="p-4 rounded-xl border border-border bg-muted/20 text-center">
-            <span className="text-2xl font-black text-foreground">
+            <span className="text-2xl font-semibold text-foreground">
               ${perPersonTip.toFixed(2)}
             </span>
             <p className="text-[11px] text-muted-foreground uppercase font-semibold mt-0.5">
@@ -219,13 +219,13 @@ export function DiscountCalculatorTool() {
 
         <div className="grid grid-cols-2 gap-3 pt-2">
           <div className="p-4 rounded-xl border border-teal-500/20 bg-teal-500/10 text-center">
-            <span className="text-3xl font-black text-teal-400">${finalPrice.toFixed(2)}</span>
+            <span className="text-3xl font-semibold text-teal-400">${finalPrice.toFixed(2)}</span>
             <p className="text-[11px] text-muted-foreground uppercase font-semibold mt-0.5">
               Sale Price
             </p>
           </div>
           <div className="p-4 rounded-xl border border-border bg-muted/20 text-center">
-            <span className="text-3xl font-black text-foreground">${savings.toFixed(2)}</span>
+            <span className="text-3xl font-semibold text-foreground">${savings.toFixed(2)}</span>
             <p className="text-[11px] text-muted-foreground uppercase font-semibold mt-0.5">
               You Save
             </p>
@@ -306,7 +306,7 @@ export function CompoundInterestCalculatorTool() {
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
           <div className="p-4 rounded-xl border border-teal-500/20 bg-teal-500/10 text-center">
-            <span className="text-2xl font-black text-teal-400">
+            <span className="text-2xl font-semibold text-teal-400">
               ${results.futureValue.toLocaleString()}
             </span>
             <p className="text-[11px] text-muted-foreground uppercase font-semibold mt-0.5">
@@ -314,7 +314,7 @@ export function CompoundInterestCalculatorTool() {
             </p>
           </div>
           <div className="p-4 rounded-xl border border-border bg-muted/20 text-center">
-            <span className="text-2xl font-black text-foreground">
+            <span className="text-2xl font-semibold text-foreground">
               ${results.totalContributed.toLocaleString()}
             </span>
             <p className="text-[11px] text-muted-foreground uppercase font-semibold mt-0.5">
@@ -322,7 +322,7 @@ export function CompoundInterestCalculatorTool() {
             </p>
           </div>
           <div className="p-4 rounded-xl border border-border bg-muted/20 text-center">
-            <span className="text-2xl font-black text-teal-400">
+            <span className="text-2xl font-semibold text-teal-400">
               ${results.totalInterest.toLocaleString()}
             </span>
             <p className="text-[11px] text-muted-foreground uppercase font-semibold mt-0.5">
@@ -370,13 +370,13 @@ export function SalesTaxCalculatorTool() {
 
         <div className="grid grid-cols-2 gap-3 pt-2">
           <div className="p-4 rounded-xl border border-teal-500/20 bg-teal-500/10 text-center">
-            <span className="text-3xl font-black text-teal-400">${grossAmount.toFixed(2)}</span>
+            <span className="text-3xl font-semibold text-teal-400">${grossAmount.toFixed(2)}</span>
             <p className="text-[11px] text-muted-foreground uppercase font-semibold mt-0.5">
               Gross Total (Including Tax)
             </p>
           </div>
           <div className="p-4 rounded-xl border border-border bg-muted/20 text-center">
-            <span className="text-3xl font-black text-foreground">${taxAmount.toFixed(2)}</span>
+            <span className="text-3xl font-semibold text-foreground">${taxAmount.toFixed(2)}</span>
             <p className="text-[11px] text-muted-foreground uppercase font-semibold mt-0.5">
               Tax Amount
             </p>
@@ -662,7 +662,7 @@ export function GpaCalculatorTool() {
         </div>
 
         <div className="p-4 rounded-xl border border-teal-500/20 bg-teal-500/10 text-center">
-          <span className="text-3xl font-black text-teal-400">{gpa}</span>
+          <span className="text-3xl font-semibold text-teal-400">{gpa}</span>
           <p className="text-[11px] text-muted-foreground uppercase font-semibold mt-0.5">
             Calculated Cumulative GPA ({totalCredits} Credits)
           </p>
@@ -717,13 +717,13 @@ export function FuelCostCalculatorTool() {
 
         <div className="grid grid-cols-2 gap-3 pt-2">
           <div className="p-4 rounded-xl border border-teal-500/20 bg-teal-500/10 text-center">
-            <span className="text-3xl font-black text-teal-400">${cost.toFixed(2)}</span>
+            <span className="text-3xl font-semibold text-teal-400">${cost.toFixed(2)}</span>
             <p className="text-[11px] text-muted-foreground uppercase font-semibold mt-0.5">
               Total Trip Fuel Cost
             </p>
           </div>
           <div className="p-4 rounded-xl border border-border bg-muted/20 text-center">
-            <span className="text-3xl font-black text-foreground">{gallons.toFixed(1)} gal</span>
+            <span className="text-3xl font-semibold text-foreground">{gallons.toFixed(1)} gal</span>
             <p className="text-[11px] text-muted-foreground uppercase font-semibold mt-0.5">
               Fuel Needed
             </p>
@@ -766,7 +766,7 @@ export function TimeDurationCalculatorTool() {
         </div>
 
         <div className="p-4 rounded-xl border border-teal-500/20 bg-teal-500/10 text-center">
-          <span className="text-3xl font-black text-teal-400">
+          <span className="text-3xl font-semibold text-teal-400">
             {diff.hours} hrs {diff.minutes} mins
           </span>
           <p className="text-[11px] text-muted-foreground uppercase font-semibold mt-0.5">

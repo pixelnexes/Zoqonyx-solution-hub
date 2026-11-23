@@ -99,7 +99,7 @@ export default async function BlogPostPage({ params }: Props) {
 
       <section className="zq-hero-light">
         <div className="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 pt-8 sm:pt-10 pb-12 text-center">
-          <nav aria-label="Breadcrumb" className="text-sm text-[#5C5878]">
+          <nav aria-label="Breadcrumb" className="text-sm text-[#5B6270]">
             <ol className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1">
               <li>
                 <Link href="/" className="hover:underline underline-offset-4">
@@ -113,15 +113,15 @@ export default async function BlogPostPage({ params }: Props) {
                 </Link>
               </li>
               <li aria-hidden="true">/</li>
-              <li aria-current="page" className="max-w-[14rem] truncate font-semibold text-[#1B1340] sm:max-w-md">
+              <li aria-current="page" className="max-w-[14rem] truncate font-semibold text-[#15171C] sm:max-w-md">
                 {post.title}
               </li>
             </ol>
           </nav>
-          <p className="mt-6 inline-flex rounded-md bg-[#7C3AED] px-3 py-1 text-sm font-semibold text-white">{post.category}</p>
-          <h1 className="zq-in-solid zq-display mt-4 text-3xl sm:text-5xl font-extrabold leading-[1.08] text-[#1B1340]">{post.title}</h1>
-          <p className="zq-in zq-lead-answer mx-auto mt-4 max-w-2xl text-[18px] leading-relaxed text-[#5C5878]">{post.excerpt}</p>
-          <p className="mt-5 text-sm text-[#5C5878]">
+          <p className="mt-6 inline-flex rounded-md bg-[#15171C] px-3 py-1 text-sm font-semibold text-white">{post.category}</p>
+          <h1 className="zq-in-solid zq-display mt-4 text-3xl sm:text-5xl font-semibold leading-[1.08] text-[#15171C]">{post.title}</h1>
+          <p className="zq-in zq-lead-answer mx-auto mt-4 max-w-2xl text-[18px] leading-relaxed text-[#5B6270]">{post.excerpt}</p>
+          <p className="mt-5 text-sm text-[#5B6270]">
             By {post.authorName} · {fmt(post.publishedAt)} · {readingMinutes(post.content)} min read
           </p>
         </div>
@@ -129,9 +129,9 @@ export default async function BlogPostPage({ params }: Props) {
 
       <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 pb-16 grid grid-cols-1 gap-12 lg:grid-cols-[minmax(0,46rem)_1fr]">
         <article className="-mt-2">
-          <BlogCover seed={post.slug} category={post.category} className="h-56 w-full rounded-xl shadow-[0_24px_60px_-34px_rgba(76,29,149,.55)] sm:h-80" />
+          <BlogCover seed={post.slug} category={post.category} className="h-56 w-full rounded-xl shadow-[0_24px_60px_-34px_rgba(21,23,28,.55)] sm:h-80" />
           <div className="zq-prose mt-8 text-[17px] leading-[1.75]">{renderMarkdown(post.content)}</div>
-          <p className="mt-10 border-t border-[#E7E1F6] pt-5 text-sm text-[#5C5878]">
+          <p className="mt-10 border-t border-[#E4E7EC] pt-5 text-sm text-[#5B6270]">
             Written by {post.authorName}. Last updated {fmt(post.updatedAt)}.
           </p>
         </article>
@@ -140,11 +140,11 @@ export default async function BlogPostPage({ params }: Props) {
           <div className="sticky top-24 space-y-5">
             {headings.length >= 3 && (
               <nav aria-label="On this page" className="zq-card p-5 text-[15px]">
-                <p className="mb-2 font-bold">On this page</p>
-                <ul className="space-y-1.5 border-l-2 border-[#E7E1F6]">
+                <p className="mb-2 font-semibold">On this page</p>
+                <ul className="space-y-1.5 border-l-2 border-[#E4E7EC]">
                   {headings.map((h) => (
                     <li key={h.id}>
-                      <a href={`#${h.id}`} className="block pl-3 text-[#5C5878] hover:text-[#5B21B6] hover:underline underline-offset-4">
+                      <a href={`#${h.id}`} className="block pl-3 text-[#5B6270] hover:text-[#5B21B6] hover:underline underline-offset-4">
                         {h.text}
                       </a>
                     </li>
@@ -152,8 +152,8 @@ export default async function BlogPostPage({ params }: Props) {
                 </ul>
               </nav>
             )}
-            <div className="rounded-xl bg-[#1B1340] p-5 text-white">
-              <p className="zq-display text-lg font-extrabold leading-snug">Need help with this?</p>
+            <div className="rounded-xl bg-[#15171C] p-5 text-white">
+              <p className="zq-display text-lg font-semibold leading-snug">Need help with this?</p>
               <p className="mt-2 text-[15px] zq-on-dark-muted">Tell us what you are working on and we reply with next steps.</p>
               <a href="#contact" className="zq-btn zq-btn-sun mt-4 w-full">
                 Get a quote
@@ -175,8 +175,8 @@ export default async function BlogPostPage({ params }: Props) {
                   <Link href={`/blog/${r.slug}`} className="zq-card zq-card-hover group flex h-full flex-col overflow-hidden">
                     <BlogCover seed={r.slug} category={r.category} className="h-40 w-full" />
                     <span className="p-5">
-                      <span className="block text-[17px] font-bold leading-snug group-hover:text-[#5B21B6]">{r.title}</span>
-                      <span className="mt-1.5 block text-sm text-[#5C5878] line-clamp-2">{r.excerpt}</span>
+                      <span className="block text-[17px] font-semibold leading-snug group-hover:text-[#5B21B6]">{r.title}</span>
+                      <span className="mt-1.5 block text-sm text-[#5B6270] line-clamp-2">{r.excerpt}</span>
                     </span>
                   </Link>
                 </li>

@@ -60,7 +60,7 @@ export function ReadingTimeTool() {
               </div>
               <div className="p-2.5 rounded-lg border border-teal-500/40 bg-teal-500/5 text-center">
                 <span className="text-[10px] text-teal-400 font-bold block">Average (230 wpm)</span>
-                <span className="text-sm font-extrabold text-teal-400 mt-0.5 block">{avgReadMin} min</span>
+                <span className="text-sm font-semibold text-teal-400 mt-0.5 block">{avgReadMin} min</span>
               </div>
               <div className="p-2.5 rounded-lg border border-border bg-card text-center">
                 <span className="text-[10px] text-muted-foreground block">Fast (300 wpm)</span>
@@ -82,7 +82,7 @@ export function ReadingTimeTool() {
               </div>
               <div className="p-2.5 rounded-lg border border-teal-500/40 bg-teal-500/5 text-center">
                 <span className="text-[10px] text-teal-400 font-bold block">Speech (150 wpm)</span>
-                <span className="text-sm font-extrabold text-teal-400 mt-0.5 block">{avgSpeechMin} min</span>
+                <span className="text-sm font-semibold text-teal-400 mt-0.5 block">{avgSpeechMin} min</span>
               </div>
               <div className="p-2.5 rounded-lg border border-border bg-card text-center">
                 <span className="text-[10px] text-muted-foreground block">Fast (180 wpm)</span>
@@ -96,19 +96,19 @@ export function ReadingTimeTool() {
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2 border-t border-border">
           <div className="p-3 rounded-lg border border-border bg-muted/10 text-center">
             <span className="text-[10px] font-bold text-muted-foreground uppercase">Words</span>
-            <span className="text-xl font-black text-foreground block mt-0.5">{words}</span>
+            <span className="text-xl font-semibold text-foreground block mt-0.5">{words}</span>
           </div>
           <div className="p-3 rounded-lg border border-border bg-muted/10 text-center">
             <span className="text-[10px] font-bold text-muted-foreground uppercase">Sentences</span>
-            <span className="text-xl font-black text-foreground block mt-0.5">{sentences}</span>
+            <span className="text-xl font-semibold text-foreground block mt-0.5">{sentences}</span>
           </div>
           <div className="p-3 rounded-lg border border-border bg-muted/10 text-center">
             <span className="text-[10px] font-bold text-muted-foreground uppercase">Paragraphs</span>
-            <span className="text-xl font-black text-foreground block mt-0.5">{paragraphs}</span>
+            <span className="text-xl font-semibold text-foreground block mt-0.5">{paragraphs}</span>
           </div>
           <div className="p-3 rounded-lg border border-border bg-muted/10 text-center">
             <span className="text-[10px] font-bold text-muted-foreground uppercase">Avg Words / Sentence</span>
-            <span className="text-xl font-black text-foreground block mt-0.5">
+            <span className="text-xl font-semibold text-foreground block mt-0.5">
               {sentences > 0 ? (words / sentences).toFixed(1) : words}
             </span>
           </div>

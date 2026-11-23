@@ -203,7 +203,7 @@ export function TextShadowGeneratorTool() {
         <div className="flex items-center justify-center p-12 rounded-2xl bg-slate-950 border border-border min-h-[200px]">
           <span
             style={{ textShadow }}
-            className="text-5xl sm:text-6xl font-black text-white tracking-widest transition-all"
+            className="text-5xl sm:text-6xl font-semibold text-white transition-all"
           >
             {text}
           </span>
@@ -280,7 +280,7 @@ export function ColorPaletteGeneratorTool() {
           {palette.map((col, idx) => (
             <div
               key={idx}
-              className="h-36 rounded-xl flex flex-col justify-end p-3 transition-transform hover:scale-[1.02] cursor-pointer shadow-md"
+              className="h-36 rounded-xl flex flex-col justify-end p-3 transition-transform cursor-pointer shadow-md"
               style={{ backgroundColor: col }}
               onClick={() => navigator.clipboard.writeText(col)}
               title="Click to copy HEX"

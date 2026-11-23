@@ -556,7 +556,7 @@ export function PasswordGeneratorTool() {
   return (
     <div className="space-y-6">
       <div className="p-6 rounded-2xl bg-card border border-border/80 flex flex-wrap items-center justify-between gap-4">
-        <span className="font-mono text-xl sm:text-2xl font-bold tracking-wider text-brand-cyan select-all break-all">
+        <span className="font-mono text-xl sm:text-2xl font-bold text-brand-cyan select-all break-all">
           {password}
         </span>
         <div className="flex items-center gap-2">
@@ -648,27 +648,27 @@ export function WordCounterTool() {
     <div className="space-y-6">
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
         <div className="p-4 rounded-xl bg-card border border-border/80 text-center">
-          <p className="text-2xl font-heading font-black text-brand-cyan">{words}</p>
+          <p className="text-2xl font-heading font-semibold text-brand-cyan">{words}</p>
           <p className="text-[11px] font-semibold text-muted-foreground uppercase">Words</p>
         </div>
         <div className="p-4 rounded-xl bg-card border border-border/80 text-center">
-          <p className="text-2xl font-heading font-black text-brand-purple">{chars}</p>
+          <p className="text-2xl font-heading font-semibold text-brand-purple">{chars}</p>
           <p className="text-[11px] font-semibold text-muted-foreground uppercase">Characters</p>
         </div>
         <div className="p-4 rounded-xl bg-card border border-border/80 text-center">
-          <p className="text-2xl font-heading font-black text-foreground">{charsNoSpaces}</p>
+          <p className="text-2xl font-heading font-semibold text-foreground">{charsNoSpaces}</p>
           <p className="text-[11px] font-semibold text-muted-foreground uppercase">No Spaces</p>
         </div>
         <div className="p-4 rounded-xl bg-card border border-border/80 text-center">
-          <p className="text-2xl font-heading font-black text-foreground">{sentences}</p>
+          <p className="text-2xl font-heading font-semibold text-foreground">{sentences}</p>
           <p className="text-[11px] font-semibold text-muted-foreground uppercase">Sentences</p>
         </div>
         <div className="p-4 rounded-xl bg-card border border-border/80 text-center">
-          <p className="text-2xl font-heading font-black text-foreground">{paragraphs}</p>
+          <p className="text-2xl font-heading font-semibold text-foreground">{paragraphs}</p>
           <p className="text-[11px] font-semibold text-muted-foreground uppercase">Paragraphs</p>
         </div>
         <div className="p-4 rounded-xl bg-card border border-border/80 text-center">
-          <p className="text-2xl font-heading font-black text-emerald-500">~{readingTimeMin} min</p>
+          <p className="text-2xl font-heading font-semibold text-emerald-500">~{readingTimeMin} min</p>
           <p className="text-[11px] font-semibold text-muted-foreground uppercase">Reading Time</p>
         </div>
       </div>
@@ -1051,7 +1051,7 @@ export function DiffCheckerTool() {
       {/* Comparison Display */}
       <div className="p-5 rounded-2xl bg-card border border-border/80 space-y-4">
         <div className="flex flex-wrap items-center justify-between gap-2">
-          <h4 className="text-xs font-bold text-muted-foreground uppercase tracking-wider">
+          <h4 className="text-xs font-bold text-muted-foreground uppercase">
             {viewMode === "split" ? "Side-by-Side Line Comparison" : "Unified Difference View"}
           </h4>
 

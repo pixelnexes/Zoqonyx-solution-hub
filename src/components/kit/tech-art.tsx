@@ -34,8 +34,8 @@ export function OrbRing({ className = "" }: { className?: string }) {
 function BarCard({ className = "" }: { className?: string }) {
   const bars = [38, 62, 48, 80, 58, 92, 70];
   return (
-    <div className={`rounded-xl border border-[#E7E1F6] bg-white p-4 shadow-[0_26px_60px_-30px_rgba(76,29,149,.45)] ${className}`}>
-      <p className="text-left text-[13px] font-semibold text-[#5C5878]">Website traffic</p>
+    <div className={`rounded-xl border border-[#E4E7EC] bg-white p-4 shadow-[0_26px_60px_-30px_rgba(21,23,28,.45)] ${className}`}>
+      <p className="text-left text-[13px] font-semibold text-[#5B6270]">Website traffic</p>
       <div className="mt-3 flex h-24 items-end gap-2">
         {bars.map((h, i) => (
           <span key={i} className="flex-1 rounded-t-md" style={{ height: `${h}%`, background: i === 5 ? "linear-gradient(180deg,#8B5CF6,#6D28D9)" : "#E4DAFB" }} />
@@ -47,14 +47,14 @@ function BarCard({ className = "" }: { className?: string }) {
 
 function RingCard({ className = "" }: { className?: string }) {
   return (
-    <div className={`flex items-center gap-4 rounded-xl border border-[#E7E1F6] bg-white p-4 shadow-[0_26px_60px_-30px_rgba(76,29,149,.45)] ${className}`}>
-      <span className="relative grid h-20 w-20 shrink-0 place-items-center rounded-full" style={{ background: "conic-gradient(#7C3AED 0 72%, #EFE9FD 72% 100%)" }}>
+    <div className={`flex items-center gap-4 rounded-xl border border-[#E4E7EC] bg-white p-4 shadow-[0_26px_60px_-30px_rgba(21,23,28,.45)] ${className}`}>
+      <span className="relative grid h-20 w-20 shrink-0 place-items-center rounded-full" style={{ background: "conic-gradient(#7C3AED 0 72%, #F1F3F6 72% 100%)" }}>
         <span className="h-14 w-14 rounded-full bg-white" />
       </span>
       <div className="text-left">
-        <p className="text-[13px] font-semibold text-[#5C5878]">Goal progress</p>
-        <p className="mt-1 h-2 w-24 rounded-full bg-[#EFE9FD]" />
-        <p className="mt-2 h-2 w-16 rounded-full bg-[#EFE9FD]" />
+        <p className="text-[13px] font-semibold text-[#5B6270]">Goal progress</p>
+        <p className="mt-1 h-2 w-24 rounded-full bg-[#F1F3F6]" />
+        <p className="mt-2 h-2 w-16 rounded-full bg-[#F1F3F6]" />
       </div>
     </div>
   );
@@ -62,8 +62,8 @@ function RingCard({ className = "" }: { className?: string }) {
 
 function LineCard({ className = "" }: { className?: string }) {
   return (
-    <div className={`rounded-xl border border-[#E7E1F6] bg-white p-4 shadow-[0_26px_60px_-30px_rgba(76,29,149,.45)] ${className}`}>
-      <p className="text-left text-[13px] font-semibold text-[#5C5878]">Growth</p>
+    <div className={`rounded-xl border border-[#E4E7EC] bg-white p-4 shadow-[0_26px_60px_-30px_rgba(21,23,28,.45)] ${className}`}>
+      <p className="text-left text-[13px] font-semibold text-[#5B6270]">Growth</p>
       <svg viewBox="0 0 220 80" className="mt-2 w-full" fill="none" aria-hidden="true">
         <defs>
           <linearGradient id="ln-fill" x1="0" y1="0" x2="0" y2="1">
@@ -80,7 +80,7 @@ function LineCard({ className = "" }: { className?: string }) {
 
 function CodeCard({ className = "" }: { className?: string }) {
   return (
-    <div className={`overflow-hidden rounded-xl bg-[#1B1340] shadow-[0_26px_60px_-26px_rgba(27,19,64,.7)] ${className}`}>
+    <div className={`overflow-hidden rounded-xl bg-[#15171C] shadow-[0_26px_60px_-26px_rgba(21,23,28,.7)] ${className}`}>
       <div className="flex gap-1.5 px-3 py-2.5">
         <span className="h-2.5 w-2.5 rounded-full bg-[#FB7185]" />
         <span className="h-2.5 w-2.5 rounded-full bg-[#FBBF24]" />

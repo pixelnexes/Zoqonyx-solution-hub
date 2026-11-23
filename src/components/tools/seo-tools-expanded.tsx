@@ -483,7 +483,7 @@ export function HttpStatusCodesTool() {
             >
               <div className="flex items-center gap-2.5">
                 <span
-                  className={`px-2 py-0.5 rounded text-xs font-mono font-black ${
+                  className={`px-2 py-0.5 rounded text-xs font-mono font-semibold ${
                     c.code < 300
                       ? "bg-teal-500/10 text-teal-400"
                       : c.code < 400

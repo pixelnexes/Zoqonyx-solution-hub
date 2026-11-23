@@ -306,10 +306,10 @@ export function ImageUpscalerTool() {
               className="absolute inset-0 w-full h-full opacity-0 cursor-ew-resize z-20"
             />
 
-            <span className="absolute bottom-2 left-2 px-2 py-0.5 rounded bg-black/70 text-white text-[10px] font-bold uppercase tracking-wider">
+            <span className="absolute bottom-2 left-2 px-2 py-0.5 rounded bg-black/70 text-white text-[10px] font-bold uppercase">
               Original ({dimensions.w}px)
             </span>
-            <span className="absolute bottom-2 right-2 px-2 py-0.5 rounded bg-teal-950/80 text-teal-300 border border-teal-500/30 text-[10px] font-bold uppercase tracking-wider">
+            <span className="absolute bottom-2 right-2 px-2 py-0.5 rounded bg-teal-950/80 text-teal-300 border border-teal-500/30 text-[10px] font-bold uppercase">
               {scale}x Enhanced ({dimensions.newW}px)
             </span>
           </div>

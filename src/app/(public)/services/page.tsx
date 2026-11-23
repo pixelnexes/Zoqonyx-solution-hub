@@ -65,19 +65,19 @@ export default async function ServicesPage() {
           const { Icon, accent } = serviceStyle(hub.slug);
           const flip = i % 2 === 1;
           return (
-            <section key={hub.slug} aria-labelledby={`g-${hub.slug}`} className={i % 2 === 0 ? "bg-white" : "bg-[#FAF8FF]"}>
+            <section key={hub.slug} aria-labelledby={`g-${hub.slug}`} className={i % 2 === 0 ? "bg-white" : "bg-[#F7F8FA]"}>
               <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 zq-section grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
                 <Reveal className={flip ? "lg:order-2" : ""}>
-                  <TechScene group={hub.group} className="h-72 sm:h-96 shadow-[0_24px_60px_-34px_rgba(76,29,149,.55)]" />
+                  <TechScene group={hub.group} className="h-72 sm:h-96 shadow-[0_24px_60px_-34px_rgba(21,23,28,.55)]" />
                 </Reveal>
                 <div>
                   <span className={`zq-chip ${accent.chip}`}>
                     <Icon className="w-6 h-6" aria-hidden="true" />
                   </span>
-                  <h2 id={`g-${hub.slug}`} className="zq-display mt-4 text-3xl sm:text-4xl font-extrabold leading-tight">
+                  <h2 id={`g-${hub.slug}`} className="zq-display mt-4 text-3xl sm:text-4xl font-semibold leading-tight">
                     {hub.name}
                   </h2>
-                  <p className="mt-3 text-[17px] leading-relaxed text-[#5C5878]">{hub.shortDesc}</p>
+                  <p className="mt-3 text-[17px] leading-relaxed text-[#5B6270]">{hub.shortDesc}</p>
                   {children.length > 0 && (
                     <ul className="mt-6 space-y-3">
                       {children.map((c) => (

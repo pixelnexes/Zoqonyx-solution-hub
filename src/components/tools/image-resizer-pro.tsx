@@ -228,7 +228,7 @@ export function ImageResizerProTool() {
       {!imageSrc ? (
         <div className="space-y-6">
           <label className="flex flex-col items-center justify-center p-14 border-2 border-dashed border-border/80 hover:border-brand-cyan/70 rounded-3xl cursor-pointer bg-card/60 hover:bg-card transition-all group shadow-sm">
-            <div className="p-4 rounded-2xl bg-brand-cyan/10 text-brand-cyan mb-4 group-hover:scale-110 transition-transform">
+            <div className="p-4 rounded-2xl bg-brand-cyan/10 text-brand-cyan mb-4 transition-transform">
               <Upload className="w-8 h-8" />
             </div>
             <span className="font-heading font-bold text-lg text-foreground">Upload Image to Resize</span>
@@ -240,7 +240,7 @@ export function ImageResizerProTool() {
 
           {/* Social Presets Showcase */}
           <div className="p-6 rounded-2xl bg-card border border-border/80 space-y-3">
-            <h4 className="text-xs font-bold text-muted-foreground uppercase tracking-wider">
+            <h4 className="text-xs font-bold text-muted-foreground uppercase">
               Supported 1-Click Social Media Presets
             </h4>
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
@@ -477,38 +477,38 @@ export function ImageResizerProTool() {
                   {/* Top-Left Corner Handle */}
                   <div
                     onMouseDown={(e) => startDrag("nw", e)}
-                    className="absolute -top-2.5 -left-2.5 w-5 h-5 rounded-full bg-brand-cyan border-2 border-white shadow-md cursor-nwse-resize hover:scale-125 transition-transform"
+                    className="absolute -top-2.5 -left-2.5 w-5 h-5 rounded-full bg-brand-cyan border-2 border-white shadow-md cursor-nwse-resize transition-transform"
                     title="Drag to resize"
                   />
                   {/* Top-Right Corner Handle */}
                   <div
                     onMouseDown={(e) => startDrag("ne", e)}
-                    className="absolute -top-2.5 -right-2.5 w-5 h-5 rounded-full bg-brand-cyan border-2 border-white shadow-md cursor-nesw-resize hover:scale-125 transition-transform"
+                    className="absolute -top-2.5 -right-2.5 w-5 h-5 rounded-full bg-brand-cyan border-2 border-white shadow-md cursor-nesw-resize transition-transform"
                     title="Drag to resize"
                   />
                   {/* Bottom-Left Corner Handle */}
                   <div
                     onMouseDown={(e) => startDrag("sw", e)}
-                    className="absolute -bottom-2.5 -left-2.5 w-5 h-5 rounded-full bg-brand-cyan border-2 border-white shadow-md cursor-nesw-resize hover:scale-125 transition-transform"
+                    className="absolute -bottom-2.5 -left-2.5 w-5 h-5 rounded-full bg-brand-cyan border-2 border-white shadow-md cursor-nesw-resize transition-transform"
                     title="Drag to resize"
                   />
                   {/* Bottom-Right Corner Handle */}
                   <div
                     onMouseDown={(e) => startDrag("se", e)}
-                    className="absolute -bottom-2.5 -right-2.5 w-5 h-5 rounded-full bg-brand-cyan border-2 border-white shadow-md cursor-nwse-resize hover:scale-125 transition-transform"
+                    className="absolute -bottom-2.5 -right-2.5 w-5 h-5 rounded-full bg-brand-cyan border-2 border-white shadow-md cursor-nwse-resize transition-transform"
                     title="Drag to resize"
                   />
 
                   {/* Right Edge Handle */}
                   <div
                     onMouseDown={(e) => startDrag("e", e)}
-                    className="absolute top-1/2 -right-2 w-3.5 h-7 -translate-y-1/2 rounded bg-brand-cyan border border-white shadow-md cursor-ew-resize hover:scale-110 transition-transform"
+                    className="absolute top-1/2 -right-2 w-3.5 h-7 -translate-y-1/2 rounded bg-brand-cyan border border-white shadow-md cursor-ew-resize transition-transform"
                     title="Drag width"
                   />
                   {/* Bottom Edge Handle */}
                   <div
                     onMouseDown={(e) => startDrag("s", e)}
-                    className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-7 h-3.5 rounded bg-brand-cyan border border-white shadow-md cursor-ns-resize hover:scale-110 transition-transform"
+                    className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-7 h-3.5 rounded bg-brand-cyan border border-white shadow-md cursor-ns-resize transition-transform"
                     title="Drag height"
                   />
                 </div>

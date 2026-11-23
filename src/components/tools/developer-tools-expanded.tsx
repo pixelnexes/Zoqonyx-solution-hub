@@ -957,7 +957,7 @@ export function CronExpressionGeneratorTool() {
         </div>
 
         <div className="p-4 rounded-xl border border-teal-500/20 bg-teal-500/10 space-y-1">
-          <span className="text-[11px] font-bold uppercase tracking-wider text-teal-400">Schedule Plain English Meaning</span>
+          <span className="text-[11px] font-bold uppercase text-teal-400">Schedule Plain English Meaning</span>
           <p className="text-sm font-semibold text-foreground">{explanation}</p>
         </div>
 

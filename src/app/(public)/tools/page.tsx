@@ -182,11 +182,11 @@ export default async function ToolsPage() {
             <div className="mt-6 space-y-3">
               {TOOLS_PAGE_FAQS.map((faq, i) => (
                 <details key={i} className="zq-card group p-0">
-                  <summary className="flex cursor-pointer list-none items-center justify-between gap-4 p-5 text-[17px] font-bold [&::-webkit-details-marker]:hidden">
+                  <summary className="flex cursor-pointer list-none items-center justify-between gap-4 p-5 text-[17px] font-semibold [&::-webkit-details-marker]:hidden">
                     {faq.q}
                     <ChevronDown className="w-5 h-5 shrink-0 text-[#7C3AED] transition-transform group-open:rotate-180" aria-hidden="true" />
                   </summary>
-                  <p className="px-5 pb-5 text-[16px] leading-relaxed text-[#5C5878]">{faq.a}</p>
+                  <p className="px-5 pb-5 text-[16px] leading-relaxed text-[#5B6270]">{faq.a}</p>
                 </details>
               ))}
             </div>

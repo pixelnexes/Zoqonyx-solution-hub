@@ -71,7 +71,7 @@ export function ComingSoonToolView({ tool, relatedTools }: ComingSoonToolViewPro
             <div className="p-2.5 rounded-md bg-teal-50 text-teal-700 border border-teal-200">
               <ToolIcon name={tool.icon} className="w-6 h-6" />
             </div>
-            <h1 className="text-2xl sm:text-3xl font-heading font-black text-slate-900 tracking-tight">
+            <h1 className="text-2xl sm:text-3xl font-heading font-semibold text-slate-900 tracking-tight">
               {tool.name}
             </h1>
           </div>

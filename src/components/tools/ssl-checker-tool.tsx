@@ -117,7 +117,7 @@ export function SslCheckerTool() {
 
               {data.isValid && (
                 <div className="text-right shrink-0">
-                  <span className="text-2xl font-black text-teal-400">{data.daysRemaining}</span>
+                  <span className="text-2xl font-semibold text-teal-400">{data.daysRemaining}</span>
                   <p className="text-[10px] text-muted-foreground uppercase font-bold">Days Remaining</p>
                 </div>
               )}

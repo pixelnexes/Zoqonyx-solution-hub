@@ -5,7 +5,7 @@ import { Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const field =
-  "w-full rounded-xl border border-[#E7E1F6] bg-[#FAF8FF] px-3.5 py-2.5 text-[15px] text-[#1B1340] placeholder:text-[#7B7699] focus:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-[#7C3AED]";
+  "w-full rounded-xl border border-[#E4E7EC] bg-[#F7F8FA] px-3.5 py-2.5 text-[15px] text-[#15171C] placeholder:text-[#6B7280] focus:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-[#7C3AED]";
 
 export function ReviewForm() {
   const [rating, setRating] = React.useState(0);
@@ -38,9 +38,9 @@ export function ReviewForm() {
 
   if (status === "done") {
     return (
-      <div role="status" className="rounded-2xl border border-[#DDD0FA] bg-[#F1EBFF] p-6">
-        <h3 className="text-xl font-bold text-[#1B1340]">Thank you for your review.</h3>
-        <p className="mt-2 text-[15px] text-[#5C5878]">We read every review before it appears on the site.</p>
+      <div role="status" className="rounded-2xl border border-[#E4E7EC] bg-[#F1F3F6] p-6">
+        <h3 className="text-xl font-semibold text-[#15171C]">Thank you for your review.</h3>
+        <p className="mt-2 text-[15px] text-[#5B6270]">We read every review before it appears on the site.</p>
       </div>
     );
   }
@@ -75,7 +75,7 @@ export function ReviewForm() {
         </div>
         <div>
           <label htmlFor="rv-role" className="mb-1 block text-sm font-semibold">
-            Role and company <span className="font-normal text-[#5C5878]">(optional)</span>
+            Role and company <span className="font-normal text-[#5B6270]">(optional)</span>
           </label>
           <input id="rv-role" name="role" placeholder="Founder, Acme" className={field} />
         </div>
@@ -94,7 +94,7 @@ export function ReviewForm() {
         <Button type="submit" disabled={status === "sending"} className="zq-btn zq-btn-indigo h-11 px-6 text-[15px]">
           {status === "sending" ? "Sending…" : "Submit review"}
         </Button>
-        <p className="text-sm text-[#5C5878]">Reviews are checked before they are published.</p>
+        <p className="text-sm text-[#5B6270]">Reviews are checked before they are published.</p>
       </div>
       {status === "error" && (
         <p role="alert" className="text-sm text-rose-700">

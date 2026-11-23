@@ -99,7 +99,7 @@ export function ContrastCheckerTool() {
           className="p-8 rounded-xl border border-border/40 shadow-md space-y-3 transition-colors"
           style={{ backgroundColor: bg, color: fg }}
         >
-          <h3 className="text-2xl font-black">WCAG Accessibility Contrast Preview</h3>
+          <h3 className="text-2xl font-semibold">WCAG Accessibility Contrast Preview</h3>
           <p className="text-sm opacity-90">
             Good contrast ensures your typography is legible for individuals with visual impairments or color vision deficiencies.
           </p>
@@ -118,7 +118,7 @@ export function ContrastCheckerTool() {
           <div className="text-center md:text-left">
             <span className="text-[11px] font-bold text-muted-foreground uppercase">Contrast Ratio</span>
             <div className="flex items-baseline gap-2 justify-center md:justify-start">
-              <span className="text-4xl font-black text-teal-400">{score}</span>
+              <span className="text-4xl font-semibold text-teal-400">{score}</span>
               <span className="text-lg text-muted-foreground font-semibold">: 1</span>
             </div>
           </div>

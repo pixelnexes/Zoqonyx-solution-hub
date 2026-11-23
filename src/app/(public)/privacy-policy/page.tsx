@@ -74,8 +74,8 @@ export default async function PrivacyPolicyPage() {
               <span className={`zq-chip zq-chip-sm ${x.g}`} aria-hidden="true">
                 <x.I className="w-[18px] h-[18px]" />
               </span>
-              <p className="mt-3 text-[16px] font-bold">{x.t}</p>
-              <p className="text-sm text-[#5C5878]">{x.d}</p>
+              <p className="mt-3 text-[16px] font-semibold">{x.t}</p>
+              <p className="text-sm text-[#5B6270]">{x.d}</p>
             </li>
           ))}
         </ul>

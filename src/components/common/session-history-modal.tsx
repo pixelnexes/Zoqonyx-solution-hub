@@ -37,7 +37,7 @@ export function SessionHistoryModal() {
     <>
       <button
         onClick={() => setIsOpen(true)}
-        className="relative inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium text-[#1B1340]/80 hover:text-[#1B1340] hover:bg-[#F3EEFF] transition-colors border border-[#D9D0F0]"
+        className="relative inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium text-[#15171C]/80 hover:text-[#15171C] hover:bg-[#F1F3F6] transition-colors border border-[#D9D0F0]"
         title="View session activity (cleared on tab close)"
       >
         <History className="w-3.5 h-3.5 text-[#7C3AED]" />

@@ -113,7 +113,7 @@ export function MergePdfTool() {
       {files.length > 0 && (
         <div className="space-y-4 p-5 rounded-2xl bg-card border border-border">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+            <span className="text-xs font-semibold text-muted-foreground uppercase">
               {files.length} Document(s) Loaded — Adjust Merge Order
             </span>
           </div>
@@ -743,7 +743,7 @@ export function PdfPageCounterTool() {
               <p className="text-xs text-muted-foreground">{files.length} document(s) uploaded</p>
             </div>
             <div className="text-right">
-              <span className="text-2xl font-black text-teal-400">{totalPages}</span>
+              <span className="text-2xl font-semibold text-teal-400">{totalPages}</span>
               <p className="text-[10px] text-muted-foreground uppercase font-bold">Total Pages</p>
             </div>
           </div>

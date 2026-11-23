@@ -58,10 +58,10 @@ export default async function BlogPage() {
             <Link href={`/blog/${first.slug}`} className="zq-card zq-card-hover group -mt-24 grid grid-cols-1 overflow-hidden md:grid-cols-[1.1fr_1fr] relative">
               <BlogCover seed={first.slug} category={first.category} className="h-60 w-full md:h-full" />
               <div className="flex flex-col justify-center p-6 sm:p-10">
-                <span className="w-fit rounded-md bg-[#7C3AED] px-2.5 py-1 text-sm font-semibold text-white">{first.category}</span>
-                <h2 className="zq-display mt-4 text-2xl sm:text-3xl font-extrabold leading-tight group-hover:text-[#5B21B6]">{first.title}</h2>
-                <p className="mt-3 text-[16px] leading-relaxed text-[#5C5878] line-clamp-3">{first.excerpt}</p>
-                <p className="mt-5 flex items-center gap-2 text-sm text-[#5C5878]">
+                <span className="w-fit rounded-md bg-[#15171C] px-2.5 py-1 text-sm font-semibold text-white">{first.category}</span>
+                <h2 className="zq-display mt-4 text-2xl sm:text-3xl font-semibold leading-tight group-hover:text-[#5B21B6]">{first.title}</h2>
+                <p className="mt-3 text-[16px] leading-relaxed text-[#5B6270] line-clamp-3">{first.excerpt}</p>
+                <p className="mt-5 flex items-center gap-2 text-sm text-[#5B6270]">
                   <Clock className="h-4 w-4" aria-hidden="true" /> {readingMinutes(first.content)} min read
                   <span aria-hidden="true">·</span> {fmt(first.publishedAt)}
                 </p>
@@ -76,13 +76,13 @@ export default async function BlogPage() {
             <Reveal as="li" key={p.slug} delay={(i % 3) * 80}>
               <Link href={`/blog/${p.slug}`} className="zq-card zq-card-hover group flex h-full flex-col overflow-hidden">
                 <span className="relative block">
-                  <BlogCover seed={p.slug} category={p.category} className="h-48 w-full transition-transform duration-500 group-hover:scale-[1.03]" />
-                  <span className="absolute left-3 top-3 rounded-md bg-white px-2.5 py-1 text-sm font-semibold text-[#1B1340] shadow-sm">{p.category}</span>
+                  <BlogCover seed={p.slug} category={p.category} className="h-48 w-full transition-transform duration-500" />
+                  <span className="absolute left-3 top-3 rounded-md bg-white px-2.5 py-1 text-sm font-semibold text-[#15171C] shadow-sm">{p.category}</span>
                 </span>
                 <span className="flex flex-1 flex-col p-5">
-                  <span className="text-[18px] font-bold leading-snug group-hover:text-[#5B21B6]">{p.title}</span>
-                  <span className="mt-2 flex-1 text-[15px] leading-relaxed text-[#5C5878] line-clamp-3">{p.excerpt}</span>
-                  <span className="mt-4 flex items-center justify-between text-sm text-[#5C5878]">
+                  <span className="text-[18px] font-semibold leading-snug group-hover:text-[#5B21B6]">{p.title}</span>
+                  <span className="mt-2 flex-1 text-[15px] leading-relaxed text-[#5B6270] line-clamp-3">{p.excerpt}</span>
+                  <span className="mt-4 flex items-center justify-between text-sm text-[#5B6270]">
                     <span>
                       {readingMinutes(p.content)} min read · {fmt(p.publishedAt)}
                     </span>

@@ -111,7 +111,7 @@ export function VoiceRecorderEditorTool() {
 
         {/* Timer display */}
         <div className="py-2">
-          <span className="font-mono text-3xl font-black text-slate-900 tracking-wider">
+          <span className="font-mono text-3xl font-semibold text-slate-900">
             {formatTime(recordingTime)}
           </span>
           {isPaused && <p className="text-xs text-amber-600 font-semibold mt-1">Recording Paused</p>}

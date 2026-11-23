@@ -188,7 +188,7 @@ export function SipInvestmentCalculatorTool() {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
             <div className="p-4 rounded-xl border border-border bg-card space-y-1">
               <span className="text-[11px] font-mono uppercase font-bold text-slate-500">Total Invested</span>
-              <p className="text-xl sm:text-2xl font-black text-slate-900 font-mono">
+              <p className="text-xl sm:text-2xl font-semibold text-slate-900 font-mono">
                 ${results.investedAmount.toLocaleString()}
               </p>
               <p className="text-[11px] text-slate-500">Your total capital</p>
@@ -196,7 +196,7 @@ export function SipInvestmentCalculatorTool() {
 
             <div className="p-4 rounded-xl border border-emerald-200 bg-emerald-50/50 space-y-1">
               <span className="text-[11px] font-mono uppercase font-bold text-emerald-700">Estimated Gains</span>
-              <p className="text-xl sm:text-2xl font-black text-emerald-700 font-mono">
+              <p className="text-xl sm:text-2xl font-semibold text-emerald-700 font-mono">
                 +${results.estimatedWealthGain.toLocaleString()}
               </p>
               <p className="text-[11px] text-emerald-600">Compound interest earned</p>
@@ -204,7 +204,7 @@ export function SipInvestmentCalculatorTool() {
 
             <div className="p-4 rounded-xl border border-teal-200 bg-teal-50/60 space-y-1">
               <span className="text-[11px] font-mono uppercase font-bold text-teal-800">Total Maturity Value</span>
-              <p className="text-xl sm:text-2xl font-black text-teal-900 font-mono">
+              <p className="text-xl sm:text-2xl font-semibold text-teal-900 font-mono">
                 ${results.maturityValue.toLocaleString()}
               </p>
               <p className="text-[11px] text-teal-700">Future estimated corpus</p>
@@ -260,7 +260,7 @@ export function SipInvestmentCalculatorTool() {
 
           {/* Year-by-year table */}
           <div className="p-4 rounded-xl border border-border bg-card space-y-3">
-            <h4 className="text-xs font-semibold text-foreground uppercase tracking-wider font-mono">
+            <h4 className="text-xs font-semibold text-foreground uppercase font-mono">
               Year-by-Year Growth Projection
             </h4>
             <div className="overflow-x-auto max-h-56">
@@ -459,7 +459,7 @@ export function MortgageRefinanceCalculatorTool() {
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5">
         <div className="p-4 rounded-xl border border-border bg-card space-y-1">
           <span className="text-xs font-semibold text-slate-500 uppercase font-mono">Monthly Cash Flow</span>
-          <p className={`text-2xl font-black font-mono ${results.monthlySavings >= 0 ? "text-emerald-600" : "text-rose-600"}`}>
+          <p className={`text-2xl font-semibold font-mono ${results.monthlySavings >= 0 ? "text-emerald-600" : "text-rose-600"}`}>
             {results.monthlySavings >= 0 ? `+$${results.monthlySavings.toLocaleString()}` : `-$${Math.abs(results.monthlySavings).toLocaleString()}`}
           </p>
           <p className="text-[11px] text-slate-500">
@@ -469,7 +469,7 @@ export function MortgageRefinanceCalculatorTool() {
 
         <div className="p-4 rounded-xl border border-border bg-card space-y-1">
           <span className="text-xs font-semibold text-slate-500 uppercase font-mono">Break-Even Period</span>
-          <p className="text-2xl font-black text-slate-900 font-mono">
+          <p className="text-2xl font-semibold text-slate-900 font-mono">
             {results.monthlySavings > 0 ? `${results.breakEvenMonths} Months` : "N/A"}
           </p>
           <p className="text-[11px] text-slate-500">To recoup closing costs</p>
@@ -477,7 +477,7 @@ export function MortgageRefinanceCalculatorTool() {
 
         <div className="p-4 rounded-xl border border-border bg-card space-y-1">
           <span className="text-xs font-semibold text-slate-500 uppercase font-mono">Lifetime Net Savings</span>
-          <p className={`text-2xl font-black font-mono ${results.netSavings >= 0 ? "text-teal-600" : "text-rose-600"}`}>
+          <p className={`text-2xl font-semibold font-mono ${results.netSavings >= 0 ? "text-teal-600" : "text-rose-600"}`}>
             {results.netSavings >= 0 ? `+$${results.netSavings.toLocaleString()}` : `-$${Math.abs(results.netSavings).toLocaleString()}`}
           </p>
           <p className="text-[11px] text-slate-500">After accounting for closing costs</p>
@@ -607,7 +607,7 @@ export function RetirementCorpusCalculatorTool() {
         <div className="lg:col-span-7 space-y-4">
           <div className="p-5 rounded-xl border border-teal-200 bg-teal-50/50 space-y-2">
             <span className="text-xs uppercase font-mono font-bold text-teal-800">Target Retirement Nest Egg</span>
-            <p className="text-3xl sm:text-4xl font-black text-slate-900 font-mono">
+            <p className="text-3xl sm:text-4xl font-semibold text-slate-900 font-mono">
               ${results.corpusRequired.toLocaleString()}
             </p>
             <p className="text-xs text-slate-600">
@@ -618,7 +618,7 @@ export function RetirementCorpusCalculatorTool() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div className="p-4 rounded-xl border border-border bg-card space-y-1">
               <span className="text-[11px] font-mono uppercase font-bold text-slate-500">Expense At Retirement</span>
-              <p className="text-xl font-black text-slate-900 font-mono">
+              <p className="text-xl font-semibold text-slate-900 font-mono">
                 ${results.monthlyAtRetire.toLocaleString()}/mo
               </p>
               <p className="text-[11px] text-slate-500">Inflation-adjusted equivalent of ${monthlyExpenseToday.toLocaleString()}</p>
@@ -626,7 +626,7 @@ export function RetirementCorpusCalculatorTool() {
 
             <div className="p-4 rounded-xl border border-border bg-card space-y-1">
               <span className="text-[11px] font-mono uppercase font-bold text-slate-500">Retirement Span</span>
-              <p className="text-xl font-black text-slate-900 font-mono">
+              <p className="text-xl font-semibold text-slate-900 font-mono">
                 {results.yearsInRetire} Years
               </p>
               <p className="text-[11px] text-slate-500">Years {retirementAge} to {lifeExpectancy}</p>
@@ -743,13 +743,13 @@ export function FreelanceHourlyRateCalculatorTool() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
             <div className="p-4 rounded-xl border border-teal-200 bg-teal-50/60 space-y-1">
               <span className="text-xs font-mono font-bold uppercase text-teal-800">Minimum Hourly Rate</span>
-              <p className="text-3xl font-black text-teal-950 font-mono">${results.hourlyRate}/hr</p>
+              <p className="text-3xl font-semibold text-teal-950 font-mono">${results.hourlyRate}/hr</p>
               <p className="text-[11px] text-teal-700">Based on {results.totalBillableHours} billable hours/yr</p>
             </div>
 
             <div className="p-4 rounded-xl border border-border bg-card space-y-1">
               <span className="text-xs font-mono font-bold uppercase text-slate-500">Standard Day Rate</span>
-              <p className="text-3xl font-black text-slate-900 font-mono">${results.dayRate}/day</p>
+              <p className="text-3xl font-semibold text-slate-900 font-mono">${results.dayRate}/day</p>
               <p className="text-[11px] text-slate-500">Equivalent to 8 billable hours</p>
             </div>
           </div>
@@ -847,17 +847,17 @@ export function CryptoPortfolioTrackerTool() {
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5">
         <div className="p-4 rounded-xl border border-border bg-card space-y-1">
           <span className="text-[11px] font-mono uppercase font-bold text-slate-500">Total Invested</span>
-          <p className="text-2xl font-black text-slate-900 font-mono">${summary.totalInvested.toLocaleString()}</p>
+          <p className="text-2xl font-semibold text-slate-900 font-mono">${summary.totalInvested.toLocaleString()}</p>
         </div>
 
         <div className="p-4 rounded-xl border border-border bg-card space-y-1">
           <span className="text-[11px] font-mono uppercase font-bold text-slate-500">Current Value</span>
-          <p className="text-2xl font-black text-teal-900 font-mono">${summary.totalCurrentValue.toLocaleString()}</p>
+          <p className="text-2xl font-semibold text-teal-900 font-mono">${summary.totalCurrentValue.toLocaleString()}</p>
         </div>
 
         <div className="p-4 rounded-xl border border-border bg-card space-y-1">
           <span className="text-[11px] font-mono uppercase font-bold text-slate-500">Unrealized P&L</span>
-          <p className={`text-2xl font-black font-mono ${summary.totalProfit >= 0 ? "text-emerald-600" : "text-rose-600"}`}>
+          <p className={`text-2xl font-semibold font-mono ${summary.totalProfit >= 0 ? "text-emerald-600" : "text-rose-600"}`}>
             {summary.totalProfit >= 0 ? `+$${summary.totalProfit.toLocaleString()}` : `-$${Math.abs(summary.totalProfit).toLocaleString()}`}{" "}
             <span className="text-xs font-normal">({summary.percentReturn}%)</span>
           </p>
@@ -866,7 +866,7 @@ export function CryptoPortfolioTrackerTool() {
 
       {/* Add Holding Form */}
       <div className="p-4 rounded-xl border border-border bg-card space-y-3">
-        <h4 className="text-xs font-semibold text-foreground uppercase tracking-wider font-mono">
+        <h4 className="text-xs font-semibold text-foreground uppercase font-mono">
           Add Crypto Asset Holding
         </h4>
         <div className="grid grid-cols-2 sm:grid-cols-5 gap-2">

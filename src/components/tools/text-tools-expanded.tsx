@@ -41,19 +41,19 @@ export function CharacterCounterTool() {
       <div className="p-5 rounded-xl border border-border bg-card space-y-4">
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
           <div className="p-3 rounded-lg border border-border bg-muted/20 text-center">
-            <span className="text-2xl font-black text-teal-400">{charCount}</span>
+            <span className="text-2xl font-semibold text-teal-400">{charCount}</span>
             <p className="text-[11px] text-muted-foreground uppercase font-semibold">Characters</p>
           </div>
           <div className="p-3 rounded-lg border border-border bg-muted/20 text-center">
-            <span className="text-2xl font-black text-teal-400">{wordCount}</span>
+            <span className="text-2xl font-semibold text-teal-400">{wordCount}</span>
             <p className="text-[11px] text-muted-foreground uppercase font-semibold">Words</p>
           </div>
           <div className="p-3 rounded-lg border border-border bg-muted/20 text-center">
-            <span className="text-2xl font-black text-teal-400">{sentenceCount}</span>
+            <span className="text-2xl font-semibold text-teal-400">{sentenceCount}</span>
             <p className="text-[11px] text-muted-foreground uppercase font-semibold">Sentences</p>
           </div>
           <div className="p-3 rounded-lg border border-border bg-muted/20 text-center">
-            <span className="text-2xl font-black text-teal-400">{readingTimeMinutes} min</span>
+            <span className="text-2xl font-semibold text-teal-400">{readingTimeMinutes} min</span>
             <p className="text-[11px] text-muted-foreground uppercase font-semibold">Reading Time</p>
           </div>
         </div>
@@ -730,19 +730,19 @@ export function TextStatisticsTool() {
       <div className="p-5 rounded-xl border border-border bg-card space-y-4">
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
           <div className="p-3 rounded-lg border border-border bg-muted/20 text-center">
-            <span className="text-xl font-black text-teal-400">{fleschScore}/100</span>
+            <span className="text-xl font-semibold text-teal-400">{fleschScore}/100</span>
             <p className="text-[10px] text-muted-foreground uppercase font-semibold">Reading Ease</p>
           </div>
           <div className="p-3 rounded-lg border border-border bg-muted/20 text-center">
-            <span className="text-xl font-black text-teal-400">{avgWordsPerSentence}</span>
+            <span className="text-xl font-semibold text-teal-400">{avgWordsPerSentence}</span>
             <p className="text-[10px] text-muted-foreground uppercase font-semibold">Words / Sentence</p>
           </div>
           <div className="p-3 rounded-lg border border-border bg-muted/20 text-center">
-            <span className="text-xl font-black text-teal-400">{avgCharsPerWord}</span>
+            <span className="text-xl font-semibold text-teal-400">{avgCharsPerWord}</span>
             <p className="text-[10px] text-muted-foreground uppercase font-semibold">Chars / Word</p>
           </div>
           <div className="p-3 rounded-lg border border-border bg-muted/20 text-center">
-            <span className="text-xl font-black text-teal-400">{words}</span>
+            <span className="text-xl font-semibold text-teal-400">{words}</span>
             <p className="text-[10px] text-muted-foreground uppercase font-semibold">Total Words</p>
           </div>
         </div>

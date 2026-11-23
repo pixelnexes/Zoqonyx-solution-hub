@@ -121,7 +121,7 @@ export function IpLookupTool() {
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 pb-3 border-b border-border">
               <div>
                 <span className="text-[10px] font-bold text-muted-foreground uppercase">Inspected IP Address</span>
-                <p className="text-2xl font-black text-teal-400 font-mono">{data.ip}</p>
+                <p className="text-2xl font-semibold text-teal-400 font-mono">{data.ip}</p>
               </div>
               <Button variant="outline" size="sm" onClick={handleCopy} className="gap-1.5 text-xs">
                 {copied ? <CheckCircle2 className="w-3.5 h-3.5 text-teal-400" /> : <Copy className="w-3.5 h-3.5" />}

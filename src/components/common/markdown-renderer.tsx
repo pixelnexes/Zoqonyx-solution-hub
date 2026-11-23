@@ -18,7 +18,7 @@ export function MarkdownRenderer({ content, className }: MarkdownRendererProps) 
   const rawBlocks = normalized.split(/\n{2,}/);
 
   return (
-    <div className={cn("space-y-5 text-[16px] leading-[1.75] text-[#2F2A4D]", className)}>
+    <div className={cn("space-y-5 text-[16px] leading-[1.75] text-[#2B2F38]", className)}>
       {rawBlocks.map((block, blockIdx) => {
         const trimmed = block.trim();
         if (!trimmed) return null;
@@ -28,7 +28,7 @@ export function MarkdownRenderer({ content, className }: MarkdownRendererProps) 
           return (
             <h2
               key={blockIdx}
-              className="text-2xl sm:text-3xl font-heading font-bold text-[#1B1340] tracking-tight pt-4 pb-1 border-b border-border/60"
+              className="text-2xl sm:text-3xl font-heading font-bold text-[#15171C] tracking-tight pt-4 pb-1 border-b border-border/60"
             >
               {renderInline(trimmed.replace(/^#\s+/, ""))}
             </h2>
@@ -40,7 +40,7 @@ export function MarkdownRenderer({ content, className }: MarkdownRendererProps) 
           return (
             <h2
               key={blockIdx}
-              className="text-xl sm:text-2xl font-heading font-bold text-[#1B1340] tracking-tight pt-3 pb-1"
+              className="text-xl sm:text-2xl font-heading font-bold text-[#15171C] tracking-tight pt-3 pb-1"
             >
               {renderInline(trimmed.replace(/^##\s+/, ""))}
             </h2>
@@ -52,7 +52,7 @@ export function MarkdownRenderer({ content, className }: MarkdownRendererProps) 
           return (
             <h3
               key={blockIdx}
-              className="text-xl font-heading font-semibold text-[#1B1340] pt-2 text-[#5B21B6]"
+              className="text-xl font-heading font-semibold text-[#15171C] pt-2 text-[#5B21B6]"
             >
               {renderInline(trimmed.replace(/^###\s+/, ""))}
             </h3>
@@ -64,7 +64,7 @@ export function MarkdownRenderer({ content, className }: MarkdownRendererProps) 
           return (
             <h4
               key={blockIdx}
-              className="text-[17px] font-heading font-semibold text-[#1B1340] pt-1"
+              className="text-[17px] font-heading font-semibold text-[#15171C] pt-1"
             >
               {renderInline(trimmed.replace(/^####\s+/, ""))}
             </h4>
@@ -144,7 +144,7 @@ function renderInline(text: string): React.ReactNode {
   return boldParts.map((part, i) => {
     if (part.startsWith("**") && part.endsWith("**")) {
       return (
-        <strong key={i} className="font-semibold text-[#1B1340]">
+        <strong key={i} className="font-semibold text-[#15171C]">
           {part.slice(2, -2)}
         </strong>
       );

@@ -322,7 +322,7 @@ export function ImageCompressorProTool() {
       {activeTab === "single" ? (
         !imageSrc ? (
           <label className="flex flex-col items-center justify-center p-12 sm:p-16 border-2 border-dashed border-border/80 hover:border-teal-500/70 rounded-2xl cursor-pointer bg-card/60 hover:bg-card transition-all group shadow-xs">
-            <div className="p-4 rounded-xl bg-teal-500/10 text-teal-400 mb-3 group-hover:scale-110 transition-transform">
+            <div className="p-4 rounded-xl bg-teal-500/10 text-teal-400 mb-3 transition-transform">
               <Upload className="w-7 h-7" />
             </div>
             <span className="font-heading font-bold text-base sm:text-lg text-foreground">
@@ -340,7 +340,7 @@ export function ImageCompressorProTool() {
               {/* Savings Metrics */}
               <div className="p-4 rounded-xl bg-card border border-border shadow-xs space-y-3">
                 <div className="flex items-center justify-between text-xs font-semibold">
-                  <span className="text-foreground font-mono uppercase tracking-wider text-[11px]">
+                  <span className="text-foreground font-mono uppercase text-[11px]">
                     Compression Metrics
                   </span>
                   <span className="text-emerald-400 font-bold bg-emerald-500/10 border border-emerald-500/20 px-2 py-0.5 rounded font-mono">

@@ -35,7 +35,7 @@ export function Logo({ className, iconOnly = false, size = "md", onDark = false 
       <Link
         href="/"
         className={cn(
-          "inline-flex items-center transition-transform hover:scale-[1.01] group focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-teal-600 rounded-md",
+          "inline-flex items-center transition-transform group focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-teal-600 rounded-md",
           className
         )}
         aria-label={siteName}
@@ -81,15 +81,15 @@ export function Logo({ className, iconOnly = false, size = "md", onDark = false 
           <div className="flex items-center leading-none tracking-tight">
             {siteName.toUpperCase().includes("ZOQONYX") ? (
               <>
-                <span className={cn("font-heading font-bold tracking-[0.04em] text-[#1B1340]", onDark && "text-white", dimensions.textMain)}>
+                <span className={cn("font-heading font-semibold text-[#15171C]", onDark && "text-white", dimensions.textMain)}>
                   ZOQONY
                 </span>
-                <span className={cn("font-heading font-bold tracking-[0.04em] text-[#7C3AED]", onDark && "text-[#C4B5FD]", dimensions.textMain)}>
+                <span className={cn("font-heading font-semibold text-[#7C3AED]", onDark && "text-[#C4B5FD]", dimensions.textMain)}>
                   X
                 </span>
               </>
             ) : (
-              <span className={cn("font-heading font-bold tracking-[0.04em] text-[#1B1340]", onDark && "text-white", dimensions.textMain)}>
+              <span className={cn("font-heading font-semibold text-[#15171C]", onDark && "text-white", dimensions.textMain)}>
                 {siteName}
               </span>
             )}

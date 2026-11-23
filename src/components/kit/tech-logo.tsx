@@ -23,7 +23,7 @@ export function TechLogo({ name, mono = false }: { name: string; mono?: boolean 
   const dark = parseInt(icon.hex, 16) < 0x202020;
   return (
     <>
-      <svg width="22" height="22" aria-hidden="true" fill={mono ? "#fff" : dark ? "#1B1340" : `#${icon.hex}`}>
+      <svg width="22" height="22" aria-hidden="true" fill={mono ? "#fff" : dark ? "#15171C" : `#${icon.hex}`}>
         <use href={`#${id(name)}`} />
       </svg>
       <span>{name}</span>

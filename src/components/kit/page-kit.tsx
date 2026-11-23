@@ -26,12 +26,12 @@ export function PageHero({
     <section className="zq-hero-light">
       <div className={`container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-8 sm:py-12 ${image ? "grid items-center gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:gap-12" : ""}`}>
         <div className={image ? "" : "max-w-3xl"}>
-          <nav aria-label="Breadcrumb" className="text-sm text-[#5C5878]">
+          <nav aria-label="Breadcrumb" className="text-sm text-[#5B6270]">
             <ol className="flex flex-wrap items-center gap-x-2 gap-y-1">
               {crumbs.map((c, i) => (
                 <React.Fragment key={c.label + i}>
                   {i > 0 && <li aria-hidden="true">/</li>}
-                  <li {...(i === crumbs.length - 1 ? { "aria-current": "page" as const } : {})} className={i === crumbs.length - 1 ? "font-semibold text-[#1B1340]" : undefined}>
+                  <li {...(i === crumbs.length - 1 ? { "aria-current": "page" as const } : {})} className={i === crumbs.length - 1 ? "font-semibold text-[#15171C]" : undefined}>
                     {c.href ? (
                       <Link href={c.href} className="hover:underline underline-offset-4">
                         {c.label}
@@ -44,10 +44,10 @@ export function PageHero({
               ))}
             </ol>
           </nav>
-          {badge && <p className="mt-5 inline-flex rounded-md border border-[#1B1340]/20 bg-white/70 px-3 py-1 text-sm font-semibold">{badge}</p>}
-          <h1 className="zq-in-solid zq-display mt-4 text-4xl font-extrabold leading-[1.06] text-[#1B1340] sm:text-5xl">{title}</h1>
+          {badge && <p className="mt-5 inline-flex rounded-md border border-[#15171C]/20 bg-white/70 px-3 py-1 text-sm font-semibold">{badge}</p>}
+          <h1 className="zq-in-solid zq-display mt-4 text-4xl font-semibold leading-[1.06] text-[#15171C] sm:text-5xl">{title}</h1>
           {intro && (
-            <p className="zq-in zq-lead-answer mt-4 max-w-xl text-[18px] leading-relaxed text-[#5C5878]" style={{ ["--d" as string]: "90ms" }}>
+            <p className="zq-in zq-lead-answer mt-4 max-w-xl text-[18px] leading-relaxed text-[#5B6270]" style={{ ["--d" as string]: "90ms" }}>
               {intro}
             </p>
           )}
@@ -59,7 +59,7 @@ export function PageHero({
         </div>
         {image && (
           // eslint-disable-next-line @next/next/no-img-element
-          <img src={image} alt={photoAlt(image)} width={1200} height={800} fetchPriority="high" className="h-60 w-full rounded-xl object-cover shadow-[0_24px_60px_-34px_rgba(76,29,149,.5)] sm:h-72 lg:h-80" />
+          <img src={image} alt={photoAlt(image)} width={1200} height={800} fetchPriority="high" className="h-60 w-full rounded-xl object-cover shadow-[0_24px_60px_-34px_rgba(21,23,28,.5)] sm:h-72 lg:h-80" />
         )}
       </div>
     </section>
@@ -71,9 +71,9 @@ export function CtaBand({ heading, text, href = "#contact", cta = "Get a quote",
   return (
     <section className="zq-section">
       <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        <div className="relative isolate overflow-hidden rounded-2xl bg-gradient-to-br from-[#7C3AED] to-[#4C1D95] text-white">
+        <div className="relative isolate overflow-hidden rounded-2xl bg-[#15171C] text-white">
           <div className="max-w-xl px-7 py-12 sm:px-12 sm:py-16">
-            <h2 className="zq-display text-3xl sm:text-4xl font-extrabold leading-tight">{heading}</h2>
+            <h2 className="zq-display text-3xl sm:text-4xl font-semibold leading-tight">{heading}</h2>
             <p className="mt-4 text-[17px] leading-relaxed text-white/90">{text}</p>
             <a href={href} className="zq-btn zq-btn-sun mt-7">
               {cta} <ArrowRight className="w-4 h-4" aria-hidden="true" />
@@ -100,11 +100,11 @@ export function FaqBlock({ heading, items }: { heading: string; items: { questio
         <div className="space-y-3">
           {items.map((f, i) => (
             <details key={i} className="zq-card group p-0">
-              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 p-5 text-[17px] font-bold [&::-webkit-details-marker]:hidden">
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 p-5 text-[17px] font-semibold [&::-webkit-details-marker]:hidden">
                 {f.question}
-                <ChevronDown className="w-5 h-5 shrink-0 text-[#7C3AED] transition-transform group-open:rotate-180" aria-hidden="true" />
+                <ChevronDown className="w-5 h-5 shrink-0 text-[#6D28D9] transition-transform group-open:rotate-180" aria-hidden="true" />
               </summary>
-              <p className="px-5 pb-5 text-[16px] leading-relaxed text-[#5C5878]">{f.answer}</p>
+              <p className="px-5 pb-5 text-[16px] leading-relaxed text-[#5B6270]">{f.answer}</p>
             </details>
           ))}
         </div>
@@ -129,10 +129,10 @@ export function WorkSteps({ heading = "How a project runs" }: { heading?: string
         </h2>
         <ol className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {WORK_STEPS.map((s, i) => (
-            <li key={s.t} className="relative rounded-xl border border-[#E7E1F6] bg-white p-6">
-              <span className="zq-display text-4xl font-extrabold text-[#7C3AED]">{i + 1}</span>
-              <h3 className="mt-3 text-[18px] font-bold">{s.t}</h3>
-              <p className="mt-1.5 text-[15px] leading-relaxed text-[#5C5878]">{s.d}</p>
+            <li key={s.t} className="relative rounded-xl border border-[#E4E7EC] bg-white p-6">
+              <span className="zq-display text-4xl font-semibold text-[#6D28D9]">{i + 1}</span>
+              <h3 className="mt-3 text-[18px] font-semibold">{s.t}</h3>
+              <p className="mt-1.5 text-[15px] leading-relaxed text-[#5B6270]">{s.d}</p>
             </li>
           ))}
         </ol>

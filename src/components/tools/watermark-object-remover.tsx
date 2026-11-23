@@ -379,7 +379,7 @@ export function WatermarkObjectRemoverTool({ mode = "watermark" }: WatermarkRemo
       <div className="p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-brand-cyan/10 via-brand-purple/10 to-transparent border border-brand-cyan/20 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div className="space-y-1">
           <div className="flex items-center gap-2">
-            <span className="px-2 py-0.5 text-[10px] font-bold rounded uppercase tracking-wider bg-brand-cyan/20 text-brand-cyan">
+            <span className="px-2 py-0.5 text-[10px] font-bold rounded uppercase bg-brand-cyan/20 text-brand-cyan">
               AI Brush Inpainter
             </span>
             <h2 className="text-sm sm:text-base font-heading font-bold text-foreground">
@@ -417,7 +417,7 @@ export function WatermarkObjectRemoverTool({ mode = "watermark" }: WatermarkRemo
           onClick={() => fileInputRef.current?.click()}
           className="border-2 border-dashed border-border/80 hover:border-brand-cyan/60 rounded-3xl p-12 text-center cursor-pointer transition-all duration-300 bg-card/40 hover:bg-card/70 flex flex-col items-center justify-center min-h-[360px] group"
         >
-          <div className="w-16 h-16 rounded-2xl bg-brand-cyan/10 text-brand-cyan flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+          <div className="w-16 h-16 rounded-2xl bg-brand-cyan/10 text-brand-cyan flex items-center justify-center mb-4 transition-transform">
             <Wand2 className="w-8 h-8" />
           </div>
           <h3 className="text-lg font-heading font-bold text-foreground">

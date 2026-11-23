@@ -6,7 +6,7 @@ import * as React from "react";
 const PALETTES: [string, string, string][] = [
   ["#7C3AED", "#C4B5FD", "#F2A81D"],
   ["#3B82F6", "#C4B5FD", "#F2A81D"],
-  ["#1B1340", "#7C3AED", "#F2A81D"],
+  ["#15171C", "#7C3AED", "#F2A81D"],
   ["#A9351F", "#D8694F", "#F2A81D"],
   ["#5B21B6", "#A78BFA", "#F6BC4A"],
 ];
@@ -37,7 +37,7 @@ export function CoverArt({ seed, className = "" }: { seed: string; className?: s
       <defs>
         <linearGradient id={`${id}-g`} x1="0" y1="0" x2="1" y2="1">
           <stop offset="0" stopColor={a} />
-          <stop offset="1" stopColor="#1B1340" />
+          <stop offset="1" stopColor="#15171C" />
         </linearGradient>
         <radialGradient id={`${id}-r`} cx="0.5" cy="0.5" r="0.5">
           <stop offset="0" stopColor={b} stopOpacity="0.95" />
