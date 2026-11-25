@@ -89,6 +89,8 @@ const COVER_OVERRIDE: Record<string, string> = {
   "backlink-checker-api": "u-analytics",
   "php-backlink-checker-script": "u-dev",
   "backlink-history-checker": "u-board",
+  "how-to-write-an-amazon-product-description": "u-shop",
+  "how-to-add-schema-markup": "u-mac",
 };
 
 /** Picks a photo related to the post's category; the slug keeps the choice stable. */

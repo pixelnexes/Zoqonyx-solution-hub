@@ -9,7 +9,7 @@ import type { ToolSeoArticle } from "@/lib/tool-seo-content";
 export const KEYWORD_ARTICLES: Record<string, ToolSeoArticle> = {
   "backlink-checker": {
     slug: "backlink-checker",
-    title: "Free Backlink Checker: Audit Your Website Backlinks | Zoqonyx",
+    title: "Backlink Checker: Check Your Backlinks Free Online | Zoqonyx",
     metaDesc:
       "Check backlinks for free: upload your Search Console, Ahrefs or Semrush export and see referring domains, anchor text and spam links. No sign-up.",
     workflowHeading: "How to check your backlinks for free",
@@ -90,6 +90,18 @@ In Search Console, the Links report lists your top linking sites and recent link
 
 Look for links from domains that have nothing to do with your topic, unusual domain endings, or anchors stuffed with keywords or adult and gambling terms. Most sites can ignore these: Google already discounts most spam links.
 
+### Check the backlinks of any website or domain
+
+A "domain backlink checker" needs data about who links to that domain. Search Console gives you that data for sites you own. For any other domain, such as a competitor, export the backlink list from a link index (Ahrefs, Semrush, Moz or Majestic), then upload the file here to count referring domains and anchors in the same way.
+
+### Inbound links checker
+
+Inbound links are the same thing as backlinks: links from other websites to yours. Internal links, from one of your pages to another, are separate. Search Console lists both in its Links report, so export the external links when you want to check inbound links.
+
+### Spammy backlink checker
+
+The tool flags links from unusual domain endings and anchors with spam words, so you can review them first. A flag is a prompt to look, not a verdict. Google ignores most spam links on its own, so only consider a disavow file for links you know were bought or built to manipulate rankings.
+
 ### Related guides
 
 - [How to check your backlinks for free](/blog/how-to-check-backlinks-for-free)
@@ -101,7 +113,7 @@ Look for links from domains that have nothing to do with your topic, unusual dom
 
   "schema-markup-generator": {
     slug: "schema-markup-generator",
-    title: "Schema Markup Generator: Free JSON-LD & FAQ Schema | Zoqonyx",
+    title: "Schema Markup Generator Online: Free JSON-LD Code | Zoqonyx",
     metaDesc:
       "Generate JSON-LD schema markup online for FAQ, Product, Article, LocalBusiness, HowTo and more. Copy the code or test it in Google's Rich Results Test. Free.",
     workflowHeading: "How to generate schema markup",
@@ -151,7 +163,7 @@ Look for links from domains that have nothing to do with your topic, unusual dom
       {
         question: "How do I create FAQ schema?",
         answer:
-          "Choose FAQPage, add each question and its answer, then copy the JSON-LD into the page that shows those questions. The questions and answers must also be visible on the page.",
+          "Choose FAQPage, add each question and its answer, then copy the JSON-LD into the page that shows those questions. The questions and answers must also be visible on the page. Google stopped showing FAQ rich results in 2026, so FAQ schema now only describes the page; it won't add the drop-down questions to Google results.",
       },
       {
         question: "Where do I put JSON-LD schema on my website?",
@@ -161,7 +173,7 @@ Look for links from domains that have nothing to do with your topic, unusual dom
       {
         question: "Does schema markup guarantee rich results?",
         answer:
-          "No. Valid markup makes a page eligible, but Google decides whether to show a rich result. FAQ rich results, for example, are now shown mainly for well-known government and health sites.",
+          "No. Valid markup makes a page eligible, but Google decides whether to show a rich result. Some types no longer get rich results at all: Google retired HowTo rich results in 2023 and FAQ rich results in 2026.",
       },
       {
         question: "Is this schema markup generator free?",
@@ -182,13 +194,21 @@ JSON-LD is a single script block, separate from your HTML, which is why Google r
 - **Product**: product pages with a name, price and availability.
 - **Article**: blog posts and news articles.
 - **LocalBusiness**: a business with an address and opening hours.
-- **FAQPage**: a page that shows a list of questions with answers.
-- **HowTo**: step-by-step instructions.
+- **FAQPage**: a page that shows a list of questions with answers. Still valid markup, but Google no longer shows FAQ rich results.
+- **HowTo**: step-by-step instructions. Google stopped showing HowTo rich results in 2023.
 - **BreadcrumbList**: the trail of links that shows where a page sits on your site.
 
 ### Checking your markup
 
 Paste the page URL or the code into Google's Rich Results Test. After the page is live, Search Console shows any structured data errors under Enhancements.
+
+### Generating schema markup online vs by hand
+
+Writing JSON-LD by hand is easy to get wrong: a missing comma or quote breaks the whole block. A generator builds valid JSON for you and keeps the required fields in front of you. You still need to check that every value matches what the page actually shows.
+
+### Related guide
+
+- [What schema markup is and how to add it to your website](/blog/how-to-add-schema-markup)
 `,
   },
 
@@ -254,6 +274,10 @@ A good description answers three questions quickly: what is it, why would I want
 ### Writing for search
 
 Use the words people search for, such as the product type and its main feature, in the title and the first sentence. Don't repeat keywords unnaturally; write for the shopper first.
+
+### Related guide
+
+- [How to write an Amazon product description that sells](/blog/how-to-write-an-amazon-product-description)
 `,
   },
 

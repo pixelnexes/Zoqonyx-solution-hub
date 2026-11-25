@@ -663,4 +663,114 @@ Upload each month's CSV to the [Zoqonyx backlink checker](/tools/backlink-checke
 
 For more on where link data comes from, read the guide to the [backlink checker API](/blog/backlink-checker-api), or learn [how to check backlinks for free](/blog/how-to-check-backlinks-for-free).`,
   },
+  {
+    slug: "how-to-write-an-amazon-product-description",
+    title: "How to Write an Amazon Product Description That Sells",
+    excerpt:
+      "Shoppers scan listings in seconds. Here is how to structure your title, five bullet points and description so they answer the buyer's questions fast.",
+    category: "E-commerce",
+    tags: ["amazon", "product descriptions", "copywriting"],
+    publishedAt: "2026-11-18",
+    metaTitle: "How to Write an Amazon Product Description That Sells",
+    metaDesc: "Write a better Amazon listing: title, five bullet points and description, with a simple formula and common mistakes to avoid.",
+    content: `Most shoppers decide from the title, the main image and the first few bullet points. The rest of the description matters mostly for people who are already interested. Write the top of your listing first, and make it easy to scan.
+
+## Start with the title
+
+A good title says what the product is and the main reasons to buy it:
+
+- The brand and product type
+- The most important feature or size
+- Who it is for, if that isn't obvious
+
+Follow Amazon's current character limits and style rules for your category, and avoid promotional phrases they don't allow.
+
+## Write five bullet points that answer questions
+
+The bullets are the most read part of the page. Each one should:
+
+1. **Start with the benefit**, then give the detail. "Lasts all day: 40-hour battery" works better than "Battery: 40 hours".
+2. **Cover one idea.** One bullet for size and fit, one for materials, one for use cases.
+3. **Stay short.** Aim for under 200 characters each, and check Amazon's current limit for your category.
+4. **Be specific.** Numbers, sizes and materials build trust.
+
+## Use the description for what bullets can't hold
+
+The description is a place for a short story: who the product is for, what problem it solves and how to use or care for it. Keep paragraphs short. If your brand is registered with Amazon, use A+ Content to show the product in use.
+
+## Use the words customers search for
+
+Put the main search term in the title and the first bullet in natural language. Don't repeat the same word again and again; that makes the listing harder to read and doesn't help.
+
+## Common mistakes
+
+- Listing features without saying what they mean for the buyer
+- Vague claims such as "high quality" with no detail
+- Copying the manufacturer's text, which many other sellers also use
+- Claims you can't back up, such as health benefits
+
+## Draft faster
+
+You can enter your product name, features and tone into the [Zoqonyx product description generator](/tools/ai-product-description). It creates three versions (lifestyle, specs and problem-solving) as a starting point. It uses writing templates, not an AI model, so edit the result in your own voice before you publish.`,
+  },
+  {
+    slug: "how-to-add-schema-markup",
+    title: "What Schema Markup Is and How to Add It to Your Website",
+    excerpt: "Schema markup tells search engines what a page is. Here is which type to use, how to add JSON-LD in four steps, and what it can and can't do for rich results.",
+    category: "SEO",
+    tags: ["schema markup", "json-ld", "structured data", "schema markup generator"],
+    publishedAt: "2026-11-25",
+    metaTitle: "How to Add Schema Markup (JSON-LD) to a Website",
+    metaDesc: "What schema markup is, which type to use and how to add JSON-LD to your site in four steps. Includes an example and the mistakes to avoid.",
+    content: `Schema markup is a short block of code that tells search engines what a page is about in a format they can read without guessing: this page is a product with a price, this one is an article by a named author, this one is a business with an address. You add it once per page, and it doesn't change how the page looks to visitors.
+
+## What schema markup can and can't do
+
+- **It can** help search engines understand the page, and make it eligible for rich results such as product prices, review stars and breadcrumbs.
+- **It can't** guarantee a rich result or a higher ranking. Google decides what to show. Some rich results have also been retired: HowTo rich results ended in 2023, and FAQ rich results ended in 2026.
+
+## The format to use: JSON-LD
+
+Use JSON-LD. It is one script block that sits apart from your HTML, which makes it easy to add, read and update. It looks like this:
+
+\`\`\`
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "What schema markup is and how to add it",
+  "author": { "@type": "Organization", "name": "Zoqonyx" },
+  "datePublished": "2026-11-25"
+}
+</script>
+\`\`\`
+
+## Pick the type that matches the page
+
+- **Product** for a product page with a name, price and availability
+- **Article** or **BlogPosting** for posts and news
+- **LocalBusiness** for a business with an address and opening hours
+- **Organization** for your company details, usually on the home page or about page
+- **BreadcrumbList** for the trail of links that shows where a page sits
+
+Use one main type per page and add BreadcrumbList next to it. Only mark up content that visitors can see on that page.
+
+## How to add it, step by step
+
+1. **Generate the code.** Use the [Zoqonyx schema markup generator](/tools/schema-markup-generator): pick a type, fill in the fields, and copy the JSON-LD. It builds valid JSON for you, so a missing comma can't break it.
+2. **Paste it into the page.** Put it in the page's head. In WordPress and most site builders, an SEO plugin or a "custom code" setting has a place for it.
+3. **Test it.** Paste the page URL into Google's Rich Results Test, or the code itself, and fix any errors it shows.
+4. **Watch Search Console.** Once the page is live, the Enhancements section reports structured data errors across your site.
+
+## Common mistakes
+
+- Marking up content that isn't on the page, such as reviews nobody can see
+- Copying the same Product markup onto every page
+- Leaving out required fields, such as a price for an Offer
+- Forgetting to update the markup when the page changes, such as an old price
+
+## Need it done for a whole site?
+
+For a larger site, schema is best generated from your data instead of pasted page by page. Our team adds structured data as part of [website development](/services/website-development-services), or [tell us about your site](/contact).`,
+  },
 ];
