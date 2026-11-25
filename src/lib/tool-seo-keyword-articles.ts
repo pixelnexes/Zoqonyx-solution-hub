@@ -89,6 +89,13 @@ In Search Console, the Links report lists your top linking sites and recent link
 ### Spotting bad links
 
 Look for links from domains that have nothing to do with your topic, unusual domain endings, or anchors stuffed with keywords or adult and gambling terms. Most sites can ignore these: Google already discounts most spam links.
+
+### Related guides
+
+- [How to check your backlinks for free](/blog/how-to-check-backlinks-for-free)
+- [Backlink checker API: where to get backlink data](/blog/backlink-checker-api)
+- [PHP backlink checker script: what it can and can't do](/blog/php-backlink-checker-script)
+- [Backlink history: see new and lost links](/blog/backlink-history-checker)
 `,
   },
 

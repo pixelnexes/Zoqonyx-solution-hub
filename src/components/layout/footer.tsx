@@ -15,6 +15,8 @@ const TOOL_LINKS = [
   { label: "Text & code", href: "/category/text-code" },
   { label: "CSS & design", href: "/category/css-design" },
   { label: "Calculators", href: "/category/calculators" },
+  { label: "Backlink checker", href: "/tools/backlink-checker" },
+  { label: "Schema markup generator", href: "/tools/schema-markup-generator" },
 ];
 
 const SERVICE_LINKS = [

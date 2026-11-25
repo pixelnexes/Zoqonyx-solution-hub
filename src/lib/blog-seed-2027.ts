@@ -504,4 +504,163 @@ You describe the goal and the agency plans, designs, builds and tests it. This s
 
 We work as a full [software studio](/services/custom-software-development) or as dedicated developers inside your team. [Send us your plan](/contact) and we will suggest which setup fits.`,
   },
+  {
+    slug: "backlink-checker-api",
+    title: "Backlink Checker API: How to Get Backlink Data Programmatically",
+    excerpt:
+      "Looking for a backlink checker API? Google's Search Console API doesn't include backlinks. Here are the options that do, what they cost and how to use the data.",
+    category: "SEO",
+    tags: ["backlink checker api", "seo api", "backlinks"],
+    publishedAt: "2026-11-19",
+    metaTitle: "Backlink Checker API: Options for Backlink Data",
+    metaDesc: "Need a backlink checker API? Google Search Console's API has no links data. See which providers offer backlink APIs and how to audit the results.",
+    content: `If you want backlink data inside your own dashboard, report or script, you need an API. The first thing to know is what **doesn't** work: Google's Search Console API gives you search performance data, sitemaps and URL inspection, but it does not include the Links report. You can view and export links in the Search Console website, but not fetch them through the API.
+
+## Where backlink APIs come from
+
+Backlink data comes from web crawlers that continuously visit pages and record the links they find. Building a crawler is expensive, so almost all backlink APIs are paid products from companies that run their own:
+
+- **Ahrefs**: large link index, API access on higher plans
+- **Semrush**: backlink analytics through its API, billed with API units
+- **Moz**: Link Explorer API with a free tier of limited requests
+- **Majestic**: a long-running link index with an API
+- **DataForSEO**: pay-as-you-go API that resells backlink data
+
+Check each provider's current pricing and limits before you commit, because plans change.
+
+## What to look for
+
+- **Coverage and freshness.** How many links the index holds and how often it is updated. Different providers show different numbers for the same site, so don't compare totals across tools.
+- **Fields returned.** At minimum you want the linking page, the target page, the anchor text and whether the link is follow or nofollow.
+- **Rate limits and cost per request.** Pulling a large site's full link list can use a lot of quota.
+- **Export options.** Many providers let you export CSV from the dashboard, which is cheaper if you only need data now and then.
+
+## A free route for your own site
+
+For your own website, Search Console's Links report is free. Export **Top linking sites** and the latest links as CSV and keep a dated copy each month. It is a sample rather than the full set, but it comes from Google.
+
+## Audit the data once you have it
+
+An API or export gives you rows; the useful part is what you do with them. Upload the CSV to the [Zoqonyx backlink checker](/tools/backlink-checker) to count backlinks and referring domains, see the most common anchor texts and flag links from low-reputation domains. The file is read in your browser and is not uploaded.
+
+## Building your own integration
+
+If you do build against an API:
+
+1. Store raw responses with a date, so you can compare changes over time
+2. Deduplicate by referring domain as well as by URL
+3. Respect rate limits and cache results
+4. Never expose your API key in front-end code. Call the provider from your server
+
+Need help building an SEO dashboard or data pipeline? See our [custom software development](/services/custom-software-development) services.`,
+  },
+  {
+    slug: "php-backlink-checker-script",
+    title: "PHP Backlink Checker Script: What It Can Do and a Safer Alternative",
+    excerpt: "A PHP script cannot discover backlinks on its own. Here is what a script can check, a working PHP link verifier, and where the real link data comes from.",
+    category: "SEO",
+    tags: ["php backlink checker script", "backlink checker script", "link checker"],
+    publishedAt: "2026-11-25",
+    metaTitle: "PHP Backlink Checker Script: How It Works (With Code)",
+    metaDesc: "Can a PHP script check backlinks? It can verify known links, not find new ones. See a working PHP link checker and where to get real backlink data.",
+    content: `A PHP backlink checker script sounds simple: give it a domain, get a list of backlinks. In practice, a script **cannot find backlinks by itself**. Backlinks live on other people's websites, so finding them needs a crawler that has already visited billions of pages. That is what providers like Ahrefs, Moz and Majestic maintain. A script you write can do something different and still useful: **check whether links you already know about are still there.**
+
+## What a script can and can't do
+
+- **Can:** fetch a page, check that it loads normally, and look for a link to your domain. Report the anchor text and the rel attribute (follow, nofollow, sponsored, ugc).
+- **Can't:** discover new backlinks across the web. For that you need a backlink index, either from an API ([see the options](/blog/backlink-checker-api)) or from the free Links report in Google Search Console.
+
+## A small PHP link verifier
+
+This function takes a page that should link to you and checks it. It needs PHP 8 with the cURL and DOM extensions.
+
+\`\`\`
+<?php
+function checkLink(string $pageUrl, string $targetHost): array {
+    $ch = curl_init($pageUrl);
+    curl_setopt_array($ch, [
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_TIMEOUT => 15,
+        CURLOPT_USERAGENT => 'MyLinkCheck/1.0 (+https://example.com/about-this-bot)',
+    ]);
+    $html = curl_exec($ch);
+    $status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    curl_close($ch);
+
+    if ($html === false || $status >= 400) {
+        return ['found' => false, 'status' => $status];
+    }
+
+    $dom = new DOMDocument();
+    @$dom->loadHTML($html);
+    foreach ($dom->getElementsByTagName('a') as $a) {
+        $host = parse_url($a->getAttribute('href'), PHP_URL_HOST);
+        if ($host && str_ends_with($host, $targetHost)) {
+            return [
+                'found'  => true,
+                'status' => $status,
+                'rel'    => $a->getAttribute('rel'),
+                'anchor' => trim($a->textContent),
+            ];
+        }
+    }
+    return ['found' => false, 'status' => $status];
+}
+\`\`\`
+
+Loop over your list of known linking pages, call the function for each one, and write the results to a CSV file.
+
+## Rules for running it
+
+1. **Be polite.** Add a delay between requests and name your bot in the user agent.
+2. **Respect robots.txt**, and don't send many requests to one site.
+3. **Run it on a schedule**, such as weekly, and keep dated results so you can see links appear and disappear.
+4. **Don't scrape search engine result pages.** It breaks their terms and gets your server blocked.
+
+## Where to get the list of linking pages
+
+Export it from Search Console: open Links, then Top linking sites or Latest links. Then drop the file into the [Zoqonyx backlink checker](/tools/backlink-checker) to count referring domains, see the most common anchor texts and flag risky links. The file is read in your browser and is not uploaded.
+
+## Need something built?
+
+If you want a link monitor inside your own dashboard, our team builds this kind of tool. See [custom software development](/services/custom-software-development) or [contact us](/contact).`,
+  },
+  {
+    slug: "backlink-history-checker",
+    title: "Backlink History: How to See New and Lost Backlinks",
+    excerpt: "Search Console has no backlink history. Here are the two ways to see gained and lost links: a paid link index, or a free monthly export you compare yourself.",
+    category: "SEO",
+    tags: ["backlink history checker", "lost backlinks", "new backlinks"],
+    publishedAt: "2026-11-25",
+    metaTitle: "Backlink History Checker: See New and Lost Links",
+    metaDesc: "Google Search Console has no backlink history. See how to track new and lost backlinks with a paid index or a free monthly export you compare.",
+    content: `Many people search for a "backlink history checker" expecting a chart of every link a site has gained and lost. The honest picture: **Google Search Console does not show backlink history.** Its Links report shows a current sample, with no timeline of new and lost links. If you need history, you have two options.
+
+## Option 1: Use a paid link index
+
+Providers such as Ahrefs, Semrush, Moz and Majestic crawl the web all the time, so they can show new and lost links over time. Their plans and limits change, so check each one's current pricing. This is the best route when you need history for a site you don't own, such as a competitor.
+
+## Option 2: Build your own history for free
+
+For your own website, you can build a history with the free Search Console export:
+
+1. Each month, open **Links** in Search Console and export **Top linking sites** and **Latest links** as CSV.
+2. Save each file with the date in its name, for example links-2027-01.csv.
+3. Compare two files. Linking domains in the newer file but not the older one are new. Domains in the older file but not the newer one are lost, or at least no longer in Google's sample.
+
+Search Console shows a sample rather than every link, so treat small differences with care. Look at the trend over several months, not single changes.
+
+## What to look for in the changes
+
+- **New links from relevant sites.** Note what you published or promoted around that time, so you learn what earns links.
+- **Lost links.** Check whether the linking page was removed or the link was edited. A lost link from a strong site is worth a polite email.
+- **A sudden burst of links from unrelated or low-quality domains.** Google ignores most of these, but keep a record.
+
+## Check each export with a free tool
+
+Upload each month's CSV to the [Zoqonyx backlink checker](/tools/backlink-checker) to count backlinks and referring domains and see the most common anchor texts. Your file is read in your browser and is not uploaded.
+
+For more on where link data comes from, read the guide to the [backlink checker API](/blog/backlink-checker-api), or learn [how to check backlinks for free](/blog/how-to-check-backlinks-for-free).`,
+  },
 ];

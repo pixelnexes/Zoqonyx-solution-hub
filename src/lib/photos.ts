@@ -86,6 +86,9 @@ const COVER_OVERRIDE: Record<string, string> = {
   "how-to-check-backlinks-for-free": "u-analytics",
   "how-to-merge-pdf-files-without-uploading-them": "u-laptop",
   "how-to-compress-a-pdf-for-email": "u-dev",
+  "backlink-checker-api": "u-analytics",
+  "php-backlink-checker-script": "u-dev",
+  "backlink-history-checker": "u-board",
 };
 
 /** Picks a photo related to the post's category; the slug keeps the choice stable. */
