@@ -2,6 +2,7 @@ import { prisma } from "@/lib/prisma";
 import { notFound, permanentRedirect } from "next/navigation";
 import type { Metadata } from "next";
 import { ToolRenderer } from "@/components/tools/tool-renderer";
+import { RequestTool } from "@/components/site/request-tool";
 import { ComingSoonToolView } from "@/components/tools/coming-soon-tool-view";
 import Link from "next/link";
 import { ArrowRight, ChevronDown, Lightbulb } from "lucide-react";
@@ -428,6 +429,8 @@ export default async function ToolPage({ params }: ToolPageProps) {
               </div>
             </section>
           )}
+
+          <RequestTool />
 
           {relatedTools.length > 0 && (
             <section aria-labelledby="related-heading">

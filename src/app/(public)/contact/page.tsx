@@ -16,6 +16,11 @@ export default function ContactPage() {
   const [status, setStatus] = React.useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = React.useState("");
 
+  React.useEffect(() => {
+    const s = new URLSearchParams(window.location.search).get("subject");
+    if (s) setSubject(s.slice(0, 80));
+  }, []);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!name.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email.trim()) || phone.replace(/\D/g, "").length < 7 || message.trim().length < 10) {

@@ -6,6 +6,7 @@ import { prisma } from "@/lib/prisma";
 import { DEFAULT_TOOLS, TOOL_ALIASES } from "@/lib/default-tools";
 import { isLiveToolSlug } from "@/lib/utils";
 import { ToolDrawer } from "@/components/home/tool-drawer";
+import { RequestTool } from "@/components/site/request-tool";
 
 export const revalidate = 300;
 
@@ -178,6 +179,8 @@ export default async function ToolsPage() {
 
         <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 zq-section space-y-16">
           <ToolDrawer tools={tools} perCategory={Number.POSITIVE_INFINITY} detailed />
+
+          <RequestTool />
 
           <section aria-labelledby="faq-heading" className="max-w-3xl">
             <h2 id="faq-heading" className="zq-display zq-h2">

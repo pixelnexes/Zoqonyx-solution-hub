@@ -1,3 +1,4 @@
+import { AREAS_SERVED, PARENT_LD } from "@/lib/company";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -28,8 +29,8 @@ const contactLd = {
       url: "https://zoqonyx.com",
       logo: "https://zoqonyx.com/logo/zoqonyx-logo-512.png",
       email: "hello@zoqonyx.com",
-      areaServed: ["United States", "Europe", "Gulf region", "Asia"],
-      parentOrganization: { "@type": "Organization", name: "Newix Tech Solutions", url: "https://newixtechsolutions.com/" },
+      areaServed: AREAS_SERVED,
+      parentOrganization: PARENT_LD,
     },
     {
       "@type": "BreadcrumbList",

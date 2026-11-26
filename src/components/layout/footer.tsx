@@ -17,6 +17,7 @@ const TOOL_LINKS = [
   { label: "Calculators", href: "/category/calculators" },
   { label: "Backlink checker", href: "/tools/backlink-checker" },
   { label: "Schema markup generator", href: "/tools/schema-markup-generator" },
+  { label: "Request a tool", href: "/contact?subject=Tool%20request" },
 ];
 
 const SERVICE_LINKS = [

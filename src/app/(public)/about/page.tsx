@@ -4,50 +4,42 @@ import { PageHero } from "@/components/kit/page-kit";
 import type { Metadata } from "next";
 import { ShieldCheck, Zap, Lock, Cpu, Globe, ArrowRight } from "lucide-react";
 import Link from "next/link";
+import { AREAS_SERVED, PARENT_LD } from "@/lib/company";
+import { RequestTool } from "@/components/site/request-tool";
 import { MarkdownRenderer } from "@/components/common/markdown-renderer";
 
 export const revalidate = 300;
 
 export const metadata: Metadata = {
   title: {
-    absolute: "About Zoqonyx Solution Hub | Free Online Tools",
+    absolute: "About Zoqonyx, a Newix Tech Solutions Product",
   },
   description:
-    "Zoqonyx is a software studio by Newix Tech Solutions with 146 free online tools. Most run in your browser, with no sign-up or subscription.",
+    "Zoqonyx is a product of Newix Tech Solutions, a Dubai company founded in 2020. 146 free online tools, no sign-up. Request the tool you need.",
   alternates: {
     canonical: "https://zoqonyx.com/about",
   },
 };
 
-const DEFAULT_ABOUT_CONTENT = `## Why We Built Zoqonyx Solution Hub
+const DEFAULT_ABOUT_CONTENT = `## Who makes Zoqonyx
 
-Most free online tools have become bloated, aggressive, and hostile to user privacy. You visit a site to compress a simple image or format a JSON payload, only to encounter:
-- Mandatory sign-up walls and credit card requirements.
-- Daily usage quotas that block your workflow after two conversions.
-- Remote server uploads that send your confidential legal documents, client assets, and proprietary source code to unknown third-party cloud servers.
-- Slow network upload times and annoying queue wait times.
+Zoqonyx is a product of [Newix Tech Solutions](https://newixtechsolutions.com/), a company based in Dubai with a mostly remote team. Newix was founded in 2020 and worked offline at first. Its online presence started in 2024.
 
-Zoqonyx Solution Hub was created by **Newix Tech Solutions** to establish an uncompromising new standard: **high-performance digital utilities that execute 100% in your browser, completely free, with zero logins and zero data collection.**
+## What Newix does
 
----
+- Builds, delivers and manages software products: web apps, websites, mobile apps and games
+- Provides product management and team support for businesses
+- Works as a white-label partner for agencies
 
-### The Zero-Upload Browser Architecture
+Newix works with clients in the United States, the United Kingdom, Germany and other European countries, the Gulf and Asia. You can see its [project portfolio](https://newixtechsolutions.com/portfolio/) and follow the [company on LinkedIn](https://linkedin.com/company/newixtech).
 
-Every tool in our catalog is engineered to execute within your device's sandboxed browser runtime using modern Web APIs:
-- **Web Workers & Chunked Streaming**: Background multi-threading that processes heavy batch operations (up to 100 files and 1 GB combined capacity) without freezing your user interface.
-- **WebAssembly (WASM)**: Native-speed PDF parsing, stream manipulation, and document reconstruction directly in client memory.
-- **Web Crypto API**: High-entropy cryptographic hashing, key generation, and UUID generation with zero telemetry.
+## Why Zoqonyx exists
 
-Because your files never leave your computer, your private data cannot be intercepted, logged, leaked, or monetized.
+Zoqonyx gives developers and everyday users free tools for images, PDFs, code, text and calculations, with no account and no paid tier. Most tools run in your browser, so the files you add stay on your device. A few network tools, such as DNS lookup, IP lookup and the SSL checker, contact a public service or our server to get their results.
 
----
+## Still growing
 
-### Our Core Commitments to You
-
-1. **Zero Mandatory Accounts**: No sign-ups, no email harvesting, no password management. Jump straight into the utility you need.
-2. **100% Free Forever**: No surprise paywalls, watermark stamps, or artificial feature gating.
-3. **Session-Only Memory**: All temporary processing buffers live strictly in volatile memory. When you close or refresh the tab, every byte is permanently cleared.
-4. **Transparent Engineering**: Clean, minimal interfaces focused on density, speed, and precision.`;
+Zoqonyx is an ongoing project built by the whole team. If a tool you need is missing, or something does not work as you expect, tell us and we will look at adding or fixing it.`;
 
 export default async function AboutPage() {
   let dbPage = null;
@@ -59,8 +51,10 @@ export default async function AboutPage() {
     console.error("Error fetching about page:", e);
   }
 
-  const content = dbPage?.content || DEFAULT_ABOUT_CONTENT;
-  const title = dbPage?.title || "About Zoqonyx Solution Hub";
+  // The first seeded About text in the database is outdated; text edited later in the admin still wins.
+  const edited = dbPage?.content && !dbPage.content.includes("Zero-Upload Browser Architecture");
+  const content = edited ? dbPage!.content : DEFAULT_ABOUT_CONTENT;
+  const title = "About Zoqonyx";
 
   const stats = [
     { v: "146", l: "Live free tools", g: "zq-g-indigo", I: Cpu },
@@ -69,7 +63,7 @@ export default async function AboutPage() {
     { v: "No wait", l: "No upload queue for browser tools", g: "zq-g-sun", I: Zap },
   ];
   const features = [
-    { I: Lock, g: "zq-g-violet", t: "Privacy by design", d: "Files stay on your device. Suitable for confidential contracts, financial records and GDPR-sensitive work." },
+    { I: Lock, g: "zq-g-violet", t: "Privacy by design", d: "Most tools process files in your browser, so what you add stays on your device." },
     { I: Zap, g: "zq-g-coral", t: "Fast bulk processing", d: "Process up to 100 photos or documents (1 GB combined) at once, with clear progress indicators." },
   ];
 
@@ -90,8 +84,8 @@ export default async function AboutPage() {
       url: "https://zoqonyx.com",
       logo: "https://zoqonyx.com/logo/zoqonyx-logo-512.png",
       email: "hello@zoqonyx.com",
-      areaServed: ["United States", "Europe", "Gulf region", "Asia"],
-      parentOrganization: { "@type": "Organization", name: "Newix Tech Solutions", url: "https://newixtechsolutions.com/" },
+      areaServed: AREAS_SERVED,
+      parentOrganization: PARENT_LD,
     },
       {
         "@type": "BreadcrumbList",
@@ -106,7 +100,7 @@ export default async function AboutPage() {
   return (
     <div className="zq-page">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutLd) }} />
-      <PageHero crumbs={[{ label: "Home", href: "/" }, { label: "About" }]} title={title} intro="A suite of free utilities for developers, designers, creators and teams that run in your browser, with no remote data collection." badge="Built by Newix Tech Solutions" image="/photos/u-office2.webp" />
+      <PageHero crumbs={[{ label: "Home", href: "/" }, { label: "About" }]} title={title} intro="Free online tools for developers and everyday users, made by Newix Tech Solutions in Dubai and a remote team." badge="Built by Newix Tech Solutions" image="/photos/u-office2.webp" />
 
       <div className="container mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 zq-section space-y-10">
         <ul className="grid grid-cols-2 lg:grid-cols-4 gap-4 -mt-6 relative">
@@ -143,6 +137,8 @@ export default async function AboutPage() {
             </div>
           ))}
         </div>
+
+        <RequestTool />
 
         <div className="rounded-[22px] p-7 sm:p-9 text-white flex flex-col sm:flex-row items-center justify-between gap-5" style={{ background: "#15171C" }}>
           <div>

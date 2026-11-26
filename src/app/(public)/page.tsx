@@ -1,3 +1,4 @@
+import { AREAS_SERVED, PARENT_LD } from "@/lib/company";
 import { prisma } from "@/lib/prisma";
 import Link from "next/link";
 import { ToolDrawer } from "@/components/home/tool-drawer";
@@ -204,8 +205,8 @@ export default async function HomePage() {
       url: "https://zoqonyx.com",
       logo: "https://zoqonyx.com/logo/zoqonyx-icon.png",
       email: "hello@zoqonyx.com",
-      areaServed: ["United States", "Europe", "Gulf region", "Asia"],
-      parentOrganization: { "@type": "Organization", name: "Newix Tech Solutions", url: "https://newixtechsolutions.com/" },
+      areaServed: AREAS_SERVED,
+      parentOrganization: PARENT_LD,
       description: "Software, app and website development, digital marketing and free online tools.",
     },
     {
