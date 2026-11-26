@@ -91,6 +91,7 @@ export default async function AboutPage() {
       logo: "https://zoqonyx.com/logo/zoqonyx-logo-512.png",
       email: "hello@zoqonyx.com",
       areaServed: ["United States", "Europe", "Gulf region", "Asia"],
+      parentOrganization: { "@type": "Organization", name: "Newix Tech Solutions", url: "https://newixtechsolutions.com/" },
     },
       {
         "@type": "BreadcrumbList",

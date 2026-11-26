@@ -17,6 +17,8 @@ export async function GET() {
   const lines: string[] = [
     "# Zoqonyx",
     "",
+    "Zoqonyx is a product of Newix Tech Solutions (https://newixtechsolutions.com/).",
+    "",
     "> Zoqonyx is a software studio that builds mobile apps, websites, games and custom software, offers digital marketing, AI and NLP, NFT, staff augmentation and ERP/CRM services, and runs 140+ free online tools for PDFs, images, code, text, CSS and calculators. Most tools run in the browser, so files stay on the user's device. Contact: hello@zoqonyx.com",
     "",
     "## Services",
