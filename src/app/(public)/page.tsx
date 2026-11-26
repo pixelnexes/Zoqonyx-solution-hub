@@ -4,15 +4,14 @@ import Link from "next/link";
 import { ToolDrawer } from "@/components/home/tool-drawer";
 import { ToolHero } from "@/components/home/tool-hero";
 import { ContactSection, TestimonialsSection } from "@/components/site/sections";
-import { ParallaxImg, ScrollProgress, CountUp } from "@/components/kit/motion";
+import { ScrollProgress } from "@/components/kit/motion";
 import { TechLogo, TechSprite } from "@/components/kit/tech-logo";
 import { BlogCover, TechRow, TechScene } from "@/components/kit/tech-scene";
 import { Reveal } from "@/components/kit/reveal";
 import { Slider } from "@/components/kit/slider";
-import { serviceStyle, categoryStyle } from "@/components/kit/icons";
+import { serviceStyle } from "@/components/kit/icons";
 import { readingMinutes } from "@/lib/markdown";
 import { ArrowRight, ChevronDown, Rocket, TrendingUp, Users } from "lucide-react";
-import { ToolIcon } from "@/components/common/tool-icon";
 import { getPosts, getServices, getTestimonials, groupServices } from "@/lib/content";
 import type { Metadata } from "next";
 
@@ -268,25 +267,6 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* 3b. Numbers */}
-      <section aria-label="Zoqonyx in numbers" className="bg-[#161513] text-white">
-        <ul className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 grid grid-cols-2 md:grid-cols-4 gap-y-8 py-10">
-          {[
-            { n: liveCount, s: "", l: "free online tools" },
-            { n: services.length, s: "", l: "services you can hire" },
-            { n: posts.length, s: "", l: "guides on the blog" },
-            { n: groups.length, s: "", l: "service areas" },
-          ].map((x) => (
-            <li key={x.l} className="px-2 md:border-l md:border-white/15 md:pl-8 first:border-0 first:pl-2">
-              <p className="zq-display text-4xl sm:text-5xl font-semibold text-[#FF8A66]">
-                <CountUp to={x.n} suffix={x.s} />
-              </p>
-              <p className="mt-1 text-[15px] zq-on-dark-muted">{x.l}</p>
-            </li>
-          ))}
-        </ul>
-      </section>
-
       {/* 4. Free tools by category */}
       <section aria-labelledby="tools-heading" className="zq-band-tint zq-section">
         <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
@@ -405,63 +385,6 @@ export default async function HomePage() {
               );
             })}
           </ul>
-        </div>
-      </section>
-
-      {/* 6b. Apps band with parallax photo */}
-      <section aria-labelledby="apps-heading" className="relative isolate overflow-hidden text-white">
-        <div aria-hidden="true" className="absolute inset-0 -z-10">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/photos/u-server.webp" alt="" width={1200} height={800} loading="lazy" className="absolute inset-0 h-full w-full object-cover" />
-          <div className="absolute inset-0 bg-[#161513]/85" />
-        </div>
-        <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 zq-section grid gap-10 lg:grid-cols-[1.1fr_0.9fr] items-center">
-          <div>
-            <h2 id="apps-heading" className="zq-display zq-h2">
-              Have an app or website idea? Let us scope it.
-            </h2>
-            <p className="mt-4 text-[17px] leading-relaxed zq-on-dark-muted max-w-xl">Tell us what you want to build. We reply with questions, a rough plan and the first step.</p>
-            <a href="#contact" className="zq-btn zq-btn-sun mt-7">
-              Get a quote <ArrowRight className="w-4 h-4" aria-hidden="true" />
-            </a>
-          </div>
-          <Reveal>
-            <TechScene photo="/photos/u-app.webp" techs={["Kotlin", "Swift", "Flutter", "React Native"]} className="h-64 w-full" />
-          </Reveal>
-        </div>
-      </section>
-
-      {/* 7. Popular tools slider */}
-      <section aria-labelledby="featured-heading" className="zq-section">
-        <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-wrap items-end justify-between gap-4 mb-2">
-            <h2 id="featured-heading" className="zq-display zq-h2">
-              Tools people use most
-            </h2>
-            <Link href="/tools" className="font-semibold text-[#B02E0E] hover:underline underline-offset-4">
-              Browse all {liveCount} tools
-            </Link>
-          </div>
-          <Slider label="popular tools">
-            {FEATURED_TOOLS.map((t) => {
-              const tool = tools.find((x) => x.slug === t.slug);
-              const { accent } = categoryStyle(tool?.category || "");
-              return (
-                <div key={t.slug} className="zq-slide">
-                  <Link href={`/tools/${t.slug}`} className="zq-card group flex h-full flex-col p-6" style={{ minHeight: 210 }}>
-                    <span className={`zq-chip ${accent.chip}`} aria-hidden="true">
-                      <ToolIcon name={tool?.icon ?? null} className="w-6 h-6" strokeWidth={2} />
-                    </span>
-                    <h3 className="mt-4 text-[18px] font-semibold">{t.name}</h3>
-                    <p className="mt-1.5 text-[15px] leading-relaxed text-[#5E5B55] flex-1">{t.text}</p>
-                    <span className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold" style={{ color: accent.color }}>
-                      Open tool <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
-                    </span>
-                  </Link>
-                </div>
-              );
-            })}
-          </Slider>
         </div>
       </section>
 

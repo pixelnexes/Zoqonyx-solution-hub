@@ -69,7 +69,7 @@ export function Logo({ className, iconOnly = false, size = "md", onDark = false 
           alt="Zoqonyx Icon"
           width={dimensions.iconW}
           height={dimensions.iconH}
-          className="object-contain"
+          className={cn("object-contain", onDark && "rounded-[10px] ring-1 ring-white/30")}
           priority
           unoptimized
         />

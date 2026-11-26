@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { Mail, ArrowRight } from "lucide-react";
 import { Logo } from "@/components/layout/logo";
 import { useSiteSettings } from "@/components/providers/site-settings-provider";
 
@@ -45,30 +44,8 @@ export function Footer() {
   const siteName = settings.site_name || "Zoqonyx Solution Hub";
 
   return (
-    <footer className="mt-auto bg-[#F7F6F4] pt-10 text-white">
-      {/* CTA card sits on the light page and overlaps into the dark footer */}
-      <div className="container relative z-10 mx-auto -mb-16 max-w-6xl px-4 sm:px-6 lg:px-8">
-        <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-[#22201D] p-8 text-white sm:p-12">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/photos/u-team.webp" alt="" width={1200} height={800} loading="lazy" className="absolute inset-y-0 right-0 hidden h-full w-1/3 object-cover opacity-30 mix-blend-luminosity lg:block" />
-          <div className="relative flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between lg:pr-[28%]">
-            <div className="max-w-xl">
-              <h2 className="zq-display zq-h2">Have a project in mind?</h2>
-              <p className="mt-3 text-[17px] leading-relaxed text-white/85">Tell us what you want to build. We will reply with questions and next steps.</p>
-            </div>
-            <div className="flex flex-wrap gap-3">
-              <Link href="/#contact" className="zq-btn !bg-white !text-[#B02E0E] hover:!bg-[#F5F4F2]">
-                Get a quote <ArrowRight className="h-4 w-4" aria-hidden="true" />
-              </Link>
-              <a href={`mailto:${email}`} className="zq-btn border-2 border-white/70 text-white hover:bg-white/10">
-                <Mail className="h-4 w-4" aria-hidden="true" /> {email}
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="bg-[#161513] pt-20">
+    <footer className="mt-auto text-white">
+      <div className="bg-[#161513] pt-14">
         <div className="container mx-auto max-w-6xl px-4 pb-10 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1fr_1fr_1fr]">
             <div className="max-w-xs space-y-4">

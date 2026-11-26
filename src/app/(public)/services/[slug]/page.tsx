@@ -6,7 +6,7 @@ import { getService, getServices, getTestimonials } from "@/lib/content";
 import { renderMarkdown } from "@/lib/markdown";
 import { ContactSection, TestimonialsSection } from "@/components/site/sections";
 import { serviceStyle } from "@/components/kit/icons";
-import { CtaBand, FaqBlock, PageHero, WorkSteps } from "@/components/kit/page-kit";
+import { FaqBlock, PageHero, WorkSteps } from "@/components/kit/page-kit";
 import { GROUP_TECH, TechScene } from "@/components/kit/tech-scene";
 import { TechLogo, TechSprite } from "@/components/kit/tech-logo";
 import { groupPhotoKey } from "@/lib/photos";
@@ -218,7 +218,6 @@ export default async function ServicePage({ params }: Props) {
       )}
 
       <TestimonialsSection items={testimonials} />
-      <CtaBand heading={`Start your ${service.name.toLowerCase()} project`} text="Share your idea, budget range and timeline. We reply with questions and a first step." />
       <ContactSection
         services={options}
         defaultService={service.isHub && service.slug !== "nft-development" ? "" : service.name}

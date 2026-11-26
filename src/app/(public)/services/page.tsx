@@ -5,7 +5,7 @@ import { getServices, getTestimonials, groupServices } from "@/lib/content";
 import { ContactSection, TestimonialsSection } from "@/components/site/sections";
 import { Reveal } from "@/components/kit/reveal";
 import { serviceStyle } from "@/components/kit/icons";
-import { CtaBand, PageHero, WorkSteps } from "@/components/kit/page-kit";
+import { PageHero, WorkSteps } from "@/components/kit/page-kit";
 import { GROUP_TECH, TechScene } from "@/components/kit/tech-scene";
 
 export const revalidate = 300;
@@ -103,7 +103,6 @@ export default async function ServicesPage() {
 
       <WorkSteps />
       <TestimonialsSection items={testimonials} />
-      <CtaBand heading="Ready to start your project?" text="Send us a few lines about what you want to build. We reply with questions and a first step." />
       <ContactSection services={options} />
     </div>
   );
