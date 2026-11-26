@@ -27,7 +27,7 @@ const contactLd = {
       "@id": "https://zoqonyx.com/#organization",
       name: "Zoqonyx",
       url: "https://zoqonyx.com",
-      logo: "https://zoqonyx.com/logo/zoqonyx-logo-512.png",
+      logo: "https://zoqonyx.com/logo/zoqonyx-logo-v2.png",
       email: "hello@zoqonyx.com",
       areaServed: AREAS_SERVED,
       parentOrganization: PARENT_LD,

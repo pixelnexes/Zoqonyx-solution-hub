@@ -76,7 +76,7 @@ export function QrCodeGeneratorProTool() {
   // Styling State
   const [colorMode, setColorMode] = React.useState<ColorMode>("single");
   const [fgColor1, setFgColor1] = React.useState("#0F172A");
-  const [fgColor2, setFgColor2] = React.useState("#06B6D4");
+  const [fgColor2, setFgColor2] = React.useState("#E8461E");
   const [gradientAngle, setGradientAngle] = React.useState(135);
   const [bgColor, setBgColor] = React.useState("#FFFFFF");
   const [isTransparentBg, setIsTransparentBg] = React.useState(false);
@@ -84,7 +84,7 @@ export function QrCodeGeneratorProTool() {
   const [correctionLevel, setCorrectionLevel] = React.useState<"L" | "M" | "Q" | "H">("H");
   
   // Logo State
-  const [logoSrc, setLogoSrc] = React.useState<string | null>("/logo/zoqonyx-icon.png");
+  const [logoSrc, setLogoSrc] = React.useState<string | null>("/logo/zoqonyx-logo-v2.png");
   const [logoSize, setLogoSize] = React.useState<number>(22); // percent of QR width
 
   // Export State
@@ -759,7 +759,7 @@ export function QrCodeGeneratorProTool() {
 
                 {/* Built-in Presets */}
                 <button
-                  onClick={() => setLogoSrc("/logo/zoqonyx-icon.png")}
+                  onClick={() => setLogoSrc("/logo/zoqonyx-logo-v2.png")}
                   className="px-2.5 py-1.5 rounded-lg border border-border/80 text-xs font-medium hover:bg-muted"
                 >
                   Zoqonyx

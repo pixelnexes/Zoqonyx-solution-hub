@@ -8,7 +8,7 @@ import { Copy, CheckCircle2, Palette, RefreshCw } from "lucide-react";
 import { addSessionHistory } from "@/lib/session-history";
 
 export function ColorConverterTool() {
-  const [hex, setHex] = React.useState("#14b8a6");
+  const [hex, setHex] = React.useState("#E8461E");
   const [copiedKey, setCopiedKey] = React.useState<string | null>(null);
 
   // Conversions
@@ -128,7 +128,7 @@ export function ColorConverterTool() {
               <Input
                 value={hex}
                 onChange={(e) => setHex(e.target.value)}
-                placeholder="#14b8a6"
+                placeholder="#E8461E"
                 className="font-mono text-sm max-w-xs"
               />
             </div>

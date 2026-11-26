@@ -23,7 +23,7 @@ export function Logo({ className, iconOnly = false, size = "md", onDark = false 
     lg: { iconW: 42, iconH: 42, logoW: 180, logoH: 44, textMain: "text-2xl", textSub: "text-xs" },
   }[size];
 
-  const iconSrc = settings.icon_path || "/logo/zoqonyx-icon.png";
+  const iconSrc = settings.icon_path || "/logo/zoqonyx-logo-v2.png";
   const lightLogoSrc = settings.light_logo_path || settings.logo_path || "/logo/zoqonyx-logo.png";
 
   const siteName = settings.site_name || "ZOQONYX Solution Hub";
@@ -57,7 +57,7 @@ export function Logo({ className, iconOnly = false, size = "md", onDark = false 
     <Link
       href="/"
       className={cn(
-        "inline-flex items-center gap-2.5 group rounded-[2px] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#7C3AED]",
+        "inline-flex items-center gap-2.5 group rounded-[2px] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#D63A14]",
         className
       )}
       aria-label={siteName}
@@ -65,7 +65,7 @@ export function Logo({ className, iconOnly = false, size = "md", onDark = false 
       {/* Brand Icon */}
       <div className="relative flex items-center justify-center shrink-0">
         <Image
-          src="/logo/zoqonyx-mark.svg"
+          src="/logo/zoqonyx-mark-v2.svg"
           alt="Zoqonyx Icon"
           width={dimensions.iconW}
           height={dimensions.iconH}
@@ -79,20 +79,9 @@ export function Logo({ className, iconOnly = false, size = "md", onDark = false 
       {!iconOnly && (
         <div className="flex flex-col select-none">
           <div className="flex items-center leading-none tracking-tight">
-            {siteName.toUpperCase().includes("ZOQONYX") ? (
-              <>
-                <span className={cn("font-heading font-semibold text-[#15171C]", onDark && "text-white", dimensions.textMain)}>
-                  ZOQONY
-                </span>
-                <span className={cn("font-heading font-semibold text-[#7C3AED]", onDark && "text-[#C4B5FD]", dimensions.textMain)}>
-                  X
-                </span>
-              </>
-            ) : (
-              <span className={cn("font-heading font-semibold text-[#15171C]", onDark && "text-white", dimensions.textMain)}>
-                {siteName}
-              </span>
-            )}
+            <span className={cn("font-heading font-bold tracking-[-0.02em] text-[#161513]", onDark && "text-white", dimensions.textMain)}>
+              {siteName.toUpperCase().includes("ZOQONYX") ? "Zoqonyx" : siteName}
+            </span>
           </div>
           {/* Tagline kept for screen readers only; the visible uppercase tagline read as template chrome. */}
           <span className="sr-only">{tagline}</span>

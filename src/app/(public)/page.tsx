@@ -2,12 +2,11 @@ import { AREAS_SERVED, PARENT_LD } from "@/lib/company";
 import { prisma } from "@/lib/prisma";
 import Link from "next/link";
 import { ToolDrawer } from "@/components/home/tool-drawer";
-import { ToolMoment } from "@/components/home/tool-moment";
+import { ToolHero } from "@/components/home/tool-hero";
 import { ContactSection, TestimonialsSection } from "@/components/site/sections";
 import { ParallaxImg, ScrollProgress, CountUp } from "@/components/kit/motion";
 import { TechLogo, TechSprite } from "@/components/kit/tech-logo";
 import { BlogCover, TechRow, TechScene } from "@/components/kit/tech-scene";
-import LogoLoop from "@/components/reactbits/LogoLoop";
 import { Reveal } from "@/components/kit/reveal";
 import { Slider } from "@/components/kit/slider";
 import { serviceStyle, categoryStyle } from "@/components/kit/icons";
@@ -33,7 +32,7 @@ export const metadata: Metadata = {
     description: "App, website and custom software development, digital marketing and AI services, plus free online tools.",
     url: "https://zoqonyx.com",
     type: "website",
-    images: [{ url: "https://zoqonyx.com/logo/zoqonyx-og.png", width: 1200, height: 630, alt: "Zoqonyx: software studio and free online tools" }],
+    images: [{ url: "https://zoqonyx.com/logo/zoqonyx-og-v2.png", width: 1200, height: 630, alt: "Zoqonyx: software studio and free online tools" }],
   },
 };
 
@@ -203,7 +202,7 @@ export default async function HomePage() {
       "@type": "Organization",
       name: "Zoqonyx",
       url: "https://zoqonyx.com",
-      logo: "https://zoqonyx.com/logo/zoqonyx-icon.png",
+      logo: "https://zoqonyx.com/logo/zoqonyx-logo-v2.png",
       email: "hello@zoqonyx.com",
       areaServed: AREAS_SERVED,
       parentOrganization: PARENT_LD,
@@ -218,7 +217,6 @@ export default async function HomePage() {
   ];
 
 
-  const TECH_PILLS = TECH.flatMap((t) => t.items.split(", "));
 
   return (
     <div className="zq-page">
@@ -228,48 +226,7 @@ export default async function HomePage() {
         <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(d) }} />
       ))}
 
-      <link rel="preload" as="image" href="/photos/u-team.webp" type="image/webp" fetchPriority="high" />
-      {/* 1. Hero */}
-      <section className="zq-hero-light">
-        <div className="container mx-auto grid max-w-6xl items-center gap-8 px-4 py-10 sm:px-6 sm:py-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-12 lg:px-8 lg:py-16">
-          <div>
-            <p className="zq-in inline-flex rounded-md border border-[#15171C]/20 bg-white/70 px-3 py-1 text-sm font-semibold">Software studio and free online tools</p>
-            <h1 className="zq-in-solid zq-display mt-5 text-[2.5rem] font-semibold leading-[1.04] text-[#15171C] sm:text-6xl">
-              Apps, websites and software built for your business.
-            </h1>
-            <p className="zq-in mt-5 max-w-xl text-[18px] leading-relaxed text-[#5B6270]" style={{ ["--d" as string]: "90ms" }}>
-              Zoqonyx designs and develops mobile apps, websites, games and custom software, helps people find you with digital marketing, and runs {liveCount} free online tools.
-            </p>
-            <div className="zq-in mt-7 flex flex-wrap gap-3" style={{ ["--d" as string]: "180ms" }}>
-              <a href="#contact" className="zq-btn zq-btn-indigo">
-                Get a quote <ArrowRight className="w-4 h-4" aria-hidden="true" />
-              </a>
-              <Link href="/services" className="zq-btn zq-btn-outline">
-                See our services
-              </Link>
-            </div>
-            <p className="mt-4 text-sm text-[#5B6270]">
-              Or <a href="#tools" className="font-semibold text-[#5B21B6] underline underline-offset-4">use the free tools</a>. No sign-up.
-            </p>
-          </div>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/photos/u-team.webp" alt="Developers working on laptops around a wooden table" width={1200} height={800} fetchPriority="high" className="zq-in h-64 w-full rounded-xl object-cover shadow-[0_24px_60px_-34px_rgba(21,23,28,.5)] sm:h-80 lg:h-[26rem]" style={{ ["--d" as string]: "200ms" }} />
-        </div>
-      </section>
-
-      {/* 2. Technologies marquee */}
-      <section aria-label="Technologies we use" className="zq-band-white border-b border-[#E4E7EC] py-6">
-        <LogoLoop
-          logos={Array.from(new Set(TECH_PILLS)).map((t) => ({ node: <span className="zq-pill"><TechLogo name={t} /></span>, title: t }))}
-          speed={55}
-          gap={16}
-          logoHeight={44}
-          pauseOnHover
-          fadeOut
-          fadeOutColor="#FFFFFF"
-          ariaLabel="Technologies we use"
-        />
-      </section>
+      <ToolHero tools={tools} count={liveCount} />
 
       {/* 3. Services */}
       <section aria-labelledby="services-heading" className="zq-section">
@@ -297,7 +254,7 @@ export default async function HomePage() {
                       <Icon className="w-6 h-6" aria-hidden="true" />
                     </span>
                     <h3 className="zq-display mt-4 text-[1.35rem] font-semibold leading-tight">{hub.name}</h3>
-                    <p className="mt-2 text-[15px] leading-relaxed text-[#5B6270]">{hub.shortDesc}</p>
+                    <p className="mt-2 text-[15px] leading-relaxed text-[#5E5B55]">{hub.shortDesc}</p>
                     <div className="mt-3 flex-1"><TechRow group={hub.group} /></div>
                     <p className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold" style={{ color: accent.color }}>
                       {children.length > 0 ? `${children.length} services` : "Learn more"} <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
@@ -312,7 +269,7 @@ export default async function HomePage() {
       </section>
 
       {/* 3b. Numbers */}
-      <section aria-label="Zoqonyx in numbers" className="bg-[#15171C] text-white">
+      <section aria-label="Zoqonyx in numbers" className="bg-[#161513] text-white">
         <ul className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 grid grid-cols-2 md:grid-cols-4 gap-y-8 py-10">
           {[
             { n: liveCount, s: "", l: "free online tools" },
@@ -321,7 +278,7 @@ export default async function HomePage() {
             { n: groups.length, s: "", l: "service areas" },
           ].map((x) => (
             <li key={x.l} className="px-2 md:border-l md:border-white/15 md:pl-8 first:border-0 first:pl-2">
-              <p className="zq-display text-4xl sm:text-5xl font-semibold text-[#F2A81D]">
+              <p className="zq-display text-4xl sm:text-5xl font-semibold text-[#FF8A66]">
                 <CountUp to={x.n} suffix={x.s} />
               </p>
               <p className="mt-1 text-[15px] zq-on-dark-muted">{x.l}</p>
@@ -330,15 +287,14 @@ export default async function HomePage() {
         </ul>
       </section>
 
-      {/* 4. Free tools */}
-      <section id="tools" aria-labelledby="tools-heading" className="zq-band-tint zq-section scroll-mt-20">
+      {/* 4. Free tools by category */}
+      <section aria-labelledby="tools-heading" className="zq-band-tint zq-section">
         <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <h2 id="tools-heading" className="zq-display zq-h2">
-            Free online tools
+            Every tool by category
           </h2>
-          <p className="mt-3 mb-8 zq-lead max-w-2xl">Open a tool and use it. No sign-up and no account. Most tools run in your browser, so the files you add stay on your device.</p>
-          <ToolMoment />
-          <ToolDrawer tools={tools.map((t) => ({ ...t, description: "" }))} />
+          <p className="mt-3 mb-8 zq-lead max-w-2xl">Most tools run in your browser, so the files you add stay on your device.</p>
+          <ToolDrawer hideSearch tools={tools.map((t) => ({ ...t, description: "" }))} />
         </div>
       </section>
 
@@ -358,9 +314,9 @@ export default async function HomePage() {
                 ["You see progress every week", "Working builds you can click through, not status reports."],
                 ["You own the result", "Code, designs and accounts are yours from the first payment."],
               ].map(([t, d]) => (
-                <li key={t} className="border-l-4 border-[#7C3AED] pl-4">
+                <li key={t} className="border-l-4 border-[#D63A14] pl-4">
                   <p className="text-[18px] font-semibold">{t}</p>
-                  <p className="mt-1 text-[15px] leading-relaxed text-[#5B6270]">{d}</p>
+                  <p className="mt-1 text-[15px] leading-relaxed text-[#5E5B55]">{d}</p>
                 </li>
               ))}
             </ul>
@@ -382,7 +338,7 @@ export default async function HomePage() {
                     {i + 1}
                   </span>
                   <h3 className="mt-4 text-[18px] font-semibold">{p.title}</h3>
-                  <p className="mt-1.5 text-[15px] leading-relaxed text-[#5B6270]">{p.text}</p>
+                  <p className="mt-1.5 text-[15px] leading-relaxed text-[#5E5B55]">{p.text}</p>
                 </div>
               </Reveal>
             ))}
@@ -403,10 +359,10 @@ export default async function HomePage() {
               { t: "Extra developers", d: "Add one or more developers to your own team for as long as the work needs them.", href: "/services/staff-augmentation", cta: "Staff augmentation", dark: false },
             ].map((m, i) => (
               <Reveal as="li" key={m.t} delay={i * 90}>
-                <div className={`flex h-full flex-col rounded-xl border p-7 ${m.dark ? "border-[#15171C] bg-[#15171C] text-white" : "border-[#E4E7EC] bg-white text-[#15171C]"}`}>
+                <div className={`flex h-full flex-col rounded-xl border p-7 ${m.dark ? "border-[#161513] bg-[#161513] text-white" : "border-[#E5E2DC] bg-white text-[#161513]"}`}>
                   <h3 className="zq-display text-2xl font-semibold">{m.t}</h3>
-                  <p className={`mt-3 flex-1 text-[16px] leading-relaxed ${m.dark ? "zq-on-dark-muted" : "text-[#5B6270]"}`}>{m.d}</p>
-                  <Link href={m.href} className={`mt-6 inline-flex items-center gap-1.5 font-semibold ${m.dark ? "text-white underline underline-offset-4" : "text-[#5B21B6]"}`}>
+                  <p className={`mt-3 flex-1 text-[16px] leading-relaxed ${m.dark ? "zq-on-dark-muted" : "text-[#5E5B55]"}`}>{m.d}</p>
+                  <Link href={m.href} className={`mt-6 inline-flex items-center gap-1.5 font-semibold ${m.dark ? "text-white underline underline-offset-4" : "text-[#B02E0E]"}`}>
                     {m.cta} <ArrowRight className="w-4 h-4" aria-hidden="true" />
                   </Link>
                 </div>
@@ -457,7 +413,7 @@ export default async function HomePage() {
         <div aria-hidden="true" className="absolute inset-0 -z-10">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/photos/u-server.webp" alt="" width={1200} height={800} loading="lazy" className="absolute inset-0 h-full w-full object-cover" />
-          <div className="absolute inset-0 bg-[#15171C]/85" />
+          <div className="absolute inset-0 bg-[#161513]/85" />
         </div>
         <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 zq-section grid gap-10 lg:grid-cols-[1.1fr_0.9fr] items-center">
           <div>
@@ -482,7 +438,7 @@ export default async function HomePage() {
             <h2 id="featured-heading" className="zq-display zq-h2">
               Tools people use most
             </h2>
-            <Link href="/tools" className="font-semibold text-[#5B21B6] hover:underline underline-offset-4">
+            <Link href="/tools" className="font-semibold text-[#B02E0E] hover:underline underline-offset-4">
               Browse all {liveCount} tools
             </Link>
           </div>
@@ -497,7 +453,7 @@ export default async function HomePage() {
                       <ToolIcon name={tool?.icon ?? null} className="w-6 h-6" strokeWidth={2} />
                     </span>
                     <h3 className="mt-4 text-[18px] font-semibold">{t.name}</h3>
-                    <p className="mt-1.5 text-[15px] leading-relaxed text-[#5B6270] flex-1">{t.text}</p>
+                    <p className="mt-1.5 text-[15px] leading-relaxed text-[#5E5B55] flex-1">{t.text}</p>
                     <span className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold" style={{ color: accent.color }}>
                       Open tool <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
                     </span>
@@ -517,7 +473,7 @@ export default async function HomePage() {
               <h2 id="blog-heading" className="zq-display zq-h2">
                 From the blog
               </h2>
-              <Link href="/blog" className="font-semibold text-[#5B21B6] hover:underline underline-offset-4">
+              <Link href="/blog" className="font-semibold text-[#B02E0E] hover:underline underline-offset-4">
                 All posts
               </Link>
             </div>
@@ -527,11 +483,11 @@ export default async function HomePage() {
                   <Link href={`/blog/${p.slug}`} className="zq-card group flex h-full flex-col overflow-hidden">
                     <BlogCover seed={p.slug} category={p.category} className="aspect-[16/9] w-full transition-transform duration-500" />
                     <div className="flex flex-1 flex-col p-5">
-                      <p className="text-sm font-semibold text-[#5B21B6]">
+                      <p className="text-sm font-semibold text-[#B02E0E]">
                         {p.category} · {readingMinutes(p.content)} min read
                       </p>
                       <h3 className="mt-1.5 text-[17px] font-semibold leading-snug">{p.title}</h3>
-                      <p className="mt-2 text-[15px] leading-relaxed text-[#5B6270] line-clamp-3">{p.excerpt}</p>
+                      <p className="mt-2 text-[15px] leading-relaxed text-[#5E5B55] line-clamp-3">{p.excerpt}</p>
                     </div>
                   </Link>
                 </div>
@@ -552,12 +508,12 @@ export default async function HomePage() {
           </h2>
           <div className="mt-8 space-y-3">
             {FAQS.map((f) => (
-              <details key={f.q} className="zq-card group p-0 open:shadow-[0_14px_36px_-18px_rgba(21,23,28,.35)]">
+              <details key={f.q} className="zq-card group p-0 open:shadow-[0_14px_36px_-18px_rgba(22,21,19,.35)]">
                 <summary className="flex cursor-pointer list-none items-center justify-between gap-4 p-5 text-[17px] font-semibold [&::-webkit-details-marker]:hidden">
                   {f.q}
-                  <ChevronDown className="w-5 h-5 shrink-0 text-[#7C3AED] transition-transform group-open:rotate-180" aria-hidden="true" />
+                  <ChevronDown className="w-5 h-5 shrink-0 text-[#D63A14] transition-transform group-open:rotate-180" aria-hidden="true" />
                 </summary>
-                <p className="px-5 pb-5 text-[16px] leading-relaxed text-[#5B6270]">{f.a}</p>
+                <p className="px-5 pb-5 text-[16px] leading-relaxed text-[#5E5B55]">{f.a}</p>
               </details>
             ))}
           </div>

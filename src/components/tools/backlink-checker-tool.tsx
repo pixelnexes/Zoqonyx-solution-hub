@@ -411,7 +411,7 @@ export function BacklinkCheckerTool() {
                   {shown.slice(0, 500).map((l, i) => (
                     <tr key={i}>
                       <td className="p-2.5 max-w-xs">
-                        <a href={l.sourceUrl} target="_blank" rel="noreferrer nofollow" className="text-[#0F766E] hover:underline inline-flex items-center gap-1">
+                        <a href={l.sourceUrl} target="_blank" rel="noreferrer nofollow" className="text-[#B02E0E] hover:underline inline-flex items-center gap-1">
                           <span className="truncate">{l.sourceUrl}</span>
                           <ExternalLink className="w-3 h-3 shrink-0" />
                         </a>

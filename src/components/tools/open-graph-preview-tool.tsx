@@ -30,7 +30,7 @@ export function OpenGraphPreviewTool() {
   );
   const [url, setUrl] = React.useState("https://zoqonyx.com");
   const [siteName, setSiteName] = React.useState("Zoqonyx Solution Hub");
-  const [imageUrl, setImageUrl] = React.useState("https://zoqonyx.com/logo/zoqonyx-og.png");
+  const [imageUrl, setImageUrl] = React.useState("https://zoqonyx.com/logo/zoqonyx-og-v2.png");
   const [twitterHandle, setTwitterHandle] = React.useState("@zoqonyx");
   const [twitterCardType, setTwitterCardType] = React.useState<"summary_large_image" | "summary">("summary_large_image");
   const [activePlatform, setActivePlatform] = React.useState<PreviewPlatform>("twitter");
@@ -399,11 +399,11 @@ export const metadata: Metadata = {
                   <div className="rounded-xl overflow-hidden border border-border/80 bg-card/60 hover:bg-card/90 transition-colors cursor-pointer group">
                     <div className="aspect-[1.91/1] w-full overflow-hidden bg-muted relative">
                       <img
-                        src={imageUrl || "/logo/zoqonyx-og.png"}
+                        src={imageUrl || "/logo/zoqonyx-og-v2.png"}
                         alt="Preview"
                         className="w-full h-full object-cover transition-transform duration-300"
                         onError={(e) => {
-                          (e.target as HTMLImageElement).src = "/logo/zoqonyx-og.png";
+                          (e.target as HTMLImageElement).src = "/logo/zoqonyx-og-v2.png";
                         }}
                       />
                       <div className="absolute bottom-2 left-2 px-2 py-0.5 rounded bg-black/70 backdrop-blur-sm text-[10px] text-white font-mono">
@@ -419,7 +419,7 @@ export const metadata: Metadata = {
                   <div className="flex rounded-xl overflow-hidden border border-border/80 bg-card/60 cursor-pointer">
                     <div className="w-24 h-24 shrink-0 bg-muted overflow-hidden">
                       <img
-                        src={imageUrl || "/logo/zoqonyx-og.png"}
+                        src={imageUrl || "/logo/zoqonyx-og-v2.png"}
                         alt="Preview"
                         className="w-full h-full object-cover"
                       />
@@ -454,11 +454,11 @@ export const metadata: Metadata = {
                 <div className="rounded-xl overflow-hidden border border-border/80 bg-muted/30">
                   <div className="aspect-[1.91/1] w-full overflow-hidden bg-muted">
                     <img
-                      src={imageUrl || "/logo/zoqonyx-og.png"}
+                      src={imageUrl || "/logo/zoqonyx-og-v2.png"}
                       alt="Preview"
                       className="w-full h-full object-cover"
                       onError={(e) => {
-                        (e.target as HTMLImageElement).src = "/logo/zoqonyx-og.png";
+                        (e.target as HTMLImageElement).src = "/logo/zoqonyx-og-v2.png";
                       }}
                     />
                   </div>
@@ -493,7 +493,7 @@ export const metadata: Metadata = {
                 <div className="rounded-xl overflow-hidden border border-border/80 bg-muted/20">
                   <div className="aspect-[1.91/1] w-full overflow-hidden bg-muted">
                     <img
-                      src={imageUrl || "/logo/zoqonyx-og.png"}
+                      src={imageUrl || "/logo/zoqonyx-og-v2.png"}
                       alt="Preview"
                       className="w-full h-full object-cover"
                     />
@@ -539,7 +539,7 @@ export const metadata: Metadata = {
                 <div className="bg-background dark:bg-zinc-900 rounded-xl p-3 shadow-sm border border-border/80 space-y-2">
                   <div className="rounded-lg overflow-hidden bg-muted aspect-[1.91/1]">
                     <img
-                      src={imageUrl || "/logo/zoqonyx-og.png"}
+                      src={imageUrl || "/logo/zoqonyx-og-v2.png"}
                       alt="Preview"
                       className="w-full h-full object-cover"
                     />
@@ -571,7 +571,7 @@ export const metadata: Metadata = {
 
                   <div className="rounded overflow-hidden max-h-48 aspect-[1.91/1] bg-black/40">
                     <img
-                      src={imageUrl || "/logo/zoqonyx-og.png"}
+                      src={imageUrl || "/logo/zoqonyx-og-v2.png"}
                       alt="Preview"
                       className="w-full h-full object-cover"
                     />

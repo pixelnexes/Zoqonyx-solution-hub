@@ -10,7 +10,7 @@ export const ZQ_CSS = `
   --zq-muted: #4A5568;
   --zq-canvas: #F3F5F8;
   --zq-line: #D5DCE4;
-  --zq-teal: #0F766E;
+  --zq-teal: #B02E0E;
   --zq-label: #F2C230;
   --zq-ease: cubic-bezier(.2,.7,.2,1);
   background: var(--zq-canvas);

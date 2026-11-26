@@ -38,7 +38,7 @@ function inline(text: string, keyPrefix: string): React.ReactNode[] {
           <a
             key={key}
             href={href}
-            className="text-[#0F766E] underline underline-offset-[3px]"
+            className="text-[#B02E0E] underline underline-offset-[3px]"
             {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
           >
             {lm[1]}

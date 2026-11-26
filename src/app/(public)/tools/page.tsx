@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     siteName: "Zoqonyx Solution Hub",
     images: [
       {
-        url: "/logo/zoqonyx-og.png",
+        url: "/logo/zoqonyx-og-v2.png",
         width: 1200,
         height: 630,
         alt: "Zoqonyx All Tools Catalog",
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     title: "All Free Online Tools Directory | Zoqonyx",
     description:
       "Explore 100+ fast, privacy-first, 100% free digital tools. Zero installations, zero tracking.",
-    images: ["/logo/zoqonyx-og.png"],
+    images: ["/logo/zoqonyx-og-v2.png"],
   },
 };
 
@@ -191,9 +191,9 @@ export default async function ToolsPage() {
                 <details key={i} className="zq-card group p-0">
                   <summary className="flex cursor-pointer list-none items-center justify-between gap-4 p-5 text-[17px] font-semibold [&::-webkit-details-marker]:hidden">
                     {faq.q}
-                    <ChevronDown className="w-5 h-5 shrink-0 text-[#7C3AED] transition-transform group-open:rotate-180" aria-hidden="true" />
+                    <ChevronDown className="w-5 h-5 shrink-0 text-[#D63A14] transition-transform group-open:rotate-180" aria-hidden="true" />
                   </summary>
-                  <p className="px-5 pb-5 text-[16px] leading-relaxed text-[#5B6270]">{faq.a}</p>
+                  <p className="px-5 pb-5 text-[16px] leading-relaxed text-[#5E5B55]">{faq.a}</p>
                 </details>
               ))}
             </div>

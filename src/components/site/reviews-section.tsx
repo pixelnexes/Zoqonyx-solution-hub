@@ -13,7 +13,7 @@ function Card({ t }: { t: TestimonialItem }) {
       <blockquote className="mt-3 line-clamp-5 flex-1 whitespace-normal text-[15px] leading-relaxed">“{t.quote}”</blockquote>
       <figcaption className="mt-3 text-sm">
         <span className="font-semibold">{t.name}</span>
-        {(t.role || t.company) && <span className="text-[#5B6270]"> — {[t.role, t.company].filter(Boolean).join(", ")}</span>}
+        {(t.role || t.company) && <span className="text-[#5E5B55]"> — {[t.role, t.company].filter(Boolean).join(", ")}</span>}
       </figcaption>
     </figure>
   );
@@ -54,16 +54,16 @@ export function TestimonialsSection({ items, heading = "Client reviews" }: { ite
             <h2 id="testimonials-heading" className="zq-display zq-h2">
               {heading}
             </h2>
-            <p className="mt-2 max-w-xl text-[16px] text-[#5B6270]">
+            <p className="mt-2 max-w-xl text-[16px] text-[#5E5B55]">
               Feedback from people we have worked with.
             </p>
           </div>
           <div className="flex flex-wrap items-center gap-3">
             {(
-              <div className="flex items-center gap-2 rounded-xl border border-[#E4E7EC] bg-white px-4 py-2.5">
-                <span className="zq-display text-2xl font-semibold text-[#15171C]">{avg.toFixed(1)}</span>
+              <div className="flex items-center gap-2 rounded-xl border border-[#E5E2DC] bg-white px-4 py-2.5">
+                <span className="zq-display text-2xl font-semibold text-[#161513]">{avg.toFixed(1)}</span>
                 <Star className="h-5 w-5 fill-[#F2A81D] text-[#F2A81D]" aria-hidden="true" />
-                <span className="text-sm text-[#5B6270]">
+                <span className="text-sm text-[#5E5B55]">
                   {list.length} review{list.length > 1 ? "s" : ""}
                 </span>
               </div>

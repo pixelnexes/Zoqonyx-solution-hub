@@ -6,8 +6,8 @@ export function RequestTool() {
   return (
     <div className="zq-card flex flex-col items-start justify-between gap-4 p-6 sm:flex-row sm:items-center sm:p-8">
       <div>
-        <h2 className="zq-display text-xl font-semibold text-[#15171C]">Missing a tool?</h2>
-        <p className="mt-1 max-w-xl text-[15px] leading-relaxed text-[#5B6270]">
+        <h2 className="zq-display text-xl font-semibold text-[#161513]">Missing a tool?</h2>
+        <p className="mt-1 max-w-xl text-[15px] leading-relaxed text-[#5E5B55]">
           Tell us which tool you need. We keep adding to Zoqonyx based on what people ask for.
         </p>
       </div>

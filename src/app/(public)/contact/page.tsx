@@ -94,7 +94,7 @@ export default function ContactPage() {
               {/* Name Field */}
               <div className="space-y-1.5">
                 <label className="text-xs font-semibold text-foreground">
-                  Full Name <span className="text-[#6D28D9]">*</span>
+                  Full Name <span className="text-[#D63A14]">*</span>
                 </label>
                 <Input
                   required
@@ -109,7 +109,7 @@ export default function ContactPage() {
               {/* Email Field */}
               <div className="space-y-1.5">
                 <label className="text-xs font-semibold text-foreground">
-                  Email Address <span className="text-[#6D28D9]">*</span>
+                  Email Address <span className="text-[#D63A14]">*</span>
                 </label>
                 <Input
                   required
@@ -127,7 +127,7 @@ export default function ContactPage() {
               {/* Phone Number Field */}
               <div className="space-y-1.5">
                 <label className="text-xs font-semibold text-foreground">
-                  Phone or WhatsApp <span className="text-[#6D28D9]">*</span>
+                  Phone or WhatsApp <span className="text-[#D63A14]">*</span>
                 </label>
                 <Input
                   required
@@ -158,7 +158,7 @@ export default function ContactPage() {
             {/* Message Field */}
             <div className="space-y-1.5">
               <label className="text-xs font-semibold text-foreground">
-                Message <span className="text-[#6D28D9]">*</span>
+                Message <span className="text-[#D63A14]">*</span>
               </label>
               <Textarea
                 required

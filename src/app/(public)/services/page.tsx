@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     description: "Game, app, website and custom software development, digital marketing, AI, NFT, staff augmentation and ERP/CRM.",
     url: "https://zoqonyx.com/services",
     type: "website",
-    images: [{ url: "https://zoqonyx.com/logo/zoqonyx-og.png", width: 1200, height: 630, alt: "Zoqonyx: software studio and free online tools" }],
+    images: [{ url: "https://zoqonyx.com/logo/zoqonyx-og-v2.png", width: 1200, height: 630, alt: "Zoqonyx: software studio and free online tools" }],
   },
 };
 
@@ -66,10 +66,10 @@ export default async function ServicesPage() {
           const { Icon, accent } = serviceStyle(hub.slug);
           const flip = i % 2 === 1;
           return (
-            <section key={hub.slug} aria-labelledby={`g-${hub.slug}`} className={i % 2 === 0 ? "bg-white" : "bg-[#F7F8FA]"}>
+            <section key={hub.slug} aria-labelledby={`g-${hub.slug}`} className={i % 2 === 0 ? "bg-white" : "bg-[#F7F6F4]"}>
               <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 zq-section grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
                 <Reveal className={flip ? "lg:order-2" : ""}>
-                  <TechScene group={hub.group} className="h-72 sm:h-96 shadow-[0_24px_60px_-34px_rgba(21,23,28,.55)]" />
+                  <TechScene group={hub.group} className="h-72 sm:h-96 shadow-[0_24px_60px_-34px_rgba(22,21,19,.55)]" />
                 </Reveal>
                 <div>
                   <span className={`zq-chip ${accent.chip}`}>
@@ -78,13 +78,13 @@ export default async function ServicesPage() {
                   <h2 id={`g-${hub.slug}`} className="zq-display mt-4 text-3xl sm:text-4xl font-semibold leading-tight">
                     {hub.name}
                   </h2>
-                  <p className="mt-3 text-[17px] leading-relaxed text-[#5B6270]">{hub.shortDesc}</p>
+                  <p className="mt-3 text-[17px] leading-relaxed text-[#5E5B55]">{hub.shortDesc}</p>
                   {children.length > 0 && (
                     <ul className="mt-6 space-y-3">
                       {children.map((c) => (
                         <li key={c.slug} className="flex items-start gap-3">
                           <Check className="mt-0.5 h-5 w-5 shrink-0" style={{ color: accent.color }} aria-hidden="true" />
-                          <Link href={`/services/${c.slug}`} className="text-[16px] font-semibold hover:text-[#5B21B6] hover:underline underline-offset-4">
+                          <Link href={`/services/${c.slug}`} className="text-[16px] font-semibold hover:text-[#B02E0E] hover:underline underline-offset-4">
                             {c.name}
                           </Link>
                         </li>

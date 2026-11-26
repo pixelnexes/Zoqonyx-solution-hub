@@ -26,7 +26,7 @@ export function ContactSection({
             <p className="mt-4 text-[17px] leading-relaxed text-white/85 max-w-md">{intro}</p>
             <ul className="mt-7 space-y-4 text-[16px]">
               <li className="flex items-center gap-3">
-                <span className="zq-chip zq-chip-sm zq-g-sun text-[#15171C]">
+                <span className="zq-chip zq-chip-sm zq-g-sun text-[#161513]">
                   <Mail className="w-[18px] h-[18px]" aria-hidden="true" />
                 </span>
                 <a href="mailto:hello@zoqonyx.com" className="font-semibold underline underline-offset-4 hover:text-[#F2A81D]">
@@ -41,7 +41,7 @@ export function ContactSection({
               </li>
             </ul>
           </div>
-          <div className="rounded-3xl bg-white text-[#15171C] p-5 sm:p-8 shadow-[0_30px_70px_-24px_rgba(0,0,0,.65)]">
+          <div className="rounded-3xl bg-white text-[#161513] p-5 sm:p-8 shadow-[0_30px_70px_-24px_rgba(0,0,0,.65)]">
             <LeadForm services={services} defaultService={defaultService} />
           </div>
         </div>

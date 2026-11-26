@@ -247,7 +247,7 @@ export function ImageFormatConverterTool() {
 // --- 4. Color Picker from Image Pro ---
 export function ColorPickerTool() {
   const [imageSrc, setImageSrc] = React.useState<string | null>(null);
-  const [pickedColor, setPickedColor] = React.useState<string>("#06B6D4");
+  const [pickedColor, setPickedColor] = React.useState<string>("#E8461E");
   const [rgbVal, setRgbVal] = React.useState<string>("rgb(6, 182, 212)");
   const [hslVal, setHslVal] = React.useState<string>("hsl(189, 95%, 43%)");
   const [cmykVal, setCmykVal] = React.useState<string>("cmyk(97%, 14%, 0%, 17%)");
@@ -259,7 +259,7 @@ export function ColorPickerTool() {
     x: 0,
     y: 0,
     visible: false,
-    color: "#06B6D4",
+    color: "#E8461E",
   });
 
   const canvasRef = React.useRef<HTMLCanvasElement | null>(null);

@@ -4,7 +4,7 @@ import { PageHero } from "@/components/kit/page-kit";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, ChevronDown } from "lucide-react";
-import { ToolIcon } from "@/components/common/tool-icon";
+import { ToolBadge } from "@/components/common/tool-badge";
 import { categoryStyle } from "@/components/kit/icons";
 import { prisma } from "@/lib/prisma";
 import { getCategoryBySlug, getAllCategories } from "@/lib/categories";
@@ -58,7 +58,7 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
       siteName: "Zoqonyx Solution Hub",
       images: [
         {
-          url: "/logo/zoqonyx-og.png",
+          url: "/logo/zoqonyx-og-v2.png",
           width: 1200,
           height: 630,
           alt: category.name,
@@ -69,7 +69,7 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
       card: "summary_large_image",
       title,
       description,
-      images: ["/logo/zoqonyx-og.png"],
+      images: ["/logo/zoqonyx-og-v2.png"],
     },
   };
 }
@@ -251,9 +251,9 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
               Tools
             </h2>
             {displayedTools.length === 0 ? (
-              <p className="mt-5 text-[16px] text-[#5B6270]">
+              <p className="mt-5 text-[16px] text-[#5E5B55]">
                 No tools are live in this category yet.{" "}
-                <Link href="/tools" className="font-semibold text-[#5B21B6] underline underline-offset-4">
+                <Link href="/tools" className="font-semibold text-[#B02E0E] underline underline-offset-4">
                   Browse all tools
                 </Link>
               </p>
@@ -262,12 +262,10 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
                 {displayedTools.map((tool) => (
                   <li key={tool.slug}>
                     <Link href={`/tools/${tool.slug}`} className="zq-card zq-card-hover group flex h-full items-start gap-3 p-4">
-                      <span className={`zq-chip zq-chip-sm ${catAccent.chip}`} aria-hidden="true">
-                        <ToolIcon name={tool.icon} className="w-[18px] h-[18px]" strokeWidth={2} />
-                      </span>
+                      <ToolBadge name={tool.icon} category={tool.category} size={40} />
                       <span className="min-w-0">
-                        <span className="block text-[16px] font-semibold group-hover:text-[#5B21B6]">{tool.name}</span>
-                        <span className="block mt-0.5 text-sm leading-relaxed text-[#5B6270] line-clamp-2">{tool.description}</span>
+                        <span className="block text-[16px] font-semibold group-hover:text-[#B02E0E]">{tool.name}</span>
+                        <span className="block mt-0.5 text-sm leading-relaxed text-[#5E5B55] line-clamp-2">{tool.description}</span>
                       </span>
                     </Link>
                   </li>
@@ -280,14 +278,14 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
             <h2 id="about-heading" className="zq-display zq-h2">
               About {category.name}
             </h2>
-            <div className="mt-5 text-[16px] leading-[1.75] text-[#2B2F38] whitespace-pre-line">{category.longContent.overview}</div>
+            <div className="mt-5 text-[16px] leading-[1.75] text-[#2E2C28] whitespace-pre-line">{category.longContent.overview}</div>
 
             {category.longContent.keyBenefits.length > 0 && (
               <dl className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {category.longContent.keyBenefits.map((b, idx) => (
                   <div key={idx} className="zq-card p-5" style={{ borderTop: `3px solid ${catAccent.color}` }}>
                     <dt className="text-[17px] font-semibold">{b.title}</dt>
-                    <dd className="mt-1 text-[15px] leading-relaxed text-[#5B6270]">{b.desc}</dd>
+                    <dd className="mt-1 text-[15px] leading-relaxed text-[#5E5B55]">{b.desc}</dd>
                   </div>
                 ))}
               </dl>
@@ -298,7 +296,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
                 {category.longContent.popularWorkflows.map((flow, fIdx) => (
                   <div key={fIdx}>
                     <h3 className="text-xl font-semibold">{flow.title}</h3>
-                    <ol className="mt-3 list-decimal pl-6 space-y-1.5 text-[15px] leading-relaxed text-[#2B2F38]">
+                    <ol className="mt-3 list-decimal pl-6 space-y-1.5 text-[15px] leading-relaxed text-[#2E2C28]">
                       {flow.steps.map((step, sIdx) => (
                         <li key={sIdx}>{step}</li>
                       ))}
@@ -309,13 +307,13 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
             )}
 
             <div
-              className="mt-10 text-[16px] leading-[1.75] text-[#2B2F38]"
+              className="mt-10 text-[16px] leading-[1.75] text-[#2E2C28]"
               dangerouslySetInnerHTML={{
                 __html: category.longContent.deepDiveArticle
-                  .replace(/^### (.*$)/gim, '<h3 class="text-xl font-semibold text-[#15171C] mt-8 mb-2">$1</h3>')
-                  .replace(/^## (.*$)/gim, '<h2 class="text-2xl font-semibold text-[#15171C] mt-10 mb-3">$1</h2>')
+                  .replace(/^### (.*$)/gim, '<h3 class="text-xl font-semibold text-[#161513] mt-8 mb-2">$1</h3>')
+                  .replace(/^## (.*$)/gim, '<h2 class="text-2xl font-semibold text-[#161513] mt-10 mb-3">$1</h2>')
                   .replace(/^\- (.*$)/gim, '<li class="list-disc ml-6 my-1">$1</li>')
-                  .replace(/\*\*(.*?)\*\*/g, '<strong class="text-[#15171C] font-semibold">$1</strong>')
+                  .replace(/\*\*(.*?)\*\*/g, '<strong class="text-[#161513] font-semibold">$1</strong>')
                   .replace(/\n\n/g, '<p class="my-4">')
                   .replace(/\n/g, "<br />"),
               }}
@@ -332,9 +330,9 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
                   <details key={fIdx} className="zq-card group p-0">
                     <summary className="flex cursor-pointer list-none items-center justify-between gap-4 p-5 text-[17px] font-semibold [&::-webkit-details-marker]:hidden">
                       {faq.question}
-                      <ChevronDown className="w-5 h-5 shrink-0 text-[#7C3AED] transition-transform group-open:rotate-180" aria-hidden="true" />
+                      <ChevronDown className="w-5 h-5 shrink-0 text-[#D63A14] transition-transform group-open:rotate-180" aria-hidden="true" />
                     </summary>
-                    <p className="px-5 pb-5 text-[16px] leading-relaxed text-[#5B6270]">{faq.answer}</p>
+                    <p className="px-5 pb-5 text-[16px] leading-relaxed text-[#5E5B55]">{faq.answer}</p>
                   </details>
                 ))}
               </div>
@@ -355,7 +353,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
                         <o.Icon className="w-[18px] h-[18px]" />
                       </span>
                       {other.name}
-                      <ArrowRight className="ml-auto w-4 h-4 text-[#7C3AED]" aria-hidden="true" />
+                      <ArrowRight className="ml-auto w-4 h-4 text-[#D63A14]" aria-hidden="true" />
                     </Link>
                   </li>
                 );

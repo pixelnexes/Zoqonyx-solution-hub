@@ -11,7 +11,7 @@ import { SiteSettingsProvider } from "@/components/providers/site-settings-provi
 // Fonts are bundled with the site (src/app/fonts) so builds never depend on Google's servers.
 // The CSS variable keeps its old name so tailwind.config.ts (fontFamily.sans / heading) needs no change.
 const siteFont = localFont({
-  src: [{ path: "./fonts/schibsted-grotesk.woff2", weight: "400 900", style: "normal" }],
+  src: [{ path: "./fonts/instrument-sans.woff2", weight: "400 700", style: "normal" }],
   variable: "--font-poppins",
   display: "swap",
   fallback: ["system-ui", "Segoe UI", "Arial", "sans-serif"],
@@ -19,7 +19,7 @@ const siteFont = localFont({
 
 // Display face for headlines (body keeps Schibsted Grotesk).
 const displayFont = localFont({
-  src: [{ path: "./fonts/bricolage-grotesque.woff2", weight: "600 800", style: "normal" }],
+  src: [{ path: "./fonts/instrument-sans.woff2", weight: "400 700", style: "normal" }],
   variable: "--font-display",
   display: "swap",
   fallback: ["system-ui", "Segoe UI", "Arial", "sans-serif"],
@@ -56,9 +56,9 @@ export const metadata: Metadata = {
   creator: "Zawwar Ahmed",
   publisher: "Newix Tech Solutions",
   icons: {
-    icon: "/logo/zoqonyx-mark.svg",
-    shortcut: "/logo/zoqonyx-mark.svg",
-    apple: "/icons/icon.png",
+    icon: "/logo/zoqonyx-mark-v2.svg",
+    shortcut: "/logo/zoqonyx-mark-v2.svg",
+    apple: "/icons/icon-v2.png",
   },
   openGraph: {
     type: "website",
@@ -69,7 +69,7 @@ export const metadata: Metadata = {
     siteName: "Zoqonyx Solution Hub",
     images: [
       {
-        url: "https://zoqonyx.com/logo/zoqonyx-og.png",
+        url: "https://zoqonyx.com/logo/zoqonyx-og-v2.png",
         width: 1200,
         height: 630,
         alt: "Zoqonyx Solution Hub - Free Online Tools Platform",
@@ -80,7 +80,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Zoqonyx Solution Hub – Free Online Tools Platform",
     description: "146 free online tools. Compress images, merge PDFs, format JSON and more. Most run in your browser, with no sign-up.",
-    images: ["https://zoqonyx.com/logo/zoqonyx-og.png"],
+    images: ["https://zoqonyx.com/logo/zoqonyx-og-v2.png"],
     creator: "@zoqonyx",
   },
   robots: {
@@ -103,7 +103,7 @@ export default async function RootLayout({
 }) {
   const gaId = process.env.NEXT_PUBLIC_GA_ID || "G-PX8V01HHCK";
   const settings = await getSiteSettings();
-  const iconUrl = "/logo/zoqonyx-mark.svg";
+  const iconUrl = "/logo/zoqonyx-mark-v2.svg";
 
   return (
     // next-themes sets the theme class and color-scheme on <html> before React hydrates.
@@ -111,7 +111,7 @@ export default async function RootLayout({
       <head>
         <link rel="icon" href={iconUrl} />
         <link rel="shortcut icon" href={iconUrl} />
-        <link rel="apple-touch-icon" href={iconUrl} />
+        <link rel="apple-touch-icon" href="/icons/icon-v2.png" />
         {gaId && (
           <>
             <Script

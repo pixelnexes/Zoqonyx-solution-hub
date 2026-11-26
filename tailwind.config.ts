@@ -17,6 +17,12 @@ const config: Config = {
     },
     extend: {
       colors: {
+        // One accent: every older accent family resolves to the same vermilion scale.
+        teal: { 50: "#FFF3EF", 100: "#FFE2D9", 200: "#FFC4B2", 300: "#FFA487", 400: "#FF7A52", 500: "#E8461E", 600: "#D63A14", 700: "#B02E0E", 800: "#8F250B", 900: "#6E1D09", 950: "#401003" },
+        cyan: { 50: "#FFF3EF", 100: "#FFE2D9", 200: "#FFC4B2", 300: "#FFA487", 400: "#FF7A52", 500: "#E8461E", 600: "#D63A14", 700: "#B02E0E", 800: "#8F250B", 900: "#6E1D09", 950: "#401003" },
+        violet: { 50: "#FFF3EF", 100: "#FFE2D9", 200: "#FFC4B2", 300: "#FFA487", 400: "#FF7A52", 500: "#E8461E", 600: "#D63A14", 700: "#B02E0E", 800: "#8F250B", 900: "#6E1D09", 950: "#401003" },
+        purple: { 50: "#FFF3EF", 100: "#FFE2D9", 200: "#FFC4B2", 300: "#FFA487", 400: "#FF7A52", 500: "#E8461E", 600: "#D63A14", 700: "#B02E0E", 800: "#8F250B", 900: "#6E1D09", 950: "#401003" },
+        indigo: { 50: "#FFF3EF", 100: "#FFE2D9", 200: "#FFC4B2", 300: "#FFA487", 400: "#FF7A52", 500: "#E8461E", 600: "#D63A14", 700: "#B02E0E", 800: "#8F250B", 900: "#6E1D09", 950: "#401003" },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

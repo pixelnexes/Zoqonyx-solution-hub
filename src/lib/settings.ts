@@ -27,14 +27,14 @@ export const defaultSettings: SiteSettings = {
   footer_credit: "Developed by Newix Tech Solutions",
   footer_url: "https://newixtechsolutions.com/",
   logo_path: "/logo/zoqonyx-logo.png",
-  icon_path: "/logo/zoqonyx-icon.png",
+  icon_path: "/logo/zoqonyx-logo-v2.png",
   light_logo_path: "/logo/zoqonyx-logo.png",
   dark_logo_path: "/logo/zoqonyx-logo.png",
   logo_type: "text",
   primary_color: "#1E3A8A",
   secondary_color: "#2563EB",
-  electric_cyan: "#06B6D4",
-  soft_purple: "#7C3AED",
+  electric_cyan: "#E8461E",
+  soft_purple: "#D63A14",
   default_theme: "system",
 };
 

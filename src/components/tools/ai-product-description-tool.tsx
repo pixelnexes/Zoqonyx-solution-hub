@@ -431,7 +431,7 @@ ${formatVariantText(v)}`
           <button
             onClick={handleGenerate}
             disabled={!productName.trim() || isGenerating}
-            className="w-full py-3 bg-[#6D28D9] hover:bg-[#5B21B6] disabled:opacity-50 text-white rounded-xl font-semibold text-sm shadow-md transition flex items-center justify-center gap-2"
+            className="w-full py-3 bg-[#D63A14] hover:bg-[#B02E0E] disabled:opacity-50 text-white rounded-xl font-semibold text-sm shadow-md transition flex items-center justify-center gap-2"
           >
             {isGenerating ? (
               <>

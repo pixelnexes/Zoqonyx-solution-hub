@@ -8,13 +8,13 @@ export function OrbRing({ className = "" }: { className?: string }) {
     <svg viewBox="0 0 400 400" aria-hidden="true" className={className}>
       <defs>
         <linearGradient id="orb-a" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stopColor="#8B5CF6" />
-          <stop offset=".5" stopColor="#F9A8D4" />
+          <stop offset="0" stopColor="#E8461E" />
+          <stop offset=".5" stopColor="#FFA487" />
           <stop offset="1" stopColor="#22D3EE" />
         </linearGradient>
         <linearGradient id="orb-b" x1="1" y1="0" x2="0" y2="1">
           <stop offset="0" stopColor="#22D3EE" stopOpacity=".9" />
-          <stop offset="1" stopColor="#7C3AED" stopOpacity=".9" />
+          <stop offset="1" stopColor="#D63A14" stopOpacity=".9" />
         </linearGradient>
         <filter id="orb-blur" x="-20%" y="-20%" width="140%" height="140%">
           <feGaussianBlur stdDeviation="10" />
@@ -34,11 +34,11 @@ export function OrbRing({ className = "" }: { className?: string }) {
 function BarCard({ className = "" }: { className?: string }) {
   const bars = [38, 62, 48, 80, 58, 92, 70];
   return (
-    <div className={`rounded-xl border border-[#E4E7EC] bg-white p-4 shadow-[0_26px_60px_-30px_rgba(21,23,28,.45)] ${className}`}>
-      <p className="text-left text-[13px] font-semibold text-[#5B6270]">Website traffic</p>
+    <div className={`rounded-xl border border-[#E5E2DC] bg-white p-4 shadow-[0_26px_60px_-30px_rgba(22,21,19,.45)] ${className}`}>
+      <p className="text-left text-[13px] font-semibold text-[#5E5B55]">Website traffic</p>
       <div className="mt-3 flex h-24 items-end gap-2">
         {bars.map((h, i) => (
-          <span key={i} className="flex-1 rounded-t-md" style={{ height: `${h}%`, background: i === 5 ? "linear-gradient(180deg,#8B5CF6,#6D28D9)" : "#E4DAFB" }} />
+          <span key={i} className="flex-1 rounded-t-md" style={{ height: `${h}%`, background: i === 5 ? "linear-gradient(180deg,#E8461E,#D63A14)" : "#E4DAFB" }} />
         ))}
       </div>
     </div>
@@ -47,14 +47,14 @@ function BarCard({ className = "" }: { className?: string }) {
 
 function RingCard({ className = "" }: { className?: string }) {
   return (
-    <div className={`flex items-center gap-4 rounded-xl border border-[#E4E7EC] bg-white p-4 shadow-[0_26px_60px_-30px_rgba(21,23,28,.45)] ${className}`}>
-      <span className="relative grid h-20 w-20 shrink-0 place-items-center rounded-full" style={{ background: "conic-gradient(#7C3AED 0 72%, #F1F3F6 72% 100%)" }}>
+    <div className={`flex items-center gap-4 rounded-xl border border-[#E5E2DC] bg-white p-4 shadow-[0_26px_60px_-30px_rgba(22,21,19,.45)] ${className}`}>
+      <span className="relative grid h-20 w-20 shrink-0 place-items-center rounded-full" style={{ background: "conic-gradient(#D63A14 0 72%, #F5F4F2 72% 100%)" }}>
         <span className="h-14 w-14 rounded-full bg-white" />
       </span>
       <div className="text-left">
-        <p className="text-[13px] font-semibold text-[#5B6270]">Goal progress</p>
-        <p className="mt-1 h-2 w-24 rounded-full bg-[#F1F3F6]" />
-        <p className="mt-2 h-2 w-16 rounded-full bg-[#F1F3F6]" />
+        <p className="text-[13px] font-semibold text-[#5E5B55]">Goal progress</p>
+        <p className="mt-1 h-2 w-24 rounded-full bg-[#F5F4F2]" />
+        <p className="mt-2 h-2 w-16 rounded-full bg-[#F5F4F2]" />
       </div>
     </div>
   );
@@ -62,17 +62,17 @@ function RingCard({ className = "" }: { className?: string }) {
 
 function LineCard({ className = "" }: { className?: string }) {
   return (
-    <div className={`rounded-xl border border-[#E4E7EC] bg-white p-4 shadow-[0_26px_60px_-30px_rgba(21,23,28,.45)] ${className}`}>
-      <p className="text-left text-[13px] font-semibold text-[#5B6270]">Growth</p>
+    <div className={`rounded-xl border border-[#E5E2DC] bg-white p-4 shadow-[0_26px_60px_-30px_rgba(22,21,19,.45)] ${className}`}>
+      <p className="text-left text-[13px] font-semibold text-[#5E5B55]">Growth</p>
       <svg viewBox="0 0 220 80" className="mt-2 w-full" fill="none" aria-hidden="true">
         <defs>
           <linearGradient id="ln-fill" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stopColor="#8B5CF6" stopOpacity=".3" />
-            <stop offset="1" stopColor="#8B5CF6" stopOpacity="0" />
+            <stop offset="0" stopColor="#E8461E" stopOpacity=".3" />
+            <stop offset="1" stopColor="#E8461E" stopOpacity="0" />
           </linearGradient>
         </defs>
         <path d="M0 62 C 25 58, 35 30, 62 38 S 105 66, 130 40 S 180 8, 220 16 V80 H0Z" fill="url(#ln-fill)" />
-        <path d="M0 62 C 25 58, 35 30, 62 38 S 105 66, 130 40 S 180 8, 220 16" stroke="#7C3AED" strokeWidth="3" strokeLinecap="round" />
+        <path d="M0 62 C 25 58, 35 30, 62 38 S 105 66, 130 40 S 180 8, 220 16" stroke="#D63A14" strokeWidth="3" strokeLinecap="round" />
       </svg>
     </div>
   );
@@ -80,14 +80,14 @@ function LineCard({ className = "" }: { className?: string }) {
 
 function CodeCard({ className = "" }: { className?: string }) {
   return (
-    <div className={`overflow-hidden rounded-xl bg-[#15171C] shadow-[0_26px_60px_-26px_rgba(21,23,28,.7)] ${className}`}>
+    <div className={`overflow-hidden rounded-xl bg-[#161513] shadow-[0_26px_60px_-26px_rgba(22,21,19,.7)] ${className}`}>
       <div className="flex gap-1.5 px-3 py-2.5">
         <span className="h-2.5 w-2.5 rounded-full bg-[#FB7185]" />
         <span className="h-2.5 w-2.5 rounded-full bg-[#FBBF24]" />
         <span className="h-2.5 w-2.5 rounded-full bg-[#34D399]" />
       </div>
-      <pre className="px-4 pb-4 text-left font-mono text-[12px] leading-5 text-[#C4B5FD]">
-        <span className="text-[#F9A8D4]">const</span> app = <span className="text-[#67E8F9]">build</span>({"{"}
+      <pre className="px-4 pb-4 text-left font-mono text-[12px] leading-5 text-[#FFA487]">
+        <span className="text-[#FFA487]">const</span> app = <span className="text-[#67E8F9]">build</span>({"{"}
         {"\n"}  platform: <span className="text-[#FDE68A]">&quot;web + mobile&quot;</span>,
         {"\n"}  launch: <span className="text-[#FDE68A]">&quot;in stages&quot;</span>
         {"\n"}
@@ -110,7 +110,7 @@ export function TechCluster() {
       </div>
       <div className="grid gap-4">
         <LineCard />
-        <div className="hidden h-24 rounded-xl bg-gradient-to-br from-[#8B5CF6] to-[#F9A8D4] sm:block" />
+        <div className="hidden h-24 rounded-xl bg-gradient-to-br from-[#E8461E] to-[#FFA487] sm:block" />
       </div>
     </div>
   );

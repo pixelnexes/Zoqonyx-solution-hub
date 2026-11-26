@@ -4,11 +4,11 @@ import * as React from "react";
 // post gets a distinct image without stock photos. Pure SVG, no external files.
 
 const PALETTES: [string, string, string][] = [
-  ["#7C3AED", "#C4B5FD", "#F2A81D"],
-  ["#3B82F6", "#C4B5FD", "#F2A81D"],
-  ["#15171C", "#7C3AED", "#F2A81D"],
+  ["#D63A14", "#FFA487", "#F2A81D"],
+  ["#3B82F6", "#FFA487", "#F2A81D"],
+  ["#161513", "#D63A14", "#F2A81D"],
   ["#A9351F", "#D8694F", "#F2A81D"],
-  ["#5B21B6", "#A78BFA", "#F6BC4A"],
+  ["#B02E0E", "#FF8A66", "#F6BC4A"],
 ];
 
 function hash(s: string) {
@@ -37,7 +37,7 @@ export function CoverArt({ seed, className = "" }: { seed: string; className?: s
       <defs>
         <linearGradient id={`${id}-g`} x1="0" y1="0" x2="1" y2="1">
           <stop offset="0" stopColor={a} />
-          <stop offset="1" stopColor="#15171C" />
+          <stop offset="1" stopColor="#161513" />
         </linearGradient>
         <radialGradient id={`${id}-r`} cx="0.5" cy="0.5" r="0.5">
           <stop offset="0" stopColor={b} stopOpacity="0.95" />

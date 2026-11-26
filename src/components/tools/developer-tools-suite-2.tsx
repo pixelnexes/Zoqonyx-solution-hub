@@ -966,7 +966,7 @@ export function OnlineCodeEditorTool() {
     body { font-family: sans-serif; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; background: #0f172a; color: white; }
     .card { background: #1e293b; padding: 24px; border-radius: 12px; text-align: center; border: 1px solid #334155; }
     button { background: #0d9488; color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-weight: bold; margin-top: 12px; }
-    button:hover { background: #14b8a6; }
+    button:hover { background: #E8461E; }
   </style>
 </head>
 <body>

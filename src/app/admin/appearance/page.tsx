@@ -25,7 +25,7 @@ export default function AppearancePage() {
   const { setTheme } = useTheme();
   const { refreshSettings } = useSiteSettings();
 
-  const [iconPath, setIconPath] = React.useState("/logo/zoqonyx-icon.png");
+  const [iconPath, setIconPath] = React.useState("/logo/zoqonyx-logo-v2.png");
   const [lightLogoPath, setLightLogoPath] = React.useState("/logo/zoqonyx-logo.png");
   const [darkLogoPath, setDarkLogoPath] = React.useState("/logo/zoqonyx-logo.png");
   const [logoType, setLogoType] = React.useState("text"); // "text" | "image"

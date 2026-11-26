@@ -126,7 +126,7 @@ export default async function ServicePage({ params }: Props) {
       />
 
       {tech.length > 0 && (
-        <section aria-label="Technologies" className="zq-band-white border-b border-[#E4E7EC] py-6">
+        <section aria-label="Technologies" className="zq-band-white border-b border-[#E5E2DC] py-6">
           <LogoLoop
             logos={tech.map((t) => ({ node: <span className="zq-pill"><TechLogo name={t} /></span>, title: t }))}
             speed={45}
@@ -146,19 +146,19 @@ export default async function ServicePage({ params }: Props) {
 
           <ul className="mt-12 grid gap-4 sm:grid-cols-3">
             {PROMISES.map((p) => (
-              <li key={p.t} className="rounded-xl border border-[#E4E7EC] bg-white p-5">
+              <li key={p.t} className="rounded-xl border border-[#E5E2DC] bg-white p-5">
                 <span className={`zq-chip zq-chip-sm ${accent.chip}`}>
                   <Check className="w-[18px] h-[18px]" aria-hidden="true" />
                 </span>
                 <h3 className="mt-3 text-[17px] font-semibold">{p.t}</h3>
-                <p className="mt-1.5 text-[15px] leading-relaxed text-[#5B6270]">{p.d}</p>
+                <p className="mt-1.5 text-[15px] leading-relaxed text-[#5E5B55]">{p.d}</p>
               </li>
             ))}
           </ul>
         </article>
 
         <aside className="space-y-5 lg:sticky lg:top-24">
-          <div className="rounded-xl bg-[#15171C] p-6 text-white">
+          <div className="rounded-xl bg-[#161513] p-6 text-white">
             <span className={`zq-chip ${accent.chip}`}>
               <Icon className="w-6 h-6" aria-hidden="true" />
             </span>
@@ -177,7 +177,7 @@ export default async function ServicePage({ params }: Props) {
               <ul className="mt-3 space-y-1">
                 {children.map((c) => (
                   <li key={c.slug}>
-                    <Link href={`/services/${c.slug}`} className="flex items-center justify-between gap-2 rounded-lg px-2 py-2 -mx-2 text-[15px] font-semibold hover:bg-[#F7F8FA] hover:text-[#5B21B6]">
+                    <Link href={`/services/${c.slug}`} className="flex items-center justify-between gap-2 rounded-lg px-2 py-2 -mx-2 text-[15px] font-semibold hover:bg-[#F7F6F4] hover:text-[#B02E0E]">
                       {c.name} <ArrowRight className="w-4 h-4 shrink-0" aria-hidden="true" />
                     </Link>
                   </li>
@@ -203,9 +203,9 @@ export default async function ServicePage({ params }: Props) {
                   <Link href={`/services/${r.slug}`} className="zq-card zq-card-hover group flex h-full flex-col overflow-hidden">
                     <TechScene group={r.group} className="h-40 w-full !rounded-none" />
                     <span className="flex flex-1 flex-col p-5">
-                      <span className="text-[18px] font-semibold group-hover:text-[#5B21B6]">{r.name}</span>
-                      <span className="mt-1.5 flex-1 text-[15px] leading-relaxed text-[#5B6270] line-clamp-3">{r.shortDesc}</span>
-                      <span className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-[#5B21B6]">
+                      <span className="text-[18px] font-semibold group-hover:text-[#B02E0E]">{r.name}</span>
+                      <span className="mt-1.5 flex-1 text-[15px] leading-relaxed text-[#5E5B55] line-clamp-3">{r.shortDesc}</span>
+                      <span className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-[#B02E0E]">
                         Details <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
                       </span>
                     </span>

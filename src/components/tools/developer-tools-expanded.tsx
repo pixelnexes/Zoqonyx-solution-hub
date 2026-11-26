@@ -301,7 +301,7 @@ export function HtmlBeautifierMinifierTool() {
 // 4. CSS Beautifier & Minifier
 export function CssBeautifierMinifierTool() {
   const [input, setInput] = React.useState<string>(
-    ".btn{background:#14B8A6;color:#ffffff;padding:12px 24px;border-radius:8px;font-weight:600}"
+    ".btn{background:#E8461E;color:#ffffff;padding:12px 24px;border-radius:8px;font-weight:600}"
   );
   const [output, setOutput] = React.useState<string>("");
 
@@ -637,7 +637,7 @@ export function CodeToImageTool() {
 
     // Code lines
     ctx.textAlign = "left";
-    ctx.fillStyle = "#14B8A6";
+    ctx.fillStyle = "#E8461E";
     ctx.font = "20px monospace";
     const lines = code.split("\n");
     lines.forEach((line, i) => {

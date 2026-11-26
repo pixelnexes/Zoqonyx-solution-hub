@@ -82,7 +82,7 @@ export default async function AboutPage() {
       "@id": "https://zoqonyx.com/#organization",
       name: "Zoqonyx",
       url: "https://zoqonyx.com",
-      logo: "https://zoqonyx.com/logo/zoqonyx-logo-512.png",
+      logo: "https://zoqonyx.com/logo/zoqonyx-logo-v2.png",
       email: "hello@zoqonyx.com",
       areaServed: AREAS_SERVED,
       parentOrganization: PARENT_LD,
@@ -110,7 +110,7 @@ export default async function AboutPage() {
                 <x.I className="w-[18px] h-[18px]" />
               </span>
               <p className="zq-display mt-3 text-2xl font-semibold">{x.v}</p>
-              <p className="text-sm text-[#5B6270]">{x.l}</p>
+              <p className="text-sm text-[#5E5B55]">{x.l}</p>
             </li>
           ))}
         </ul>
@@ -133,14 +133,14 @@ export default async function AboutPage() {
                 <f.I className="w-6 h-6" />
               </span>
               <h2 className="mt-4 text-xl font-semibold">{f.t}</h2>
-              <p className="mt-1.5 text-[15px] leading-relaxed text-[#5B6270]">{f.d}</p>
+              <p className="mt-1.5 text-[15px] leading-relaxed text-[#5E5B55]">{f.d}</p>
             </div>
           ))}
         </div>
 
         <RequestTool />
 
-        <div className="rounded-[22px] p-7 sm:p-9 text-white flex flex-col sm:flex-row items-center justify-between gap-5" style={{ background: "#15171C" }}>
+        <div className="rounded-[22px] p-7 sm:p-9 text-white flex flex-col sm:flex-row items-center justify-between gap-5" style={{ background: "#161513" }}>
           <div>
             <p className="zq-display text-2xl font-semibold">Ready to try a tool?</p>
             <p className="mt-1 zq-on-dark-muted">Open any of the free tools. No sign-up needed.</p>
