@@ -255,7 +255,8 @@ export function BacklinkCheckerTool() {
   return (
     <div className="space-y-6">
       <div className="p-4 rounded-lg bg-[#F3F5F8] border border-[#D5DCE4] text-[15px] leading-relaxed text-[#14213D]">
-        <p className="font-semibold">Where to get your backlink list</p>
+        <p className="font-semibold">This tool audits a list of links. It can&apos;t find backlinks from a domain name alone</p>
+        <p className="mt-1 text-[14px] text-[#4A5568]">First get your list from one of these places:</p>
         <ul className="mt-1.5 list-disc pl-5 space-y-1 text-[14px] text-[#4A5568]">
           <li>
             <strong className="text-[#14213D]">Google Search Console (free):</strong> Links → Top linking sites → Export, or Links → Export external
@@ -301,6 +302,14 @@ export function BacklinkCheckerTool() {
         <Button onClick={runAudit} disabled={isParsing || (csvFiles.length === 0 && !pasted.trim())} className="gap-1.5">
           <RefreshCw className={`w-4 h-4 ${isParsing ? "animate-spin" : ""}`} />
           {isParsing ? "Reading links…" : "Audit backlinks"}
+        </Button>
+        <Button
+          type="button"
+          variant="outline"
+          onClick={() => setPasted(["https://github.com/some-project", "https://news-site.org/article", "https://blog.example.com/roundup", "https://spam-casino.xyz/win"].join(String.fromCharCode(10)))}
+          disabled={isParsing}
+        >
+          Try with sample links
         </Button>
         {error && <p className="text-sm text-rose-700">{error}</p>}
       </div>
