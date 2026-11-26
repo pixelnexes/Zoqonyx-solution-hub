@@ -1,4 +1,4 @@
-import { clampDescription } from "@/lib/utils";
+import { clampDescription, isLiveToolSlug } from "@/lib/utils";
 import { notFound } from "next/navigation";
 import { PageHero } from "@/components/kit/page-kit";
 import type { Metadata } from "next";
@@ -8,7 +8,7 @@ import { ToolIcon } from "@/components/common/tool-icon";
 import { categoryStyle } from "@/components/kit/icons";
 import { prisma } from "@/lib/prisma";
 import { getCategoryBySlug, getAllCategories } from "@/lib/categories";
-import { DEFAULT_TOOLS } from "@/lib/default-tools";
+import { DEFAULT_TOOLS, TOOL_ALIASES } from "@/lib/default-tools";
 
 export const revalidate = 300;
 
@@ -180,7 +180,10 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
     order: 1000 + t.order,
   }));
 
-  const displayedTools = [...liveTools, ...missingFallback, ...missingCatalog].sort((a, b) => a.order - b.order);
+  // Only live tool URLs: no alias slugs that redirect and no inactive tools.
+  const displayedTools = [...liveTools, ...missingFallback, ...missingCatalog]
+    .filter((t) => isLiveToolSlug(t.slug, DEFAULT_TOOLS, TOOL_ALIASES))
+    .sort((a, b) => a.order - b.order);
 
   // JSON-LD structured data for SEO (CollectionPage + ItemList + FAQPage)
   const collectionJsonLd = {
