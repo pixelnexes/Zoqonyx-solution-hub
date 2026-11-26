@@ -3,7 +3,8 @@ import { PageHero } from "@/components/kit/page-kit";
 import Link from "next/link";
 import { ChevronDown } from "lucide-react";
 import { prisma } from "@/lib/prisma";
-import { DEFAULT_TOOLS } from "@/lib/default-tools";
+import { DEFAULT_TOOLS, TOOL_ALIASES } from "@/lib/default-tools";
+import { isLiveToolSlug } from "@/lib/utils";
 import { ToolDrawer } from "@/components/home/tool-drawer";
 
 export const revalidate = 300;
@@ -96,6 +97,7 @@ export default async function ToolsPage() {
   }));
 
   const canonicalMap = new Map(DEFAULT_TOOLS.map((t) => [t.slug, t]));
+  const isLive = (slug: string) => isLiveToolSlug(slug, DEFAULT_TOOLS, TOOL_ALIASES);
 
   if (tools.length === 0) {
     tools = defaultToolsFormatted;
@@ -120,6 +122,8 @@ export default async function ToolsPage() {
     const missing = defaultToolsFormatted.filter((t) => !dbSlugs.has(t.slug));
     tools = [...tools, ...missing].sort((a, b) => a.order - b.order);
   }
+  // Hide alias tools (their URLs redirect) and inactive ones, so the directory links only live pages.
+  tools = tools.filter((t) => isLive(t.slug));
 
   const collectionJsonLd = {
     "@context": "https://schema.org",

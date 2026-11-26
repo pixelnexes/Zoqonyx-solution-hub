@@ -7,7 +7,8 @@ import Link from "next/link";
 import { ArrowRight, ChevronDown, Lightbulb } from "lucide-react";
 import { ToolIcon } from "@/components/common/tool-icon";
 import { categoryStyle } from "@/components/kit/icons";
-import { getDefaultToolBySlug, DEFAULT_TOOLS } from "@/lib/default-tools";
+import { getDefaultToolBySlug, DEFAULT_TOOLS, TOOL_ALIASES } from "@/lib/default-tools";
+import { clampDescription, isLiveToolSlug } from "@/lib/utils";
 import { getToolSeoContent } from "@/lib/tool-seo-content";
 
 // Tool pages are built once and refreshed hourly, so a visit costs no database or render work.
@@ -89,13 +90,13 @@ export async function generateMetadata({ params }: ToolPageProps): Promise<Metad
       title: {
         absolute: seo.title,
       },
-      description: seo.metaDesc,
+      description: clampDescription(seo.metaDesc),
       alternates: {
         canonical: url,
       },
       openGraph: {
         title: seo.title,
-        description: seo.metaDesc,
+        description: clampDescription(seo.metaDesc),
         url,
         siteName: "Zoqonyx Solution Hub",
         images: [
@@ -110,7 +111,7 @@ export async function generateMetadata({ params }: ToolPageProps): Promise<Metad
       twitter: {
         card: "summary_large_image",
         title: seo.title,
-        description: seo.metaDesc,
+        description: clampDescription(seo.metaDesc),
         images: ["/logo/zoqonyx-og.png"],
       },
     };
@@ -191,9 +192,14 @@ export default async function ToolPage({ params }: ToolPageProps) {
     notFound();
   }
 
-  if (tool && relatedTools.length === 0) {
-    relatedTools = DEFAULT_TOOLS.filter(
-      (t) => t.category === tool.category && t.slug !== tool.slug
+  // Only link tools whose pages are live: no inactive tools and no alias URLs that redirect.
+  relatedTools = relatedTools.filter((t) => isLiveToolSlug(t.slug, DEFAULT_TOOLS, TOOL_ALIASES));
+  if (tool && relatedTools.length < 6) {
+    const have = new Set(relatedTools.map((t) => t.slug));
+    relatedTools = relatedTools.concat(
+      DEFAULT_TOOLS.filter(
+        (t) => t.category === tool.category && t.slug !== tool.slug && !have.has(t.slug) && isLiveToolSlug(t.slug, DEFAULT_TOOLS, TOOL_ALIASES)
+      )
     ).slice(0, 6);
   }
 

@@ -1,3 +1,4 @@
+import { clampDescription } from "@/lib/utils";
 import { notFound } from "next/navigation";
 import { PageHero } from "@/components/kit/page-kit";
 import type { Metadata } from "next";
@@ -33,7 +34,7 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
   }
 
   const title = category.metaTitle;
-  const description = category.metaDesc;
+  const description = clampDescription(category.metaDesc);
   const url = `https://zoqonyx.com/category/${category.slug}`;
 
   // Thin category (no live tools yet): keep it out of the index.

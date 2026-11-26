@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     absolute: "About Zoqonyx Solution Hub | Free Online Tools",
   },
   description:
-    "Learn about Zoqonyx Solution Hub, developed by Newix Tech Solutions. Our mission is to provide 146 fast, privacy-first, zero-upload digital utilities with no subscriptions.",
+    "Zoqonyx is a software studio by Newix Tech Solutions with 146 free online tools. Most run in your browser, with no sign-up or subscription.",
   alternates: {
     canonical: "https://zoqonyx.com/about",
   },

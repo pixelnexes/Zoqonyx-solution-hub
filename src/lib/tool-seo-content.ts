@@ -342,7 +342,7 @@ export const TOP_TOOLS_SEO_ARTICLES: Record<string, ToolSeoArticle> = {
   },
   "image-format-converter": {
     slug: "image-format-converter",
-    title: "Free Image Format Converter: Convert PNG to WebP, JPG & More | Zoqonyx",
+    title: "Image Format Converter: PNG to WebP, JPG and More | Zoqonyx",
     metaDesc:
       "Convert PNG to WebP online, JPG to PNG, WebP to PNG, and PNG to JPG in bulk. Free client-side image converter supporting up to 100 files and 1 GB with instant ZIP download.",
     workflowHeading: "How to Convert Image Formats in Bulk",
@@ -1959,7 +1959,7 @@ export function getToolSeoContent(
 
   return {
     slug,
-    title: `${toolName} – Free Online Tool | Zoqonyx`,
+    title: `${toolName} – Free Online Tool | Zoqonyx`.length > 60 ? `${toolName} | Zoqonyx` : `${toolName} – Free Online Tool | Zoqonyx`,
     metaDesc: `${description} 100% free, private, client-side browser utility with zero data uploads and instant results.`,
     workflowHeading: profile.workflowHeading(toolName),
     howToSteps: profile.howToSteps(toolName, description),
