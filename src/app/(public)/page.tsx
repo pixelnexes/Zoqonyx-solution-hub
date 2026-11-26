@@ -19,16 +19,16 @@ import { DEFAULT_TOOLS } from "@/lib/default-tools";
 
 export const metadata: Metadata = {
   title: {
-    absolute: "Zoqonyx: Software Development & Free Online Tools",
+    absolute: "Zoqonyx: Free Online Tools for Files, Images and Code",
   },
   description:
-    "App, website and custom software development, digital marketing and AI services, plus free online tools for PDFs, images, code and text. Get a quote.",
+    "146 free online tools for images, PDFs, code and text, with no account. Our team also builds apps, websites and software.",
   alternates: {
     canonical: "https://zoqonyx.com",
   },
   openGraph: {
-    title: "Zoqonyx: Software Development & Free Online Tools",
-    description: "App, website and custom software development, digital marketing and AI services, plus free online tools.",
+    title: "Zoqonyx: Free Online Tools for Files, Images and Code",
+    description: "146 free online tools for images, PDFs, code and text, with no account. Apps, websites and software built by our team.",
     url: "https://zoqonyx.com",
     type: "website",
     images: [{ url: "https://zoqonyx.com/logo/zoqonyx-og-v2.png", width: 1200, height: 630, alt: "Zoqonyx: software studio and free online tools" }],
@@ -225,7 +225,7 @@ export default async function HomePage() {
         <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(d) }} />
       ))}
 
-      <ToolHero tools={tools} count={liveCount} />
+      <ToolHero tools={tools.map((t) => ({ ...t, description: t.description.slice(0, 90) }))} count={liveCount} />
 
       {/* 3. Services */}
       <section aria-labelledby="services-heading" className="zq-section">

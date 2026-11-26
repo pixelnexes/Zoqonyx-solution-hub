@@ -8,7 +8,8 @@ export const revalidate = 3600; // Cache and revalidate sitemap every hour
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://zoqonyx.com";
-  const now = new Date();
+  // Change this date when the content of the fixed pages and services really changes.
+  const now = new Date("2026-11-27");
 
   // 1. Static core routes
   const staticRoutes: MetadataRoute.Sitemap = [

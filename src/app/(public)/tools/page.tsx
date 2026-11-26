@@ -131,7 +131,7 @@ export default async function ToolsPage() {
     "@type": "CollectionPage",
     name: "All Free Online Tools Directory - Zoqonyx Solution Hub",
     description:
-      "Directory of 100+ free client-side digital tools for developers, designers, creators, and marketers.",
+      "Directory of 146 free online tools for developers, designers, creators, and marketers.",
     url: "https://zoqonyx.com/tools",
     publisher: {
       "@type": "Organization",
@@ -178,7 +178,7 @@ export default async function ToolsPage() {
         <PageHero crumbs={[{ label: "Home", href: "/" }, { label: "All tools" }]} title="All free tools" intro="Every tool on Zoqonyx, by category. Search by name or by what you want to do. No sign-up needed." image="/photos/u-dev.webp" />
 
         <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 zq-section space-y-16">
-          <ToolDrawer tools={tools} perCategory={Number.POSITIVE_INFINITY} detailed />
+          <ToolDrawer tools={tools.map((t) => ({ ...t, description: t.description.slice(0, 100) }))} perCategory={Number.POSITIVE_INFINITY} detailed />
 
           <RequestTool />
 

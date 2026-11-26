@@ -1,208 +1,186 @@
 "use client";
 
 import * as React from "react";
-import {
-  ImageCompressorTool,
-  ImageResizerTool,
-  ImageFormatConverterTool,
-  ColorPickerTool,
-  ImageRotatorTool,
-  ImageToBase64Tool,
-  ImageCropperTool,
-} from "./image-tools";
-import {
-  BorderRadiusGeneratorTool,
-  BoxShadowGeneratorTool,
-  CssGradientGeneratorTool,
-  ButtonGeneratorTool,
-  FlexboxPlaygroundTool,
-  GlassmorphismGeneratorTool,
-  CssGridGeneratorTool,
-} from "./css-tools";
-import {
-  CaseConverterTool,
-  JsonFormatterTool,
-  Base64EncodeDecodeTool,
-  MarkdownHtmlConverterTool,
-  UuidGeneratorTool,
-  WordCounterTool,
-  HashGeneratorTool,
-  UrlEncoderDecoderTool,
-  LoremIpsumGeneratorTool,
-  DiffCheckerTool,
-} from "./text-code-tools";
-import { PasswordGeneratorTool } from "./password-generator";
-import {
-  QrCodeGeneratorTool,
-  MetaTagsGeneratorTool,
-  RobotsTxtGeneratorTool,
-  UnitConverterTool,
-  AgeCalculatorTool,
-  PercentageCalculatorTool,
-  BmiCalculatorTool,
-} from "./seo-calc-tools";
-import { OpenGraphPreviewTool } from "./open-graph-preview-tool";
-import { WatermarkObjectRemoverTool } from "./watermark-object-remover";
-import { BackgroundRemoverTool } from "./background-remover-tool";
-import { ImageUpscalerTool } from "./image-upscaler-tool";
-import { CompressPdfTool } from "./compress-pdf-tool";
-import { PdfToImageTool } from "./pdf-to-image-tool";
-import { OrganizePdfTool } from "./organize-pdf-tool";
-import { ColorConverterTool } from "./color-converter-tool";
-import { AnimationKeyframesTool } from "./animation-keyframes-tool";
-import { ContrastCheckerTool } from "./contrast-checker-tool";
-import { PlaceholderImageTool } from "./placeholder-image-tool";
-import { IpLookupTool } from "./ip-lookup-tool";
-import { SslCheckerTool } from "./ssl-checker-tool";
-import { ReadingTimeTool } from "./reading-time-tool";
 
 // PDF Tools
-import {
-  MergePdfTool,
-  SplitPdfTool,
-  RotatePdfTool,
-  ProtectPdfTool,
-  UnlockPdfTool,
-  AddPageNumbersPdfTool,
-  PdfPageCounterTool,
-  PdfMetadataEditorTool,
-  ImageToPdfTool,
-  PdfToTextTool,
-} from "./pdf-tools";
 
 // Expanded Image Tools
-import {
-  BulkImageCompressorTool,
-  BulkImageResizerTool,
-  FaviconGeneratorTool,
-  PassportPhotoMakerTool,
-  WatermarkAdderTool,
-  ExifDataRemoverTool,
-  SvgToPngConverterTool,
-} from "./image-tools-expanded";
 
 // Expanded Developer Tools
-import {
-  JwtDecoderTool,
-  RegexTesterTool,
-  HtmlBeautifierMinifierTool,
-  CssBeautifierMinifierTool,
-  JsBeautifierMinifierTool,
-  SqlFormatterTool,
-  XmlFormatterTool,
-  CodeToImageTool,
-  TimestampConverterTool,
-  CssToTailwindTool,
-  HtmlEntityEncoderDecoderTool,
-  CronExpressionGeneratorTool,
-  JsonToCsvTool,
-} from "./developer-tools-expanded";
 
 // Expanded Text Tools
-import {
-  CharacterCounterTool,
-  FindAndReplaceTool,
-  RemoveExtraSpacesTool,
-  ReverseTextTool,
-  SlugGeneratorTool,
-  MarkdownTableGeneratorTool,
-  TextToSpeechTool,
-  SpeechToTextTool,
-  ListSorterTool,
-  DuplicateLineRemoverTool,
-  RandomStringGeneratorTool,
-  TextStatisticsTool,
-} from "./text-tools-expanded";
 
 // Expanded CSS Tools
-import {
-  NeumorphismGeneratorTool,
-  ClipPathGeneratorTool,
-  TextShadowGeneratorTool,
-  ColorPaletteGeneratorTool,
-  AspectRatioCalculatorTool,
-} from "./css-tools-expanded";
 
 // Expanded SEO Tools
-import {
-  XmlSitemapGeneratorTool,
-  UtmBuilderTool,
-  KeywordDensityCheckerTool,
-  CanonicalTagCheckerTool,
-  HttpStatusCodesTool,
-  SerpSnippetPreviewTool,
-} from "./seo-tools-expanded";
 
 // GSC Priority Tools
-import { BacklinkCheckerTool } from "./backlink-checker-tool";
-import { SchemaMarkupGeneratorTool } from "./schema-markup-generator-tool";
-import { AiProductDescriptionTool } from "./ai-product-description-tool";
-import { AiSalesPitchTool } from "./ai-sales-pitch-tool";
 
 // Expanded Calculators
-import {
-  LoanEmiCalculatorTool,
-  TipCalculatorTool,
-  DiscountCalculatorTool,
-  CompoundInterestCalculatorTool,
-  SalesTaxCalculatorTool,
-  NumberToWordsTool,
-  BinaryHexDecimalTool,
-  InvoiceGeneratorTool,
-  GpaCalculatorTool,
-  FuelCostCalculatorTool,
-  TimeDurationCalculatorTool,
-} from "./calculators-expanded";
 
 // Calculators Suite 2
-import {
-  SipInvestmentCalculatorTool,
-  MortgageRefinanceCalculatorTool,
-  RetirementCorpusCalculatorTool,
-  FreelanceHourlyRateCalculatorTool,
-  CryptoPortfolioTrackerTool,
-} from "./calculators-suite-2";
 
 // Developer Tools Suite 2
-import {
-  DockerfileGeneratorTool,
-  KubernetesYamlValidatorTool,
-  ApiMockServerTool,
-  GraphqlQueryBuilderTool,
-  ScreenRecorderTool,
-  OnlineCodeEditorTool,
-  ApiTesterTool,
-  DnsLookupTool,
-} from "./developer-tools-suite-2";
 
 // CSS & Design Suite 2
-import {
-  ThreeDTextGeneratorTool,
-  FlowchartMakerTool,
-  MindMapMakerTool,
-  WhiteboardTool,
-} from "./css-design-suite-2";
 
 // PDF Tools Suite 2
-import {
-  EsignPdfTool,
-  AdvancedPdfEditorTool,
-} from "./pdf-tools-suite-2";
 
 // Audio & Media Tools
-import {
-  VoiceRecorderEditorTool,
-  AudioConverterMp3Tool,
-  VideoToGifAdvancedTool,
-} from "./audio-media-tools";
 
 // Text & Copywriting Suite 2
-import {
-  AiResumeBuilderTool,
-  AiEmailGeneratorTool,
-  GrammarCheckerAdvancedTool,
-  AiArticleWriterTool,
-} from "./text-copy-suite-2";
+
+import dynamic from "next/dynamic";
+
+function ToolLoading() {
+  return (
+    <div role="status" className="flex min-h-[220px] items-center justify-center text-sm text-muted-foreground">
+      Loading the tool
+    </div>
+  );
+}
+
+// Each tool is its own chunk: opening one tool doesn't download the other 140.
+const ImageCompressorTool = dynamic(() => import("./image-tools").then((m) => m.ImageCompressorTool), { loading: ToolLoading });
+const ImageResizerTool = dynamic(() => import("./image-tools").then((m) => m.ImageResizerTool), { loading: ToolLoading });
+const ImageFormatConverterTool = dynamic(() => import("./image-tools").then((m) => m.ImageFormatConverterTool), { loading: ToolLoading });
+const ColorPickerTool = dynamic(() => import("./image-tools").then((m) => m.ColorPickerTool), { loading: ToolLoading });
+const ImageRotatorTool = dynamic(() => import("./image-tools").then((m) => m.ImageRotatorTool), { loading: ToolLoading });
+const ImageToBase64Tool = dynamic(() => import("./image-tools").then((m) => m.ImageToBase64Tool), { loading: ToolLoading });
+const ImageCropperTool = dynamic(() => import("./image-tools").then((m) => m.ImageCropperTool), { loading: ToolLoading });
+const BorderRadiusGeneratorTool = dynamic(() => import("./css-tools").then((m) => m.BorderRadiusGeneratorTool), { loading: ToolLoading });
+const BoxShadowGeneratorTool = dynamic(() => import("./css-tools").then((m) => m.BoxShadowGeneratorTool), { loading: ToolLoading });
+const CssGradientGeneratorTool = dynamic(() => import("./css-tools").then((m) => m.CssGradientGeneratorTool), { loading: ToolLoading });
+const ButtonGeneratorTool = dynamic(() => import("./css-tools").then((m) => m.ButtonGeneratorTool), { loading: ToolLoading });
+const FlexboxPlaygroundTool = dynamic(() => import("./css-tools").then((m) => m.FlexboxPlaygroundTool), { loading: ToolLoading });
+const GlassmorphismGeneratorTool = dynamic(() => import("./css-tools").then((m) => m.GlassmorphismGeneratorTool), { loading: ToolLoading });
+const CssGridGeneratorTool = dynamic(() => import("./css-tools").then((m) => m.CssGridGeneratorTool), { loading: ToolLoading });
+const CaseConverterTool = dynamic(() => import("./text-code-tools").then((m) => m.CaseConverterTool), { loading: ToolLoading });
+const JsonFormatterTool = dynamic(() => import("./text-code-tools").then((m) => m.JsonFormatterTool), { loading: ToolLoading });
+const Base64EncodeDecodeTool = dynamic(() => import("./text-code-tools").then((m) => m.Base64EncodeDecodeTool), { loading: ToolLoading });
+const MarkdownHtmlConverterTool = dynamic(() => import("./text-code-tools").then((m) => m.MarkdownHtmlConverterTool), { loading: ToolLoading });
+const UuidGeneratorTool = dynamic(() => import("./text-code-tools").then((m) => m.UuidGeneratorTool), { loading: ToolLoading });
+const WordCounterTool = dynamic(() => import("./text-code-tools").then((m) => m.WordCounterTool), { loading: ToolLoading });
+const HashGeneratorTool = dynamic(() => import("./text-code-tools").then((m) => m.HashGeneratorTool), { loading: ToolLoading });
+const UrlEncoderDecoderTool = dynamic(() => import("./text-code-tools").then((m) => m.UrlEncoderDecoderTool), { loading: ToolLoading });
+const LoremIpsumGeneratorTool = dynamic(() => import("./text-code-tools").then((m) => m.LoremIpsumGeneratorTool), { loading: ToolLoading });
+const DiffCheckerTool = dynamic(() => import("./text-code-tools").then((m) => m.DiffCheckerTool), { loading: ToolLoading });
+const PasswordGeneratorTool = dynamic(() => import("./password-generator").then((m) => m.PasswordGeneratorTool), { loading: ToolLoading });
+const QrCodeGeneratorTool = dynamic(() => import("./seo-calc-tools").then((m) => m.QrCodeGeneratorTool), { loading: ToolLoading });
+const MetaTagsGeneratorTool = dynamic(() => import("./seo-calc-tools").then((m) => m.MetaTagsGeneratorTool), { loading: ToolLoading });
+const RobotsTxtGeneratorTool = dynamic(() => import("./seo-calc-tools").then((m) => m.RobotsTxtGeneratorTool), { loading: ToolLoading });
+const UnitConverterTool = dynamic(() => import("./seo-calc-tools").then((m) => m.UnitConverterTool), { loading: ToolLoading });
+const AgeCalculatorTool = dynamic(() => import("./seo-calc-tools").then((m) => m.AgeCalculatorTool), { loading: ToolLoading });
+const PercentageCalculatorTool = dynamic(() => import("./seo-calc-tools").then((m) => m.PercentageCalculatorTool), { loading: ToolLoading });
+const BmiCalculatorTool = dynamic(() => import("./seo-calc-tools").then((m) => m.BmiCalculatorTool), { loading: ToolLoading });
+const OpenGraphPreviewTool = dynamic(() => import("./open-graph-preview-tool").then((m) => m.OpenGraphPreviewTool), { loading: ToolLoading });
+const WatermarkObjectRemoverTool = dynamic(() => import("./watermark-object-remover").then((m) => m.WatermarkObjectRemoverTool), { loading: ToolLoading });
+const BackgroundRemoverTool = dynamic(() => import("./background-remover-tool").then((m) => m.BackgroundRemoverTool), { loading: ToolLoading });
+const ImageUpscalerTool = dynamic(() => import("./image-upscaler-tool").then((m) => m.ImageUpscalerTool), { loading: ToolLoading });
+const CompressPdfTool = dynamic(() => import("./compress-pdf-tool").then((m) => m.CompressPdfTool), { loading: ToolLoading });
+const PdfToImageTool = dynamic(() => import("./pdf-to-image-tool").then((m) => m.PdfToImageTool), { loading: ToolLoading });
+const OrganizePdfTool = dynamic(() => import("./organize-pdf-tool").then((m) => m.OrganizePdfTool), { loading: ToolLoading });
+const ColorConverterTool = dynamic(() => import("./color-converter-tool").then((m) => m.ColorConverterTool), { loading: ToolLoading });
+const AnimationKeyframesTool = dynamic(() => import("./animation-keyframes-tool").then((m) => m.AnimationKeyframesTool), { loading: ToolLoading });
+const ContrastCheckerTool = dynamic(() => import("./contrast-checker-tool").then((m) => m.ContrastCheckerTool), { loading: ToolLoading });
+const PlaceholderImageTool = dynamic(() => import("./placeholder-image-tool").then((m) => m.PlaceholderImageTool), { loading: ToolLoading });
+const IpLookupTool = dynamic(() => import("./ip-lookup-tool").then((m) => m.IpLookupTool), { loading: ToolLoading });
+const SslCheckerTool = dynamic(() => import("./ssl-checker-tool").then((m) => m.SslCheckerTool), { loading: ToolLoading });
+const ReadingTimeTool = dynamic(() => import("./reading-time-tool").then((m) => m.ReadingTimeTool), { loading: ToolLoading });
+const MergePdfTool = dynamic(() => import("./pdf-tools").then((m) => m.MergePdfTool), { loading: ToolLoading });
+const SplitPdfTool = dynamic(() => import("./pdf-tools").then((m) => m.SplitPdfTool), { loading: ToolLoading });
+const RotatePdfTool = dynamic(() => import("./pdf-tools").then((m) => m.RotatePdfTool), { loading: ToolLoading });
+const ProtectPdfTool = dynamic(() => import("./pdf-tools").then((m) => m.ProtectPdfTool), { loading: ToolLoading });
+const UnlockPdfTool = dynamic(() => import("./pdf-tools").then((m) => m.UnlockPdfTool), { loading: ToolLoading });
+const AddPageNumbersPdfTool = dynamic(() => import("./pdf-tools").then((m) => m.AddPageNumbersPdfTool), { loading: ToolLoading });
+const PdfPageCounterTool = dynamic(() => import("./pdf-tools").then((m) => m.PdfPageCounterTool), { loading: ToolLoading });
+const PdfMetadataEditorTool = dynamic(() => import("./pdf-tools").then((m) => m.PdfMetadataEditorTool), { loading: ToolLoading });
+const ImageToPdfTool = dynamic(() => import("./pdf-tools").then((m) => m.ImageToPdfTool), { loading: ToolLoading });
+const PdfToTextTool = dynamic(() => import("./pdf-tools").then((m) => m.PdfToTextTool), { loading: ToolLoading });
+const BulkImageCompressorTool = dynamic(() => import("./image-tools-expanded").then((m) => m.BulkImageCompressorTool), { loading: ToolLoading });
+const BulkImageResizerTool = dynamic(() => import("./image-tools-expanded").then((m) => m.BulkImageResizerTool), { loading: ToolLoading });
+const FaviconGeneratorTool = dynamic(() => import("./image-tools-expanded").then((m) => m.FaviconGeneratorTool), { loading: ToolLoading });
+const PassportPhotoMakerTool = dynamic(() => import("./image-tools-expanded").then((m) => m.PassportPhotoMakerTool), { loading: ToolLoading });
+const WatermarkAdderTool = dynamic(() => import("./image-tools-expanded").then((m) => m.WatermarkAdderTool), { loading: ToolLoading });
+const ExifDataRemoverTool = dynamic(() => import("./image-tools-expanded").then((m) => m.ExifDataRemoverTool), { loading: ToolLoading });
+const SvgToPngConverterTool = dynamic(() => import("./image-tools-expanded").then((m) => m.SvgToPngConverterTool), { loading: ToolLoading });
+const JwtDecoderTool = dynamic(() => import("./developer-tools-expanded").then((m) => m.JwtDecoderTool), { loading: ToolLoading });
+const RegexTesterTool = dynamic(() => import("./developer-tools-expanded").then((m) => m.RegexTesterTool), { loading: ToolLoading });
+const HtmlBeautifierMinifierTool = dynamic(() => import("./developer-tools-expanded").then((m) => m.HtmlBeautifierMinifierTool), { loading: ToolLoading });
+const CssBeautifierMinifierTool = dynamic(() => import("./developer-tools-expanded").then((m) => m.CssBeautifierMinifierTool), { loading: ToolLoading });
+const JsBeautifierMinifierTool = dynamic(() => import("./developer-tools-expanded").then((m) => m.JsBeautifierMinifierTool), { loading: ToolLoading });
+const SqlFormatterTool = dynamic(() => import("./developer-tools-expanded").then((m) => m.SqlFormatterTool), { loading: ToolLoading });
+const XmlFormatterTool = dynamic(() => import("./developer-tools-expanded").then((m) => m.XmlFormatterTool), { loading: ToolLoading });
+const CodeToImageTool = dynamic(() => import("./developer-tools-expanded").then((m) => m.CodeToImageTool), { loading: ToolLoading });
+const TimestampConverterTool = dynamic(() => import("./developer-tools-expanded").then((m) => m.TimestampConverterTool), { loading: ToolLoading });
+const CssToTailwindTool = dynamic(() => import("./developer-tools-expanded").then((m) => m.CssToTailwindTool), { loading: ToolLoading });
+const HtmlEntityEncoderDecoderTool = dynamic(() => import("./developer-tools-expanded").then((m) => m.HtmlEntityEncoderDecoderTool), { loading: ToolLoading });
+const CronExpressionGeneratorTool = dynamic(() => import("./developer-tools-expanded").then((m) => m.CronExpressionGeneratorTool), { loading: ToolLoading });
+const JsonToCsvTool = dynamic(() => import("./developer-tools-expanded").then((m) => m.JsonToCsvTool), { loading: ToolLoading });
+const CharacterCounterTool = dynamic(() => import("./text-tools-expanded").then((m) => m.CharacterCounterTool), { loading: ToolLoading });
+const FindAndReplaceTool = dynamic(() => import("./text-tools-expanded").then((m) => m.FindAndReplaceTool), { loading: ToolLoading });
+const RemoveExtraSpacesTool = dynamic(() => import("./text-tools-expanded").then((m) => m.RemoveExtraSpacesTool), { loading: ToolLoading });
+const ReverseTextTool = dynamic(() => import("./text-tools-expanded").then((m) => m.ReverseTextTool), { loading: ToolLoading });
+const SlugGeneratorTool = dynamic(() => import("./text-tools-expanded").then((m) => m.SlugGeneratorTool), { loading: ToolLoading });
+const MarkdownTableGeneratorTool = dynamic(() => import("./text-tools-expanded").then((m) => m.MarkdownTableGeneratorTool), { loading: ToolLoading });
+const TextToSpeechTool = dynamic(() => import("./text-tools-expanded").then((m) => m.TextToSpeechTool), { loading: ToolLoading });
+const SpeechToTextTool = dynamic(() => import("./text-tools-expanded").then((m) => m.SpeechToTextTool), { loading: ToolLoading });
+const ListSorterTool = dynamic(() => import("./text-tools-expanded").then((m) => m.ListSorterTool), { loading: ToolLoading });
+const DuplicateLineRemoverTool = dynamic(() => import("./text-tools-expanded").then((m) => m.DuplicateLineRemoverTool), { loading: ToolLoading });
+const RandomStringGeneratorTool = dynamic(() => import("./text-tools-expanded").then((m) => m.RandomStringGeneratorTool), { loading: ToolLoading });
+const TextStatisticsTool = dynamic(() => import("./text-tools-expanded").then((m) => m.TextStatisticsTool), { loading: ToolLoading });
+const NeumorphismGeneratorTool = dynamic(() => import("./css-tools-expanded").then((m) => m.NeumorphismGeneratorTool), { loading: ToolLoading });
+const ClipPathGeneratorTool = dynamic(() => import("./css-tools-expanded").then((m) => m.ClipPathGeneratorTool), { loading: ToolLoading });
+const TextShadowGeneratorTool = dynamic(() => import("./css-tools-expanded").then((m) => m.TextShadowGeneratorTool), { loading: ToolLoading });
+const ColorPaletteGeneratorTool = dynamic(() => import("./css-tools-expanded").then((m) => m.ColorPaletteGeneratorTool), { loading: ToolLoading });
+const AspectRatioCalculatorTool = dynamic(() => import("./css-tools-expanded").then((m) => m.AspectRatioCalculatorTool), { loading: ToolLoading });
+const XmlSitemapGeneratorTool = dynamic(() => import("./seo-tools-expanded").then((m) => m.XmlSitemapGeneratorTool), { loading: ToolLoading });
+const UtmBuilderTool = dynamic(() => import("./seo-tools-expanded").then((m) => m.UtmBuilderTool), { loading: ToolLoading });
+const KeywordDensityCheckerTool = dynamic(() => import("./seo-tools-expanded").then((m) => m.KeywordDensityCheckerTool), { loading: ToolLoading });
+const CanonicalTagCheckerTool = dynamic(() => import("./seo-tools-expanded").then((m) => m.CanonicalTagCheckerTool), { loading: ToolLoading });
+const HttpStatusCodesTool = dynamic(() => import("./seo-tools-expanded").then((m) => m.HttpStatusCodesTool), { loading: ToolLoading });
+const SerpSnippetPreviewTool = dynamic(() => import("./seo-tools-expanded").then((m) => m.SerpSnippetPreviewTool), { loading: ToolLoading });
+const BacklinkCheckerTool = dynamic(() => import("./backlink-checker-tool").then((m) => m.BacklinkCheckerTool), { loading: ToolLoading });
+const SchemaMarkupGeneratorTool = dynamic(() => import("./schema-markup-generator-tool").then((m) => m.SchemaMarkupGeneratorTool), { loading: ToolLoading });
+const AiProductDescriptionTool = dynamic(() => import("./ai-product-description-tool").then((m) => m.AiProductDescriptionTool), { loading: ToolLoading });
+const AiSalesPitchTool = dynamic(() => import("./ai-sales-pitch-tool").then((m) => m.AiSalesPitchTool), { loading: ToolLoading });
+const LoanEmiCalculatorTool = dynamic(() => import("./calculators-expanded").then((m) => m.LoanEmiCalculatorTool), { loading: ToolLoading });
+const TipCalculatorTool = dynamic(() => import("./calculators-expanded").then((m) => m.TipCalculatorTool), { loading: ToolLoading });
+const DiscountCalculatorTool = dynamic(() => import("./calculators-expanded").then((m) => m.DiscountCalculatorTool), { loading: ToolLoading });
+const CompoundInterestCalculatorTool = dynamic(() => import("./calculators-expanded").then((m) => m.CompoundInterestCalculatorTool), { loading: ToolLoading });
+const SalesTaxCalculatorTool = dynamic(() => import("./calculators-expanded").then((m) => m.SalesTaxCalculatorTool), { loading: ToolLoading });
+const NumberToWordsTool = dynamic(() => import("./calculators-expanded").then((m) => m.NumberToWordsTool), { loading: ToolLoading });
+const BinaryHexDecimalTool = dynamic(() => import("./calculators-expanded").then((m) => m.BinaryHexDecimalTool), { loading: ToolLoading });
+const InvoiceGeneratorTool = dynamic(() => import("./calculators-expanded").then((m) => m.InvoiceGeneratorTool), { loading: ToolLoading });
+const GpaCalculatorTool = dynamic(() => import("./calculators-expanded").then((m) => m.GpaCalculatorTool), { loading: ToolLoading });
+const FuelCostCalculatorTool = dynamic(() => import("./calculators-expanded").then((m) => m.FuelCostCalculatorTool), { loading: ToolLoading });
+const TimeDurationCalculatorTool = dynamic(() => import("./calculators-expanded").then((m) => m.TimeDurationCalculatorTool), { loading: ToolLoading });
+const SipInvestmentCalculatorTool = dynamic(() => import("./calculators-suite-2").then((m) => m.SipInvestmentCalculatorTool), { loading: ToolLoading });
+const MortgageRefinanceCalculatorTool = dynamic(() => import("./calculators-suite-2").then((m) => m.MortgageRefinanceCalculatorTool), { loading: ToolLoading });
+const RetirementCorpusCalculatorTool = dynamic(() => import("./calculators-suite-2").then((m) => m.RetirementCorpusCalculatorTool), { loading: ToolLoading });
+const FreelanceHourlyRateCalculatorTool = dynamic(() => import("./calculators-suite-2").then((m) => m.FreelanceHourlyRateCalculatorTool), { loading: ToolLoading });
+const CryptoPortfolioTrackerTool = dynamic(() => import("./calculators-suite-2").then((m) => m.CryptoPortfolioTrackerTool), { loading: ToolLoading });
+const DockerfileGeneratorTool = dynamic(() => import("./developer-tools-suite-2").then((m) => m.DockerfileGeneratorTool), { loading: ToolLoading });
+const KubernetesYamlValidatorTool = dynamic(() => import("./developer-tools-suite-2").then((m) => m.KubernetesYamlValidatorTool), { loading: ToolLoading });
+const ApiMockServerTool = dynamic(() => import("./developer-tools-suite-2").then((m) => m.ApiMockServerTool), { loading: ToolLoading });
+const GraphqlQueryBuilderTool = dynamic(() => import("./developer-tools-suite-2").then((m) => m.GraphqlQueryBuilderTool), { loading: ToolLoading });
+const ScreenRecorderTool = dynamic(() => import("./developer-tools-suite-2").then((m) => m.ScreenRecorderTool), { loading: ToolLoading });
+const OnlineCodeEditorTool = dynamic(() => import("./developer-tools-suite-2").then((m) => m.OnlineCodeEditorTool), { loading: ToolLoading });
+const ApiTesterTool = dynamic(() => import("./developer-tools-suite-2").then((m) => m.ApiTesterTool), { loading: ToolLoading });
+const DnsLookupTool = dynamic(() => import("./developer-tools-suite-2").then((m) => m.DnsLookupTool), { loading: ToolLoading });
+const ThreeDTextGeneratorTool = dynamic(() => import("./css-design-suite-2").then((m) => m.ThreeDTextGeneratorTool), { loading: ToolLoading });
+const FlowchartMakerTool = dynamic(() => import("./css-design-suite-2").then((m) => m.FlowchartMakerTool), { loading: ToolLoading });
+const MindMapMakerTool = dynamic(() => import("./css-design-suite-2").then((m) => m.MindMapMakerTool), { loading: ToolLoading });
+const WhiteboardTool = dynamic(() => import("./css-design-suite-2").then((m) => m.WhiteboardTool), { loading: ToolLoading });
+const EsignPdfTool = dynamic(() => import("./pdf-tools-suite-2").then((m) => m.EsignPdfTool), { loading: ToolLoading });
+const AdvancedPdfEditorTool = dynamic(() => import("./pdf-tools-suite-2").then((m) => m.AdvancedPdfEditorTool), { loading: ToolLoading });
+const VoiceRecorderEditorTool = dynamic(() => import("./audio-media-tools").then((m) => m.VoiceRecorderEditorTool), { loading: ToolLoading });
+const AudioConverterMp3Tool = dynamic(() => import("./audio-media-tools").then((m) => m.AudioConverterMp3Tool), { loading: ToolLoading });
+const VideoToGifAdvancedTool = dynamic(() => import("./audio-media-tools").then((m) => m.VideoToGifAdvancedTool), { loading: ToolLoading });
+const AiResumeBuilderTool = dynamic(() => import("./text-copy-suite-2").then((m) => m.AiResumeBuilderTool), { loading: ToolLoading });
+const AiEmailGeneratorTool = dynamic(() => import("./text-copy-suite-2").then((m) => m.AiEmailGeneratorTool), { loading: ToolLoading });
+const GrammarCheckerAdvancedTool = dynamic(() => import("./text-copy-suite-2").then((m) => m.GrammarCheckerAdvancedTool), { loading: ToolLoading });
+const AiArticleWriterTool = dynamic(() => import("./text-copy-suite-2").then((m) => m.AiArticleWriterTool), { loading: ToolLoading });
 
 interface ToolRendererProps {
   slug: string;
