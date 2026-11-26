@@ -275,6 +275,10 @@ A good description answers three questions quickly: what is it, why would I want
 
 Use the words people search for, such as the product type and its main feature, in the title and the first sentence. Don't repeat keywords unnaturally; write for the shopper first.
 
+### Ecommerce product description generator for any store
+
+The same inputs work for a Shopify, WooCommerce or marketplace listing. Enter the product name, the main features and the tone, then pick the version that fits the page: lifestyle copy for a product page, specs for a comparison table, or problem and solution for an ad. Rewrite it in your own words and add details only you know, such as materials, sizes and how it is used, so your page doesn't read like other stores selling the same item.
+
 ### Related guide
 
 - [How to write an Amazon product description that sells](/blog/how-to-write-an-amazon-product-description)

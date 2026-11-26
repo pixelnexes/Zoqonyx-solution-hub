@@ -53,9 +53,13 @@ export default async function BlogPostPage({ params }: Props) {
   if (!post) notFound();
 
   const headings = extractHeadings(post.content);
-  const related = posts
-    .filter((p) => p.slug !== post.slug)
-    .sort((a, b) => Number(b.category === post.category) - Number(a.category === post.category))
+  // One post from the same category, then the posts that follow this one, so every post gets links.
+  const others = posts.filter((p) => p.slug !== post.slug);
+  const at = posts.findIndex((p) => p.slug === post.slug);
+  const following = posts.slice(at + 1).concat(posts.slice(0, Math.max(at, 0)));
+  const sameCategory = others.find((p) => p.category === post.category);
+  const related = [sameCategory, ...following]
+    .filter((p, i, all): p is (typeof posts)[number] => Boolean(p) && all.findIndex((x) => x?.slug === p!.slug) === i)
     .slice(0, 3);
   const options = services.filter((s) => !s.isHub || s.slug === "nft-development").map((s) => ({ slug: s.slug, name: s.name }));
   const url = `https://zoqonyx.com/blog/${post.slug}`;

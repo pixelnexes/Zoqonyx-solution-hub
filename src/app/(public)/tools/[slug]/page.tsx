@@ -11,6 +11,7 @@ import { categoryStyle } from "@/components/kit/icons";
 import { getDefaultToolBySlug, DEFAULT_TOOLS, TOOL_ALIASES } from "@/lib/default-tools";
 import { clampDescription, isLiveToolSlug } from "@/lib/utils";
 import { getToolSeoContent } from "@/lib/tool-seo-content";
+import { getPosts } from "@/lib/content";
 
 // Tool pages are built once and refreshed hourly, so a visit costs no database or render work.
 export const revalidate = 3600;
@@ -151,24 +152,6 @@ export default async function ToolPage({ params }: ToolPageProps) {
       where: { slug },
     });
 
-    if (tool) {
-      // The per-view usageCount write was removed: the page is now static and refreshed hourly.
-      relatedTools = await prisma.tool.findMany({
-        where: {
-          isActive: true,
-          category: tool.category,
-          id: { not: tool.id },
-        },
-        take: 6,
-        select: {
-          slug: true,
-          name: true,
-          description: true,
-          category: true,
-          icon: true,
-        },
-      });
-    }
   } catch (error) {
     console.error("Database connection error in ToolPage:", error);
   }
@@ -193,16 +176,22 @@ export default async function ToolPage({ params }: ToolPageProps) {
     notFound();
   }
 
-  // Only link tools whose pages are live: no inactive tools and no alias URLs that redirect.
-  relatedTools = relatedTools.filter((t) => isLiveToolSlug(t.slug, DEFAULT_TOOLS, TOOL_ALIASES));
-  if (tool && relatedTools.length < 6) {
-    const have = new Set(relatedTools.map((t) => t.slug));
-    relatedTools = relatedTools.concat(
-      DEFAULT_TOOLS.filter(
-        (t) => t.category === tool.category && t.slug !== tool.slug && !have.has(t.slug) && isLiveToolSlug(t.slug, DEFAULT_TOOLS, TOOL_ALIASES)
-      )
-    ).slice(0, 6);
+  // Related tools: the next live tools after this one in its category, wrapping round,
+  // so every tool is linked from several others instead of the same first few every time.
+  if (tool) {
+    const family = DEFAULT_TOOLS.filter(
+      (t) => t.category === tool.category && isLiveToolSlug(t.slug, DEFAULT_TOOLS, TOOL_ALIASES)
+    );
+    const at = family.findIndex((t) => t.slug === tool.slug);
+    relatedTools = family
+      .slice(at + 1)
+      .concat(family.slice(0, Math.max(at, 0)))
+      .filter((t) => t.slug !== tool.slug)
+      .slice(0, 8);
   }
+
+  // Blog guides that link to this tool.
+  const guides = (await getPosts()).filter((p) => p.content.includes(`(/tools/${slug})`)).slice(0, 4);
 
   if (!tool) {
     notFound();
@@ -425,6 +414,24 @@ export default async function ToolPage({ params }: ToolPageProps) {
                   </details>
                 ))}
               </div>
+            </section>
+          )}
+
+          {guides.length > 0 && (
+            <section aria-labelledby="guides-heading">
+              <h2 id="guides-heading" className="zq-display zq-h2">
+                Guides for this tool
+              </h2>
+              <ul className="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2">
+                {guides.map((g) => (
+                  <li key={g.slug}>
+                    <Link href={`/blog/${g.slug}`} className="zq-card zq-card-hover block h-full p-4">
+                      <span className="block text-[16px] font-semibold">{g.title}</span>
+                      <span className="mt-1 line-clamp-2 text-sm text-[#5E5B55]">{g.excerpt}</span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             </section>
           )}
 
