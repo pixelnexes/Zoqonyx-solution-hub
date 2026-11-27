@@ -88,7 +88,7 @@ export function LeadAlerts() {
           {inbox.mail.to.join(", ")}.
         </p>
       )}
-      {permission === "default" && (
+      {inbox && permission === "default" && (
         <button
           type="button"
           onClick={() => Notification.requestPermission().then(setPermission)}
