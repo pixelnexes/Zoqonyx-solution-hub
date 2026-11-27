@@ -16,6 +16,8 @@ export default function ContactPage() {
   const [status, setStatus] = React.useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = React.useState("");
 
+  const honeypot = React.useRef<HTMLInputElement>(null);
+
   React.useEffect(() => {
     const s = new URLSearchParams(window.location.search).get("subject");
     if (s) setSubject(s.slice(0, 80));
@@ -36,7 +38,7 @@ export default function ContactPage() {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, phone, subject, message }),
+        body: JSON.stringify({ name, email, phone, subject, message, website: honeypot.current?.value || "" }),
       });
 
       const data = await res.json();
@@ -70,7 +72,7 @@ export default function ContactPage() {
             </div>
             <h2 className="text-2xl font-heading font-semibold text-foreground">Message sent</h2>
             <p className="text-sm text-muted-foreground max-w-md mx-auto leading-relaxed">
-              Thank you for contacting Zoqonyx Solution Hub. Our technical team has received your message and will review it promptly.
+              Thank you for contacting Zoqonyx. We have your message and will reply by email.
             </p>
             <Button
               variant="outline"
@@ -83,6 +85,10 @@ export default function ContactPage() {
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="space-y-5">
+            <div aria-hidden="true" style={{ position: "absolute", left: "-9999px", height: 0, overflow: "hidden" }}>
+              <label htmlFor="ct-website">Leave this field empty</label>
+              <input ref={honeypot} id="ct-website" name="website" tabIndex={-1} autoComplete="off" />
+            </div>
             {status === "error" && (
               <div className="p-3.5 rounded-xl bg-destructive/10 text-destructive text-sm flex items-center gap-2.5 border border-destructive/20 animate-in fade-in duration-200">
                 <AlertCircle className="w-4 h-4 shrink-0" />

@@ -14,7 +14,16 @@ const BUDGETS = ["Not sure yet", "Under $2,000", "$2,000 – $10,000", "$10,000 
 const field =
   "w-full rounded-xl border border-[#E5E2DC] bg-[#F7F6F4] px-3.5 py-2.5 text-[15px] text-[#161513] placeholder:text-[#6F6B64] transition-colors hover:border-[#CFCBC3] focus:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-[#D63A14]";
 
-export function LeadForm({ services, defaultService = "" }: { services: ServiceOption[]; defaultService?: string }) {
+export function LeadForm({
+  services,
+  defaultService = "",
+  toolRequest = false,
+}: {
+  services: ServiceOption[];
+  defaultService?: string;
+  /** Short version for free tool requests: no company, service or budget fields. */
+  toolRequest?: boolean;
+}) {
   const pathname = usePathname();
   const [status, setStatus] = React.useState<"idle" | "sending" | "done" | "error">("idle");
   const [error, setError] = React.useState("");
@@ -81,6 +90,8 @@ export function LeadForm({ services, defaultService = "" }: { services: ServiceO
           </label>
           <input id="lf-phone" name="phone" type="tel" required minLength={7} inputMode="tel" placeholder="+1 555 123 4567 (with country code)" autoComplete="tel" className={field} />
         </div>
+        {!toolRequest && (
+          <>
         <div>
           <label htmlFor="lf-company" className="block text-sm font-semibold mb-1">
             Company <span className="font-normal text-[#5E5B55]">(optional)</span>
@@ -114,13 +125,16 @@ export function LeadForm({ services, defaultService = "" }: { services: ServiceO
             ))}
           </select>
         </div>
+          </>
+        )}
       </div>
       <div>
         <label htmlFor="lf-message" className="block text-sm font-semibold mb-1">
-          Tell us about your project
+          {toolRequest ? "Which tool do you need, and what should it do?" : "Tell us about your project"}
         </label>
         <textarea id="lf-message" name="message" required rows={5} minLength={10} className={field} />
       </div>
+      {toolRequest && <input type="hidden" name="service" value="Free custom tool request" />}
       {/* Honeypot: hidden from people, visible to simple bots. */}
       <div aria-hidden="true" style={{ position: "absolute", left: "-9999px", height: 0, overflow: "hidden" }}>
         <label htmlFor="lf-website">Leave this field empty</label>
@@ -128,7 +142,7 @@ export function LeadForm({ services, defaultService = "" }: { services: ServiceO
       </div>
       <div className="flex flex-wrap items-center gap-4">
         <Button type="submit" disabled={status === "sending"} className="zq-btn zq-btn-indigo h-12 px-7 text-[15px]">
-          {status === "sending" ? "Sending…" : "Send message"}
+          {status === "sending" ? "Sending…" : toolRequest ? "Send tool request" : "Send message"}
         </Button>
         <p className="text-sm text-[#5E5B55]">Or email us at hello@zoqonyx.com</p>
       </div>

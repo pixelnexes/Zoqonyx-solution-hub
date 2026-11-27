@@ -186,3 +186,5 @@ Whatever you use, keep the original file and check the compressed copy before yo
 
 import { BLOG_SEEDS_2027 } from "./blog-seed-2027";
 BLOG_SEEDS.push(...BLOG_SEEDS_2027);
+import { BLOG_SEEDS_FUTURE } from "./blog-seed-future";
+BLOG_SEEDS.push(...BLOG_SEEDS_FUTURE);

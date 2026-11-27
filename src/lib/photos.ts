@@ -91,6 +91,11 @@ const COVER_OVERRIDE: Record<string, string> = {
   "backlink-history-checker": "u-board",
   "how-to-write-an-amazon-product-description": "u-shop",
   "how-to-add-schema-markup": "u-mac",
+  "gta-6-launch-lessons-for-game-and-app-launches": "u-game",
+  "free-tools-for-gaming-content-creators": "u-laptop",
+  "future-of-free-online-tools": "u-aichip",
+  "business-growth-plan-for-small-businesses": "u-board",
+  "custom-tool-for-your-business": "u-wireframe",
 };
 
 /** Picks a photo related to the post's category; the slug keeps the choice stable. */

@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     description: "146 free online tools for images, PDFs, code and text, with no account. Apps, websites and software built by our team.",
     url: "https://zoqonyx.com",
     type: "website",
-    images: [{ url: "https://zoqonyx.com/logo/zoqonyx-og-v2.png", width: 1200, height: 630, alt: "Zoqonyx: software studio and free online tools" }],
+    images: [{ url: "https://zoqonyx.com/logo/zoqonyx-og-v2.png", width: 1200, height: 630, alt: "Zoqonyx: free online tools by Newix Tech Solutions" }],
   },
 };
 

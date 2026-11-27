@@ -1,25 +1,16 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { ensureContentTables } from "@/lib/content-db";
+import { sendLeadEmail } from "@/lib/notify";
+import { tooMany } from "@/lib/rate-limit";
 
 export const dynamic = "force-dynamic";
-
-// Very small in-memory limiter: 5 submissions per IP per 10 minutes.
-const hits = new Map<string, number[]>();
-function tooMany(ip: string): boolean {
-  const now = Date.now();
-  const recent = (hits.get(ip) || []).filter((t) => now - t < 10 * 60 * 1000);
-  recent.push(now);
-  hits.set(ip, recent);
-  return recent.length > 5;
-}
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 const clip = (v: unknown, max: number) => String(v ?? "").trim().slice(0, max);
 
 export async function POST(req: Request) {
-  const ip = (req.headers.get("x-forwarded-for") || "unknown").split(",")[0].trim();
-  if (tooMany(ip)) {
+  if (tooMany(req, "lead")) {
     return NextResponse.json({ error: "Too many requests. Please try again in a few minutes." }, { status: 429 });
   }
 
@@ -46,28 +37,48 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Please add " + problems.join(", ") + "." }, { status: 400 });
   }
 
+  const lead = {
+    name,
+    email,
+    phone,
+    company: clip(body.company, 120),
+    service: clip(body.service, 120),
+    budget: clip(body.budget, 60),
+    message,
+    sourcePage: clip(body.sourcePage, 190),
+  };
+
+  let saved = false;
   try {
     await ensureContentTables();
-    await prisma.lead.create({
-      data: {
-        name,
-        email,
-        phone,
-        company: clip(body.company, 120),
-        service: clip(body.service, 120),
-        budget: clip(body.budget, 60),
-        message,
-        sourcePage: clip(body.sourcePage, 190),
-        notes: "",
-      },
-    });
-    return NextResponse.json({ success: true });
+    await prisma.lead.create({ data: { ...lead, notes: "" } });
+    saved = true;
   } catch (e) {
     console.error("Lead could not be saved:", e);
-    // Don't pretend it worked: the visitor needs another way to reach us.
-    return NextResponse.json(
-      { error: "We couldn't save your message right now. Please email hello@zoqonyx.com instead." },
-      { status: 503 }
-    );
   }
+
+  // Email even if saving failed, so the enquiry still reaches someone.
+  const mailed = await sendLeadEmail(
+    `New lead: ${name}${lead.service ? ` (${lead.service})` : ""}`,
+    {
+      Name: name,
+      Email: email,
+      "Phone / WhatsApp": phone,
+      Company: lead.company,
+      Service: lead.service,
+      Budget: lead.budget,
+      Page: lead.sourcePage,
+      Message: "\n" + message,
+      "Saved in admin": saved ? "yes" : "NO - keep this email",
+    },
+    email
+  );
+
+  if (saved || mailed) return NextResponse.json({ success: true });
+
+  // Don't pretend it worked: the visitor needs another way to reach us.
+  return NextResponse.json(
+    { error: "We couldn't send your message right now. Please email info@newixtechsolutions.com instead." },
+    { status: 503 }
+  );
 }

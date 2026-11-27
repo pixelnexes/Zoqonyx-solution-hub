@@ -1,7 +1,12 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+import { sendLeadEmail } from "@/lib/notify";
+import { tooMany } from "@/lib/rate-limit";
 
 export async function POST(req: Request) {
+  if (tooMany(req, "subscribe")) {
+    return NextResponse.json({ error: "Too many requests. Please try again in a few minutes." }, { status: 429 });
+  }
   try {
     const body = await req.json();
     const { email, toolSlug } = body;
@@ -29,6 +34,8 @@ export async function POST(req: Request) {
         toolSlug: String(toolSlug),
       },
     });
+
+    await sendLeadEmail("New tool waitlist signup", { Email: trimmedEmail, Tool: String(toolSlug).slice(0, 120) }, trimmedEmail);
 
     return NextResponse.json({
       success: true,

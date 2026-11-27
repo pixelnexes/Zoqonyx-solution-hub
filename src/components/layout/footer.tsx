@@ -16,7 +16,7 @@ const TOOL_LINKS = [
   { label: "Calculators", href: "/category/calculators" },
   { label: "Backlink checker", href: "/tools/backlink-checker" },
   { label: "Schema markup generator", href: "/tools/schema-markup-generator" },
-  { label: "Request a tool", href: "/contact?subject=Tool%20request" },
+  { label: "Request a tool", href: "/request-tool" },
 ];
 
 const SERVICE_LINKS = [
@@ -90,7 +90,7 @@ export function Footer() {
               © {new Date().getFullYear()} {siteName}
             </p>
             <p>
-              Built by{" "}
+              A product of{" "}
               <a href={settings.footer_url || "https://newixtechsolutions.com/"} target="_blank" rel="noopener noreferrer" className={`font-semibold ${LINK}`}>
                 {credit}
                 <span className="sr-only"> (opens in a new tab)</span>
