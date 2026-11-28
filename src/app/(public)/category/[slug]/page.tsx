@@ -1,4 +1,5 @@
 import { clampDescription, isLiveToolSlug } from "@/lib/utils";
+import { ServiceCta } from "@/components/site/service-cta";
 import { notFound } from "next/navigation";
 import { PageHero } from "@/components/kit/page-kit";
 import type { Metadata } from "next";
@@ -338,6 +339,8 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
               </div>
             </section>
           )}
+
+          <ServiceCta topic={category.name} />
 
           <section aria-labelledby="other-heading">
             <h2 id="other-heading" className="zq-display zq-h2">

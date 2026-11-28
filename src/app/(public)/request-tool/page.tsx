@@ -67,7 +67,7 @@ export default function RequestToolPage() {
             </Link>
             .
           </p>
-          <LeadForm services={[]} toolRequest />
+          <LeadForm services={[]} variant="tool" />
         </section>
 
         <section aria-labelledby="request-faq">

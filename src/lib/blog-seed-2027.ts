@@ -543,6 +543,71 @@ For your own website, Search Console's Links report is free. Export **Top linkin
 
 An API or export gives you rows; the useful part is what you do with them. Upload the CSV to the [Zoqonyx backlink checker](/tools/backlink-checker) to count backlinks and referring domains, see the most common anchor texts and flag links from low-reputation domains. The file is read in your browser and is not uploaded.
 
+## What a backlink API response usually contains
+
+Field names differ between providers, but most responses can be mapped to one simple record:
+
+\`\`\`
+{
+  "source_url": "https://example.org/guide",
+  "target_url": "https://yoursite.com/pricing",
+  "anchor": "pricing guide",
+  "rel": "nofollow",
+  "first_seen": "2027-01-12",
+  "last_seen": "2027-02-03"
+}
+\`\`\`
+
+Convert every provider's data into your own record shape as soon as it arrives. If you change provider later, only that converter has to change.
+
+## A safe way to call a paid API from your server
+
+This Node.js pattern keeps the key on the server, retries politely and caches the result. Replace the address with the endpoint from your provider's documentation.
+
+\`\`\`
+const cache = new Map();
+
+async function getBacklinks(domain) {
+  const hit = cache.get(domain);
+  if (hit && Date.now() - hit.at < 24 * 60 * 60 * 1000) return hit.data;
+
+  for (let attempt = 1; attempt <= 3; attempt++) {
+    const res = await fetch(
+      "https://api.your-provider.example/backlinks?target=" + encodeURIComponent(domain),
+      { headers: { Authorization: "Bearer " + process.env.BACKLINK_API_KEY } }
+    );
+    if (res.ok) {
+      const data = await res.json();
+      cache.set(domain, { at: Date.now(), data });
+      return data;
+    }
+    if (res.status !== 429 && res.status < 500) throw new Error("API error " + res.status);
+    await new Promise((done) => setTimeout(done, attempt * 2000));
+  }
+  throw new Error("API did not answer after 3 attempts");
+}
+\`\`\`
+
+## Estimate the cost before you build
+
+1. Count the domains you will check.
+2. Decide how often: monthly is enough for most reports.
+3. Estimate the rows per domain and how the provider bills them: per request, per row or per unit.
+4. Multiply, then add room for retries and testing.
+
+If the result is more than the reports are worth, a monthly CSV export may be all you need.
+
+## API or manual export?
+
+- **Manual export** suits one website, a monthly review and a small budget.
+- **API** suits agencies with many clients, automated dashboards and alerts.
+
+## Common questions
+
+**Is there a free backlink checker API?** Some providers offer limited free requests. Check the current terms, because free limits change.
+
+**Can I get competitor backlinks from Google's API?** No. Google only reports on sites you have verified, and its API does not include links at all.
+
 ## Building your own integration
 
 If you do build against an API:
@@ -611,6 +676,53 @@ function checkLink(string $pageUrl, string $targetHost): array {
 
 Loop over your list of known linking pages, call the function for each one, and write the results to a CSV file.
 
+## Check a whole list and save the results
+
+Put one linking page per line in \`links.txt\`, then run this script from the command line. It uses the function above and writes \`results.csv\`.
+
+\`\`\`
+<?php
+require 'check-link.php';
+
+$pages = file('links.txt', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+$out = fopen('results.csv', 'w');
+fputcsv($out, ['checked_on', 'page', 'status', 'found', 'rel', 'anchor']);
+
+foreach ($pages as $page) {
+    $r = checkLink($page, 'yoursite.com');
+    fputcsv($out, [
+        date('Y-m-d'),
+        $page,
+        $r['status'],
+        $r['found'] ? 'yes' : 'no',
+        $r['rel'] ?? '',
+        $r['anchor'] ?? '',
+    ]);
+    sleep(2);
+}
+fclose($out);
+\`\`\`
+
+## Run it every week
+
+On Linux hosting, a cron entry runs the script on a schedule. This one runs every Monday at 06:00:
+
+\`\`\`
+0 6 * * 1 cd /home/youruser/linkcheck && php check-all.php
+\`\`\`
+
+Many shared hosting panels have a Cron Jobs screen where you can paste the same schedule.
+
+## Reading the results
+
+- **found = no, status 200:** the page loads but your link is gone, or it is added by JavaScript.
+- **status 404 or 410:** the page was removed.
+- **status 403 or 429:** the site refused the request. Slow down, and check that page by hand.
+
+## Limits of this approach
+
+The script reads the HTML the server sends. It does not run JavaScript, so links inserted later by a script are missed. Matching with \`str_ends_with\` also accepts hosts that merely end with your name, so compare the full host if that matters to you.
+
 ## Rules for running it
 
 1. **Be polite.** Add a delay between requests and name your bot in the user agent.
@@ -650,6 +762,43 @@ For your own website, you can build a history with the free Search Console expor
 3. Compare two files. Linking domains in the newer file but not the older one are new. Domains in the older file but not the newer one are lost, or at least no longer in Google's sample.
 
 Search Console shows a sample rather than every link, so treat small differences with care. Look at the trend over several months, not single changes.
+
+## Compare two exports in a spreadsheet
+
+Paste last month's domains into a sheet named \`old\` and this month's into a sheet named \`new\`, both in column A.
+
+New domains, entered next to the list in \`new\`:
+
+\`\`\`
+=IF(COUNTIF(old!A:A, A2)=0, "new", "")
+\`\`\`
+
+Lost domains, entered next to the list in \`old\`:
+
+\`\`\`
+=IF(COUNTIF(new!A:A, A2)=0, "lost", "")
+\`\`\`
+
+Filter each column for the word to get your two lists. This works in Google Sheets and Excel.
+
+## A simple history table
+
+Keep one row per month. After six months you have a trend you can act on.
+
+\`\`\`
+Month     | Referring domains | New | Lost | What we did
+2027-01   |                   |     |      |
+2027-02   |                   |     |      |
+\`\`\`
+
+The last column matters most: it connects a change in links to something you published, launched or were mentioned in.
+
+## Recovering a lost link
+
+1. Open the page and confirm the link is really gone.
+2. If the page moved, ask the owner to link to the new address.
+3. If your own page changed address, add a permanent redirect so old links still work.
+4. If the link was removed on purpose, thank them and move on.
 
 ## What to look for in the changes
 

@@ -120,7 +120,7 @@ export function Header() {
 
         <div className="hidden lg:flex items-center gap-3">
           <SessionHistoryModal />
-          <Link href="/#contact" className="zq-btn zq-btn-sun !h-10 !px-5 !text-[15px]">
+          <Link href="/contact" data-lead="quote" className="zq-btn zq-btn-sun !h-10 !px-5 !text-[15px]">
             Get a quote <ArrowRight className="w-4 h-4" aria-hidden="true" />
           </Link>
         </div>
@@ -141,7 +141,7 @@ export function Header() {
       </div>
 
       {mobileMenuOpen && (
-        <nav id="mobile-menu" aria-label="Main" className="lg:hidden border-t border-[#E5E2DC] bg-white px-4 pb-5 max-h-[80vh] overflow-y-auto">
+        <nav id="mobile-menu" onClick={(e) => (e.target as Element).closest("a") && setMobileMenuOpen(false)} aria-label="Main" className="lg:hidden border-t border-[#E5E2DC] bg-white px-4 pb-5 max-h-[80vh] overflow-y-auto">
           <ul>
             {[{ label: "Services", href: "/services" }, { label: "Blog", href: "/blog" }, { label: "All tools", href: "/tools" }, ...NAV_CATEGORIES, { label: "About", href: "/about" }, { label: "Contact", href: "/contact" }].map((item) => (
               <li key={item.href} className="border-b border-[#E5E2DC]">
@@ -151,7 +151,7 @@ export function Header() {
               </li>
             ))}
           </ul>
-          <Link href="/#contact" className="zq-btn zq-btn-sun mt-4 w-full">
+          <Link href="/contact" data-lead="quote" className="zq-btn zq-btn-sun mt-4 w-full">
             Get a quote
           </Link>
         </nav>

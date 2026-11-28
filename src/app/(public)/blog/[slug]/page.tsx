@@ -6,6 +6,7 @@ import { extractHeadings, readingMinutes, renderMarkdown } from "@/lib/markdown"
 import { ContactSection } from "@/components/site/sections";
 import { BlogCover } from "@/components/kit/tech-scene";
 import { blogPhotoKey } from "@/lib/photos";
+import { ServiceCta } from "@/components/site/service-cta";
 
 export const revalidate = 300;
 
@@ -135,6 +136,11 @@ export default async function BlogPostPage({ params }: Props) {
         <article className="-mt-2">
           <BlogCover seed={post.slug} category={post.category} className="h-56 w-full rounded-xl shadow-[0_24px_60px_-34px_rgba(22,21,19,.55)] sm:h-80" />
           <div className="zq-prose mt-8 text-[17px] leading-[1.75]">{renderMarkdown(post.content)}</div>
+          {!post.content.includes("(/services/") && (
+            <div className="mt-10">
+              <ServiceCta topic={`${post.category} ${post.slug}`} />
+            </div>
+          )}
           <p className="mt-10 border-t border-[#E5E2DC] pt-5 text-sm text-[#5E5B55]">
             Written by {post.authorName}. Last updated {fmt(post.updatedAt)}.
           </p>

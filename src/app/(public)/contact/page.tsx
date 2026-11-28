@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import Link from "next/link";
 import { PageHero } from "@/components/kit/page-kit";
 import { Send, CheckCircle2, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -60,7 +61,7 @@ export default function ContactPage() {
 
   return (
     <div className="zq-page">
-      <PageHero crumbs={[{ label: "Home", href: "/" }, { label: "Contact" }]} title="Contact Zoqonyx" intro="Need a specific tool, have feedback, or want to report an issue? Send us a message and we will reply by email." image="/photos/u-support.webp" />
+      <PageHero crumbs={[{ label: "Home", href: "/" }, { label: "Contact" }]} title="Contact Zoqonyx" intro="Ask about a project, send feedback, report a problem or request a tool. We reply by email." image="/photos/u-support.webp" />
       <div className="container mx-auto max-w-3xl px-4 zq-section">
       {/* Form Container */}
       <div className="relative zq-card p-6 sm:p-10 -mt-6">
@@ -198,6 +199,59 @@ export default function ContactPage() {
             </Button>
           </form>
         )}
+      </div>
+
+      <div className="mt-14 space-y-10 text-[16px] leading-relaxed text-[#2E2C28]">
+        <section aria-labelledby="which-form">
+          <h2 id="which-form" className="zq-display text-2xl font-semibold text-[#161513]">Which form should you use?</h2>
+          <dl className="mt-4 space-y-4">
+            <div>
+              <dt className="font-semibold">A question, feedback or a bug</dt>
+              <dd className="text-[#5E5B55]">Use the form above. Tell us the page or tool and what happened.</dd>
+            </div>
+            <div>
+              <dt className="font-semibold">A project: website, app, software, AI or marketing</dt>
+              <dd className="text-[#5E5B55]">
+                <a href="/contact" data-lead="quote" className="font-semibold text-[#B02E0E] underline underline-offset-4">Get a quote</a> and choose the service. A budget range is optional and helps us suggest a sensible scope.
+              </dd>
+            </div>
+            <div>
+              <dt className="font-semibold">A tool that does not exist yet</dt>
+              <dd className="text-[#5E5B55]">
+                <Link href="/request-tool" className="font-semibold text-[#B02E0E] underline underline-offset-4">Send a free tool request</Link> with one example of the input and the result you expect.
+              </dd>
+            </div>
+          </dl>
+        </section>
+        <section aria-labelledby="include">
+          <h2 id="include" className="zq-display text-2xl font-semibold text-[#161513]">What helps us answer quickly</h2>
+          <ul className="mt-3 list-disc space-y-1.5 pl-5">
+            <li>What you want to achieve, in a few sentences</li>
+            <li>Who will use it, and any system it must connect to</li>
+            <li>Your timing, and a budget range if you have one</li>
+            <li>Your phone or WhatsApp number with country code</li>
+          </ul>
+          <p className="mt-3 text-[#5E5B55]">Please do not send passwords or private customer data through the form.</p>
+        </section>
+        <section aria-labelledby="services-list">
+          <h2 id="services-list" className="zq-display text-2xl font-semibold text-[#161513]">What we work on</h2>
+          <ul className="mt-3 grid gap-2 sm:grid-cols-2">
+            {[
+              ["Website development", "website-development"],
+              ["App development", "app-development"],
+              ["Game development", "game-development"],
+              ["Custom software", "custom-software-development"],
+              ["AI and NLP", "ai-nlp-development"],
+              ["Digital marketing", "digital-marketing"],
+              ["ERP and CRM", "erp-crm-development"],
+              ["Staff augmentation", "staff-augmentation"],
+            ].map(([label, slug]) => (
+              <li key={slug}>
+                <Link href={`/services/${slug}`} className="font-semibold underline underline-offset-4 hover:text-[#B02E0E]">{label}</Link>
+              </li>
+            ))}
+          </ul>
+        </section>
       </div>
       </div>
     </div>

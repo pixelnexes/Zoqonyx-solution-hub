@@ -163,3 +163,8 @@ a.zq-card:hover, .zq-card-hover:hover { border-color: #CFCBC3; background: #FCFC
 
 /* Placeholder behind photos while they load */
 img[src^="/photos/"] { background-color: #ECEAE5; }
+
+/* Popup lead form */
+.zq-dialog { width: min(640px, calc(100vw - 24px)); max-height: calc(100dvh - 24px); margin: auto; padding: 0; overflow-y: auto; border: 1px solid #E5E2DC; border-radius: 20px; background: #fff; color: #161513; box-shadow: 0 30px 70px -24px rgba(0,0,0,.55); }
+.zq-dialog::backdrop { background: rgba(22,21,19,.6); }
+html:has(dialog.zq-dialog[open]) { overflow: hidden; }

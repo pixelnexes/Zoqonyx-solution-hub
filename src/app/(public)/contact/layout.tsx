@@ -3,10 +3,10 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: {
-    absolute: "Contact Zoqonyx Support & Inquiries | Zoqonyx",
+    absolute: "Contact Zoqonyx: Quotes, Support and Tool Requests",
   },
   description:
-    "Get in touch with the Zoqonyx Solution Hub team. Submit tool suggestions, report bugs, or partner with us.",
+    "Contact Zoqonyx: ask for a project quote, request a free tool, send feedback or report a problem. We reply by email.",
   alternates: {
     canonical: "https://zoqonyx.com/contact",
   },

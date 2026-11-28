@@ -3,6 +3,7 @@ import { notFound, permanentRedirect } from "next/navigation";
 import type { Metadata } from "next";
 import { ToolRenderer } from "@/components/tools/tool-renderer";
 import { RequestTool } from "@/components/site/request-tool";
+import { ServiceCta } from "@/components/site/service-cta";
 import { ComingSoonToolView } from "@/components/tools/coming-soon-tool-view";
 import Link from "next/link";
 import { ArrowRight, ChevronDown, Lightbulb } from "lucide-react";
@@ -273,10 +274,9 @@ export default async function ToolPage({ params }: ToolPageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
-      />
+      {seo.faqs.length > 0 && (
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
+      )}
 
       <div className="zq-page">
         <section className="zq-hero-light">
@@ -318,6 +318,7 @@ export default async function ToolPage({ params }: ToolPageProps) {
           </div>
 
           {/* How to use: a real sequence, so numbered */}
+          {seo.howToSteps.length > 0 && (
           <section aria-labelledby="howto-heading">
             <h2 id="howto-heading" className="zq-display zq-h2">
               How to use {tool.name}
@@ -334,6 +335,7 @@ export default async function ToolPage({ params }: ToolPageProps) {
               ))}
             </ol>
           </section>
+          )}
 
           {seo.keyBenefits.length > 0 && (
             <section aria-labelledby="features-heading">
@@ -434,6 +436,8 @@ export default async function ToolPage({ params }: ToolPageProps) {
               </ul>
             </section>
           )}
+
+          <ServiceCta topic={/seo|backlink|schema|meta|keyword|utm|sitemap|robots/.test(tool.slug) ? "seo" : tool.category} />
 
           <RequestTool />
 

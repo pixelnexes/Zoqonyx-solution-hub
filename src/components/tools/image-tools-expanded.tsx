@@ -450,7 +450,7 @@ export function PassportPhotoMakerTool() {
     const img = new Image();
     img.src = imageSrc;
     img.onload = () => {
-      // 4x6 print sheet at 300 DPI = 1200 x 1800 px
+      // 6x4 in print sheet at 300 DPI = 1800 x 1200 px
       const canvas = document.createElement("canvas");
       canvas.width = 1800;
       canvas.height = 1200;
@@ -460,31 +460,28 @@ export function PassportPhotoMakerTool() {
       ctx.fillStyle = "#ffffff";
       ctx.fillRect(0, 0, 1800, 1200);
 
-      // Photo size: US 2x2 in = 600x600 px. 2 rows of 3 photos = 6 photos
-      const photoW = 500;
-      const photoH = standard === "us" ? 500 : 650;
-
+      // True print sizes at 300 DPI: US 2x2 in = 600x600 px, UK/Schengen 35x45 mm = 413x531 px.
+      const photoW = standard === "us" ? 600 : 413;
+      const photoH = standard === "us" ? 600 : 531;
+      const gapX = (1800 - 3 * photoW) / 4;
+      const gapY = (1200 - 2 * photoH) / 3;
+      // Centre-crop the portrait to the photo shape so faces are never stretched.
+      const scale = Math.max(photoW / img.width, photoH / img.height);
+      const srcW = photoW / scale;
+      const srcH = photoH / scale;
+      const srcX = (img.width - srcW) / 2;
+      const srcY = (img.height - srcH) / 2;
       for (let row = 0; row < 2; row++) {
         for (let col = 0; col < 3; col++) {
-          const x = 80 + col * (photoW + 60);
-          const y = 80 + row * (photoH + 50);
-
-          // Draw crop of image
-          ctx.save();
-          ctx.beginPath();
-          ctx.rect(x, y, photoW, photoH);
-          ctx.stroke();
-          ctx.clip();
-          ctx.drawImage(img, x, y, photoW, photoH);
-          ctx.restore();
-
+          const x = Math.round(gapX + col * (photoW + gapX));
+          const y = Math.round(gapY + row * (photoH + gapY));
+          ctx.drawImage(img, srcX, srcY, srcW, srcH, x, y, photoW, photoH);
           // Border outline for cutting
           ctx.strokeStyle = "#cccccc";
           ctx.lineWidth = 1;
           ctx.strokeRect(x, y, photoW, photoH);
         }
       }
-
       const url = canvas.toDataURL("image/jpeg", 0.95);
       setResultUrl(url);
       addSessionHistory({
